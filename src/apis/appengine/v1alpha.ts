@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace appengine_v1alpha {
   export interface Options extends GlobalOptions {
@@ -628,9 +630,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Apps$Authorizedcertificates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Apps$Authorizedcertificates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    create(
+      params: Params$Resource$Apps$Authorizedcertificates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Apps$Authorizedcertificates$Create,
       options:
@@ -646,12 +657,20 @@ export namespace appengine_v1alpha {
     create(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Create
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
-      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
-    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AuthorizedCertificate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -684,7 +703,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
+        createAPIRequest<Schema$AuthorizedCertificate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
@@ -744,9 +766,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Apps$Authorizedcertificates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Apps$Authorizedcertificates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Apps$Authorizedcertificates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Apps$Authorizedcertificates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -760,10 +791,17 @@ export namespace appengine_v1alpha {
     delete(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -797,7 +835,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -874,9 +915,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Authorizedcertificates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Authorizedcertificates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    get(
+      params: Params$Resource$Apps$Authorizedcertificates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Authorizedcertificates$Get,
       options:
@@ -892,12 +942,20 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Get
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
-      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
-    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AuthorizedCertificate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -931,7 +989,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
+        createAPIRequest<Schema$AuthorizedCertificate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
@@ -1004,9 +1065,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Authorizedcertificates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Authorizedcertificates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
+    list(
+      params: Params$Resource$Apps$Authorizedcertificates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Authorizedcertificates$List,
       options:
@@ -1024,12 +1094,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$List
-        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
-    ): void | GaxiosPromise<Schema$ListAuthorizedCertificatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1064,7 +1142,7 @@ export namespace appengine_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
@@ -1157,9 +1235,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Apps$Authorizedcertificates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Apps$Authorizedcertificates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AuthorizedCertificate>;
+    patch(
+      params: Params$Resource$Apps$Authorizedcertificates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Apps$Authorizedcertificates$Patch,
       options:
@@ -1175,12 +1262,20 @@ export namespace appengine_v1alpha {
     patch(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizedcertificates$Patch
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AuthorizedCertificate>,
-      callback?: BodyResponseCallback<Schema$AuthorizedCertificate>
-    ): void | GaxiosPromise<Schema$AuthorizedCertificate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthorizedCertificate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AuthorizedCertificate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizedcertificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1214,7 +1309,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
+        createAPIRequest<Schema$AuthorizedCertificate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
       }
@@ -1394,9 +1492,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Authorizeddomains$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Authorizeddomains$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+    list(
+      params: Params$Resource$Apps$Authorizeddomains$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Authorizeddomains$List,
       options:
@@ -1414,12 +1521,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Authorizeddomains$List
-        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
-    ): void | GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthorizedDomainsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1455,7 +1570,7 @@ export namespace appengine_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -1567,9 +1682,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Apps$Domainmappings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Apps$Domainmappings$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Apps$Domainmappings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Apps$Domainmappings$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1583,12 +1707,17 @@ export namespace appengine_v1alpha {
     create(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1622,7 +1751,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1688,9 +1820,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Apps$Domainmappings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Apps$Domainmappings$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Apps$Domainmappings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Apps$Domainmappings$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1704,12 +1845,17 @@ export namespace appengine_v1alpha {
     delete(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1743,7 +1889,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1812,9 +1961,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Domainmappings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Domainmappings$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DomainMapping>;
+    get(
+      params: Params$Resource$Apps$Domainmappings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Domainmappings$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DomainMapping>,
@@ -1828,12 +1986,17 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Get
-        | BodyResponseCallback<Schema$DomainMapping>,
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DomainMapping>,
-      callback?: BodyResponseCallback<Schema$DomainMapping>
-    ): void | GaxiosPromise<Schema$DomainMapping> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DomainMapping>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DomainMapping> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1867,7 +2030,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DomainMapping>(parameters, callback);
+        createAPIRequest<Schema$DomainMapping>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
       }
@@ -1937,9 +2103,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Domainmappings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Domainmappings$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDomainMappingsResponse>;
+    list(
+      params: Params$Resource$Apps$Domainmappings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Domainmappings$List,
       options:
@@ -1957,12 +2132,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$List
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>
-    ): void | GaxiosPromise<Schema$ListDomainMappingsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDomainMappingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDomainMappingsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1998,7 +2181,7 @@ export namespace appengine_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -2083,9 +2266,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Apps$Domainmappings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Apps$Domainmappings$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Apps$Domainmappings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Apps$Domainmappings$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2099,12 +2291,17 @@ export namespace appengine_v1alpha {
     patch(
       paramsOrCallback?:
         | Params$Resource$Apps$Domainmappings$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Domainmappings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2138,7 +2335,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2322,9 +2522,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Apps$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -2338,10 +2547,17 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2374,7 +2590,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -2447,9 +2666,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Apps$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Locations$List,
       options:
@@ -2465,12 +2693,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2504,7 +2740,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -2622,9 +2861,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Apps$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2638,12 +2886,17 @@ export namespace appengine_v1alpha {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2676,7 +2929,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2749,9 +3005,18 @@ export namespace appengine_v1alpha {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Apps$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$Operations$List,
       options:
@@ -2767,12 +3032,20 @@ export namespace appengine_v1alpha {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Apps$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2806,7 +3079,10 @@ export namespace appengine_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }

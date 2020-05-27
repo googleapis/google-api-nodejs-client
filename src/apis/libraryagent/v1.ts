@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace libraryagent_v1 {
   export interface Options extends GlobalOptions {
@@ -236,9 +238,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Shelves$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Shelves$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>;
+    get(
+      params: Params$Resource$Shelves$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Shelves$Get,
       options:
@@ -256,12 +267,20 @@ export namespace libraryagent_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Shelves$Get
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -293,7 +312,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
@@ -363,9 +382,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Shelves$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Shelves$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
+    list(
+      params: Params$Resource$Shelves$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Shelves$List,
       options:
@@ -393,18 +421,24 @@ export namespace libraryagent_v1 {
         | Params$Resource$Shelves$List
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -436,7 +470,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -535,9 +569,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     borrow(
+      params: Params$Resource$Shelves$Books$Borrow,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    borrow(
       params?: Params$Resource$Shelves$Books$Borrow,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    borrow(
+      params: Params$Resource$Shelves$Books$Borrow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     borrow(
       params: Params$Resource$Shelves$Books$Borrow,
       options:
@@ -555,12 +598,20 @@ export namespace libraryagent_v1 {
     borrow(
       paramsOrCallback?:
         | Params$Resource$Shelves$Books$Borrow
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$Borrow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -593,7 +644,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -658,9 +709,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Shelves$Books$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Shelves$Books$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    get(
+      params: Params$Resource$Shelves$Books$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Shelves$Books$Get,
       options:
@@ -678,12 +738,20 @@ export namespace libraryagent_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Shelves$Books$Get
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -716,7 +784,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -789,9 +857,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Shelves$Books$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Shelves$Books$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
+    list(
+      params: Params$Resource$Shelves$Books$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Shelves$Books$List,
       options:
@@ -819,18 +896,24 @@ export namespace libraryagent_v1 {
         | Params$Resource$Shelves$Books$List
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListBooksResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleExampleLibraryagentV1ListBooksResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleExampleLibraryagentV1ListBooksResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -866,7 +949,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListBooksResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -931,9 +1014,18 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     return(
+      params: Params$Resource$Shelves$Books$Return,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    return(
       params?: Params$Resource$Shelves$Books$Return,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+    return(
+      params: Params$Resource$Shelves$Books$Return,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     return(
       params: Params$Resource$Shelves$Books$Return,
       options:
@@ -951,12 +1043,20 @@ export namespace libraryagent_v1 {
     return(
       paramsOrCallback?:
         | Params$Resource$Shelves$Books$Return
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
-      callback?: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
-    ): void | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shelves$Books$Return;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -989,7 +1089,7 @@ export namespace libraryagent_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(

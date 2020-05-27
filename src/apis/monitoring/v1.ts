@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace monitoring_v1 {
   export interface Options extends GlobalOptions {
@@ -716,9 +718,18 @@ export namespace monitoring_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Dashboards$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Dashboards$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Dashboard>;
+    create(
+      params: Params$Resource$Projects$Dashboards$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Dashboards$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Dashboard>,
@@ -732,12 +743,17 @@ export namespace monitoring_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Dashboards$Create
-        | BodyResponseCallback<Schema$Dashboard>,
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Dashboard>,
-      callback?: BodyResponseCallback<Schema$Dashboard>
-    ): void | GaxiosPromise<Schema$Dashboard> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Dashboard> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dashboards$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -771,7 +787,10 @@ export namespace monitoring_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Dashboard>(parameters, callback);
+        createAPIRequest<Schema$Dashboard>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);
       }
@@ -834,9 +853,18 @@ export namespace monitoring_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Dashboards$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Dashboards$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Dashboards$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Dashboards$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -850,10 +878,17 @@ export namespace monitoring_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Dashboards$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dashboards$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -884,7 +919,10 @@ export namespace monitoring_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -954,9 +992,18 @@ export namespace monitoring_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Dashboards$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Dashboards$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Dashboard>;
+    get(
+      params: Params$Resource$Projects$Dashboards$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Dashboards$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Dashboard>,
@@ -970,12 +1017,17 @@ export namespace monitoring_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Dashboards$Get
-        | BodyResponseCallback<Schema$Dashboard>,
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Dashboard>,
-      callback?: BodyResponseCallback<Schema$Dashboard>
-    ): void | GaxiosPromise<Schema$Dashboard> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Dashboard> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dashboards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1006,7 +1058,10 @@ export namespace monitoring_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Dashboard>(parameters, callback);
+        createAPIRequest<Schema$Dashboard>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);
       }
@@ -1078,9 +1133,18 @@ export namespace monitoring_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Dashboards$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Dashboards$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDashboardsResponse>;
+    list(
+      params: Params$Resource$Projects$Dashboards$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Dashboards$List,
       options:
@@ -1096,12 +1160,20 @@ export namespace monitoring_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Dashboards$List
-        | BodyResponseCallback<Schema$ListDashboardsResponse>,
+        | BodyResponseCallback<Schema$ListDashboardsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDashboardsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDashboardsResponse>
-    ): void | GaxiosPromise<Schema$ListDashboardsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDashboardsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDashboardsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDashboardsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dashboards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1135,7 +1207,10 @@ export namespace monitoring_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDashboardsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDashboardsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDashboardsResponse>(parameters);
       }
@@ -1217,9 +1292,18 @@ export namespace monitoring_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Dashboards$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Dashboards$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Dashboard>;
+    patch(
+      params: Params$Resource$Projects$Dashboards$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Dashboards$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Dashboard>,
@@ -1233,12 +1317,17 @@ export namespace monitoring_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Dashboards$Patch
-        | BodyResponseCallback<Schema$Dashboard>,
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Dashboard>,
-      callback?: BodyResponseCallback<Schema$Dashboard>
-    ): void | GaxiosPromise<Schema$Dashboard> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Dashboard>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Dashboard> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dashboards$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1269,7 +1358,10 @@ export namespace monitoring_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Dashboard>(parameters, callback);
+        createAPIRequest<Schema$Dashboard>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);
       }

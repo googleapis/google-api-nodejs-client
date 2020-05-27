@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace texttospeech_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -297,9 +299,18 @@ export namespace texttospeech_v1beta1 {
      * @return {object} Request object
      */
     synthesize(
+      params: Params$Resource$Text$Synthesize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    synthesize(
       params?: Params$Resource$Text$Synthesize,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SynthesizeSpeechResponse>;
+    synthesize(
+      params: Params$Resource$Text$Synthesize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     synthesize(
       params: Params$Resource$Text$Synthesize,
       options:
@@ -317,12 +328,20 @@ export namespace texttospeech_v1beta1 {
     synthesize(
       paramsOrCallback?:
         | Params$Resource$Text$Synthesize
-        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
-      callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>
-    ): void | GaxiosPromise<Schema$SynthesizeSpeechResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SynthesizeSpeechResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SynthesizeSpeechResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Text$Synthesize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -355,7 +374,10 @@ export namespace texttospeech_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters, callback);
+        createAPIRequest<Schema$SynthesizeSpeechResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters);
       }
@@ -440,9 +462,18 @@ export namespace texttospeech_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Voices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Voices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVoicesResponse>;
+    list(
+      params: Params$Resource$Voices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Voices$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListVoicesResponse>,
@@ -456,12 +487,20 @@ export namespace texttospeech_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Voices$List
-        | BodyResponseCallback<Schema$ListVoicesResponse>,
+        | BodyResponseCallback<Schema$ListVoicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVoicesResponse>,
-      callback?: BodyResponseCallback<Schema$ListVoicesResponse>
-    ): void | GaxiosPromise<Schema$ListVoicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVoicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVoicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVoicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Voices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -491,7 +530,10 @@ export namespace texttospeech_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVoicesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVoicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVoicesResponse>(parameters);
       }

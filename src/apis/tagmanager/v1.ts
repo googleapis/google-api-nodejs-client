@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace tagmanager_v1 {
   export interface Options extends GlobalOptions {
@@ -1038,9 +1040,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -1054,10 +1065,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Get
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1090,7 +1108,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -1149,9 +1170,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAccountsResponse>;
+    list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$List,
       options:
@@ -1167,12 +1197,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        | BodyResponseCallback<Schema$ListAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAccountsResponse>
-    ): void | GaxiosPromise<Schema$ListAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1205,7 +1243,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAccountsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAccountsResponse>(parameters);
       }
@@ -1283,9 +1324,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -1299,10 +1349,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Update
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1335,7 +1392,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -1490,9 +1550,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Container>;
+    create(
+      params: Params$Resource$Accounts$Containers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Container>,
@@ -1506,12 +1575,17 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Create
-        | BodyResponseCallback<Schema$Container>,
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Container>,
-      callback?: BodyResponseCallback<Schema$Container>
-    ): void | GaxiosPromise<Schema$Container> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1544,7 +1618,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Container>(parameters, callback);
+        createAPIRequest<Schema$Container>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
       }
@@ -1601,9 +1678,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1617,10 +1703,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1654,7 +1745,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1729,9 +1823,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Container>;
+    get(
+      params: Params$Resource$Accounts$Containers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Container>,
@@ -1745,12 +1848,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Get
-        | BodyResponseCallback<Schema$Container>,
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Container>,
-      callback?: BodyResponseCallback<Schema$Container>
-    ): void | GaxiosPromise<Schema$Container> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1784,7 +1892,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Container>(parameters, callback);
+        createAPIRequest<Schema$Container>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
       }
@@ -1846,9 +1957,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListContainersResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$List,
       options:
@@ -1864,12 +1984,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$List
-        | BodyResponseCallback<Schema$ListContainersResponse>,
+        | BodyResponseCallback<Schema$ListContainersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListContainersResponse>,
-      callback?: BodyResponseCallback<Schema$ListContainersResponse>
-    ): void | GaxiosPromise<Schema$ListContainersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListContainersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListContainersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListContainersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1902,7 +2030,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListContainersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListContainersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListContainersResponse>(parameters);
       }
@@ -1997,9 +2128,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Container>;
+    update(
+      params: Params$Resource$Accounts$Containers$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Container>,
@@ -2013,12 +2153,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Update
-        | BodyResponseCallback<Schema$Container>,
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Container>,
-      callback?: BodyResponseCallback<Schema$Container>
-    ): void | GaxiosPromise<Schema$Container> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Container>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Container> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2052,7 +2197,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Container>(parameters, callback);
+        createAPIRequest<Schema$Container>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Container>(parameters);
       }
@@ -2239,9 +2387,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Environments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Environments$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    create(
+      params: Params$Resource$Accounts$Containers$Environments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Environments$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -2255,12 +2412,17 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Create
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2294,7 +2456,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -2354,9 +2519,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Environments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Environments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Environments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Environments$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2370,10 +2544,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2407,7 +2586,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2486,9 +2668,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Environments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Environments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Accounts$Containers$Environments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Environments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -2502,12 +2693,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Get
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2541,7 +2737,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -2606,9 +2805,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Environments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Environments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Environments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Environments$List,
       options:
@@ -2624,12 +2832,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$List
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-      callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>
-    ): void | GaxiosPromise<Schema$ListEnvironmentsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEnvironmentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2663,7 +2879,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListEnvironmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
       }
@@ -2763,9 +2982,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Environments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Environments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    update(
+      params: Params$Resource$Accounts$Containers$Environments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Environments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -2779,12 +3007,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Environments$Update
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2818,7 +3051,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -3015,9 +3251,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Folders$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Folders$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    create(
+      params: Params$Resource$Accounts$Containers$Folders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Folders$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -3031,10 +3276,17 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Folders$Create
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3068,7 +3320,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -3128,9 +3383,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Folders$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Folders$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Folders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Folders$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3144,10 +3408,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Folders$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3181,7 +3450,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3253,9 +3525,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Folders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Folders$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    get(
+      params: Params$Resource$Accounts$Containers$Folders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Folders$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -3269,10 +3550,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Folders$Get
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3306,7 +3594,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -3371,9 +3662,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Folders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Folders$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFoldersResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Folders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Folders$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListFoldersResponse>,
@@ -3387,12 +3687,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Folders$List
-        | BodyResponseCallback<Schema$ListFoldersResponse>,
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFoldersResponse>,
-      callback?: BodyResponseCallback<Schema$ListFoldersResponse>
-    ): void | GaxiosPromise<Schema$ListFoldersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFoldersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3426,7 +3734,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFoldersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFoldersResponse>(parameters);
       }
@@ -3512,9 +3823,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Folders$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Folders$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    update(
+      params: Params$Resource$Accounts$Containers$Folders$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Folders$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -3528,10 +3848,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Folders$Update
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3565,7 +3892,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -3749,9 +4079,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Folders$Entities$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Folders$Entities$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FolderEntities>;
+    list(
+      params: Params$Resource$Accounts$Containers$Folders$Entities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Folders$Entities$List,
       options: MethodOptions | BodyResponseCallback<Schema$FolderEntities>,
@@ -3765,12 +4104,17 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Folders$Entities$List
-        | BodyResponseCallback<Schema$FolderEntities>,
+        | BodyResponseCallback<Schema$FolderEntities>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FolderEntities>,
-      callback?: BodyResponseCallback<Schema$FolderEntities>
-    ): void | GaxiosPromise<Schema$FolderEntities> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FolderEntities>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FolderEntities>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FolderEntities> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Folders$Entities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3804,7 +4148,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FolderEntities>(parameters, callback);
+        createAPIRequest<Schema$FolderEntities>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FolderEntities>(parameters);
       }
@@ -3914,9 +4261,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Move_folders$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Move_folders$Update,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    update(
+      params: Params$Resource$Accounts$Containers$Move_folders$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Move_folders$Update,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3930,10 +4286,15 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Move_folders$Update
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Move_folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3967,7 +4328,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4110,9 +4474,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    update(
+      params: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -4126,12 +4499,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Reauthorize_environments$Update
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Reauthorize_environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4165,7 +4543,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -4309,9 +4690,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Tags$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Tags$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tag>;
+    create(
+      params: Params$Resource$Accounts$Containers$Tags$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Tags$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Tag>,
@@ -4325,10 +4715,17 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Tags$Create
-        | BodyResponseCallback<Schema$Tag>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
-      callback?: BodyResponseCallback<Schema$Tag>
-    ): void | GaxiosPromise<Schema$Tag> {
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4362,7 +4759,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tag>(parameters, callback);
+        createAPIRequest<Schema$Tag>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
       }
@@ -4422,9 +4822,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Tags$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Tags$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Tags$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Tags$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4438,10 +4847,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Tags$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4475,7 +4889,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4563,9 +4980,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Tags$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Tags$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tag>;
+    get(
+      params: Params$Resource$Accounts$Containers$Tags$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Tags$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Tag>,
@@ -4579,10 +5005,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Tags$Get
-        | BodyResponseCallback<Schema$Tag>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
-      callback?: BodyResponseCallback<Schema$Tag>
-    ): void | GaxiosPromise<Schema$Tag> {
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4616,7 +5049,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tag>(parameters, callback);
+        createAPIRequest<Schema$Tag>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
       }
@@ -4681,9 +5117,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Tags$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Tags$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTagsResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Tags$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Tags$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListTagsResponse>,
@@ -4697,12 +5142,17 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Tags$List
-        | BodyResponseCallback<Schema$ListTagsResponse>,
+        | BodyResponseCallback<Schema$ListTagsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTagsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTagsResponse>
-    ): void | GaxiosPromise<Schema$ListTagsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTagsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListTagsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4736,7 +5186,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTagsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTagsResponse>(parameters);
       }
@@ -4854,9 +5307,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Tags$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Tags$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tag>;
+    update(
+      params: Params$Resource$Accounts$Containers$Tags$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Tags$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Tag>,
@@ -4870,10 +5332,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Tags$Update
-        | BodyResponseCallback<Schema$Tag>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Tag>,
-      callback?: BodyResponseCallback<Schema$Tag>
-    ): void | GaxiosPromise<Schema$Tag> {
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tag>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tag> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Tags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4907,7 +5376,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tag>(parameters, callback);
+        createAPIRequest<Schema$Tag>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
       }
@@ -5146,9 +5618,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Triggers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Triggers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Trigger>;
+    create(
+      params: Params$Resource$Accounts$Containers$Triggers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Triggers$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
@@ -5162,10 +5643,17 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Triggers$Create
-        | BodyResponseCallback<Schema$Trigger>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
-      callback?: BodyResponseCallback<Schema$Trigger>
-    ): void | GaxiosPromise<Schema$Trigger> {
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5199,7 +5687,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Trigger>(parameters, callback);
+        createAPIRequest<Schema$Trigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
@@ -5259,9 +5750,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Triggers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Triggers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Triggers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Triggers$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5275,10 +5775,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Triggers$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5312,7 +5817,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5407,9 +5915,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Triggers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Triggers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Trigger>;
+    get(
+      params: Params$Resource$Accounts$Containers$Triggers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Triggers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
@@ -5423,10 +5940,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Triggers$Get
-        | BodyResponseCallback<Schema$Trigger>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
-      callback?: BodyResponseCallback<Schema$Trigger>
-    ): void | GaxiosPromise<Schema$Trigger> {
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5460,7 +5984,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Trigger>(parameters, callback);
+        createAPIRequest<Schema$Trigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
@@ -5525,9 +6052,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Triggers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Triggers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTriggersResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Triggers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Triggers$List,
       options:
@@ -5543,12 +6079,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Triggers$List
-        | BodyResponseCallback<Schema$ListTriggersResponse>,
+        | BodyResponseCallback<Schema$ListTriggersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTriggersResponse>,
-      callback?: BodyResponseCallback<Schema$ListTriggersResponse>
-    ): void | GaxiosPromise<Schema$ListTriggersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTriggersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTriggersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTriggersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5582,7 +6126,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTriggersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTriggersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);
       }
@@ -5714,9 +6261,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Triggers$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Triggers$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Trigger>;
+    update(
+      params: Params$Resource$Accounts$Containers$Triggers$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Triggers$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Trigger>,
@@ -5730,10 +6286,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Triggers$Update
-        | BodyResponseCallback<Schema$Trigger>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Trigger>,
-      callback?: BodyResponseCallback<Schema$Trigger>
-    ): void | GaxiosPromise<Schema$Trigger> {
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Trigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Trigger> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Triggers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5767,7 +6330,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Trigger>(parameters, callback);
+        createAPIRequest<Schema$Trigger>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
       }
@@ -5976,9 +6542,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Variables$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Variables$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    create(
+      params: Params$Resource$Accounts$Containers$Variables$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Variables$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -5992,10 +6567,17 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Variables$Create
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6029,7 +6611,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -6089,9 +6674,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Variables$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Variables$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Variables$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Variables$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6105,10 +6699,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Variables$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6142,7 +6741,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6222,9 +6824,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Variables$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Variables$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    get(
+      params: Params$Resource$Accounts$Containers$Variables$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Variables$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -6238,10 +6849,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Variables$Get
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6275,7 +6893,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -6340,9 +6961,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Variables$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Variables$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVariablesResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Variables$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Variables$List,
       options:
@@ -6358,12 +6988,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Variables$List
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
-      callback?: BodyResponseCallback<Schema$ListVariablesResponse>
-    ): void | GaxiosPromise<Schema$ListVariablesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVariablesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6397,7 +7035,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVariablesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVariablesResponse>(parameters);
       }
@@ -6499,9 +7140,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Variables$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Variables$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    update(
+      params: Params$Resource$Accounts$Containers$Variables$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Variables$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -6515,10 +7165,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Variables$Update
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Variables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6552,7 +7209,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -6742,9 +7402,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Containers$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Containers$Versions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateContainerVersionResponse>;
+    create(
+      params: Params$Resource$Accounts$Containers$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Containers$Versions$Create,
       options:
@@ -6762,12 +7431,20 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Create
-        | BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateContainerVersionResponse>,
-      callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>
-    ): void | GaxiosPromise<Schema$CreateContainerVersionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateContainerVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateContainerVersionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6803,7 +7480,7 @@ export namespace tagmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$CreateContainerVersionResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CreateContainerVersionResponse>(
@@ -6868,9 +7545,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Containers$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Containers$Versions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Containers$Versions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6884,10 +7570,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6921,7 +7612,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7004,9 +7698,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Containers$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Containers$Versions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    get(
+      params: Params$Resource$Accounts$Containers$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Containers$Versions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -7020,12 +7723,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Get
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7059,7 +7767,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -7132,9 +7843,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Containers$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Containers$Versions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListContainerVersionsResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Containers$Versions$List,
       options:
@@ -7152,12 +7872,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$List
-        | BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListContainerVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListContainerVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListContainerVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListContainerVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7193,7 +7921,7 @@ export namespace tagmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$ListContainerVersionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListContainerVersionsResponse>(
@@ -7266,9 +7994,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     publish(
+      params: Params$Resource$Accounts$Containers$Versions$Publish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    publish(
       params?: Params$Resource$Accounts$Containers$Versions$Publish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublishContainerVersionResponse>;
+    publish(
+      params: Params$Resource$Accounts$Containers$Versions$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     publish(
       params: Params$Resource$Accounts$Containers$Versions$Publish,
       options:
@@ -7286,12 +8023,20 @@ export namespace tagmanager_v1 {
     publish(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Publish
-        | BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublishContainerVersionResponse>,
-      callback?: BodyResponseCallback<Schema$PublishContainerVersionResponse>
-    ): void | GaxiosPromise<Schema$PublishContainerVersionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublishContainerVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PublishContainerVersionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7327,7 +8072,7 @@ export namespace tagmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$PublishContainerVersionResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PublishContainerVersionResponse>(
@@ -7408,9 +8153,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     restore(
+      params: Params$Resource$Accounts$Containers$Versions$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
       params?: Params$Resource$Accounts$Containers$Versions$Restore,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    restore(
+      params: Params$Resource$Accounts$Containers$Versions$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     restore(
       params: Params$Resource$Accounts$Containers$Versions$Restore,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -7424,12 +8178,17 @@ export namespace tagmanager_v1 {
     restore(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Restore
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7463,7 +8222,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -7543,9 +8305,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Accounts$Containers$Versions$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Accounts$Containers$Versions$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    undelete(
+      params: Params$Resource$Accounts$Containers$Versions$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Accounts$Containers$Versions$Undelete,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -7559,12 +8330,17 @@ export namespace tagmanager_v1 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Undelete
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7598,7 +8374,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -7704,9 +8483,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Containers$Versions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Containers$Versions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContainerVersion>;
+    update(
+      params: Params$Resource$Accounts$Containers$Versions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Containers$Versions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ContainerVersion>,
@@ -7720,12 +8508,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Containers$Versions$Update
-        | BodyResponseCallback<Schema$ContainerVersion>,
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersion>,
-      callback?: BodyResponseCallback<Schema$ContainerVersion>
-    ): void | GaxiosPromise<Schema$ContainerVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContainerVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContainerVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Containers$Versions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7759,7 +8552,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+        createAPIRequest<Schema$ContainerVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContainerVersion>(parameters);
       }
@@ -8021,9 +8817,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Permissions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Permissions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UserAccess>;
+    create(
+      params: Params$Resource$Accounts$Permissions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Permissions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$UserAccess>,
@@ -8037,12 +8842,17 @@ export namespace tagmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Permissions$Create
-        | BodyResponseCallback<Schema$UserAccess>,
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UserAccess>,
-      callback?: BodyResponseCallback<Schema$UserAccess>
-    ): void | GaxiosPromise<Schema$UserAccess> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserAccess> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8075,7 +8885,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UserAccess>(parameters, callback);
+        createAPIRequest<Schema$UserAccess>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UserAccess>(parameters);
       }
@@ -8132,9 +8945,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Permissions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Permissions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Permissions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Permissions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8148,10 +8970,15 @@ export namespace tagmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Permissions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8185,7 +9012,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8251,9 +9081,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Permissions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Permissions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UserAccess>;
+    get(
+      params: Params$Resource$Accounts$Permissions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Permissions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$UserAccess>,
@@ -8267,12 +9106,17 @@ export namespace tagmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Permissions$Get
-        | BodyResponseCallback<Schema$UserAccess>,
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UserAccess>,
-      callback?: BodyResponseCallback<Schema$UserAccess>
-    ): void | GaxiosPromise<Schema$UserAccess> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserAccess> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8306,7 +9150,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UserAccess>(parameters, callback);
+        createAPIRequest<Schema$UserAccess>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UserAccess>(parameters);
       }
@@ -8365,9 +9212,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Permissions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Permissions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAccountUsersResponse>;
+    list(
+      params: Params$Resource$Accounts$Permissions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Permissions$List,
       options:
@@ -8383,12 +9239,20 @@ export namespace tagmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Permissions$List
-        | BodyResponseCallback<Schema$ListAccountUsersResponse>,
+        | BodyResponseCallback<Schema$ListAccountUsersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountUsersResponse>,
-      callback?: BodyResponseCallback<Schema$ListAccountUsersResponse>
-    ): void | GaxiosPromise<Schema$ListAccountUsersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountUsersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8421,7 +9285,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAccountUsersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAccountUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAccountUsersResponse>(parameters);
       }
@@ -8500,9 +9367,18 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Permissions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Permissions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UserAccess>;
+    update(
+      params: Params$Resource$Accounts$Permissions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Permissions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$UserAccess>,
@@ -8516,12 +9392,17 @@ export namespace tagmanager_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Permissions$Update
-        | BodyResponseCallback<Schema$UserAccess>,
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UserAccess>,
-      callback?: BodyResponseCallback<Schema$UserAccess>
-    ): void | GaxiosPromise<Schema$UserAccess> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserAccess>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserAccess> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8555,7 +9436,10 @@ export namespace tagmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UserAccess>(parameters, callback);
+        createAPIRequest<Schema$UserAccess>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UserAccess>(parameters);
       }

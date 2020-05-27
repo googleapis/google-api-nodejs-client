@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace homegraph_v1 {
   export interface Options extends GlobalOptions {
@@ -462,9 +464,18 @@ export namespace homegraph_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Agentusers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Agentusers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Agentusers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Agentusers$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -478,10 +489,17 @@ export namespace homegraph_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Agentusers$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Agentusers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -512,7 +530,10 @@ export namespace homegraph_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -603,9 +624,18 @@ export namespace homegraph_v1 {
      * @return {object} Request object
      */
     query(
+      params: Params$Resource$Devices$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
       params?: Params$Resource$Devices$Query,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QueryResponse>;
+    query(
+      params: Params$Resource$Devices$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     query(
       params: Params$Resource$Devices$Query,
       options: MethodOptions | BodyResponseCallback<Schema$QueryResponse>,
@@ -619,12 +649,17 @@ export namespace homegraph_v1 {
     query(
       paramsOrCallback?:
         | Params$Resource$Devices$Query
-        | BodyResponseCallback<Schema$QueryResponse>,
+        | BodyResponseCallback<Schema$QueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QueryResponse>,
-      callback?: BodyResponseCallback<Schema$QueryResponse>
-    ): void | GaxiosPromise<Schema$QueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -654,7 +689,10 @@ export namespace homegraph_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$QueryResponse>(parameters, callback);
+        createAPIRequest<Schema$QueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);
       }
@@ -722,9 +760,18 @@ export namespace homegraph_v1 {
      * @return {object} Request object
      */
     reportStateAndNotification(
+      params: Params$Resource$Devices$Reportstateandnotification,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportStateAndNotification(
       params?: Params$Resource$Devices$Reportstateandnotification,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReportStateAndNotificationResponse>;
+    reportStateAndNotification(
+      params: Params$Resource$Devices$Reportstateandnotification,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reportStateAndNotification(
       params: Params$Resource$Devices$Reportstateandnotification,
       options:
@@ -742,12 +789,20 @@ export namespace homegraph_v1 {
     reportStateAndNotification(
       paramsOrCallback?:
         | Params$Resource$Devices$Reportstateandnotification
-        | BodyResponseCallback<Schema$ReportStateAndNotificationResponse>,
+        | BodyResponseCallback<Schema$ReportStateAndNotificationResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReportStateAndNotificationResponse>,
-      callback?: BodyResponseCallback<Schema$ReportStateAndNotificationResponse>
-    ): void | GaxiosPromise<Schema$ReportStateAndNotificationResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportStateAndNotificationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportStateAndNotificationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReportStateAndNotificationResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Reportstateandnotification;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -783,7 +838,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$ReportStateAndNotificationResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ReportStateAndNotificationResponse>(
@@ -849,9 +904,18 @@ export namespace homegraph_v1 {
      * @return {object} Request object
      */
     requestSync(
+      params: Params$Resource$Devices$Requestsync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    requestSync(
       params?: Params$Resource$Devices$Requestsync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RequestSyncDevicesResponse>;
+    requestSync(
+      params: Params$Resource$Devices$Requestsync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     requestSync(
       params: Params$Resource$Devices$Requestsync,
       options:
@@ -869,12 +933,20 @@ export namespace homegraph_v1 {
     requestSync(
       paramsOrCallback?:
         | Params$Resource$Devices$Requestsync
-        | BodyResponseCallback<Schema$RequestSyncDevicesResponse>,
+        | BodyResponseCallback<Schema$RequestSyncDevicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RequestSyncDevicesResponse>,
-      callback?: BodyResponseCallback<Schema$RequestSyncDevicesResponse>
-    ): void | GaxiosPromise<Schema$RequestSyncDevicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RequestSyncDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RequestSyncDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RequestSyncDevicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Requestsync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -910,7 +982,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$RequestSyncDevicesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$RequestSyncDevicesResponse>(parameters);
@@ -977,9 +1049,18 @@ export namespace homegraph_v1 {
      * @return {object} Request object
      */
     sync(
+      params: Params$Resource$Devices$Sync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sync(
       params?: Params$Resource$Devices$Sync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SyncResponse>;
+    sync(
+      params: Params$Resource$Devices$Sync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sync(
       params: Params$Resource$Devices$Sync,
       options: MethodOptions | BodyResponseCallback<Schema$SyncResponse>,
@@ -993,12 +1074,17 @@ export namespace homegraph_v1 {
     sync(
       paramsOrCallback?:
         | Params$Resource$Devices$Sync
-        | BodyResponseCallback<Schema$SyncResponse>,
+        | BodyResponseCallback<Schema$SyncResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SyncResponse>,
-      callback?: BodyResponseCallback<Schema$SyncResponse>
-    ): void | GaxiosPromise<Schema$SyncResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SyncResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SyncResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SyncResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1028,7 +1114,10 @@ export namespace homegraph_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SyncResponse>(parameters, callback);
+        createAPIRequest<Schema$SyncResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SyncResponse>(parameters);
       }

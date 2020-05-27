@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace oauth2_v2 {
   export interface Options extends GlobalOptions {
@@ -156,9 +158,18 @@ export namespace oauth2_v2 {
      * @return {object} Request object
      */
     tokeninfo(
+      params: Params$$Tokeninfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    tokeninfo(
       params?: Params$$Tokeninfo,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Tokeninfo>;
+    tokeninfo(
+      params: Params$$Tokeninfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     tokeninfo(
       params: Params$$Tokeninfo,
       options: MethodOptions | BodyResponseCallback<Schema$Tokeninfo>,
@@ -172,12 +183,17 @@ export namespace oauth2_v2 {
     tokeninfo(
       paramsOrCallback?:
         | Params$$Tokeninfo
-        | BodyResponseCallback<Schema$Tokeninfo>,
+        | BodyResponseCallback<Schema$Tokeninfo>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Tokeninfo>,
-      callback?: BodyResponseCallback<Schema$Tokeninfo>
-    ): void | GaxiosPromise<Schema$Tokeninfo> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Tokeninfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Tokeninfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Tokeninfo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$$Tokeninfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -210,7 +226,10 @@ export namespace oauth2_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Tokeninfo>(parameters, callback);
+        createAPIRequest<Schema$Tokeninfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Tokeninfo>(parameters);
       }
@@ -380,9 +399,18 @@ export namespace oauth2_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Userinfo$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Userinfo$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Userinfo>;
+    get(
+      params: Params$Resource$Userinfo$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Userinfo$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Userinfo>,
@@ -396,10 +424,17 @@ export namespace oauth2_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Userinfo$Get
-        | BodyResponseCallback<Schema$Userinfo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Userinfo>,
-      callback?: BodyResponseCallback<Schema$Userinfo>
-    ): void | GaxiosPromise<Schema$Userinfo> {
+        | BodyResponseCallback<Schema$Userinfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Userinfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Userinfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Userinfo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -432,7 +467,10 @@ export namespace oauth2_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Userinfo>(parameters, callback);
+        createAPIRequest<Schema$Userinfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Userinfo>(parameters);
       }
@@ -523,9 +561,18 @@ export namespace oauth2_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Userinfo$V2$Me$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Userinfo$V2$Me$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Userinfo>;
+    get(
+      params: Params$Resource$Userinfo$V2$Me$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Userinfo$V2$Me$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Userinfo>,
@@ -539,10 +586,17 @@ export namespace oauth2_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Userinfo$V2$Me$Get
-        | BodyResponseCallback<Schema$Userinfo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Userinfo>,
-      callback?: BodyResponseCallback<Schema$Userinfo>
-    ): void | GaxiosPromise<Schema$Userinfo> {
+        | BodyResponseCallback<Schema$Userinfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Userinfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Userinfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Userinfo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Userinfo$V2$Me$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -573,7 +627,10 @@ export namespace oauth2_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Userinfo>(parameters, callback);
+        createAPIRequest<Schema$Userinfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Userinfo>(parameters);
       }

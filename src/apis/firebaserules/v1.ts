@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace firebaserules_v1 {
   export interface Options extends GlobalOptions {
@@ -581,9 +583,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     test(
+      params: Params$Resource$Projects$Test,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    test(
       params?: Params$Resource$Projects$Test,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestRulesetResponse>;
+    test(
+      params: Params$Resource$Projects$Test,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     test(
       params: Params$Resource$Projects$Test,
       options: MethodOptions | BodyResponseCallback<Schema$TestRulesetResponse>,
@@ -597,12 +608,20 @@ export namespace firebaserules_v1 {
     test(
       paramsOrCallback?:
         | Params$Resource$Projects$Test
-        | BodyResponseCallback<Schema$TestRulesetResponse>,
+        | BodyResponseCallback<Schema$TestRulesetResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestRulesetResponse>,
-      callback?: BodyResponseCallback<Schema$TestRulesetResponse>
-    ): void | GaxiosPromise<Schema$TestRulesetResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestRulesetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestRulesetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestRulesetResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Test;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -633,7 +652,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TestRulesetResponse>(parameters, callback);
+        createAPIRequest<Schema$TestRulesetResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TestRulesetResponse>(parameters);
       }
@@ -736,9 +758,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Releases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Releases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Projects$Releases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Releases$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Release>,
@@ -752,10 +783,17 @@ export namespace firebaserules_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Releases$Create
-        | BodyResponseCallback<Schema$Release>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
-      callback?: BodyResponseCallback<Schema$Release>
-    ): void | GaxiosPromise<Schema$Release> {
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -790,7 +828,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Release>(parameters, callback);
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
       }
@@ -852,9 +893,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Releases$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Releases$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Releases$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Releases$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -868,10 +918,17 @@ export namespace firebaserules_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Releases$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -903,7 +960,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -971,9 +1031,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Releases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Releases$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Release>;
+    get(
+      params: Params$Resource$Projects$Releases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Releases$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Release>,
@@ -987,10 +1056,17 @@ export namespace firebaserules_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Releases$Get
-        | BodyResponseCallback<Schema$Release>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
-      callback?: BodyResponseCallback<Schema$Release>
-    ): void | GaxiosPromise<Schema$Release> {
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1022,7 +1098,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Release>(parameters, callback);
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
       }
@@ -1096,9 +1175,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     getExecutable(
+      params: Params$Resource$Projects$Releases$Getexecutable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getExecutable(
       params?: Params$Resource$Projects$Releases$Getexecutable,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetReleaseExecutableResponse>;
+    getExecutable(
+      params: Params$Resource$Projects$Releases$Getexecutable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getExecutable(
       params: Params$Resource$Projects$Releases$Getexecutable,
       options:
@@ -1116,12 +1204,20 @@ export namespace firebaserules_v1 {
     getExecutable(
       paramsOrCallback?:
         | Params$Resource$Projects$Releases$Getexecutable
-        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
+        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
-      callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>
-    ): void | GaxiosPromise<Schema$GetReleaseExecutableResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetReleaseExecutableResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetReleaseExecutableResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Getexecutable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1158,7 +1254,7 @@ export namespace firebaserules_v1 {
       if (callback) {
         createAPIRequest<Schema$GetReleaseExecutableResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetReleaseExecutableResponse>(
@@ -1263,9 +1359,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Releases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Releases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Projects$Releases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Releases$List,
       options:
@@ -1281,12 +1386,20 @@ export namespace firebaserules_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Releases$List
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
-      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
-    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReleasesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1321,7 +1434,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListReleasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
       }
@@ -1398,9 +1514,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Releases$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Releases$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Release>;
+    patch(
+      params: Params$Resource$Projects$Releases$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Releases$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Release>,
@@ -1414,10 +1539,17 @@ export namespace firebaserules_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Releases$Patch
-        | BodyResponseCallback<Schema$Release>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
-      callback?: BodyResponseCallback<Schema$Release>
-    ): void | GaxiosPromise<Schema$Release> {
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Releases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1449,7 +1581,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Release>(parameters, callback);
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
       }
@@ -1634,9 +1769,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Rulesets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Rulesets$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Ruleset>;
+    create(
+      params: Params$Resource$Projects$Rulesets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Rulesets$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
@@ -1650,10 +1794,17 @@ export namespace firebaserules_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Rulesets$Create
-        | BodyResponseCallback<Schema$Ruleset>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
-      callback?: BodyResponseCallback<Schema$Ruleset>
-    ): void | GaxiosPromise<Schema$Ruleset> {
+        | BodyResponseCallback<Schema$Ruleset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Ruleset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Ruleset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Ruleset> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1688,7 +1839,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Ruleset>(parameters, callback);
+        createAPIRequest<Schema$Ruleset>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Ruleset>(parameters);
       }
@@ -1750,9 +1904,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Rulesets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Rulesets$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Rulesets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Rulesets$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1766,10 +1929,17 @@ export namespace firebaserules_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Rulesets$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1801,7 +1971,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1869,9 +2042,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Rulesets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Rulesets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Ruleset>;
+    get(
+      params: Params$Resource$Projects$Rulesets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Rulesets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
@@ -1885,10 +2067,17 @@ export namespace firebaserules_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Rulesets$Get
-        | BodyResponseCallback<Schema$Ruleset>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Ruleset>,
-      callback?: BodyResponseCallback<Schema$Ruleset>
-    ): void | GaxiosPromise<Schema$Ruleset> {
+        | BodyResponseCallback<Schema$Ruleset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Ruleset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Ruleset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Ruleset> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1920,7 +2109,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Ruleset>(parameters, callback);
+        createAPIRequest<Schema$Ruleset>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Ruleset>(parameters);
       }
@@ -2004,9 +2196,18 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Rulesets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Rulesets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListRulesetsResponse>;
+    list(
+      params: Params$Resource$Projects$Rulesets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Rulesets$List,
       options:
@@ -2022,12 +2223,20 @@ export namespace firebaserules_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Rulesets$List
-        | BodyResponseCallback<Schema$ListRulesetsResponse>,
+        | BodyResponseCallback<Schema$ListRulesetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListRulesetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListRulesetsResponse>
-    ): void | GaxiosPromise<Schema$ListRulesetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRulesetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRulesetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRulesetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Rulesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2062,7 +2271,10 @@ export namespace firebaserules_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListRulesetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListRulesetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListRulesetsResponse>(parameters);
       }

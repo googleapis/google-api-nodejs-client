@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace pagespeedonline_v4 {
   export interface Options extends GlobalOptions {
@@ -356,9 +358,18 @@ export namespace pagespeedonline_v4 {
      * @return {object} Request object
      */
     runpagespeed(
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runpagespeed(
       params?: Params$Resource$Pagespeedapi$Runpagespeed,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PagespeedApiPagespeedResponseV4>;
+    runpagespeed(
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     runpagespeed(
       params: Params$Resource$Pagespeedapi$Runpagespeed,
       options:
@@ -376,12 +387,20 @@ export namespace pagespeedonline_v4 {
     runpagespeed(
       paramsOrCallback?:
         | Params$Resource$Pagespeedapi$Runpagespeed
-        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>,
+        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>,
-      callback?: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>
-    ): void | GaxiosPromise<Schema$PagespeedApiPagespeedResponseV4> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PagespeedApiPagespeedResponseV4>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pagespeedapi$Runpagespeed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -417,7 +436,7 @@ export namespace pagespeedonline_v4 {
       if (callback) {
         createAPIRequest<Schema$PagespeedApiPagespeedResponseV4>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PagespeedApiPagespeedResponseV4>(

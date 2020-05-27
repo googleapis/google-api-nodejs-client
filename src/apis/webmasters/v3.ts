@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace webmasters_v3 {
   export interface Options extends GlobalOptions {
@@ -333,9 +335,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     query(
+      params: Params$Resource$Searchanalytics$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
       params?: Params$Resource$Searchanalytics$Query,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchAnalyticsQueryResponse>;
+    query(
+      params: Params$Resource$Searchanalytics$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     query(
       params: Params$Resource$Searchanalytics$Query,
       options:
@@ -353,12 +364,20 @@ export namespace webmasters_v3 {
     query(
       paramsOrCallback?:
         | Params$Resource$Searchanalytics$Query
-        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
-      callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
-    ): void | GaxiosPromise<Schema$SearchAnalyticsQueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAnalyticsQueryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Searchanalytics$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -393,7 +412,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
@@ -478,9 +497,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sitemaps$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sitemaps$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Sitemaps$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sitemaps$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -494,10 +522,15 @@ export namespace webmasters_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -529,7 +562,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -602,9 +638,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sitemaps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sitemaps$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WmxSitemap>;
+    get(
+      params: Params$Resource$Sitemaps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sitemaps$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WmxSitemap>,
@@ -618,12 +663,17 @@ export namespace webmasters_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$Get
-        | BodyResponseCallback<Schema$WmxSitemap>,
+        | BodyResponseCallback<Schema$WmxSitemap>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WmxSitemap>,
-      callback?: BodyResponseCallback<Schema$WmxSitemap>
-    ): void | GaxiosPromise<Schema$WmxSitemap> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WmxSitemap>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WmxSitemap>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WmxSitemap> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -655,7 +705,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WmxSitemap>(parameters, callback);
+        createAPIRequest<Schema$WmxSitemap>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WmxSitemap>(parameters);
       }
@@ -720,9 +773,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sitemaps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sitemaps$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SitemapsListResponse>;
+    list(
+      params: Params$Resource$Sitemaps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sitemaps$List,
       options:
@@ -738,12 +800,20 @@ export namespace webmasters_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$List
-        | BodyResponseCallback<Schema$SitemapsListResponse>,
+        | BodyResponseCallback<Schema$SitemapsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SitemapsListResponse>,
-      callback?: BodyResponseCallback<Schema$SitemapsListResponse>
-    ): void | GaxiosPromise<Schema$SitemapsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SitemapsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SitemapsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SitemapsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -776,7 +846,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SitemapsListResponse>(parameters, callback);
+        createAPIRequest<Schema$SitemapsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SitemapsListResponse>(parameters);
       }
@@ -833,9 +906,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     submit(
+      params: Params$Resource$Sitemaps$Submit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submit(
       params?: Params$Resource$Sitemaps$Submit,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    submit(
+      params: Params$Resource$Sitemaps$Submit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submit(
       params: Params$Resource$Sitemaps$Submit,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -849,10 +931,15 @@ export namespace webmasters_v3 {
     submit(
       paramsOrCallback?:
         | Params$Resource$Sitemaps$Submit
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -884,7 +971,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1006,9 +1096,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     add(
+      params: Params$Resource$Sites$Add,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    add(
       params?: Params$Resource$Sites$Add,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    add(
+      params: Params$Resource$Sites$Add,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     add(
       params: Params$Resource$Sites$Add,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1020,10 +1119,17 @@ export namespace webmasters_v3 {
     ): void;
     add(callback: BodyResponseCallback<void>): void;
     add(
-      paramsOrCallback?: Params$Resource$Sites$Add | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$Add
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Add;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1056,7 +1162,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1110,9 +1219,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sites$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sites$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Sites$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sites$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1126,10 +1244,15 @@ export namespace webmasters_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sites$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1162,7 +1285,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1225,9 +1351,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WmxSite>;
+    get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sites$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WmxSite>,
@@ -1241,10 +1376,17 @@ export namespace webmasters_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sites$Get
-        | BodyResponseCallback<Schema$WmxSite>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WmxSite>,
-      callback?: BodyResponseCallback<Schema$WmxSite>
-    ): void | GaxiosPromise<Schema$WmxSite> {
+        | BodyResponseCallback<Schema$WmxSite>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WmxSite>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WmxSite>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WmxSite> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1277,7 +1419,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WmxSite>(parameters, callback);
+        createAPIRequest<Schema$WmxSite>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WmxSite>(parameters);
       }
@@ -1335,9 +1480,18 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sites$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SitesListResponse>;
+    list(
+      params: Params$Resource$Sites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sites$List,
       options: MethodOptions | BodyResponseCallback<Schema$SitesListResponse>,
@@ -1351,12 +1505,20 @@ export namespace webmasters_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sites$List
-        | BodyResponseCallback<Schema$SitesListResponse>,
+        | BodyResponseCallback<Schema$SitesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SitesListResponse>,
-      callback?: BodyResponseCallback<Schema$SitesListResponse>
-    ): void | GaxiosPromise<Schema$SitesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SitesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SitesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SitesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1389,7 +1551,10 @@ export namespace webmasters_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SitesListResponse>(parameters, callback);
+        createAPIRequest<Schema$SitesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SitesListResponse>(parameters);
       }

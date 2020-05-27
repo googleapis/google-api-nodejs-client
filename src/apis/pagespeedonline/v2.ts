@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace pagespeedonline_v2 {
   export interface Options extends GlobalOptions {
@@ -316,9 +318,18 @@ export namespace pagespeedonline_v2 {
      * @return {object} Request object
      */
     runpagespeed(
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runpagespeed(
       params?: Params$Resource$Pagespeedapi$Runpagespeed,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Result>;
+    runpagespeed(
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     runpagespeed(
       params: Params$Resource$Pagespeedapi$Runpagespeed,
       options: MethodOptions | BodyResponseCallback<Schema$Result>,
@@ -332,10 +343,17 @@ export namespace pagespeedonline_v2 {
     runpagespeed(
       paramsOrCallback?:
         | Params$Resource$Pagespeedapi$Runpagespeed
-        | BodyResponseCallback<Schema$Result>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Result>,
-      callback?: BodyResponseCallback<Schema$Result>
-    ): void | GaxiosPromise<Schema$Result> {
+        | BodyResponseCallback<Schema$Result>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Result>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Result>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Result> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pagespeedapi$Runpagespeed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -369,7 +387,10 @@ export namespace pagespeedonline_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Result>(parameters, callback);
+        createAPIRequest<Schema$Result>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Result>(parameters);
       }

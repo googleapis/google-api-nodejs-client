@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudasset_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -457,9 +459,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     exportAssets(
+      params: Params$Resource$Folders$Exportassets,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportAssets(
       params?: Params$Resource$Folders$Exportassets,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    exportAssets(
+      params: Params$Resource$Folders$Exportassets,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     exportAssets(
       params: Params$Resource$Folders$Exportassets,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -473,12 +484,17 @@ export namespace cloudasset_v1beta1 {
     exportAssets(
       paramsOrCallback?:
         | Params$Resource$Folders$Exportassets
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -512,7 +528,10 @@ export namespace cloudasset_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -600,9 +619,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Folders$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -616,12 +644,17 @@ export namespace cloudasset_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -652,7 +685,10 @@ export namespace cloudasset_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -755,9 +791,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     batchGetAssetsHistory(
+      params: Params$Resource$Organizations$Batchgetassetshistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGetAssetsHistory(
       params?: Params$Resource$Organizations$Batchgetassetshistory,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+    batchGetAssetsHistory(
+      params: Params$Resource$Organizations$Batchgetassetshistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGetAssetsHistory(
       params: Params$Resource$Organizations$Batchgetassetshistory,
       options:
@@ -775,12 +820,20 @@ export namespace cloudasset_v1beta1 {
     batchGetAssetsHistory(
       paramsOrCallback?:
         | Params$Resource$Organizations$Batchgetassetshistory
-        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
-    ): void | GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Batchgetassetshistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -816,7 +869,7 @@ export namespace cloudasset_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -897,9 +950,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     exportAssets(
+      params: Params$Resource$Organizations$Exportassets,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportAssets(
       params?: Params$Resource$Organizations$Exportassets,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    exportAssets(
+      params: Params$Resource$Organizations$Exportassets,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     exportAssets(
       params: Params$Resource$Organizations$Exportassets,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -913,12 +975,17 @@ export namespace cloudasset_v1beta1 {
     exportAssets(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exportassets
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -952,7 +1019,10 @@ export namespace cloudasset_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1068,9 +1138,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Organizations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1084,12 +1163,17 @@ export namespace cloudasset_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1120,7 +1204,10 @@ export namespace cloudasset_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1223,9 +1310,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     batchGetAssetsHistory(
+      params: Params$Resource$Projects$Batchgetassetshistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGetAssetsHistory(
       params?: Params$Resource$Projects$Batchgetassetshistory,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+    batchGetAssetsHistory(
+      params: Params$Resource$Projects$Batchgetassetshistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGetAssetsHistory(
       params: Params$Resource$Projects$Batchgetassetshistory,
       options:
@@ -1243,12 +1339,20 @@ export namespace cloudasset_v1beta1 {
     batchGetAssetsHistory(
       paramsOrCallback?:
         | Params$Resource$Projects$Batchgetassetshistory
-        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
-    ): void | GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Batchgetassetshistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1284,7 +1388,7 @@ export namespace cloudasset_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -1365,9 +1469,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     exportAssets(
+      params: Params$Resource$Projects$Exportassets,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportAssets(
       params?: Params$Resource$Projects$Exportassets,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    exportAssets(
+      params: Params$Resource$Projects$Exportassets,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     exportAssets(
       params: Params$Resource$Projects$Exportassets,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1381,12 +1494,17 @@ export namespace cloudasset_v1beta1 {
     exportAssets(
       paramsOrCallback?:
         | Params$Resource$Projects$Exportassets
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1420,7 +1538,10 @@ export namespace cloudasset_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1536,9 +1657,18 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1552,12 +1682,17 @@ export namespace cloudasset_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1588,7 +1723,10 @@ export namespace cloudasset_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }

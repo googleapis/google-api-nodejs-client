@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace adexchangebuyer_v1_2 {
   export interface Options extends GlobalOptions {
@@ -337,9 +339,18 @@ export namespace adexchangebuyer_v1_2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -353,10 +364,17 @@ export namespace adexchangebuyer_v1_2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Get
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -389,7 +407,10 @@ export namespace adexchangebuyer_v1_2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -445,9 +466,18 @@ export namespace adexchangebuyer_v1_2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccountsList>;
+    list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$List,
       options: MethodOptions | BodyResponseCallback<Schema$AccountsList>,
@@ -461,12 +491,17 @@ export namespace adexchangebuyer_v1_2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<Schema$AccountsList>,
+        | BodyResponseCallback<Schema$AccountsList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccountsList>,
-      callback?: BodyResponseCallback<Schema$AccountsList>
-    ): void | GaxiosPromise<Schema$AccountsList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountsList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountsList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AccountsList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -499,7 +534,10 @@ export namespace adexchangebuyer_v1_2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccountsList>(parameters, callback);
+        createAPIRequest<Schema$AccountsList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccountsList>(parameters);
       }
@@ -581,9 +619,18 @@ export namespace adexchangebuyer_v1_2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Accounts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Accounts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    patch(
+      params: Params$Resource$Accounts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Accounts$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -597,10 +644,17 @@ export namespace adexchangebuyer_v1_2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Accounts$Patch
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -633,7 +687,10 @@ export namespace adexchangebuyer_v1_2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -715,9 +772,18 @@ export namespace adexchangebuyer_v1_2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    update(
+      params: Params$Resource$Accounts$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -731,10 +797,17 @@ export namespace adexchangebuyer_v1_2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Update
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -767,7 +840,10 @@ export namespace adexchangebuyer_v1_2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -908,9 +984,18 @@ export namespace adexchangebuyer_v1_2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Creatives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Creatives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    get(
+      params: Params$Resource$Creatives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Creatives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -924,10 +1009,17 @@ export namespace adexchangebuyer_v1_2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Creatives$Get
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -960,7 +1052,10 @@ export namespace adexchangebuyer_v1_2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -1068,9 +1163,18 @@ export namespace adexchangebuyer_v1_2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Creatives$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Creatives$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    insert(
+      params: Params$Resource$Creatives$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Creatives$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -1084,10 +1188,17 @@ export namespace adexchangebuyer_v1_2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Creatives$Insert
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1120,7 +1231,10 @@ export namespace adexchangebuyer_v1_2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -1187,9 +1301,18 @@ export namespace adexchangebuyer_v1_2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Creatives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Creatives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreativesList>;
+    list(
+      params: Params$Resource$Creatives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Creatives$List,
       options: MethodOptions | BodyResponseCallback<Schema$CreativesList>,
@@ -1203,12 +1326,17 @@ export namespace adexchangebuyer_v1_2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Creatives$List
-        | BodyResponseCallback<Schema$CreativesList>,
+        | BodyResponseCallback<Schema$CreativesList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreativesList>,
-      callback?: BodyResponseCallback<Schema$CreativesList>
-    ): void | GaxiosPromise<Schema$CreativesList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreativesList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreativesList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CreativesList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1241,7 +1369,10 @@ export namespace adexchangebuyer_v1_2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CreativesList>(parameters, callback);
+        createAPIRequest<Schema$CreativesList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CreativesList>(parameters);
       }

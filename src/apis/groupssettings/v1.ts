@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace groupssettings_v1 {
   export interface Options extends GlobalOptions {
@@ -466,9 +468,18 @@ export namespace groupssettings_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Groups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Groups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Groups>;
+    get(
+      params: Params$Resource$Groups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Groups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Groups>,
@@ -482,10 +493,17 @@ export namespace groupssettings_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Groups$Get
-        | BodyResponseCallback<Schema$Groups>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
-      callback?: BodyResponseCallback<Schema$Groups>
-    ): void | GaxiosPromise<Schema$Groups> {
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -518,7 +536,10 @@ export namespace groupssettings_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Groups>(parameters, callback);
+        createAPIRequest<Schema$Groups>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);
       }
@@ -706,9 +727,18 @@ export namespace groupssettings_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Groups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Groups$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Groups>;
+    patch(
+      params: Params$Resource$Groups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Groups$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Groups>,
@@ -722,10 +752,17 @@ export namespace groupssettings_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Groups$Patch
-        | BodyResponseCallback<Schema$Groups>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
-      callback?: BodyResponseCallback<Schema$Groups>
-    ): void | GaxiosPromise<Schema$Groups> {
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -758,7 +795,10 @@ export namespace groupssettings_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Groups>(parameters, callback);
+        createAPIRequest<Schema$Groups>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);
       }
@@ -946,9 +986,18 @@ export namespace groupssettings_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Groups$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Groups$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Groups>;
+    update(
+      params: Params$Resource$Groups$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Groups$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Groups>,
@@ -962,10 +1011,17 @@ export namespace groupssettings_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Groups$Update
-        | BodyResponseCallback<Schema$Groups>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Groups>,
-      callback?: BodyResponseCallback<Schema$Groups>
-    ): void | GaxiosPromise<Schema$Groups> {
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Groups>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Groups> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -998,7 +1054,10 @@ export namespace groupssettings_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Groups>(parameters, callback);
+        createAPIRequest<Schema$Groups>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);
       }

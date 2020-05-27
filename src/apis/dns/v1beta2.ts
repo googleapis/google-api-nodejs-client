@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace dns_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -827,9 +829,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Changes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Changes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Change>;
+    create(
+      params: Params$Resource$Changes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Changes$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Change>,
@@ -843,10 +854,17 @@ export namespace dns_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Changes$Create
-        | BodyResponseCallback<Schema$Change>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Change>,
-      callback?: BodyResponseCallback<Schema$Change>
-    ): void | GaxiosPromise<Schema$Change> {
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Change> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -879,7 +897,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Change>(parameters, callback);
+        createAPIRequest<Schema$Change>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Change>(parameters);
       }
@@ -958,9 +979,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Changes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Changes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Change>;
+    get(
+      params: Params$Resource$Changes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Changes$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Change>,
@@ -974,10 +1004,17 @@ export namespace dns_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Changes$Get
-        | BodyResponseCallback<Schema$Change>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Change>,
-      callback?: BodyResponseCallback<Schema$Change>
-    ): void | GaxiosPromise<Schema$Change> {
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Change> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1010,7 +1047,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Change>(parameters, callback);
+        createAPIRequest<Schema$Change>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Change>(parameters);
       }
@@ -1092,9 +1132,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Changes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Changes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ChangesListResponse>;
+    list(
+      params: Params$Resource$Changes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Changes$List,
       options: MethodOptions | BodyResponseCallback<Schema$ChangesListResponse>,
@@ -1108,12 +1157,20 @@ export namespace dns_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Changes$List
-        | BodyResponseCallback<Schema$ChangesListResponse>,
+        | BodyResponseCallback<Schema$ChangesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ChangesListResponse>,
-      callback?: BodyResponseCallback<Schema$ChangesListResponse>
-    ): void | GaxiosPromise<Schema$ChangesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ChangesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ChangesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ChangesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1146,7 +1203,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ChangesListResponse>(parameters, callback);
+        createAPIRequest<Schema$ChangesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ChangesListResponse>(parameters);
       }
@@ -1318,9 +1378,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Dnskeys$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Dnskeys$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DnsKey>;
+    get(
+      params: Params$Resource$Dnskeys$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Dnskeys$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DnsKey>,
@@ -1334,10 +1403,17 @@ export namespace dns_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Dnskeys$Get
-        | BodyResponseCallback<Schema$DnsKey>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$DnsKey>,
-      callback?: BodyResponseCallback<Schema$DnsKey>
-    ): void | GaxiosPromise<Schema$DnsKey> {
+        | BodyResponseCallback<Schema$DnsKey>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DnsKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DnsKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DnsKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1370,7 +1446,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DnsKey>(parameters, callback);
+        createAPIRequest<Schema$DnsKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DnsKey>(parameters);
       }
@@ -1449,9 +1528,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Dnskeys$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Dnskeys$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DnsKeysListResponse>;
+    list(
+      params: Params$Resource$Dnskeys$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Dnskeys$List,
       options: MethodOptions | BodyResponseCallback<Schema$DnsKeysListResponse>,
@@ -1465,12 +1553,20 @@ export namespace dns_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Dnskeys$List
-        | BodyResponseCallback<Schema$DnsKeysListResponse>,
+        | BodyResponseCallback<Schema$DnsKeysListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DnsKeysListResponse>,
-      callback?: BodyResponseCallback<Schema$DnsKeysListResponse>
-    ): void | GaxiosPromise<Schema$DnsKeysListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DnsKeysListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DnsKeysListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DnsKeysListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1503,7 +1599,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DnsKeysListResponse>(parameters, callback);
+        createAPIRequest<Schema$DnsKeysListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DnsKeysListResponse>(parameters);
       }
@@ -1645,9 +1744,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Managedzoneoperations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Managedzoneoperations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Managedzoneoperations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Managedzoneoperations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1661,12 +1769,17 @@ export namespace dns_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Managedzoneoperations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzoneoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1700,7 +1813,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1779,9 +1895,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Managedzoneoperations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Managedzoneoperations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ManagedZoneOperationsListResponse>;
+    list(
+      params: Params$Resource$Managedzoneoperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Managedzoneoperations$List,
       options:
@@ -1799,12 +1924,20 @@ export namespace dns_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Managedzoneoperations$List
-        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
+        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
-      callback?: BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
-    ): void | GaxiosPromise<Schema$ManagedZoneOperationsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ManagedZoneOperationsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzoneoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1840,7 +1973,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
@@ -2005,9 +2138,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Managedzones$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Managedzones$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ManagedZone>;
+    create(
+      params: Params$Resource$Managedzones$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Managedzones$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ManagedZone>,
@@ -2021,12 +2163,17 @@ export namespace dns_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Managedzones$Create
-        | BodyResponseCallback<Schema$ManagedZone>,
+        | BodyResponseCallback<Schema$ManagedZone>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ManagedZone>,
-      callback?: BodyResponseCallback<Schema$ManagedZone>
-    ): void | GaxiosPromise<Schema$ManagedZone> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedZone>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedZone>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManagedZone> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2059,7 +2206,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ManagedZone>(parameters, callback);
+        createAPIRequest<Schema$ManagedZone>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ManagedZone>(parameters);
       }
@@ -2122,9 +2272,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Managedzones$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Managedzones$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Managedzones$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Managedzones$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2138,10 +2297,15 @@ export namespace dns_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Managedzones$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2175,7 +2339,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2259,9 +2426,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Managedzones$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Managedzones$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ManagedZone>;
+    get(
+      params: Params$Resource$Managedzones$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Managedzones$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ManagedZone>,
@@ -2275,12 +2451,17 @@ export namespace dns_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Managedzones$Get
-        | BodyResponseCallback<Schema$ManagedZone>,
+        | BodyResponseCallback<Schema$ManagedZone>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ManagedZone>,
-      callback?: BodyResponseCallback<Schema$ManagedZone>
-    ): void | GaxiosPromise<Schema$ManagedZone> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedZone>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedZone>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManagedZone> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Managedzones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2313,7 +2494,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ManagedZone>(parameters, callback);
+        createAPIRequest<Schema$ManagedZone>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ManagedZone>(parameters);
       }
@@ -2389,9 +2573,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Managedzones$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Managedzones$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ManagedZonesListResponse>;
+    list(
+      params: Params$Resource$Managedzones$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Managedzones$List,
       options:
@@ -2407,12 +2600,20 @@ export namespace dns_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Managedzones$List
-        | BodyResponseCallback<Schema$ManagedZonesListResponse>,
+        | BodyResponseCallback<Schema$ManagedZonesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ManagedZonesListResponse>,
-      callback?: BodyResponseCallback<Schema$ManagedZonesListResponse>
-    ): void | GaxiosPromise<Schema$ManagedZonesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManagedZonesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManagedZonesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ManagedZonesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2445,7 +2646,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ManagedZonesListResponse>(parameters, callback);
+        createAPIRequest<Schema$ManagedZonesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ManagedZonesListResponse>(parameters);
       }
@@ -2543,9 +2747,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Managedzones$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Managedzones$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Managedzones$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Managedzones$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2559,12 +2772,17 @@ export namespace dns_v1beta2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Managedzones$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2598,7 +2816,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2696,9 +2917,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Managedzones$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Managedzones$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Managedzones$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Managedzones$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2712,12 +2942,17 @@ export namespace dns_v1beta2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Managedzones$Update
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedzones$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2751,7 +2986,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2981,9 +3219,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Policies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Policies$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    create(
+      params: Params$Resource$Policies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Policies$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2997,10 +3244,17 @@ export namespace dns_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Policies$Create
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3033,7 +3287,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3096,9 +3353,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Policies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Policies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Policies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Policies$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3112,10 +3378,15 @@ export namespace dns_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Policies$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3147,7 +3418,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3224,9 +3498,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Policies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Policies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    get(
+      params: Params$Resource$Policies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Policies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3240,10 +3523,17 @@ export namespace dns_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Policies$Get
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3275,7 +3565,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3348,9 +3641,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Policies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Policies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PoliciesListResponse>;
+    list(
+      params: Params$Resource$Policies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Policies$List,
       options:
@@ -3366,12 +3668,20 @@ export namespace dns_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Policies$List
-        | BodyResponseCallback<Schema$PoliciesListResponse>,
+        | BodyResponseCallback<Schema$PoliciesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PoliciesListResponse>,
-      callback?: BodyResponseCallback<Schema$PoliciesListResponse>
-    ): void | GaxiosPromise<Schema$PoliciesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PoliciesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PoliciesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PoliciesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3404,7 +3714,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PoliciesListResponse>(parameters, callback);
+        createAPIRequest<Schema$PoliciesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PoliciesListResponse>(parameters);
       }
@@ -3489,9 +3802,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Policies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Policies$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PoliciesPatchResponse>;
+    patch(
+      params: Params$Resource$Policies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Policies$Patch,
       options:
@@ -3507,12 +3829,20 @@ export namespace dns_v1beta2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Policies$Patch
-        | BodyResponseCallback<Schema$PoliciesPatchResponse>,
+        | BodyResponseCallback<Schema$PoliciesPatchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PoliciesPatchResponse>,
-      callback?: BodyResponseCallback<Schema$PoliciesPatchResponse>
-    ): void | GaxiosPromise<Schema$PoliciesPatchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PoliciesPatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PoliciesPatchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PoliciesPatchResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3544,7 +3874,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PoliciesPatchResponse>(parameters, callback);
+        createAPIRequest<Schema$PoliciesPatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PoliciesPatchResponse>(parameters);
       }
@@ -3629,9 +3962,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Policies$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Policies$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PoliciesUpdateResponse>;
+    update(
+      params: Params$Resource$Policies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Policies$Update,
       options:
@@ -3647,12 +3989,20 @@ export namespace dns_v1beta2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Policies$Update
-        | BodyResponseCallback<Schema$PoliciesUpdateResponse>,
+        | BodyResponseCallback<Schema$PoliciesUpdateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PoliciesUpdateResponse>,
-      callback?: BodyResponseCallback<Schema$PoliciesUpdateResponse>
-    ): void | GaxiosPromise<Schema$PoliciesUpdateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PoliciesUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PoliciesUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PoliciesUpdateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3684,7 +4034,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PoliciesUpdateResponse>(parameters, callback);
+        createAPIRequest<Schema$PoliciesUpdateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PoliciesUpdateResponse>(parameters);
       }
@@ -3887,9 +4240,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Project>;
+    get(
+      params: Params$Resource$Projects$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Project>,
@@ -3903,10 +4265,17 @@ export namespace dns_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Get
-        | BodyResponseCallback<Schema$Project>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Project>,
-      callback?: BodyResponseCallback<Schema$Project>
-    ): void | GaxiosPromise<Schema$Project> {
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Project>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Project> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3939,7 +4308,10 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Project>(parameters, callback);
+        createAPIRequest<Schema$Project>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
       }
@@ -4044,9 +4416,18 @@ export namespace dns_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Resourcerecordsets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Resourcerecordsets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ResourceRecordSetsListResponse>;
+    list(
+      params: Params$Resource$Resourcerecordsets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Resourcerecordsets$List,
       options:
@@ -4064,12 +4445,20 @@ export namespace dns_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Resourcerecordsets$List
-        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
+        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
-      callback?: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
-    ): void | GaxiosPromise<Schema$ResourceRecordSetsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResourceRecordSetsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResourceRecordSetsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resourcerecordsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4105,7 +4494,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ResourceRecordSetsListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ResourceRecordSetsListResponse>(

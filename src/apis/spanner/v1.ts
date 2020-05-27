@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace spanner_v1 {
   export interface Options extends GlobalOptions {
@@ -1495,9 +1497,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instanceconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instanceconfigs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InstanceConfig>;
+    get(
+      params: Params$Resource$Projects$Instanceconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instanceconfigs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$InstanceConfig>,
@@ -1511,12 +1522,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instanceconfigs$Get
-        | BodyResponseCallback<Schema$InstanceConfig>,
+        | BodyResponseCallback<Schema$InstanceConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InstanceConfig>,
-      callback?: BodyResponseCallback<Schema$InstanceConfig>
-    ): void | GaxiosPromise<Schema$InstanceConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstanceConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstanceConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InstanceConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instanceconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1547,7 +1563,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InstanceConfig>(parameters, callback);
+        createAPIRequest<Schema$InstanceConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InstanceConfig>(parameters);
       }
@@ -1621,9 +1640,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instanceconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instanceconfigs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListInstanceConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Instanceconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instanceconfigs$List,
       options:
@@ -1641,12 +1669,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instanceconfigs$List
-        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
+        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
-      callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>
-    ): void | GaxiosPromise<Schema$ListInstanceConfigsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInstanceConfigsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instanceconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1682,7 +1718,7 @@ export namespace spanner_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInstanceConfigsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListInstanceConfigsResponse>(parameters);
@@ -1816,9 +1852,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1832,12 +1877,17 @@ export namespace spanner_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1871,7 +1921,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1932,9 +1985,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1948,10 +2010,17 @@ export namespace spanner_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1982,7 +2051,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2056,9 +2128,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Instance>;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Instance>,
@@ -2072,10 +2153,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Get
-        | BodyResponseCallback<Schema$Instance>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Instance>,
-      callback?: BodyResponseCallback<Schema$Instance>
-    ): void | GaxiosPromise<Schema$Instance> {
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2106,7 +2194,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Instance>(parameters, callback);
+        createAPIRequest<Schema$Instance>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
       }
@@ -2179,9 +2270,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Instances$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2195,10 +2295,17 @@ export namespace spanner_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2232,7 +2339,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2326,9 +2436,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListInstancesResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$List,
       options:
@@ -2344,12 +2463,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$List
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
-      callback?: BodyResponseCallback<Schema$ListInstancesResponse>
-    ): void | GaxiosPromise<Schema$ListInstancesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInstancesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2383,7 +2510,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListInstancesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
       }
@@ -2462,9 +2592,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Instances$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Instances$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Instances$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2478,12 +2617,17 @@ export namespace spanner_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2514,7 +2658,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2587,9 +2734,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Instances$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2603,10 +2759,17 @@ export namespace spanner_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2640,7 +2803,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2711,9 +2877,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Instances$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
       options:
@@ -2731,12 +2906,20 @@ export namespace spanner_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2772,7 +2955,7 @@ export namespace spanner_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3032,9 +3215,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Backupoperations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Backupoperations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBackupOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Backupoperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Backupoperations$List,
       options:
@@ -3052,12 +3244,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backupoperations$List
-        | BodyResponseCallback<Schema$ListBackupOperationsResponse>,
+        | BodyResponseCallback<Schema$ListBackupOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBackupOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBackupOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListBackupOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backupoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3093,7 +3293,7 @@ export namespace spanner_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBackupOperationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListBackupOperationsResponse>(
@@ -3223,9 +3423,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Backups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Backups$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Backups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Backups$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3239,12 +3448,17 @@ export namespace spanner_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3278,7 +3492,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3340,9 +3557,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Backups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Backups$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Backups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Backups$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3356,10 +3582,17 @@ export namespace spanner_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3390,7 +3623,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3460,9 +3696,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Backups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Backups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Backup>;
+    get(
+      params: Params$Resource$Projects$Instances$Backups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Backups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Backup>,
@@ -3476,10 +3721,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Get
-        | BodyResponseCallback<Schema$Backup>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Backup>,
-      callback?: BodyResponseCallback<Schema$Backup>
-    ): void | GaxiosPromise<Schema$Backup> {
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3510,7 +3762,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Backup>(parameters, callback);
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Backup>(parameters);
       }
@@ -3583,9 +3838,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Instances$Backups$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Instances$Backups$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Backups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Backups$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3599,10 +3863,17 @@ export namespace spanner_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3636,7 +3907,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3746,9 +4020,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Backups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Backups$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Backups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Backups$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBackupsResponse>,
@@ -3762,12 +4045,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$List
-        | BodyResponseCallback<Schema$ListBackupsResponse>,
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBackupsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBackupsResponse>
-    ): void | GaxiosPromise<Schema$ListBackupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3801,7 +4092,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBackupsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBackupsResponse>(parameters);
       }
@@ -3903,9 +4197,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Instances$Backups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Instances$Backups$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Backup>;
+    patch(
+      params: Params$Resource$Projects$Instances$Backups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Instances$Backups$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Backup>,
@@ -3919,10 +4222,17 @@ export namespace spanner_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Patch
-        | BodyResponseCallback<Schema$Backup>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Backup>,
-      callback?: BodyResponseCallback<Schema$Backup>
-    ): void | GaxiosPromise<Schema$Backup> {
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3953,7 +4263,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Backup>(parameters, callback);
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Backup>(parameters);
       }
@@ -4026,9 +4339,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Instances$Backups$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Instances$Backups$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Backups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Backups$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -4042,10 +4364,17 @@ export namespace spanner_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4079,7 +4408,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -4150,9 +4482,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Instances$Backups$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Instances$Backups$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Backups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Backups$Testiampermissions,
       options:
@@ -4170,12 +4511,20 @@ export namespace spanner_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4211,7 +4560,7 @@ export namespace spanner_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4422,9 +4771,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Instances$Backups$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Instances$Backups$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Instances$Backups$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Instances$Backups$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4438,10 +4796,17 @@ export namespace spanner_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4472,7 +4837,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4533,9 +4901,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Backups$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Backups$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Backups$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Backups$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4549,10 +4926,17 @@ export namespace spanner_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4583,7 +4967,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4650,9 +5037,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Backups$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Backups$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Instances$Backups$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Backups$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4666,12 +5062,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4702,7 +5103,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4775,9 +5179,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Backups$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Backups$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Backups$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Backups$Operations$List,
       options:
@@ -4793,12 +5206,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Backups$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Backups$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4829,7 +5250,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -5013,9 +5437,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Databaseoperations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Databaseoperations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDatabaseOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Databaseoperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Databaseoperations$List,
       options:
@@ -5033,12 +5466,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databaseoperations$List
-        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>,
+        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListDatabaseOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDatabaseOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databaseoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5074,7 +5515,7 @@ export namespace spanner_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDatabaseOperationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListDatabaseOperationsResponse>(
@@ -5194,9 +5635,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Databases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Databases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Databases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Databases$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5210,12 +5660,17 @@ export namespace spanner_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5249,7 +5704,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5309,9 +5767,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     dropDatabase(
+      params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dropDatabase(
       params?: Params$Resource$Projects$Instances$Databases$Dropdatabase,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    dropDatabase(
+      params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dropDatabase(
       params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5325,10 +5792,17 @@ export namespace spanner_v1 {
     dropDatabase(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Dropdatabase
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Dropdatabase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5359,7 +5833,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5425,9 +5902,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Databases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Databases$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Database>;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Databases$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Database>,
@@ -5441,10 +5927,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Get
-        | BodyResponseCallback<Schema$Database>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Database>,
-      callback?: BodyResponseCallback<Schema$Database>
-    ): void | GaxiosPromise<Schema$Database> {
+        | BodyResponseCallback<Schema$Database>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Database>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Database>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Database> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5475,7 +5968,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Database>(parameters, callback);
+        createAPIRequest<Schema$Database>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Database>(parameters);
       }
@@ -5537,9 +6033,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     getDdl(
+      params: Params$Resource$Projects$Instances$Databases$Getddl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDdl(
       params?: Params$Resource$Projects$Instances$Databases$Getddl,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetDatabaseDdlResponse>;
+    getDdl(
+      params: Params$Resource$Projects$Instances$Databases$Getddl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getDdl(
       params: Params$Resource$Projects$Instances$Databases$Getddl,
       options:
@@ -5555,12 +6060,20 @@ export namespace spanner_v1 {
     getDdl(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Getddl
-        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
+        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
-      callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>
-    ): void | GaxiosPromise<Schema$GetDatabaseDdlResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetDatabaseDdlResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Getddl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5594,7 +6107,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters, callback);
+        createAPIRequest<Schema$GetDatabaseDdlResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters);
       }
@@ -5667,9 +6183,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Instances$Databases$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -5683,10 +6208,17 @@ export namespace spanner_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5720,7 +6252,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -5793,9 +6328,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Databases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Databases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDatabasesResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Databases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Databases$List,
       options:
@@ -5811,12 +6355,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$List
-        | BodyResponseCallback<Schema$ListDatabasesResponse>,
+        | BodyResponseCallback<Schema$ListDatabasesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDatabasesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDatabasesResponse>
-    ): void | GaxiosPromise<Schema$ListDatabasesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDatabasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDatabasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDatabasesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5850,7 +6402,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDatabasesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDatabasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDatabasesResponse>(parameters);
       }
@@ -5930,9 +6485,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     restore(
+      params: Params$Resource$Projects$Instances$Databases$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
       params?: Params$Resource$Projects$Instances$Databases$Restore,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    restore(
+      params: Params$Resource$Projects$Instances$Databases$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     restore(
       params: Params$Resource$Projects$Instances$Databases$Restore,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5946,12 +6510,17 @@ export namespace spanner_v1 {
     restore(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Restore
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5985,7 +6554,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6058,9 +6630,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Instances$Databases$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -6074,10 +6655,17 @@ export namespace spanner_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6111,7 +6699,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -6182,9 +6773,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Instances$Databases$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
       options:
@@ -6202,12 +6802,20 @@ export namespace spanner_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6243,7 +6851,7 @@ export namespace spanner_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -6320,9 +6928,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     updateDdl(
+      params: Params$Resource$Projects$Instances$Databases$Updateddl,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateDdl(
       params?: Params$Resource$Projects$Instances$Databases$Updateddl,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    updateDdl(
+      params: Params$Resource$Projects$Instances$Databases$Updateddl,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateDdl(
       params: Params$Resource$Projects$Instances$Databases$Updateddl,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6336,12 +6953,17 @@ export namespace spanner_v1 {
     updateDdl(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Updateddl
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Updateddl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6375,7 +6997,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6602,9 +7227,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -6618,10 +7252,17 @@ export namespace spanner_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6652,7 +7293,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -6713,9 +7357,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Databases$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -6729,10 +7382,17 @@ export namespace spanner_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6763,7 +7423,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -6830,9 +7493,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Databases$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Databases$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6846,12 +7518,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6882,7 +7559,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6955,9 +7635,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Databases$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Databases$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Databases$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Databases$Operations$List,
       options:
@@ -6973,12 +7662,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7009,7 +7706,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -7149,9 +7849,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     batchCreate(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchCreateSessionsResponse>;
+    batchCreate(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchCreate(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate,
       options:
@@ -7169,12 +7878,20 @@ export namespace spanner_v1 {
     batchCreate(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate
-        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>,
+        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>,
-      callback?: BodyResponseCallback<Schema$BatchCreateSessionsResponse>
-    ): void | GaxiosPromise<Schema$BatchCreateSessionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchCreateSessionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchCreateSessionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7210,7 +7927,7 @@ export namespace spanner_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchCreateSessionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchCreateSessionsResponse>(parameters);
@@ -7286,9 +8003,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     beginTransaction(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    beginTransaction(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Transaction>;
+    beginTransaction(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     beginTransaction(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
       options: MethodOptions | BodyResponseCallback<Schema$Transaction>,
@@ -7302,12 +8028,17 @@ export namespace spanner_v1 {
     beginTransaction(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
-        | BodyResponseCallback<Schema$Transaction>,
+        | BodyResponseCallback<Schema$Transaction>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Transaction>,
-      callback?: BodyResponseCallback<Schema$Transaction>
-    ): void | GaxiosPromise<Schema$Transaction> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Transaction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Transaction>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Transaction> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7341,7 +8072,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Transaction>(parameters, callback);
+        createAPIRequest<Schema$Transaction>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Transaction>(parameters);
       }
@@ -7415,9 +8149,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     commit(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommitResponse>;
+    commit(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     commit(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
       options: MethodOptions | BodyResponseCallback<Schema$CommitResponse>,
@@ -7431,12 +8174,17 @@ export namespace spanner_v1 {
     commit(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Commit
-        | BodyResponseCallback<Schema$CommitResponse>,
+        | BodyResponseCallback<Schema$CommitResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommitResponse>,
-      callback?: BodyResponseCallback<Schema$CommitResponse>
-    ): void | GaxiosPromise<Schema$CommitResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommitResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommitResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommitResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7470,7 +8218,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommitResponse>(parameters, callback);
+        createAPIRequest<Schema$CommitResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommitResponse>(parameters);
       }
@@ -7544,9 +8295,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Session>;
+    create(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Session>,
@@ -7560,10 +8320,17 @@ export namespace spanner_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Create
-        | BodyResponseCallback<Schema$Session>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Session>,
-      callback?: BodyResponseCallback<Schema$Session>
-    ): void | GaxiosPromise<Schema$Session> {
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Session> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7597,7 +8364,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Session>(parameters, callback);
+        createAPIRequest<Schema$Session>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Session>(parameters);
       }
@@ -7658,9 +8428,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7674,10 +8453,17 @@ export namespace spanner_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7708,7 +8494,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7785,9 +8574,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     executeBatchDml(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    executeBatchDml(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ExecuteBatchDmlResponse>;
+    executeBatchDml(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     executeBatchDml(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
       options:
@@ -7805,12 +8603,20 @@ export namespace spanner_v1 {
     executeBatchDml(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml
-        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
+        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
-      callback?: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
-    ): void | GaxiosPromise<Schema$ExecuteBatchDmlResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExecuteBatchDmlResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7844,7 +8650,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ExecuteBatchDmlResponse>(parameters, callback);
+        createAPIRequest<Schema$ExecuteBatchDmlResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ExecuteBatchDmlResponse>(parameters);
       }
@@ -7926,9 +8735,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     executeSql(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    executeSql(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ResultSet>;
+    executeSql(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     executeSql(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
       options: MethodOptions | BodyResponseCallback<Schema$ResultSet>,
@@ -7942,12 +8760,17 @@ export namespace spanner_v1 {
     executeSql(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Executesql
-        | BodyResponseCallback<Schema$ResultSet>,
+        | BodyResponseCallback<Schema$ResultSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ResultSet>,
-      callback?: BodyResponseCallback<Schema$ResultSet>
-    ): void | GaxiosPromise<Schema$ResultSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResultSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResultSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ResultSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7981,7 +8804,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ResultSet>(parameters, callback);
+        createAPIRequest<Schema$ResultSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ResultSet>(parameters);
       }
@@ -8067,9 +8893,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     executeStreamingSql(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    executeStreamingSql(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PartialResultSet>;
+    executeStreamingSql(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     executeStreamingSql(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
       options: MethodOptions | BodyResponseCallback<Schema$PartialResultSet>,
@@ -8085,12 +8920,17 @@ export namespace spanner_v1 {
     executeStreamingSql(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
-        | BodyResponseCallback<Schema$PartialResultSet>,
+        | BodyResponseCallback<Schema$PartialResultSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PartialResultSet>,
-      callback?: BodyResponseCallback<Schema$PartialResultSet>
-    ): void | GaxiosPromise<Schema$PartialResultSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PartialResultSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PartialResultSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PartialResultSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8124,7 +8964,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PartialResultSet>(parameters, callback);
+        createAPIRequest<Schema$PartialResultSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PartialResultSet>(parameters);
       }
@@ -8190,9 +9033,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Session>;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Session>,
@@ -8206,10 +9058,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Get
-        | BodyResponseCallback<Schema$Session>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Session>,
-      callback?: BodyResponseCallback<Schema$Session>
-    ): void | GaxiosPromise<Schema$Session> {
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Session>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Session> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8240,7 +9099,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Session>(parameters, callback);
+        createAPIRequest<Schema$Session>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Session>(parameters);
       }
@@ -8324,9 +9186,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSessionsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Databases$Sessions$List,
       options:
@@ -8342,12 +9213,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$List
-        | BodyResponseCallback<Schema$ListSessionsResponse>,
+        | BodyResponseCallback<Schema$ListSessionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSessionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSessionsResponse>
-    ): void | GaxiosPromise<Schema$ListSessionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSessionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSessionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSessionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8381,7 +9260,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSessionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSessionsResponse>(parameters);
       }
@@ -8460,9 +9342,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     partitionQuery(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    partitionQuery(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PartitionResponse>;
+    partitionQuery(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     partitionQuery(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
       options: MethodOptions | BodyResponseCallback<Schema$PartitionResponse>,
@@ -8478,12 +9369,20 @@ export namespace spanner_v1 {
     partitionQuery(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
-        | BodyResponseCallback<Schema$PartitionResponse>,
+        | BodyResponseCallback<Schema$PartitionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PartitionResponse>,
-      callback?: BodyResponseCallback<Schema$PartitionResponse>
-    ): void | GaxiosPromise<Schema$PartitionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PartitionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PartitionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PartitionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8517,7 +9416,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PartitionResponse>(parameters, callback);
+        createAPIRequest<Schema$PartitionResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PartitionResponse>(parameters);
       }
@@ -8597,9 +9499,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     partitionRead(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    partitionRead(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PartitionResponse>;
+    partitionRead(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     partitionRead(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
       options: MethodOptions | BodyResponseCallback<Schema$PartitionResponse>,
@@ -8615,12 +9526,20 @@ export namespace spanner_v1 {
     partitionRead(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
-        | BodyResponseCallback<Schema$PartitionResponse>,
+        | BodyResponseCallback<Schema$PartitionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PartitionResponse>,
-      callback?: BodyResponseCallback<Schema$PartitionResponse>
-    ): void | GaxiosPromise<Schema$PartitionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PartitionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PartitionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PartitionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8654,7 +9573,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PartitionResponse>(parameters, callback);
+        createAPIRequest<Schema$PartitionResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PartitionResponse>(parameters);
       }
@@ -8735,9 +9657,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     read(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    read(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Read,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ResultSet>;
+    read(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     read(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
       options: MethodOptions | BodyResponseCallback<Schema$ResultSet>,
@@ -8751,12 +9682,17 @@ export namespace spanner_v1 {
     read(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Read
-        | BodyResponseCallback<Schema$ResultSet>,
+        | BodyResponseCallback<Schema$ResultSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ResultSet>,
-      callback?: BodyResponseCallback<Schema$ResultSet>
-    ): void | GaxiosPromise<Schema$ResultSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResultSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResultSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ResultSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Read;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8790,7 +9726,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ResultSet>(parameters, callback);
+        createAPIRequest<Schema$ResultSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ResultSet>(parameters);
       }
@@ -8860,9 +9799,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     rollback(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollback(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    rollback(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     rollback(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -8876,10 +9824,17 @@ export namespace spanner_v1 {
     rollback(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Rollback
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8913,7 +9868,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -8998,9 +9956,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     streamingRead(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    streamingRead(
       params?: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PartialResultSet>;
+    streamingRead(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     streamingRead(
       params: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
       options: MethodOptions | BodyResponseCallback<Schema$PartialResultSet>,
@@ -9016,12 +9983,17 @@ export namespace spanner_v1 {
     streamingRead(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
-        | BodyResponseCallback<Schema$PartialResultSet>,
+        | BodyResponseCallback<Schema$PartialResultSet>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PartialResultSet>,
-      callback?: BodyResponseCallback<Schema$PartialResultSet>
-    ): void | GaxiosPromise<Schema$PartialResultSet> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PartialResultSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PartialResultSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PartialResultSet> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9055,7 +10027,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PartialResultSet>(parameters, callback);
+        createAPIRequest<Schema$PartialResultSet>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PartialResultSet>(parameters);
       }
@@ -9375,9 +10350,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Instances$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Instances$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Instances$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Instances$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -9391,10 +10375,17 @@ export namespace spanner_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9425,7 +10416,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -9485,9 +10479,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -9501,10 +10504,17 @@ export namespace spanner_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9535,7 +10545,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -9601,9 +10614,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Instances$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -9617,12 +10639,17 @@ export namespace spanner_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9653,7 +10680,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -9725,9 +10755,18 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Operations$List,
       options:
@@ -9743,12 +10782,20 @@ export namespace spanner_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9779,7 +10826,10 @@ export namespace spanner_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }

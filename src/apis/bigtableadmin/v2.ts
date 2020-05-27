@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace bigtableadmin_v2 {
   export interface Options extends GlobalOptions {
@@ -888,9 +890,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -904,10 +915,17 @@ export namespace bigtableadmin_v2 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -939,7 +957,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1003,9 +1024,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1019,10 +1049,17 @@ export namespace bigtableadmin_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1054,7 +1091,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1125,9 +1165,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1141,12 +1190,17 @@ export namespace bigtableadmin_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1177,7 +1231,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1308,9 +1365,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Operations$Projects$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Operations$Projects$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Operations$Projects$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Operations$Projects$Operations$List,
       options:
@@ -1326,12 +1392,20 @@ export namespace bigtableadmin_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Operations$Projects$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1366,7 +1440,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -1500,9 +1577,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1516,12 +1602,17 @@ export namespace bigtableadmin_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1556,7 +1647,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1621,9 +1715,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1637,10 +1740,17 @@ export namespace bigtableadmin_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1672,7 +1782,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1744,9 +1857,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Instance>;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Instance>,
@@ -1760,10 +1882,17 @@ export namespace bigtableadmin_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Get
-        | BodyResponseCallback<Schema$Instance>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Instance>,
-      callback?: BodyResponseCallback<Schema$Instance>
-    ): void | GaxiosPromise<Schema$Instance> {
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1795,7 +1924,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Instance>(parameters, callback);
+        createAPIRequest<Schema$Instance>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
       }
@@ -1874,9 +2006,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Instances$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1890,10 +2031,17 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1928,7 +2076,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2001,9 +2152,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListInstancesResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$List,
       options:
@@ -2019,12 +2179,20 @@ export namespace bigtableadmin_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$List
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
-      callback?: BodyResponseCallback<Schema$ListInstancesResponse>
-    ): void | GaxiosPromise<Schema$ListInstancesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstancesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInstancesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2059,7 +2227,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListInstancesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
       }
@@ -2148,9 +2319,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     partialUpdateInstance(
+      params: Params$Resource$Projects$Instances$Partialupdateinstance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    partialUpdateInstance(
       params?: Params$Resource$Projects$Instances$Partialupdateinstance,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    partialUpdateInstance(
+      params: Params$Resource$Projects$Instances$Partialupdateinstance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     partialUpdateInstance(
       params: Params$Resource$Projects$Instances$Partialupdateinstance,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2166,12 +2346,17 @@ export namespace bigtableadmin_v2 {
     partialUpdateInstance(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Partialupdateinstance
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Partialupdateinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2203,7 +2388,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2283,9 +2471,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Instances$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2299,10 +2496,17 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2337,7 +2541,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2413,9 +2620,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Instances$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Testiampermissions,
       options:
@@ -2433,12 +2649,20 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2475,7 +2699,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2561,9 +2785,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Instances$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Instances$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Instance>;
+    update(
+      params: Params$Resource$Projects$Instances$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Instances$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Instance>,
@@ -2577,10 +2810,17 @@ export namespace bigtableadmin_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Update
-        | BodyResponseCallback<Schema$Instance>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Instance>,
-      callback?: BodyResponseCallback<Schema$Instance>
-    ): void | GaxiosPromise<Schema$Instance> {
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Instance>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Instance> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2612,7 +2852,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Instance>(parameters, callback);
+        createAPIRequest<Schema$Instance>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
       }
@@ -2859,9 +3102,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Appprofiles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Appprofiles$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppProfile>;
+    create(
+      params: Params$Resource$Projects$Instances$Appprofiles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Appprofiles$Create,
       options: MethodOptions | BodyResponseCallback<Schema$AppProfile>,
@@ -2875,12 +3127,17 @@ export namespace bigtableadmin_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Appprofiles$Create
-        | BodyResponseCallback<Schema$AppProfile>,
+        | BodyResponseCallback<Schema$AppProfile>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AppProfile>,
-      callback?: BodyResponseCallback<Schema$AppProfile>
-    ): void | GaxiosPromise<Schema$AppProfile> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppProfile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2915,7 +3172,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppProfile>(parameters, callback);
+        createAPIRequest<Schema$AppProfile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppProfile>(parameters);
       }
@@ -2983,9 +3243,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Appprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Appprofiles$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Appprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Appprofiles$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2999,10 +3268,17 @@ export namespace bigtableadmin_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Appprofiles$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3034,7 +3310,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3106,9 +3385,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Appprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Appprofiles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppProfile>;
+    get(
+      params: Params$Resource$Projects$Instances$Appprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Appprofiles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AppProfile>,
@@ -3122,12 +3410,17 @@ export namespace bigtableadmin_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Appprofiles$Get
-        | BodyResponseCallback<Schema$AppProfile>,
+        | BodyResponseCallback<Schema$AppProfile>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AppProfile>,
-      callback?: BodyResponseCallback<Schema$AppProfile>
-    ): void | GaxiosPromise<Schema$AppProfile> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppProfile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppProfile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3159,7 +3452,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppProfile>(parameters, callback);
+        createAPIRequest<Schema$AppProfile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppProfile>(parameters);
       }
@@ -3245,9 +3541,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Appprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Appprofiles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAppProfilesResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Appprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Appprofiles$List,
       options:
@@ -3263,12 +3568,20 @@ export namespace bigtableadmin_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Appprofiles$List
-        | BodyResponseCallback<Schema$ListAppProfilesResponse>,
+        | BodyResponseCallback<Schema$ListAppProfilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAppProfilesResponse>,
-      callback?: BodyResponseCallback<Schema$ListAppProfilesResponse>
-    ): void | GaxiosPromise<Schema$ListAppProfilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAppProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAppProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAppProfilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,7 +3616,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAppProfilesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAppProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAppProfilesResponse>(parameters);
       }
@@ -3395,9 +3711,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Instances$Appprofiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Instances$Appprofiles$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Appprofiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Instances$Appprofiles$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3411,12 +3736,17 @@ export namespace bigtableadmin_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Appprofiles$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Appprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3448,7 +3778,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3648,9 +3981,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Clusters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Clusters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Clusters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Clusters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3664,12 +4006,17 @@ export namespace bigtableadmin_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3704,7 +4051,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3769,9 +4119,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Clusters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Clusters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Clusters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Clusters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3785,10 +4144,17 @@ export namespace bigtableadmin_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3820,7 +4186,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3892,9 +4261,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Clusters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Clusters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Cluster>;
+    get(
+      params: Params$Resource$Projects$Instances$Clusters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Clusters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Cluster>,
@@ -3908,10 +4286,17 @@ export namespace bigtableadmin_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$Get
-        | BodyResponseCallback<Schema$Cluster>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Cluster>,
-      callback?: BodyResponseCallback<Schema$Cluster>
-    ): void | GaxiosPromise<Schema$Cluster> {
+        | BodyResponseCallback<Schema$Cluster>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Cluster>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Cluster>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Cluster> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3943,7 +4328,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Cluster>(parameters, callback);
+        createAPIRequest<Schema$Cluster>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Cluster>(parameters);
       }
@@ -4018,9 +4406,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Clusters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Clusters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListClustersResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Clusters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Clusters$List,
       options:
@@ -4036,12 +4433,20 @@ export namespace bigtableadmin_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$List
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        | BodyResponseCallback<Schema$ListClustersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
-      callback?: BodyResponseCallback<Schema$ListClustersResponse>
-    ): void | GaxiosPromise<Schema$ListClustersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListClustersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListClustersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListClustersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4076,7 +4481,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListClustersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListClustersResponse>(parameters);
       }
@@ -4161,9 +4569,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Instances$Clusters$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Instances$Clusters$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Projects$Instances$Clusters$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Instances$Clusters$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4177,12 +4594,17 @@ export namespace bigtableadmin_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$Update
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4214,7 +4636,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4381,9 +4806,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -4397,10 +4831,17 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4435,7 +4876,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -4517,9 +4961,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -4533,10 +4986,17 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4571,7 +5031,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -4649,9 +5112,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
       options:
@@ -4669,12 +5141,20 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4711,7 +5191,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4847,9 +5327,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     checkConsistency(
+      params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkConsistency(
       params?: Params$Resource$Projects$Instances$Tables$Checkconsistency,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckConsistencyResponse>;
+    checkConsistency(
+      params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     checkConsistency(
       params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
       options:
@@ -4867,12 +5356,20 @@ export namespace bigtableadmin_v2 {
     checkConsistency(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Checkconsistency
-        | BodyResponseCallback<Schema$CheckConsistencyResponse>,
+        | BodyResponseCallback<Schema$CheckConsistencyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckConsistencyResponse>,
-      callback?: BodyResponseCallback<Schema$CheckConsistencyResponse>
-    ): void | GaxiosPromise<Schema$CheckConsistencyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckConsistencyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckConsistencyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckConsistencyResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Checkconsistency;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4907,7 +5404,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckConsistencyResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckConsistencyResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckConsistencyResponse>(parameters);
       }
@@ -4987,9 +5487,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Instances$Tables$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Instances$Tables$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Table>;
+    create(
+      params: Params$Resource$Projects$Instances$Tables$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Instances$Tables$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Table>,
@@ -5003,10 +5512,17 @@ export namespace bigtableadmin_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Create
-        | BodyResponseCallback<Schema$Table>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
-      callback?: BodyResponseCallback<Schema$Table>
-    ): void | GaxiosPromise<Schema$Table> {
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5041,7 +5557,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Table>(parameters, callback);
+        createAPIRequest<Schema$Table>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
       }
@@ -5106,9 +5625,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Instances$Tables$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Instances$Tables$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Tables$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Instances$Tables$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5122,10 +5650,17 @@ export namespace bigtableadmin_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5157,7 +5692,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5232,9 +5770,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     dropRowRange(
+      params: Params$Resource$Projects$Instances$Tables$Droprowrange,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dropRowRange(
       params?: Params$Resource$Projects$Instances$Tables$Droprowrange,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    dropRowRange(
+      params: Params$Resource$Projects$Instances$Tables$Droprowrange,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dropRowRange(
       params: Params$Resource$Projects$Instances$Tables$Droprowrange,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5248,10 +5795,17 @@ export namespace bigtableadmin_v2 {
     dropRowRange(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Droprowrange
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Droprowrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5286,7 +5840,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5362,9 +5919,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     generateConsistencyToken(
+      params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateConsistencyToken(
       params?: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateConsistencyTokenResponse>;
+    generateConsistencyToken(
+      params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateConsistencyToken(
       params: Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
       options:
@@ -5382,12 +5948,20 @@ export namespace bigtableadmin_v2 {
     generateConsistencyToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Generateconsistencytoken
-        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
+        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
-    ): void | GaxiosPromise<Schema$GenerateConsistencyTokenResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateConsistencyTokenResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5424,7 +5998,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$GenerateConsistencyTokenResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GenerateConsistencyTokenResponse>(
@@ -5502,9 +6076,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Instances$Tables$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Instances$Tables$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Table>;
+    get(
+      params: Params$Resource$Projects$Instances$Tables$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Instances$Tables$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Table>,
@@ -5518,10 +6101,17 @@ export namespace bigtableadmin_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Get
-        | BodyResponseCallback<Schema$Table>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
-      callback?: BodyResponseCallback<Schema$Table>
-    ): void | GaxiosPromise<Schema$Table> {
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5553,7 +6143,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Table>(parameters, callback);
+        createAPIRequest<Schema$Table>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
       }
@@ -5631,9 +6224,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Instances$Tables$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -5647,10 +6249,17 @@ export namespace bigtableadmin_v2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5685,7 +6294,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -5771,9 +6383,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Instances$Tables$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Instances$Tables$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTablesResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Tables$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Instances$Tables$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListTablesResponse>,
@@ -5787,12 +6408,20 @@ export namespace bigtableadmin_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$List
-        | BodyResponseCallback<Schema$ListTablesResponse>,
+        | BodyResponseCallback<Schema$ListTablesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTablesResponse>,
-      callback?: BodyResponseCallback<Schema$ListTablesResponse>
-    ): void | GaxiosPromise<Schema$ListTablesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTablesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTablesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTablesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5827,7 +6456,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTablesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTablesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTablesResponse>(parameters);
       }
@@ -5908,9 +6540,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     modifyColumnFamilies(
+      params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyColumnFamilies(
       params?: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Table>;
+    modifyColumnFamilies(
+      params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modifyColumnFamilies(
       params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
       options: MethodOptions | BodyResponseCallback<Schema$Table>,
@@ -5924,10 +6565,17 @@ export namespace bigtableadmin_v2 {
     modifyColumnFamilies(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies
-        | BodyResponseCallback<Schema$Table>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Table>,
-      callback?: BodyResponseCallback<Schema$Table>
-    ): void | GaxiosPromise<Schema$Table> {
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Table>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Table> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5962,7 +6610,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Table>(parameters, callback);
+        createAPIRequest<Schema$Table>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
       }
@@ -6041,9 +6692,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Instances$Tables$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -6057,10 +6717,17 @@ export namespace bigtableadmin_v2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6095,7 +6762,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -6170,9 +6840,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Instances$Tables$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
       options:
@@ -6190,12 +6869,20 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Tables$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Tables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6232,7 +6919,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -6500,9 +7187,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -6516,10 +7212,17 @@ export namespace bigtableadmin_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6551,7 +7254,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -6628,9 +7334,18 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -6646,12 +7361,20 @@ export namespace bigtableadmin_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6686,7 +7409,10 @@ export namespace bigtableadmin_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace policytroubleshooter_v1 {
   export interface Options extends GlobalOptions {
@@ -378,11 +380,20 @@ export namespace policytroubleshooter_v1 {
      * @return {object} Request object
      */
     troubleshoot(
+      params: Params$Resource$Iam$Troubleshoot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    troubleshoot(
       params?: Params$Resource$Iam$Troubleshoot,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
     >;
+    troubleshoot(
+      params: Params$Resource$Iam$Troubleshoot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     troubleshoot(
       params: Params$Resource$Iam$Troubleshoot,
       options:
@@ -410,18 +421,26 @@ export namespace policytroubleshooter_v1 {
         | Params$Resource$Iam$Troubleshoot
         | BodyResponseCallback<
             Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Iam$Troubleshoot;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -457,7 +476,7 @@ export namespace policytroubleshooter_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse

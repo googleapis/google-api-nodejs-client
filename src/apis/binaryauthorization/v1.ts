@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace binaryauthorization_v1 {
   export interface Options extends GlobalOptions {
@@ -414,9 +416,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     getPolicy(
+      params: Params$Resource$Projects$Getpolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getPolicy(
       params?: Params$Resource$Projects$Getpolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getPolicy(
+      params: Params$Resource$Projects$Getpolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getPolicy(
       params: Params$Resource$Projects$Getpolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -430,10 +441,17 @@ export namespace binaryauthorization_v1 {
     getPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Getpolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -465,7 +483,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -546,9 +567,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     updatePolicy(
+      params: Params$Resource$Projects$Updatepolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updatePolicy(
       params?: Params$Resource$Projects$Updatepolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    updatePolicy(
+      params: Params$Resource$Projects$Updatepolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updatePolicy(
       params: Params$Resource$Projects$Updatepolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -562,10 +592,17 @@ export namespace binaryauthorization_v1 {
     updatePolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Updatepolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updatepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -597,7 +634,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -711,9 +751,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Attestors$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Attestors$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Attestor>;
+    create(
+      params: Params$Resource$Projects$Attestors$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Attestors$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Attestor>,
@@ -727,10 +776,17 @@ export namespace binaryauthorization_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$Create
-        | BodyResponseCallback<Schema$Attestor>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Attestor>,
-      callback?: BodyResponseCallback<Schema$Attestor>
-    ): void | GaxiosPromise<Schema$Attestor> {
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Attestor> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -765,7 +821,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Attestor>(parameters, callback);
+        createAPIRequest<Schema$Attestor>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Attestor>(parameters);
       }
@@ -823,9 +882,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Attestors$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Attestors$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Attestors$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Attestors$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -839,10 +907,17 @@ export namespace binaryauthorization_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -874,7 +949,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -937,9 +1015,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Attestors$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Attestors$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Attestor>;
+    get(
+      params: Params$Resource$Projects$Attestors$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Attestors$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Attestor>,
@@ -953,10 +1040,17 @@ export namespace binaryauthorization_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$Get
-        | BodyResponseCallback<Schema$Attestor>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Attestor>,
-      callback?: BodyResponseCallback<Schema$Attestor>
-    ): void | GaxiosPromise<Schema$Attestor> {
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Attestor> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -988,7 +1082,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Attestor>(parameters, callback);
+        createAPIRequest<Schema$Attestor>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Attestor>(parameters);
       }
@@ -1064,9 +1161,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Attestors$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Attestors$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IamPolicy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Attestors$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Attestors$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
@@ -1080,12 +1186,17 @@ export namespace binaryauthorization_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$Getiampolicy
-        | BodyResponseCallback<Schema$IamPolicy>,
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IamPolicy>,
-      callback?: BodyResponseCallback<Schema$IamPolicy>
-    ): void | GaxiosPromise<Schema$IamPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1120,7 +1231,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IamPolicy>(parameters, callback);
+        createAPIRequest<Schema$IamPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
@@ -1190,9 +1304,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Attestors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Attestors$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAttestorsResponse>;
+    list(
+      params: Params$Resource$Projects$Attestors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Attestors$List,
       options:
@@ -1208,12 +1331,20 @@ export namespace binaryauthorization_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$List
-        | BodyResponseCallback<Schema$ListAttestorsResponse>,
+        | BodyResponseCallback<Schema$ListAttestorsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAttestorsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAttestorsResponse>
-    ): void | GaxiosPromise<Schema$ListAttestorsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttestorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttestorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAttestorsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1248,7 +1379,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAttestorsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAttestorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAttestorsResponse>(parameters);
       }
@@ -1319,9 +1453,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Attestors$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Attestors$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IamPolicy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Attestors$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Attestors$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
@@ -1335,12 +1478,17 @@ export namespace binaryauthorization_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$Setiampolicy
-        | BodyResponseCallback<Schema$IamPolicy>,
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IamPolicy>,
-      callback?: BodyResponseCallback<Schema$IamPolicy>
-    ): void | GaxiosPromise<Schema$IamPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1375,7 +1523,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IamPolicy>(parameters, callback);
+        createAPIRequest<Schema$IamPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
@@ -1444,9 +1595,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Attestors$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Attestors$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Attestors$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Attestors$Testiampermissions,
       options:
@@ -1464,12 +1624,20 @@ export namespace binaryauthorization_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1506,7 +1674,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1582,9 +1750,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Attestors$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Attestors$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Attestor>;
+    update(
+      params: Params$Resource$Projects$Attestors$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Attestors$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Attestor>,
@@ -1598,10 +1775,17 @@ export namespace binaryauthorization_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Attestors$Update
-        | BodyResponseCallback<Schema$Attestor>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Attestor>,
-      callback?: BodyResponseCallback<Schema$Attestor>
-    ): void | GaxiosPromise<Schema$Attestor> {
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Attestor>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Attestor> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Attestors$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1633,7 +1817,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Attestor>(parameters, callback);
+        createAPIRequest<Schema$Attestor>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Attestor>(parameters);
       }
@@ -1849,9 +2036,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Policy$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Policy$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IamPolicy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Policy$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Policy$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
@@ -1865,12 +2061,17 @@ export namespace binaryauthorization_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Policy$Getiampolicy
-        | BodyResponseCallback<Schema$IamPolicy>,
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IamPolicy>,
-      callback?: BodyResponseCallback<Schema$IamPolicy>
-    ): void | GaxiosPromise<Schema$IamPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policy$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1905,7 +2106,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IamPolicy>(parameters, callback);
+        createAPIRequest<Schema$IamPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
@@ -1976,9 +2180,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Policy$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Policy$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IamPolicy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Policy$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Policy$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
@@ -1992,12 +2205,17 @@ export namespace binaryauthorization_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Policy$Setiampolicy
-        | BodyResponseCallback<Schema$IamPolicy>,
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IamPolicy>,
-      callback?: BodyResponseCallback<Schema$IamPolicy>
-    ): void | GaxiosPromise<Schema$IamPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IamPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IamPolicy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policy$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2032,7 +2250,10 @@ export namespace binaryauthorization_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IamPolicy>(parameters, callback);
+        createAPIRequest<Schema$IamPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
@@ -2101,9 +2322,18 @@ export namespace binaryauthorization_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Policy$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Policy$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Policy$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Policy$Testiampermissions,
       options:
@@ -2121,12 +2351,20 @@ export namespace binaryauthorization_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Policy$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Policy$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2163,7 +2401,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace drive_v2 {
   export interface Options extends GlobalOptions {
@@ -1771,9 +1773,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$About$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$About$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$About>;
+    get(
+      params: Params$Resource$About$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$About$Get,
       options: MethodOptions | BodyResponseCallback<Schema$About>,
@@ -1787,10 +1798,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$About$Get
-        | BodyResponseCallback<Schema$About>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$About>,
-      callback?: BodyResponseCallback<Schema$About>
-    ): void | GaxiosPromise<Schema$About> {
+        | BodyResponseCallback<Schema$About>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$About>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$About>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$About> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$About$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1820,7 +1838,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$About>(parameters, callback);
+        createAPIRequest<Schema$About>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$About>(parameters);
       }
@@ -1937,9 +1958,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Apps$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Apps$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$App>;
+    get(
+      params: Params$Resource$Apps$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Apps$Get,
       options: MethodOptions | BodyResponseCallback<Schema$App>,
@@ -1953,10 +1983,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Apps$Get
-        | BodyResponseCallback<Schema$App>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$App>,
-      callback?: BodyResponseCallback<Schema$App>
-    ): void | GaxiosPromise<Schema$App> {
+        | BodyResponseCallback<Schema$App>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$App>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$App>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$App> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1989,7 +2026,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$App>(parameters, callback);
+        createAPIRequest<Schema$App>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$App>(parameters);
       }
@@ -2058,9 +2098,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apps$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppList>;
+    list(
+      params: Params$Resource$Apps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apps$List,
       options: MethodOptions | BodyResponseCallback<Schema$AppList>,
@@ -2074,10 +2123,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Apps$List
-        | BodyResponseCallback<Schema$AppList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppList>,
-      callback?: BodyResponseCallback<Schema$AppList>
-    ): void | GaxiosPromise<Schema$AppList> {
+        | BodyResponseCallback<Schema$AppList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2107,7 +2163,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppList>(parameters, callback);
+        createAPIRequest<Schema$AppList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppList>(parameters);
       }
@@ -2237,9 +2296,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Changes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Changes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Change>;
+    get(
+      params: Params$Resource$Changes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Changes$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Change>,
@@ -2253,10 +2321,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Changes$Get
-        | BodyResponseCallback<Schema$Change>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Change>,
-      callback?: BodyResponseCallback<Schema$Change>
-    ): void | GaxiosPromise<Schema$Change> {
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Change>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Change> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2289,7 +2364,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Change>(parameters, callback);
+        createAPIRequest<Schema$Change>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Change>(parameters);
       }
@@ -2367,9 +2445,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     getStartPageToken(
+      params: Params$Resource$Changes$Getstartpagetoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStartPageToken(
       params?: Params$Resource$Changes$Getstartpagetoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$StartPageToken>;
+    getStartPageToken(
+      params: Params$Resource$Changes$Getstartpagetoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getStartPageToken(
       params: Params$Resource$Changes$Getstartpagetoken,
       options: MethodOptions | BodyResponseCallback<Schema$StartPageToken>,
@@ -2385,12 +2472,17 @@ export namespace drive_v2 {
     getStartPageToken(
       paramsOrCallback?:
         | Params$Resource$Changes$Getstartpagetoken
-        | BodyResponseCallback<Schema$StartPageToken>,
+        | BodyResponseCallback<Schema$StartPageToken>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$StartPageToken>,
-      callback?: BodyResponseCallback<Schema$StartPageToken>
-    ): void | GaxiosPromise<Schema$StartPageToken> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StartPageToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StartPageToken>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$StartPageToken> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Changes$Getstartpagetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2424,7 +2516,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$StartPageToken>(parameters, callback);
+        createAPIRequest<Schema$StartPageToken>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$StartPageToken>(parameters);
       }
@@ -2535,9 +2630,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Changes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Changes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ChangeList>;
+    list(
+      params: Params$Resource$Changes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Changes$List,
       options: MethodOptions | BodyResponseCallback<Schema$ChangeList>,
@@ -2551,12 +2655,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Changes$List
-        | BodyResponseCallback<Schema$ChangeList>,
+        | BodyResponseCallback<Schema$ChangeList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ChangeList>,
-      callback?: BodyResponseCallback<Schema$ChangeList>
-    ): void | GaxiosPromise<Schema$ChangeList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ChangeList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ChangeList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ChangeList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2586,7 +2695,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ChangeList>(parameters, callback);
+        createAPIRequest<Schema$ChangeList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ChangeList>(parameters);
       }
@@ -2717,9 +2829,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Changes$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Changes$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Changes$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Changes$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -2733,10 +2854,17 @@ export namespace drive_v2 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Changes$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2769,7 +2897,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -3028,9 +3159,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stop(
       params: Params$Resource$Channels$Stop,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3044,10 +3184,15 @@ export namespace drive_v2 {
     stop(
       paramsOrCallback?:
         | Params$Resource$Channels$Stop
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3080,7 +3225,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3162,9 +3310,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Children$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Children$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Children$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Children$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3178,10 +3335,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Children$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3213,7 +3375,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3286,9 +3451,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Children$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Children$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ChildReference>;
+    get(
+      params: Params$Resource$Children$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Children$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ChildReference>,
@@ -3302,12 +3476,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Children$Get
-        | BodyResponseCallback<Schema$ChildReference>,
+        | BodyResponseCallback<Schema$ChildReference>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ChildReference>,
-      callback?: BodyResponseCallback<Schema$ChildReference>
-    ): void | GaxiosPromise<Schema$ChildReference> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ChildReference>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ChildReference>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ChildReference> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3339,7 +3518,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ChildReference>(parameters, callback);
+        createAPIRequest<Schema$ChildReference>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ChildReference>(parameters);
       }
@@ -3426,9 +3608,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Children$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Children$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ChildReference>;
+    insert(
+      params: Params$Resource$Children$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Children$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$ChildReference>,
@@ -3442,12 +3633,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Children$Insert
-        | BodyResponseCallback<Schema$ChildReference>,
+        | BodyResponseCallback<Schema$ChildReference>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ChildReference>,
-      callback?: BodyResponseCallback<Schema$ChildReference>
-    ): void | GaxiosPromise<Schema$ChildReference> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ChildReference>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ChildReference>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ChildReference> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3480,7 +3676,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ChildReference>(parameters, callback);
+        createAPIRequest<Schema$ChildReference>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ChildReference>(parameters);
       }
@@ -3564,9 +3763,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Children$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Children$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ChildList>;
+    list(
+      params: Params$Resource$Children$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Children$List,
       options: MethodOptions | BodyResponseCallback<Schema$ChildList>,
@@ -3580,12 +3788,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Children$List
-        | BodyResponseCallback<Schema$ChildList>,
+        | BodyResponseCallback<Schema$ChildList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ChildList>,
-      callback?: BodyResponseCallback<Schema$ChildList>
-    ): void | GaxiosPromise<Schema$ChildList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ChildList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ChildList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ChildList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Children$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3618,7 +3831,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ChildList>(parameters, callback);
+        createAPIRequest<Schema$ChildList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ChildList>(parameters);
       }
@@ -3775,9 +3991,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Comments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Comments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Comments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Comments$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3791,10 +4016,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Comments$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3826,7 +4056,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3909,9 +4142,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Comments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -3925,10 +4167,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Comments$Get
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3960,7 +4209,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -4059,9 +4311,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Comments$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Comments$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    insert(
+      params: Params$Resource$Comments$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Comments$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -4075,10 +4336,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Comments$Insert
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4111,7 +4379,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -4190,9 +4461,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentList>;
+    list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Comments$List,
       options: MethodOptions | BodyResponseCallback<Schema$CommentList>,
@@ -4206,12 +4486,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Comments$List
-        | BodyResponseCallback<Schema$CommentList>,
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentList>,
-      callback?: BodyResponseCallback<Schema$CommentList>
-    ): void | GaxiosPromise<Schema$CommentList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4244,7 +4529,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentList>(parameters, callback);
+        createAPIRequest<Schema$CommentList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
       }
@@ -4346,9 +4634,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Comments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Comments$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    patch(
+      params: Params$Resource$Comments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Comments$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -4362,10 +4659,17 @@ export namespace drive_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Comments$Patch
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4397,7 +4701,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -4499,9 +4806,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Comments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Comments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    update(
+      params: Params$Resource$Comments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Comments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -4515,10 +4831,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Comments$Update
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4550,7 +4873,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -4729,9 +5055,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Drives$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Drives$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Drives$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Drives$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4745,10 +5080,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Drives$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4781,7 +5121,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4856,9 +5199,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Drives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Drives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    get(
+      params: Params$Resource$Drives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Drives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -4872,10 +5224,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Drives$Get
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4908,7 +5267,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -4977,9 +5339,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     hide(
+      params: Params$Resource$Drives$Hide,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    hide(
       params?: Params$Resource$Drives$Hide,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    hide(
+      params: Params$Resource$Drives$Hide,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     hide(
       params: Params$Resource$Drives$Hide,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -4993,10 +5364,17 @@ export namespace drive_v2 {
     hide(
       paramsOrCallback?:
         | Params$Resource$Drives$Hide
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5029,7 +5407,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -5117,9 +5498,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Drives$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Drives$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    insert(
+      params: Params$Resource$Drives$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Drives$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -5133,10 +5523,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Drives$Insert
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5166,7 +5563,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -5239,9 +5639,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Drives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Drives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DriveList>;
+    list(
+      params: Params$Resource$Drives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Drives$List,
       options: MethodOptions | BodyResponseCallback<Schema$DriveList>,
@@ -5255,12 +5664,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Drives$List
-        | BodyResponseCallback<Schema$DriveList>,
+        | BodyResponseCallback<Schema$DriveList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DriveList>,
-      callback?: BodyResponseCallback<Schema$DriveList>
-    ): void | GaxiosPromise<Schema$DriveList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DriveList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DriveList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DriveList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5290,7 +5704,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DriveList>(parameters, callback);
+        createAPIRequest<Schema$DriveList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DriveList>(parameters);
       }
@@ -5359,9 +5776,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     unhide(
+      params: Params$Resource$Drives$Unhide,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unhide(
       params?: Params$Resource$Drives$Unhide,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    unhide(
+      params: Params$Resource$Drives$Unhide,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unhide(
       params: Params$Resource$Drives$Unhide,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -5375,10 +5801,17 @@ export namespace drive_v2 {
     unhide(
       paramsOrCallback?:
         | Params$Resource$Drives$Unhide
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5411,7 +5844,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -5502,9 +5938,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Drives$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Drives$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Drive>;
+    update(
+      params: Params$Resource$Drives$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Drives$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Drive>,
@@ -5518,10 +5963,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Drives$Update
-        | BodyResponseCallback<Schema$Drive>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Drive>,
-      callback?: BodyResponseCallback<Schema$Drive>
-    ): void | GaxiosPromise<Schema$Drive> {
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Drive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Drive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Drives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5554,7 +6006,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Drive>(parameters, callback);
+        createAPIRequest<Schema$Drive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Drive>(parameters);
       }
@@ -5909,9 +6364,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     copy(
+      params: Params$Resource$Files$Copy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    copy(
       params?: Params$Resource$Files$Copy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    copy(
+      params: Params$Resource$Files$Copy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     copy(
       params: Params$Resource$Files$Copy,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -5925,10 +6389,17 @@ export namespace drive_v2 {
     copy(
       paramsOrCallback?:
         | Params$Resource$Files$Copy
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5961,7 +6432,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -6025,9 +6499,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Files$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Files$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Files$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Files$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6041,10 +6524,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Files$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6077,7 +6565,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6127,9 +6618,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     emptyTrash(
+      params: Params$Resource$Files$Emptytrash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    emptyTrash(
       params?: Params$Resource$Files$Emptytrash,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    emptyTrash(
+      params: Params$Resource$Files$Emptytrash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     emptyTrash(
       params: Params$Resource$Files$Emptytrash,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6143,10 +6643,15 @@ export namespace drive_v2 {
     emptyTrash(
       paramsOrCallback?:
         | Params$Resource$Files$Emptytrash
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Emptytrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6179,7 +6684,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6240,9 +6748,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     export(
+      params: Params$Resource$Files$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
       params?: Params$Resource$Files$Export,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    export(
+      params: Params$Resource$Files$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     export(
       params: Params$Resource$Files$Export,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6256,10 +6773,15 @@ export namespace drive_v2 {
     export(
       paramsOrCallback?:
         | Params$Resource$Files$Export
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6292,7 +6814,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6360,9 +6885,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     generateIds(
+      params: Params$Resource$Files$Generateids,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateIds(
       params?: Params$Resource$Files$Generateids,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GeneratedIds>;
+    generateIds(
+      params: Params$Resource$Files$Generateids,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateIds(
       params: Params$Resource$Files$Generateids,
       options: MethodOptions | BodyResponseCallback<Schema$GeneratedIds>,
@@ -6376,12 +6910,17 @@ export namespace drive_v2 {
     generateIds(
       paramsOrCallback?:
         | Params$Resource$Files$Generateids
-        | BodyResponseCallback<Schema$GeneratedIds>,
+        | BodyResponseCallback<Schema$GeneratedIds>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GeneratedIds>,
-      callback?: BodyResponseCallback<Schema$GeneratedIds>
-    ): void | GaxiosPromise<Schema$GeneratedIds> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GeneratedIds>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GeneratedIds>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GeneratedIds> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Files$Generateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6415,7 +6954,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GeneratedIds>(parameters, callback);
+        createAPIRequest<Schema$GeneratedIds>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GeneratedIds>(parameters);
       }
@@ -6568,9 +7110,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Files$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Files$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    get(
+      params: Params$Resource$Files$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Files$Get,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -6584,10 +7135,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Files$Get
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6620,7 +7178,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -6866,9 +7427,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Files$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Files$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    insert(
+      params: Params$Resource$Files$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Files$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -6882,10 +7452,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Files$Insert
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6919,7 +7496,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -7032,9 +7612,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Files$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Files$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FileList>;
+    list(
+      params: Params$Resource$Files$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Files$List,
       options: MethodOptions | BodyResponseCallback<Schema$FileList>,
@@ -7048,10 +7637,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Files$List
-        | BodyResponseCallback<Schema$FileList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$FileList>,
-      callback?: BodyResponseCallback<Schema$FileList>
-    ): void | GaxiosPromise<Schema$FileList> {
+        | BodyResponseCallback<Schema$FileList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FileList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FileList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FileList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7081,7 +7677,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FileList>(parameters, callback);
+        createAPIRequest<Schema$FileList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FileList>(parameters);
       }
@@ -7340,9 +7939,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Files$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Files$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    patch(
+      params: Params$Resource$Files$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Files$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -7356,10 +7964,17 @@ export namespace drive_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Files$Patch
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7392,7 +8007,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -7531,9 +8149,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     touch(
+      params: Params$Resource$Files$Touch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    touch(
       params?: Params$Resource$Files$Touch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    touch(
+      params: Params$Resource$Files$Touch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     touch(
       params: Params$Resource$Files$Touch,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -7547,10 +8174,17 @@ export namespace drive_v2 {
     touch(
       paramsOrCallback?:
         | Params$Resource$Files$Touch
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Touch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7583,7 +8217,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -7721,9 +8358,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     trash(
+      params: Params$Resource$Files$Trash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    trash(
       params?: Params$Resource$Files$Trash,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    trash(
+      params: Params$Resource$Files$Trash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     trash(
       params: Params$Resource$Files$Trash,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -7737,10 +8383,17 @@ export namespace drive_v2 {
     trash(
       paramsOrCallback?:
         | Params$Resource$Files$Trash
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7773,7 +8426,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -7911,9 +8567,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     untrash(
+      params: Params$Resource$Files$Untrash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    untrash(
       params?: Params$Resource$Files$Untrash,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    untrash(
+      params: Params$Resource$Files$Untrash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     untrash(
       params: Params$Resource$Files$Untrash,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -7927,10 +8592,17 @@ export namespace drive_v2 {
     untrash(
       paramsOrCallback?:
         | Params$Resource$Files$Untrash
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7963,7 +8635,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -8229,9 +8904,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Files$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Files$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$File>;
+    update(
+      params: Params$Resource$Files$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Files$Update,
       options: MethodOptions | BodyResponseCallback<Schema$File>,
@@ -8245,10 +8929,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Files$Update
-        | BodyResponseCallback<Schema$File>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback?: BodyResponseCallback<Schema$File>
-    ): void | GaxiosPromise<Schema$File> {
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8285,7 +8976,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(parameters, callback);
+        createAPIRequest<Schema$File>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$File>(parameters);
       }
@@ -8397,9 +9091,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Files$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Files$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Files$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Files$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -8413,10 +9116,17 @@ export namespace drive_v2 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Files$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8449,7 +9159,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -9073,9 +9786,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Parents$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Parents$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Parents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Parents$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -9089,10 +9811,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Parents$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9124,7 +9851,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -9198,9 +9928,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Parents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Parents$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ParentReference>;
+    get(
+      params: Params$Resource$Parents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Parents$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ParentReference>,
@@ -9214,12 +9953,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Parents$Get
-        | BodyResponseCallback<Schema$ParentReference>,
+        | BodyResponseCallback<Schema$ParentReference>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ParentReference>,
-      callback?: BodyResponseCallback<Schema$ParentReference>
-    ): void | GaxiosPromise<Schema$ParentReference> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ParentReference>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ParentReference>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ParentReference> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9251,7 +9995,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ParentReference>(parameters, callback);
+        createAPIRequest<Schema$ParentReference>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ParentReference>(parameters);
       }
@@ -9340,9 +10087,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Parents$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Parents$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ParentReference>;
+    insert(
+      params: Params$Resource$Parents$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Parents$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$ParentReference>,
@@ -9356,12 +10112,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Parents$Insert
-        | BodyResponseCallback<Schema$ParentReference>,
+        | BodyResponseCallback<Schema$ParentReference>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ParentReference>,
-      callback?: BodyResponseCallback<Schema$ParentReference>
-    ): void | GaxiosPromise<Schema$ParentReference> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ParentReference>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ParentReference>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ParentReference> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9394,7 +10155,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ParentReference>(parameters, callback);
+        createAPIRequest<Schema$ParentReference>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ParentReference>(parameters);
       }
@@ -9464,9 +10228,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Parents$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Parents$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ParentList>;
+    list(
+      params: Params$Resource$Parents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Parents$List,
       options: MethodOptions | BodyResponseCallback<Schema$ParentList>,
@@ -9480,12 +10253,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Parents$List
-        | BodyResponseCallback<Schema$ParentList>,
+        | BodyResponseCallback<Schema$ParentList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ParentList>,
-      callback?: BodyResponseCallback<Schema$ParentList>
-    ): void | GaxiosPromise<Schema$ParentList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ParentList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ParentList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ParentList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Parents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9518,7 +10296,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ParentList>(parameters, callback);
+        createAPIRequest<Schema$ParentList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ParentList>(parameters);
       }
@@ -9668,9 +10449,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Permissions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Permissions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Permissions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Permissions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -9684,10 +10474,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Permissions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9720,7 +10515,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -9815,9 +10613,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Permissions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Permissions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Permission>;
+    get(
+      params: Params$Resource$Permissions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Permissions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Permission>,
@@ -9831,12 +10638,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Permissions$Get
-        | BodyResponseCallback<Schema$Permission>,
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Permission>,
-      callback?: BodyResponseCallback<Schema$Permission>
-    ): void | GaxiosPromise<Schema$Permission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9868,7 +10680,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Permission>(parameters, callback);
+        createAPIRequest<Schema$Permission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
       }
@@ -9937,9 +10752,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     getIdForEmail(
+      params: Params$Resource$Permissions$Getidforemail,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIdForEmail(
       params?: Params$Resource$Permissions$Getidforemail,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PermissionId>;
+    getIdForEmail(
+      params: Params$Resource$Permissions$Getidforemail,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIdForEmail(
       params: Params$Resource$Permissions$Getidforemail,
       options: MethodOptions | BodyResponseCallback<Schema$PermissionId>,
@@ -9953,12 +10777,17 @@ export namespace drive_v2 {
     getIdForEmail(
       paramsOrCallback?:
         | Params$Resource$Permissions$Getidforemail
-        | BodyResponseCallback<Schema$PermissionId>,
+        | BodyResponseCallback<Schema$PermissionId>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PermissionId>,
-      callback?: BodyResponseCallback<Schema$PermissionId>
-    ): void | GaxiosPromise<Schema$PermissionId> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PermissionId>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PermissionId>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PermissionId> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Getidforemail;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9992,7 +10821,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PermissionId>(parameters, callback);
+        createAPIRequest<Schema$PermissionId>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PermissionId>(parameters);
       }
@@ -10118,9 +10950,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Permissions$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Permissions$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Permission>;
+    insert(
+      params: Params$Resource$Permissions$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Permissions$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Permission>,
@@ -10134,12 +10975,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Permissions$Insert
-        | BodyResponseCallback<Schema$Permission>,
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Permission>,
-      callback?: BodyResponseCallback<Schema$Permission>
-    ): void | GaxiosPromise<Schema$Permission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10173,7 +11019,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Permission>(parameters, callback);
+        createAPIRequest<Schema$Permission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
       }
@@ -10258,9 +11107,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Permissions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Permissions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PermissionList>;
+    list(
+      params: Params$Resource$Permissions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Permissions$List,
       options: MethodOptions | BodyResponseCallback<Schema$PermissionList>,
@@ -10274,12 +11132,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Permissions$List
-        | BodyResponseCallback<Schema$PermissionList>,
+        | BodyResponseCallback<Schema$PermissionList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PermissionList>,
-      callback?: BodyResponseCallback<Schema$PermissionList>
-    ): void | GaxiosPromise<Schema$PermissionList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PermissionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PermissionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PermissionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10312,7 +11175,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PermissionList>(parameters, callback);
+        createAPIRequest<Schema$PermissionList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PermissionList>(parameters);
       }
@@ -10435,9 +11301,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Permissions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Permissions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Permission>;
+    patch(
+      params: Params$Resource$Permissions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Permissions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Permission>,
@@ -10451,12 +11326,17 @@ export namespace drive_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Permissions$Patch
-        | BodyResponseCallback<Schema$Permission>,
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Permission>,
-      callback?: BodyResponseCallback<Schema$Permission>
-    ): void | GaxiosPromise<Schema$Permission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10489,7 +11369,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Permission>(parameters, callback);
+        createAPIRequest<Schema$Permission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
       }
@@ -10612,9 +11495,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Permissions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Permissions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Permission>;
+    update(
+      params: Params$Resource$Permissions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Permissions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Permission>,
@@ -10628,12 +11520,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Permissions$Update
-        | BodyResponseCallback<Schema$Permission>,
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Permission>,
-      callback?: BodyResponseCallback<Schema$Permission>
-    ): void | GaxiosPromise<Schema$Permission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Permission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Permission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10666,7 +11563,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Permission>(parameters, callback);
+        createAPIRequest<Schema$Permission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
       }
@@ -10964,9 +11864,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Properties$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Properties$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Properties$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Properties$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -10980,10 +11889,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Properties$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11016,7 +11930,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -11094,9 +12011,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Properties$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Properties$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Property>;
+    get(
+      params: Params$Resource$Properties$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Properties$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Property>,
@@ -11110,10 +12036,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Properties$Get
-        | BodyResponseCallback<Schema$Property>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
-      callback?: BodyResponseCallback<Schema$Property>
-    ): void | GaxiosPromise<Schema$Property> {
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Property> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11145,7 +12078,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Property>(parameters, callback);
+        createAPIRequest<Schema$Property>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Property>(parameters);
       }
@@ -11228,9 +12164,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Properties$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Properties$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Property>;
+    insert(
+      params: Params$Resource$Properties$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Properties$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Property>,
@@ -11244,10 +12189,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Properties$Insert
-        | BodyResponseCallback<Schema$Property>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
-      callback?: BodyResponseCallback<Schema$Property>
-    ): void | GaxiosPromise<Schema$Property> {
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Property> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11281,7 +12233,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Property>(parameters, callback);
+        createAPIRequest<Schema$Property>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Property>(parameters);
       }
@@ -11351,9 +12306,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Properties$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Properties$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PropertyList>;
+    list(
+      params: Params$Resource$Properties$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Properties$List,
       options: MethodOptions | BodyResponseCallback<Schema$PropertyList>,
@@ -11367,12 +12331,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$List
-        | BodyResponseCallback<Schema$PropertyList>,
+        | BodyResponseCallback<Schema$PropertyList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PropertyList>,
-      callback?: BodyResponseCallback<Schema$PropertyList>
-    ): void | GaxiosPromise<Schema$PropertyList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PropertyList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PropertyList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PropertyList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11405,7 +12374,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PropertyList>(parameters, callback);
+        createAPIRequest<Schema$PropertyList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PropertyList>(parameters);
       }
@@ -11494,9 +12466,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Properties$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Properties$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Property>;
+    patch(
+      params: Params$Resource$Properties$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Properties$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Property>,
@@ -11510,10 +12491,17 @@ export namespace drive_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Properties$Patch
-        | BodyResponseCallback<Schema$Property>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
-      callback?: BodyResponseCallback<Schema$Property>
-    ): void | GaxiosPromise<Schema$Property> {
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Property> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Properties$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11545,7 +12533,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Property>(parameters, callback);
+        createAPIRequest<Schema$Property>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Property>(parameters);
       }
@@ -11634,9 +12625,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Properties$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Properties$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Property>;
+    update(
+      params: Params$Resource$Properties$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Properties$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Property>,
@@ -11650,10 +12650,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Properties$Update
-        | BodyResponseCallback<Schema$Property>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Property>,
-      callback?: BodyResponseCallback<Schema$Property>
-    ): void | GaxiosPromise<Schema$Property> {
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Property>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Property> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11686,7 +12693,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Property>(parameters, callback);
+        createAPIRequest<Schema$Property>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Property>(parameters);
       }
@@ -11873,9 +12883,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Replies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Replies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Replies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Replies$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -11889,10 +12908,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Replies$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11925,7 +12949,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -12005,9 +13032,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Replies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Replies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentReply>;
+    get(
+      params: Params$Resource$Replies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Replies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
@@ -12021,12 +13057,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Replies$Get
-        | BodyResponseCallback<Schema$CommentReply>,
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentReply>,
-      callback?: BodyResponseCallback<Schema$CommentReply>
-    ): void | GaxiosPromise<Schema$CommentReply> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentReply> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12059,7 +13100,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentReply>(parameters, callback);
+        createAPIRequest<Schema$CommentReply>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentReply>(parameters);
       }
@@ -12149,9 +13193,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Replies$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Replies$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentReply>;
+    insert(
+      params: Params$Resource$Replies$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Replies$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
@@ -12165,12 +13218,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Replies$Insert
-        | BodyResponseCallback<Schema$CommentReply>,
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentReply>,
-      callback?: BodyResponseCallback<Schema$CommentReply>
-    ): void | GaxiosPromise<Schema$CommentReply> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentReply> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12202,7 +13260,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentReply>(parameters, callback);
+        createAPIRequest<Schema$CommentReply>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentReply>(parameters);
       }
@@ -12281,9 +13342,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Replies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Replies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentReplyList>;
+    list(
+      params: Params$Resource$Replies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Replies$List,
       options: MethodOptions | BodyResponseCallback<Schema$CommentReplyList>,
@@ -12297,12 +13367,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Replies$List
-        | BodyResponseCallback<Schema$CommentReplyList>,
+        | BodyResponseCallback<Schema$CommentReplyList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentReplyList>,
-      callback?: BodyResponseCallback<Schema$CommentReplyList>
-    ): void | GaxiosPromise<Schema$CommentReplyList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentReplyList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentReplyList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentReplyList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12334,7 +13409,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentReplyList>(parameters, callback);
+        createAPIRequest<Schema$CommentReplyList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentReplyList>(parameters);
       }
@@ -12427,9 +13505,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Replies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Replies$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentReply>;
+    patch(
+      params: Params$Resource$Replies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Replies$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
@@ -12443,12 +13530,17 @@ export namespace drive_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Replies$Patch
-        | BodyResponseCallback<Schema$CommentReply>,
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentReply>,
-      callback?: BodyResponseCallback<Schema$CommentReply>
-    ): void | GaxiosPromise<Schema$CommentReply> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentReply> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12481,7 +13573,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentReply>(parameters, callback);
+        createAPIRequest<Schema$CommentReply>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentReply>(parameters);
       }
@@ -12574,9 +13669,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Replies$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Replies$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentReply>;
+    update(
+      params: Params$Resource$Replies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Replies$Update,
       options: MethodOptions | BodyResponseCallback<Schema$CommentReply>,
@@ -12590,12 +13694,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Replies$Update
-        | BodyResponseCallback<Schema$CommentReply>,
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentReply>,
-      callback?: BodyResponseCallback<Schema$CommentReply>
-    ): void | GaxiosPromise<Schema$CommentReply> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentReply>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentReply> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12628,7 +13737,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentReply>(parameters, callback);
+        createAPIRequest<Schema$CommentReply>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentReply>(parameters);
       }
@@ -12834,9 +13946,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Revisions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Revisions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Revisions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Revisions$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -12850,10 +13971,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Revisions$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12885,7 +14011,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -12972,9 +14101,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Revisions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Revisions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Revision>;
+    get(
+      params: Params$Resource$Revisions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Revisions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Revision>,
@@ -12988,10 +14126,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Revisions$Get
-        | BodyResponseCallback<Schema$Revision>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
-      callback?: BodyResponseCallback<Schema$Revision>
-    ): void | GaxiosPromise<Schema$Revision> {
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13023,7 +14168,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Revision>(parameters, callback);
+        createAPIRequest<Schema$Revision>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
       }
@@ -13100,9 +14248,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Revisions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Revisions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevisionList>;
+    list(
+      params: Params$Resource$Revisions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Revisions$List,
       options: MethodOptions | BodyResponseCallback<Schema$RevisionList>,
@@ -13116,12 +14273,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Revisions$List
-        | BodyResponseCallback<Schema$RevisionList>,
+        | BodyResponseCallback<Schema$RevisionList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevisionList>,
-      callback?: BodyResponseCallback<Schema$RevisionList>
-    ): void | GaxiosPromise<Schema$RevisionList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevisionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevisionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RevisionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13154,7 +14316,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevisionList>(parameters, callback);
+        createAPIRequest<Schema$RevisionList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevisionList>(parameters);
       }
@@ -13263,9 +14428,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Revisions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Revisions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Revision>;
+    patch(
+      params: Params$Resource$Revisions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Revisions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Revision>,
@@ -13279,10 +14453,17 @@ export namespace drive_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Revisions$Patch
-        | BodyResponseCallback<Schema$Revision>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
-      callback?: BodyResponseCallback<Schema$Revision>
-    ): void | GaxiosPromise<Schema$Revision> {
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13314,7 +14495,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Revision>(parameters, callback);
+        createAPIRequest<Schema$Revision>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
       }
@@ -13423,9 +14607,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Revisions$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Revisions$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Revision>;
+    update(
+      params: Params$Resource$Revisions$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Revisions$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Revision>,
@@ -13439,10 +14632,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Revisions$Update
-        | BodyResponseCallback<Schema$Revision>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Revision>,
-      callback?: BodyResponseCallback<Schema$Revision>
-    ): void | GaxiosPromise<Schema$Revision> {
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Revision>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Revision> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13474,7 +14674,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Revision>(parameters, callback);
+        createAPIRequest<Schema$Revision>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
       }
@@ -13625,9 +14828,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Teamdrives$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Teamdrives$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Teamdrives$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Teamdrives$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -13641,10 +14853,15 @@ export namespace drive_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13678,7 +14895,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -13752,9 +14972,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Teamdrives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Teamdrives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDrive>;
+    get(
+      params: Params$Resource$Teamdrives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Teamdrives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
@@ -13768,12 +14997,17 @@ export namespace drive_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Get
-        | BodyResponseCallback<Schema$TeamDrive>,
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDrive>,
-      callback?: BodyResponseCallback<Schema$TeamDrive>
-    ): void | GaxiosPromise<Schema$TeamDrive> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13806,7 +15040,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDrive>(parameters, callback);
+        createAPIRequest<Schema$TeamDrive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
@@ -13892,9 +15129,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Teamdrives$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Teamdrives$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDrive>;
+    insert(
+      params: Params$Resource$Teamdrives$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Teamdrives$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
@@ -13908,12 +15154,17 @@ export namespace drive_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Insert
-        | BodyResponseCallback<Schema$TeamDrive>,
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDrive>,
-      callback?: BodyResponseCallback<Schema$TeamDrive>
-    ): void | GaxiosPromise<Schema$TeamDrive> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13947,7 +15198,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDrive>(parameters, callback);
+        createAPIRequest<Schema$TeamDrive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
@@ -14020,9 +15274,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Teamdrives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Teamdrives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDriveList>;
+    list(
+      params: Params$Resource$Teamdrives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Teamdrives$List,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDriveList>,
@@ -14036,12 +15299,17 @@ export namespace drive_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$List
-        | BodyResponseCallback<Schema$TeamDriveList>,
+        | BodyResponseCallback<Schema$TeamDriveList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDriveList>,
-      callback?: BodyResponseCallback<Schema$TeamDriveList>
-    ): void | GaxiosPromise<Schema$TeamDriveList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDriveList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDriveList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDriveList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14074,7 +15342,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDriveList>(parameters, callback);
+        createAPIRequest<Schema$TeamDriveList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDriveList>(parameters);
       }
@@ -14163,9 +15434,18 @@ export namespace drive_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Teamdrives$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Teamdrives$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TeamDrive>;
+    update(
+      params: Params$Resource$Teamdrives$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Teamdrives$Update,
       options: MethodOptions | BodyResponseCallback<Schema$TeamDrive>,
@@ -14179,12 +15459,17 @@ export namespace drive_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Teamdrives$Update
-        | BodyResponseCallback<Schema$TeamDrive>,
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TeamDrive>,
-      callback?: BodyResponseCallback<Schema$TeamDrive>
-    ): void | GaxiosPromise<Schema$TeamDrive> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamDrive>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TeamDrive> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Teamdrives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14218,7 +15503,10 @@ export namespace drive_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TeamDrive>(parameters, callback);
+        createAPIRequest<Schema$TeamDrive>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }

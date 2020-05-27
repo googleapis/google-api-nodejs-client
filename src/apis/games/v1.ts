@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace games_v1 {
   export interface Options extends GlobalOptions {
@@ -2437,9 +2439,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Achievementdefinitions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Achievementdefinitions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementDefinitionsListResponse>;
+    list(
+      params: Params$Resource$Achievementdefinitions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Achievementdefinitions$List,
       options:
@@ -2457,12 +2468,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Achievementdefinitions$List
-        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
-    ): void | GaxiosPromise<Schema$AchievementDefinitionsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementDefinitionsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementDefinitionsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementdefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2498,7 +2517,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementDefinitionsListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementDefinitionsListResponse>(
@@ -2596,9 +2615,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     increment(
+      params: Params$Resource$Achievements$Increment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    increment(
       params?: Params$Resource$Achievements$Increment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementIncrementResponse>;
+    increment(
+      params: Params$Resource$Achievements$Increment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     increment(
       params: Params$Resource$Achievements$Increment,
       options:
@@ -2616,12 +2644,20 @@ export namespace games_v1 {
     increment(
       paramsOrCallback?:
         | Params$Resource$Achievements$Increment
-        | BodyResponseCallback<Schema$AchievementIncrementResponse>,
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementIncrementResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementIncrementResponse>
-    ): void | GaxiosPromise<Schema$AchievementIncrementResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementIncrementResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementIncrementResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Increment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2656,7 +2692,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementIncrementResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementIncrementResponse>(
@@ -2732,9 +2768,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Achievements$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Achievements$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerAchievementListResponse>;
+    list(
+      params: Params$Resource$Achievements$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Achievements$List,
       options:
@@ -2752,12 +2797,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Achievements$List
-        | BodyResponseCallback<Schema$PlayerAchievementListResponse>,
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerAchievementListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerAchievementListResponse>
-    ): void | GaxiosPromise<Schema$PlayerAchievementListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerAchievementListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerAchievementListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2792,7 +2845,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerAchievementListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PlayerAchievementListResponse>(
@@ -2855,9 +2908,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     reveal(
+      params: Params$Resource$Achievements$Reveal,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reveal(
       params?: Params$Resource$Achievements$Reveal,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementRevealResponse>;
+    reveal(
+      params: Params$Resource$Achievements$Reveal,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reveal(
       params: Params$Resource$Achievements$Reveal,
       options:
@@ -2875,12 +2937,20 @@ export namespace games_v1 {
     reveal(
       paramsOrCallback?:
         | Params$Resource$Achievements$Reveal
-        | BodyResponseCallback<Schema$AchievementRevealResponse>,
+        | BodyResponseCallback<Schema$AchievementRevealResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementRevealResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementRevealResponse>
-    ): void | GaxiosPromise<Schema$AchievementRevealResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementRevealResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementRevealResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementRevealResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Reveal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2915,7 +2985,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementRevealResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementRevealResponse>(parameters);
@@ -2980,9 +3050,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     setStepsAtLeast(
+      params: Params$Resource$Achievements$Setstepsatleast,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setStepsAtLeast(
       params?: Params$Resource$Achievements$Setstepsatleast,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
+    setStepsAtLeast(
+      params: Params$Resource$Achievements$Setstepsatleast,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setStepsAtLeast(
       params: Params$Resource$Achievements$Setstepsatleast,
       options:
@@ -3000,12 +3079,20 @@ export namespace games_v1 {
     setStepsAtLeast(
       paramsOrCallback?:
         | Params$Resource$Achievements$Setstepsatleast
-        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
-    ): void | GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Setstepsatleast;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3040,7 +3127,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
@@ -3103,9 +3190,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     unlock(
+      params: Params$Resource$Achievements$Unlock,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unlock(
       params?: Params$Resource$Achievements$Unlock,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementUnlockResponse>;
+    unlock(
+      params: Params$Resource$Achievements$Unlock,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unlock(
       params: Params$Resource$Achievements$Unlock,
       options:
@@ -3123,12 +3219,20 @@ export namespace games_v1 {
     unlock(
       paramsOrCallback?:
         | Params$Resource$Achievements$Unlock
-        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementUnlockResponse>
-    ): void | GaxiosPromise<Schema$AchievementUnlockResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementUnlockResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementUnlockResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Unlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3163,7 +3267,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementUnlockResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementUnlockResponse>(parameters);
@@ -3230,9 +3334,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     updateMultiple(
+      params: Params$Resource$Achievements$Updatemultiple,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateMultiple(
       params?: Params$Resource$Achievements$Updatemultiple,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementUpdateMultipleResponse>;
+    updateMultiple(
+      params: Params$Resource$Achievements$Updatemultiple,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateMultiple(
       params: Params$Resource$Achievements$Updatemultiple,
       options:
@@ -3250,12 +3363,20 @@ export namespace games_v1 {
     updateMultiple(
       paramsOrCallback?:
         | Params$Resource$Achievements$Updatemultiple
-        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
-    ): void | GaxiosPromise<Schema$AchievementUpdateMultipleResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementUpdateMultipleResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Updatemultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3291,7 +3412,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
@@ -3479,9 +3600,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Applications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Applications$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Application>;
+    get(
+      params: Params$Resource$Applications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Applications$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Application>,
@@ -3495,12 +3625,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Applications$Get
-        | BodyResponseCallback<Schema$Application>,
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Application>,
-      callback?: BodyResponseCallback<Schema$Application>
-    ): void | GaxiosPromise<Schema$Application> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3533,7 +3668,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Application>(parameters, callback);
+        createAPIRequest<Schema$Application>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Application>(parameters);
       }
@@ -3583,9 +3721,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     played(
+      params: Params$Resource$Applications$Played,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    played(
       params?: Params$Resource$Applications$Played,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    played(
+      params: Params$Resource$Applications$Played,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     played(
       params: Params$Resource$Applications$Played,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3599,10 +3746,15 @@ export namespace games_v1 {
     played(
       paramsOrCallback?:
         | Params$Resource$Applications$Played
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Played;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3636,7 +3788,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3697,9 +3852,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     verify(
+      params: Params$Resource$Applications$Verify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verify(
       params?: Params$Resource$Applications$Verify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApplicationVerifyResponse>;
+    verify(
+      params: Params$Resource$Applications$Verify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verify(
       params: Params$Resource$Applications$Verify,
       options:
@@ -3717,12 +3881,20 @@ export namespace games_v1 {
     verify(
       paramsOrCallback?:
         | Params$Resource$Applications$Verify
-        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
-      callback?: BodyResponseCallback<Schema$ApplicationVerifyResponse>
-    ): void | GaxiosPromise<Schema$ApplicationVerifyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApplicationVerifyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ApplicationVerifyResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3757,7 +3929,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$ApplicationVerifyResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ApplicationVerifyResponse>(parameters);
@@ -3871,9 +4043,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listByPlayer(
+      params: Params$Resource$Events$Listbyplayer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listByPlayer(
       params?: Params$Resource$Events$Listbyplayer,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerEventListResponse>;
+    listByPlayer(
+      params: Params$Resource$Events$Listbyplayer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
       options:
@@ -3891,12 +4072,20 @@ export namespace games_v1 {
     listByPlayer(
       paramsOrCallback?:
         | Params$Resource$Events$Listbyplayer
-        | BodyResponseCallback<Schema$PlayerEventListResponse>,
+        | BodyResponseCallback<Schema$PlayerEventListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerEventListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerEventListResponse>
-    ): void | GaxiosPromise<Schema$PlayerEventListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerEventListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerEventListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerEventListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3927,7 +4116,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerEventListResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerEventListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerEventListResponse>(parameters);
       }
@@ -3994,9 +4186,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listDefinitions(
+      params: Params$Resource$Events$Listdefinitions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDefinitions(
       params?: Params$Resource$Events$Listdefinitions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EventDefinitionListResponse>;
+    listDefinitions(
+      params: Params$Resource$Events$Listdefinitions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listDefinitions(
       params: Params$Resource$Events$Listdefinitions,
       options:
@@ -4014,12 +4215,20 @@ export namespace games_v1 {
     listDefinitions(
       paramsOrCallback?:
         | Params$Resource$Events$Listdefinitions
-        | BodyResponseCallback<Schema$EventDefinitionListResponse>,
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EventDefinitionListResponse>,
-      callback?: BodyResponseCallback<Schema$EventDefinitionListResponse>
-    ): void | GaxiosPromise<Schema$EventDefinitionListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventDefinitionListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventDefinitionListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Listdefinitions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4055,7 +4264,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$EventDefinitionListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$EventDefinitionListResponse>(parameters);
@@ -4130,9 +4339,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     record(
+      params: Params$Resource$Events$Record,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    record(
       params?: Params$Resource$Events$Record,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EventUpdateResponse>;
+    record(
+      params: Params$Resource$Events$Record,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     record(
       params: Params$Resource$Events$Record,
       options: MethodOptions | BodyResponseCallback<Schema$EventUpdateResponse>,
@@ -4146,12 +4364,20 @@ export namespace games_v1 {
     record(
       paramsOrCallback?:
         | Params$Resource$Events$Record
-        | BodyResponseCallback<Schema$EventUpdateResponse>,
+        | BodyResponseCallback<Schema$EventUpdateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EventUpdateResponse>,
-      callback?: BodyResponseCallback<Schema$EventUpdateResponse>
-    ): void | GaxiosPromise<Schema$EventUpdateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EventUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EventUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EventUpdateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Record;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4181,7 +4407,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EventUpdateResponse>(parameters, callback);
+        createAPIRequest<Schema$EventUpdateResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EventUpdateResponse>(parameters);
       }
@@ -4312,9 +4541,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Leaderboards$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Leaderboards$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Leaderboard>;
+    get(
+      params: Params$Resource$Leaderboards$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Leaderboards$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Leaderboard>,
@@ -4328,12 +4566,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Leaderboards$Get
-        | BodyResponseCallback<Schema$Leaderboard>,
+        | BodyResponseCallback<Schema$Leaderboard>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Leaderboard>,
-      callback?: BodyResponseCallback<Schema$Leaderboard>
-    ): void | GaxiosPromise<Schema$Leaderboard> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Leaderboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Leaderboard>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Leaderboard> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Leaderboards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4366,7 +4609,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Leaderboard>(parameters, callback);
+        createAPIRequest<Schema$Leaderboard>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Leaderboard>(parameters);
       }
@@ -4433,9 +4679,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Leaderboards$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Leaderboards$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardListResponse>;
+    list(
+      params: Params$Resource$Leaderboards$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Leaderboards$List,
       options:
@@ -4451,12 +4706,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Leaderboards$List
-        | BodyResponseCallback<Schema$LeaderboardListResponse>,
+        | BodyResponseCallback<Schema$LeaderboardListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardListResponse>,
-      callback?: BodyResponseCallback<Schema$LeaderboardListResponse>
-    ): void | GaxiosPromise<Schema$LeaderboardListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4490,7 +4753,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardListResponse>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardListResponse>(parameters);
       }
@@ -4590,9 +4856,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     getMetagameConfig(
+      params: Params$Resource$Metagame$Getmetagameconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetagameConfig(
       params?: Params$Resource$Metagame$Getmetagameconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$MetagameConfig>;
+    getMetagameConfig(
+      params: Params$Resource$Metagame$Getmetagameconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getMetagameConfig(
       params: Params$Resource$Metagame$Getmetagameconfig,
       options: MethodOptions | BodyResponseCallback<Schema$MetagameConfig>,
@@ -4608,12 +4883,17 @@ export namespace games_v1 {
     getMetagameConfig(
       paramsOrCallback?:
         | Params$Resource$Metagame$Getmetagameconfig
-        | BodyResponseCallback<Schema$MetagameConfig>,
+        | BodyResponseCallback<Schema$MetagameConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$MetagameConfig>,
-      callback?: BodyResponseCallback<Schema$MetagameConfig>
-    ): void | GaxiosPromise<Schema$MetagameConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MetagameConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MetagameConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MetagameConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Getmetagameconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4647,7 +4927,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$MetagameConfig>(parameters, callback);
+        createAPIRequest<Schema$MetagameConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$MetagameConfig>(parameters);
       }
@@ -4720,9 +5003,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listCategoriesByPlayer(
+      params: Params$Resource$Metagame$Listcategoriesbyplayer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listCategoriesByPlayer(
       params?: Params$Resource$Metagame$Listcategoriesbyplayer,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CategoryListResponse>;
+    listCategoriesByPlayer(
+      params: Params$Resource$Metagame$Listcategoriesbyplayer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
       options:
@@ -4740,12 +5032,20 @@ export namespace games_v1 {
     listCategoriesByPlayer(
       paramsOrCallback?:
         | Params$Resource$Metagame$Listcategoriesbyplayer
-        | BodyResponseCallback<Schema$CategoryListResponse>,
+        | BodyResponseCallback<Schema$CategoryListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CategoryListResponse>,
-      callback?: BodyResponseCallback<Schema$CategoryListResponse>
-    ): void | GaxiosPromise<Schema$CategoryListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CategoryListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CategoryListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CategoryListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metagame$Listcategoriesbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4778,7 +5078,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CategoryListResponse>(parameters, callback);
+        createAPIRequest<Schema$CategoryListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CategoryListResponse>(parameters);
       }
@@ -4895,9 +5198,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Players$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Players$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Player>;
+    get(
+      params: Params$Resource$Players$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Players$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Player>,
@@ -4911,10 +5223,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Players$Get
-        | BodyResponseCallback<Schema$Player>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Player>,
-      callback?: BodyResponseCallback<Schema$Player>
-    ): void | GaxiosPromise<Schema$Player> {
+        | BodyResponseCallback<Schema$Player>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Player>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Player>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Player> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4947,7 +5266,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Player>(parameters, callback);
+        createAPIRequest<Schema$Player>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Player>(parameters);
       }
@@ -5017,9 +5339,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Players$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Players$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerListResponse>;
+    list(
+      params: Params$Resource$Players$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Players$List,
       options: MethodOptions | BodyResponseCallback<Schema$PlayerListResponse>,
@@ -5033,12 +5364,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Players$List
-        | BodyResponseCallback<Schema$PlayerListResponse>,
+        | BodyResponseCallback<Schema$PlayerListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerListResponse>
-    ): void | GaxiosPromise<Schema$PlayerListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5070,7 +5409,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerListResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerListResponse>(parameters);
       }
@@ -5176,9 +5518,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     remove(
+      params: Params$Resource$Pushtokens$Remove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    remove(
       params?: Params$Resource$Pushtokens$Remove,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    remove(
+      params: Params$Resource$Pushtokens$Remove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     remove(
       params: Params$Resource$Pushtokens$Remove,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5192,10 +5543,15 @@ export namespace games_v1 {
     remove(
       paramsOrCallback?:
         | Params$Resource$Pushtokens$Remove
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pushtokens$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5229,7 +5585,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5291,9 +5650,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Pushtokens$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Pushtokens$Update,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    update(
+      params: Params$Resource$Pushtokens$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Pushtokens$Update,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5307,10 +5675,15 @@ export namespace games_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Pushtokens$Update
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Pushtokens$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5344,7 +5717,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5442,9 +5818,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     check(
+      params: Params$Resource$Revisions$Check,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    check(
       params?: Params$Resource$Revisions$Check,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RevisionCheckResponse>;
+    check(
+      params: Params$Resource$Revisions$Check,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     check(
       params: Params$Resource$Revisions$Check,
       options:
@@ -5460,12 +5845,20 @@ export namespace games_v1 {
     check(
       paramsOrCallback?:
         | Params$Resource$Revisions$Check
-        | BodyResponseCallback<Schema$RevisionCheckResponse>,
+        | BodyResponseCallback<Schema$RevisionCheckResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RevisionCheckResponse>,
-      callback?: BodyResponseCallback<Schema$RevisionCheckResponse>
-    ): void | GaxiosPromise<Schema$RevisionCheckResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevisionCheckResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevisionCheckResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevisionCheckResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5498,7 +5891,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RevisionCheckResponse>(parameters, callback);
+        createAPIRequest<Schema$RevisionCheckResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RevisionCheckResponse>(parameters);
       }
@@ -5604,9 +6000,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Rooms$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Rooms$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    create(
+      params: Params$Resource$Rooms$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Rooms$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5620,10 +6025,17 @@ export namespace games_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Rooms$Create
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5656,7 +6068,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -5730,9 +6145,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     decline(
+      params: Params$Resource$Rooms$Decline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    decline(
       params?: Params$Resource$Rooms$Decline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    decline(
+      params: Params$Resource$Rooms$Decline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     decline(
       params: Params$Resource$Rooms$Decline,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5746,10 +6170,17 @@ export namespace games_v1 {
     decline(
       paramsOrCallback?:
         | Params$Resource$Rooms$Decline
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5782,7 +6213,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -5836,9 +6270,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Rooms$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Rooms$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    dismiss(
+      params: Params$Resource$Rooms$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Rooms$Dismiss,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5852,10 +6295,15 @@ export namespace games_v1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Rooms$Dismiss
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5888,7 +6336,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5962,9 +6413,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Rooms$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Rooms$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    get(
+      params: Params$Resource$Rooms$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Rooms$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -5978,10 +6438,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Rooms$Get
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6014,7 +6481,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -6100,9 +6570,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     join(
+      params: Params$Resource$Rooms$Join,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    join(
       params?: Params$Resource$Rooms$Join,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    join(
+      params: Params$Resource$Rooms$Join,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     join(
       params: Params$Resource$Rooms$Join,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -6116,10 +6595,17 @@ export namespace games_v1 {
     join(
       paramsOrCallback?:
         | Params$Resource$Rooms$Join
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6152,7 +6638,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -6237,9 +6726,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leave(
+      params: Params$Resource$Rooms$Leave,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    leave(
       params?: Params$Resource$Rooms$Leave,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Room>;
+    leave(
+      params: Params$Resource$Rooms$Leave,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     leave(
       params: Params$Resource$Rooms$Leave,
       options: MethodOptions | BodyResponseCallback<Schema$Room>,
@@ -6253,10 +6751,17 @@ export namespace games_v1 {
     leave(
       paramsOrCallback?:
         | Params$Resource$Rooms$Leave
-        | BodyResponseCallback<Schema$Room>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Room>,
-      callback?: BodyResponseCallback<Schema$Room>
-    ): void | GaxiosPromise<Schema$Room> {
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Room>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Room> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6289,7 +6794,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Room>(parameters, callback);
+        createAPIRequest<Schema$Room>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Room>(parameters);
       }
@@ -6356,9 +6864,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Rooms$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Rooms$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RoomList>;
+    list(
+      params: Params$Resource$Rooms$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Rooms$List,
       options: MethodOptions | BodyResponseCallback<Schema$RoomList>,
@@ -6372,10 +6889,17 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Rooms$List
-        | BodyResponseCallback<Schema$RoomList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$RoomList>,
-      callback?: BodyResponseCallback<Schema$RoomList>
-    ): void | GaxiosPromise<Schema$RoomList> {
+        | BodyResponseCallback<Schema$RoomList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RoomList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RoomList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RoomList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6405,7 +6929,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RoomList>(parameters, callback);
+        createAPIRequest<Schema$RoomList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RoomList>(parameters);
       }
@@ -6482,9 +7009,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     reportStatus(
+      params: Params$Resource$Rooms$Reportstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportStatus(
       params?: Params$Resource$Rooms$Reportstatus,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RoomStatus>;
+    reportStatus(
+      params: Params$Resource$Rooms$Reportstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reportStatus(
       params: Params$Resource$Rooms$Reportstatus,
       options: MethodOptions | BodyResponseCallback<Schema$RoomStatus>,
@@ -6498,12 +7034,17 @@ export namespace games_v1 {
     reportStatus(
       paramsOrCallback?:
         | Params$Resource$Rooms$Reportstatus
-        | BodyResponseCallback<Schema$RoomStatus>,
+        | BodyResponseCallback<Schema$RoomStatus>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RoomStatus>,
-      callback?: BodyResponseCallback<Schema$RoomStatus>
-    ): void | GaxiosPromise<Schema$RoomStatus> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RoomStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RoomStatus>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RoomStatus> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Rooms$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6537,7 +7078,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RoomStatus>(parameters, callback);
+        createAPIRequest<Schema$RoomStatus>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RoomStatus>(parameters);
       }
@@ -6762,9 +7306,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Scores$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Scores$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
+    get(
+      params: Params$Resource$Scores$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Scores$Get,
       options:
@@ -6782,12 +7335,20 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Scores$Get
-        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
-    ): void | GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6822,7 +7383,7 @@ export namespace games_v1 {
       if (callback) {
         createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
@@ -6904,9 +7465,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Scores$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Scores$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardScores>;
+    list(
+      params: Params$Resource$Scores$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Scores$List,
       options: MethodOptions | BodyResponseCallback<Schema$LeaderboardScores>,
@@ -6920,12 +7490,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Scores$List
-        | BodyResponseCallback<Schema$LeaderboardScores>,
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardScores>,
-      callback?: BodyResponseCallback<Schema$LeaderboardScores>
-    ): void | GaxiosPromise<Schema$LeaderboardScores> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardScores>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6958,7 +7536,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardScores>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
       }
@@ -7043,9 +7624,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     listWindow(
+      params: Params$Resource$Scores$Listwindow,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listWindow(
       params?: Params$Resource$Scores$Listwindow,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardScores>;
+    listWindow(
+      params: Params$Resource$Scores$Listwindow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listWindow(
       params: Params$Resource$Scores$Listwindow,
       options: MethodOptions | BodyResponseCallback<Schema$LeaderboardScores>,
@@ -7059,12 +7649,20 @@ export namespace games_v1 {
     listWindow(
       paramsOrCallback?:
         | Params$Resource$Scores$Listwindow
-        | BodyResponseCallback<Schema$LeaderboardScores>,
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardScores>,
-      callback?: BodyResponseCallback<Schema$LeaderboardScores>
-    ): void | GaxiosPromise<Schema$LeaderboardScores> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardScores>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardScores>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Listwindow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7098,7 +7696,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardScores>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardScores>(parameters);
       }
@@ -7171,9 +7772,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     submit(
+      params: Params$Resource$Scores$Submit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submit(
       params?: Params$Resource$Scores$Submit,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerScoreResponse>;
+    submit(
+      params: Params$Resource$Scores$Submit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submit(
       params: Params$Resource$Scores$Submit,
       options: MethodOptions | BodyResponseCallback<Schema$PlayerScoreResponse>,
@@ -7187,12 +7797,20 @@ export namespace games_v1 {
     submit(
       paramsOrCallback?:
         | Params$Resource$Scores$Submit
-        | BodyResponseCallback<Schema$PlayerScoreResponse>,
+        | BodyResponseCallback<Schema$PlayerScoreResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerScoreResponse>
-    ): void | GaxiosPromise<Schema$PlayerScoreResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerScoreResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerScoreResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7224,7 +7842,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerScoreResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerScoreResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerScoreResponse>(parameters);
       }
@@ -7294,9 +7915,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     submitMultiple(
+      params: Params$Resource$Scores$Submitmultiple,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submitMultiple(
       params?: Params$Resource$Scores$Submitmultiple,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerScoreListResponse>;
+    submitMultiple(
+      params: Params$Resource$Scores$Submitmultiple,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
       options:
@@ -7314,12 +7944,20 @@ export namespace games_v1 {
     submitMultiple(
       paramsOrCallback?:
         | Params$Resource$Scores$Submitmultiple
-        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerScoreListResponse>
-    ): void | GaxiosPromise<Schema$PlayerScoreListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerScoreListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerScoreListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Submitmultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7353,7 +7991,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerScoreListResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerScoreListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerScoreListResponse>(parameters);
       }
@@ -7582,9 +8223,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Snapshots$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Snapshots$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Snapshots$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Snapshots$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
@@ -7598,10 +8248,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Snapshots$Get
-        | BodyResponseCallback<Schema$Snapshot>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
-      callback?: BodyResponseCallback<Schema$Snapshot>
-    ): void | GaxiosPromise<Schema$Snapshot> {
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7634,7 +8291,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Snapshot>(parameters, callback);
+        createAPIRequest<Schema$Snapshot>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
       }
@@ -7707,9 +8367,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Snapshots$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Snapshots$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SnapshotListResponse>;
+    list(
+      params: Params$Resource$Snapshots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Snapshots$List,
       options:
@@ -7725,12 +8394,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Snapshots$List
-        | BodyResponseCallback<Schema$SnapshotListResponse>,
+        | BodyResponseCallback<Schema$SnapshotListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SnapshotListResponse>,
-      callback?: BodyResponseCallback<Schema$SnapshotListResponse>
-    ): void | GaxiosPromise<Schema$SnapshotListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SnapshotListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SnapshotListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SnapshotListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7763,7 +8440,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SnapshotListResponse>(parameters, callback);
+        createAPIRequest<Schema$SnapshotListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SnapshotListResponse>(parameters);
       }
@@ -7863,9 +8543,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Turnbasedmatches$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Turnbasedmatches$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    cancel(
+      params: Params$Resource$Turnbasedmatches$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Turnbasedmatches$Cancel,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7879,10 +8568,15 @@ export namespace games_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Cancel
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7915,7 +8609,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8006,9 +8703,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Turnbasedmatches$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Turnbasedmatches$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    create(
+      params: Params$Resource$Turnbasedmatches$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Turnbasedmatches$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -8022,12 +8728,17 @@ export namespace games_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Create
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8061,7 +8772,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -8142,9 +8856,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     decline(
+      params: Params$Resource$Turnbasedmatches$Decline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    decline(
       params?: Params$Resource$Turnbasedmatches$Decline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    decline(
+      params: Params$Resource$Turnbasedmatches$Decline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     decline(
       params: Params$Resource$Turnbasedmatches$Decline,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -8158,12 +8881,17 @@ export namespace games_v1 {
     decline(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Decline
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8196,7 +8924,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -8250,9 +8981,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Turnbasedmatches$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Turnbasedmatches$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    dismiss(
+      params: Params$Resource$Turnbasedmatches$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Turnbasedmatches$Dismiss,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8266,10 +9006,15 @@ export namespace games_v1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Dismiss
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8302,7 +9047,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8395,9 +9143,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     finish(
+      params: Params$Resource$Turnbasedmatches$Finish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    finish(
       params?: Params$Resource$Turnbasedmatches$Finish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    finish(
+      params: Params$Resource$Turnbasedmatches$Finish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     finish(
       params: Params$Resource$Turnbasedmatches$Finish,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -8411,12 +9168,17 @@ export namespace games_v1 {
     finish(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Finish
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Finish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8449,7 +9211,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -8533,9 +9298,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Turnbasedmatches$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Turnbasedmatches$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    get(
+      params: Params$Resource$Turnbasedmatches$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Turnbasedmatches$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -8549,12 +9323,17 @@ export namespace games_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Get
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8588,7 +9367,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -8669,9 +9451,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     join(
+      params: Params$Resource$Turnbasedmatches$Join,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    join(
       params?: Params$Resource$Turnbasedmatches$Join,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    join(
+      params: Params$Resource$Turnbasedmatches$Join,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     join(
       params: Params$Resource$Turnbasedmatches$Join,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -8685,12 +9476,17 @@ export namespace games_v1 {
     join(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Join
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8723,7 +9519,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -8804,9 +9603,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leave(
+      params: Params$Resource$Turnbasedmatches$Leave,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    leave(
       params?: Params$Resource$Turnbasedmatches$Leave,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    leave(
+      params: Params$Resource$Turnbasedmatches$Leave,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     leave(
       params: Params$Resource$Turnbasedmatches$Leave,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -8820,12 +9628,17 @@ export namespace games_v1 {
     leave(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Leave
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8858,7 +9671,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -8945,9 +9761,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leaveTurn(
+      params: Params$Resource$Turnbasedmatches$Leaveturn,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    leaveTurn(
       params?: Params$Resource$Turnbasedmatches$Leaveturn,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    leaveTurn(
+      params: Params$Resource$Turnbasedmatches$Leaveturn,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     leaveTurn(
       params: Params$Resource$Turnbasedmatches$Leaveturn,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -8961,12 +9786,17 @@ export namespace games_v1 {
     leaveTurn(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Leaveturn
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Leaveturn;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8999,7 +9829,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }
@@ -9072,9 +9905,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Turnbasedmatches$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Turnbasedmatches$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatchList>;
+    list(
+      params: Params$Resource$Turnbasedmatches$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Turnbasedmatches$List,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatchList>,
@@ -9088,12 +9930,20 @@ export namespace games_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$List
-        | BodyResponseCallback<Schema$TurnBasedMatchList>,
+        | BodyResponseCallback<Schema$TurnBasedMatchList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatchList>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatchList>
-    ): void | GaxiosPromise<Schema$TurnBasedMatchList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatchList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TurnBasedMatchList>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9127,7 +9977,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatchList>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatchList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatchList>(parameters);
       }
@@ -9194,9 +10047,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     rematch(
+      params: Params$Resource$Turnbasedmatches$Rematch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rematch(
       params?: Params$Resource$Turnbasedmatches$Rematch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatchRematch>;
+    rematch(
+      params: Params$Resource$Turnbasedmatches$Rematch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     rematch(
       params: Params$Resource$Turnbasedmatches$Rematch,
       options:
@@ -9212,12 +10074,20 @@ export namespace games_v1 {
     rematch(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Rematch
-        | BodyResponseCallback<Schema$TurnBasedMatchRematch>,
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatchRematch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatchRematch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatchRematch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatchRematch>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TurnBasedMatchRematch>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Rematch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9250,7 +10120,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatchRematch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatchRematch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatchRematch>(parameters);
       }
@@ -9324,9 +10197,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     sync(
+      params: Params$Resource$Turnbasedmatches$Sync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sync(
       params?: Params$Resource$Turnbasedmatches$Sync,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatchSync>;
+    sync(
+      params: Params$Resource$Turnbasedmatches$Sync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sync(
       params: Params$Resource$Turnbasedmatches$Sync,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatchSync>,
@@ -9340,12 +10222,20 @@ export namespace games_v1 {
     sync(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Sync
-        | BodyResponseCallback<Schema$TurnBasedMatchSync>,
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatchSync>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatchSync>
-    ): void | GaxiosPromise<Schema$TurnBasedMatchSync> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatchSync>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TurnBasedMatchSync>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9379,7 +10269,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatchSync>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatchSync>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatchSync>(parameters);
       }
@@ -9473,9 +10366,18 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     takeTurn(
+      params: Params$Resource$Turnbasedmatches$Taketurn,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    takeTurn(
       params?: Params$Resource$Turnbasedmatches$Taketurn,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TurnBasedMatch>;
+    takeTurn(
+      params: Params$Resource$Turnbasedmatches$Taketurn,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     takeTurn(
       params: Params$Resource$Turnbasedmatches$Taketurn,
       options: MethodOptions | BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -9489,12 +10391,17 @@ export namespace games_v1 {
     takeTurn(
       paramsOrCallback?:
         | Params$Resource$Turnbasedmatches$Taketurn
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TurnBasedMatch>,
-      callback?: BodyResponseCallback<Schema$TurnBasedMatch>
-    ): void | GaxiosPromise<Schema$TurnBasedMatch> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TurnBasedMatch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TurnBasedMatch> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Turnbasedmatches$Taketurn;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9527,7 +10434,10 @@ export namespace games_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
+        createAPIRequest<Schema$TurnBasedMatch>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TurnBasedMatch>(parameters);
       }

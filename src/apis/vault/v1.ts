@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace vault_v1 {
   export interface Options extends GlobalOptions {
@@ -914,9 +916,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     addPermissions(
+      params: Params$Resource$Matters$Addpermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addPermissions(
       params?: Params$Resource$Matters$Addpermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$MatterPermission>;
+    addPermissions(
+      params: Params$Resource$Matters$Addpermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addPermissions(
       params: Params$Resource$Matters$Addpermissions,
       options: MethodOptions | BodyResponseCallback<Schema$MatterPermission>,
@@ -932,12 +943,17 @@ export namespace vault_v1 {
     addPermissions(
       paramsOrCallback?:
         | Params$Resource$Matters$Addpermissions
-        | BodyResponseCallback<Schema$MatterPermission>,
+        | BodyResponseCallback<Schema$MatterPermission>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$MatterPermission>,
-      callback?: BodyResponseCallback<Schema$MatterPermission>
-    ): void | GaxiosPromise<Schema$MatterPermission> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MatterPermission>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MatterPermission>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MatterPermission> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Addpermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -971,7 +987,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$MatterPermission>(parameters, callback);
+        createAPIRequest<Schema$MatterPermission>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$MatterPermission>(parameters);
       }
@@ -1037,9 +1056,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     close(
+      params: Params$Resource$Matters$Close,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    close(
       params?: Params$Resource$Matters$Close,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CloseMatterResponse>;
+    close(
+      params: Params$Resource$Matters$Close,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     close(
       params: Params$Resource$Matters$Close,
       options: MethodOptions | BodyResponseCallback<Schema$CloseMatterResponse>,
@@ -1053,12 +1081,20 @@ export namespace vault_v1 {
     close(
       paramsOrCallback?:
         | Params$Resource$Matters$Close
-        | BodyResponseCallback<Schema$CloseMatterResponse>,
+        | BodyResponseCallback<Schema$CloseMatterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CloseMatterResponse>,
-      callback?: BodyResponseCallback<Schema$CloseMatterResponse>
-    ): void | GaxiosPromise<Schema$CloseMatterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CloseMatterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CloseMatterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CloseMatterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1091,7 +1127,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CloseMatterResponse>(parameters, callback);
+        createAPIRequest<Schema$CloseMatterResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CloseMatterResponse>(parameters);
       }
@@ -1163,9 +1202,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    create(
+      params: Params$Resource$Matters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1179,10 +1227,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Create
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1212,7 +1267,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1275,9 +1333,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    delete(
+      params: Params$Resource$Matters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1291,10 +1358,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Delete
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1327,7 +1401,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1396,9 +1473,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    get(
+      params: Params$Resource$Matters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1412,10 +1498,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Get
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1448,7 +1541,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -1522,9 +1618,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMattersResponse>;
+    list(
+      params: Params$Resource$Matters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListMattersResponse>,
@@ -1538,12 +1643,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$List
-        | BodyResponseCallback<Schema$ListMattersResponse>,
+        | BodyResponseCallback<Schema$ListMattersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMattersResponse>,
-      callback?: BodyResponseCallback<Schema$ListMattersResponse>
-    ): void | GaxiosPromise<Schema$ListMattersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMattersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMattersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMattersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1573,7 +1686,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListMattersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListMattersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListMattersResponse>(parameters);
       }
@@ -1639,9 +1755,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     removePermissions(
+      params: Params$Resource$Matters$Removepermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removePermissions(
       params?: Params$Resource$Matters$Removepermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    removePermissions(
+      params: Params$Resource$Matters$Removepermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removePermissions(
       params: Params$Resource$Matters$Removepermissions,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1655,10 +1780,17 @@ export namespace vault_v1 {
     removePermissions(
       paramsOrCallback?:
         | Params$Resource$Matters$Removepermissions
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Removepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1692,7 +1824,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1758,9 +1893,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     reopen(
+      params: Params$Resource$Matters$Reopen,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reopen(
       params?: Params$Resource$Matters$Reopen,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReopenMatterResponse>;
+    reopen(
+      params: Params$Resource$Matters$Reopen,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reopen(
       params: Params$Resource$Matters$Reopen,
       options:
@@ -1776,12 +1920,20 @@ export namespace vault_v1 {
     reopen(
       paramsOrCallback?:
         | Params$Resource$Matters$Reopen
-        | BodyResponseCallback<Schema$ReopenMatterResponse>,
+        | BodyResponseCallback<Schema$ReopenMatterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReopenMatterResponse>,
-      callback?: BodyResponseCallback<Schema$ReopenMatterResponse>
-    ): void | GaxiosPromise<Schema$ReopenMatterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReopenMatterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReopenMatterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReopenMatterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Reopen;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1814,7 +1966,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReopenMatterResponse>(parameters, callback);
+        createAPIRequest<Schema$ReopenMatterResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReopenMatterResponse>(parameters);
       }
@@ -1884,9 +2039,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Matters$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Matters$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    undelete(
+      params: Params$Resource$Matters$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Matters$Undelete,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -1900,10 +2064,17 @@ export namespace vault_v1 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Matters$Undelete
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1936,7 +2107,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -2012,9 +2186,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Matters$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Matters$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Matter>;
+    update(
+      params: Params$Resource$Matters$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Matters$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Matter>,
@@ -2028,10 +2211,17 @@ export namespace vault_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Matters$Update
-        | BodyResponseCallback<Schema$Matter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Matter>,
-      callback?: BodyResponseCallback<Schema$Matter>
-    ): void | GaxiosPromise<Schema$Matter> {
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Matter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Matter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2064,7 +2254,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Matter>(parameters, callback);
+        createAPIRequest<Schema$Matter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Matter>(parameters);
       }
@@ -2316,9 +2509,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Exports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Exports$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Export>;
+    create(
+      params: Params$Resource$Matters$Exports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Exports$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Export>,
@@ -2332,10 +2534,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$Create
-        | BodyResponseCallback<Schema$Export>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Export>,
-      callback?: BodyResponseCallback<Schema$Export>
-    ): void | GaxiosPromise<Schema$Export> {
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Export> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2369,7 +2578,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Export>(parameters, callback);
+        createAPIRequest<Schema$Export>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Export>(parameters);
       }
@@ -2429,9 +2641,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Exports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Exports$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Exports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Exports$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2445,10 +2666,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2481,7 +2709,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2555,9 +2786,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Exports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Exports$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Export>;
+    get(
+      params: Params$Resource$Matters$Exports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Exports$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Export>,
@@ -2571,10 +2811,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$Get
-        | BodyResponseCallback<Schema$Export>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Export>,
-      callback?: BodyResponseCallback<Schema$Export>
-    ): void | GaxiosPromise<Schema$Export> {
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Export>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Export> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2607,7 +2854,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Export>(parameters, callback);
+        createAPIRequest<Schema$Export>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Export>(parameters);
       }
@@ -2676,9 +2926,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Exports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Exports$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExportsResponse>;
+    list(
+      params: Params$Resource$Matters$Exports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Exports$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListExportsResponse>,
@@ -2692,12 +2951,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Exports$List
-        | BodyResponseCallback<Schema$ListExportsResponse>,
+        | BodyResponseCallback<Schema$ListExportsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExportsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExportsResponse>
-    ): void | GaxiosPromise<Schema$ListExportsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExportsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Exports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2731,7 +2998,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExportsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExportsResponse>(parameters);
       }
@@ -2882,9 +3152,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     addHeldAccounts(
+      params: Params$Resource$Matters$Holds$Addheldaccounts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addHeldAccounts(
       params?: Params$Resource$Matters$Holds$Addheldaccounts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AddHeldAccountsResponse>;
+    addHeldAccounts(
+      params: Params$Resource$Matters$Holds$Addheldaccounts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addHeldAccounts(
       params: Params$Resource$Matters$Holds$Addheldaccounts,
       options:
@@ -2902,12 +3181,20 @@ export namespace vault_v1 {
     addHeldAccounts(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Addheldaccounts
-        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AddHeldAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$AddHeldAccountsResponse>
-    ): void | GaxiosPromise<Schema$AddHeldAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddHeldAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddHeldAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Addheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2940,7 +3227,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AddHeldAccountsResponse>(parameters, callback);
+        createAPIRequest<Schema$AddHeldAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AddHeldAccountsResponse>(parameters);
       }
@@ -3020,9 +3310,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Holds$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Holds$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Hold>;
+    create(
+      params: Params$Resource$Matters$Holds$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Holds$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Hold>,
@@ -3036,10 +3335,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Create
-        | BodyResponseCallback<Schema$Hold>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
-      callback?: BodyResponseCallback<Schema$Hold>
-    ): void | GaxiosPromise<Schema$Hold> {
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Hold> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3073,7 +3379,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Hold>(parameters, callback);
+        createAPIRequest<Schema$Hold>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
       }
@@ -3133,9 +3442,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Holds$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Holds$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Holds$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Holds$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3149,10 +3467,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3186,7 +3511,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3260,9 +3588,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Holds$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Holds$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Hold>;
+    get(
+      params: Params$Resource$Matters$Holds$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Holds$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Hold>,
@@ -3276,10 +3613,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Get
-        | BodyResponseCallback<Schema$Hold>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
-      callback?: BodyResponseCallback<Schema$Hold>
-    ): void | GaxiosPromise<Schema$Hold> {
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Hold> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3313,7 +3657,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Hold>(parameters, callback);
+        createAPIRequest<Schema$Hold>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
       }
@@ -3387,9 +3734,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Holds$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Holds$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListHoldsResponse>;
+    list(
+      params: Params$Resource$Matters$Holds$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Holds$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListHoldsResponse>,
@@ -3403,12 +3759,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$List
-        | BodyResponseCallback<Schema$ListHoldsResponse>,
+        | BodyResponseCallback<Schema$ListHoldsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListHoldsResponse>,
-      callback?: BodyResponseCallback<Schema$ListHoldsResponse>
-    ): void | GaxiosPromise<Schema$ListHoldsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListHoldsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListHoldsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListHoldsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3442,7 +3806,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListHoldsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListHoldsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListHoldsResponse>(parameters);
       }
@@ -3513,9 +3880,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     removeHeldAccounts(
+      params: Params$Resource$Matters$Holds$Removeheldaccounts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeHeldAccounts(
       params?: Params$Resource$Matters$Holds$Removeheldaccounts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RemoveHeldAccountsResponse>;
+    removeHeldAccounts(
+      params: Params$Resource$Matters$Holds$Removeheldaccounts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeHeldAccounts(
       params: Params$Resource$Matters$Holds$Removeheldaccounts,
       options:
@@ -3533,12 +3909,20 @@ export namespace vault_v1 {
     removeHeldAccounts(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Removeheldaccounts
-        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
-    ): void | GaxiosPromise<Schema$RemoveHeldAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveHeldAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemoveHeldAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Removeheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3574,7 +3958,7 @@ export namespace vault_v1 {
       if (callback) {
         createAPIRequest<Schema$RemoveHeldAccountsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$RemoveHeldAccountsResponse>(parameters);
@@ -3658,9 +4042,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Matters$Holds$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Matters$Holds$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Hold>;
+    update(
+      params: Params$Resource$Matters$Holds$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Matters$Holds$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Hold>,
@@ -3674,10 +4067,17 @@ export namespace vault_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Update
-        | BodyResponseCallback<Schema$Hold>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Hold>,
-      callback?: BodyResponseCallback<Schema$Hold>
-    ): void | GaxiosPromise<Schema$Hold> {
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Hold>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Hold> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3711,7 +4111,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Hold>(parameters, callback);
+        createAPIRequest<Schema$Hold>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Hold>(parameters);
       }
@@ -3938,9 +4341,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Holds$Accounts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Holds$Accounts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HeldAccount>;
+    create(
+      params: Params$Resource$Matters$Holds$Accounts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Holds$Accounts$Create,
       options: MethodOptions | BodyResponseCallback<Schema$HeldAccount>,
@@ -3954,12 +4366,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Accounts$Create
-        | BodyResponseCallback<Schema$HeldAccount>,
+        | BodyResponseCallback<Schema$HeldAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$HeldAccount>,
-      callback?: BodyResponseCallback<Schema$HeldAccount>
-    ): void | GaxiosPromise<Schema$HeldAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HeldAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HeldAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HeldAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Accounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3992,7 +4409,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$HeldAccount>(parameters, callback);
+        createAPIRequest<Schema$HeldAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$HeldAccount>(parameters);
       }
@@ -4055,9 +4475,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Holds$Accounts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Holds$Accounts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Holds$Accounts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Holds$Accounts$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4071,10 +4500,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Accounts$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4108,7 +4544,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4173,9 +4612,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Holds$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Holds$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListHeldAccountsResponse>;
+    list(
+      params: Params$Resource$Matters$Holds$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Holds$Accounts$List,
       options:
@@ -4191,12 +4639,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Holds$Accounts$List
-        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListHeldAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>
-    ): void | GaxiosPromise<Schema$ListHeldAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListHeldAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListHeldAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Holds$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4229,7 +4685,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListHeldAccountsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListHeldAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListHeldAccountsResponse>(parameters);
       }
@@ -4371,9 +4830,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Matters$Savedqueries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Matters$Savedqueries$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedQuery>;
+    create(
+      params: Params$Resource$Matters$Savedqueries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Matters$Savedqueries$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
@@ -4387,12 +4855,17 @@ export namespace vault_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$Create
-        | BodyResponseCallback<Schema$SavedQuery>,
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedQuery>,
-      callback?: BodyResponseCallback<Schema$SavedQuery>
-    ): void | GaxiosPromise<Schema$SavedQuery> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4426,7 +4899,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedQuery>(parameters, callback);
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedQuery>(parameters);
       }
@@ -4487,9 +4963,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Matters$Savedqueries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Matters$Savedqueries$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Matters$Savedqueries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Matters$Savedqueries$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4503,10 +4988,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4539,7 +5031,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4609,9 +5104,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Matters$Savedqueries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Matters$Savedqueries$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedQuery>;
+    get(
+      params: Params$Resource$Matters$Savedqueries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Matters$Savedqueries$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SavedQuery>,
@@ -4625,12 +5129,17 @@ export namespace vault_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$Get
-        | BodyResponseCallback<Schema$SavedQuery>,
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedQuery>,
-      callback?: BodyResponseCallback<Schema$SavedQuery>
-    ): void | GaxiosPromise<Schema$SavedQuery> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedQuery>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedQuery> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4663,7 +5172,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedQuery>(parameters, callback);
+        createAPIRequest<Schema$SavedQuery>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedQuery>(parameters);
       }
@@ -4734,9 +5246,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Matters$Savedqueries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Matters$Savedqueries$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSavedQueriesResponse>;
+    list(
+      params: Params$Resource$Matters$Savedqueries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Matters$Savedqueries$List,
       options:
@@ -4752,12 +5273,20 @@ export namespace vault_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Matters$Savedqueries$List
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSavedQueriesResponse>,
-      callback?: BodyResponseCallback<Schema$ListSavedQueriesResponse>
-    ): void | GaxiosPromise<Schema$ListSavedQueriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSavedQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSavedQueriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Matters$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4791,7 +5320,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSavedQueriesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSavedQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
       }
@@ -4925,9 +5457,18 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4941,10 +5482,17 @@ export namespace vault_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4975,7 +5523,10 @@ export namespace vault_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }

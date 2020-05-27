@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace doubleclicksearch_v2 {
   export interface Options extends GlobalOptions {
@@ -616,9 +618,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Conversion$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Conversion$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ConversionList>;
+    get(
+      params: Params$Resource$Conversion$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Conversion$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
@@ -632,12 +643,17 @@ export namespace doubleclicksearch_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Conversion$Get
-        | BodyResponseCallback<Schema$ConversionList>,
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ConversionList>,
-      callback?: BodyResponseCallback<Schema$ConversionList>
-    ): void | GaxiosPromise<Schema$ConversionList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -678,7 +694,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ConversionList>(parameters, callback);
+        createAPIRequest<Schema$ConversionList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
@@ -744,9 +763,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Conversion$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Conversion$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ConversionList>;
+    insert(
+      params: Params$Resource$Conversion$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Conversion$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
@@ -760,12 +788,17 @@ export namespace doubleclicksearch_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Conversion$Insert
-        | BodyResponseCallback<Schema$ConversionList>,
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ConversionList>,
-      callback?: BodyResponseCallback<Schema$ConversionList>
-    ): void | GaxiosPromise<Schema$ConversionList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -799,7 +832,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ConversionList>(parameters, callback);
+        createAPIRequest<Schema$ConversionList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
@@ -865,9 +901,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Conversion$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Conversion$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ConversionList>;
+    update(
+      params: Params$Resource$Conversion$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Conversion$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
@@ -881,12 +926,17 @@ export namespace doubleclicksearch_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Conversion$Update
-        | BodyResponseCallback<Schema$ConversionList>,
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ConversionList>,
-      callback?: BodyResponseCallback<Schema$ConversionList>
-    ): void | GaxiosPromise<Schema$ConversionList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConversionList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -920,7 +970,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ConversionList>(parameters, callback);
+        createAPIRequest<Schema$ConversionList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
       }
@@ -984,9 +1037,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     updateAvailability(
+      params: Params$Resource$Conversion$Updateavailability,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAvailability(
       params?: Params$Resource$Conversion$Updateavailability,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UpdateAvailabilityResponse>;
+    updateAvailability(
+      params: Params$Resource$Conversion$Updateavailability,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options:
@@ -1004,12 +1066,20 @@ export namespace doubleclicksearch_v2 {
     updateAvailability(
       paramsOrCallback?:
         | Params$Resource$Conversion$Updateavailability
-        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-      callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
-    ): void | GaxiosPromise<Schema$UpdateAvailabilityResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UpdateAvailabilityResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Conversion$Updateavailability;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1044,7 +1114,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$UpdateAvailabilityResponse>(parameters);
@@ -1225,9 +1295,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Reports$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Reports$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Report>;
+    generate(
+      params: Params$Resource$Reports$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Reports$Generate,
       options: MethodOptions | BodyResponseCallback<Schema$Report>,
@@ -1241,10 +1320,17 @@ export namespace doubleclicksearch_v2 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Reports$Generate
-        | BodyResponseCallback<Schema$Report>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
-      callback?: BodyResponseCallback<Schema$Report>
-    ): void | GaxiosPromise<Schema$Report> {
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1277,7 +1363,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Report>(parameters, callback);
+        createAPIRequest<Schema$Report>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
       }
@@ -1344,9 +1433,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Reports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Reports$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Report>;
+    get(
+      params: Params$Resource$Reports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Reports$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Report>,
@@ -1360,10 +1458,17 @@ export namespace doubleclicksearch_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Reports$Get
-        | BodyResponseCallback<Schema$Report>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
-      callback?: BodyResponseCallback<Schema$Report>
-    ): void | GaxiosPromise<Schema$Report> {
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1396,7 +1501,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Report>(parameters, callback);
+        createAPIRequest<Schema$Report>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
       }
@@ -1453,9 +1561,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     getFile(
+      params: Params$Resource$Reports$Getfile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getFile(
       params?: Params$Resource$Reports$Getfile,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    getFile(
+      params: Params$Resource$Reports$Getfile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1469,10 +1586,15 @@ export namespace doubleclicksearch_v2 {
     getFile(
       paramsOrCallback?:
         | Params$Resource$Reports$Getfile
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1505,7 +1627,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1590,9 +1715,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     request(
+      params: Params$Resource$Reports$Request,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    request(
       params?: Params$Resource$Reports$Request,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Report>;
+    request(
+      params: Params$Resource$Reports$Request,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     request(
       params: Params$Resource$Reports$Request,
       options: MethodOptions | BodyResponseCallback<Schema$Report>,
@@ -1606,10 +1740,17 @@ export namespace doubleclicksearch_v2 {
     request(
       paramsOrCallback?:
         | Params$Resource$Reports$Request
-        | BodyResponseCallback<Schema$Report>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
-      callback?: BodyResponseCallback<Schema$Report>
-    ): void | GaxiosPromise<Schema$Report> {
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Request;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1642,7 +1783,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Report>(parameters, callback);
+        createAPIRequest<Schema$Report>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
       }
@@ -1761,9 +1905,18 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Savedcolumns$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Savedcolumns$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedColumnList>;
+    list(
+      params: Params$Resource$Savedcolumns$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Savedcolumns$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedColumnList>,
@@ -1777,12 +1930,17 @@ export namespace doubleclicksearch_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Savedcolumns$List
-        | BodyResponseCallback<Schema$SavedColumnList>,
+        | BodyResponseCallback<Schema$SavedColumnList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedColumnList>,
-      callback?: BodyResponseCallback<Schema$SavedColumnList>
-    ): void | GaxiosPromise<Schema$SavedColumnList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedColumnList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedColumnList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedColumnList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Savedcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1816,7 +1974,10 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedColumnList>(parameters, callback);
+        createAPIRequest<Schema$SavedColumnList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedColumnList>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudshell_v1alpha1 {
   export interface Options extends GlobalOptions {
@@ -370,9 +372,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     authorize(
+      params: Params$Resource$Users$Environments$Authorize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    authorize(
       params?: Params$Resource$Users$Environments$Authorize,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    authorize(
+      params: Params$Resource$Users$Environments$Authorize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     authorize(
       params: Params$Resource$Users$Environments$Authorize,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -386,10 +397,17 @@ export namespace cloudshell_v1alpha1 {
     authorize(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Authorize
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Authorize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -423,7 +441,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -494,9 +515,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Environments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Environments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Users$Environments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Environments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -510,12 +540,17 @@ export namespace cloudshell_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Get
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -546,7 +581,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -641,9 +679,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Users$Environments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Users$Environments$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Environment>;
+    patch(
+      params: Params$Resource$Users$Environments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Users$Environments$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Environment>,
@@ -657,12 +704,17 @@ export namespace cloudshell_v1alpha1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Patch
-        | BodyResponseCallback<Schema$Environment>,
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Environment>,
-      callback?: BodyResponseCallback<Schema$Environment>
-    ): void | GaxiosPromise<Schema$Environment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Environment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Environment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -693,7 +745,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
+        createAPIRequest<Schema$Environment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Environment>(parameters);
       }
@@ -768,9 +823,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     start(
+      params: Params$Resource$Users$Environments$Start,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    start(
       params?: Params$Resource$Users$Environments$Start,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    start(
+      params: Params$Resource$Users$Environments$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     start(
       params: Params$Resource$Users$Environments$Start,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -784,12 +848,17 @@ export namespace cloudshell_v1alpha1 {
     start(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Start
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -823,7 +892,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -968,9 +1040,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Environments$Publickeys$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Environments$Publickeys$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublicKey>;
+    create(
+      params: Params$Resource$Users$Environments$Publickeys$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Environments$Publickeys$Create,
       options: MethodOptions | BodyResponseCallback<Schema$PublicKey>,
@@ -984,12 +1065,17 @@ export namespace cloudshell_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Publickeys$Create
-        | BodyResponseCallback<Schema$PublicKey>,
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublicKey>,
-      callback?: BodyResponseCallback<Schema$PublicKey>
-    ): void | GaxiosPromise<Schema$PublicKey> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublicKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PublicKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Publickeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1023,7 +1109,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PublicKey>(parameters, callback);
+        createAPIRequest<Schema$PublicKey>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PublicKey>(parameters);
       }
@@ -1081,9 +1170,18 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Environments$Publickeys$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Environments$Publickeys$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Users$Environments$Publickeys$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Environments$Publickeys$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1097,10 +1195,17 @@ export namespace cloudshell_v1alpha1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Environments$Publickeys$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Environments$Publickeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1131,7 +1236,10 @@ export namespace cloudshell_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace driveactivity_v2 {
   export interface Options extends GlobalOptions {
@@ -933,9 +935,18 @@ export namespace driveactivity_v2 {
      * @return {object} Request object
      */
     query(
+      params: Params$Resource$Activity$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
       params?: Params$Resource$Activity$Query,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QueryDriveActivityResponse>;
+    query(
+      params: Params$Resource$Activity$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     query(
       params: Params$Resource$Activity$Query,
       options:
@@ -953,12 +964,20 @@ export namespace driveactivity_v2 {
     query(
       paramsOrCallback?:
         | Params$Resource$Activity$Query
-        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QueryDriveActivityResponse>,
-      callback?: BodyResponseCallback<Schema$QueryDriveActivityResponse>
-    ): void | GaxiosPromise<Schema$QueryDriveActivityResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryDriveActivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryDriveActivityResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activity$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -991,7 +1010,7 @@ export namespace driveactivity_v2 {
       if (callback) {
         createAPIRequest<Schema$QueryDriveActivityResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$QueryDriveActivityResponse>(parameters);

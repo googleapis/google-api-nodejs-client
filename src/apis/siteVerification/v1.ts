@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace siteVerification_v1 {
   export interface Options extends GlobalOptions {
@@ -192,9 +194,18 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Webresource$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Webresource$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Webresource$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Webresource$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -208,10 +219,15 @@ export namespace siteVerification_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Webresource$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -245,7 +261,10 @@ export namespace siteVerification_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -306,9 +325,18 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Webresource$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Webresource$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
+    get(
+      params: Params$Resource$Webresource$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Webresource$Get,
       options:
@@ -326,14 +354,20 @@ export namespace siteVerification_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Webresource$Get
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-      callback?: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceResource
-      >
-    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -368,7 +402,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -440,9 +474,18 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     getToken(
+      params: Params$Resource$Webresource$Gettoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getToken(
       params?: Params$Resource$Webresource$Gettoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>;
+    getToken(
+      params: Params$Resource$Webresource$Gettoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getToken(
       params: Params$Resource$Webresource$Gettoken,
       options:
@@ -470,18 +513,24 @@ export namespace siteVerification_v1 {
         | Params$Resource$Webresource$Gettoken
         | BodyResponseCallback<
             Schema$SiteVerificationWebResourceGettokenResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$SiteVerificationWebResourceGettokenResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceGettokenResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$SiteVerificationWebResourceGettokenResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$SiteVerificationWebResourceGettokenResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Gettoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -517,7 +566,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -595,9 +644,18 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Webresource$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Webresource$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
+    insert(
+      params: Params$Resource$Webresource$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Webresource$Insert,
       options:
@@ -615,14 +673,20 @@ export namespace siteVerification_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Webresource$Insert
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-      callback?: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceResource
-      >
-    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -658,7 +722,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -716,9 +780,18 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Webresource$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Webresource$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteVerificationWebResourceListResponse>;
+    list(
+      params: Params$Resource$Webresource$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Webresource$List,
       options:
@@ -742,14 +815,20 @@ export namespace siteVerification_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Webresource$List
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
-      callback?: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceListResponse
-      >
-    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteVerificationWebResourceListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -784,7 +863,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
@@ -859,9 +938,18 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Webresource$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Webresource$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
+    patch(
+      params: Params$Resource$Webresource$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Webresource$Patch,
       options:
@@ -879,14 +967,20 @@ export namespace siteVerification_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Webresource$Patch
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-      callback?: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceResource
-      >
-    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -922,7 +1016,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -997,9 +1091,18 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Webresource$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Webresource$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
+    update(
+      params: Params$Resource$Webresource$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Webresource$Update,
       options:
@@ -1017,14 +1120,20 @@ export namespace siteVerification_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Webresource$Update
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-      callback?: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceResource
-      >
-    ): void | GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteVerificationWebResourceResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Webresource$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1060,7 +1169,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(

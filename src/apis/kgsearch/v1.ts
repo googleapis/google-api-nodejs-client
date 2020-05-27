@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace kgsearch_v1 {
   export interface Options extends GlobalOptions {
@@ -215,9 +217,18 @@ export namespace kgsearch_v1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Entities$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Entities$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchResponse>;
+    search(
+      params: Params$Resource$Entities$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Entities$Search,
       options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
@@ -231,12 +242,17 @@ export namespace kgsearch_v1 {
     search(
       paramsOrCallback?:
         | Params$Resource$Entities$Search
-        | BodyResponseCallback<Schema$SearchResponse>,
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchResponse>,
-      callback?: BodyResponseCallback<Schema$SearchResponse>
-    ): void | GaxiosPromise<Schema$SearchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -269,7 +285,10 @@ export namespace kgsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchResponse>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudasset_v1p4beta1 {
   export interface Options extends GlobalOptions {
@@ -627,9 +629,18 @@ export namespace cloudasset_v1p4beta1 {
      * @return {object} Request object
      */
     analyzeIamPolicy(
+      params: Params$Resource$V1p4beta1$Analyzeiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeIamPolicy(
       params?: Params$Resource$V1p4beta1$Analyzeiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeIamPolicyResponse>;
+    analyzeIamPolicy(
+      params: Params$Resource$V1p4beta1$Analyzeiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeIamPolicy(
       params: Params$Resource$V1p4beta1$Analyzeiampolicy,
       options:
@@ -647,12 +658,20 @@ export namespace cloudasset_v1p4beta1 {
     analyzeIamPolicy(
       paramsOrCallback?:
         | Params$Resource$V1p4beta1$Analyzeiampolicy
-        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>,
+        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeIamPolicyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeIamPolicyResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1p4beta1$Analyzeiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -686,7 +705,10 @@ export namespace cloudasset_v1p4beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyzeIamPolicyResponse>(parameters, callback);
+        createAPIRequest<Schema$AnalyzeIamPolicyResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyzeIamPolicyResponse>(parameters);
       }
@@ -762,9 +784,18 @@ export namespace cloudasset_v1p4beta1 {
      * @return {object} Request object
      */
     exportIamPolicyAnalysis(
+      params: Params$Resource$V1p4beta1$Exportiampolicyanalysis,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportIamPolicyAnalysis(
       params?: Params$Resource$V1p4beta1$Exportiampolicyanalysis,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    exportIamPolicyAnalysis(
+      params: Params$Resource$V1p4beta1$Exportiampolicyanalysis,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     exportIamPolicyAnalysis(
       params: Params$Resource$V1p4beta1$Exportiampolicyanalysis,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -780,12 +811,17 @@ export namespace cloudasset_v1p4beta1 {
     exportIamPolicyAnalysis(
       paramsOrCallback?:
         | Params$Resource$V1p4beta1$Exportiampolicyanalysis
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1p4beta1$Exportiampolicyanalysis;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -818,7 +854,10 @@ export namespace cloudasset_v1p4beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }

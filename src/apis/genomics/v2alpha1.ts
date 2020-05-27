@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace genomics_v2alpha1 {
   export interface Options extends GlobalOptions {
@@ -865,9 +867,18 @@ export namespace genomics_v2alpha1 {
      * @return {object} Request object
      */
     run(
+      params: Params$Resource$Pipelines$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
       params?: Params$Resource$Pipelines$Run,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Pipelines$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     run(
       params: Params$Resource$Pipelines$Run,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -881,12 +892,17 @@ export namespace genomics_v2alpha1 {
     run(
       paramsOrCallback?:
         | Params$Resource$Pipelines$Run
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -919,7 +935,10 @@ export namespace genomics_v2alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1016,9 +1035,18 @@ export namespace genomics_v2alpha1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1032,10 +1060,17 @@ export namespace genomics_v2alpha1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1069,7 +1104,10 @@ export namespace genomics_v2alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1135,9 +1173,18 @@ export namespace genomics_v2alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1151,12 +1198,17 @@ export namespace genomics_v2alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1187,7 +1239,10 @@ export namespace genomics_v2alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1288,9 +1343,18 @@ export namespace genomics_v2alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
       options:
@@ -1306,12 +1370,20 @@ export namespace genomics_v2alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1342,7 +1414,10 @@ export namespace genomics_v2alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -1479,9 +1554,18 @@ export namespace genomics_v2alpha1 {
      * @return {object} Request object
      */
     checkIn(
+      params: Params$Resource$Projects$Workers$Checkin,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkIn(
       params?: Params$Resource$Projects$Workers$Checkin,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckInResponse>;
+    checkIn(
+      params: Params$Resource$Projects$Workers$Checkin,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     checkIn(
       params: Params$Resource$Projects$Workers$Checkin,
       options: MethodOptions | BodyResponseCallback<Schema$CheckInResponse>,
@@ -1495,12 +1579,17 @@ export namespace genomics_v2alpha1 {
     checkIn(
       paramsOrCallback?:
         | Params$Resource$Projects$Workers$Checkin
-        | BodyResponseCallback<Schema$CheckInResponse>,
+        | BodyResponseCallback<Schema$CheckInResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckInResponse>,
-      callback?: BodyResponseCallback<Schema$CheckInResponse>
-    ): void | GaxiosPromise<Schema$CheckInResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckInResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckInResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckInResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workers$Checkin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1534,7 +1623,10 @@ export namespace genomics_v2alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckInResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckInResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckInResponse>(parameters);
       }
@@ -1635,9 +1727,18 @@ export namespace genomics_v2alpha1 {
      * @return {object} Request object
      */
     checkIn(
+      params: Params$Resource$Workers$Checkin,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkIn(
       params?: Params$Resource$Workers$Checkin,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckInResponse>;
+    checkIn(
+      params: Params$Resource$Workers$Checkin,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     checkIn(
       params: Params$Resource$Workers$Checkin,
       options: MethodOptions | BodyResponseCallback<Schema$CheckInResponse>,
@@ -1651,12 +1752,17 @@ export namespace genomics_v2alpha1 {
     checkIn(
       paramsOrCallback?:
         | Params$Resource$Workers$Checkin
-        | BodyResponseCallback<Schema$CheckInResponse>,
+        | BodyResponseCallback<Schema$CheckInResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckInResponse>,
-      callback?: BodyResponseCallback<Schema$CheckInResponse>
-    ): void | GaxiosPromise<Schema$CheckInResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckInResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckInResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckInResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Workers$Checkin;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1689,7 +1795,10 @@ export namespace genomics_v2alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckInResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckInResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckInResponse>(parameters);
       }

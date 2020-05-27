@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace indexing_v3 {
   export interface Options extends GlobalOptions {
@@ -218,9 +220,18 @@ export namespace indexing_v3 {
      * @return {object} Request object
      */
     getMetadata(
+      params: Params$Resource$Urlnotifications$Getmetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMetadata(
       params?: Params$Resource$Urlnotifications$Getmetadata,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UrlNotificationMetadata>;
+    getMetadata(
+      params: Params$Resource$Urlnotifications$Getmetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
       options:
@@ -238,12 +249,20 @@ export namespace indexing_v3 {
     getMetadata(
       paramsOrCallback?:
         | Params$Resource$Urlnotifications$Getmetadata
-        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
-      callback?: BodyResponseCallback<Schema$UrlNotificationMetadata>
-    ): void | GaxiosPromise<Schema$UrlNotificationMetadata> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UrlNotificationMetadata>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -277,7 +296,10 @@ export namespace indexing_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UrlNotificationMetadata>(parameters, callback);
+        createAPIRequest<Schema$UrlNotificationMetadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UrlNotificationMetadata>(parameters);
       }
@@ -343,9 +365,18 @@ export namespace indexing_v3 {
      * @return {object} Request object
      */
     publish(
+      params: Params$Resource$Urlnotifications$Publish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    publish(
       params?: Params$Resource$Urlnotifications$Publish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublishUrlNotificationResponse>;
+    publish(
+      params: Params$Resource$Urlnotifications$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     publish(
       params: Params$Resource$Urlnotifications$Publish,
       options:
@@ -363,12 +394,20 @@ export namespace indexing_v3 {
     publish(
       paramsOrCallback?:
         | Params$Resource$Urlnotifications$Publish
-        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
-      callback?: BodyResponseCallback<Schema$PublishUrlNotificationResponse>
-    ): void | GaxiosPromise<Schema$PublishUrlNotificationResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PublishUrlNotificationResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urlnotifications$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -404,7 +443,7 @@ export namespace indexing_v3 {
       if (callback) {
         createAPIRequest<Schema$PublishUrlNotificationResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PublishUrlNotificationResponse>(

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace dataproc_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -1847,9 +1849,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    create(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
       options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
@@ -1863,12 +1874,20 @@ export namespace dataproc_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$Create
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
-      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
-    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutoscalingPolicy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1902,7 +1921,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+        createAPIRequest<Schema$AutoscalingPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
@@ -1962,9 +1984,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1978,10 +2009,17 @@ export namespace dataproc_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2012,7 +2050,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2078,9 +2119,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    get(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
@@ -2094,12 +2144,20 @@ export namespace dataproc_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$Get
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
-      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
-    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutoscalingPolicy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2130,7 +2188,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+        createAPIRequest<Schema$AutoscalingPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
@@ -2197,9 +2258,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2213,10 +2283,17 @@ export namespace dataproc_v1beta2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2250,7 +2327,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2318,9 +2398,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
       options:
@@ -2338,12 +2427,20 @@ export namespace dataproc_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$List
-        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-      callback?: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
-    ): void | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2379,7 +2476,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
@@ -2455,9 +2552,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2471,10 +2577,17 @@ export namespace dataproc_v1beta2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2508,7 +2621,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2579,9 +2695,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
       options:
@@ -2599,12 +2724,20 @@ export namespace dataproc_v1beta2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2640,7 +2773,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2720,9 +2853,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    update(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
       options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
@@ -2736,12 +2878,20 @@ export namespace dataproc_v1beta2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Autoscalingpolicies$Update
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
-      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
-    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutoscalingPolicy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2772,7 +2922,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+        createAPIRequest<Schema$AutoscalingPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
@@ -2994,9 +3147,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkflowTemplate>;
+    create(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
       options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -3010,12 +3172,17 @@ export namespace dataproc_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Create
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
-      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3049,7 +3216,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+        createAPIRequest<Schema$WorkflowTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
@@ -3112,9 +3282,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3128,10 +3307,17 @@ export namespace dataproc_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3162,7 +3348,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3235,9 +3424,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkflowTemplate>;
+    get(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -3251,12 +3449,17 @@ export namespace dataproc_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Get
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
-      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3287,7 +3490,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+        createAPIRequest<Schema$WorkflowTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
@@ -3352,9 +3558,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3368,10 +3583,17 @@ export namespace dataproc_v1beta2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3405,7 +3627,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3483,9 +3708,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiate(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    instantiate(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    instantiate(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     instantiate(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3499,12 +3733,17 @@ export namespace dataproc_v1beta2 {
     instantiate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Instantiate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3538,7 +3777,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3628,9 +3870,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiateInline(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    instantiateInline(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    instantiateInline(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     instantiateInline(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3644,12 +3895,17 @@ export namespace dataproc_v1beta2 {
     instantiateInline(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3682,7 +3938,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3750,9 +4009,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Workflowtemplates$List,
       options:
@@ -3770,12 +4038,20 @@ export namespace dataproc_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$List
-        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
-    ): void | GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkflowTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3811,7 +4087,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -3885,9 +4161,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3901,10 +4186,17 @@ export namespace dataproc_v1beta2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3938,7 +4230,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -4009,9 +4304,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
       options:
@@ -4029,12 +4333,20 @@ export namespace dataproc_v1beta2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4070,7 +4382,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4158,9 +4470,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Locations$Workflowtemplates$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkflowTemplate>;
+    update(
+      params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
       options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -4174,12 +4495,17 @@ export namespace dataproc_v1beta2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Workflowtemplates$Update
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
-      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4210,7 +4536,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+        createAPIRequest<Schema$WorkflowTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
@@ -4495,9 +4824,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    create(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
       options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
@@ -4511,12 +4849,20 @@ export namespace dataproc_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$Create
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
-      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
-    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutoscalingPolicy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4550,7 +4896,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+        createAPIRequest<Schema$AutoscalingPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
@@ -4610,9 +4959,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4626,10 +4984,17 @@ export namespace dataproc_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4660,7 +5025,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4726,9 +5094,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    get(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
@@ -4742,12 +5119,20 @@ export namespace dataproc_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$Get
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
-      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
-    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutoscalingPolicy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4778,7 +5163,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+        createAPIRequest<Schema$AutoscalingPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
@@ -4843,9 +5231,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -4859,10 +5256,17 @@ export namespace dataproc_v1beta2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4896,7 +5300,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -4964,9 +5371,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
       options:
@@ -4984,12 +5400,20 @@ export namespace dataproc_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$List
-        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
-      callback?: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
-    ): void | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5025,7 +5449,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
@@ -5099,9 +5523,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -5115,10 +5548,17 @@ export namespace dataproc_v1beta2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5152,7 +5592,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -5223,9 +5666,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
       options:
@@ -5243,12 +5695,20 @@ export namespace dataproc_v1beta2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5284,7 +5744,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -5364,9 +5824,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    update(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
       options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
@@ -5380,12 +5849,20 @@ export namespace dataproc_v1beta2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Autoscalingpolicies$Update
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoscalingPolicy>,
-      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
-    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoscalingPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AutoscalingPolicy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5416,7 +5893,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+        createAPIRequest<Schema$AutoscalingPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
       }
@@ -5637,9 +6117,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Regions$Clusters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Regions$Clusters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Regions$Clusters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Regions$Clusters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5653,12 +6142,17 @@ export namespace dataproc_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5692,7 +6186,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5767,9 +6264,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Regions$Clusters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Regions$Clusters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Regions$Clusters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Regions$Clusters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5783,12 +6289,17 @@ export namespace dataproc_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5822,7 +6333,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5898,9 +6412,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     diagnose(
+      params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    diagnose(
       params?: Params$Resource$Projects$Regions$Clusters$Diagnose,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    diagnose(
+      params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     diagnose(
       params: Params$Resource$Projects$Regions$Clusters$Diagnose,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5914,12 +6437,17 @@ export namespace dataproc_v1beta2 {
     diagnose(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Diagnose
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Diagnose;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5953,7 +6481,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6025,9 +6556,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Regions$Clusters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Regions$Clusters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Cluster>;
+    get(
+      params: Params$Resource$Projects$Regions$Clusters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Regions$Clusters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Cluster>,
@@ -6041,10 +6581,17 @@ export namespace dataproc_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Get
-        | BodyResponseCallback<Schema$Cluster>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Cluster>,
-      callback?: BodyResponseCallback<Schema$Cluster>
-    ): void | GaxiosPromise<Schema$Cluster> {
+        | BodyResponseCallback<Schema$Cluster>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Cluster>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Cluster>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Cluster> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6078,7 +6625,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Cluster>(parameters, callback);
+        createAPIRequest<Schema$Cluster>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Cluster>(parameters);
       }
@@ -6142,9 +6692,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -6158,10 +6717,17 @@ export namespace dataproc_v1beta2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6195,7 +6761,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -6267,9 +6836,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Regions$Clusters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Regions$Clusters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListClustersResponse>;
+    list(
+      params: Params$Resource$Projects$Regions$Clusters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Regions$Clusters$List,
       options:
@@ -6285,12 +6863,20 @@ export namespace dataproc_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$List
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        | BodyResponseCallback<Schema$ListClustersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
-      callback?: BodyResponseCallback<Schema$ListClustersResponse>
-    ): void | GaxiosPromise<Schema$ListClustersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListClustersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListClustersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListClustersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6324,7 +6910,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListClustersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListClustersResponse>(parameters);
       }
@@ -6466,9 +7055,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Regions$Clusters$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Regions$Clusters$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Regions$Clusters$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Regions$Clusters$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6482,12 +7080,17 @@ export namespace dataproc_v1beta2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6521,7 +7124,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6591,9 +7197,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -6607,10 +7222,17 @@ export namespace dataproc_v1beta2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6644,7 +7266,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -6723,9 +7348,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     start(
+      params: Params$Resource$Projects$Regions$Clusters$Start,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    start(
       params?: Params$Resource$Projects$Regions$Clusters$Start,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    start(
+      params: Params$Resource$Projects$Regions$Clusters$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     start(
       params: Params$Resource$Projects$Regions$Clusters$Start,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6739,12 +7373,17 @@ export namespace dataproc_v1beta2 {
     start(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Start
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6778,7 +7417,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6857,9 +7499,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     stop(
+      params: Params$Resource$Projects$Regions$Clusters$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
       params?: Params$Resource$Projects$Regions$Clusters$Stop,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    stop(
+      params: Params$Resource$Projects$Regions$Clusters$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stop(
       params: Params$Resource$Projects$Regions$Clusters$Stop,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6873,12 +7524,17 @@ export namespace dataproc_v1beta2 {
     stop(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Stop
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6912,7 +7568,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6980,9 +7639,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
       options:
@@ -7000,12 +7668,20 @@ export namespace dataproc_v1beta2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Clusters$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Clusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7041,7 +7717,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -7404,9 +8080,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Regions$Jobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Regions$Jobs$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    cancel(
+      params: Params$Resource$Projects$Regions$Jobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Regions$Jobs$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -7420,10 +8105,17 @@ export namespace dataproc_v1beta2 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Cancel
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7457,7 +8149,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -7520,9 +8215,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Regions$Jobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Regions$Jobs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Regions$Jobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Regions$Jobs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7536,10 +8240,17 @@ export namespace dataproc_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7573,7 +8284,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7657,9 +8371,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Regions$Jobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Regions$Jobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Projects$Regions$Jobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Regions$Jobs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -7673,10 +8396,17 @@ export namespace dataproc_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Get
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7710,7 +8440,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -7774,9 +8507,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -7790,10 +8532,17 @@ export namespace dataproc_v1beta2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7827,7 +8576,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -7905,9 +8657,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Regions$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Regions$Jobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Regions$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Regions$Jobs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
@@ -7921,12 +8682,17 @@ export namespace dataproc_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$List
-        | BodyResponseCallback<Schema$ListJobsResponse>,
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListJobsResponse>
-    ): void | GaxiosPromise<Schema$ListJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7959,7 +8725,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
@@ -8074,9 +8843,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Regions$Jobs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Regions$Jobs$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    patch(
+      params: Params$Resource$Projects$Regions$Jobs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Regions$Jobs$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -8090,10 +8868,17 @@ export namespace dataproc_v1beta2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Patch
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8127,7 +8912,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -8197,9 +8985,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -8213,10 +9010,17 @@ export namespace dataproc_v1beta2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8250,7 +9054,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -8341,9 +9148,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     submit(
+      params: Params$Resource$Projects$Regions$Jobs$Submit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submit(
       params?: Params$Resource$Projects$Regions$Jobs$Submit,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Job>;
+    submit(
+      params: Params$Resource$Projects$Regions$Jobs$Submit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submit(
       params: Params$Resource$Projects$Regions$Jobs$Submit,
       options: MethodOptions | BodyResponseCallback<Schema$Job>,
@@ -8357,10 +9173,17 @@ export namespace dataproc_v1beta2 {
     submit(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Submit
-        | BodyResponseCallback<Schema$Job>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
-      callback?: BodyResponseCallback<Schema$Job>
-    ): void | GaxiosPromise<Schema$Job> {
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8394,7 +9217,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Job>(parameters, callback);
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
       }
@@ -8470,9 +9296,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     submitAsOperation(
+      params: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submitAsOperation(
       params?: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    submitAsOperation(
+      params: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     submitAsOperation(
       params: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -8486,12 +9321,17 @@ export namespace dataproc_v1beta2 {
     submitAsOperation(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Submitasoperation
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Submitasoperation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8525,7 +9365,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -8593,9 +9436,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
       options:
@@ -8613,12 +9465,20 @@ export namespace dataproc_v1beta2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Jobs$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Jobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8654,7 +9514,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -8942,9 +9802,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Regions$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Regions$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Regions$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Regions$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -8958,10 +9827,17 @@ export namespace dataproc_v1beta2 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8995,7 +9871,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -9052,9 +9931,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Regions$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Regions$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Regions$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Regions$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -9068,10 +9956,17 @@ export namespace dataproc_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9102,7 +9997,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -9165,9 +10063,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Regions$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Regions$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Regions$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Regions$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -9181,12 +10088,17 @@ export namespace dataproc_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9217,7 +10129,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -9281,9 +10196,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Regions$Operations$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -9297,10 +10221,17 @@ export namespace dataproc_v1beta2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Operations$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9334,7 +10265,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -9403,9 +10337,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Regions$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Regions$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Regions$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Regions$Operations$List,
       options:
@@ -9421,12 +10364,20 @@ export namespace dataproc_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9457,7 +10408,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -9527,9 +10481,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Regions$Operations$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -9543,10 +10506,17 @@ export namespace dataproc_v1beta2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Operations$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9580,7 +10550,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -9648,9 +10621,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Regions$Operations$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
       options:
@@ -9668,12 +10650,20 @@ export namespace dataproc_v1beta2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Operations$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Operations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9709,7 +10699,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -9914,9 +10904,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkflowTemplate>;
+    create(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
       options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -9930,12 +10929,17 @@ export namespace dataproc_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Create
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
-      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9969,7 +10973,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+        createAPIRequest<Schema$WorkflowTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
@@ -10032,9 +11039,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -10048,10 +11064,17 @@ export namespace dataproc_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10082,7 +11105,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -10155,9 +11181,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkflowTemplate>;
+    get(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -10171,12 +11206,17 @@ export namespace dataproc_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Get
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
-      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10207,7 +11247,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+        createAPIRequest<Schema$WorkflowTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
@@ -10272,9 +11315,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -10288,10 +11340,17 @@ export namespace dataproc_v1beta2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10325,7 +11384,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -10403,9 +11465,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiate(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    instantiate(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    instantiate(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     instantiate(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -10419,12 +11490,17 @@ export namespace dataproc_v1beta2 {
     instantiate(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Instantiate
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10458,7 +11534,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -10548,9 +11627,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     instantiateInline(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    instantiateInline(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    instantiateInline(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     instantiateInline(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -10564,12 +11652,17 @@ export namespace dataproc_v1beta2 {
     instantiateInline(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10602,7 +11695,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -10670,9 +11766,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+    list(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Regions$Workflowtemplates$List,
       options:
@@ -10690,12 +11795,20 @@ export namespace dataproc_v1beta2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$List
-        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
-    ): void | GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkflowTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10731,7 +11844,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -10805,9 +11918,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -10821,10 +11943,17 @@ export namespace dataproc_v1beta2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10858,7 +11987,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -10929,9 +12061,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
       options:
@@ -10949,12 +12090,20 @@ export namespace dataproc_v1beta2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10990,7 +12139,7 @@ export namespace dataproc_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -11078,9 +12227,18 @@ export namespace dataproc_v1beta2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Regions$Workflowtemplates$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkflowTemplate>;
+    update(
+      params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
       options: MethodOptions | BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -11094,12 +12252,17 @@ export namespace dataproc_v1beta2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Regions$Workflowtemplates$Update
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkflowTemplate>,
-      callback?: BodyResponseCallback<Schema$WorkflowTemplate>
-    ): void | GaxiosPromise<Schema$WorkflowTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowTemplate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowTemplate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Regions$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11130,7 +12293,10 @@ export namespace dataproc_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+        createAPIRequest<Schema$WorkflowTemplate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }

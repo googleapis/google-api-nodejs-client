@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace verifiedaccess_v1 {
   export interface Options extends GlobalOptions {
@@ -241,9 +243,18 @@ export namespace verifiedaccess_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Challenge$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Challenge$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Challenge>;
+    create(
+      params: Params$Resource$Challenge$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Challenge$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Challenge>,
@@ -257,12 +268,17 @@ export namespace verifiedaccess_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Challenge$Create
-        | BodyResponseCallback<Schema$Challenge>,
+        | BodyResponseCallback<Schema$Challenge>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Challenge>,
-      callback?: BodyResponseCallback<Schema$Challenge>
-    ): void | GaxiosPromise<Schema$Challenge> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Challenge>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Challenge>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Challenge> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Challenge$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -293,7 +309,10 @@ export namespace verifiedaccess_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Challenge>(parameters, callback);
+        createAPIRequest<Schema$Challenge>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Challenge>(parameters);
       }
@@ -361,9 +380,18 @@ export namespace verifiedaccess_v1 {
      * @return {object} Request object
      */
     verify(
+      params: Params$Resource$Challenge$Verify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verify(
       params?: Params$Resource$Challenge$Verify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VerifyChallengeResponseResult>;
+    verify(
+      params: Params$Resource$Challenge$Verify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verify(
       params: Params$Resource$Challenge$Verify,
       options:
@@ -381,12 +409,20 @@ export namespace verifiedaccess_v1 {
     verify(
       paramsOrCallback?:
         | Params$Resource$Challenge$Verify
-        | BodyResponseCallback<Schema$VerifyChallengeResponseResult>,
+        | BodyResponseCallback<Schema$VerifyChallengeResponseResult>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VerifyChallengeResponseResult>,
-      callback?: BodyResponseCallback<Schema$VerifyChallengeResponseResult>
-    ): void | GaxiosPromise<Schema$VerifyChallengeResponseResult> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VerifyChallengeResponseResult>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VerifyChallengeResponseResult>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VerifyChallengeResponseResult>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Challenge$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -422,7 +458,7 @@ export namespace verifiedaccess_v1 {
       if (callback) {
         createAPIRequest<Schema$VerifyChallengeResponseResult>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$VerifyChallengeResponseResult>(

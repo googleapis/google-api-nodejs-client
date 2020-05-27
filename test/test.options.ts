@@ -205,4 +205,41 @@ describe('Options', () => {
     assert.strictEqual(res.status, 500);
     scope.done();
   });
+
+  it('should provide properly typed responses', async () => {
+    const scope = nock(Utils.baseUrl)
+      .get('/drive/v2/files')
+      .times(5)
+      .reply(200, {etag: '12345'});
+    const google = new GoogleApis();
+    const drive = google.drive('v2');
+
+    // typed response for json
+    const res1 = await drive.files.list({});
+    assert.ok(res1.data.etag);
+
+    // readable stream
+    const res2 = await drive.files.list({}, {responseType: 'stream'});
+    assert.ok(res2.data.resume);
+
+    // It is ok to use callbacks here, and recognize the results won't be
+    // tested before the test completes.
+    // This is here purely to test TypeScript types.
+
+    // callback for json
+    drive.files.list({}, (err, res) => {
+      assert.ok(res?.data.etag);
+    });
+
+    // callback with no params
+    drive.files.list((err, res) => {
+      assert.ok(res?.data.etag);
+    });
+
+    drive.files.list({}, {responseType: 'stream'}, (err, res) => {
+      assert.ok(res?.data.resume);
+    });
+
+    scope.done();
+  });
 });

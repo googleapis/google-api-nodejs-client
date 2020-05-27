@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace iap_v1 {
   export interface Options extends GlobalOptions {
@@ -530,9 +532,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Brands$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Brands$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Brand>;
+    create(
+      params: Params$Resource$Projects$Brands$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Brands$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Brand>,
@@ -546,10 +557,17 @@ export namespace iap_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$Create
-        | BodyResponseCallback<Schema$Brand>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Brand>,
-      callback?: BodyResponseCallback<Schema$Brand>
-    ): void | GaxiosPromise<Schema$Brand> {
+        | BodyResponseCallback<Schema$Brand>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Brand>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Brand>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Brand> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -583,7 +601,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Brand>(parameters, callback);
+        createAPIRequest<Schema$Brand>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Brand>(parameters);
       }
@@ -646,9 +667,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Brands$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Brands$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Brand>;
+    get(
+      params: Params$Resource$Projects$Brands$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Brands$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Brand>,
@@ -662,10 +692,17 @@ export namespace iap_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$Get
-        | BodyResponseCallback<Schema$Brand>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Brand>,
-      callback?: BodyResponseCallback<Schema$Brand>
-    ): void | GaxiosPromise<Schema$Brand> {
+        | BodyResponseCallback<Schema$Brand>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Brand>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Brand>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Brand> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -696,7 +733,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Brand>(parameters, callback);
+        createAPIRequest<Schema$Brand>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Brand>(parameters);
       }
@@ -756,9 +796,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Brands$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Brands$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBrandsResponse>;
+    list(
+      params: Params$Resource$Projects$Brands$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Brands$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBrandsResponse>,
@@ -772,12 +821,20 @@ export namespace iap_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$List
-        | BodyResponseCallback<Schema$ListBrandsResponse>,
+        | BodyResponseCallback<Schema$ListBrandsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBrandsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBrandsResponse>
-    ): void | GaxiosPromise<Schema$ListBrandsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBrandsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBrandsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBrandsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -811,7 +868,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBrandsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBrandsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBrandsResponse>(parameters);
       }
@@ -935,9 +995,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentityAwareProxyClient>;
+    create(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options:
@@ -955,12 +1024,20 @@ export namespace iap_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$Identityawareproxyclients$Create
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
-      callback?: BodyResponseCallback<Schema$IdentityAwareProxyClient>
-    ): void | GaxiosPromise<Schema$IdentityAwareProxyClient> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IdentityAwareProxyClient>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -994,7 +1071,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IdentityAwareProxyClient>(parameters, callback);
+        createAPIRequest<Schema$IdentityAwareProxyClient>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
       }
@@ -1054,9 +1134,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1070,10 +1159,17 @@ export namespace iap_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$Identityawareproxyclients$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1104,7 +1200,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1168,9 +1267,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentityAwareProxyClient>;
+    get(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options:
@@ -1186,12 +1294,20 @@ export namespace iap_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$Identityawareproxyclients$Get
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
-      callback?: BodyResponseCallback<Schema$IdentityAwareProxyClient>
-    ): void | GaxiosPromise<Schema$IdentityAwareProxyClient> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IdentityAwareProxyClient>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1222,7 +1338,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IdentityAwareProxyClient>(parameters, callback);
+        createAPIRequest<Schema$IdentityAwareProxyClient>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
       }
@@ -1297,9 +1416,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListIdentityAwareProxyClientsResponse>;
+    list(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       options:
@@ -1323,14 +1451,20 @@ export namespace iap_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$Identityawareproxyclients$List
-        | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>,
+        | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListIdentityAwareProxyClientsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListIdentityAwareProxyClientsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListIdentityAwareProxyClientsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1366,7 +1500,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$ListIdentityAwareProxyClientsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListIdentityAwareProxyClientsResponse>(
@@ -1440,9 +1574,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     resetSecret(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetSecret(
       params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentityAwareProxyClient>;
+    resetSecret(
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetSecret(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options:
@@ -1460,12 +1603,20 @@ export namespace iap_v1 {
     resetSecret(
       paramsOrCallback?:
         | Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
-      callback?: BodyResponseCallback<Schema$IdentityAwareProxyClient>
-    ): void | GaxiosPromise<Schema$IdentityAwareProxyClient> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IdentityAwareProxyClient>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IdentityAwareProxyClient>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1499,7 +1650,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IdentityAwareProxyClient>(parameters, callback);
+        createAPIRequest<Schema$IdentityAwareProxyClient>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
       }
@@ -1656,9 +1810,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$V1$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$V1$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$V1$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$V1$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1672,10 +1835,17 @@ export namespace iap_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$V1$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1708,7 +1878,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1771,9 +1944,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     getIapSettings(
+      params: Params$Resource$V1$Getiapsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIapSettings(
       params?: Params$Resource$V1$Getiapsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IapSettings>;
+    getIapSettings(
+      params: Params$Resource$V1$Getiapsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIapSettings(
       params: Params$Resource$V1$Getiapsettings,
       options: MethodOptions | BodyResponseCallback<Schema$IapSettings>,
@@ -1787,12 +1969,17 @@ export namespace iap_v1 {
     getIapSettings(
       paramsOrCallback?:
         | Params$Resource$V1$Getiapsettings
-        | BodyResponseCallback<Schema$IapSettings>,
+        | BodyResponseCallback<Schema$IapSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IapSettings>,
-      callback?: BodyResponseCallback<Schema$IapSettings>
-    ): void | GaxiosPromise<Schema$IapSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IapSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IapSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IapSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Getiapsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1826,7 +2013,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IapSettings>(parameters, callback);
+        createAPIRequest<Schema$IapSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IapSettings>(parameters);
       }
@@ -1897,9 +2087,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$V1$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$V1$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$V1$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$V1$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1913,10 +2112,17 @@ export namespace iap_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$V1$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1949,7 +2155,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2018,9 +2227,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$V1$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$V1$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$V1$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$V1$Testiampermissions,
       options:
@@ -2038,12 +2256,20 @@ export namespace iap_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$V1$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2079,7 +2305,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2157,9 +2383,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     updateIapSettings(
+      params: Params$Resource$V1$Updateiapsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateIapSettings(
       params?: Params$Resource$V1$Updateiapsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IapSettings>;
+    updateIapSettings(
+      params: Params$Resource$V1$Updateiapsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateIapSettings(
       params: Params$Resource$V1$Updateiapsettings,
       options: MethodOptions | BodyResponseCallback<Schema$IapSettings>,
@@ -2173,12 +2408,17 @@ export namespace iap_v1 {
     updateIapSettings(
       paramsOrCallback?:
         | Params$Resource$V1$Updateiapsettings
-        | BodyResponseCallback<Schema$IapSettings>,
+        | BodyResponseCallback<Schema$IapSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$IapSettings>,
-      callback?: BodyResponseCallback<Schema$IapSettings>
-    ): void | GaxiosPromise<Schema$IapSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IapSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IapSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$IapSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Updateiapsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2212,7 +2452,10 @@ export namespace iap_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$IapSettings>(parameters, callback);
+        createAPIRequest<Schema$IapSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$IapSettings>(parameters);
       }

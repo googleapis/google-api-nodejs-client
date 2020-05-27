@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace fcm_v1 {
   export interface Options extends GlobalOptions {
@@ -541,9 +543,18 @@ export namespace fcm_v1 {
      * @return {object} Request object
      */
     send(
+      params: Params$Resource$Projects$Messages$Send,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    send(
       params?: Params$Resource$Projects$Messages$Send,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    send(
+      params: Params$Resource$Projects$Messages$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     send(
       params: Params$Resource$Projects$Messages$Send,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -557,10 +568,17 @@ export namespace fcm_v1 {
     send(
       paramsOrCallback?:
         | Params$Resource$Projects$Messages$Send
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -594,7 +612,10 @@ export namespace fcm_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }

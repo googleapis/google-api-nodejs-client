@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace digitalassetlinks_v1 {
   export interface Options extends GlobalOptions {
@@ -424,9 +426,18 @@ export namespace digitalassetlinks_v1 {
      * @return {object} Request object
      */
     check(
+      params: Params$Resource$Assetlinks$Check,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    check(
       params?: Params$Resource$Assetlinks$Check,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CheckResponse>;
+    check(
+      params: Params$Resource$Assetlinks$Check,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     check(
       params: Params$Resource$Assetlinks$Check,
       options: MethodOptions | BodyResponseCallback<Schema$CheckResponse>,
@@ -440,12 +451,17 @@ export namespace digitalassetlinks_v1 {
     check(
       paramsOrCallback?:
         | Params$Resource$Assetlinks$Check
-        | BodyResponseCallback<Schema$CheckResponse>,
+        | BodyResponseCallback<Schema$CheckResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CheckResponse>,
-      callback?: BodyResponseCallback<Schema$CheckResponse>
-    ): void | GaxiosPromise<Schema$CheckResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CheckResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assetlinks$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -479,7 +495,10 @@ export namespace digitalassetlinks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CheckResponse>(parameters, callback);
+        createAPIRequest<Schema$CheckResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CheckResponse>(parameters);
       }
@@ -661,9 +680,18 @@ export namespace digitalassetlinks_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Statements$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Statements$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListResponse>;
+    list(
+      params: Params$Resource$Statements$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Statements$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListResponse>,
@@ -677,12 +705,17 @@ export namespace digitalassetlinks_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Statements$List
-        | BodyResponseCallback<Schema$ListResponse>,
+        | BodyResponseCallback<Schema$ListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListResponse>,
-      callback?: BodyResponseCallback<Schema$ListResponse>
-    ): void | GaxiosPromise<Schema$ListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Statements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -716,7 +749,10 @@ export namespace digitalassetlinks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListResponse>(parameters, callback);
+        createAPIRequest<Schema$ListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListResponse>(parameters);
       }

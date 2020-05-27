@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudtrace_v2 {
   export interface Options extends GlobalOptions {
@@ -503,9 +505,18 @@ export namespace cloudtrace_v2 {
      * @return {object} Request object
      */
     batchWrite(
+      params: Params$Resource$Projects$Traces$Batchwrite,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchWrite(
       params?: Params$Resource$Projects$Traces$Batchwrite,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    batchWrite(
+      params: Params$Resource$Projects$Traces$Batchwrite,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchWrite(
       params: Params$Resource$Projects$Traces$Batchwrite,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -519,10 +530,17 @@ export namespace cloudtrace_v2 {
     batchWrite(
       paramsOrCallback?:
         | Params$Resource$Projects$Traces$Batchwrite
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -556,7 +574,10 @@ export namespace cloudtrace_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -684,9 +705,18 @@ export namespace cloudtrace_v2 {
      * @return {object} Request object
      */
     createSpan(
+      params: Params$Resource$Projects$Traces$Spans$Createspan,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSpan(
       params?: Params$Resource$Projects$Traces$Spans$Createspan,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Span>;
+    createSpan(
+      params: Params$Resource$Projects$Traces$Spans$Createspan,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createSpan(
       params: Params$Resource$Projects$Traces$Spans$Createspan,
       options: MethodOptions | BodyResponseCallback<Schema$Span>,
@@ -700,10 +730,17 @@ export namespace cloudtrace_v2 {
     createSpan(
       paramsOrCallback?:
         | Params$Resource$Projects$Traces$Spans$Createspan
-        | BodyResponseCallback<Schema$Span>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Span>,
-      callback?: BodyResponseCallback<Schema$Span>
-    ): void | GaxiosPromise<Schema$Span> {
+        | BodyResponseCallback<Schema$Span>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Span>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Span>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Span> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Traces$Spans$Createspan;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -734,7 +771,10 @@ export namespace cloudtrace_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Span>(parameters, callback);
+        createAPIRequest<Schema$Span>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Span>(parameters);
       }

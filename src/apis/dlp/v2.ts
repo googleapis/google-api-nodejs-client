@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace dlp_v2 {
   export interface Options extends GlobalOptions {
@@ -3192,9 +3194,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Infotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Infotypes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    list(
+      params: Params$Resource$Infotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Infotypes$List,
       options:
@@ -3218,14 +3229,20 @@ export namespace dlp_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Infotypes$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Infotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3257,7 +3274,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
@@ -3365,9 +3382,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Locations$Infotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Locations$Infotypes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+    list(
+      params: Params$Resource$Locations$Infotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Locations$Infotypes$List,
       options:
@@ -3391,14 +3417,20 @@ export namespace dlp_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Locations$Infotypes$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Infotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3434,7 +3466,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
@@ -3562,9 +3594,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Deidentifytemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Deidentifytemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    create(
+      params: Params$Resource$Organizations$Deidentifytemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Deidentifytemplates$Create,
       options:
@@ -3588,14 +3629,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Deidentifytemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Deidentifytemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3631,7 +3678,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3694,9 +3741,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Deidentifytemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Deidentifytemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Deidentifytemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Deidentifytemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -3710,12 +3766,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Deidentifytemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Deidentifytemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3746,7 +3810,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -3813,9 +3880,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Deidentifytemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Deidentifytemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    get(
+      params: Params$Resource$Organizations$Deidentifytemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Deidentifytemplates$Get,
       options:
@@ -3839,14 +3915,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Deidentifytemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Deidentifytemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3879,7 +3961,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3970,9 +4052,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Deidentifytemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Deidentifytemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    list(
+      params: Params$Resource$Organizations$Deidentifytemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Deidentifytemplates$List,
       options:
@@ -4000,18 +4091,24 @@ export namespace dlp_v2 {
         | Params$Resource$Organizations$Deidentifytemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Deidentifytemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4047,7 +4144,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -4126,9 +4223,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Deidentifytemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Deidentifytemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    patch(
+      params: Params$Resource$Organizations$Deidentifytemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Deidentifytemplates$Patch,
       options:
@@ -4152,14 +4258,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Deidentifytemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Deidentifytemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4192,7 +4304,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -4365,9 +4477,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Inspecttemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Inspecttemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    create(
+      params: Params$Resource$Organizations$Inspecttemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Inspecttemplates$Create,
       options:
@@ -4385,12 +4506,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Inspecttemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Inspecttemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4426,7 +4555,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4488,9 +4617,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Inspecttemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Inspecttemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Inspecttemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Inspecttemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -4504,12 +4642,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Inspecttemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Inspecttemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4540,7 +4686,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -4606,9 +4755,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Inspecttemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Inspecttemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    get(
+      params: Params$Resource$Organizations$Inspecttemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Inspecttemplates$Get,
       options:
@@ -4626,12 +4784,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Inspecttemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Inspecttemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4664,7 +4830,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4755,9 +4921,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Inspecttemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Inspecttemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    list(
+      params: Params$Resource$Organizations$Inspecttemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Inspecttemplates$List,
       options:
@@ -4785,18 +4960,24 @@ export namespace dlp_v2 {
         | Params$Resource$Organizations$Inspecttemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Inspecttemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4832,7 +5013,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -4911,9 +5092,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Inspecttemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Inspecttemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    patch(
+      params: Params$Resource$Organizations$Inspecttemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Inspecttemplates$Patch,
       options:
@@ -4931,12 +5121,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Inspecttemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Inspecttemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4969,7 +5167,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -5165,9 +5363,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    create(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
       options:
@@ -5191,14 +5398,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Deidentifytemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Deidentifytemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5234,7 +5447,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5297,9 +5510,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -5313,12 +5535,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Deidentifytemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Deidentifytemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5349,7 +5579,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -5416,9 +5649,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    get(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
       options:
@@ -5442,14 +5684,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Deidentifytemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Deidentifytemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5482,7 +5730,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5573,9 +5821,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
       options:
@@ -5603,18 +5860,24 @@ export namespace dlp_v2 {
         | Params$Resource$Organizations$Locations$Deidentifytemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Deidentifytemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5650,7 +5913,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -5729,9 +5992,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
       options:
@@ -5755,14 +6027,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Deidentifytemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Deidentifytemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5795,7 +6073,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5976,9 +6254,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    create(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Create,
       options:
@@ -5996,12 +6283,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Inspecttemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Inspecttemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6036,7 +6331,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6099,9 +6394,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -6115,12 +6419,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Inspecttemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Inspecttemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6151,7 +6463,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -6218,9 +6533,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    get(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Get,
       options:
@@ -6238,12 +6562,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Inspecttemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Inspecttemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6276,7 +6608,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6367,9 +6699,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
       options:
@@ -6397,18 +6738,24 @@ export namespace dlp_v2 {
         | Params$Resource$Organizations$Locations$Inspecttemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Inspecttemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6443,7 +6790,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -6523,9 +6870,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Locations$Inspecttemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Inspecttemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$Patch,
       options:
@@ -6543,12 +6899,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Inspecttemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Inspecttemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6581,7 +6945,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6759,9 +7123,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Create,
       options:
@@ -6779,12 +7152,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Storedinfotypes$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Storedinfotypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6819,7 +7200,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -6882,9 +7263,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -6898,12 +7288,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Storedinfotypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Storedinfotypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6934,7 +7332,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -6998,9 +7399,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Get,
       options:
@@ -7018,12 +7428,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Storedinfotypes$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Storedinfotypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7056,7 +7474,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7148,9 +7566,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
       options:
@@ -7178,18 +7605,24 @@ export namespace dlp_v2 {
         | Params$Resource$Organizations$Locations$Storedinfotypes$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Storedinfotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7224,7 +7657,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -7301,9 +7734,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Locations$Storedinfotypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Storedinfotypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$Patch,
       options:
@@ -7321,12 +7763,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Storedinfotypes$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Storedinfotypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7359,7 +7809,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7533,9 +7983,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Storedinfotypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Storedinfotypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+      params: Params$Resource$Organizations$Storedinfotypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Storedinfotypes$Create,
       options:
@@ -7553,12 +8012,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Storedinfotypes$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Storedinfotypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7594,7 +8061,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7656,9 +8123,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Storedinfotypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Storedinfotypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Storedinfotypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Storedinfotypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -7672,12 +8148,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Storedinfotypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Storedinfotypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7708,7 +8192,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -7771,9 +8258,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Storedinfotypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Storedinfotypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(
+      params: Params$Resource$Organizations$Storedinfotypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Storedinfotypes$Get,
       options:
@@ -7791,12 +8287,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Storedinfotypes$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Storedinfotypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7829,7 +8333,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7921,9 +8425,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Storedinfotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Storedinfotypes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+      params: Params$Resource$Organizations$Storedinfotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Storedinfotypes$List,
       options:
@@ -7951,18 +8464,24 @@ export namespace dlp_v2 {
         | Params$Resource$Organizations$Storedinfotypes$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Storedinfotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7998,7 +8517,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8074,9 +8593,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Storedinfotypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Storedinfotypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+      params: Params$Resource$Organizations$Storedinfotypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Storedinfotypes$Patch,
       options:
@@ -8094,12 +8622,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Storedinfotypes$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Storedinfotypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8132,7 +8668,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -8332,9 +8868,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     deidentify(
+      params: Params$Resource$Projects$Content$Deidentify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deidentify(
       params?: Params$Resource$Projects$Content$Deidentify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
+    deidentify(
+      params: Params$Resource$Projects$Content$Deidentify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deidentify(
       params: Params$Resource$Projects$Content$Deidentify,
       options:
@@ -8362,18 +8907,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Content$Deidentify
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Content$Deidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8409,7 +8960,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8483,9 +9034,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     inspect(
+      params: Params$Resource$Projects$Content$Inspect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    inspect(
       params?: Params$Resource$Projects$Content$Inspect,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
+    inspect(
+      params: Params$Resource$Projects$Content$Inspect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     inspect(
       params: Params$Resource$Projects$Content$Inspect,
       options:
@@ -8509,14 +9069,20 @@ export namespace dlp_v2 {
     inspect(
       paramsOrCallback?:
         | Params$Resource$Projects$Content$Inspect
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Content$Inspect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8552,7 +9118,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8629,9 +9195,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     reidentify(
+      params: Params$Resource$Projects$Content$Reidentify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reidentify(
       params?: Params$Resource$Projects$Content$Reidentify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
+    reidentify(
+      params: Params$Resource$Projects$Content$Reidentify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reidentify(
       params: Params$Resource$Projects$Content$Reidentify,
       options:
@@ -8659,18 +9234,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Content$Reidentify
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Content$Reidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8706,7 +9287,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8844,9 +9425,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Deidentifytemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Deidentifytemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    create(
+      params: Params$Resource$Projects$Deidentifytemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Deidentifytemplates$Create,
       options:
@@ -8870,14 +9460,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Deidentifytemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deidentifytemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8913,7 +9509,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -8975,9 +9571,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Deidentifytemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Deidentifytemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Deidentifytemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Deidentifytemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -8991,12 +9596,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Deidentifytemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deidentifytemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9027,7 +9640,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -9093,9 +9709,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Deidentifytemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Deidentifytemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    get(
+      params: Params$Resource$Projects$Deidentifytemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Deidentifytemplates$Get,
       options:
@@ -9119,14 +9744,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Deidentifytemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deidentifytemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9159,7 +9790,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -9250,9 +9881,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Deidentifytemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Deidentifytemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    list(
+      params: Params$Resource$Projects$Deidentifytemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Deidentifytemplates$List,
       options:
@@ -9280,18 +9920,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Deidentifytemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deidentifytemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9327,7 +9973,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -9405,9 +10051,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Deidentifytemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Deidentifytemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    patch(
+      params: Params$Resource$Projects$Deidentifytemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Deidentifytemplates$Patch,
       options:
@@ -9431,14 +10086,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Deidentifytemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deidentifytemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9471,7 +10132,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -9632,9 +10293,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Dlpjobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Dlpjobs$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Dlpjobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Dlpjobs$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -9648,12 +10318,20 @@ export namespace dlp_v2 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Dlpjobs$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dlpjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9684,7 +10362,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -9764,9 +10445,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Dlpjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Dlpjobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    create(
+      params: Params$Resource$Projects$Dlpjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Dlpjobs$Create,
       options:
@@ -9784,12 +10474,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Dlpjobs$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dlpjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9823,7 +10521,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
       }
@@ -9880,9 +10581,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Dlpjobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Dlpjobs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Dlpjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Dlpjobs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -9896,12 +10606,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Dlpjobs$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dlpjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9932,7 +10650,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -10000,9 +10721,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Dlpjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Dlpjobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    get(
+      params: Params$Resource$Projects$Dlpjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Dlpjobs$Get,
       options:
@@ -10018,12 +10748,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Dlpjobs$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dlpjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10054,7 +10792,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
       }
@@ -10172,9 +10913,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Dlpjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Dlpjobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Dlpjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Dlpjobs$List,
       options:
@@ -10198,14 +10948,20 @@ export namespace dlp_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Dlpjobs$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Dlpjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10241,7 +10997,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
@@ -10420,9 +11176,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     redact(
+      params: Params$Resource$Projects$Image$Redact,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    redact(
       params?: Params$Resource$Projects$Image$Redact,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
+    redact(
+      params: Params$Resource$Projects$Image$Redact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     redact(
       params: Params$Resource$Projects$Image$Redact,
       options:
@@ -10446,14 +11211,20 @@ export namespace dlp_v2 {
     redact(
       paramsOrCallback?:
         | Params$Resource$Projects$Image$Redact
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Image$Redact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10489,7 +11260,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
@@ -10593,9 +11364,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Inspecttemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Inspecttemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    create(
+      params: Params$Resource$Projects$Inspecttemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Inspecttemplates$Create,
       options:
@@ -10613,12 +11393,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Inspecttemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inspecttemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10654,7 +11442,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -10716,9 +11504,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Inspecttemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Inspecttemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Inspecttemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Inspecttemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -10732,12 +11529,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Inspecttemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inspecttemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10768,7 +11573,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -10834,9 +11642,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Inspecttemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Inspecttemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    get(
+      params: Params$Resource$Projects$Inspecttemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Inspecttemplates$Get,
       options:
@@ -10854,12 +11671,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Inspecttemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inspecttemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10892,7 +11717,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -10983,9 +11808,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Inspecttemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Inspecttemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    list(
+      params: Params$Resource$Projects$Inspecttemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Inspecttemplates$List,
       options:
@@ -11013,18 +11847,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Inspecttemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inspecttemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11060,7 +11900,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -11139,9 +11979,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Inspecttemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Inspecttemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    patch(
+      params: Params$Resource$Projects$Inspecttemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Inspecttemplates$Patch,
       options:
@@ -11159,12 +12008,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Inspecttemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Inspecttemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11197,7 +12054,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -11370,9 +12227,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     activate(
+      params: Params$Resource$Projects$Jobtriggers$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
       params?: Params$Resource$Projects$Jobtriggers$Activate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    activate(
+      params: Params$Resource$Projects$Jobtriggers$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     activate(
       params: Params$Resource$Projects$Jobtriggers$Activate,
       options:
@@ -11390,12 +12256,20 @@ export namespace dlp_v2 {
     activate(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobtriggers$Activate
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobtriggers$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11429,7 +12303,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
       }
@@ -11508,9 +12385,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Jobtriggers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Jobtriggers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    create(
+      params: Params$Resource$Projects$Jobtriggers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Jobtriggers$Create,
       options:
@@ -11528,12 +12414,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobtriggers$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobtriggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11569,7 +12463,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -11630,9 +12524,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Jobtriggers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Jobtriggers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Jobtriggers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Jobtriggers$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -11646,12 +12549,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobtriggers$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobtriggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11682,7 +12593,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -11751,9 +12665,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Jobtriggers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Jobtriggers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    get(
+      params: Params$Resource$Projects$Jobtriggers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Jobtriggers$Get,
       options:
@@ -11771,12 +12694,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobtriggers$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobtriggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11809,7 +12740,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -11927,9 +12858,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Jobtriggers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Jobtriggers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
+    list(
+      params: Params$Resource$Projects$Jobtriggers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Jobtriggers$List,
       options:
@@ -11955,18 +12895,20 @@ export namespace dlp_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobtriggers$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-          >,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobtriggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12002,7 +12944,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -12084,9 +13026,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Jobtriggers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Jobtriggers$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    patch(
+      params: Params$Resource$Projects$Jobtriggers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Jobtriggers$Patch,
       options:
@@ -12104,12 +13055,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobtriggers$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobtriggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12142,7 +13101,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -12367,9 +13326,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     deidentify(
+      params: Params$Resource$Projects$Locations$Content$Deidentify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deidentify(
       params?: Params$Resource$Projects$Locations$Content$Deidentify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
+    deidentify(
+      params: Params$Resource$Projects$Locations$Content$Deidentify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deidentify(
       params: Params$Resource$Projects$Locations$Content$Deidentify,
       options:
@@ -12397,18 +13365,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Locations$Content$Deidentify
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Content$Deidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12444,7 +13418,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -12524,9 +13498,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     inspect(
+      params: Params$Resource$Projects$Locations$Content$Inspect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    inspect(
       params?: Params$Resource$Projects$Locations$Content$Inspect,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
+    inspect(
+      params: Params$Resource$Projects$Locations$Content$Inspect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     inspect(
       params: Params$Resource$Projects$Locations$Content$Inspect,
       options:
@@ -12550,14 +13533,20 @@ export namespace dlp_v2 {
     inspect(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Content$Inspect
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Content$Inspect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12592,7 +13581,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -12673,9 +13662,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     reidentify(
+      params: Params$Resource$Projects$Locations$Content$Reidentify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reidentify(
       params?: Params$Resource$Projects$Locations$Content$Reidentify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
+    reidentify(
+      params: Params$Resource$Projects$Locations$Content$Reidentify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reidentify(
       params: Params$Resource$Projects$Locations$Content$Reidentify,
       options:
@@ -12703,18 +13701,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Locations$Content$Reidentify
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Content$Reidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12750,7 +13754,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -12904,9 +13908,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    create(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
       options:
@@ -12930,14 +13943,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Deidentifytemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deidentifytemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12973,7 +13992,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -13036,9 +14055,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -13052,12 +14080,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Deidentifytemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deidentifytemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13088,7 +14124,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -13155,9 +14194,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    get(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
       options:
@@ -13181,14 +14229,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Deidentifytemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deidentifytemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13221,7 +14275,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -13312,9 +14366,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
       options:
@@ -13342,18 +14405,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Locations$Deidentifytemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deidentifytemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13389,7 +14458,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -13468,9 +14537,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+    patch(
+      params: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
       options:
@@ -13494,14 +14572,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Deidentifytemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deidentifytemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13534,7 +14618,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -13699,9 +14783,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Dlpjobs$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -13715,12 +14808,20 @@ export namespace dlp_v2 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Dlpjobs$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dlpjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13751,7 +14852,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -13835,9 +14939,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    create(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Dlpjobs$Create,
       options:
@@ -13855,12 +14968,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Dlpjobs$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dlpjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13893,7 +15014,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
       }
@@ -13950,9 +15074,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Dlpjobs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -13966,12 +15099,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Dlpjobs$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dlpjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14002,7 +15143,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -14066,9 +15210,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     finish(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Finish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    finish(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Finish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    finish(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Finish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     finish(
       params: Params$Resource$Projects$Locations$Dlpjobs$Finish,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -14082,12 +15235,20 @@ export namespace dlp_v2 {
     finish(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Dlpjobs$Finish
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dlpjobs$Finish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14118,7 +15279,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -14186,9 +15350,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Dlpjobs$Get,
       options:
@@ -14204,12 +15377,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Dlpjobs$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dlpjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14240,7 +15421,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
       }
@@ -14307,9 +15491,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     hybridInspect(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    hybridInspect(
       params?: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
+    hybridInspect(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
       options:
@@ -14333,14 +15526,20 @@ export namespace dlp_v2 {
     hybridInspect(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14376,7 +15575,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
@@ -14497,9 +15696,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Dlpjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Dlpjobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Dlpjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Dlpjobs$List,
       options:
@@ -14523,14 +15731,20 @@ export namespace dlp_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Dlpjobs$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Dlpjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14565,7 +15779,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
@@ -14787,9 +16001,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     redact(
+      params: Params$Resource$Projects$Locations$Image$Redact,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    redact(
       params?: Params$Resource$Projects$Locations$Image$Redact,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
+    redact(
+      params: Params$Resource$Projects$Locations$Image$Redact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     redact(
       params: Params$Resource$Projects$Locations$Image$Redact,
       options:
@@ -14813,14 +16036,20 @@ export namespace dlp_v2 {
     redact(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Image$Redact
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Image$Redact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14855,7 +16084,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
@@ -14967,9 +16196,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    create(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Create,
       options:
@@ -14987,12 +16225,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Inspecttemplates$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Inspecttemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15027,7 +16273,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -15090,9 +16336,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -15106,12 +16361,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Inspecttemplates$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Inspecttemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15142,7 +16405,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -15209,9 +16475,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    get(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Get,
       options:
@@ -15229,12 +16504,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Inspecttemplates$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Inspecttemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15267,7 +16550,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -15358,9 +16641,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Inspecttemplates$List,
       options:
@@ -15388,18 +16680,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Locations$Inspecttemplates$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Inspecttemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15434,7 +16732,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -15514,9 +16812,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Inspecttemplates$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+    patch(
+      params: Params$Resource$Projects$Locations$Inspecttemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Inspecttemplates$Patch,
       options:
@@ -15534,12 +16841,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Inspecttemplates$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Inspecttemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15572,7 +16887,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -15749,9 +17064,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     activate(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Activate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    activate(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     activate(
       params: Params$Resource$Projects$Locations$Jobtriggers$Activate,
       options:
@@ -15769,12 +17093,20 @@ export namespace dlp_v2 {
     activate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobtriggers$Activate
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtriggers$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15808,7 +17140,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
       }
@@ -15891,9 +17226,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    create(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Jobtriggers$Create,
       options:
@@ -15911,12 +17255,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobtriggers$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtriggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15951,7 +17303,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -16012,9 +17364,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Jobtriggers$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -16028,12 +17389,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobtriggers$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtriggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16064,7 +17433,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -16133,9 +17505,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    get(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Jobtriggers$Get,
       options:
@@ -16153,12 +17534,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobtriggers$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtriggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16191,7 +17580,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -16261,9 +17650,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     hybridInspect(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    hybridInspect(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
+    hybridInspect(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
       options:
@@ -16287,14 +17685,20 @@ export namespace dlp_v2 {
     hybridInspect(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16330,7 +17734,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
@@ -16448,9 +17852,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Jobtriggers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Jobtriggers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Jobtriggers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Jobtriggers$List,
       options:
@@ -16476,18 +17889,20 @@ export namespace dlp_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobtriggers$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-          >,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtriggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16522,7 +17937,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -16604,9 +18019,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Jobtriggers$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+    patch(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Jobtriggers$Patch,
       options:
@@ -16624,12 +18048,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Jobtriggers$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Jobtriggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16662,7 +18094,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -16878,9 +18310,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Create,
       options:
@@ -16898,12 +18339,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Storedinfotypes$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Storedinfotypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16938,7 +18387,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -17001,9 +18450,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -17017,12 +18475,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Storedinfotypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Storedinfotypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17053,7 +18519,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -17117,9 +18586,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Get,
       options:
@@ -17137,12 +18615,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Storedinfotypes$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Storedinfotypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17175,7 +18661,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -17267,9 +18753,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Storedinfotypes$List,
       options:
@@ -17297,18 +18792,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Locations$Storedinfotypes$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Storedinfotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17343,7 +18844,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -17420,9 +18921,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Storedinfotypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+      params: Params$Resource$Projects$Locations$Storedinfotypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Storedinfotypes$Patch,
       options:
@@ -17440,12 +18950,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Storedinfotypes$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Storedinfotypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17478,7 +18996,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -17652,9 +19170,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Storedinfotypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Storedinfotypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+      params: Params$Resource$Projects$Storedinfotypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Storedinfotypes$Create,
       options:
@@ -17672,12 +19199,20 @@ export namespace dlp_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Storedinfotypes$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Storedinfotypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17713,7 +19248,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -17775,9 +19310,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Storedinfotypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Storedinfotypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Storedinfotypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Storedinfotypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -17791,12 +19335,20 @@ export namespace dlp_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Storedinfotypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Storedinfotypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17827,7 +19379,10 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -17890,9 +19445,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Storedinfotypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Storedinfotypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(
+      params: Params$Resource$Projects$Storedinfotypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Storedinfotypes$Get,
       options:
@@ -17910,12 +19474,20 @@ export namespace dlp_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Storedinfotypes$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Storedinfotypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17948,7 +19520,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -18040,9 +19612,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Storedinfotypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Storedinfotypes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+      params: Params$Resource$Projects$Storedinfotypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Storedinfotypes$List,
       options:
@@ -18070,18 +19651,24 @@ export namespace dlp_v2 {
         | Params$Resource$Projects$Storedinfotypes$List
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Storedinfotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18117,7 +19704,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -18193,9 +19780,18 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Storedinfotypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Storedinfotypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+      params: Params$Resource$Projects$Storedinfotypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Storedinfotypes$Patch,
       options:
@@ -18213,12 +19809,20 @@ export namespace dlp_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Storedinfotypes$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
-      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
-    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Storedinfotypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18251,7 +19855,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(

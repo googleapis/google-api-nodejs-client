@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace videointelligence_v1 {
   export interface Options extends GlobalOptions {
@@ -3057,9 +3059,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    cancel(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
       options:
@@ -3075,12 +3086,20 @@ export namespace videointelligence_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Operations$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf_Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3115,7 +3134,10 @@ export namespace videointelligence_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
       }
@@ -3174,9 +3196,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Operations$Projects$Locations$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    delete(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
       options:
@@ -3192,12 +3223,20 @@ export namespace videointelligence_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Operations$Projects$Locations$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf_Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3232,7 +3271,10 @@ export namespace videointelligence_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
       }
@@ -3297,9 +3339,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    get(
+      params: Params$Resource$Operations$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Projects$Locations$Operations$Get,
       options:
@@ -3317,12 +3368,20 @@ export namespace videointelligence_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Operations$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3359,7 +3418,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
@@ -3488,9 +3547,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options:
@@ -3506,12 +3574,20 @@ export namespace videointelligence_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf_Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3543,7 +3619,10 @@ export namespace videointelligence_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
       }
@@ -3600,9 +3679,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf_Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options:
@@ -3618,12 +3706,20 @@ export namespace videointelligence_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf_Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf_Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3655,7 +3751,10 @@ export namespace videointelligence_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf_Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
       }
@@ -3718,9 +3817,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
@@ -3738,12 +3846,20 @@ export namespace videointelligence_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3777,7 +3893,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
@@ -3847,9 +3963,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
@@ -3873,14 +3998,20 @@ export namespace videointelligence_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
+        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3917,7 +4048,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -4066,9 +4197,18 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Videos$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Videos$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    annotate(
+      params: Params$Resource$Videos$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Videos$Annotate,
       options:
@@ -4086,12 +4226,20 @@ export namespace videointelligence_v1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Videos$Annotate
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4127,7 +4275,7 @@ export namespace videointelligence_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);

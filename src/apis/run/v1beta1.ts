@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace run_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -591,9 +593,18 @@ export namespace run_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customresourcedefinitions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customresourcedefinitions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCustomResourceDefinitionsResponse>;
+    list(
+      params: Params$Resource$Customresourcedefinitions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customresourcedefinitions$List,
       options:
@@ -617,14 +628,20 @@ export namespace run_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customresourcedefinitions$List
-        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>,
+        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListCustomResourceDefinitionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomResourceDefinitionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customresourcedefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -660,7 +677,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
@@ -786,9 +803,18 @@ export namespace run_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Namespaces$Customresourcedefinitions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Namespaces$Customresourcedefinitions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomResourceDefinition>;
+    get(
+      params: Params$Resource$Namespaces$Customresourcedefinitions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Namespaces$Customresourcedefinitions$Get,
       options:
@@ -804,12 +830,20 @@ export namespace run_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Namespaces$Customresourcedefinitions$Get
-        | BodyResponseCallback<Schema$CustomResourceDefinition>,
+        | BodyResponseCallback<Schema$CustomResourceDefinition>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomResourceDefinition>,
-      callback?: BodyResponseCallback<Schema$CustomResourceDefinition>
-    ): void | GaxiosPromise<Schema$CustomResourceDefinition> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomResourceDefinition>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomResourceDefinition>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomResourceDefinition>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Namespaces$Customresourcedefinitions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -842,7 +876,10 @@ export namespace run_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomResourceDefinition>(parameters, callback);
+        createAPIRequest<Schema$CustomResourceDefinition>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomResourceDefinition>(parameters);
       }
@@ -946,9 +983,18 @@ export namespace run_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Customresourcedefinitions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Customresourcedefinitions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomResourceDefinition>;
+    get(
+      params: Params$Resource$Projects$Locations$Customresourcedefinitions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Customresourcedefinitions$Get,
       options:
@@ -964,12 +1010,20 @@ export namespace run_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Customresourcedefinitions$Get
-        | BodyResponseCallback<Schema$CustomResourceDefinition>,
+        | BodyResponseCallback<Schema$CustomResourceDefinition>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomResourceDefinition>,
-      callback?: BodyResponseCallback<Schema$CustomResourceDefinition>
-    ): void | GaxiosPromise<Schema$CustomResourceDefinition> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomResourceDefinition>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomResourceDefinition>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomResourceDefinition>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customresourcedefinitions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1000,7 +1054,10 @@ export namespace run_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomResourceDefinition>(parameters, callback);
+        createAPIRequest<Schema$CustomResourceDefinition>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomResourceDefinition>(parameters);
       }
@@ -1090,9 +1147,18 @@ export namespace run_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Customresourcedefinitions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Customresourcedefinitions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCustomResourceDefinitionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Customresourcedefinitions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Customresourcedefinitions$List,
       options:
@@ -1116,14 +1182,20 @@ export namespace run_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Customresourcedefinitions$List
-        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>,
+        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListCustomResourceDefinitionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomResourceDefinitionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Customresourcedefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1158,7 +1230,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(

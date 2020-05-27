@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace streetviewpublish_v1 {
   export interface Options extends GlobalOptions {
@@ -488,9 +490,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Photo$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Photo$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Photo>;
+    create(
+      params: Params$Resource$Photo$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Photo$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Photo>,
@@ -504,10 +515,17 @@ export namespace streetviewpublish_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Photo$Create
-        | BodyResponseCallback<Schema$Photo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
-      callback?: BodyResponseCallback<Schema$Photo>
-    ): void | GaxiosPromise<Schema$Photo> {
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -538,7 +556,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Photo>(parameters, callback);
+        createAPIRequest<Schema$Photo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
       }
@@ -595,9 +616,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Photo$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Photo$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Photo$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Photo$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -611,10 +641,17 @@ export namespace streetviewpublish_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Photo$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -648,7 +685,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -729,9 +769,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Photo$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Photo$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Photo>;
+    get(
+      params: Params$Resource$Photo$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Photo$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Photo>,
@@ -745,10 +794,17 @@ export namespace streetviewpublish_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Photo$Get
-        | BodyResponseCallback<Schema$Photo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
-      callback?: BodyResponseCallback<Schema$Photo>
-    ): void | GaxiosPromise<Schema$Photo> {
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -782,7 +838,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Photo>(parameters, callback);
+        createAPIRequest<Schema$Photo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
       }
@@ -844,9 +903,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     startUpload(
+      params: Params$Resource$Photo$Startupload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    startUpload(
       params?: Params$Resource$Photo$Startupload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UploadRef>;
+    startUpload(
+      params: Params$Resource$Photo$Startupload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     startUpload(
       params: Params$Resource$Photo$Startupload,
       options: MethodOptions | BodyResponseCallback<Schema$UploadRef>,
@@ -860,12 +928,17 @@ export namespace streetviewpublish_v1 {
     startUpload(
       paramsOrCallback?:
         | Params$Resource$Photo$Startupload
-        | BodyResponseCallback<Schema$UploadRef>,
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UploadRef>,
-      callback?: BodyResponseCallback<Schema$UploadRef>
-    ): void | GaxiosPromise<Schema$UploadRef> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadRef>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UploadRef> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photo$Startupload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -900,7 +973,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UploadRef>(parameters, callback);
+        createAPIRequest<Schema$UploadRef>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UploadRef>(parameters);
       }
@@ -1018,9 +1094,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Photo$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Photo$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Photo>;
+    update(
+      params: Params$Resource$Photo$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Photo$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Photo>,
@@ -1034,10 +1119,17 @@ export namespace streetviewpublish_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Photo$Update
-        | BodyResponseCallback<Schema$Photo>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
-      callback?: BodyResponseCallback<Schema$Photo>
-    ): void | GaxiosPromise<Schema$Photo> {
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Photo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Photo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1068,7 +1160,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Photo>(parameters, callback);
+        createAPIRequest<Schema$Photo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Photo>(parameters);
       }
@@ -1213,9 +1308,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Photos$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Photos$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchDeletePhotosResponse>;
+    batchDelete(
+      params: Params$Resource$Photos$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Photos$Batchdelete,
       options:
@@ -1233,12 +1337,20 @@ export namespace streetviewpublish_v1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Photos$Batchdelete
-        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
-      callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>
-    ): void | GaxiosPromise<Schema$BatchDeletePhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchDeletePhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photos$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1275,7 +1387,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchDeletePhotosResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchDeletePhotosResponse>(parameters);
@@ -1348,9 +1460,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Photos$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Photos$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetPhotosResponse>;
+    batchGet(
+      params: Params$Resource$Photos$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Photos$Batchget,
       options:
@@ -1368,12 +1489,20 @@ export namespace streetviewpublish_v1 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Photos$Batchget
-        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>
-    ): void | GaxiosPromise<Schema$BatchGetPhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetPhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1407,7 +1536,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback);
+        createAPIRequest<Schema$BatchGetPhotosResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BatchGetPhotosResponse>(parameters);
       }
@@ -1471,9 +1603,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Photos$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Photos$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdatePhotosResponse>;
+    batchUpdate(
+      params: Params$Resource$Photos$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Photos$Batchupdate,
       options:
@@ -1491,12 +1632,20 @@ export namespace streetviewpublish_v1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Photos$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdatePhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdatePhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Photos$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1533,7 +1682,7 @@ export namespace streetviewpublish_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePhotosResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdatePhotosResponse>(parameters);
@@ -1621,9 +1770,18 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Photos$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Photos$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListPhotosResponse>;
+    list(
+      params: Params$Resource$Photos$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Photos$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListPhotosResponse>,
@@ -1637,12 +1795,20 @@ export namespace streetviewpublish_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Photos$List
-        | BodyResponseCallback<Schema$ListPhotosResponse>,
+        | BodyResponseCallback<Schema$ListPhotosResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPhotosResponse>,
-      callback?: BodyResponseCallback<Schema$ListPhotosResponse>
-    ): void | GaxiosPromise<Schema$ListPhotosResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPhotosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPhotosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPhotosResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1673,7 +1839,10 @@ export namespace streetviewpublish_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListPhotosResponse>(parameters, callback);
+        createAPIRequest<Schema$ListPhotosResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListPhotosResponse>(parameters);
       }

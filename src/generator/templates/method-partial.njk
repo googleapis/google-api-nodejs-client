@@ -39,11 +39,13 @@
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
+{{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: StreamMethodOptions): GaxiosPromise<Readable>;
 {{ mname|camelify }}(params?: Params${{ClassName}}${{mname|camelify|capitalize}}, options?: MethodOptions): GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
+{{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: StreamMethodOptions|BodyResponseCallback<Readable>, callback: BodyResponseCallback<Readable>): void;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
 {{ mname|camelify }}(callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
-{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, optionsOrCallback?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
+{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|BodyResponseCallback<Readable>, optionsOrCallback?: MethodOptions|StreamMethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|BodyResponseCallback<Readable>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|BodyResponseCallback<Readable>): void|GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>|GaxiosPromise<Readable> {
   let params = (paramsOrCallback || {}) as Params${{ClassName}}${{mname|camelify|capitalize}};
   let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -72,7 +74,7 @@
   };
   {% set responseType = "Schema$" + m.response.$ref|default() %}
   if (callback) {
-    createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters, callback);
+    createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters, callback as BodyResponseCallback<{}|void>);
   } else {
     return createAPIRequest<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>(parameters);
   }

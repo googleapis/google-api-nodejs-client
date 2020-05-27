@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace gameservices_v1beta {
   export interface Options extends GlobalOptions {
@@ -1190,9 +1192,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -1206,10 +1217,17 @@ export namespace gameservices_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1240,7 +1258,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -1313,9 +1334,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -1331,12 +1361,20 @@ export namespace gameservices_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1370,7 +1408,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -1505,9 +1546,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1521,12 +1571,17 @@ export namespace gameservices_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1560,7 +1615,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1628,9 +1686,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1644,12 +1711,17 @@ export namespace gameservices_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1680,7 +1752,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1752,9 +1827,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     fetchDeploymentState(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchDeploymentState(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FetchDeploymentStateResponse>;
+    fetchDeploymentState(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     fetchDeploymentState(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate,
       options:
@@ -1772,12 +1856,20 @@ export namespace gameservices_v1beta {
     fetchDeploymentState(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate
-        | BodyResponseCallback<Schema$FetchDeploymentStateResponse>,
+        | BodyResponseCallback<Schema$FetchDeploymentStateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FetchDeploymentStateResponse>,
-      callback?: BodyResponseCallback<Schema$FetchDeploymentStateResponse>
-    ): void | GaxiosPromise<Schema$FetchDeploymentStateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchDeploymentStateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchDeploymentStateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchDeploymentStateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1813,7 +1905,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$FetchDeploymentStateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FetchDeploymentStateResponse>(
@@ -1883,9 +1975,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GameServerDeployment>;
+    get(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Get,
       options:
@@ -1901,12 +2002,20 @@ export namespace gameservices_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Get
-        | BodyResponseCallback<Schema$GameServerDeployment>,
+        | BodyResponseCallback<Schema$GameServerDeployment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GameServerDeployment>,
-      callback?: BodyResponseCallback<Schema$GameServerDeployment>
-    ): void | GaxiosPromise<Schema$GameServerDeployment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GameServerDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GameServerDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GameServerDeployment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1937,7 +2046,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GameServerDeployment>(parameters, callback);
+        createAPIRequest<Schema$GameServerDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GameServerDeployment>(parameters);
       }
@@ -2019,9 +2131,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2035,10 +2156,17 @@ export namespace gameservices_v1beta {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2072,7 +2200,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2141,9 +2272,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     getRollout(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRollout(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GameServerDeploymentRollout>;
+    getRollout(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getRollout(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout,
       options:
@@ -2161,12 +2301,20 @@ export namespace gameservices_v1beta {
     getRollout(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout
-        | BodyResponseCallback<Schema$GameServerDeploymentRollout>,
+        | BodyResponseCallback<Schema$GameServerDeploymentRollout>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GameServerDeploymentRollout>,
-      callback?: BodyResponseCallback<Schema$GameServerDeploymentRollout>
-    ): void | GaxiosPromise<Schema$GameServerDeploymentRollout> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GameServerDeploymentRollout>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GameServerDeploymentRollout>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GameServerDeploymentRollout>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2202,7 +2350,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$GameServerDeploymentRollout>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GameServerDeploymentRollout>(parameters);
@@ -2283,9 +2431,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGameServerDeploymentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$List,
       options:
@@ -2303,12 +2460,20 @@ export namespace gameservices_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$List
-        | BodyResponseCallback<Schema$ListGameServerDeploymentsResponse>,
+        | BodyResponseCallback<Schema$ListGameServerDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGameServerDeploymentsResponse>,
-      callback?: BodyResponseCallback<Schema$ListGameServerDeploymentsResponse>
-    ): void | GaxiosPromise<Schema$ListGameServerDeploymentsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGameServerDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGameServerDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGameServerDeploymentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2344,7 +2509,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGameServerDeploymentsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerDeploymentsResponse>(
@@ -2440,9 +2605,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2456,12 +2630,17 @@ export namespace gameservices_v1beta {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2492,7 +2671,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2587,9 +2769,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     previewRollout(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    previewRollout(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PreviewGameServerDeploymentRolloutResponse>;
+    previewRollout(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     previewRollout(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout,
       options:
@@ -2617,16 +2808,24 @@ export namespace gameservices_v1beta {
         | Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout
         | BodyResponseCallback<
             Schema$PreviewGameServerDeploymentRolloutResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$PreviewGameServerDeploymentRolloutResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$PreviewGameServerDeploymentRolloutResponse
-      >
-    ): void | GaxiosPromise<Schema$PreviewGameServerDeploymentRolloutResponse> {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$PreviewGameServerDeploymentRolloutResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PreviewGameServerDeploymentRolloutResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2662,7 +2861,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewGameServerDeploymentRolloutResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -2743,9 +2942,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -2759,10 +2967,17 @@ export namespace gameservices_v1beta {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2796,7 +3011,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -2868,9 +3086,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions,
       options:
@@ -2888,12 +3115,20 @@ export namespace gameservices_v1beta {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2929,7 +3164,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3023,9 +3258,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     updateRollout(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateRollout(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    updateRollout(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateRollout(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3039,12 +3283,17 @@ export namespace gameservices_v1beta {
     updateRollout(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3078,7 +3327,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3391,9 +3643,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3407,12 +3668,17 @@ export namespace gameservices_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3446,7 +3712,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3514,9 +3783,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3530,12 +3808,17 @@ export namespace gameservices_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3566,7 +3849,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3636,9 +3922,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GameServerConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$GameServerConfig>,
@@ -3652,12 +3947,17 @@ export namespace gameservices_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get
-        | BodyResponseCallback<Schema$GameServerConfig>,
+        | BodyResponseCallback<Schema$GameServerConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GameServerConfig>,
-      callback?: BodyResponseCallback<Schema$GameServerConfig>
-    ): void | GaxiosPromise<Schema$GameServerConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GameServerConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GameServerConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GameServerConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3688,7 +3988,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GameServerConfig>(parameters, callback);
+        createAPIRequest<Schema$GameServerConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GameServerConfig>(parameters);
       }
@@ -3771,9 +4074,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGameServerConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List,
       options:
@@ -3791,12 +4103,20 @@ export namespace gameservices_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List
-        | BodyResponseCallback<Schema$ListGameServerConfigsResponse>,
+        | BodyResponseCallback<Schema$ListGameServerConfigsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGameServerConfigsResponse>,
-      callback?: BodyResponseCallback<Schema$ListGameServerConfigsResponse>
-    ): void | GaxiosPromise<Schema$ListGameServerConfigsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGameServerConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGameServerConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGameServerConfigsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3832,7 +4152,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGameServerConfigsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerConfigsResponse>(
@@ -3980,9 +4300,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3996,10 +4325,17 @@ export namespace gameservices_v1beta {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4033,7 +4369,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4090,9 +4429,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4106,10 +4454,17 @@ export namespace gameservices_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4140,7 +4495,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4203,9 +4561,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4219,12 +4586,17 @@ export namespace gameservices_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4255,7 +4627,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4324,9 +4699,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
@@ -4342,12 +4726,20 @@ export namespace gameservices_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4381,7 +4773,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -4540,9 +4935,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Realms$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Realms$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Realms$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Realms$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4556,12 +4960,17 @@ export namespace gameservices_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4595,7 +5004,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4659,9 +5071,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Realms$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Realms$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Realms$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Realms$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -4675,12 +5096,17 @@ export namespace gameservices_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4711,7 +5137,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -4777,9 +5206,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Realms$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Realms$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Realm>;
+    get(
+      params: Params$Resource$Projects$Locations$Realms$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Realms$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Realm>,
@@ -4793,10 +5231,17 @@ export namespace gameservices_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Get
-        | BodyResponseCallback<Schema$Realm>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Realm>,
-      callback?: BodyResponseCallback<Schema$Realm>
-    ): void | GaxiosPromise<Schema$Realm> {
+        | BodyResponseCallback<Schema$Realm>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Realm>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Realm>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Realm> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4827,7 +5272,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Realm>(parameters, callback);
+        createAPIRequest<Schema$Realm>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Realm>(parameters);
       }
@@ -4907,9 +5355,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Realms$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Realms$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListRealmsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Realms$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Realms$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListRealmsResponse>,
@@ -4923,12 +5380,20 @@ export namespace gameservices_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$List
-        | BodyResponseCallback<Schema$ListRealmsResponse>,
+        | BodyResponseCallback<Schema$ListRealmsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListRealmsResponse>,
-      callback?: BodyResponseCallback<Schema$ListRealmsResponse>
-    ): void | GaxiosPromise<Schema$ListRealmsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRealmsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRealmsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRealmsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4962,7 +5427,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListRealmsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListRealmsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListRealmsResponse>(parameters);
       }
@@ -5050,9 +5518,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Realms$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Realms$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Realms$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Realms$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5066,12 +5543,17 @@ export namespace gameservices_v1beta {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5102,7 +5584,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5190,9 +5675,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     previewUpdate(
+      params: Params$Resource$Projects$Locations$Realms$Previewupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    previewUpdate(
       params?: Params$Resource$Projects$Locations$Realms$Previewupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PreviewRealmUpdateResponse>;
+    previewUpdate(
+      params: Params$Resource$Projects$Locations$Realms$Previewupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     previewUpdate(
       params: Params$Resource$Projects$Locations$Realms$Previewupdate,
       options:
@@ -5210,12 +5704,20 @@ export namespace gameservices_v1beta {
     previewUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Previewupdate
-        | BodyResponseCallback<Schema$PreviewRealmUpdateResponse>,
+        | BodyResponseCallback<Schema$PreviewRealmUpdateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PreviewRealmUpdateResponse>,
-      callback?: BodyResponseCallback<Schema$PreviewRealmUpdateResponse>
-    ): void | GaxiosPromise<Schema$PreviewRealmUpdateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PreviewRealmUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PreviewRealmUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PreviewRealmUpdateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Previewupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5251,7 +5753,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewRealmUpdateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PreviewRealmUpdateResponse>(parameters);
@@ -5463,9 +5965,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5479,12 +5990,17 @@ export namespace gameservices_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5518,7 +6034,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5585,9 +6104,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -5601,12 +6129,17 @@ export namespace gameservices_v1beta {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5637,7 +6170,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -5707,9 +6243,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GameServerCluster>;
+    get(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$GameServerCluster>,
@@ -5723,12 +6268,20 @@ export namespace gameservices_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get
-        | BodyResponseCallback<Schema$GameServerCluster>,
+        | BodyResponseCallback<Schema$GameServerCluster>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GameServerCluster>,
-      callback?: BodyResponseCallback<Schema$GameServerCluster>
-    ): void | GaxiosPromise<Schema$GameServerCluster> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GameServerCluster>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GameServerCluster>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GameServerCluster>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5759,7 +6312,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GameServerCluster>(parameters, callback);
+        createAPIRequest<Schema$GameServerCluster>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GameServerCluster>(parameters);
       }
@@ -5840,9 +6396,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGameServerClustersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$List,
       options:
@@ -5860,12 +6425,20 @@ export namespace gameservices_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$List
-        | BodyResponseCallback<Schema$ListGameServerClustersResponse>,
+        | BodyResponseCallback<Schema$ListGameServerClustersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGameServerClustersResponse>,
-      callback?: BodyResponseCallback<Schema$ListGameServerClustersResponse>
-    ): void | GaxiosPromise<Schema$ListGameServerClustersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGameServerClustersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGameServerClustersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGameServerClustersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5901,7 +6474,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGameServerClustersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerClustersResponse>(
@@ -5998,9 +6571,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -6014,12 +6596,17 @@ export namespace gameservices_v1beta {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6050,7 +6637,10 @@ export namespace gameservices_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -6134,9 +6724,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     previewCreate(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    previewCreate(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PreviewCreateGameServerClusterResponse>;
+    previewCreate(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     previewCreate(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate,
       options:
@@ -6160,14 +6759,20 @@ export namespace gameservices_v1beta {
     previewCreate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate
-        | BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>,
+        | BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>,
-      callback?: BodyResponseCallback<
-        Schema$PreviewCreateGameServerClusterResponse
-      >
-    ): void | GaxiosPromise<Schema$PreviewCreateGameServerClusterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PreviewCreateGameServerClusterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6202,7 +6807,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewCreateGameServerClusterResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PreviewCreateGameServerClusterResponse>(
@@ -6272,9 +6877,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     previewDelete(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    previewDelete(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PreviewDeleteGameServerClusterResponse>;
+    previewDelete(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     previewDelete(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete,
       options:
@@ -6298,14 +6912,20 @@ export namespace gameservices_v1beta {
     previewDelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete
-        | BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>,
+        | BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>,
-      callback?: BodyResponseCallback<
-        Schema$PreviewDeleteGameServerClusterResponse
-      >
-    ): void | GaxiosPromise<Schema$PreviewDeleteGameServerClusterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PreviewDeleteGameServerClusterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6341,7 +6961,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewDeleteGameServerClusterResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PreviewDeleteGameServerClusterResponse>(
@@ -6438,9 +7058,18 @@ export namespace gameservices_v1beta {
      * @return {object} Request object
      */
     previewUpdate(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    previewUpdate(
       params?: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PreviewUpdateGameServerClusterResponse>;
+    previewUpdate(
+      params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     previewUpdate(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate,
       options:
@@ -6464,14 +7093,20 @@ export namespace gameservices_v1beta {
     previewUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate
-        | BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>,
+        | BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>,
-      callback?: BodyResponseCallback<
-        Schema$PreviewUpdateGameServerClusterResponse
-      >
-    ): void | GaxiosPromise<Schema$PreviewUpdateGameServerClusterResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PreviewUpdateGameServerClusterResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6507,7 +7142,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewUpdateGameServerClusterResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PreviewUpdateGameServerClusterResponse>(

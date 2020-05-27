@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace clouderrorreporting_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -447,9 +449,18 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     deleteEvents(
+      params: Params$Resource$Projects$Deleteevents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteEvents(
       params?: Params$Resource$Projects$Deleteevents,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeleteEventsResponse>;
+    deleteEvents(
+      params: Params$Resource$Projects$Deleteevents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteEvents(
       params: Params$Resource$Projects$Deleteevents,
       options:
@@ -467,12 +478,20 @@ export namespace clouderrorreporting_v1beta1 {
     deleteEvents(
       paramsOrCallback?:
         | Params$Resource$Projects$Deleteevents
-        | BodyResponseCallback<Schema$DeleteEventsResponse>,
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeleteEventsResponse>,
-      callback?: BodyResponseCallback<Schema$DeleteEventsResponse>
-    ): void | GaxiosPromise<Schema$DeleteEventsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteEventsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deleteevents;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -507,7 +526,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback);
+        createAPIRequest<Schema$DeleteEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeleteEventsResponse>(parameters);
       }
@@ -617,9 +639,18 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Events$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Events$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListEventsResponse>;
+    list(
+      params: Params$Resource$Projects$Events$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Events$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListEventsResponse>,
@@ -633,12 +664,20 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Events$List
-        | BodyResponseCallback<Schema$ListEventsResponse>,
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListEventsResponse>,
-      callback?: BodyResponseCallback<Schema$ListEventsResponse>
-    ): void | GaxiosPromise<Schema$ListEventsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEventsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -673,7 +712,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListEventsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListEventsResponse>(parameters);
       }
@@ -747,9 +789,18 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     report(
+      params: Params$Resource$Projects$Events$Report,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    report(
       params?: Params$Resource$Projects$Events$Report,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReportErrorEventResponse>;
+    report(
+      params: Params$Resource$Projects$Events$Report,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     report(
       params: Params$Resource$Projects$Events$Report,
       options:
@@ -767,12 +818,20 @@ export namespace clouderrorreporting_v1beta1 {
     report(
       paramsOrCallback?:
         | Params$Resource$Projects$Events$Report
-        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReportErrorEventResponse>,
-      callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>
-    ): void | GaxiosPromise<Schema$ReportErrorEventResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportErrorEventResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReportErrorEventResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Events$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -807,7 +866,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReportErrorEventResponse>(parameters, callback);
+        createAPIRequest<Schema$ReportErrorEventResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReportErrorEventResponse>(parameters);
       }
@@ -940,9 +1002,18 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Groups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Groups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ErrorGroup>;
+    get(
+      params: Params$Resource$Projects$Groups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Groups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
@@ -956,12 +1027,17 @@ export namespace clouderrorreporting_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Groups$Get
-        | BodyResponseCallback<Schema$ErrorGroup>,
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ErrorGroup>,
-      callback?: BodyResponseCallback<Schema$ErrorGroup>
-    ): void | GaxiosPromise<Schema$ErrorGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -996,7 +1072,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ErrorGroup>(parameters, callback);
+        createAPIRequest<Schema$ErrorGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ErrorGroup>(parameters);
       }
@@ -1069,9 +1148,18 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Groups$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Groups$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ErrorGroup>;
+    update(
+      params: Params$Resource$Projects$Groups$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Groups$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ErrorGroup>,
@@ -1085,12 +1173,17 @@ export namespace clouderrorreporting_v1beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Groups$Update
-        | BodyResponseCallback<Schema$ErrorGroup>,
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ErrorGroup>,
-      callback?: BodyResponseCallback<Schema$ErrorGroup>
-    ): void | GaxiosPromise<Schema$ErrorGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ErrorGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ErrorGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1122,7 +1215,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ErrorGroup>(parameters, callback);
+        createAPIRequest<Schema$ErrorGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ErrorGroup>(parameters);
       }
@@ -1268,9 +1364,18 @@ export namespace clouderrorreporting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Groupstats$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Groupstats$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGroupStatsResponse>;
+    list(
+      params: Params$Resource$Projects$Groupstats$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Groupstats$List,
       options:
@@ -1286,12 +1391,20 @@ export namespace clouderrorreporting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Groupstats$List
-        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupStatsResponse>,
-      callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>
-    ): void | GaxiosPromise<Schema$ListGroupStatsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGroupStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGroupStatsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Groupstats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1326,7 +1439,10 @@ export namespace clouderrorreporting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListGroupStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListGroupStatsResponse>(parameters);
       }

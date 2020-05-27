@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace manufacturers_v1 {
   export interface Options extends GlobalOptions {
@@ -534,9 +536,18 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Products$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Products$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Accounts$Products$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Products$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -550,10 +561,17 @@ export namespace manufacturers_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -588,7 +606,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -672,9 +693,18 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Products$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Product>;
+    get(
+      params: Params$Resource$Accounts$Products$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Products$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Product>,
@@ -688,10 +718,17 @@ export namespace manufacturers_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$Get
-        | BodyResponseCallback<Schema$Product>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Product>,
-      callback?: BodyResponseCallback<Schema$Product>
-    ): void | GaxiosPromise<Schema$Product> {
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -726,7 +763,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Product>(parameters, callback);
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
       }
@@ -799,9 +839,18 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Products$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Products$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListProductsResponse>;
+    list(
+      params: Params$Resource$Accounts$Products$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Products$List,
       options:
@@ -817,12 +866,20 @@ export namespace manufacturers_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$List
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
-      callback?: BodyResponseCallback<Schema$ListProductsResponse>
-    ): void | GaxiosPromise<Schema$ListProductsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProductsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -857,7 +914,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
       }
@@ -972,9 +1032,18 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Accounts$Products$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Accounts$Products$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    update(
+      params: Params$Resource$Accounts$Products$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Accounts$Products$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -988,10 +1057,17 @@ export namespace manufacturers_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Accounts$Products$Update
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1026,7 +1102,10 @@ export namespace manufacturers_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
