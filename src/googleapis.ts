@@ -129,13 +129,13 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * discovery doc.
    * @returns A promise that resolves with the configured endpoint.
    */
-  async discoverAPI(
+  async discoverAPI<T = Endpoint>(
     apiPath: string,
     options: {} = {}
-  ): Promise<Readonly<Endpoint>> {
+  ): Promise<Readonly<T>> {
     const endpointCreator = await this._discovery.discoverAPI(apiPath);
     const ep = endpointCreator(options, this);
     ep.google = this; // for drive.google.transporter
-    return Object.freeze(ep);
+    return (Object.freeze(ep) as {}) as T;
   }
 }

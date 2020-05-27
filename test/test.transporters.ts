@@ -168,13 +168,16 @@ describe('Transporters', () => {
   before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
-    nock.enableNetConnect();
     [remoteDrive, remoteOauth2, remoteBlogger] = await Promise.all([
       Utils.loadApi(google, 'drive', 'v2'),
       Utils.loadApi(google, 'oauth2', 'v2'),
       Utils.loadApi(google, 'blogger', 'v3'),
     ]);
     nock.disableNetConnect();
+  });
+
+  after(() => {
+    nock.cleanAll();
   });
 
   beforeEach(() => {
@@ -287,10 +290,5 @@ describe('Transporters', () => {
     await testBackendError(localBlogger);
     await testBackendError(remoteBlogger);
     scope.done();
-  });
-
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

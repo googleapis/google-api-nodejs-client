@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it, before, after, beforeEach} from 'mocha';
+import {describe, it, before, afterEach, beforeEach} from 'mocha';
 import {OAuth2Client} from 'google-auth-library';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
@@ -66,7 +66,6 @@ describe('API key', () => {
   let authClient: OAuth2Client;
 
   before(async () => {
-    nock.cleanAll();
     nock.disableNetConnect();
     nock(Utils.baseUrl)
       .get('/discovery/v1/apis/drive/v2/rest')
@@ -82,13 +81,16 @@ describe('API key', () => {
   });
 
   beforeEach(() => {
-    nock.cleanAll();
     const google = new GoogleApis();
     const OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URL');
     authClient.credentials = {access_token: 'abc123'};
     localDrive = google.drive('v2');
     localBlogger = google.blogger('v3');
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
   });
 
   it('should include auth APIKEY as key=<APIKEY>', async () => {
@@ -109,10 +111,5 @@ describe('API key', () => {
   it('should set API key parameter if it is present', async () => {
     await testAuthKey(localBlogger);
     await testAuthKey(remoteBlogger);
-  });
-
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
   });
 });
