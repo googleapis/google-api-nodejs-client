@@ -15,6 +15,9 @@ import * as execa from 'execa';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as gaxios from 'gaxios';
+import * as rimraf from 'rimraf';
+import * as util from 'util';
+import * as minimist from 'yargs-parser';
 import {Generator} from './generator';
 import {DISCOVERY_URL, ChangeSet} from './download';
 
@@ -30,11 +33,27 @@ export interface Changelog {
   semverity: Semverity;
 }
 
-export async function synth() {
+export const gfs = {
+  rimraf: util.promisify(rimraf),
+};
+
+export interface SynthOptions {
+  useCache?: boolean;
+}
+
+export async function synth(options: SynthOptions = {}) {
   const gen = new Generator();
-  const changeSets = await gen.generateAllAPIs(DISCOVERY_URL, false);
-  const statusResult = await execa('git', ['status']);
+  let changeSets: ChangeSet[] = [];
+  if (!options.useCache) {
+    console.log('Removing old APIs...');
+    const apiPath = path.join(__dirname, '../../../src/apis');
+    await gfs.rimraf(apiPath);
+    changeSets = await gen.generateAllAPIs(DISCOVERY_URL, false);
+  }
+  const statusResult = await execa('git', ['status', '--porcelain']);
   const status = statusResult.stdout;
+  const statusFiles = status.split('\n').map(x => x.slice(3));
+  console.log(statusFiles);
   const apiDir = path.resolve('./src/apis');
   const files = fs.readdirSync(apiDir);
   const token = process.env.GITHUB_TOKEN;
@@ -44,61 +63,65 @@ export async function synth() {
   const dirs = files.filter(f => {
     return (
       fs.statSync(path.join(apiDir, f)).isDirectory() &&
-      status.includes(`src/apis/${f}`)
+      statusFiles.filter(x => x.startsWith(`src/apis/${f}/`)).length > 0
     );
   });
   console.log(`Changes found in ${dirs.length} APIs`);
+  const branch = 'autodisco';
+  const author = '"Yoshi Automation <yoshi-automation@google.com>"';
+  const changelogs = new Array<string>();
+  let totalSemverity = 0;
+  await execa('git', ['checkout', '-B', branch]);
   for (const dir of dirs) {
-    try {
-      const apiChangeSets = changeSets.filter(x => x.apiId.startsWith(dir));
-      const {semverity, changelog} = createChangelog(apiChangeSets);
-      let prefix: string;
-      switch (semverity) {
-        case Semverity.PATCH:
-          prefix = 'fix';
-          break;
-        case Semverity.MINOR:
-          prefix = 'feat';
-          break;
-        case Semverity.MAJOR:
-          prefix = 'feat!';
-          break;
-      }
-      console.log(`Submitting change for ${dir}...`);
-      const branch = `api-${dir}`;
-      const title = `${prefix}(${dir}): update the API`;
-      await execa('git', ['checkout', '-B', branch]);
-      await execa('git', ['add', path.join('src/apis', dir)]);
-      await execa('git', ['add', `discovery/${dir}-*`]);
-      await execa('git', [
-        'commit',
-        '-m',
-        title,
-        '-m',
-        changelog,
-        '--author',
-        '"Yoshi Automation <yoshi-automation@google.com>"',
-      ]);
-      await execa('git', ['push', 'origin', branch, '--force']);
-      await gaxios.request({
-        method: 'POST',
-        headers: {
-          Authorization: `token ${token}`,
-        },
-        url:
-          'https://api.github.com/repos/googleapis/google-api-nodejs-client/pulls',
-        data: {
-          title,
-          head: branch,
-          base: 'master',
-        },
-      });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      await execa('git', ['checkout', 'master']);
+    const apiChangeSets = changeSets.filter(x => x.api.name === dir);
+    const {semverity, changelog} = createChangelog(apiChangeSets);
+    changelogs.push(changelog);
+    if (semverity > totalSemverity) {
+      totalSemverity = semverity;
     }
+    const prefix = getPrefix(semverity);
+    const postfix = semverity === Semverity.MAJOR ? '!' : '';
+    console.log(`Submitting change for ${dir}...`);
+    const title = `"${prefix}(${dir})${postfix}: update the API"`;
+
+    console.log(`git add ${path.join('src/apis', dir)}`);
+    await execa('git', ['add', path.join('src/apis', dir)]);
+    if (statusFiles.filter(x => x.startsWith(`discovery/${dir}-`)).length > 0) {
+      console.log(`git add discovery/${dir}-*`);
+      await execa('git', ['add', `discovery/${dir}-*`]);
+    }
+    const commitParams = ['commit', '-m', title, '--author', author];
+    if (changelog) {
+      commitParams.push('-m', changelog);
+    }
+    console.log(`git ${commitParams.join(' ')}`);
+    await execa('git', commitParams);
   }
+  await execa('git', ['add', '-A']);
+  await execa('git', [
+    'commit',
+    '-m',
+    'feat: regenerate index files',
+    '--author',
+    '"Yoshi Automation <yoshi-automation@google.com>"',
+  ]);
+  const prefix = getPrefix(totalSemverity);
+  await execa('git', ['push', 'origin', branch, '--force']);
+  await gaxios.request({
+    method: 'POST',
+    headers: {
+      Authorization: `token ${token}`,
+    },
+    url:
+      'https://api.github.com/repos/googleapis/google-api-nodejs-client/pulls',
+    data: {
+      title: `${prefix}: run the generator`,
+      head: branch,
+      base: 'master',
+      body: changelogs.join('\n\n'),
+    },
+  });
+  await execa('git', ['checkout', 'master']);
 }
 
 /**
@@ -112,7 +135,7 @@ export function createChangelog(changeSets: ChangeSet[]) {
   }
   for (const changeSet of changeSets) {
     if (changeSet.changes.length > 0) {
-      changelog.push(`#### ${changeSet.apiId}`);
+      changelog.push(`#### ${changeSet.api.id}`);
       for (const action of ['DELETED', 'ADDED', 'CHANGED']) {
         const inScope = changeSet.changes.filter(x => x.action === action);
         if (inScope.length > 0) {
@@ -130,6 +153,16 @@ export function createChangelog(changeSets: ChangeSet[]) {
     semverity,
     changelog: changelog.join('\n'),
   };
+}
+
+export function getPrefix(semverity: Semverity) {
+  switch (semverity) {
+    case Semverity.PATCH:
+      return 'fix';
+    case Semverity.MINOR:
+    case Semverity.MAJOR:
+      return 'feat';
+  }
 }
 
 /**
@@ -161,7 +194,9 @@ export function getSemverity(changeSets: ChangeSet[]) {
 }
 
 if (require.main === module) {
-  synth().catch(err => {
+  const argv = minimist(process.argv.slice(2));
+  const useCache = !!argv['use-cache'];
+  synth({useCache}).catch(err => {
     console.error(err);
     throw err;
   });

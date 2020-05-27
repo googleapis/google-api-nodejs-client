@@ -17,7 +17,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import Q from 'p-queue';
 import {request, Headers} from 'gaxios';
-import {Schemas} from 'googleapis-common';
+import * as gapi from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 
 export type Schema = {[index: string]: {}};
@@ -30,7 +30,7 @@ export interface Change {
 
 export interface ChangeSet {
   changes: Change[];
-  apiId: string;
+  api: gapi.Schema;
 }
 
 export interface DownloadOptions {
@@ -62,7 +62,7 @@ export async function downloadDiscoveryDocs(
     ? {}
     : {'X-User-Ip': '0.0.0.0'};
   console.log(`sending request to ${options.discoveryUrl}`);
-  const res = await request<Schemas>({url: options.discoveryUrl, headers});
+  const res = await request<gapi.Schemas>({url: options.discoveryUrl, headers});
   const apis = res.data.items;
   const indexPath = path.join(options.downloadPath, 'index.json');
   gfs.writeFile(indexPath, res.data);
@@ -76,10 +76,7 @@ export async function downloadDiscoveryDocs(
         api.id.replace(':', '-') + '.json'
       );
       const url = api.discoveryRestUrl;
-      const changeSet: ChangeSet = {
-        apiId: api.id,
-        changes: [],
-      };
+      const changeSet: ChangeSet = {api, changes: []};
       try {
         const res = await request<{}>({url});
         // The keys in the downloaded JSON come back in an arbitrary order from

@@ -16,14 +16,16 @@ import * as assert from 'assert';
 import {describe, it, afterEach, before} from 'mocha';
 import * as nock from 'nock';
 import * as proxyquire from 'proxyquire';
+import * as sinon from 'sinon';
 import * as Synth from '../src/generator/synth';
 import {ChangeSet} from '../src/generator/download';
+import {Schema} from 'googleapis-common';
 
 describe(__filename, () => {
+  const sandbox = sinon.createSandbox();
   before(() => {
     nock.disableNetConnect();
   });
-
   const cacheToken = process.env.GITHUB_TOKEN;
   let changeSets: ChangeSet[] = [];
   let stdout = '';
@@ -45,13 +47,17 @@ describe(__filename, () => {
   afterEach(() => {
     changeSets = [];
     nock.cleanAll();
+    sandbox.restore();
     process.env.GITHUB_TOKEN = cacheToken;
   });
 
   it('should run synth', async () => {
     changeSets = [
       {
-        apiId: 'blogger:v1',
+        api: ({
+          id: 'blogger:v1',
+          name: 'blogger',
+        } as {}) as Schema,
         changes: [
           {
             action: 'ADDED',
@@ -68,6 +74,7 @@ describe(__filename, () => {
         modified:   src/apis/blogger/v1.ts
     `;
     process.env.GITHUB_TOKEN = '12345';
+    sandbox.stub(synth.gfs, 'rimraf').resolves();
     const scope = nock('https://api.github.com')
       .post('/repos/googleapis/google-api-nodejs-client/pulls')
       .reply(200);
@@ -77,13 +84,17 @@ describe(__filename, () => {
 
   it('should throw if no token is provided', async () => {
     process.env.GITHUB_TOKEN = '';
+    sandbox.stub(synth.gfs, 'rimraf').resolves();
     await assert.rejects(synth.synth, /please include a GITHUB_TOKEN/);
   });
 
   it('should create a changelog', () => {
     const changeSets: ChangeSet[] = [
       {
-        apiId: 'fake',
+        api: ({
+          id: 'fake',
+          name: 'fake',
+        } as {}) as Schema,
         changes: [
           {
             action: 'ADDED',
@@ -100,7 +111,10 @@ describe(__filename, () => {
     it('should get semverity for an add', async () => {
       const changeSets: ChangeSet[] = [
         {
-          apiId: 'fake',
+          api: ({
+            id: 'fake',
+            name: 'fake',
+          } as {}) as Schema,
           changes: [
             {
               action: 'ADDED',
@@ -116,7 +130,10 @@ describe(__filename, () => {
     it('should get semverity for a delete', async () => {
       const changeSets: ChangeSet[] = [
         {
-          apiId: 'fake',
+          api: ({
+            id: 'fake',
+            name: 'fake',
+          } as {}) as Schema,
           changes: [
             {
               action: 'DELETED',
@@ -132,7 +149,10 @@ describe(__filename, () => {
     it('should get semverity for an update', async () => {
       const changeSets: ChangeSet[] = [
         {
-          apiId: 'fake',
+          api: ({
+            id: 'fake',
+            name: 'fake',
+          } as {}) as Schema,
           changes: [
             {
               action: 'CHANGED',
@@ -148,7 +168,10 @@ describe(__filename, () => {
     it('should choose the most impactful change', async () => {
       const changeSets: ChangeSet[] = [
         {
-          apiId: 'fake',
+          api: ({
+            id: 'fake',
+            name: 'fake',
+          } as {}) as Schema,
           changes: [
             {
               action: 'ADDED',
