@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace calendar_v3 {
   export interface Options extends GlobalOptions {
@@ -1003,9 +1005,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Acl$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Acl$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Acl$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Acl$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1019,10 +1030,15 @@ export namespace calendar_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Acl$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1054,7 +1070,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1123,9 +1142,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Acl$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Acl$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AclRule>;
+    get(
+      params: Params$Resource$Acl$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Acl$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
@@ -1139,10 +1167,17 @@ export namespace calendar_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Acl$Get
-        | BodyResponseCallback<Schema$AclRule>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
-      callback?: BodyResponseCallback<Schema$AclRule>
-    ): void | GaxiosPromise<Schema$AclRule> {
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1174,7 +1209,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AclRule>(parameters, callback);
+        createAPIRequest<Schema$AclRule>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
@@ -1253,9 +1291,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Acl$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Acl$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AclRule>;
+    insert(
+      params: Params$Resource$Acl$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Acl$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
@@ -1269,10 +1316,17 @@ export namespace calendar_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Acl$Insert
-        | BodyResponseCallback<Schema$AclRule>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
-      callback?: BodyResponseCallback<Schema$AclRule>
-    ): void | GaxiosPromise<Schema$AclRule> {
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1305,7 +1359,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AclRule>(parameters, callback);
+        createAPIRequest<Schema$AclRule>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
@@ -1383,9 +1440,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Acl$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Acl$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Acl>;
+    list(
+      params: Params$Resource$Acl$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Acl$List,
       options: MethodOptions | BodyResponseCallback<Schema$Acl>,
@@ -1399,10 +1465,17 @@ export namespace calendar_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Acl$List
-        | BodyResponseCallback<Schema$Acl>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Acl>,
-      callback?: BodyResponseCallback<Schema$Acl>
-    ): void | GaxiosPromise<Schema$Acl> {
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Acl>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Acl> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1435,7 +1508,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Acl>(parameters, callback);
+        createAPIRequest<Schema$Acl>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Acl>(parameters);
       }
@@ -1517,9 +1593,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Acl$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Acl$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AclRule>;
+    patch(
+      params: Params$Resource$Acl$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Acl$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
@@ -1533,10 +1618,17 @@ export namespace calendar_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Acl$Patch
-        | BodyResponseCallback<Schema$AclRule>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
-      callback?: BodyResponseCallback<Schema$AclRule>
-    ): void | GaxiosPromise<Schema$AclRule> {
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1568,7 +1660,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AclRule>(parameters, callback);
+        createAPIRequest<Schema$AclRule>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
@@ -1650,9 +1745,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Acl$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Acl$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AclRule>;
+    update(
+      params: Params$Resource$Acl$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Acl$Update,
       options: MethodOptions | BodyResponseCallback<Schema$AclRule>,
@@ -1666,10 +1770,17 @@ export namespace calendar_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Acl$Update
-        | BodyResponseCallback<Schema$AclRule>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AclRule>,
-      callback?: BodyResponseCallback<Schema$AclRule>
-    ): void | GaxiosPromise<Schema$AclRule> {
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AclRule>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AclRule> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1701,7 +1812,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AclRule>(parameters, callback);
+        createAPIRequest<Schema$AclRule>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AclRule>(parameters);
       }
@@ -1802,9 +1916,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Acl$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Acl$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Acl$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Acl$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -1818,10 +1941,17 @@ export namespace calendar_v3 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Acl$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1853,7 +1983,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -2072,9 +2205,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Calendarlist$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Calendarlist$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Calendarlist$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Calendarlist$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2088,10 +2230,15 @@ export namespace calendar_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Calendarlist$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2124,7 +2271,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2204,9 +2354,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Calendarlist$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Calendarlist$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CalendarListEntry>;
+    get(
+      params: Params$Resource$Calendarlist$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Calendarlist$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
@@ -2220,12 +2379,20 @@ export namespace calendar_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Calendarlist$Get
-        | BodyResponseCallback<Schema$CalendarListEntry>,
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CalendarListEntry>,
-      callback?: BodyResponseCallback<Schema$CalendarListEntry>
-    ): void | GaxiosPromise<Schema$CalendarListEntry> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CalendarListEntry>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendarlist$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2257,7 +2424,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+        createAPIRequest<Schema$CalendarListEntry>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
@@ -2361,9 +2531,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Calendarlist$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Calendarlist$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CalendarListEntry>;
+    insert(
+      params: Params$Resource$Calendarlist$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Calendarlist$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
@@ -2377,12 +2556,20 @@ export namespace calendar_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Calendarlist$Insert
-        | BodyResponseCallback<Schema$CalendarListEntry>,
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CalendarListEntry>,
-      callback?: BodyResponseCallback<Schema$CalendarListEntry>
-    ): void | GaxiosPromise<Schema$CalendarListEntry> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CalendarListEntry>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2416,7 +2603,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+        createAPIRequest<Schema$CalendarListEntry>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
@@ -2501,9 +2691,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Calendarlist$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Calendarlist$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CalendarList>;
+    list(
+      params: Params$Resource$Calendarlist$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Calendarlist$List,
       options: MethodOptions | BodyResponseCallback<Schema$CalendarList>,
@@ -2517,12 +2716,17 @@ export namespace calendar_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Calendarlist$List
-        | BodyResponseCallback<Schema$CalendarList>,
+        | BodyResponseCallback<Schema$CalendarList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CalendarList>,
-      callback?: BodyResponseCallback<Schema$CalendarList>
-    ): void | GaxiosPromise<Schema$CalendarList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CalendarList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CalendarList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CalendarList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2556,7 +2760,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CalendarList>(parameters, callback);
+        createAPIRequest<Schema$CalendarList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CalendarList>(parameters);
       }
@@ -2663,9 +2870,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Calendarlist$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Calendarlist$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CalendarListEntry>;
+    patch(
+      params: Params$Resource$Calendarlist$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Calendarlist$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
@@ -2679,12 +2895,20 @@ export namespace calendar_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Calendarlist$Patch
-        | BodyResponseCallback<Schema$CalendarListEntry>,
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CalendarListEntry>,
-      callback?: BodyResponseCallback<Schema$CalendarListEntry>
-    ): void | GaxiosPromise<Schema$CalendarListEntry> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CalendarListEntry>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2717,7 +2941,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+        createAPIRequest<Schema$CalendarListEntry>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
@@ -2824,9 +3051,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Calendarlist$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Calendarlist$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CalendarListEntry>;
+    update(
+      params: Params$Resource$Calendarlist$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Calendarlist$Update,
       options: MethodOptions | BodyResponseCallback<Schema$CalendarListEntry>,
@@ -2840,12 +3076,20 @@ export namespace calendar_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Calendarlist$Update
-        | BodyResponseCallback<Schema$CalendarListEntry>,
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CalendarListEntry>,
-      callback?: BodyResponseCallback<Schema$CalendarListEntry>
-    ): void | GaxiosPromise<Schema$CalendarListEntry> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CalendarListEntry>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CalendarListEntry>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2878,7 +3122,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+        createAPIRequest<Schema$CalendarListEntry>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CalendarListEntry>(parameters);
       }
@@ -2986,9 +3233,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Calendarlist$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Calendarlist$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Calendarlist$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Calendarlist$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -3002,10 +3258,17 @@ export namespace calendar_v3 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Calendarlist$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Calendarlist$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3039,7 +3302,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -3252,9 +3518,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     clear(
+      params: Params$Resource$Calendars$Clear,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clear(
       params?: Params$Resource$Calendars$Clear,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    clear(
+      params: Params$Resource$Calendars$Clear,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     clear(
       params: Params$Resource$Calendars$Clear,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3268,10 +3543,15 @@ export namespace calendar_v3 {
     clear(
       paramsOrCallback?:
         | Params$Resource$Calendars$Clear
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3303,7 +3583,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3357,9 +3640,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Calendars$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Calendars$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Calendars$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Calendars$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3373,10 +3665,15 @@ export namespace calendar_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Calendars$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3409,7 +3706,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3478,9 +3778,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Calendars$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Calendars$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Calendar>;
+    get(
+      params: Params$Resource$Calendars$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Calendars$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
@@ -3494,10 +3803,17 @@ export namespace calendar_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Calendars$Get
-        | BodyResponseCallback<Schema$Calendar>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
-      callback?: BodyResponseCallback<Schema$Calendar>
-    ): void | GaxiosPromise<Schema$Calendar> {
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3530,7 +3846,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Calendar>(parameters, callback);
+        createAPIRequest<Schema$Calendar>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
       }
@@ -3608,9 +3927,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Calendars$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Calendars$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Calendar>;
+    insert(
+      params: Params$Resource$Calendars$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Calendars$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
@@ -3624,10 +3952,17 @@ export namespace calendar_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Calendars$Insert
-        | BodyResponseCallback<Schema$Calendar>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
-      callback?: BodyResponseCallback<Schema$Calendar>
-    ): void | GaxiosPromise<Schema$Calendar> {
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3660,7 +3995,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Calendar>(parameters, callback);
+        createAPIRequest<Schema$Calendar>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
       }
@@ -3742,9 +4080,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Calendars$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Calendars$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Calendar>;
+    patch(
+      params: Params$Resource$Calendars$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Calendars$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
@@ -3758,10 +4105,17 @@ export namespace calendar_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Calendars$Patch
-        | BodyResponseCallback<Schema$Calendar>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
-      callback?: BodyResponseCallback<Schema$Calendar>
-    ): void | GaxiosPromise<Schema$Calendar> {
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3794,7 +4148,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Calendar>(parameters, callback);
+        createAPIRequest<Schema$Calendar>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
       }
@@ -3876,9 +4233,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Calendars$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Calendars$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Calendar>;
+    update(
+      params: Params$Resource$Calendars$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Calendars$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Calendar>,
@@ -3892,10 +4258,17 @@ export namespace calendar_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Calendars$Update
-        | BodyResponseCallback<Schema$Calendar>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Calendar>,
-      callback?: BodyResponseCallback<Schema$Calendar>
-    ): void | GaxiosPromise<Schema$Calendar> {
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Calendar>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Calendar> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3928,7 +4301,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Calendar>(parameters, callback);
+        createAPIRequest<Schema$Calendar>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
       }
@@ -4086,9 +4462,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
       params?: Params$Resource$Channels$Stop,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    stop(
+      params: Params$Resource$Channels$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stop(
       params: Params$Resource$Channels$Stop,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4102,10 +4487,15 @@ export namespace calendar_v3 {
     stop(
       paramsOrCallback?:
         | Params$Resource$Channels$Stop
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4138,7 +4528,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4218,9 +4611,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Colors$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Colors$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Colors>;
+    get(
+      params: Params$Resource$Colors$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Colors$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Colors>,
@@ -4234,10 +4636,17 @@ export namespace calendar_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Colors$Get
-        | BodyResponseCallback<Schema$Colors>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Colors>,
-      callback?: BodyResponseCallback<Schema$Colors>
-    ): void | GaxiosPromise<Schema$Colors> {
+        | BodyResponseCallback<Schema$Colors>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Colors>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Colors>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Colors> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Colors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4270,7 +4679,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Colors>(parameters, callback);
+        createAPIRequest<Schema$Colors>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Colors>(parameters);
       }
@@ -4352,9 +4764,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Events$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Events$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Events$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Events$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4368,10 +4789,15 @@ export namespace calendar_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Events$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4403,7 +4829,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4516,9 +4945,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Events$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Events$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Event>;
+    get(
+      params: Params$Resource$Events$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Events$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Event>,
@@ -4532,10 +4970,17 @@ export namespace calendar_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Events$Get
-        | BodyResponseCallback<Schema$Event>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
-      callback?: BodyResponseCallback<Schema$Event>
-    ): void | GaxiosPromise<Schema$Event> {
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4567,7 +5012,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Event>(parameters, callback);
+        createAPIRequest<Schema$Event>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
       }
@@ -4718,9 +5166,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     import(
+      params: Params$Resource$Events$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
       params?: Params$Resource$Events$Import,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Event>;
+    import(
+      params: Params$Resource$Events$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     import(
       params: Params$Resource$Events$Import,
       options: MethodOptions | BodyResponseCallback<Schema$Event>,
@@ -4734,10 +5191,17 @@ export namespace calendar_v3 {
     import(
       paramsOrCallback?:
         | Params$Resource$Events$Import
-        | BodyResponseCallback<Schema$Event>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
-      callback?: BodyResponseCallback<Schema$Event>
-    ): void | GaxiosPromise<Schema$Event> {
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4769,7 +5233,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Event>(parameters, callback);
+        createAPIRequest<Schema$Event>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
       }
@@ -4931,9 +5398,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Events$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Events$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Event>;
+    insert(
+      params: Params$Resource$Events$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Events$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Event>,
@@ -4947,10 +5423,17 @@ export namespace calendar_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Events$Insert
-        | BodyResponseCallback<Schema$Event>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
-      callback?: BodyResponseCallback<Schema$Event>
-    ): void | GaxiosPromise<Schema$Event> {
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4982,7 +5465,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Event>(parameters, callback);
+        createAPIRequest<Schema$Event>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
       }
@@ -5086,9 +5572,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     instances(
+      params: Params$Resource$Events$Instances,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    instances(
       params?: Params$Resource$Events$Instances,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Events>;
+    instances(
+      params: Params$Resource$Events$Instances,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     instances(
       params: Params$Resource$Events$Instances,
       options: MethodOptions | BodyResponseCallback<Schema$Events>,
@@ -5102,10 +5597,17 @@ export namespace calendar_v3 {
     instances(
       paramsOrCallback?:
         | Params$Resource$Events$Instances
-        | BodyResponseCallback<Schema$Events>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Events>,
-      callback?: BodyResponseCallback<Schema$Events>
-    ): void | GaxiosPromise<Schema$Events> {
+        | BodyResponseCallback<Schema$Events>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Events>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Events>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Events> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Instances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5138,7 +5640,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Events>(parameters, callback);
+        createAPIRequest<Schema$Events>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Events>(parameters);
       }
@@ -5276,9 +5781,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Events$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Events$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Events>;
+    list(
+      params: Params$Resource$Events$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Events$List,
       options: MethodOptions | BodyResponseCallback<Schema$Events>,
@@ -5292,10 +5806,17 @@ export namespace calendar_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Events$List
-        | BodyResponseCallback<Schema$Events>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Events>,
-      callback?: BodyResponseCallback<Schema$Events>
-    ): void | GaxiosPromise<Schema$Events> {
+        | BodyResponseCallback<Schema$Events>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Events>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Events>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Events> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5327,7 +5848,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Events>(parameters, callback);
+        createAPIRequest<Schema$Events>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Events>(parameters);
       }
@@ -5440,9 +5964,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     move(
+      params: Params$Resource$Events$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
       params?: Params$Resource$Events$Move,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Event>;
+    move(
+      params: Params$Resource$Events$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move(
       params: Params$Resource$Events$Move,
       options: MethodOptions | BodyResponseCallback<Schema$Event>,
@@ -5456,10 +5989,17 @@ export namespace calendar_v3 {
     move(
       paramsOrCallback?:
         | Params$Resource$Events$Move
-        | BodyResponseCallback<Schema$Event>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
-      callback?: BodyResponseCallback<Schema$Event>
-    ): void | GaxiosPromise<Schema$Event> {
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5492,7 +6032,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Event>(parameters, callback);
+        createAPIRequest<Schema$Event>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
       }
@@ -5660,9 +6203,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Events$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Events$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Event>;
+    patch(
+      params: Params$Resource$Events$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Events$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Event>,
@@ -5676,10 +6228,17 @@ export namespace calendar_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Events$Patch
-        | BodyResponseCallback<Schema$Event>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
-      callback?: BodyResponseCallback<Schema$Event>
-    ): void | GaxiosPromise<Schema$Event> {
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5711,7 +6270,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Event>(parameters, callback);
+        createAPIRequest<Schema$Event>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
       }
@@ -5821,9 +6383,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     quickAdd(
+      params: Params$Resource$Events$Quickadd,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    quickAdd(
       params?: Params$Resource$Events$Quickadd,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Event>;
+    quickAdd(
+      params: Params$Resource$Events$Quickadd,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     quickAdd(
       params: Params$Resource$Events$Quickadd,
       options: MethodOptions | BodyResponseCallback<Schema$Event>,
@@ -5837,10 +6408,17 @@ export namespace calendar_v3 {
     quickAdd(
       paramsOrCallback?:
         | Params$Resource$Events$Quickadd
-        | BodyResponseCallback<Schema$Event>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
-      callback?: BodyResponseCallback<Schema$Event>
-    ): void | GaxiosPromise<Schema$Event> {
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Quickadd;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5872,7 +6450,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Event>(parameters, callback);
+        createAPIRequest<Schema$Event>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
       }
@@ -6040,9 +6621,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Events$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Events$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Event>;
+    update(
+      params: Params$Resource$Events$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Events$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Event>,
@@ -6056,10 +6646,17 @@ export namespace calendar_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Events$Update
-        | BodyResponseCallback<Schema$Event>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Event>,
-      callback?: BodyResponseCallback<Schema$Event>
-    ): void | GaxiosPromise<Schema$Event> {
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Event>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Event> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6091,7 +6688,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Event>(parameters, callback);
+        createAPIRequest<Schema$Event>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Event>(parameters);
       }
@@ -6246,9 +6846,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Events$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Events$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Events$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Events$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -6262,10 +6871,17 @@ export namespace calendar_v3 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Events$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6297,7 +6913,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -6843,9 +7462,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     query(
+      params: Params$Resource$Freebusy$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
       params?: Params$Resource$Freebusy$Query,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FreeBusyResponse>;
+    query(
+      params: Params$Resource$Freebusy$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     query(
       params: Params$Resource$Freebusy$Query,
       options: MethodOptions | BodyResponseCallback<Schema$FreeBusyResponse>,
@@ -6859,12 +7487,17 @@ export namespace calendar_v3 {
     query(
       paramsOrCallback?:
         | Params$Resource$Freebusy$Query
-        | BodyResponseCallback<Schema$FreeBusyResponse>,
+        | BodyResponseCallback<Schema$FreeBusyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FreeBusyResponse>,
-      callback?: BodyResponseCallback<Schema$FreeBusyResponse>
-    ): void | GaxiosPromise<Schema$FreeBusyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FreeBusyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FreeBusyResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FreeBusyResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Freebusy$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6897,7 +7530,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FreeBusyResponse>(parameters, callback);
+        createAPIRequest<Schema$FreeBusyResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FreeBusyResponse>(parameters);
       }
@@ -6982,9 +7618,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Settings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Settings$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Setting>;
+    get(
+      params: Params$Resource$Settings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Settings$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Setting>,
@@ -6998,10 +7643,17 @@ export namespace calendar_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Settings$Get
-        | BodyResponseCallback<Schema$Setting>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Setting>,
-      callback?: BodyResponseCallback<Schema$Setting>
-    ): void | GaxiosPromise<Schema$Setting> {
+        | BodyResponseCallback<Schema$Setting>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Setting>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Setting>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Setting> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7034,7 +7686,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Setting>(parameters, callback);
+        createAPIRequest<Schema$Setting>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Setting>(parameters);
       }
@@ -7110,9 +7765,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Settings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Settings$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Settings>;
+    list(
+      params: Params$Resource$Settings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Settings$List,
       options: MethodOptions | BodyResponseCallback<Schema$Settings>,
@@ -7126,10 +7790,17 @@ export namespace calendar_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Settings$List
-        | BodyResponseCallback<Schema$Settings>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Settings>,
-      callback?: BodyResponseCallback<Schema$Settings>
-    ): void | GaxiosPromise<Schema$Settings> {
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7162,7 +7833,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Settings>(parameters, callback);
+        createAPIRequest<Schema$Settings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Settings>(parameters);
       }
@@ -7261,9 +7935,18 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Settings$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Settings$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    watch(
+      params: Params$Resource$Settings$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Settings$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -7277,10 +7960,17 @@ export namespace calendar_v3 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Settings$Watch
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7313,7 +8003,10 @@ export namespace calendar_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }

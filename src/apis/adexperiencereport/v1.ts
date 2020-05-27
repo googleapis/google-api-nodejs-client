@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace adexperiencereport_v1 {
   export interface Options extends GlobalOptions {
@@ -239,9 +241,18 @@ export namespace adexperiencereport_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sites$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteSummaryResponse>;
+    get(
+      params: Params$Resource$Sites$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sites$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SiteSummaryResponse>,
@@ -255,12 +266,20 @@ export namespace adexperiencereport_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sites$Get
-        | BodyResponseCallback<Schema$SiteSummaryResponse>,
+        | BodyResponseCallback<Schema$SiteSummaryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteSummaryResponse>,
-      callback?: BodyResponseCallback<Schema$SiteSummaryResponse>
-    ): void | GaxiosPromise<Schema$SiteSummaryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SiteSummaryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -291,7 +310,10 @@ export namespace adexperiencereport_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback);
+        createAPIRequest<Schema$SiteSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SiteSummaryResponse>(parameters);
       }
@@ -365,9 +387,18 @@ export namespace adexperiencereport_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Violatingsites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Violatingsites$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ViolatingSitesResponse>;
+    list(
+      params: Params$Resource$Violatingsites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Violatingsites$List,
       options:
@@ -383,12 +414,20 @@ export namespace adexperiencereport_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Violatingsites$List
-        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ViolatingSitesResponse>,
-      callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>
-    ): void | GaxiosPromise<Schema$ViolatingSitesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ViolatingSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ViolatingSitesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Violatingsites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -420,7 +459,10 @@ export namespace adexperiencereport_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback);
+        createAPIRequest<Schema$ViolatingSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ViolatingSitesResponse>(parameters);
       }

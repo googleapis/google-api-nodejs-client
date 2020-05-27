@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace slides_v1 {
   export interface Options extends GlobalOptions {
@@ -2654,9 +2656,18 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Presentations$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Presentations$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdatePresentationResponse>;
+    batchUpdate(
+      params: Params$Resource$Presentations$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Presentations$Batchupdate,
       options:
@@ -2674,12 +2685,20 @@ export namespace slides_v1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Presentations$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdatePresentationResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdatePresentationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdatePresentationResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2714,7 +2733,7 @@ export namespace slides_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePresentationResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdatePresentationResponse>(
@@ -2801,9 +2820,18 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Presentations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Presentations$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Presentation>;
+    create(
+      params: Params$Resource$Presentations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Presentations$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Presentation>,
@@ -2817,12 +2845,17 @@ export namespace slides_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Presentations$Create
-        | BodyResponseCallback<Schema$Presentation>,
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Presentation>,
-      callback?: BodyResponseCallback<Schema$Presentation>
-    ): void | GaxiosPromise<Schema$Presentation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Presentation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2853,7 +2886,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Presentation>(parameters, callback);
+        createAPIRequest<Schema$Presentation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Presentation>(parameters);
       }
@@ -2926,9 +2962,18 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Presentations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Presentations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Presentation>;
+    get(
+      params: Params$Resource$Presentations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Presentations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Presentation>,
@@ -2942,12 +2987,17 @@ export namespace slides_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Presentations$Get
-        | BodyResponseCallback<Schema$Presentation>,
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Presentation>,
-      callback?: BodyResponseCallback<Schema$Presentation>
-    ): void | GaxiosPromise<Schema$Presentation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Presentation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Presentation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2981,7 +3031,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Presentation>(parameters, callback);
+        createAPIRequest<Schema$Presentation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Presentation>(parameters);
       }
@@ -3106,9 +3159,18 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Presentations$Pages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Presentations$Pages$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Page>;
+    get(
+      params: Params$Resource$Presentations$Pages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Presentations$Pages$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Page>,
@@ -3122,10 +3184,17 @@ export namespace slides_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Presentations$Pages$Get
-        | BodyResponseCallback<Schema$Page>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Page>,
-      callback?: BodyResponseCallback<Schema$Page>
-    ): void | GaxiosPromise<Schema$Page> {
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3159,7 +3228,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Page>(parameters, callback);
+        createAPIRequest<Schema$Page>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
       }
@@ -3240,9 +3312,18 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     getThumbnail(
+      params: Params$Resource$Presentations$Pages$Getthumbnail,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getThumbnail(
       params?: Params$Resource$Presentations$Pages$Getthumbnail,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Thumbnail>;
+    getThumbnail(
+      params: Params$Resource$Presentations$Pages$Getthumbnail,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getThumbnail(
       params: Params$Resource$Presentations$Pages$Getthumbnail,
       options: MethodOptions | BodyResponseCallback<Schema$Thumbnail>,
@@ -3256,12 +3337,17 @@ export namespace slides_v1 {
     getThumbnail(
       paramsOrCallback?:
         | Params$Resource$Presentations$Pages$Getthumbnail
-        | BodyResponseCallback<Schema$Thumbnail>,
+        | BodyResponseCallback<Schema$Thumbnail>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Thumbnail>,
-      callback?: BodyResponseCallback<Schema$Thumbnail>
-    ): void | GaxiosPromise<Schema$Thumbnail> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Thumbnail>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Thumbnail>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Thumbnail> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Presentations$Pages$Getthumbnail;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3295,7 +3381,10 @@ export namespace slides_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Thumbnail>(parameters, callback);
+        createAPIRequest<Schema$Thumbnail>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Thumbnail>(parameters);
       }

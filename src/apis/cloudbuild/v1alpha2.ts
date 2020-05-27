@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudbuild_v1alpha2 {
   export interface Options extends GlobalOptions {
@@ -731,9 +733,18 @@ export namespace cloudbuild_v1alpha2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Workerpools$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Workerpools$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkerPool>;
+    create(
+      params: Params$Resource$Projects$Workerpools$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Workerpools$Create,
       options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
@@ -747,12 +758,17 @@ export namespace cloudbuild_v1alpha2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Workerpools$Create
-        | BodyResponseCallback<Schema$WorkerPool>,
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkerPool>,
-      callback?: BodyResponseCallback<Schema$WorkerPool>
-    ): void | GaxiosPromise<Schema$WorkerPool> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -786,7 +802,10 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkerPool>(parameters, callback);
+        createAPIRequest<Schema$WorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkerPool>(parameters);
       }
@@ -844,9 +863,18 @@ export namespace cloudbuild_v1alpha2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Workerpools$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Workerpools$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Workerpools$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Workerpools$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -860,10 +888,17 @@ export namespace cloudbuild_v1alpha2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Workerpools$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -894,7 +929,10 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -961,9 +999,18 @@ export namespace cloudbuild_v1alpha2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Workerpools$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Workerpools$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkerPool>;
+    get(
+      params: Params$Resource$Projects$Workerpools$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Workerpools$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
@@ -977,12 +1024,17 @@ export namespace cloudbuild_v1alpha2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Workerpools$Get
-        | BodyResponseCallback<Schema$WorkerPool>,
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkerPool>,
-      callback?: BodyResponseCallback<Schema$WorkerPool>
-    ): void | GaxiosPromise<Schema$WorkerPool> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1013,7 +1065,10 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkerPool>(parameters, callback);
+        createAPIRequest<Schema$WorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkerPool>(parameters);
       }
@@ -1073,9 +1128,18 @@ export namespace cloudbuild_v1alpha2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Workerpools$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Workerpools$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListWorkerPoolsResponse>;
+    list(
+      params: Params$Resource$Projects$Workerpools$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Workerpools$List,
       options:
@@ -1091,12 +1155,20 @@ export namespace cloudbuild_v1alpha2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Workerpools$List
-        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
-      callback?: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
-    ): void | GaxiosPromise<Schema$ListWorkerPoolsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkerPoolsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1130,7 +1202,10 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListWorkerPoolsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListWorkerPoolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListWorkerPoolsResponse>(parameters);
       }
@@ -1218,9 +1293,18 @@ export namespace cloudbuild_v1alpha2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Workerpools$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Workerpools$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkerPool>;
+    patch(
+      params: Params$Resource$Projects$Workerpools$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Workerpools$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
@@ -1234,12 +1318,17 @@ export namespace cloudbuild_v1alpha2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Workerpools$Patch
-        | BodyResponseCallback<Schema$WorkerPool>,
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WorkerPool>,
-      callback?: BodyResponseCallback<Schema$WorkerPool>
-    ): void | GaxiosPromise<Schema$WorkerPool> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Workerpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1270,7 +1359,10 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkerPool>(parameters, callback);
+        createAPIRequest<Schema$WorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WorkerPool>(parameters);
       }

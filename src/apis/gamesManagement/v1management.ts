@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace gamesManagement_v1management {
   export interface Options extends GlobalOptions {
@@ -412,9 +414,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(
+      params: Params$Resource$Achievements$Reset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reset(
       params?: Params$Resource$Achievements$Reset,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementResetResponse>;
+    reset(
+      params: Params$Resource$Achievements$Reset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reset(
       params: Params$Resource$Achievements$Reset,
       options:
@@ -432,12 +443,20 @@ export namespace gamesManagement_v1management {
     reset(
       paramsOrCallback?:
         | Params$Resource$Achievements$Reset
-        | BodyResponseCallback<Schema$AchievementResetResponse>,
+        | BodyResponseCallback<Schema$AchievementResetResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementResetResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementResetResponse>
-    ): void | GaxiosPromise<Schema$AchievementResetResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementResetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementResetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementResetResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -470,7 +489,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AchievementResetResponse>(parameters, callback);
+        createAPIRequest<Schema$AchievementResetResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AchievementResetResponse>(parameters);
       }
@@ -526,9 +548,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAll(
+      params: Params$Resource$Achievements$Resetall,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetAll(
       params?: Params$Resource$Achievements$Resetall,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementResetAllResponse>;
+    resetAll(
+      params: Params$Resource$Achievements$Resetall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetAll(
       params: Params$Resource$Achievements$Resetall,
       options:
@@ -546,12 +577,20 @@ export namespace gamesManagement_v1management {
     resetAll(
       paramsOrCallback?:
         | Params$Resource$Achievements$Resetall
-        | BodyResponseCallback<Schema$AchievementResetAllResponse>,
+        | BodyResponseCallback<Schema$AchievementResetAllResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementResetAllResponse>,
-      callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>
-    ): void | GaxiosPromise<Schema$AchievementResetAllResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementResetAllResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementResetAllResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementResetAllResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -587,7 +626,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<Schema$AchievementResetAllResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementResetAllResponse>(parameters);
@@ -638,9 +677,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAllForAllPlayers(
+      params: Params$Resource$Achievements$Resetallforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetAllForAllPlayers(
       params?: Params$Resource$Achievements$Resetallforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetAllForAllPlayers(
+      params: Params$Resource$Achievements$Resetallforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetAllForAllPlayers(
       params: Params$Resource$Achievements$Resetallforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -654,10 +702,15 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Achievements$Resetallforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -690,7 +743,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -744,9 +800,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
+      params: Params$Resource$Achievements$Resetforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetForAllPlayers(
       params?: Params$Resource$Achievements$Resetforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetForAllPlayers(
+      params: Params$Resource$Achievements$Resetforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetForAllPlayers(
       params: Params$Resource$Achievements$Resetforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -760,10 +825,15 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Achievements$Resetforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -797,7 +867,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -857,9 +930,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetMultipleForAllPlayers(
+      params: Params$Resource$Achievements$Resetmultipleforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetMultipleForAllPlayers(
       params?: Params$Resource$Achievements$Resetmultipleforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetMultipleForAllPlayers(
+      params: Params$Resource$Achievements$Resetmultipleforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetMultipleForAllPlayers(
       params: Params$Resource$Achievements$Resetmultipleforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -873,10 +955,15 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Achievements$Resetmultipleforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievements$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -910,7 +997,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1037,9 +1127,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     listHidden(
+      params: Params$Resource$Applications$Listhidden,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listHidden(
       params?: Params$Resource$Applications$Listhidden,
       options?: MethodOptions
     ): GaxiosPromise<Schema$HiddenPlayerList>;
+    listHidden(
+      params: Params$Resource$Applications$Listhidden,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listHidden(
       params: Params$Resource$Applications$Listhidden,
       options: MethodOptions | BodyResponseCallback<Schema$HiddenPlayerList>,
@@ -1053,12 +1152,17 @@ export namespace gamesManagement_v1management {
     listHidden(
       paramsOrCallback?:
         | Params$Resource$Applications$Listhidden
-        | BodyResponseCallback<Schema$HiddenPlayerList>,
+        | BodyResponseCallback<Schema$HiddenPlayerList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$HiddenPlayerList>,
-      callback?: BodyResponseCallback<Schema$HiddenPlayerList>
-    ): void | GaxiosPromise<Schema$HiddenPlayerList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HiddenPlayerList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HiddenPlayerList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HiddenPlayerList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Applications$Listhidden;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1092,7 +1196,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$HiddenPlayerList>(parameters, callback);
+        createAPIRequest<Schema$HiddenPlayerList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$HiddenPlayerList>(parameters);
       }
@@ -1174,9 +1281,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(
+      params: Params$Resource$Events$Reset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reset(
       params?: Params$Resource$Events$Reset,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    reset(
+      params: Params$Resource$Events$Reset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reset(
       params: Params$Resource$Events$Reset,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1190,10 +1306,15 @@ export namespace gamesManagement_v1management {
     reset(
       paramsOrCallback?:
         | Params$Resource$Events$Reset
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1225,7 +1346,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1275,9 +1399,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAll(
+      params: Params$Resource$Events$Resetall,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetAll(
       params?: Params$Resource$Events$Resetall,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetAll(
+      params: Params$Resource$Events$Resetall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetAll(
       params: Params$Resource$Events$Resetall,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1291,10 +1424,15 @@ export namespace gamesManagement_v1management {
     resetAll(
       paramsOrCallback?:
         | Params$Resource$Events$Resetall
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1327,7 +1465,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1377,9 +1518,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAllForAllPlayers(
+      params: Params$Resource$Events$Resetallforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetAllForAllPlayers(
       params?: Params$Resource$Events$Resetallforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetAllForAllPlayers(
+      params: Params$Resource$Events$Resetallforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetAllForAllPlayers(
       params: Params$Resource$Events$Resetallforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1393,10 +1543,15 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Events$Resetallforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1429,7 +1584,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1483,9 +1641,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
+      params: Params$Resource$Events$Resetforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetForAllPlayers(
       params?: Params$Resource$Events$Resetforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetForAllPlayers(
+      params: Params$Resource$Events$Resetforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetForAllPlayers(
       params: Params$Resource$Events$Resetforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1499,10 +1666,15 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Events$Resetforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1536,7 +1708,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1596,9 +1771,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetMultipleForAllPlayers(
+      params: Params$Resource$Events$Resetmultipleforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetMultipleForAllPlayers(
       params?: Params$Resource$Events$Resetmultipleforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetMultipleForAllPlayers(
+      params: Params$Resource$Events$Resetmultipleforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetMultipleForAllPlayers(
       params: Params$Resource$Events$Resetmultipleforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1612,10 +1796,15 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Events$Resetmultipleforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Events$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1648,7 +1837,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1762,9 +1954,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     hide(
+      params: Params$Resource$Players$Hide,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    hide(
       params?: Params$Resource$Players$Hide,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    hide(
+      params: Params$Resource$Players$Hide,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     hide(
       params: Params$Resource$Players$Hide,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1778,10 +1979,15 @@ export namespace gamesManagement_v1management {
     hide(
       paramsOrCallback?:
         | Params$Resource$Players$Hide
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1814,7 +2020,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1872,9 +2081,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     unhide(
+      params: Params$Resource$Players$Unhide,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unhide(
       params?: Params$Resource$Players$Unhide,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    unhide(
+      params: Params$Resource$Players$Unhide,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unhide(
       params: Params$Resource$Players$Unhide,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1888,10 +2106,15 @@ export namespace gamesManagement_v1management {
     unhide(
       paramsOrCallback?:
         | Params$Resource$Players$Unhide
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1924,7 +2147,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2023,9 +2249,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(
+      params: Params$Resource$Scores$Reset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reset(
       params?: Params$Resource$Scores$Reset,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerScoreResetResponse>;
+    reset(
+      params: Params$Resource$Scores$Reset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reset(
       params: Params$Resource$Scores$Reset,
       options:
@@ -2043,12 +2278,20 @@ export namespace gamesManagement_v1management {
     reset(
       paramsOrCallback?:
         | Params$Resource$Scores$Reset
-        | BodyResponseCallback<Schema$PlayerScoreResetResponse>,
+        | BodyResponseCallback<Schema$PlayerScoreResetResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreResetResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>
-    ): void | GaxiosPromise<Schema$PlayerScoreResetResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerScoreResetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerScoreResetResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2081,7 +2324,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PlayerScoreResetResponse>(parameters, callback);
+        createAPIRequest<Schema$PlayerScoreResetResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PlayerScoreResetResponse>(parameters);
       }
@@ -2137,9 +2383,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAll(
+      params: Params$Resource$Scores$Resetall,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetAll(
       params?: Params$Resource$Scores$Resetall,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PlayerScoreResetAllResponse>;
+    resetAll(
+      params: Params$Resource$Scores$Resetall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetAll(
       params: Params$Resource$Scores$Resetall,
       options:
@@ -2157,12 +2412,20 @@ export namespace gamesManagement_v1management {
     resetAll(
       paramsOrCallback?:
         | Params$Resource$Scores$Resetall
-        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
+        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
-      callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
-    ): void | GaxiosPromise<Schema$PlayerScoreResetAllResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlayerScoreResetAllResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlayerScoreResetAllResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2197,7 +2460,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetAllResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PlayerScoreResetAllResponse>(parameters);
@@ -2248,9 +2511,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAllForAllPlayers(
+      params: Params$Resource$Scores$Resetallforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetAllForAllPlayers(
       params?: Params$Resource$Scores$Resetallforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetAllForAllPlayers(
+      params: Params$Resource$Scores$Resetallforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetAllForAllPlayers(
       params: Params$Resource$Scores$Resetallforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2264,10 +2536,15 @@ export namespace gamesManagement_v1management {
     resetAllForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Scores$Resetallforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2300,7 +2577,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2354,9 +2634,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetForAllPlayers(
+      params: Params$Resource$Scores$Resetforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetForAllPlayers(
       params?: Params$Resource$Scores$Resetforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetForAllPlayers(
+      params: Params$Resource$Scores$Resetforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetForAllPlayers(
       params: Params$Resource$Scores$Resetforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2370,10 +2659,15 @@ export namespace gamesManagement_v1management {
     resetForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Scores$Resetforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2407,7 +2701,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2467,9 +2764,18 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetMultipleForAllPlayers(
+      params: Params$Resource$Scores$Resetmultipleforallplayers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetMultipleForAllPlayers(
       params?: Params$Resource$Scores$Resetmultipleforallplayers,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    resetMultipleForAllPlayers(
+      params: Params$Resource$Scores$Resetmultipleforallplayers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resetMultipleForAllPlayers(
       params: Params$Resource$Scores$Resetmultipleforallplayers,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2483,10 +2789,15 @@ export namespace gamesManagement_v1management {
     resetMultipleForAllPlayers(
       paramsOrCallback?:
         | Params$Resource$Scores$Resetmultipleforallplayers
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Scores$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2519,7 +2830,10 @@ export namespace gamesManagement_v1management {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }

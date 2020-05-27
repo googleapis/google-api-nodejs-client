@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace discovery_v1 {
   export interface Options extends GlobalOptions {
@@ -499,9 +501,18 @@ export namespace discovery_v1 {
      * @return {object} Request object
      */
     getRest(
+      params: Params$Resource$Apis$Getrest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRest(
       params?: Params$Resource$Apis$Getrest,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RestDescription>;
+    getRest(
+      params: Params$Resource$Apis$Getrest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getRest(
       params: Params$Resource$Apis$Getrest,
       options: MethodOptions | BodyResponseCallback<Schema$RestDescription>,
@@ -515,12 +526,17 @@ export namespace discovery_v1 {
     getRest(
       paramsOrCallback?:
         | Params$Resource$Apis$Getrest
-        | BodyResponseCallback<Schema$RestDescription>,
+        | BodyResponseCallback<Schema$RestDescription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RestDescription>,
-      callback?: BodyResponseCallback<Schema$RestDescription>
-    ): void | GaxiosPromise<Schema$RestDescription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RestDescription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RestDescription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RestDescription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$Getrest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -553,7 +569,10 @@ export namespace discovery_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RestDescription>(parameters, callback);
+        createAPIRequest<Schema$RestDescription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RestDescription>(parameters);
       }
@@ -617,9 +636,18 @@ export namespace discovery_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Apis$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Apis$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DirectoryList>;
+    list(
+      params: Params$Resource$Apis$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Apis$List,
       options: MethodOptions | BodyResponseCallback<Schema$DirectoryList>,
@@ -633,12 +661,17 @@ export namespace discovery_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Apis$List
-        | BodyResponseCallback<Schema$DirectoryList>,
+        | BodyResponseCallback<Schema$DirectoryList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DirectoryList>,
-      callback?: BodyResponseCallback<Schema$DirectoryList>
-    ): void | GaxiosPromise<Schema$DirectoryList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DirectoryList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DirectoryList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DirectoryList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apis$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -668,7 +701,10 @@ export namespace discovery_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DirectoryList>(parameters, callback);
+        createAPIRequest<Schema$DirectoryList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DirectoryList>(parameters);
       }

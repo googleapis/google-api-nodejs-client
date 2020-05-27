@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace ml_v1 {
   export interface Options extends GlobalOptions {
@@ -1619,9 +1621,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     explain(
+      params: Params$Resource$Projects$Explain,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    explain(
       params?: Params$Resource$Projects$Explain,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleApi__HttpBody>;
+    explain(
+      params: Params$Resource$Projects$Explain,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     explain(
       params: Params$Resource$Projects$Explain,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
@@ -1635,12 +1646,20 @@ export namespace ml_v1 {
     explain(
       paramsOrCallback?:
         | Params$Resource$Projects$Explain
-        | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
-      callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>
-    ): void | GaxiosPromise<Schema$GoogleApi__HttpBody> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApi__HttpBody>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Explain;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1673,7 +1692,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback);
+        createAPIRequest<Schema$GoogleApi__HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleApi__HttpBody>(parameters);
       }
@@ -1734,9 +1756,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Projects$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Projects$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse>;
+    getConfig(
+      params: Params$Resource$Projects$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Projects$Getconfig,
       options:
@@ -1754,12 +1785,20 @@ export namespace ml_v1 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Getconfig
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1795,7 +1834,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
@@ -1870,9 +1909,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     predict(
+      params: Params$Resource$Projects$Predict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    predict(
       params?: Params$Resource$Projects$Predict,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleApi__HttpBody>;
+    predict(
+      params: Params$Resource$Projects$Predict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     predict(
       params: Params$Resource$Projects$Predict,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
@@ -1886,12 +1934,20 @@ export namespace ml_v1 {
     predict(
       paramsOrCallback?:
         | Params$Resource$Projects$Predict
-        | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
-      callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>
-    ): void | GaxiosPromise<Schema$GoogleApi__HttpBody> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleApi__HttpBody>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Predict;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1924,7 +1980,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback);
+        createAPIRequest<Schema$GoogleApi__HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleApi__HttpBody>(parameters);
       }
@@ -2040,9 +2099,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Jobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Jobs$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    cancel(
+      params: Params$Resource$Projects$Jobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Jobs$Cancel,
       options:
@@ -2058,12 +2126,20 @@ export namespace ml_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf__Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2094,7 +2170,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
       }
@@ -2184,9 +2263,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Jobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Jobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Job>;
+    create(
+      params: Params$Resource$Projects$Jobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Jobs$Create,
       options:
@@ -2202,12 +2290,20 @@ export namespace ml_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Create
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Job> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Job>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2238,7 +2334,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
       }
@@ -2311,9 +2410,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Jobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Jobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Job>;
+    get(
+      params: Params$Resource$Projects$Jobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Jobs$Get,
       options:
@@ -2329,12 +2437,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Get
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Job> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Job>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2365,7 +2481,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
       }
@@ -2442,9 +2561,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Jobs$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Jobs$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Jobs$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Jobs$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -2460,12 +2588,20 @@ export namespace ml_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Getiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
-    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1__Policy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2499,7 +2635,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+        createAPIRequest<Schema$GoogleIamV1__Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
@@ -2586,9 +2725,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Jobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Jobs$List,
       options:
@@ -2606,12 +2754,20 @@ export namespace ml_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$List
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2644,7 +2800,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
@@ -2758,9 +2914,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Jobs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Jobs$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Job>;
+    patch(
+      params: Params$Resource$Projects$Jobs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Jobs$Patch,
       options:
@@ -2776,12 +2941,20 @@ export namespace ml_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Patch
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Job> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Job>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2812,7 +2985,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Job>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
       }
@@ -2885,9 +3061,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Jobs$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Jobs$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Jobs$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Jobs$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -2903,12 +3088,20 @@ export namespace ml_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Setiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
-    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1__Policy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2942,7 +3135,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+        createAPIRequest<Schema$GoogleIamV1__Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
@@ -3011,9 +3207,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Jobs$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Jobs$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Jobs$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Jobs$Testiampermissions,
       options:
@@ -3037,14 +3242,20 @@ export namespace ml_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Jobs$Testiampermissions
-        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleIamV1__TestIamPermissionsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Jobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3080,7 +3291,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -3301,9 +3512,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options:
@@ -3319,12 +3539,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Location>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Location> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Location>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Location>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3357,7 +3585,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Location>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Location>(parameters);
@@ -3435,9 +3663,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -3461,14 +3698,20 @@ export namespace ml_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudMlV1__ListLocationsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3504,7 +3747,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
@@ -3604,9 +3847,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options:
@@ -3622,12 +3874,20 @@ export namespace ml_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf__Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3658,7 +3918,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
       }
@@ -3721,9 +3984,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
@@ -3741,12 +4013,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3779,7 +4059,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3899,9 +4179,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Studies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Studies$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Study>;
+    create(
+      params: Params$Resource$Projects$Locations$Studies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Studies$Create,
       options:
@@ -3917,12 +4206,20 @@ export namespace ml_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Create
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Study> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Study>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3956,7 +4253,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Study>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters);
       }
@@ -4013,9 +4313,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Studies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Studies$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Studies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Studies$Delete,
       options:
@@ -4031,12 +4340,20 @@ export namespace ml_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Delete
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf__Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4067,7 +4384,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
       }
@@ -4130,9 +4450,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Studies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Studies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Study>;
+    get(
+      params: Params$Resource$Projects$Locations$Studies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Studies$Get,
       options:
@@ -4148,12 +4477,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Get
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Study> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Study>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4184,7 +4521,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Study>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters);
       }
@@ -4244,9 +4584,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Studies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Studies$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__ListStudiesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Studies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Studies$List,
       options:
@@ -4270,14 +4619,20 @@ export namespace ml_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$List
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudMlV1__ListStudiesResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListStudiesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__ListStudiesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4313,7 +4668,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListStudiesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListStudiesResponse>(
@@ -4459,9 +4814,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     addMeasurement(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addMeasurement(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    addMeasurement(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addMeasurement(
       params: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
       options:
@@ -4479,12 +4843,20 @@ export namespace ml_v1 {
     addMeasurement(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Trial>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4518,7 +4890,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
       }
@@ -4591,9 +4966,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     checkEarlyStoppingState(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkEarlyStoppingState(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    checkEarlyStoppingState(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     checkEarlyStoppingState(
       params: Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate,
       options:
@@ -4611,12 +4995,20 @@ export namespace ml_v1 {
     checkEarlyStoppingState(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4652,7 +5044,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -4735,9 +5127,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     complete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    complete(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Complete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    complete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     complete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
       options:
@@ -4755,12 +5156,20 @@ export namespace ml_v1 {
     complete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Complete
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Trial>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Complete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4794,7 +5203,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
       }
@@ -4880,9 +5292,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    create(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Studies$Trials$Create,
       options:
@@ -4898,12 +5319,20 @@ export namespace ml_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Create
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Trial>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4937,7 +5366,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
       }
@@ -4995,9 +5427,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
       options:
@@ -5013,12 +5454,20 @@ export namespace ml_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Delete
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf__Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5049,7 +5498,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
       }
@@ -5118,9 +5570,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    get(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Studies$Trials$Get,
       options:
@@ -5136,12 +5597,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Get
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Trial>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5172,7 +5641,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
       }
@@ -5231,9 +5703,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Studies$Trials$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Studies$Trials$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__ListTrialsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Studies$Trials$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Studies$Trials$List,
       options:
@@ -5251,14 +5732,20 @@ export namespace ml_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$List
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudMlV1__ListTrialsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListTrialsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__ListTrialsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5294,7 +5781,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListTrialsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListTrialsResponse>(
@@ -5373,9 +5860,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     stop(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Stop,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    stop(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stop(
       params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
       options:
@@ -5391,12 +5887,20 @@ export namespace ml_v1 {
     stop(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Stop
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Trial>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5427,7 +5931,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
       }
@@ -5500,9 +6007,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     suggest(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggest(
       params?: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    suggest(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     suggest(
       params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
       options:
@@ -5520,12 +6036,20 @@ export namespace ml_v1 {
     suggest(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Suggest
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Studies$Trials$Suggest;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5561,7 +6085,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -5794,9 +6318,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Models$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Models$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Model>;
+    create(
+      params: Params$Resource$Projects$Models$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Models$Create,
       options:
@@ -5812,12 +6345,20 @@ export namespace ml_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Create
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Model> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Model>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5851,7 +6392,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Model>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters);
       }
@@ -5914,9 +6458,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Models$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Models$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    delete(
+      params: Params$Resource$Projects$Models$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Models$Delete,
       options:
@@ -5934,12 +6487,20 @@ export namespace ml_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5972,7 +6533,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -6044,9 +6605,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Models$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Models$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Model>;
+    get(
+      params: Params$Resource$Projects$Models$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Models$Get,
       options:
@@ -6062,12 +6632,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Get
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Model> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Model>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6098,7 +6676,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Model>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters);
       }
@@ -6175,9 +6756,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Models$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Models$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Models$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Models$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -6193,12 +6783,20 @@ export namespace ml_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Getiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
-    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1__Policy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6232,7 +6830,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+        createAPIRequest<Schema$GoogleIamV1__Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
@@ -6311,9 +6912,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Models$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Models$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse>;
+    list(
+      params: Params$Resource$Projects$Models$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Models$List,
       options:
@@ -6331,14 +6941,20 @@ export namespace ml_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$List
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudMlV1__ListModelsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6374,7 +6990,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
@@ -6473,9 +7089,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Models$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Models$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    patch(
+      params: Params$Resource$Projects$Models$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Models$Patch,
       options:
@@ -6493,12 +7118,20 @@ export namespace ml_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6531,7 +7164,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -6607,9 +7240,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Models$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Models$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleIamV1__Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Models$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Models$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -6625,12 +7267,20 @@ export namespace ml_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Setiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1__Policy>,
-      callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>
-    ): void | GaxiosPromise<Schema$GoogleIamV1__Policy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1__Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1__Policy>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6664,7 +7314,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
+        createAPIRequest<Schema$GoogleIamV1__Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__Policy>(parameters);
       }
@@ -6733,9 +7386,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Models$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Models$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Models$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Models$Testiampermissions,
       options:
@@ -6759,14 +7421,20 @@ export namespace ml_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Testiampermissions
-        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleIamV1__TestIamPermissionsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6802,7 +7470,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -7042,9 +7710,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Models$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Models$Versions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    create(
+      params: Params$Resource$Projects$Models$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Models$Versions$Create,
       options:
@@ -7062,12 +7739,20 @@ export namespace ml_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Versions$Create
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7103,7 +7788,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -7171,9 +7856,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Models$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Models$Versions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    delete(
+      params: Params$Resource$Projects$Models$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Models$Versions$Delete,
       options:
@@ -7191,12 +7885,20 @@ export namespace ml_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Versions$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7229,7 +7931,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -7312,9 +8014,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Models$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Models$Versions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Version>;
+    get(
+      params: Params$Resource$Projects$Models$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Models$Versions$Get,
       options:
@@ -7330,12 +8041,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Versions$Get
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Version> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Version>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7366,7 +8085,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters);
       }
@@ -7445,9 +8167,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Models$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Models$Versions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Models$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Models$Versions$List,
       options:
@@ -7471,14 +8202,20 @@ export namespace ml_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Versions$List
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudMlV1__ListVersionsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7514,7 +8251,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
@@ -7630,9 +8367,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Models$Versions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Models$Versions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    patch(
+      params: Params$Resource$Projects$Models$Versions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Models$Versions$Patch,
       options:
@@ -7650,12 +8396,20 @@ export namespace ml_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Versions$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7688,7 +8442,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -7780,9 +8534,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     setDefault(
+      params: Params$Resource$Projects$Models$Versions$Setdefault,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setDefault(
       params?: Params$Resource$Projects$Models$Versions$Setdefault,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudMlV1__Version>;
+    setDefault(
+      params: Params$Resource$Projects$Models$Versions$Setdefault,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setDefault(
       params: Params$Resource$Projects$Models$Versions$Setdefault,
       options:
@@ -7800,12 +8563,20 @@ export namespace ml_v1 {
     setDefault(
       paramsOrCallback?:
         | Params$Resource$Projects$Models$Versions$Setdefault
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
-    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Version> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__Version>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Models$Versions$Setdefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7839,7 +8610,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudMlV1__Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters);
       }
@@ -8007,9 +8781,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options:
@@ -8025,12 +8808,20 @@ export namespace ml_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
-    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobuf__Empty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8061,7 +8852,10 @@ export namespace ml_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
       }
@@ -8124,9 +8918,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
@@ -8144,12 +8947,20 @@ export namespace ml_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8182,7 +8993,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -8254,9 +9065,18 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
       options:
@@ -8282,18 +9102,20 @@ export namespace ml_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$List
-        | BodyResponseCallback<
-            Schema$GoogleLongrunning__ListOperationsResponse
-          >,
+        | BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleLongrunning__ListOperationsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleLongrunning__ListOperationsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8329,7 +9151,7 @@ export namespace ml_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace admob_v1 {
   export interface Options extends GlobalOptions {
@@ -541,9 +543,18 @@ export namespace admob_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublisherAccount>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$PublisherAccount>,
@@ -557,12 +568,17 @@ export namespace admob_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Get
-        | BodyResponseCallback<Schema$PublisherAccount>,
+        | BodyResponseCallback<Schema$PublisherAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublisherAccount>,
-      callback?: BodyResponseCallback<Schema$PublisherAccount>
-    ): void | GaxiosPromise<Schema$PublisherAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublisherAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublisherAccount>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PublisherAccount> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -592,7 +608,10 @@ export namespace admob_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PublisherAccount>(parameters, callback);
+        createAPIRequest<Schema$PublisherAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PublisherAccount>(parameters);
       }
@@ -657,9 +676,18 @@ export namespace admob_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListPublisherAccountsResponse>;
+    list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$List,
       options:
@@ -677,12 +705,20 @@ export namespace admob_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<Schema$ListPublisherAccountsResponse>,
+        | BodyResponseCallback<Schema$ListPublisherAccountsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPublisherAccountsResponse>,
-      callback?: BodyResponseCallback<Schema$ListPublisherAccountsResponse>
-    ): void | GaxiosPromise<Schema$ListPublisherAccountsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPublisherAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPublisherAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPublisherAccountsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -714,7 +750,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPublisherAccountsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListPublisherAccountsResponse>(
@@ -822,9 +858,18 @@ export namespace admob_v1 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Accounts$Mediationreport$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Accounts$Mediationreport$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateMediationReportResponse>;
+    generate(
+      params: Params$Resource$Accounts$Mediationreport$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Accounts$Mediationreport$Generate,
       options:
@@ -842,12 +887,20 @@ export namespace admob_v1 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Mediationreport$Generate
-        | BodyResponseCallback<Schema$GenerateMediationReportResponse>,
+        | BodyResponseCallback<Schema$GenerateMediationReportResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateMediationReportResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateMediationReportResponse>
-    ): void | GaxiosPromise<Schema$GenerateMediationReportResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateMediationReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateMediationReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateMediationReportResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Mediationreport$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -883,7 +936,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateMediationReportResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GenerateMediationReportResponse>(
@@ -982,9 +1035,18 @@ export namespace admob_v1 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Accounts$Networkreport$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Accounts$Networkreport$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateNetworkReportResponse>;
+    generate(
+      params: Params$Resource$Accounts$Networkreport$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Accounts$Networkreport$Generate,
       options:
@@ -1002,12 +1064,20 @@ export namespace admob_v1 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Networkreport$Generate
-        | BodyResponseCallback<Schema$GenerateNetworkReportResponse>,
+        | BodyResponseCallback<Schema$GenerateNetworkReportResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateNetworkReportResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateNetworkReportResponse>
-    ): void | GaxiosPromise<Schema$GenerateNetworkReportResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateNetworkReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateNetworkReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateNetworkReportResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Networkreport$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1043,7 +1113,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateNetworkReportResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GenerateNetworkReportResponse>(

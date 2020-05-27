@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace people_v1 {
   export interface Options extends GlobalOptions {
@@ -1304,9 +1306,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Contactgroups$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Contactgroups$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetContactGroupsResponse>;
+    batchGet(
+      params: Params$Resource$Contactgroups$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Contactgroups$Batchget,
       options:
@@ -1324,12 +1335,20 @@ export namespace people_v1 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Contactgroups$Batchget
-        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
-    ): void | GaxiosPromise<Schema$BatchGetContactGroupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetContactGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetContactGroupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1365,7 +1384,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetContactGroupsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchGetContactGroupsResponse>(
@@ -1439,9 +1458,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Contactgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Contactgroups$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContactGroup>;
+    create(
+      params: Params$Resource$Contactgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Contactgroups$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
@@ -1455,12 +1483,17 @@ export namespace people_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Contactgroups$Create
-        | BodyResponseCallback<Schema$ContactGroup>,
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContactGroup>,
-      callback?: BodyResponseCallback<Schema$ContactGroup>
-    ): void | GaxiosPromise<Schema$ContactGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContactGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1491,7 +1524,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContactGroup>(parameters, callback);
+        createAPIRequest<Schema$ContactGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContactGroup>(parameters);
       }
@@ -1551,9 +1587,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Contactgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Contactgroups$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Contactgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Contactgroups$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1567,10 +1612,17 @@ export namespace people_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Contactgroups$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1604,7 +1656,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1677,9 +1732,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Contactgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Contactgroups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContactGroup>;
+    get(
+      params: Params$Resource$Contactgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Contactgroups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
@@ -1693,12 +1757,17 @@ export namespace people_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Contactgroups$Get
-        | BodyResponseCallback<Schema$ContactGroup>,
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContactGroup>,
-      callback?: BodyResponseCallback<Schema$ContactGroup>
-    ): void | GaxiosPromise<Schema$ContactGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContactGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1732,7 +1801,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContactGroup>(parameters, callback);
+        createAPIRequest<Schema$ContactGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContactGroup>(parameters);
       }
@@ -1807,9 +1879,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Contactgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Contactgroups$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListContactGroupsResponse>;
+    list(
+      params: Params$Resource$Contactgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Contactgroups$List,
       options:
@@ -1827,12 +1908,20 @@ export namespace people_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Contactgroups$List
-        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
-      callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>
-    ): void | GaxiosPromise<Schema$ListContactGroupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListContactGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListContactGroupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1865,7 +1954,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ListContactGroupsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListContactGroupsResponse>(parameters);
@@ -1942,9 +2031,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Contactgroups$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Contactgroups$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ContactGroup>;
+    update(
+      params: Params$Resource$Contactgroups$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Contactgroups$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ContactGroup>,
@@ -1958,12 +2056,17 @@ export namespace people_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Contactgroups$Update
-        | BodyResponseCallback<Schema$ContactGroup>,
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ContactGroup>,
-      callback?: BodyResponseCallback<Schema$ContactGroup>
-    ): void | GaxiosPromise<Schema$ContactGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ContactGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ContactGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1997,7 +2100,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ContactGroup>(parameters, callback);
+        createAPIRequest<Schema$ContactGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ContactGroup>(parameters);
       }
@@ -2172,9 +2278,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     modify(
+      params: Params$Resource$Contactgroups$Members$Modify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modify(
       params?: Params$Resource$Contactgroups$Members$Modify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ModifyContactGroupMembersResponse>;
+    modify(
+      params: Params$Resource$Contactgroups$Members$Modify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modify(
       params: Params$Resource$Contactgroups$Members$Modify,
       options:
@@ -2192,12 +2307,20 @@ export namespace people_v1 {
     modify(
       paramsOrCallback?:
         | Params$Resource$Contactgroups$Members$Modify
-        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-      callback?: BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
-    ): void | GaxiosPromise<Schema$ModifyContactGroupMembersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModifyContactGroupMembersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Contactgroups$Members$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2233,7 +2356,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
@@ -2389,9 +2512,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     createContact(
+      params: Params$Resource$People$Createcontact,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createContact(
       params?: Params$Resource$People$Createcontact,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Person>;
+    createContact(
+      params: Params$Resource$People$Createcontact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createContact(
       params: Params$Resource$People$Createcontact,
       options: MethodOptions | BodyResponseCallback<Schema$Person>,
@@ -2405,10 +2537,17 @@ export namespace people_v1 {
     createContact(
       paramsOrCallback?:
         | Params$Resource$People$Createcontact
-        | BodyResponseCallback<Schema$Person>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
-      callback?: BodyResponseCallback<Schema$Person>
-    ): void | GaxiosPromise<Schema$Person> {
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Createcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2442,7 +2581,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Person>(parameters, callback);
+        createAPIRequest<Schema$Person>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
       }
@@ -2499,9 +2641,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     deleteContact(
+      params: Params$Resource$People$Deletecontact,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteContact(
       params?: Params$Resource$People$Deletecontact,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    deleteContact(
+      params: Params$Resource$People$Deletecontact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteContact(
       params: Params$Resource$People$Deletecontact,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2515,10 +2666,17 @@ export namespace people_v1 {
     deleteContact(
       paramsOrCallback?:
         | Params$Resource$People$Deletecontact
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Deletecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2552,7 +2710,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2642,9 +2803,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     deleteContactPhoto(
+      params: Params$Resource$People$Deletecontactphoto,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteContactPhoto(
       params?: Params$Resource$People$Deletecontactphoto,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeleteContactPhotoResponse>;
+    deleteContactPhoto(
+      params: Params$Resource$People$Deletecontactphoto,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteContactPhoto(
       params: Params$Resource$People$Deletecontactphoto,
       options:
@@ -2662,12 +2832,20 @@ export namespace people_v1 {
     deleteContactPhoto(
       paramsOrCallback?:
         | Params$Resource$People$Deletecontactphoto
-        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>,
+        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>,
-      callback?: BodyResponseCallback<Schema$DeleteContactPhotoResponse>
-    ): void | GaxiosPromise<Schema$DeleteContactPhotoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeleteContactPhotoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Deletecontactphoto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2703,7 +2881,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$DeleteContactPhotoResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$DeleteContactPhotoResponse>(parameters);
@@ -2848,9 +3026,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$People$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$People$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Person>;
+    get(
+      params: Params$Resource$People$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$People$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Person>,
@@ -2864,10 +3051,17 @@ export namespace people_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$People$Get
-        | BodyResponseCallback<Schema$Person>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
-      callback?: BodyResponseCallback<Schema$Person>
-    ): void | GaxiosPromise<Schema$Person> {
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2900,7 +3094,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Person>(parameters, callback);
+        createAPIRequest<Schema$Person>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
       }
@@ -3015,9 +3212,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     getBatchGet(
+      params: Params$Resource$People$Getbatchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getBatchGet(
       params?: Params$Resource$People$Getbatchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetPeopleResponse>;
+    getBatchGet(
+      params: Params$Resource$People$Getbatchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getBatchGet(
       params: Params$Resource$People$Getbatchget,
       options: MethodOptions | BodyResponseCallback<Schema$GetPeopleResponse>,
@@ -3031,12 +3237,20 @@ export namespace people_v1 {
     getBatchGet(
       paramsOrCallback?:
         | Params$Resource$People$Getbatchget
-        | BodyResponseCallback<Schema$GetPeopleResponse>,
+        | BodyResponseCallback<Schema$GetPeopleResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetPeopleResponse>,
-      callback?: BodyResponseCallback<Schema$GetPeopleResponse>
-    ): void | GaxiosPromise<Schema$GetPeopleResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetPeopleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetPeopleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetPeopleResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Getbatchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3070,7 +3284,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetPeopleResponse>(parameters, callback);
+        createAPIRequest<Schema$GetPeopleResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetPeopleResponse>(parameters);
       }
@@ -3228,9 +3445,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     updateContact(
+      params: Params$Resource$People$Updatecontact,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateContact(
       params?: Params$Resource$People$Updatecontact,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Person>;
+    updateContact(
+      params: Params$Resource$People$Updatecontact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateContact(
       params: Params$Resource$People$Updatecontact,
       options: MethodOptions | BodyResponseCallback<Schema$Person>,
@@ -3244,10 +3470,17 @@ export namespace people_v1 {
     updateContact(
       paramsOrCallback?:
         | Params$Resource$People$Updatecontact
-        | BodyResponseCallback<Schema$Person>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
-      callback?: BodyResponseCallback<Schema$Person>
-    ): void | GaxiosPromise<Schema$Person> {
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Updatecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3281,7 +3514,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Person>(parameters, callback);
+        createAPIRequest<Schema$Person>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
       }
@@ -3350,9 +3586,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     updateContactPhoto(
+      params: Params$Resource$People$Updatecontactphoto,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateContactPhoto(
       params?: Params$Resource$People$Updatecontactphoto,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UpdateContactPhotoResponse>;
+    updateContactPhoto(
+      params: Params$Resource$People$Updatecontactphoto,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateContactPhoto(
       params: Params$Resource$People$Updatecontactphoto,
       options:
@@ -3370,12 +3615,20 @@ export namespace people_v1 {
     updateContactPhoto(
       paramsOrCallback?:
         | Params$Resource$People$Updatecontactphoto
-        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>,
+        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>,
-      callback?: BodyResponseCallback<Schema$UpdateContactPhotoResponse>
-    ): void | GaxiosPromise<Schema$UpdateContactPhotoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UpdateContactPhotoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Updatecontactphoto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3411,7 +3664,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$UpdateContactPhotoResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$UpdateContactPhotoResponse>(parameters);
@@ -3667,9 +3920,18 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$People$Connections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$People$Connections$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    list(
+      params: Params$Resource$People$Connections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$People$Connections$List,
       options:
@@ -3685,12 +3947,20 @@ export namespace people_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$People$Connections$List
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>
-    ): void | GaxiosPromise<Schema$ListConnectionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConnectionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$People$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3724,7 +3994,10 @@ export namespace people_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace runtimeconfig_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -485,9 +487,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Configs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Configs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RuntimeConfig>;
+    create(
+      params: Params$Resource$Projects$Configs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Configs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$RuntimeConfig>,
@@ -501,12 +512,17 @@ export namespace runtimeconfig_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Create
-        | BodyResponseCallback<Schema$RuntimeConfig>,
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RuntimeConfig>,
-      callback?: BodyResponseCallback<Schema$RuntimeConfig>
-    ): void | GaxiosPromise<Schema$RuntimeConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RuntimeConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -541,7 +557,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
+        createAPIRequest<Schema$RuntimeConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RuntimeConfig>(parameters);
       }
@@ -603,9 +622,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Configs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Configs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Configs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Configs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -619,10 +647,17 @@ export namespace runtimeconfig_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -654,7 +689,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -719,9 +757,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Configs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Configs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RuntimeConfig>;
+    get(
+      params: Params$Resource$Projects$Configs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Configs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$RuntimeConfig>,
@@ -735,12 +782,17 @@ export namespace runtimeconfig_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Get
-        | BodyResponseCallback<Schema$RuntimeConfig>,
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RuntimeConfig>,
-      callback?: BodyResponseCallback<Schema$RuntimeConfig>
-    ): void | GaxiosPromise<Schema$RuntimeConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RuntimeConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -772,7 +824,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
+        createAPIRequest<Schema$RuntimeConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RuntimeConfig>(parameters);
       }
@@ -851,9 +906,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Configs$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Configs$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Configs$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Configs$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -867,10 +931,17 @@ export namespace runtimeconfig_v1beta1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -905,7 +976,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -978,9 +1052,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Configs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Configs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Configs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Configs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListConfigsResponse>,
@@ -994,12 +1077,20 @@ export namespace runtimeconfig_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$List
-        | BodyResponseCallback<Schema$ListConfigsResponse>,
+        | BodyResponseCallback<Schema$ListConfigsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListConfigsResponse>,
-      callback?: BodyResponseCallback<Schema$ListConfigsResponse>
-    ): void | GaxiosPromise<Schema$ListConfigsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConfigsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1034,7 +1125,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListConfigsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListConfigsResponse>(parameters);
       }
@@ -1108,9 +1202,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Configs$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Configs$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Configs$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Configs$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1124,10 +1227,17 @@ export namespace runtimeconfig_v1beta1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1162,7 +1272,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1234,9 +1347,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Configs$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Configs$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Configs$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Testiampermissions,
       options:
@@ -1254,12 +1376,20 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1296,7 +1426,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1372,9 +1502,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Configs$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Configs$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RuntimeConfig>;
+    update(
+      params: Params$Resource$Projects$Configs$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Configs$Update,
       options: MethodOptions | BodyResponseCallback<Schema$RuntimeConfig>,
@@ -1388,12 +1527,17 @@ export namespace runtimeconfig_v1beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Update
-        | BodyResponseCallback<Schema$RuntimeConfig>,
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RuntimeConfig>,
-      callback?: BodyResponseCallback<Schema$RuntimeConfig>
-    ): void | GaxiosPromise<Schema$RuntimeConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RuntimeConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RuntimeConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1425,7 +1569,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
+        createAPIRequest<Schema$RuntimeConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RuntimeConfig>(parameters);
       }
@@ -1631,9 +1778,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Configs$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Configs$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Configs$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Configs$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1647,12 +1803,17 @@ export namespace runtimeconfig_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1684,7 +1845,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1758,9 +1922,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Configs$Operations$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Configs$Operations$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Configs$Operations$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Operations$Testiampermissions,
       options:
@@ -1778,12 +1951,20 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Operations$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Operations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1820,7 +2001,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1952,9 +2133,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Configs$Variables$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Configs$Variables$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    create(
+      params: Params$Resource$Projects$Configs$Variables$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Configs$Variables$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -1968,10 +2158,17 @@ export namespace runtimeconfig_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Variables$Create
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2006,7 +2203,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -2072,9 +2272,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Configs$Variables$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Configs$Variables$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Configs$Variables$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Configs$Variables$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2088,10 +2297,17 @@ export namespace runtimeconfig_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Variables$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2123,7 +2339,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2191,9 +2410,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Configs$Variables$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Configs$Variables$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    get(
+      params: Params$Resource$Projects$Configs$Variables$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Configs$Variables$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -2207,10 +2435,17 @@ export namespace runtimeconfig_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Variables$Get
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Variables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2242,7 +2477,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -2327,9 +2565,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Configs$Variables$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Configs$Variables$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVariablesResponse>;
+    list(
+      params: Params$Resource$Projects$Configs$Variables$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Configs$Variables$List,
       options:
@@ -2345,12 +2592,20 @@ export namespace runtimeconfig_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Variables$List
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
-      callback?: BodyResponseCallback<Schema$ListVariablesResponse>
-    ): void | GaxiosPromise<Schema$ListVariablesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVariablesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVariablesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2385,7 +2640,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVariablesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVariablesResponse>(parameters);
       }
@@ -2459,9 +2717,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Configs$Variables$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Configs$Variables$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Configs$Variables$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Variables$Testiampermissions,
       options:
@@ -2479,12 +2746,20 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Variables$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Variables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2521,7 +2796,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2603,9 +2878,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Configs$Variables$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Configs$Variables$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    update(
+      params: Params$Resource$Projects$Configs$Variables$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Configs$Variables$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -2619,10 +2903,17 @@ export namespace runtimeconfig_v1beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Variables$Update
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Variables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2654,7 +2945,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -2731,9 +3025,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Projects$Configs$Variables$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Projects$Configs$Variables$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variable>;
+    watch(
+      params: Params$Resource$Projects$Configs$Variables$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Projects$Configs$Variables$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$Variable>,
@@ -2747,10 +3050,17 @@ export namespace runtimeconfig_v1beta1 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Variables$Watch
-        | BodyResponseCallback<Schema$Variable>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variable>,
-      callback?: BodyResponseCallback<Schema$Variable>
-    ): void | GaxiosPromise<Schema$Variable> {
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variable>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variable> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Variables$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2785,7 +3095,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variable>(parameters, callback);
+        createAPIRequest<Schema$Variable>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
       }
@@ -3017,9 +3330,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Configs$Waiters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Configs$Waiters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Configs$Waiters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Configs$Waiters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -3033,12 +3355,17 @@ export namespace runtimeconfig_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Waiters$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Waiters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3073,7 +3400,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -3135,9 +3465,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Configs$Waiters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Configs$Waiters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Configs$Waiters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Configs$Waiters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3151,10 +3490,17 @@ export namespace runtimeconfig_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Waiters$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Waiters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3186,7 +3532,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3257,9 +3606,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Configs$Waiters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Configs$Waiters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Waiter>;
+    get(
+      params: Params$Resource$Projects$Configs$Waiters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Configs$Waiters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Waiter>,
@@ -3273,10 +3631,17 @@ export namespace runtimeconfig_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Waiters$Get
-        | BodyResponseCallback<Schema$Waiter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Waiter>,
-      callback?: BodyResponseCallback<Schema$Waiter>
-    ): void | GaxiosPromise<Schema$Waiter> {
+        | BodyResponseCallback<Schema$Waiter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Waiter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Waiter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Waiter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Waiters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3308,7 +3673,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Waiter>(parameters, callback);
+        createAPIRequest<Schema$Waiter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Waiter>(parameters);
       }
@@ -3382,9 +3750,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Configs$Waiters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Configs$Waiters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListWaitersResponse>;
+    list(
+      params: Params$Resource$Projects$Configs$Waiters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Configs$Waiters$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListWaitersResponse>,
@@ -3398,12 +3775,20 @@ export namespace runtimeconfig_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Waiters$List
-        | BodyResponseCallback<Schema$ListWaitersResponse>,
+        | BodyResponseCallback<Schema$ListWaitersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListWaitersResponse>,
-      callback?: BodyResponseCallback<Schema$ListWaitersResponse>
-    ): void | GaxiosPromise<Schema$ListWaitersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWaitersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWaitersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWaitersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Waiters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3438,7 +3823,10 @@ export namespace runtimeconfig_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListWaitersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListWaitersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListWaitersResponse>(parameters);
       }
@@ -3510,9 +3898,18 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
       options:
@@ -3530,12 +3927,20 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Configs$Waiters$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Configs$Waiters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3572,7 +3977,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace servicenetworking_v1beta {
   export interface Options extends GlobalOptions {
@@ -1498,9 +1500,18 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1514,12 +1525,17 @@ export namespace servicenetworking_v1beta {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1550,7 +1566,10 @@ export namespace servicenetworking_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1660,9 +1679,18 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     addSubnetwork(
+      params: Params$Resource$Services$Addsubnetwork,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addSubnetwork(
       params?: Params$Resource$Services$Addsubnetwork,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    addSubnetwork(
+      params: Params$Resource$Services$Addsubnetwork,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addSubnetwork(
       params: Params$Resource$Services$Addsubnetwork,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1676,12 +1704,17 @@ export namespace servicenetworking_v1beta {
     addSubnetwork(
       paramsOrCallback?:
         | Params$Resource$Services$Addsubnetwork
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Addsubnetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1716,7 +1749,10 @@ export namespace servicenetworking_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1794,9 +1830,18 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     searchRange(
+      params: Params$Resource$Services$Searchrange,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchRange(
       params?: Params$Resource$Services$Searchrange,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    searchRange(
+      params: Params$Resource$Services$Searchrange,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     searchRange(
       params: Params$Resource$Services$Searchrange,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1810,12 +1855,17 @@ export namespace servicenetworking_v1beta {
     searchRange(
       paramsOrCallback?:
         | Params$Resource$Services$Searchrange
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Searchrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1850,7 +1900,10 @@ export namespace servicenetworking_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1939,9 +1992,18 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     updateConnections(
+      params: Params$Resource$Services$Updateconnections,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConnections(
       params?: Params$Resource$Services$Updateconnections,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    updateConnections(
+      params: Params$Resource$Services$Updateconnections,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateConnections(
       params: Params$Resource$Services$Updateconnections,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1955,12 +2017,17 @@ export namespace servicenetworking_v1beta {
     updateConnections(
       paramsOrCallback?:
         | Params$Resource$Services$Updateconnections
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Updateconnections;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1995,7 +2062,10 @@ export namespace servicenetworking_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2142,9 +2212,18 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Services$Connections$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Services$Connections$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Services$Connections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Services$Connections$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2158,12 +2237,17 @@ export namespace servicenetworking_v1beta {
     create(
       paramsOrCallback?:
         | Params$Resource$Services$Connections$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2198,7 +2282,10 @@ export namespace servicenetworking_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2273,9 +2360,18 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Services$Connections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Services$Connections$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    list(
+      params: Params$Resource$Services$Connections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Services$Connections$List,
       options:
@@ -2291,12 +2387,20 @@ export namespace servicenetworking_v1beta {
     list(
       paramsOrCallback?:
         | Params$Resource$Services$Connections$List
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>
-    ): void | GaxiosPromise<Schema$ListConnectionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConnectionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Services$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2331,7 +2435,10 @@ export namespace servicenetworking_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
       }

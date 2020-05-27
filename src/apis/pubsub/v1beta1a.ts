@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace pubsub_v1beta1a {
   export interface Options extends GlobalOptions {
@@ -444,9 +446,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     acknowledge(
+      params: Params$Resource$Subscriptions$Acknowledge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acknowledge(
       params?: Params$Resource$Subscriptions$Acknowledge,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    acknowledge(
+      params: Params$Resource$Subscriptions$Acknowledge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     acknowledge(
       params: Params$Resource$Subscriptions$Acknowledge,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -460,10 +471,17 @@ export namespace pubsub_v1beta1a {
     acknowledge(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Acknowledge
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -497,7 +515,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -570,9 +591,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Subscriptions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Subscriptions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    create(
+      params: Params$Resource$Subscriptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Subscriptions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -586,12 +616,17 @@ export namespace pubsub_v1beta1a {
     create(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Create
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -625,7 +660,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -685,9 +723,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Subscriptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Subscriptions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Subscriptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Subscriptions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -701,10 +748,17 @@ export namespace pubsub_v1beta1a {
     delete(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -738,7 +792,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -803,9 +860,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Subscriptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Subscriptions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Subscription>;
+    get(
+      params: Params$Resource$Subscriptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Subscriptions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
@@ -819,12 +885,17 @@ export namespace pubsub_v1beta1a {
     get(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Get
-        | BodyResponseCallback<Schema$Subscription>,
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Subscription>,
-      callback?: BodyResponseCallback<Schema$Subscription>
-    ): void | GaxiosPromise<Schema$Subscription> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Subscription> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -858,7 +929,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Subscription>(parameters, callback);
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
       }
@@ -928,9 +1002,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Subscriptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Subscriptions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSubscriptionsResponse>;
+    list(
+      params: Params$Resource$Subscriptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Subscriptions$List,
       options:
@@ -948,12 +1031,20 @@ export namespace pubsub_v1beta1a {
     list(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$List
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSubscriptionsResponse>
-    ): void | GaxiosPromise<Schema$ListSubscriptionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSubscriptionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -989,7 +1080,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListSubscriptionsResponse>(parameters);
@@ -1058,9 +1149,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     modifyAckDeadline(
+      params: Params$Resource$Subscriptions$Modifyackdeadline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyAckDeadline(
       params?: Params$Resource$Subscriptions$Modifyackdeadline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    modifyAckDeadline(
+      params: Params$Resource$Subscriptions$Modifyackdeadline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modifyAckDeadline(
       params: Params$Resource$Subscriptions$Modifyackdeadline,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1074,10 +1174,17 @@ export namespace pubsub_v1beta1a {
     modifyAckDeadline(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Modifyackdeadline
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Modifyackdeadline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1110,7 +1217,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1176,9 +1286,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     modifyPushConfig(
+      params: Params$Resource$Subscriptions$Modifypushconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyPushConfig(
       params?: Params$Resource$Subscriptions$Modifypushconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    modifyPushConfig(
+      params: Params$Resource$Subscriptions$Modifypushconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modifyPushConfig(
       params: Params$Resource$Subscriptions$Modifypushconfig,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1192,10 +1311,17 @@ export namespace pubsub_v1beta1a {
     modifyPushConfig(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Modifypushconfig
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Modifypushconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1229,7 +1355,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1298,9 +1427,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     pull(
+      params: Params$Resource$Subscriptions$Pull,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pull(
       params?: Params$Resource$Subscriptions$Pull,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PullResponse>;
+    pull(
+      params: Params$Resource$Subscriptions$Pull,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     pull(
       params: Params$Resource$Subscriptions$Pull,
       options: MethodOptions | BodyResponseCallback<Schema$PullResponse>,
@@ -1314,12 +1452,17 @@ export namespace pubsub_v1beta1a {
     pull(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Pull
-        | BodyResponseCallback<Schema$PullResponse>,
+        | BodyResponseCallback<Schema$PullResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PullResponse>,
-      callback?: BodyResponseCallback<Schema$PullResponse>
-    ): void | GaxiosPromise<Schema$PullResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PullResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PullResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PullResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Pull;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1353,7 +1496,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PullResponse>(parameters, callback);
+        createAPIRequest<Schema$PullResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PullResponse>(parameters);
       }
@@ -1422,9 +1568,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     pullBatch(
+      params: Params$Resource$Subscriptions$Pullbatch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pullBatch(
       params?: Params$Resource$Subscriptions$Pullbatch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PullBatchResponse>;
+    pullBatch(
+      params: Params$Resource$Subscriptions$Pullbatch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     pullBatch(
       params: Params$Resource$Subscriptions$Pullbatch,
       options: MethodOptions | BodyResponseCallback<Schema$PullBatchResponse>,
@@ -1438,12 +1593,20 @@ export namespace pubsub_v1beta1a {
     pullBatch(
       paramsOrCallback?:
         | Params$Resource$Subscriptions$Pullbatch
-        | BodyResponseCallback<Schema$PullBatchResponse>,
+        | BodyResponseCallback<Schema$PullBatchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PullBatchResponse>,
-      callback?: BodyResponseCallback<Schema$PullBatchResponse>
-    ): void | GaxiosPromise<Schema$PullBatchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PullBatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PullBatchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PullBatchResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Subscriptions$Pullbatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1477,7 +1640,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PullBatchResponse>(parameters, callback);
+        createAPIRequest<Schema$PullBatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PullBatchResponse>(parameters);
       }
@@ -1668,9 +1834,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Topics$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Topics$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Topic>;
+    create(
+      params: Params$Resource$Topics$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Topics$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Topic>,
@@ -1684,10 +1859,17 @@ export namespace pubsub_v1beta1a {
     create(
       paramsOrCallback?:
         | Params$Resource$Topics$Create
-        | BodyResponseCallback<Schema$Topic>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Topic>,
-      callback?: BodyResponseCallback<Schema$Topic>
-    ): void | GaxiosPromise<Schema$Topic> {
+        | BodyResponseCallback<Schema$Topic>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Topic>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Topic>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1717,7 +1899,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Topic>(parameters, callback);
+        createAPIRequest<Schema$Topic>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
       }
@@ -1777,9 +1962,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Topics$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Topics$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Topics$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Topics$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1793,10 +1987,17 @@ export namespace pubsub_v1beta1a {
     delete(
       paramsOrCallback?:
         | Params$Resource$Topics$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1829,7 +2030,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1891,9 +2095,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Topics$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Topics$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Topic>;
+    get(
+      params: Params$Resource$Topics$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Topics$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Topic>,
@@ -1907,10 +2120,17 @@ export namespace pubsub_v1beta1a {
     get(
       paramsOrCallback?:
         | Params$Resource$Topics$Get
-        | BodyResponseCallback<Schema$Topic>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Topic>,
-      callback?: BodyResponseCallback<Schema$Topic>
-    ): void | GaxiosPromise<Schema$Topic> {
+        | BodyResponseCallback<Schema$Topic>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Topic>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Topic>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Topic> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1943,7 +2163,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Topic>(parameters, callback);
+        createAPIRequest<Schema$Topic>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
       }
@@ -2013,9 +2236,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Topics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Topics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTopicsResponse>;
+    list(
+      params: Params$Resource$Topics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Topics$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListTopicsResponse>,
@@ -2029,12 +2261,20 @@ export namespace pubsub_v1beta1a {
     list(
       paramsOrCallback?:
         | Params$Resource$Topics$List
-        | BodyResponseCallback<Schema$ListTopicsResponse>,
+        | BodyResponseCallback<Schema$ListTopicsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTopicsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTopicsResponse>
-    ): void | GaxiosPromise<Schema$ListTopicsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTopicsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTopicsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTopicsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2064,7 +2304,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTopicsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTopicsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTopicsResponse>(parameters);
       }
@@ -2130,9 +2373,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     publish(
+      params: Params$Resource$Topics$Publish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    publish(
       params?: Params$Resource$Topics$Publish,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    publish(
+      params: Params$Resource$Topics$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     publish(
       params: Params$Resource$Topics$Publish,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2146,10 +2398,17 @@ export namespace pubsub_v1beta1a {
     publish(
       paramsOrCallback?:
         | Params$Resource$Topics$Publish
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2182,7 +2441,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2250,9 +2512,18 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     publishBatch(
+      params: Params$Resource$Topics$Publishbatch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    publishBatch(
       params?: Params$Resource$Topics$Publishbatch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PublishBatchResponse>;
+    publishBatch(
+      params: Params$Resource$Topics$Publishbatch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     publishBatch(
       params: Params$Resource$Topics$Publishbatch,
       options:
@@ -2270,12 +2541,20 @@ export namespace pubsub_v1beta1a {
     publishBatch(
       paramsOrCallback?:
         | Params$Resource$Topics$Publishbatch
-        | BodyResponseCallback<Schema$PublishBatchResponse>,
+        | BodyResponseCallback<Schema$PublishBatchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PublishBatchResponse>,
-      callback?: BodyResponseCallback<Schema$PublishBatchResponse>
-    ): void | GaxiosPromise<Schema$PublishBatchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PublishBatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PublishBatchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PublishBatchResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Topics$Publishbatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2309,7 +2588,10 @@ export namespace pubsub_v1beta1a {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PublishBatchResponse>(parameters, callback);
+        createAPIRequest<Schema$PublishBatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PublishBatchResponse>(parameters);
       }

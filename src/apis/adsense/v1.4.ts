@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace adsense_v1_4 {
   export interface Options extends GlobalOptions {
@@ -692,9 +694,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Account>;
+    get(
+      params: Params$Resource$Accounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Account>,
@@ -708,10 +719,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Get
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Account>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Account> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -744,7 +762,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
+        createAPIRequest<Schema$Account>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
       }
@@ -812,9 +833,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Accounts>;
+    list(
+      params: Params$Resource$Accounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$List,
       options: MethodOptions | BodyResponseCallback<Schema$Accounts>,
@@ -828,10 +858,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<Schema$Accounts>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Accounts>,
-      callback?: BodyResponseCallback<Schema$Accounts>
-    ): void | GaxiosPromise<Schema$Accounts> {
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Accounts>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Accounts> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -864,7 +901,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Accounts>(parameters, callback);
+        createAPIRequest<Schema$Accounts>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Accounts>(parameters);
       }
@@ -970,9 +1010,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     getAdCode(
+      params: Params$Resource$Accounts$Adclients$Getadcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAdCode(
       params?: Params$Resource$Accounts$Adclients$Getadcode,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdCode>;
+    getAdCode(
+      params: Params$Resource$Accounts$Adclients$Getadcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAdCode(
       params: Params$Resource$Accounts$Adclients$Getadcode,
       options: MethodOptions | BodyResponseCallback<Schema$AdCode>,
@@ -986,10 +1035,17 @@ export namespace adsense_v1_4 {
     getAdCode(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adclients$Getadcode
-        | BodyResponseCallback<Schema$AdCode>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdCode>,
-      callback?: BodyResponseCallback<Schema$AdCode>
-    ): void | GaxiosPromise<Schema$AdCode> {
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdCode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1023,7 +1079,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdCode>(parameters, callback);
+        createAPIRequest<Schema$AdCode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
       }
@@ -1094,9 +1153,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Adclients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Adclients$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdClients>;
+    list(
+      params: Params$Resource$Accounts$Adclients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Adclients$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdClients>,
@@ -1110,12 +1178,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adclients$List
-        | BodyResponseCallback<Schema$AdClients>,
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdClients>,
-      callback?: BodyResponseCallback<Schema$AdClients>
-    ): void | GaxiosPromise<Schema$AdClients> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdClients> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1148,7 +1221,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdClients>(parameters, callback);
+        createAPIRequest<Schema$AdClients>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
       }
@@ -1273,9 +1349,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Adunits$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Adunits$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnit>;
+    get(
+      params: Params$Resource$Accounts$Adunits$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Adunits$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
@@ -1289,10 +1374,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$Get
-        | BodyResponseCallback<Schema$AdUnit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
-      callback?: BodyResponseCallback<Schema$AdUnit>
-    ): void | GaxiosPromise<Schema$AdUnit> {
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1326,7 +1418,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnit>(parameters, callback);
+        createAPIRequest<Schema$AdUnit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
       }
@@ -1397,9 +1492,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     getAdCode(
+      params: Params$Resource$Accounts$Adunits$Getadcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAdCode(
       params?: Params$Resource$Accounts$Adunits$Getadcode,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdCode>;
+    getAdCode(
+      params: Params$Resource$Accounts$Adunits$Getadcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAdCode(
       params: Params$Resource$Accounts$Adunits$Getadcode,
       options: MethodOptions | BodyResponseCallback<Schema$AdCode>,
@@ -1413,10 +1517,17 @@ export namespace adsense_v1_4 {
     getAdCode(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$Getadcode
-        | BodyResponseCallback<Schema$AdCode>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdCode>,
-      callback?: BodyResponseCallback<Schema$AdCode>
-    ): void | GaxiosPromise<Schema$AdCode> {
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdCode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1450,7 +1561,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdCode>(parameters, callback);
+        createAPIRequest<Schema$AdCode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
       }
@@ -1527,9 +1641,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Accounts$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -1543,10 +1666,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1580,7 +1710,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -1733,9 +1866,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Adunits$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Adunits$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Accounts$Adunits$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Adunits$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -1749,12 +1891,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Adunits$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Adunits$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1788,7 +1935,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -1881,9 +2031,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Accounts$Alerts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Accounts$Alerts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Alerts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Accounts$Alerts$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1897,10 +2056,15 @@ export namespace adsense_v1_4 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Accounts$Alerts$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1933,7 +2097,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1999,9 +2166,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Alerts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Alerts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Alerts>;
+    list(
+      params: Params$Resource$Accounts$Alerts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Alerts$List,
       options: MethodOptions | BodyResponseCallback<Schema$Alerts>,
@@ -2015,10 +2191,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Alerts$List
-        | BodyResponseCallback<Schema$Alerts>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alerts>,
-      callback?: BodyResponseCallback<Schema$Alerts>
-    ): void | GaxiosPromise<Schema$Alerts> {
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Alerts> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2051,7 +2234,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Alerts>(parameters, callback);
+        createAPIRequest<Schema$Alerts>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Alerts>(parameters);
       }
@@ -2165,9 +2351,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Customchannels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Customchannels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannel>;
+    get(
+      params: Params$Resource$Accounts$Customchannels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Customchannels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
@@ -2181,12 +2376,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Customchannels$Get
-        | BodyResponseCallback<Schema$CustomChannel>,
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannel>,
-      callback?: BodyResponseCallback<Schema$CustomChannel>
-    ): void | GaxiosPromise<Schema$CustomChannel> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2220,7 +2420,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannel>(parameters, callback);
+        createAPIRequest<Schema$CustomChannel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
@@ -2294,9 +2497,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Accounts$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -2310,12 +2522,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2349,7 +2566,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -2481,9 +2701,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Customchannels$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Customchannels$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Accounts$Customchannels$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Customchannels$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -2497,10 +2726,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Customchannels$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customchannels$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2534,7 +2770,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -2637,9 +2876,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Payments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Payments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Payments>;
+    list(
+      params: Params$Resource$Accounts$Payments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Payments$List,
       options: MethodOptions | BodyResponseCallback<Schema$Payments>,
@@ -2653,10 +2901,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Payments$List
-        | BodyResponseCallback<Schema$Payments>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Payments>,
-      callback?: BodyResponseCallback<Schema$Payments>
-    ): void | GaxiosPromise<Schema$Payments> {
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Payments> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Payments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2689,7 +2944,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Payments>(parameters, callback);
+        createAPIRequest<Schema$Payments>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Payments>(parameters);
       }
@@ -2816,9 +3074,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Accounts$Reports$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Accounts$Reports$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Accounts$Reports$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Accounts$Reports$Generate,
       options:
@@ -2836,12 +3103,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Reports$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2876,7 +3151,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -3025,9 +3300,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Accounts$Reports$Saved$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Accounts$Reports$Saved$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Accounts$Reports$Saved$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Accounts$Reports$Saved$Generate,
       options:
@@ -3045,12 +3329,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Reports$Saved$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Saved$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3086,7 +3378,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -3160,9 +3452,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Reports$Saved$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Reports$Saved$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedReports>;
+    list(
+      params: Params$Resource$Accounts$Reports$Saved$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Reports$Saved$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedReports>,
@@ -3176,12 +3477,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Reports$Saved$List
-        | BodyResponseCallback<Schema$SavedReports>,
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedReports>,
-      callback?: BodyResponseCallback<Schema$SavedReports>
-    ): void | GaxiosPromise<Schema$SavedReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Reports$Saved$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3214,7 +3520,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedReports>(parameters, callback);
+        createAPIRequest<Schema$SavedReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedReports>(parameters);
       }
@@ -3338,9 +3647,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Accounts$Savedadstyles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Accounts$Savedadstyles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyle>;
+    get(
+      params: Params$Resource$Accounts$Savedadstyles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Accounts$Savedadstyles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyle>,
@@ -3354,12 +3672,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Accounts$Savedadstyles$Get
-        | BodyResponseCallback<Schema$SavedAdStyle>,
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyle>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyle>
-    ): void | GaxiosPromise<Schema$SavedAdStyle> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyle> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Savedadstyles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3393,7 +3716,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyle>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyle>(parameters);
       }
@@ -3464,9 +3790,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Savedadstyles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Savedadstyles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyles>;
+    list(
+      params: Params$Resource$Accounts$Savedadstyles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Savedadstyles$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyles>,
@@ -3480,12 +3815,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Savedadstyles$List
-        | BodyResponseCallback<Schema$SavedAdStyles>,
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyles>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyles>
-    ): void | GaxiosPromise<Schema$SavedAdStyles> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyles> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Savedadstyles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3518,7 +3858,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyles>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyles>(parameters);
       }
@@ -3636,9 +3979,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Accounts$Urlchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Accounts$Urlchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UrlChannels>;
+    list(
+      params: Params$Resource$Accounts$Urlchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Accounts$Urlchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$UrlChannels>,
@@ -3652,12 +4004,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Urlchannels$List
-        | BodyResponseCallback<Schema$UrlChannels>,
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UrlChannels>,
-      callback?: BodyResponseCallback<Schema$UrlChannels>
-    ): void | GaxiosPromise<Schema$UrlChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UrlChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3691,7 +4048,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UrlChannels>(parameters, callback);
+        createAPIRequest<Schema$UrlChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UrlChannels>(parameters);
       }
@@ -3791,9 +4151,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Adclients$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Adclients$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdClients>;
+    list(
+      params: Params$Resource$Adclients$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Adclients$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdClients>,
@@ -3807,12 +4176,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Adclients$List
-        | BodyResponseCallback<Schema$AdClients>,
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdClients>,
-      callback?: BodyResponseCallback<Schema$AdClients>
-    ): void | GaxiosPromise<Schema$AdClients> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdClients>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdClients> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3845,7 +4219,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdClients>(parameters, callback);
+        createAPIRequest<Schema$AdClients>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
       }
@@ -3944,9 +4321,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Adunits$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Adunits$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnit>;
+    get(
+      params: Params$Resource$Adunits$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Adunits$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
@@ -3960,10 +4346,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Adunits$Get
-        | BodyResponseCallback<Schema$AdUnit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnit>,
-      callback?: BodyResponseCallback<Schema$AdUnit>
-    ): void | GaxiosPromise<Schema$AdUnit> {
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3996,7 +4389,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnit>(parameters, callback);
+        createAPIRequest<Schema$AdUnit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
       }
@@ -4064,9 +4460,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     getAdCode(
+      params: Params$Resource$Adunits$Getadcode,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAdCode(
       params?: Params$Resource$Adunits$Getadcode,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdCode>;
+    getAdCode(
+      params: Params$Resource$Adunits$Getadcode,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAdCode(
       params: Params$Resource$Adunits$Getadcode,
       options: MethodOptions | BodyResponseCallback<Schema$AdCode>,
@@ -4080,10 +4485,17 @@ export namespace adsense_v1_4 {
     getAdCode(
       paramsOrCallback?:
         | Params$Resource$Adunits$Getadcode
-        | BodyResponseCallback<Schema$AdCode>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdCode>,
-      callback?: BodyResponseCallback<Schema$AdCode>
-    ): void | GaxiosPromise<Schema$AdCode> {
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdCode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdCode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4117,7 +4529,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdCode>(parameters, callback);
+        createAPIRequest<Schema$AdCode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
       }
@@ -4191,9 +4606,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -4207,10 +4631,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4242,7 +4673,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -4378,9 +4812,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Adunits$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Adunits$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Adunits$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Adunits$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -4394,12 +4837,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Adunits$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Adunits$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4433,7 +4881,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -4519,9 +4970,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Alerts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Alerts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Alerts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Alerts$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4535,10 +4995,15 @@ export namespace adsense_v1_4 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Alerts$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4571,7 +5036,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4634,9 +5102,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Alerts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Alerts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Alerts>;
+    list(
+      params: Params$Resource$Alerts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Alerts$List,
       options: MethodOptions | BodyResponseCallback<Schema$Alerts>,
@@ -4650,10 +5127,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Alerts$List
-        | BodyResponseCallback<Schema$Alerts>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Alerts>,
-      callback?: BodyResponseCallback<Schema$Alerts>
-    ): void | GaxiosPromise<Schema$Alerts> {
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Alerts>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Alerts> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4686,7 +5170,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Alerts>(parameters, callback);
+        createAPIRequest<Schema$Alerts>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Alerts>(parameters);
       }
@@ -4787,9 +5274,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customchannels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customchannels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannel>;
+    get(
+      params: Params$Resource$Customchannels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customchannels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannel>,
@@ -4803,12 +5299,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customchannels$Get
-        | BodyResponseCallback<Schema$CustomChannel>,
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannel>,
-      callback?: BodyResponseCallback<Schema$CustomChannel>
-    ): void | GaxiosPromise<Schema$CustomChannel> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4842,7 +5343,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannel>(parameters, callback);
+        createAPIRequest<Schema$CustomChannel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
       }
@@ -4913,9 +5417,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomChannels>;
+    list(
+      params: Params$Resource$Customchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$CustomChannels>,
@@ -4929,12 +5442,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customchannels$List
-        | BodyResponseCallback<Schema$CustomChannels>,
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomChannels>,
-      callback?: BodyResponseCallback<Schema$CustomChannels>
-    ): void | GaxiosPromise<Schema$CustomChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4967,7 +5485,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomChannels>(parameters, callback);
+        createAPIRequest<Schema$CustomChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
       }
@@ -5088,9 +5609,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customchannels$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customchannels$Adunits$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdUnits>;
+    list(
+      params: Params$Resource$Customchannels$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customchannels$Adunits$List,
       options: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
@@ -5104,10 +5634,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customchannels$Adunits$List
-        | BodyResponseCallback<Schema$AdUnits>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AdUnits>,
-      callback?: BodyResponseCallback<Schema$AdUnits>
-    ): void | GaxiosPromise<Schema$AdUnits> {
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdUnits>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AdUnits> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customchannels$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5141,7 +5678,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AdUnits>(parameters, callback);
+        createAPIRequest<Schema$AdUnits>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
       }
@@ -5247,9 +5787,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Metadata$Dimensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Metadata$Dimensions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Metadata>;
+    list(
+      params: Params$Resource$Metadata$Dimensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Metadata$Dimensions$List,
       options: MethodOptions | BodyResponseCallback<Schema$Metadata>,
@@ -5263,10 +5812,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Metadata$Dimensions$List
-        | BodyResponseCallback<Schema$Metadata>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metadata>,
-      callback?: BodyResponseCallback<Schema$Metadata>
-    ): void | GaxiosPromise<Schema$Metadata> {
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metadata$Dimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5300,7 +5856,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Metadata>(parameters, callback);
+        createAPIRequest<Schema$Metadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
       }
@@ -5374,9 +5933,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Metadata$Metrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Metadata$Metrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Metadata>;
+    list(
+      params: Params$Resource$Metadata$Metrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Metadata$Metrics$List,
       options: MethodOptions | BodyResponseCallback<Schema$Metadata>,
@@ -5390,10 +5958,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Metadata$Metrics$List
-        | BodyResponseCallback<Schema$Metadata>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metadata>,
-      callback?: BodyResponseCallback<Schema$Metadata>
-    ): void | GaxiosPromise<Schema$Metadata> {
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Metadata$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5427,7 +6002,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Metadata>(parameters, callback);
+        createAPIRequest<Schema$Metadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
       }
@@ -5501,9 +6079,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Payments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Payments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Payments>;
+    list(
+      params: Params$Resource$Payments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Payments$List,
       options: MethodOptions | BodyResponseCallback<Schema$Payments>,
@@ -5517,10 +6104,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Payments$List
-        | BodyResponseCallback<Schema$Payments>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Payments>,
-      callback?: BodyResponseCallback<Schema$Payments>
-    ): void | GaxiosPromise<Schema$Payments> {
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Payments>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Payments> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Payments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5553,7 +6147,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Payments>(parameters, callback);
+        createAPIRequest<Schema$Payments>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Payments>(parameters);
       }
@@ -5674,9 +6271,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Reports$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Reports$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Reports$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Reports$Generate,
       options:
@@ -5694,12 +6300,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Reports$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5734,7 +6348,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -5879,9 +6493,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     generate(
+      params: Params$Resource$Reports$Saved$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
       params?: Params$Resource$Reports$Saved$Generate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+    generate(
+      params: Params$Resource$Reports$Saved$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generate(
       params: Params$Resource$Reports$Saved$Generate,
       options:
@@ -5899,12 +6522,20 @@ export namespace adsense_v1_4 {
     generate(
       paramsOrCallback?:
         | Params$Resource$Reports$Saved$Generate
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
-      callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
-    ): void | GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdsenseReportsGenerateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Saved$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5940,7 +6571,7 @@ export namespace adsense_v1_4 {
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -6011,9 +6642,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Reports$Saved$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Reports$Saved$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedReports>;
+    list(
+      params: Params$Resource$Reports$Saved$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Reports$Saved$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedReports>,
@@ -6027,12 +6667,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Reports$Saved$List
-        | BodyResponseCallback<Schema$SavedReports>,
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedReports>,
-      callback?: BodyResponseCallback<Schema$SavedReports>
-    ): void | GaxiosPromise<Schema$SavedReports> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedReports>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedReports> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Reports$Saved$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6066,7 +6711,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedReports>(parameters, callback);
+        createAPIRequest<Schema$SavedReports>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedReports>(parameters);
       }
@@ -6179,9 +6827,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Savedadstyles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Savedadstyles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyle>;
+    get(
+      params: Params$Resource$Savedadstyles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Savedadstyles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyle>,
@@ -6195,12 +6852,17 @@ export namespace adsense_v1_4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Savedadstyles$Get
-        | BodyResponseCallback<Schema$SavedAdStyle>,
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyle>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyle>
-    ): void | GaxiosPromise<Schema$SavedAdStyle> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyle>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyle> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Savedadstyles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6233,7 +6895,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyle>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyle>(parameters);
       }
@@ -6301,9 +6966,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Savedadstyles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Savedadstyles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SavedAdStyles>;
+    list(
+      params: Params$Resource$Savedadstyles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Savedadstyles$List,
       options: MethodOptions | BodyResponseCallback<Schema$SavedAdStyles>,
@@ -6317,12 +6991,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Savedadstyles$List
-        | BodyResponseCallback<Schema$SavedAdStyles>,
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SavedAdStyles>,
-      callback?: BodyResponseCallback<Schema$SavedAdStyles>
-    ): void | GaxiosPromise<Schema$SavedAdStyles> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SavedAdStyles>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SavedAdStyles> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Savedadstyles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6356,7 +7035,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
+        createAPIRequest<Schema$SavedAdStyles>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SavedAdStyles>(parameters);
       }
@@ -6463,9 +7145,18 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Urlchannels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Urlchannels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UrlChannels>;
+    list(
+      params: Params$Resource$Urlchannels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Urlchannels$List,
       options: MethodOptions | BodyResponseCallback<Schema$UrlChannels>,
@@ -6479,12 +7170,17 @@ export namespace adsense_v1_4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Urlchannels$List
-        | BodyResponseCallback<Schema$UrlChannels>,
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UrlChannels>,
-      callback?: BodyResponseCallback<Schema$UrlChannels>
-    ): void | GaxiosPromise<Schema$UrlChannels> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UrlChannels>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UrlChannels> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6516,7 +7212,10 @@ export namespace adsense_v1_4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$UrlChannels>(parameters, callback);
+        createAPIRequest<Schema$UrlChannels>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$UrlChannels>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace androidpublisher_v2 {
   export interface Options extends GlobalOptions {
@@ -250,9 +252,18 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Purchases$Products$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Purchases$Products$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProductPurchase>;
+    get(
+      params: Params$Resource$Purchases$Products$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Purchases$Products$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ProductPurchase>,
@@ -266,12 +277,17 @@ export namespace androidpublisher_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Purchases$Products$Get
-        | BodyResponseCallback<Schema$ProductPurchase>,
+        | BodyResponseCallback<Schema$ProductPurchase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProductPurchase>,
-      callback?: BodyResponseCallback<Schema$ProductPurchase>
-    ): void | GaxiosPromise<Schema$ProductPurchase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductPurchase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductPurchase>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProductPurchase> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -305,7 +321,10 @@ export namespace androidpublisher_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProductPurchase>(parameters, callback);
+        createAPIRequest<Schema$ProductPurchase>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProductPurchase>(parameters);
       }
@@ -409,9 +428,18 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Purchases$Voidedpurchases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Purchases$Voidedpurchases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VoidedPurchasesListResponse>;
+    list(
+      params: Params$Resource$Purchases$Voidedpurchases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Purchases$Voidedpurchases$List,
       options:
@@ -429,12 +457,20 @@ export namespace androidpublisher_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Purchases$Voidedpurchases$List
-        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
-      callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>
-    ): void | GaxiosPromise<Schema$VoidedPurchasesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VoidedPurchasesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Voidedpurchases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -470,7 +506,7 @@ export namespace androidpublisher_v2 {
       if (callback) {
         createAPIRequest<Schema$VoidedPurchasesListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$VoidedPurchasesListResponse>(parameters);

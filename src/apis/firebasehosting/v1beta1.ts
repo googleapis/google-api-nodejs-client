@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace firebasehosting_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -659,9 +661,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -675,12 +686,17 @@ export namespace firebasehosting_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -712,7 +728,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -806,9 +825,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Projects$Sites$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Projects$Sites$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteConfig>;
+    getConfig(
+      params: Params$Resource$Projects$Sites$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Projects$Sites$Getconfig,
       options: MethodOptions | BodyResponseCallback<Schema$SiteConfig>,
@@ -822,12 +850,17 @@ export namespace firebasehosting_v1beta1 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Getconfig
-        | BodyResponseCallback<Schema$SiteConfig>,
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteConfig>,
-      callback?: BodyResponseCallback<Schema$SiteConfig>
-    ): void | GaxiosPromise<Schema$SiteConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -859,7 +892,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SiteConfig>(parameters, callback);
+        createAPIRequest<Schema$SiteConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
       }
@@ -940,9 +976,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     updateConfig(
+      params: Params$Resource$Projects$Sites$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
       params?: Params$Resource$Projects$Sites$Updateconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteConfig>;
+    updateConfig(
+      params: Params$Resource$Projects$Sites$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateConfig(
       params: Params$Resource$Projects$Sites$Updateconfig,
       options: MethodOptions | BodyResponseCallback<Schema$SiteConfig>,
@@ -956,12 +1001,17 @@ export namespace firebasehosting_v1beta1 {
     updateConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Updateconfig
-        | BodyResponseCallback<Schema$SiteConfig>,
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteConfig>,
-      callback?: BodyResponseCallback<Schema$SiteConfig>
-    ): void | GaxiosPromise<Schema$SiteConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -993,7 +1043,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SiteConfig>(parameters, callback);
+        createAPIRequest<Schema$SiteConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
       }
@@ -1136,9 +1189,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Sites$Channels$Releases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Sites$Channels$Releases$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Release>,
@@ -1152,10 +1214,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Channels$Releases$Create
-        | BodyResponseCallback<Schema$Release>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
-      callback?: BodyResponseCallback<Schema$Release>
-    ): void | GaxiosPromise<Schema$Release> {
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1190,7 +1259,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Release>(parameters, callback);
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
       }
@@ -1262,9 +1334,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Sites$Channels$Releases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Sites$Channels$Releases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Channels$Releases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Sites$Channels$Releases$List,
       options:
@@ -1280,12 +1361,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Channels$Releases$List
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
-      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
-    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReleasesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Channels$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1320,7 +1409,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListReleasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
       }
@@ -1451,9 +1543,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Sites$Domains$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Sites$Domains$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Domain>;
+    create(
+      params: Params$Resource$Projects$Sites$Domains$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Sites$Domains$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Domain>,
@@ -1467,10 +1568,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Domains$Create
-        | BodyResponseCallback<Schema$Domain>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
-      callback?: BodyResponseCallback<Schema$Domain>
-    ): void | GaxiosPromise<Schema$Domain> {
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1505,7 +1613,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Domain>(parameters, callback);
+        createAPIRequest<Schema$Domain>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
       }
@@ -1565,9 +1676,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Sites$Domains$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Sites$Domains$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Sites$Domains$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Sites$Domains$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1581,10 +1701,17 @@ export namespace firebasehosting_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Domains$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1616,7 +1743,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1685,9 +1815,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Sites$Domains$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Sites$Domains$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Domain>;
+    get(
+      params: Params$Resource$Projects$Sites$Domains$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Sites$Domains$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Domain>,
@@ -1701,10 +1840,17 @@ export namespace firebasehosting_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Domains$Get
-        | BodyResponseCallback<Schema$Domain>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
-      callback?: BodyResponseCallback<Schema$Domain>
-    ): void | GaxiosPromise<Schema$Domain> {
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1736,7 +1882,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Domain>(parameters, callback);
+        createAPIRequest<Schema$Domain>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
       }
@@ -1808,9 +1957,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Sites$Domains$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Sites$Domains$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDomainsResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Domains$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Sites$Domains$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListDomainsResponse>,
@@ -1824,12 +1982,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Domains$List
-        | BodyResponseCallback<Schema$ListDomainsResponse>,
+        | BodyResponseCallback<Schema$ListDomainsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDomainsResponse>
-    ): void | GaxiosPromise<Schema$ListDomainsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDomainsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1864,7 +2030,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDomainsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDomainsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
       }
@@ -1946,9 +2115,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Sites$Domains$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Sites$Domains$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Domain>;
+    update(
+      params: Params$Resource$Projects$Sites$Domains$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Sites$Domains$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Domain>,
@@ -1962,10 +2140,17 @@ export namespace firebasehosting_v1beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Domains$Update
-        | BodyResponseCallback<Schema$Domain>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
-      callback?: BodyResponseCallback<Schema$Domain>
-    ): void | GaxiosPromise<Schema$Domain> {
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Domains$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1997,7 +2182,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Domain>(parameters, callback);
+        createAPIRequest<Schema$Domain>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
       }
@@ -2174,9 +2362,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Sites$Releases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Sites$Releases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Projects$Sites$Releases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Sites$Releases$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Release>,
@@ -2190,10 +2387,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Releases$Create
-        | BodyResponseCallback<Schema$Release>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
-      callback?: BodyResponseCallback<Schema$Release>
-    ): void | GaxiosPromise<Schema$Release> {
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2228,7 +2432,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Release>(parameters, callback);
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
       }
@@ -2300,9 +2507,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Sites$Releases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Sites$Releases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Releases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Sites$Releases$List,
       options:
@@ -2318,12 +2534,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Releases$List
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
-      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
-    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReleasesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2358,7 +2582,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListReleasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
       }
@@ -2513,9 +2740,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Sites$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Sites$Versions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Version>;
+    create(
+      params: Params$Resource$Projects$Sites$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Sites$Versions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Version>,
@@ -2529,10 +2765,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Versions$Create
-        | BodyResponseCallback<Schema$Version>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
-      callback?: BodyResponseCallback<Schema$Version>
-    ): void | GaxiosPromise<Schema$Version> {
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2567,7 +2810,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Version>(parameters, callback);
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
       }
@@ -2628,9 +2874,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Sites$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Sites$Versions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Sites$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Sites$Versions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2644,10 +2899,17 @@ export namespace firebasehosting_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Versions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2679,7 +2941,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2760,9 +3025,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Sites$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Sites$Versions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Sites$Versions$List,
       options:
@@ -2778,12 +3052,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Versions$List
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2818,7 +3100,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
       }
@@ -2923,9 +3208,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Sites$Versions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Sites$Versions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Version>;
+    patch(
+      params: Params$Resource$Projects$Sites$Versions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Sites$Versions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Version>,
@@ -2939,10 +3233,17 @@ export namespace firebasehosting_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Versions$Patch
-        | BodyResponseCallback<Schema$Version>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
-      callback?: BodyResponseCallback<Schema$Version>
-    ): void | GaxiosPromise<Schema$Version> {
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2974,7 +3275,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Version>(parameters, callback);
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
       }
@@ -3047,9 +3351,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     populateFiles(
+      params: Params$Resource$Projects$Sites$Versions$Populatefiles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    populateFiles(
       params?: Params$Resource$Projects$Sites$Versions$Populatefiles,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PopulateVersionFilesResponse>;
+    populateFiles(
+      params: Params$Resource$Projects$Sites$Versions$Populatefiles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     populateFiles(
       params: Params$Resource$Projects$Sites$Versions$Populatefiles,
       options:
@@ -3067,12 +3380,20 @@ export namespace firebasehosting_v1beta1 {
     populateFiles(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Versions$Populatefiles
-        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
-      callback?: BodyResponseCallback<Schema$PopulateVersionFilesResponse>
-    ): void | GaxiosPromise<Schema$PopulateVersionFilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PopulateVersionFilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Populatefiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3109,7 +3430,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$PopulateVersionFilesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PopulateVersionFilesResponse>(
@@ -3295,9 +3616,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Sites$Versions$Files$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Sites$Versions$Files$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVersionFilesResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Versions$Files$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Sites$Versions$Files$List,
       options:
@@ -3313,12 +3643,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Sites$Versions$Files$List
-        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
-      callback?: BodyResponseCallback<Schema$ListVersionFilesResponse>
-    ): void | GaxiosPromise<Schema$ListVersionFilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVersionFilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sites$Versions$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3353,7 +3691,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVersionFilesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVersionFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVersionFilesResponse>(parameters);
       }
@@ -3459,9 +3800,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     getConfig(
+      params: Params$Resource$Sites$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
       params?: Params$Resource$Sites$Getconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteConfig>;
+    getConfig(
+      params: Params$Resource$Sites$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getConfig(
       params: Params$Resource$Sites$Getconfig,
       options: MethodOptions | BodyResponseCallback<Schema$SiteConfig>,
@@ -3475,12 +3825,17 @@ export namespace firebasehosting_v1beta1 {
     getConfig(
       paramsOrCallback?:
         | Params$Resource$Sites$Getconfig
-        | BodyResponseCallback<Schema$SiteConfig>,
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteConfig>,
-      callback?: BodyResponseCallback<Schema$SiteConfig>
-    ): void | GaxiosPromise<Schema$SiteConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3511,7 +3866,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SiteConfig>(parameters, callback);
+        createAPIRequest<Schema$SiteConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
       }
@@ -3592,9 +3950,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     updateConfig(
+      params: Params$Resource$Sites$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
       params?: Params$Resource$Sites$Updateconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SiteConfig>;
+    updateConfig(
+      params: Params$Resource$Sites$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateConfig(
       params: Params$Resource$Sites$Updateconfig,
       options: MethodOptions | BodyResponseCallback<Schema$SiteConfig>,
@@ -3608,12 +3975,17 @@ export namespace firebasehosting_v1beta1 {
     updateConfig(
       paramsOrCallback?:
         | Params$Resource$Sites$Updateconfig
-        | BodyResponseCallback<Schema$SiteConfig>,
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SiteConfig>,
-      callback?: BodyResponseCallback<Schema$SiteConfig>
-    ): void | GaxiosPromise<Schema$SiteConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SiteConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SiteConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3645,7 +4017,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SiteConfig>(parameters, callback);
+        createAPIRequest<Schema$SiteConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
       }
@@ -3785,9 +4160,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Sites$Channels$Releases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Sites$Channels$Releases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Sites$Channels$Releases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Sites$Channels$Releases$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Release>,
@@ -3801,10 +4185,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Sites$Channels$Releases$Create
-        | BodyResponseCallback<Schema$Release>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
-      callback?: BodyResponseCallback<Schema$Release>
-    ): void | GaxiosPromise<Schema$Release> {
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3839,7 +4230,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Release>(parameters, callback);
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
       }
@@ -3911,9 +4305,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sites$Channels$Releases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sites$Channels$Releases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Sites$Channels$Releases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sites$Channels$Releases$List,
       options:
@@ -3929,12 +4332,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sites$Channels$Releases$List
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
-      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
-    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReleasesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Channels$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3969,7 +4380,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListReleasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
       }
@@ -4100,9 +4514,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Sites$Domains$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Sites$Domains$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Domain>;
+    create(
+      params: Params$Resource$Sites$Domains$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Sites$Domains$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Domain>,
@@ -4116,10 +4539,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Sites$Domains$Create
-        | BodyResponseCallback<Schema$Domain>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
-      callback?: BodyResponseCallback<Schema$Domain>
-    ): void | GaxiosPromise<Schema$Domain> {
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4154,7 +4584,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Domain>(parameters, callback);
+        createAPIRequest<Schema$Domain>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
       }
@@ -4214,9 +4647,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sites$Domains$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sites$Domains$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Sites$Domains$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sites$Domains$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4230,10 +4672,17 @@ export namespace firebasehosting_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sites$Domains$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4265,7 +4714,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4334,9 +4786,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sites$Domains$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sites$Domains$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Domain>;
+    get(
+      params: Params$Resource$Sites$Domains$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sites$Domains$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Domain>,
@@ -4350,10 +4811,17 @@ export namespace firebasehosting_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sites$Domains$Get
-        | BodyResponseCallback<Schema$Domain>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
-      callback?: BodyResponseCallback<Schema$Domain>
-    ): void | GaxiosPromise<Schema$Domain> {
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4385,7 +4853,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Domain>(parameters, callback);
+        createAPIRequest<Schema$Domain>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
       }
@@ -4457,9 +4928,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sites$Domains$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sites$Domains$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDomainsResponse>;
+    list(
+      params: Params$Resource$Sites$Domains$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sites$Domains$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListDomainsResponse>,
@@ -4473,12 +4953,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sites$Domains$List
-        | BodyResponseCallback<Schema$ListDomainsResponse>,
+        | BodyResponseCallback<Schema$ListDomainsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDomainsResponse>
-    ): void | GaxiosPromise<Schema$ListDomainsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDomainsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4513,7 +5001,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDomainsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDomainsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
       }
@@ -4595,9 +5086,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Sites$Domains$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Sites$Domains$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Domain>;
+    update(
+      params: Params$Resource$Sites$Domains$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Sites$Domains$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Domain>,
@@ -4611,10 +5111,17 @@ export namespace firebasehosting_v1beta1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Sites$Domains$Update
-        | BodyResponseCallback<Schema$Domain>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Domain>,
-      callback?: BodyResponseCallback<Schema$Domain>
-    ): void | GaxiosPromise<Schema$Domain> {
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Domain> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Domains$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4646,7 +5153,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Domain>(parameters, callback);
+        createAPIRequest<Schema$Domain>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
       }
@@ -4823,9 +5333,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Sites$Releases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Sites$Releases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Sites$Releases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Sites$Releases$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Release>,
@@ -4839,10 +5358,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Sites$Releases$Create
-        | BodyResponseCallback<Schema$Release>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
-      callback?: BodyResponseCallback<Schema$Release>
-    ): void | GaxiosPromise<Schema$Release> {
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4877,7 +5403,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Release>(parameters, callback);
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Release>(parameters);
       }
@@ -4949,9 +5478,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sites$Releases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sites$Releases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Sites$Releases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sites$Releases$List,
       options:
@@ -4967,12 +5505,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sites$Releases$List
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
-      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
-    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReleasesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReleasesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5007,7 +5553,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListReleasesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListReleasesResponse>(parameters);
       }
@@ -5162,9 +5711,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Sites$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Sites$Versions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Version>;
+    create(
+      params: Params$Resource$Sites$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Sites$Versions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Version>,
@@ -5178,10 +5736,17 @@ export namespace firebasehosting_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Sites$Versions$Create
-        | BodyResponseCallback<Schema$Version>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
-      callback?: BodyResponseCallback<Schema$Version>
-    ): void | GaxiosPromise<Schema$Version> {
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5216,7 +5781,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Version>(parameters, callback);
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
       }
@@ -5277,9 +5845,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sites$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sites$Versions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Sites$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sites$Versions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5293,10 +5870,17 @@ export namespace firebasehosting_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sites$Versions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5328,7 +5912,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5409,9 +5996,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sites$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sites$Versions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVersionsResponse>;
+    list(
+      params: Params$Resource$Sites$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sites$Versions$List,
       options:
@@ -5427,12 +6023,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sites$Versions$List
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5467,7 +6071,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
       }
@@ -5572,9 +6179,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Sites$Versions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Sites$Versions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Version>;
+    patch(
+      params: Params$Resource$Sites$Versions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Sites$Versions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Version>,
@@ -5588,10 +6204,17 @@ export namespace firebasehosting_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Sites$Versions$Patch
-        | BodyResponseCallback<Schema$Version>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Version>,
-      callback?: BodyResponseCallback<Schema$Version>
-    ): void | GaxiosPromise<Schema$Version> {
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5623,7 +6246,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Version>(parameters, callback);
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
       }
@@ -5696,9 +6322,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     populateFiles(
+      params: Params$Resource$Sites$Versions$Populatefiles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    populateFiles(
       params?: Params$Resource$Sites$Versions$Populatefiles,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PopulateVersionFilesResponse>;
+    populateFiles(
+      params: Params$Resource$Sites$Versions$Populatefiles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     populateFiles(
       params: Params$Resource$Sites$Versions$Populatefiles,
       options:
@@ -5716,12 +6351,20 @@ export namespace firebasehosting_v1beta1 {
     populateFiles(
       paramsOrCallback?:
         | Params$Resource$Sites$Versions$Populatefiles
-        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>,
-      callback?: BodyResponseCallback<Schema$PopulateVersionFilesResponse>
-    ): void | GaxiosPromise<Schema$PopulateVersionFilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PopulateVersionFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PopulateVersionFilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Populatefiles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5758,7 +6401,7 @@ export namespace firebasehosting_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$PopulateVersionFilesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$PopulateVersionFilesResponse>(
@@ -5944,9 +6587,18 @@ export namespace firebasehosting_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sites$Versions$Files$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sites$Versions$Files$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListVersionFilesResponse>;
+    list(
+      params: Params$Resource$Sites$Versions$Files$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sites$Versions$Files$List,
       options:
@@ -5962,12 +6614,20 @@ export namespace firebasehosting_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sites$Versions$Files$List
-        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionFilesResponse>,
-      callback?: BodyResponseCallback<Schema$ListVersionFilesResponse>
-    ): void | GaxiosPromise<Schema$ListVersionFilesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVersionFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVersionFilesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sites$Versions$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6002,7 +6662,10 @@ export namespace firebasehosting_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVersionFilesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListVersionFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListVersionFilesResponse>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace safebrowsing_v4 {
   export interface Options extends GlobalOptions {
@@ -627,9 +629,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Encodedfullhashes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Encodedfullhashes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindFullHashesResponse>;
+    get(
+      params: Params$Resource$Encodedfullhashes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Encodedfullhashes$Get,
       options:
@@ -645,12 +656,20 @@ export namespace safebrowsing_v4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Encodedfullhashes$Get
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
-      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>
-    ): void | GaxiosPromise<Schema$FindFullHashesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindFullHashesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedfullhashes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -684,7 +703,10 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
+        createAPIRequest<Schema$FindFullHashesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
       }
@@ -778,9 +800,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Encodedupdates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Encodedupdates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+    get(
+      params: Params$Resource$Encodedupdates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Encodedupdates$Get,
       options:
@@ -798,12 +829,20 @@ export namespace safebrowsing_v4 {
     get(
       paramsOrCallback?:
         | Params$Resource$Encodedupdates$Get
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
-    ): void | GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchThreatListUpdatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedupdates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -839,7 +878,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -939,9 +978,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     find(
+      params: Params$Resource$Fullhashes$Find,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    find(
       params?: Params$Resource$Fullhashes$Find,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindFullHashesResponse>;
+    find(
+      params: Params$Resource$Fullhashes$Find,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     find(
       params: Params$Resource$Fullhashes$Find,
       options:
@@ -957,12 +1005,20 @@ export namespace safebrowsing_v4 {
     find(
       paramsOrCallback?:
         | Params$Resource$Fullhashes$Find
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindFullHashesResponse>,
-      callback?: BodyResponseCallback<Schema$FindFullHashesResponse>
-    ): void | GaxiosPromise<Schema$FindFullHashesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindFullHashesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Fullhashes$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -995,7 +1051,10 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
+        createAPIRequest<Schema$FindFullHashesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
       }
@@ -1081,9 +1140,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Threathits$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Threathits$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    create(
+      params: Params$Resource$Threathits$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Threathits$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1097,10 +1165,17 @@ export namespace safebrowsing_v4 {
     create(
       paramsOrCallback?:
         | Params$Resource$Threathits$Create
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threathits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1131,7 +1206,10 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1206,9 +1284,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Threatlists$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Threatlists$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListThreatListsResponse>;
+    list(
+      params: Params$Resource$Threatlists$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Threatlists$List,
       options:
@@ -1224,12 +1311,20 @@ export namespace safebrowsing_v4 {
     list(
       paramsOrCallback?:
         | Params$Resource$Threatlists$List
-        | BodyResponseCallback<Schema$ListThreatListsResponse>,
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListThreatListsResponse>,
-      callback?: BodyResponseCallback<Schema$ListThreatListsResponse>
-    ): void | GaxiosPromise<Schema$ListThreatListsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListThreatListsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Threatlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1259,7 +1354,10 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListThreatListsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListThreatListsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListThreatListsResponse>(parameters);
       }
@@ -1339,9 +1437,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     fetch(
+      params: Params$Resource$Threatlistupdates$Fetch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetch(
       params?: Params$Resource$Threatlistupdates$Fetch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+    fetch(
+      params: Params$Resource$Threatlistupdates$Fetch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     fetch(
       params: Params$Resource$Threatlistupdates$Fetch,
       options:
@@ -1359,12 +1466,20 @@ export namespace safebrowsing_v4 {
     fetch(
       paramsOrCallback?:
         | Params$Resource$Threatlistupdates$Fetch
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
-      callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
-    ): void | GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchThreatListUpdatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatlistupdates$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1400,7 +1515,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -1488,9 +1603,18 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     find(
+      params: Params$Resource$Threatmatches$Find,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    find(
       params?: Params$Resource$Threatmatches$Find,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FindThreatMatchesResponse>;
+    find(
+      params: Params$Resource$Threatmatches$Find,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     find(
       params: Params$Resource$Threatmatches$Find,
       options:
@@ -1508,12 +1632,20 @@ export namespace safebrowsing_v4 {
     find(
       paramsOrCallback?:
         | Params$Resource$Threatmatches$Find
-        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
-      callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>
-    ): void | GaxiosPromise<Schema$FindThreatMatchesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FindThreatMatchesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatmatches$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1549,7 +1681,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindThreatMatchesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FindThreatMatchesResponse>(parameters);

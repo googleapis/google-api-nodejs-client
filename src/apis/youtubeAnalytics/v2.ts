@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace youtubeAnalytics_v2 {
   export interface Options extends GlobalOptions {
@@ -431,9 +433,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Groupitems$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Groupitems$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EmptyResponse>;
+    delete(
+      params: Params$Resource$Groupitems$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Groupitems$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$EmptyResponse>,
@@ -447,12 +458,17 @@ export namespace youtubeAnalytics_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Groupitems$Delete
-        | BodyResponseCallback<Schema$EmptyResponse>,
+        | BodyResponseCallback<Schema$EmptyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EmptyResponse>,
-      callback?: BodyResponseCallback<Schema$EmptyResponse>
-    ): void | GaxiosPromise<Schema$EmptyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EmptyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EmptyResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EmptyResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groupitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -484,7 +500,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EmptyResponse>(parameters, callback);
+        createAPIRequest<Schema$EmptyResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EmptyResponse>(parameters);
       }
@@ -578,9 +597,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Groupitems$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Groupitems$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GroupItem>;
+    insert(
+      params: Params$Resource$Groupitems$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Groupitems$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$GroupItem>,
@@ -594,12 +622,17 @@ export namespace youtubeAnalytics_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Groupitems$Insert
-        | BodyResponseCallback<Schema$GroupItem>,
+        | BodyResponseCallback<Schema$GroupItem>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GroupItem>,
-      callback?: BodyResponseCallback<Schema$GroupItem>
-    ): void | GaxiosPromise<Schema$GroupItem> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GroupItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GroupItem>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GroupItem> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groupitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -631,7 +664,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GroupItem>(parameters, callback);
+        createAPIRequest<Schema$GroupItem>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GroupItem>(parameters);
       }
@@ -713,9 +749,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Groupitems$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Groupitems$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGroupItemsResponse>;
+    list(
+      params: Params$Resource$Groupitems$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Groupitems$List,
       options:
@@ -731,12 +776,20 @@ export namespace youtubeAnalytics_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Groupitems$List
-        | BodyResponseCallback<Schema$ListGroupItemsResponse>,
+        | BodyResponseCallback<Schema$ListGroupItemsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupItemsResponse>,
-      callback?: BodyResponseCallback<Schema$ListGroupItemsResponse>
-    ): void | GaxiosPromise<Schema$ListGroupItemsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGroupItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGroupItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGroupItemsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groupitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -767,7 +820,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListGroupItemsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListGroupItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListGroupItemsResponse>(parameters);
       }
@@ -902,9 +958,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Groups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Groups$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$EmptyResponse>;
+    delete(
+      params: Params$Resource$Groups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Groups$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$EmptyResponse>,
@@ -918,12 +983,17 @@ export namespace youtubeAnalytics_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Groups$Delete
-        | BodyResponseCallback<Schema$EmptyResponse>,
+        | BodyResponseCallback<Schema$EmptyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$EmptyResponse>,
-      callback?: BodyResponseCallback<Schema$EmptyResponse>
-    ): void | GaxiosPromise<Schema$EmptyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EmptyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EmptyResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EmptyResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -954,7 +1024,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$EmptyResponse>(parameters, callback);
+        createAPIRequest<Schema$EmptyResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$EmptyResponse>(parameters);
       }
@@ -1048,9 +1121,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Groups$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Groups$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Group>;
+    insert(
+      params: Params$Resource$Groups$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Groups$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Group>,
@@ -1064,10 +1146,17 @@ export namespace youtubeAnalytics_v2 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Groups$Insert
-        | BodyResponseCallback<Schema$Group>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
-      callback?: BodyResponseCallback<Schema$Group>
-    ): void | GaxiosPromise<Schema$Group> {
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1098,7 +1187,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Group>(parameters, callback);
+        createAPIRequest<Schema$Group>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
       }
@@ -1196,9 +1288,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Groups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Groups$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGroupsResponse>;
+    list(
+      params: Params$Resource$Groups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Groups$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListGroupsResponse>,
@@ -1212,12 +1313,20 @@ export namespace youtubeAnalytics_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Groups$List
-        | BodyResponseCallback<Schema$ListGroupsResponse>,
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupsResponse>,
-      callback?: BodyResponseCallback<Schema$ListGroupsResponse>
-    ): void | GaxiosPromise<Schema$ListGroupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGroupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1248,7 +1357,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
       }
@@ -1342,9 +1454,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Groups$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Groups$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Group>;
+    update(
+      params: Params$Resource$Groups$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Groups$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Group>,
@@ -1358,10 +1479,17 @@ export namespace youtubeAnalytics_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Groups$Update
-        | BodyResponseCallback<Schema$Group>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
-      callback?: BodyResponseCallback<Schema$Group>
-    ): void | GaxiosPromise<Schema$Group> {
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1392,7 +1520,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Group>(parameters, callback);
+        createAPIRequest<Schema$Group>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
       }
@@ -1614,9 +1745,18 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     query(
+      params: Params$Resource$Reports$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
       params?: Params$Resource$Reports$Query,
       options?: MethodOptions
     ): GaxiosPromise<Schema$QueryResponse>;
+    query(
+      params: Params$Resource$Reports$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     query(
       params: Params$Resource$Reports$Query,
       options: MethodOptions | BodyResponseCallback<Schema$QueryResponse>,
@@ -1630,12 +1770,17 @@ export namespace youtubeAnalytics_v2 {
     query(
       paramsOrCallback?:
         | Params$Resource$Reports$Query
-        | BodyResponseCallback<Schema$QueryResponse>,
+        | BodyResponseCallback<Schema$QueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$QueryResponse>,
-      callback?: BodyResponseCallback<Schema$QueryResponse>
-    ): void | GaxiosPromise<Schema$QueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$QueryResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1666,7 +1811,10 @@ export namespace youtubeAnalytics_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$QueryResponse>(parameters, callback);
+        createAPIRequest<Schema$QueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);
       }

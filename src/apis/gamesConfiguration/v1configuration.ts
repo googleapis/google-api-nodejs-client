@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace gamesConfiguration_v1configuration {
   export interface Options extends GlobalOptions {
@@ -436,9 +438,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Achievementconfigurations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Achievementconfigurations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Achievementconfigurations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Achievementconfigurations$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -452,10 +463,15 @@ export namespace gamesConfiguration_v1configuration {
     delete(
       paramsOrCallback?:
         | Params$Resource$Achievementconfigurations$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -488,7 +504,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -554,9 +573,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Achievementconfigurations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Achievementconfigurations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementConfiguration>;
+    get(
+      params: Params$Resource$Achievementconfigurations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Achievementconfigurations$Get,
       options:
@@ -572,12 +600,20 @@ export namespace gamesConfiguration_v1configuration {
     get(
       paramsOrCallback?:
         | Params$Resource$Achievementconfigurations$Get
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
-      callback?: BodyResponseCallback<Schema$AchievementConfiguration>
-    ): void | GaxiosPromise<Schema$AchievementConfiguration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementConfiguration>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -610,7 +646,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
+        createAPIRequest<Schema$AchievementConfiguration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AchievementConfiguration>(parameters);
       }
@@ -692,9 +731,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Achievementconfigurations$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Achievementconfigurations$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementConfiguration>;
+    insert(
+      params: Params$Resource$Achievementconfigurations$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Achievementconfigurations$Insert,
       options:
@@ -712,12 +760,20 @@ export namespace gamesConfiguration_v1configuration {
     insert(
       paramsOrCallback?:
         | Params$Resource$Achievementconfigurations$Insert
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
-      callback?: BodyResponseCallback<Schema$AchievementConfiguration>
-    ): void | GaxiosPromise<Schema$AchievementConfiguration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementConfiguration>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -751,7 +807,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
+        createAPIRequest<Schema$AchievementConfiguration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AchievementConfiguration>(parameters);
       }
@@ -820,9 +879,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Achievementconfigurations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Achievementconfigurations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementConfigurationListResponse>;
+    list(
+      params: Params$Resource$Achievementconfigurations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Achievementconfigurations$List,
       options:
@@ -846,14 +914,20 @@ export namespace gamesConfiguration_v1configuration {
     list(
       paramsOrCallback?:
         | Params$Resource$Achievementconfigurations$List
-        | BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
+        | BodyResponseCallback<Schema$AchievementConfigurationListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
-      callback?: BodyResponseCallback<
-        Schema$AchievementConfigurationListResponse
-      >
-    ): void | GaxiosPromise<Schema$AchievementConfigurationListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementConfigurationListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementConfigurationListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementConfigurationListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -889,7 +963,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$AchievementConfigurationListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AchievementConfigurationListResponse>(
@@ -974,9 +1048,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Achievementconfigurations$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Achievementconfigurations$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AchievementConfiguration>;
+    update(
+      params: Params$Resource$Achievementconfigurations$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Achievementconfigurations$Update,
       options:
@@ -994,12 +1077,20 @@ export namespace gamesConfiguration_v1configuration {
     update(
       paramsOrCallback?:
         | Params$Resource$Achievementconfigurations$Update
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
-      callback?: BodyResponseCallback<Schema$AchievementConfiguration>
-    ): void | GaxiosPromise<Schema$AchievementConfiguration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AchievementConfiguration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AchievementConfiguration>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Achievementconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1032,7 +1123,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
+        createAPIRequest<Schema$AchievementConfiguration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AchievementConfiguration>(parameters);
       }
@@ -1194,9 +1288,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Imageconfigurations$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Imageconfigurations$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImageConfiguration>;
+    upload(
+      params: Params$Resource$Imageconfigurations$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Imageconfigurations$Upload,
       options: MethodOptions | BodyResponseCallback<Schema$ImageConfiguration>,
@@ -1210,12 +1313,20 @@ export namespace gamesConfiguration_v1configuration {
     upload(
       paramsOrCallback?:
         | Params$Resource$Imageconfigurations$Upload
-        | BodyResponseCallback<Schema$ImageConfiguration>,
+        | BodyResponseCallback<Schema$ImageConfiguration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImageConfiguration>,
-      callback?: BodyResponseCallback<Schema$ImageConfiguration>
-    ): void | GaxiosPromise<Schema$ImageConfiguration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImageConfiguration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImageConfiguration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ImageConfiguration>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Imageconfigurations$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1253,7 +1364,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImageConfiguration>(parameters, callback);
+        createAPIRequest<Schema$ImageConfiguration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImageConfiguration>(parameters);
       }
@@ -1351,9 +1465,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Leaderboardconfigurations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Leaderboardconfigurations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Leaderboardconfigurations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Leaderboardconfigurations$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1367,10 +1490,15 @@ export namespace gamesConfiguration_v1configuration {
     delete(
       paramsOrCallback?:
         | Params$Resource$Leaderboardconfigurations$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1403,7 +1531,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1469,9 +1600,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Leaderboardconfigurations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Leaderboardconfigurations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardConfiguration>;
+    get(
+      params: Params$Resource$Leaderboardconfigurations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Leaderboardconfigurations$Get,
       options:
@@ -1487,12 +1627,20 @@ export namespace gamesConfiguration_v1configuration {
     get(
       paramsOrCallback?:
         | Params$Resource$Leaderboardconfigurations$Get
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
-      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>
-    ): void | GaxiosPromise<Schema$LeaderboardConfiguration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardConfiguration>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1525,7 +1673,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardConfiguration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
       }
@@ -1607,9 +1758,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Leaderboardconfigurations$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Leaderboardconfigurations$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardConfiguration>;
+    insert(
+      params: Params$Resource$Leaderboardconfigurations$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Leaderboardconfigurations$Insert,
       options:
@@ -1627,12 +1787,20 @@ export namespace gamesConfiguration_v1configuration {
     insert(
       paramsOrCallback?:
         | Params$Resource$Leaderboardconfigurations$Insert
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
-      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>
-    ): void | GaxiosPromise<Schema$LeaderboardConfiguration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardConfiguration>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1666,7 +1834,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardConfiguration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
       }
@@ -1735,9 +1906,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Leaderboardconfigurations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Leaderboardconfigurations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardConfigurationListResponse>;
+    list(
+      params: Params$Resource$Leaderboardconfigurations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Leaderboardconfigurations$List,
       options:
@@ -1761,14 +1941,20 @@ export namespace gamesConfiguration_v1configuration {
     list(
       paramsOrCallback?:
         | Params$Resource$Leaderboardconfigurations$List
-        | BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
+        | BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
-      callback?: BodyResponseCallback<
-        Schema$LeaderboardConfigurationListResponse
-      >
-    ): void | GaxiosPromise<Schema$LeaderboardConfigurationListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardConfigurationListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1804,7 +1990,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
@@ -1889,9 +2075,18 @@ export namespace gamesConfiguration_v1configuration {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Leaderboardconfigurations$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Leaderboardconfigurations$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LeaderboardConfiguration>;
+    update(
+      params: Params$Resource$Leaderboardconfigurations$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Leaderboardconfigurations$Update,
       options:
@@ -1909,12 +2104,20 @@ export namespace gamesConfiguration_v1configuration {
     update(
       paramsOrCallback?:
         | Params$Resource$Leaderboardconfigurations$Update
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
-      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>
-    ): void | GaxiosPromise<Schema$LeaderboardConfiguration> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LeaderboardConfiguration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LeaderboardConfiguration>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Leaderboardconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1947,7 +2150,10 @@ export namespace gamesConfiguration_v1configuration {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
+        createAPIRequest<Schema$LeaderboardConfiguration>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
       }

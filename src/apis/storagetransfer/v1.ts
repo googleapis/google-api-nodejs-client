@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace storagetransfer_v1 {
   export interface Options extends GlobalOptions {
@@ -696,9 +698,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Googleserviceaccounts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Googleserviceaccounts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleServiceAccount>;
+    get(
+      params: Params$Resource$Googleserviceaccounts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Googleserviceaccounts$Get,
       options:
@@ -714,12 +725,20 @@ export namespace storagetransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Googleserviceaccounts$Get
-        | BodyResponseCallback<Schema$GoogleServiceAccount>,
+        | BodyResponseCallback<Schema$GoogleServiceAccount>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleServiceAccount>,
-      callback?: BodyResponseCallback<Schema$GoogleServiceAccount>
-    ): void | GaxiosPromise<Schema$GoogleServiceAccount> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleServiceAccount>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleServiceAccount>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleserviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -754,7 +773,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleServiceAccount>(parameters, callback);
+        createAPIRequest<Schema$GoogleServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleServiceAccount>(parameters);
       }
@@ -856,9 +878,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Transferjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Transferjobs$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferJob>;
+    create(
+      params: Params$Resource$Transferjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Transferjobs$Create,
       options: MethodOptions | BodyResponseCallback<Schema$TransferJob>,
@@ -872,12 +903,17 @@ export namespace storagetransfer_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Transferjobs$Create
-        | BodyResponseCallback<Schema$TransferJob>,
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferJob>,
-      callback?: BodyResponseCallback<Schema$TransferJob>
-    ): void | GaxiosPromise<Schema$TransferJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -909,7 +945,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferJob>(parameters, callback);
+        createAPIRequest<Schema$TransferJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferJob>(parameters);
       }
@@ -981,9 +1020,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Transferjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Transferjobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferJob>;
+    get(
+      params: Params$Resource$Transferjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Transferjobs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TransferJob>,
@@ -997,12 +1045,17 @@ export namespace storagetransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Transferjobs$Get
-        | BodyResponseCallback<Schema$TransferJob>,
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferJob>,
-      callback?: BodyResponseCallback<Schema$TransferJob>
-    ): void | GaxiosPromise<Schema$TransferJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1033,7 +1086,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferJob>(parameters, callback);
+        createAPIRequest<Schema$TransferJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferJob>(parameters);
       }
@@ -1109,9 +1165,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Transferjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Transferjobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTransferJobsResponse>;
+    list(
+      params: Params$Resource$Transferjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Transferjobs$List,
       options:
@@ -1127,12 +1192,20 @@ export namespace storagetransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Transferjobs$List
-        | BodyResponseCallback<Schema$ListTransferJobsResponse>,
+        | BodyResponseCallback<Schema$ListTransferJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTransferJobsResponse>
-    ): void | GaxiosPromise<Schema$ListTransferJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransferJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1164,7 +1237,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListTransferJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListTransferJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListTransferJobsResponse>(parameters);
       }
@@ -1243,9 +1319,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Transferjobs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Transferjobs$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TransferJob>;
+    patch(
+      params: Params$Resource$Transferjobs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Transferjobs$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$TransferJob>,
@@ -1259,12 +1344,17 @@ export namespace storagetransfer_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Transferjobs$Patch
-        | BodyResponseCallback<Schema$TransferJob>,
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TransferJob>,
-      callback?: BodyResponseCallback<Schema$TransferJob>
-    ): void | GaxiosPromise<Schema$TransferJob> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TransferJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferjobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1296,7 +1386,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TransferJob>(parameters, callback);
+        createAPIRequest<Schema$TransferJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TransferJob>(parameters);
       }
@@ -1425,9 +1518,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Transferoperations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Transferoperations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Transferoperations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Transferoperations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1441,10 +1543,17 @@ export namespace storagetransfer_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Transferoperations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1476,7 +1585,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1539,9 +1651,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Transferoperations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Transferoperations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Transferoperations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Transferoperations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1555,12 +1676,17 @@ export namespace storagetransfer_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Transferoperations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1592,7 +1718,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1665,9 +1794,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Transferoperations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Transferoperations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Transferoperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Transferoperations$List,
       options:
@@ -1683,12 +1821,20 @@ export namespace storagetransfer_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Transferoperations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1720,7 +1866,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
@@ -1784,9 +1933,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     pause(
+      params: Params$Resource$Transferoperations$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
       params?: Params$Resource$Transferoperations$Pause,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    pause(
+      params: Params$Resource$Transferoperations$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     pause(
       params: Params$Resource$Transferoperations$Pause,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1800,10 +1958,17 @@ export namespace storagetransfer_v1 {
     pause(
       paramsOrCallback?:
         | Params$Resource$Transferoperations$Pause
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1835,7 +2000,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1899,9 +2067,18 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     resume(
+      params: Params$Resource$Transferoperations$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
       params?: Params$Resource$Transferoperations$Resume,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    resume(
+      params: Params$Resource$Transferoperations$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     resume(
       params: Params$Resource$Transferoperations$Resume,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1915,10 +2092,17 @@ export namespace storagetransfer_v1 {
     resume(
       paramsOrCallback?:
         | Params$Resource$Transferoperations$Resume
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Transferoperations$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1950,7 +2134,10 @@ export namespace storagetransfer_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }

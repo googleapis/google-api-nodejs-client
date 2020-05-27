@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace osconfig_v1 {
   export interface Options extends GlobalOptions {
@@ -823,9 +825,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Patchdeployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Patchdeployments$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PatchDeployment>;
+    create(
+      params: Params$Resource$Projects$Patchdeployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Patchdeployments$Create,
       options: MethodOptions | BodyResponseCallback<Schema$PatchDeployment>,
@@ -839,12 +850,17 @@ export namespace osconfig_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchdeployments$Create
-        | BodyResponseCallback<Schema$PatchDeployment>,
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PatchDeployment>,
-      callback?: BodyResponseCallback<Schema$PatchDeployment>
-    ): void | GaxiosPromise<Schema$PatchDeployment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -878,7 +894,10 @@ export namespace osconfig_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PatchDeployment>(parameters, callback);
+        createAPIRequest<Schema$PatchDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PatchDeployment>(parameters);
       }
@@ -936,9 +955,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Patchdeployments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Patchdeployments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Patchdeployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Patchdeployments$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -952,10 +980,17 @@ export namespace osconfig_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchdeployments$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -986,7 +1021,10 @@ export namespace osconfig_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1055,9 +1093,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Patchdeployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Patchdeployments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PatchDeployment>;
+    get(
+      params: Params$Resource$Projects$Patchdeployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Patchdeployments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$PatchDeployment>,
@@ -1071,12 +1118,17 @@ export namespace osconfig_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchdeployments$Get
-        | BodyResponseCallback<Schema$PatchDeployment>,
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PatchDeployment>,
-      callback?: BodyResponseCallback<Schema$PatchDeployment>
-    ): void | GaxiosPromise<Schema$PatchDeployment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1107,7 +1159,10 @@ export namespace osconfig_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PatchDeployment>(parameters, callback);
+        createAPIRequest<Schema$PatchDeployment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PatchDeployment>(parameters);
       }
@@ -1174,9 +1229,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Patchdeployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Patchdeployments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListPatchDeploymentsResponse>;
+    list(
+      params: Params$Resource$Projects$Patchdeployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Patchdeployments$List,
       options:
@@ -1194,12 +1258,20 @@ export namespace osconfig_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchdeployments$List
-        | BodyResponseCallback<Schema$ListPatchDeploymentsResponse>,
+        | BodyResponseCallback<Schema$ListPatchDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPatchDeploymentsResponse>,
-      callback?: BodyResponseCallback<Schema$ListPatchDeploymentsResponse>
-    ): void | GaxiosPromise<Schema$ListPatchDeploymentsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPatchDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPatchDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPatchDeploymentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchdeployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1235,7 +1307,7 @@ export namespace osconfig_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPatchDeploymentsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListPatchDeploymentsResponse>(
@@ -1394,9 +1466,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Patchjobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Patchjobs$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PatchJob>;
+    cancel(
+      params: Params$Resource$Projects$Patchjobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Patchjobs$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$PatchJob>,
@@ -1410,10 +1491,17 @@ export namespace osconfig_v1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchjobs$Cancel
-        | BodyResponseCallback<Schema$PatchJob>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PatchJob>,
-      callback?: BodyResponseCallback<Schema$PatchJob>
-    ): void | GaxiosPromise<Schema$PatchJob> {
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1444,7 +1532,10 @@ export namespace osconfig_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PatchJob>(parameters, callback);
+        createAPIRequest<Schema$PatchJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
       }
@@ -1530,9 +1621,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     execute(
+      params: Params$Resource$Projects$Patchjobs$Execute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    execute(
       params?: Params$Resource$Projects$Patchjobs$Execute,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PatchJob>;
+    execute(
+      params: Params$Resource$Projects$Patchjobs$Execute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     execute(
       params: Params$Resource$Projects$Patchjobs$Execute,
       options: MethodOptions | BodyResponseCallback<Schema$PatchJob>,
@@ -1546,10 +1646,17 @@ export namespace osconfig_v1 {
     execute(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchjobs$Execute
-        | BodyResponseCallback<Schema$PatchJob>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PatchJob>,
-      callback?: BodyResponseCallback<Schema$PatchJob>
-    ): void | GaxiosPromise<Schema$PatchJob> {
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Execute;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1583,7 +1690,10 @@ export namespace osconfig_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PatchJob>(parameters, callback);
+        createAPIRequest<Schema$PatchJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
       }
@@ -1655,9 +1765,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Patchjobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Patchjobs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PatchJob>;
+    get(
+      params: Params$Resource$Projects$Patchjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Patchjobs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$PatchJob>,
@@ -1671,10 +1790,17 @@ export namespace osconfig_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchjobs$Get
-        | BodyResponseCallback<Schema$PatchJob>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PatchJob>,
-      callback?: BodyResponseCallback<Schema$PatchJob>
-    ): void | GaxiosPromise<Schema$PatchJob> {
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchJob>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchJob> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1705,7 +1831,10 @@ export namespace osconfig_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PatchJob>(parameters, callback);
+        createAPIRequest<Schema$PatchJob>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
       }
@@ -1777,9 +1906,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Patchjobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Patchjobs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListPatchJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Patchjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Patchjobs$List,
       options:
@@ -1795,12 +1933,20 @@ export namespace osconfig_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchjobs$List
-        | BodyResponseCallback<Schema$ListPatchJobsResponse>,
+        | BodyResponseCallback<Schema$ListPatchJobsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPatchJobsResponse>,
-      callback?: BodyResponseCallback<Schema$ListPatchJobsResponse>
-    ): void | GaxiosPromise<Schema$ListPatchJobsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPatchJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPatchJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPatchJobsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1834,7 +1980,10 @@ export namespace osconfig_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListPatchJobsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListPatchJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListPatchJobsResponse>(parameters);
       }
@@ -1984,9 +2133,18 @@ export namespace osconfig_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListPatchJobInstanceDetailsResponse>;
+    list(
+      params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
       options:
@@ -2004,14 +2162,20 @@ export namespace osconfig_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Patchjobs$Instancedetails$List
-        | BodyResponseCallback<Schema$ListPatchJobInstanceDetailsResponse>,
+        | BodyResponseCallback<Schema$ListPatchJobInstanceDetailsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPatchJobInstanceDetailsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListPatchJobInstanceDetailsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListPatchJobInstanceDetailsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPatchJobInstanceDetailsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPatchJobInstanceDetailsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPatchJobInstanceDetailsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Patchjobs$Instancedetails$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2047,7 +2211,7 @@ export namespace osconfig_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPatchJobInstanceDetailsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListPatchJobInstanceDetailsResponse>(

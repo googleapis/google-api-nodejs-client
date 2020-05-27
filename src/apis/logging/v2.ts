@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace logging_v2 {
   export interface Options extends GlobalOptions {
@@ -1128,9 +1130,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billingaccounts$Buckets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billingaccounts$Buckets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -1144,12 +1155,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Buckets$Get
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1180,7 +1196,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -1286,9 +1305,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Billingaccounts$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Billingaccounts$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Billingaccounts$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Billingaccounts$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -1302,12 +1330,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1341,7 +1374,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -1406,9 +1442,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Billingaccounts$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Billingaccounts$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Billingaccounts$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1422,10 +1467,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1456,7 +1508,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1530,9 +1585,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billingaccounts$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billingaccounts$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Billingaccounts$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billingaccounts$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -1546,12 +1610,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1582,7 +1651,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -1658,9 +1730,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Exclusions$List,
       options:
@@ -1676,12 +1757,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1715,7 +1804,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -1804,9 +1896,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Billingaccounts$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Billingaccounts$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Billingaccounts$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Billingaccounts$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -1820,12 +1921,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1856,7 +1962,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -2033,9 +2142,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Locations$Buckets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Locations$Buckets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
@@ -2049,12 +2167,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Locations$Buckets$List
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
-    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2088,7 +2214,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
       }
@@ -2178,9 +2307,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -2194,12 +2332,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Locations$Buckets$Patch
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2230,7 +2373,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -2344,9 +2490,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Billingaccounts$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Billingaccounts$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Billingaccounts$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2360,10 +2515,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2394,7 +2556,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2470,9 +2635,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -2486,12 +2660,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2522,7 +2701,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -2661,9 +2843,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Billingaccounts$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Billingaccounts$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Billingaccounts$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Billingaccounts$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -2677,10 +2868,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2714,7 +2912,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -2779,9 +2980,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Billingaccounts$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Billingaccounts$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Billingaccounts$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2795,10 +3005,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2829,7 +3046,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2908,9 +3128,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billingaccounts$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billingaccounts$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Billingaccounts$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billingaccounts$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -2924,10 +3153,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2958,7 +3194,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -3034,9 +3273,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -3050,12 +3298,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3089,7 +3345,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -3194,9 +3453,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Billingaccounts$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Billingaccounts$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Billingaccounts$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Billingaccounts$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -3210,10 +3478,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3244,7 +3519,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -3349,9 +3627,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Billingaccounts$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Billingaccounts$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Billingaccounts$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Billingaccounts$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -3365,10 +3652,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3399,7 +3693,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -3597,9 +3894,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Entries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Entries$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogEntriesResponse>;
+    list(
+      params: Params$Resource$Entries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Entries$List,
       options:
@@ -3615,12 +3921,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Entries$List
-        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogEntriesResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>
-    ): void | GaxiosPromise<Schema$ListLogEntriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogEntriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3650,7 +3964,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogEntriesResponse>(parameters);
       }
@@ -3721,9 +4038,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     write(
+      params: Params$Resource$Entries$Write,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    write(
       params?: Params$Resource$Entries$Write,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WriteLogEntriesResponse>;
+    write(
+      params: Params$Resource$Entries$Write,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     write(
       params: Params$Resource$Entries$Write,
       options:
@@ -3739,12 +4065,20 @@ export namespace logging_v2 {
     write(
       paramsOrCallback?:
         | Params$Resource$Entries$Write
-        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WriteLogEntriesResponse>,
-      callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>
-    ): void | GaxiosPromise<Schema$WriteLogEntriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WriteLogEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WriteLogEntriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3774,7 +4108,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
+        createAPIRequest<Schema$WriteLogEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WriteLogEntriesResponse>(parameters);
       }
@@ -3890,9 +4227,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -3906,12 +4252,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3945,7 +4296,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -4010,9 +4364,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4026,10 +4389,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4060,7 +4430,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4134,9 +4507,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -4150,12 +4532,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4185,7 +4572,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -4261,9 +4651,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Exclusions$List,
       options:
@@ -4279,12 +4678,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4317,7 +4724,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -4406,9 +4816,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -4422,12 +4841,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4457,7 +4881,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -4645,9 +5072,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Folders$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Folders$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Folders$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Folders$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -4661,12 +5097,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4700,7 +5141,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -4765,9 +5209,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Folders$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Folders$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Folders$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4781,10 +5234,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4815,7 +5275,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4889,9 +5352,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Folders$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -4905,12 +5377,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4941,7 +5418,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -5017,9 +5497,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Folders$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Exclusions$List,
       options:
@@ -5035,12 +5524,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5074,7 +5571,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -5163,9 +5663,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Folders$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Folders$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Folders$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Folders$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -5179,12 +5688,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Folders$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5215,7 +5729,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -5388,9 +5905,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Locations$Buckets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Locations$Buckets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -5404,12 +5930,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Locations$Buckets$Get
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5440,7 +5971,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -5516,9 +6050,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Locations$Buckets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Locations$Buckets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
@@ -5532,12 +6075,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Locations$Buckets$List
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
-    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5571,7 +6122,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
       }
@@ -5660,9 +6214,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Folders$Locations$Buckets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Folders$Locations$Buckets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -5676,12 +6239,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Folders$Locations$Buckets$Patch
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5712,7 +6280,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -5838,9 +6409,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Folders$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Folders$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Folders$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5854,10 +6434,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Folders$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5888,7 +6475,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5964,9 +6554,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Folders$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -5980,12 +6579,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6016,7 +6620,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -6155,9 +6762,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Folders$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Folders$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Folders$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Folders$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -6171,10 +6787,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6208,7 +6831,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -6273,9 +6899,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Folders$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Folders$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Folders$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -6289,10 +6924,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6323,7 +6965,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -6402,9 +7047,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Folders$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -6418,10 +7072,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6452,7 +7113,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -6528,9 +7192,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Folders$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -6544,12 +7217,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6583,7 +7264,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -6688,9 +7372,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Folders$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Folders$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Folders$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Folders$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -6704,10 +7397,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6738,7 +7438,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -6843,9 +7546,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Folders$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Folders$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Folders$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Folders$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -6859,10 +7571,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Folders$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6893,7 +7612,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -7099,9 +7821,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Locations$Buckets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Locations$Buckets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -7115,12 +7846,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Locations$Buckets$Get
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7151,7 +7887,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -7227,9 +7966,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Locations$Buckets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Locations$Buckets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
@@ -7243,12 +7991,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Locations$Buckets$List
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
-    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7282,7 +8038,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
       }
@@ -7371,9 +8130,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Locations$Buckets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Locations$Buckets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -7387,12 +8155,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Locations$Buckets$Patch
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7423,7 +8196,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -7549,9 +8325,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7565,10 +8350,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7598,7 +8390,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7674,9 +8469,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -7690,12 +8494,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7725,7 +8534,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -7831,9 +8643,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Monitoredresourcedescriptors$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Monitoredresourcedescriptors$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+    list(
+      params: Params$Resource$Monitoredresourcedescriptors$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Monitoredresourcedescriptors$List,
       options:
@@ -7857,14 +8678,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Monitoredresourcedescriptors$List
-        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListMonitoredResourceDescriptorsResponse
-      >
-    ): void | GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Monitoredresourcedescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7900,7 +8727,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8006,9 +8833,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekSettings(
       params?: Params$Resource$Organizations$Getcmeksettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CmekSettings>;
+    getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getCmekSettings(
       params: Params$Resource$Organizations$Getcmeksettings,
       options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
@@ -8022,12 +8858,17 @@ export namespace logging_v2 {
     getCmekSettings(
       paramsOrCallback?:
         | Params$Resource$Organizations$Getcmeksettings
-        | BodyResponseCallback<Schema$CmekSettings>,
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CmekSettings>,
-      callback?: BodyResponseCallback<Schema$CmekSettings>
-    ): void | GaxiosPromise<Schema$CmekSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getcmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8061,7 +8902,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);
       }
@@ -8144,9 +8988,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCmekSettings(
       params?: Params$Resource$Organizations$Updatecmeksettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CmekSettings>;
+    updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateCmekSettings(
       params: Params$Resource$Organizations$Updatecmeksettings,
       options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
@@ -8162,12 +9015,17 @@ export namespace logging_v2 {
     updateCmekSettings(
       paramsOrCallback?:
         | Params$Resource$Organizations$Updatecmeksettings
-        | BodyResponseCallback<Schema$CmekSettings>,
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CmekSettings>,
-      callback?: BodyResponseCallback<Schema$CmekSettings>
-    ): void | GaxiosPromise<Schema$CmekSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updatecmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8201,7 +9059,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);
       }
@@ -8328,9 +9189,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Organizations$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -8344,12 +9214,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8383,7 +9258,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -8448,9 +9326,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -8464,10 +9351,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8498,7 +9392,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -8572,9 +9469,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Organizations$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -8588,12 +9494,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8624,7 +9535,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -8700,9 +9614,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Organizations$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Exclusions$List,
       options:
@@ -8718,12 +9641,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8757,7 +9688,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -8846,9 +9780,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Organizations$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -8862,12 +9805,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8898,7 +9846,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -9072,9 +10023,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Locations$Buckets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Locations$Buckets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -9088,12 +10048,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Buckets$Get
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9124,7 +10089,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -9200,9 +10168,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Locations$Buckets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Locations$Buckets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
@@ -9216,12 +10193,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Buckets$List
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
-    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9255,7 +10240,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
       }
@@ -9345,9 +10333,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Locations$Buckets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Locations$Buckets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -9361,12 +10358,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Buckets$Patch
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9397,7 +10399,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -9523,9 +10528,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -9539,10 +10553,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9573,7 +10594,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -9649,9 +10673,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Organizations$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -9665,12 +10698,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9701,7 +10739,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -9840,9 +10881,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Organizations$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Organizations$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Organizations$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Organizations$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -9856,10 +10906,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9893,7 +10950,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -9958,9 +11018,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Organizations$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Organizations$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Organizations$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -9974,10 +11043,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10008,7 +11084,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -10087,9 +11166,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Organizations$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -10103,10 +11191,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10137,7 +11232,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -10213,9 +11311,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Organizations$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -10229,12 +11336,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10268,7 +11383,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -10373,9 +11491,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Organizations$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Organizations$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Organizations$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Organizations$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -10389,10 +11516,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10423,7 +11557,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -10528,9 +11665,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Organizations$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Organizations$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Organizations$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Organizations$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -10544,10 +11690,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10578,7 +11731,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -10804,9 +11960,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Exclusions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Exclusions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    create(
+      params: Params$Resource$Projects$Exclusions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Exclusions$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -10820,12 +11985,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Create
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10859,7 +12029,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -10924,9 +12097,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Exclusions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Exclusions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Exclusions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Exclusions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -10940,10 +12122,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10974,7 +12163,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -11048,9 +12240,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Exclusions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Exclusions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    get(
+      params: Params$Resource$Projects$Exclusions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Exclusions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -11064,12 +12265,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Get
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11100,7 +12306,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -11176,9 +12385,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Exclusions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Exclusions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListExclusionsResponse>;
+    list(
+      params: Params$Resource$Projects$Exclusions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Exclusions$List,
       options:
@@ -11194,12 +12412,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$List
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListExclusionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListExclusionsResponse>
-    ): void | GaxiosPromise<Schema$ListExclusionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExclusionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListExclusionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11233,7 +12459,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListExclusionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
       }
@@ -11322,9 +12551,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Exclusions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Exclusions$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogExclusion>;
+    patch(
+      params: Params$Resource$Projects$Exclusions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Exclusions$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogExclusion>,
@@ -11338,12 +12576,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Exclusions$Patch
-        | BodyResponseCallback<Schema$LogExclusion>,
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogExclusion>,
-      callback?: BodyResponseCallback<Schema$LogExclusion>
-    ): void | GaxiosPromise<Schema$LogExclusion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogExclusion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogExclusion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11374,7 +12617,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogExclusion>(parameters, callback);
+        createAPIRequest<Schema$LogExclusion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
       }
@@ -11547,9 +12793,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Buckets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Buckets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -11563,12 +12818,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Buckets$Get
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11599,7 +12859,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -11675,9 +12938,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Buckets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Buckets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
@@ -11691,12 +12963,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Buckets$List
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListBucketsResponse>,
-      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
-    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBucketsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11730,7 +13010,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListBucketsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
       }
@@ -11819,9 +13102,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Buckets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Buckets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
@@ -11835,12 +13127,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Buckets$Patch
-        | BodyResponseCallback<Schema$LogBucket>,
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogBucket>,
-      callback?: BodyResponseCallback<Schema$LogBucket>
-    ): void | GaxiosPromise<Schema$LogBucket> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogBucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11871,7 +13168,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogBucket>(parameters, callback);
+        createAPIRequest<Schema$LogBucket>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
       }
@@ -11997,9 +13297,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Logs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Logs$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Logs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Logs$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -12013,10 +13322,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Logs$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12047,7 +13363,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -12123,9 +13442,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Logs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Logs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogsResponse>;
+    list(
+      params: Params$Resource$Projects$Logs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Logs$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLogsResponse>,
@@ -12139,12 +13467,17 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Logs$List
-        | BodyResponseCallback<Schema$ListLogsResponse>,
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogsResponse>
-    ): void | GaxiosPromise<Schema$ListLogsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListLogsResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12175,7 +13508,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
       }
@@ -12307,9 +13643,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Metrics$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Metrics$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogMetric>;
+    create(
+      params: Params$Resource$Projects$Metrics$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Metrics$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
@@ -12323,12 +13668,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Create
-        | BodyResponseCallback<Schema$LogMetric>,
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogMetric>,
-      callback?: BodyResponseCallback<Schema$LogMetric>
-    ): void | GaxiosPromise<Schema$LogMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12362,7 +13712,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogMetric>(parameters, callback);
+        createAPIRequest<Schema$LogMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
@@ -12425,9 +13778,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Metrics$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Metrics$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Metrics$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Metrics$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -12441,10 +13803,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12475,7 +13844,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -12550,9 +13922,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Metrics$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Metrics$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogMetric>;
+    get(
+      params: Params$Resource$Projects$Metrics$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Metrics$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
@@ -12566,12 +13947,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Get
-        | BodyResponseCallback<Schema$LogMetric>,
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogMetric>,
-      callback?: BodyResponseCallback<Schema$LogMetric>
-    ): void | GaxiosPromise<Schema$LogMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12602,7 +13988,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogMetric>(parameters, callback);
+        createAPIRequest<Schema$LogMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
@@ -12675,9 +14064,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Metrics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Metrics$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLogMetricsResponse>;
+    list(
+      params: Params$Resource$Projects$Metrics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Metrics$List,
       options:
@@ -12693,12 +14091,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$List
-        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLogMetricsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>
-    ): void | GaxiosPromise<Schema$ListLogMetricsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogMetricsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogMetricsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12732,7 +14138,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLogMetricsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLogMetricsResponse>(parameters);
       }
@@ -12824,9 +14233,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Metrics$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Metrics$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogMetric>;
+    update(
+      params: Params$Resource$Projects$Metrics$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Metrics$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogMetric>,
@@ -12840,12 +14258,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Metrics$Update
-        | BodyResponseCallback<Schema$LogMetric>,
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LogMetric>,
-      callback?: BodyResponseCallback<Schema$LogMetric>
-    ): void | GaxiosPromise<Schema$LogMetric> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogMetric>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogMetric> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Metrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12876,7 +14299,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogMetric>(parameters, callback);
+        createAPIRequest<Schema$LogMetric>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
       }
@@ -13061,9 +14487,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Projects$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -13077,10 +14512,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13114,7 +14556,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -13179,9 +14624,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -13195,10 +14649,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13229,7 +14690,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -13308,9 +14772,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Projects$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -13324,10 +14797,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13358,7 +14838,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -13434,9 +14917,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Projects$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -13450,12 +14942,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13489,7 +14989,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -13594,9 +15097,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Sinks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Sinks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    patch(
+      params: Params$Resource$Projects$Sinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Sinks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -13610,10 +15122,17 @@ export namespace logging_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Patch
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13644,7 +15163,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -13749,9 +15271,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Projects$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Projects$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Projects$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Projects$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -13765,10 +15296,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Projects$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13799,7 +15337,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -14021,9 +15562,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Sinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Sinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    create(
+      params: Params$Resource$Sinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Sinks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -14037,10 +15587,17 @@ export namespace logging_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Sinks$Create
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14073,7 +15630,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -14138,9 +15698,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Sinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Sinks$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Sinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Sinks$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -14154,10 +15723,17 @@ export namespace logging_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Sinks$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14187,7 +15763,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -14266,9 +15845,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sinks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    get(
+      params: Params$Resource$Sinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sinks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -14282,10 +15870,17 @@ export namespace logging_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sinks$Get
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14315,7 +15910,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -14391,9 +15989,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Sinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Sinks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSinksResponse>;
+    list(
+      params: Params$Resource$Sinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Sinks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSinksResponse>,
@@ -14407,12 +16014,20 @@ export namespace logging_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Sinks$List
-        | BodyResponseCallback<Schema$ListSinksResponse>,
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSinksResponse>,
-      callback?: BodyResponseCallback<Schema$ListSinksResponse>
-    ): void | GaxiosPromise<Schema$ListSinksResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSinksResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14445,7 +16060,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
       }
@@ -14550,9 +16168,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Sinks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Sinks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LogSink>;
+    update(
+      params: Params$Resource$Sinks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Sinks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LogSink>,
@@ -14566,10 +16193,17 @@ export namespace logging_v2 {
     update(
       paramsOrCallback?:
         | Params$Resource$Sinks$Update
-        | BodyResponseCallback<Schema$LogSink>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LogSink>,
-      callback?: BodyResponseCallback<Schema$LogSink>
-    ): void | GaxiosPromise<Schema$LogSink> {
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogSink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogSink> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14599,7 +16233,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LogSink>(parameters, callback);
+        createAPIRequest<Schema$LogSink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
       }
@@ -14763,9 +16400,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekSettings(
       params?: Params$Resource$V2$Getcmeksettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CmekSettings>;
+    getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getCmekSettings(
       params: Params$Resource$V2$Getcmeksettings,
       options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
@@ -14779,12 +16425,17 @@ export namespace logging_v2 {
     getCmekSettings(
       paramsOrCallback?:
         | Params$Resource$V2$Getcmeksettings
-        | BodyResponseCallback<Schema$CmekSettings>,
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CmekSettings>,
-      callback?: BodyResponseCallback<Schema$CmekSettings>
-    ): void | GaxiosPromise<Schema$CmekSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Getcmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14818,7 +16469,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);
       }
@@ -14901,9 +16555,18 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCmekSettings(
       params?: Params$Resource$V2$Updatecmeksettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CmekSettings>;
+    updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateCmekSettings(
       params: Params$Resource$V2$Updatecmeksettings,
       options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
@@ -14919,12 +16582,17 @@ export namespace logging_v2 {
     updateCmekSettings(
       paramsOrCallback?:
         | Params$Resource$V2$Updatecmeksettings
-        | BodyResponseCallback<Schema$CmekSettings>,
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CmekSettings>,
-      callback?: BodyResponseCallback<Schema$CmekSettings>
-    ): void | GaxiosPromise<Schema$CmekSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V2$Updatecmeksettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14958,7 +16626,10 @@ export namespace logging_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+        createAPIRequest<Schema$CmekSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);
       }

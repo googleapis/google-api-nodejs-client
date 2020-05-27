@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace poly_v1 {
   export interface Options extends GlobalOptions {
@@ -491,9 +493,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Assets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Assets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Asset>;
+    get(
+      params: Params$Resource$Assets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Assets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Asset>,
@@ -507,10 +518,17 @@ export namespace poly_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Assets$Get
-        | BodyResponseCallback<Schema$Asset>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Asset>,
-      callback?: BodyResponseCallback<Schema$Asset>
-    ): void | GaxiosPromise<Schema$Asset> {
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Asset> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -540,7 +558,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Asset>(parameters, callback);
+        createAPIRequest<Schema$Asset>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Asset>(parameters);
       }
@@ -637,9 +658,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Assets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Assets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAssetsResponse>;
+    list(
+      params: Params$Resource$Assets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Assets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListAssetsResponse>,
@@ -653,12 +683,20 @@ export namespace poly_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Assets$List
-        | BodyResponseCallback<Schema$ListAssetsResponse>,
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAssetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListAssetsResponse>
-    ): void | GaxiosPromise<Schema$ListAssetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAssetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -688,7 +726,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAssetsResponse>(parameters);
       }
@@ -845,9 +886,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Assets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Assets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListUserAssetsResponse>;
+    list(
+      params: Params$Resource$Users$Assets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Assets$List,
       options:
@@ -863,12 +913,20 @@ export namespace poly_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Assets$List
-        | BodyResponseCallback<Schema$ListUserAssetsResponse>,
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListUserAssetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>
-    ): void | GaxiosPromise<Schema$ListUserAssetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserAssetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -899,7 +957,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListUserAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListUserAssetsResponse>(parameters);
       }
@@ -1021,9 +1082,18 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Likedassets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Likedassets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLikedAssetsResponse>;
+    list(
+      params: Params$Resource$Users$Likedassets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Likedassets$List,
       options:
@@ -1039,12 +1109,20 @@ export namespace poly_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Likedassets$List
-        | BodyResponseCallback<Schema$ListLikedAssetsResponse>,
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLikedAssetsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>
-    ): void | GaxiosPromise<Schema$ListLikedAssetsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLikedAssetsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Likedassets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1078,7 +1156,10 @@ export namespace poly_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLikedAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLikedAssetsResponse>(parameters);
       }

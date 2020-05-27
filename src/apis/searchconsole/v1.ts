@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace searchconsole_v1 {
   export interface Options extends GlobalOptions {
@@ -285,9 +287,18 @@ export namespace searchconsole_v1 {
      * @return {object} Request object
      */
     run(
+      params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
       params?: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RunMobileFriendlyTestResponse>;
+    run(
+      params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     run(
       params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
       options:
@@ -305,12 +316,20 @@ export namespace searchconsole_v1 {
     run(
       paramsOrCallback?:
         | Params$Resource$Urltestingtools$Mobilefriendlytest$Run
-        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
-      callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
-    ): void | GaxiosPromise<Schema$RunMobileFriendlyTestResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RunMobileFriendlyTestResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Urltestingtools$Mobilefriendlytest$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -346,7 +365,7 @@ export namespace searchconsole_v1 {
       if (callback) {
         createAPIRequest<Schema$RunMobileFriendlyTestResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$RunMobileFriendlyTestResponse>(

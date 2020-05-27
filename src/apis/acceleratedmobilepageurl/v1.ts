@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace acceleratedmobilepageurl_v1 {
   export interface Options extends GlobalOptions {
@@ -240,9 +242,18 @@ export namespace acceleratedmobilepageurl_v1 {
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Ampurls$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Ampurls$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchGetAmpUrlsResponse>;
+    batchGet(
+      params: Params$Resource$Ampurls$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Ampurls$Batchget,
       options:
@@ -260,12 +271,20 @@ export namespace acceleratedmobilepageurl_v1 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Ampurls$Batchget
-        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
-    ): void | GaxiosPromise<Schema$BatchGetAmpUrlsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetAmpUrlsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ampurls$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -299,7 +318,10 @@ export namespace acceleratedmobilepageurl_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
+        createAPIRequest<Schema$BatchGetAmpUrlsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters);
       }

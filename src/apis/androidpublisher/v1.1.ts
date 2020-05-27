@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace androidpublisher_v1_1 {
   export interface Options extends GlobalOptions {
@@ -202,9 +204,18 @@ export namespace androidpublisher_v1_1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Inapppurchases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Inapppurchases$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InappPurchase>;
+    get(
+      params: Params$Resource$Inapppurchases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Inapppurchases$Get,
       options: MethodOptions | BodyResponseCallback<Schema$InappPurchase>,
@@ -218,12 +229,17 @@ export namespace androidpublisher_v1_1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Inapppurchases$Get
-        | BodyResponseCallback<Schema$InappPurchase>,
+        | BodyResponseCallback<Schema$InappPurchase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InappPurchase>,
-      callback?: BodyResponseCallback<Schema$InappPurchase>
-    ): void | GaxiosPromise<Schema$InappPurchase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InappPurchase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InappPurchase>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InappPurchase> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inapppurchases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -257,7 +273,10 @@ export namespace androidpublisher_v1_1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InappPurchase>(parameters, callback);
+        createAPIRequest<Schema$InappPurchase>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InappPurchase>(parameters);
       }

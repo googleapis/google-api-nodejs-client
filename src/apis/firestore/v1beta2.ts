@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace firestore_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -537,9 +539,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     exportDocuments(
+      params: Params$Resource$Projects$Databases$Exportdocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportDocuments(
       params?: Params$Resource$Projects$Databases$Exportdocuments,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    exportDocuments(
+      params: Params$Resource$Projects$Databases$Exportdocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options:
@@ -557,12 +568,20 @@ export namespace firestore_v1beta2 {
     exportDocuments(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Exportdocuments
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Exportdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -598,7 +617,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -676,9 +695,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     importDocuments(
+      params: Params$Resource$Projects$Databases$Importdocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importDocuments(
       params?: Params$Resource$Projects$Databases$Importdocuments,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    importDocuments(
+      params: Params$Resource$Projects$Databases$Importdocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options:
@@ -696,12 +724,20 @@ export namespace firestore_v1beta2 {
     importDocuments(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Importdocuments
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -737,7 +773,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -860,9 +896,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>;
+    get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
       options:
@@ -880,12 +925,20 @@ export namespace firestore_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Collectiongroups$Fields$Get
-        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
-      callback?: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
-    ): void | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -918,7 +971,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
@@ -1001,9 +1054,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>;
+    list(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options:
@@ -1031,18 +1093,24 @@ export namespace firestore_v1beta2 {
         | Params$Resource$Projects$Databases$Collectiongroups$Fields$List
         | BodyResponseCallback<
             Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1078,7 +1146,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -1187,9 +1255,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options:
@@ -1207,12 +1284,20 @@ export namespace firestore_v1beta2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1245,7 +1330,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1393,9 +1478,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options:
@@ -1413,12 +1507,20 @@ export namespace firestore_v1beta2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1454,7 +1556,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1519,9 +1621,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1535,10 +1646,17 @@ export namespace firestore_v1beta2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1569,7 +1687,10 @@ export namespace firestore_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1636,9 +1757,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>;
+    get(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
       options:
@@ -1656,12 +1786,20 @@ export namespace firestore_v1beta2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get
-        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
-      callback?: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
-    ): void | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1694,7 +1832,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
@@ -1773,9 +1911,18 @@ export namespace firestore_v1beta2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
+    list(
+      params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options:
@@ -1803,18 +1950,24 @@ export namespace firestore_v1beta2 {
         | Params$Resource$Projects$Databases$Collectiongroups$Indexes$List
         | BodyResponseCallback<
             Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1850,7 +2003,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<

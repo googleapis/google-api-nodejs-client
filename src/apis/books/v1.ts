@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace books_v1 {
   export interface Options extends GlobalOptions {
@@ -1231,9 +1233,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Bookshelves$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Bookshelves$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Bookshelf>;
+    get(
+      params: Params$Resource$Bookshelves$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Bookshelves$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Bookshelf>,
@@ -1247,12 +1258,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Bookshelves$Get
-        | BodyResponseCallback<Schema$Bookshelf>,
+        | BodyResponseCallback<Schema$Bookshelf>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Bookshelf>,
-      callback?: BodyResponseCallback<Schema$Bookshelf>
-    ): void | GaxiosPromise<Schema$Bookshelf> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Bookshelf>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Bookshelf>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Bookshelf> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1284,7 +1300,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Bookshelf>(parameters, callback);
+        createAPIRequest<Schema$Bookshelf>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Bookshelf>(parameters);
       }
@@ -1347,9 +1366,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bookshelves$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bookshelves$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Bookshelves>;
+    list(
+      params: Params$Resource$Bookshelves$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bookshelves$List,
       options: MethodOptions | BodyResponseCallback<Schema$Bookshelves>,
@@ -1363,12 +1391,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bookshelves$List
-        | BodyResponseCallback<Schema$Bookshelves>,
+        | BodyResponseCallback<Schema$Bookshelves>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Bookshelves>,
-      callback?: BodyResponseCallback<Schema$Bookshelves>
-    ): void | GaxiosPromise<Schema$Bookshelves> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Bookshelves>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Bookshelves>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Bookshelves> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1401,7 +1434,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Bookshelves>(parameters, callback);
+        createAPIRequest<Schema$Bookshelves>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Bookshelves>(parameters);
       }
@@ -1519,9 +1555,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Bookshelves$Volumes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Bookshelves$Volumes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    list(
+      params: Params$Resource$Bookshelves$Volumes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Bookshelves$Volumes$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -1535,10 +1580,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Bookshelves$Volumes$List
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1571,7 +1623,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
@@ -1681,9 +1736,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     addBook(
+      params: Params$Resource$Cloudloading$Addbook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addBook(
       params?: Params$Resource$Cloudloading$Addbook,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BooksCloudloadingResource>;
+    addBook(
+      params: Params$Resource$Cloudloading$Addbook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addBook(
       params: Params$Resource$Cloudloading$Addbook,
       options:
@@ -1701,12 +1765,20 @@ export namespace books_v1 {
     addBook(
       paramsOrCallback?:
         | Params$Resource$Cloudloading$Addbook
-        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
-      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>
-    ): void | GaxiosPromise<Schema$BooksCloudloadingResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BooksCloudloadingResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cloudloading$Addbook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1742,7 +1814,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
@@ -1797,9 +1869,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     deleteBook(
+      params: Params$Resource$Cloudloading$Deletebook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteBook(
       params?: Params$Resource$Cloudloading$Deletebook,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    deleteBook(
+      params: Params$Resource$Cloudloading$Deletebook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteBook(
       params: Params$Resource$Cloudloading$Deletebook,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1813,10 +1894,15 @@ export namespace books_v1 {
     deleteBook(
       paramsOrCallback?:
         | Params$Resource$Cloudloading$Deletebook
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cloudloading$Deletebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1850,7 +1936,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1919,9 +2008,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     updateBook(
+      params: Params$Resource$Cloudloading$Updatebook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateBook(
       params?: Params$Resource$Cloudloading$Updatebook,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BooksCloudloadingResource>;
+    updateBook(
+      params: Params$Resource$Cloudloading$Updatebook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateBook(
       params: Params$Resource$Cloudloading$Updatebook,
       options:
@@ -1939,12 +2037,20 @@ export namespace books_v1 {
     updateBook(
       paramsOrCallback?:
         | Params$Resource$Cloudloading$Updatebook
-        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
-      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>
-    ): void | GaxiosPromise<Schema$BooksCloudloadingResource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BooksCloudloadingResource>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cloudloading$Updatebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1980,7 +2086,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
@@ -2097,9 +2203,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     listOfflineMetadata(
+      params: Params$Resource$Dictionary$Listofflinemetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listOfflineMetadata(
       params?: Params$Resource$Dictionary$Listofflinemetadata,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Metadata>;
+    listOfflineMetadata(
+      params: Params$Resource$Dictionary$Listofflinemetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listOfflineMetadata(
       params: Params$Resource$Dictionary$Listofflinemetadata,
       options: MethodOptions | BodyResponseCallback<Schema$Metadata>,
@@ -2113,10 +2228,17 @@ export namespace books_v1 {
     listOfflineMetadata(
       paramsOrCallback?:
         | Params$Resource$Dictionary$Listofflinemetadata
-        | BodyResponseCallback<Schema$Metadata>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metadata>,
-      callback?: BodyResponseCallback<Schema$Metadata>
-    ): void | GaxiosPromise<Schema$Metadata> {
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Metadata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Metadata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Dictionary$Listofflinemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2150,7 +2272,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Metadata>(parameters, callback);
+        createAPIRequest<Schema$Metadata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
       }
@@ -2230,9 +2355,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     getFamilyInfo(
+      params: Params$Resource$Familysharing$Getfamilyinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getFamilyInfo(
       params?: Params$Resource$Familysharing$Getfamilyinfo,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FamilyInfo>;
+    getFamilyInfo(
+      params: Params$Resource$Familysharing$Getfamilyinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getFamilyInfo(
       params: Params$Resource$Familysharing$Getfamilyinfo,
       options: MethodOptions | BodyResponseCallback<Schema$FamilyInfo>,
@@ -2246,12 +2380,17 @@ export namespace books_v1 {
     getFamilyInfo(
       paramsOrCallback?:
         | Params$Resource$Familysharing$Getfamilyinfo
-        | BodyResponseCallback<Schema$FamilyInfo>,
+        | BodyResponseCallback<Schema$FamilyInfo>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FamilyInfo>,
-      callback?: BodyResponseCallback<Schema$FamilyInfo>
-    ): void | GaxiosPromise<Schema$FamilyInfo> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FamilyInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FamilyInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FamilyInfo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Getfamilyinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2285,7 +2424,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FamilyInfo>(parameters, callback);
+        createAPIRequest<Schema$FamilyInfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FamilyInfo>(parameters);
       }
@@ -2345,9 +2487,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     share(
+      params: Params$Resource$Familysharing$Share,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    share(
       params?: Params$Resource$Familysharing$Share,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    share(
+      params: Params$Resource$Familysharing$Share,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     share(
       params: Params$Resource$Familysharing$Share,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2361,10 +2512,15 @@ export namespace books_v1 {
     share(
       paramsOrCallback?:
         | Params$Resource$Familysharing$Share
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Share;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2398,7 +2554,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2458,9 +2617,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     unshare(
+      params: Params$Resource$Familysharing$Unshare,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unshare(
       params?: Params$Resource$Familysharing$Unshare,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    unshare(
+      params: Params$Resource$Familysharing$Unshare,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unshare(
       params: Params$Resource$Familysharing$Unshare,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2474,10 +2642,15 @@ export namespace books_v1 {
     unshare(
       paramsOrCallback?:
         | Params$Resource$Familysharing$Unshare
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Familysharing$Unshare;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2511,7 +2684,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2657,9 +2833,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Layers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Layers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Layersummary>;
+    get(
+      params: Params$Resource$Layers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Layers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Layersummary>,
@@ -2673,12 +2858,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Layers$Get
-        | BodyResponseCallback<Schema$Layersummary>,
+        | BodyResponseCallback<Schema$Layersummary>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Layersummary>,
-      callback?: BodyResponseCallback<Schema$Layersummary>
-    ): void | GaxiosPromise<Schema$Layersummary> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Layersummary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Layersummary>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Layersummary> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2710,7 +2900,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Layersummary>(parameters, callback);
+        createAPIRequest<Schema$Layersummary>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Layersummary>(parameters);
       }
@@ -2783,9 +2976,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Layers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Layers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Layersummaries>;
+    list(
+      params: Params$Resource$Layers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Layers$List,
       options: MethodOptions | BodyResponseCallback<Schema$Layersummaries>,
@@ -2799,12 +3001,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Layers$List
-        | BodyResponseCallback<Schema$Layersummaries>,
+        | BodyResponseCallback<Schema$Layersummaries>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Layersummaries>,
-      callback?: BodyResponseCallback<Schema$Layersummaries>
-    ): void | GaxiosPromise<Schema$Layersummaries> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Layersummaries>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Layersummaries>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Layersummaries> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2836,7 +3043,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Layersummaries>(parameters, callback);
+        createAPIRequest<Schema$Layersummaries>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Layersummaries>(parameters);
       }
@@ -2988,9 +3198,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Layers$Annotationdata$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Layers$Annotationdata$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Annotationdata>;
+    get(
+      params: Params$Resource$Layers$Annotationdata$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Annotationdata>,
@@ -3004,12 +3223,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Layers$Annotationdata$Get
-        | BodyResponseCallback<Schema$Annotationdata>,
+        | BodyResponseCallback<Schema$Annotationdata>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Annotationdata>,
-      callback?: BodyResponseCallback<Schema$Annotationdata>
-    ): void | GaxiosPromise<Schema$Annotationdata> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotationdata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotationdata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotationdata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Annotationdata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3048,7 +3272,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Annotationdata>(parameters, callback);
+        createAPIRequest<Schema$Annotationdata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Annotationdata>(parameters);
       }
@@ -3146,9 +3373,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Layers$Annotationdata$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Layers$Annotationdata$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Annotationsdata>;
+    list(
+      params: Params$Resource$Layers$Annotationdata$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Layers$Annotationdata$List,
       options: MethodOptions | BodyResponseCallback<Schema$Annotationsdata>,
@@ -3162,12 +3398,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Layers$Annotationdata$List
-        | BodyResponseCallback<Schema$Annotationsdata>,
+        | BodyResponseCallback<Schema$Annotationsdata>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Annotationsdata>,
-      callback?: BodyResponseCallback<Schema$Annotationsdata>
-    ): void | GaxiosPromise<Schema$Annotationsdata> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotationsdata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotationsdata>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotationsdata> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Annotationdata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3200,7 +3441,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Annotationsdata>(parameters, callback);
+        createAPIRequest<Schema$Annotationsdata>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Annotationsdata>(parameters);
       }
@@ -3400,9 +3644,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Layers$Volumeannotations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Layers$Volumeannotations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumeannotation>;
+    get(
+      params: Params$Resource$Layers$Volumeannotations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Layers$Volumeannotations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Volumeannotation>,
@@ -3416,12 +3669,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Layers$Volumeannotations$Get
-        | BodyResponseCallback<Schema$Volumeannotation>,
+        | BodyResponseCallback<Schema$Volumeannotation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Volumeannotation>,
-      callback?: BodyResponseCallback<Schema$Volumeannotation>
-    ): void | GaxiosPromise<Schema$Volumeannotation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumeannotation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumeannotation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumeannotation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Volumeannotations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3455,7 +3713,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumeannotation>(parameters, callback);
+        createAPIRequest<Schema$Volumeannotation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumeannotation>(parameters);
       }
@@ -3560,9 +3821,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Layers$Volumeannotations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Layers$Volumeannotations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumeannotations>;
+    list(
+      params: Params$Resource$Layers$Volumeannotations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Layers$Volumeannotations$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumeannotations>,
@@ -3576,12 +3846,20 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Layers$Volumeannotations$List
-        | BodyResponseCallback<Schema$Volumeannotations>,
+        | BodyResponseCallback<Schema$Volumeannotations>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Volumeannotations>,
-      callback?: BodyResponseCallback<Schema$Volumeannotations>
-    ): void | GaxiosPromise<Schema$Volumeannotations> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumeannotations>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumeannotations>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$Volumeannotations>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Layers$Volumeannotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3614,7 +3892,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumeannotations>(parameters, callback);
+        createAPIRequest<Schema$Volumeannotations>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumeannotations>(parameters);
       }
@@ -3775,9 +4056,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     getUserSettings(
+      params: Params$Resource$Myconfig$Getusersettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getUserSettings(
       params?: Params$Resource$Myconfig$Getusersettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Usersettings>;
+    getUserSettings(
+      params: Params$Resource$Myconfig$Getusersettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getUserSettings(
       params: Params$Resource$Myconfig$Getusersettings,
       options: MethodOptions | BodyResponseCallback<Schema$Usersettings>,
@@ -3791,12 +4081,17 @@ export namespace books_v1 {
     getUserSettings(
       paramsOrCallback?:
         | Params$Resource$Myconfig$Getusersettings
-        | BodyResponseCallback<Schema$Usersettings>,
+        | BodyResponseCallback<Schema$Usersettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Usersettings>,
-      callback?: BodyResponseCallback<Schema$Usersettings>
-    ): void | GaxiosPromise<Schema$Usersettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Usersettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Usersettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Usersettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Getusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3830,7 +4125,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Usersettings>(parameters, callback);
+        createAPIRequest<Schema$Usersettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Usersettings>(parameters);
       }
@@ -3899,9 +4197,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     releaseDownloadAccess(
+      params: Params$Resource$Myconfig$Releasedownloadaccess,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    releaseDownloadAccess(
       params?: Params$Resource$Myconfig$Releasedownloadaccess,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DownloadAccesses>;
+    releaseDownloadAccess(
+      params: Params$Resource$Myconfig$Releasedownloadaccess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     releaseDownloadAccess(
       params: Params$Resource$Myconfig$Releasedownloadaccess,
       options: MethodOptions | BodyResponseCallback<Schema$DownloadAccesses>,
@@ -3917,12 +4224,17 @@ export namespace books_v1 {
     releaseDownloadAccess(
       paramsOrCallback?:
         | Params$Resource$Myconfig$Releasedownloadaccess
-        | BodyResponseCallback<Schema$DownloadAccesses>,
+        | BodyResponseCallback<Schema$DownloadAccesses>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DownloadAccesses>,
-      callback?: BodyResponseCallback<Schema$DownloadAccesses>
-    ): void | GaxiosPromise<Schema$DownloadAccesses> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DownloadAccesses>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DownloadAccesses>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DownloadAccesses> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Releasedownloadaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3956,7 +4268,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DownloadAccesses>(parameters, callback);
+        createAPIRequest<Schema$DownloadAccesses>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DownloadAccesses>(parameters);
       }
@@ -4032,9 +4347,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     requestAccess(
+      params: Params$Resource$Myconfig$Requestaccess,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    requestAccess(
       params?: Params$Resource$Myconfig$Requestaccess,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RequestAccess>;
+    requestAccess(
+      params: Params$Resource$Myconfig$Requestaccess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     requestAccess(
       params: Params$Resource$Myconfig$Requestaccess,
       options: MethodOptions | BodyResponseCallback<Schema$RequestAccess>,
@@ -4048,12 +4372,17 @@ export namespace books_v1 {
     requestAccess(
       paramsOrCallback?:
         | Params$Resource$Myconfig$Requestaccess
-        | BodyResponseCallback<Schema$RequestAccess>,
+        | BodyResponseCallback<Schema$RequestAccess>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RequestAccess>,
-      callback?: BodyResponseCallback<Schema$RequestAccess>
-    ): void | GaxiosPromise<Schema$RequestAccess> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RequestAccess>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RequestAccess>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RequestAccess> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Requestaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4087,7 +4416,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RequestAccess>(parameters, callback);
+        createAPIRequest<Schema$RequestAccess>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RequestAccess>(parameters);
       }
@@ -4169,9 +4501,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     syncVolumeLicenses(
+      params: Params$Resource$Myconfig$Syncvolumelicenses,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    syncVolumeLicenses(
       params?: Params$Resource$Myconfig$Syncvolumelicenses,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    syncVolumeLicenses(
+      params: Params$Resource$Myconfig$Syncvolumelicenses,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     syncVolumeLicenses(
       params: Params$Resource$Myconfig$Syncvolumelicenses,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -4185,10 +4526,17 @@ export namespace books_v1 {
     syncVolumeLicenses(
       paramsOrCallback?:
         | Params$Resource$Myconfig$Syncvolumelicenses
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Syncvolumelicenses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4222,7 +4570,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
@@ -4290,9 +4641,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     updateUserSettings(
+      params: Params$Resource$Myconfig$Updateusersettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateUserSettings(
       params?: Params$Resource$Myconfig$Updateusersettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Usersettings>;
+    updateUserSettings(
+      params: Params$Resource$Myconfig$Updateusersettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateUserSettings(
       params: Params$Resource$Myconfig$Updateusersettings,
       options: MethodOptions | BodyResponseCallback<Schema$Usersettings>,
@@ -4308,12 +4668,17 @@ export namespace books_v1 {
     updateUserSettings(
       paramsOrCallback?:
         | Params$Resource$Myconfig$Updateusersettings
-        | BodyResponseCallback<Schema$Usersettings>,
+        | BodyResponseCallback<Schema$Usersettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Usersettings>,
-      callback?: BodyResponseCallback<Schema$Usersettings>
-    ): void | GaxiosPromise<Schema$Usersettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Usersettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Usersettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Usersettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Myconfig$Updateusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4347,7 +4712,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Usersettings>(parameters, callback);
+        createAPIRequest<Schema$Usersettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Usersettings>(parameters);
       }
@@ -4542,9 +4910,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Mylibrary$Annotations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Mylibrary$Annotations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Mylibrary$Annotations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Mylibrary$Annotations$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4558,10 +4935,15 @@ export namespace books_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Annotations$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4594,7 +4976,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4703,9 +5088,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Mylibrary$Annotations$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Mylibrary$Annotations$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Annotation>;
+    insert(
+      params: Params$Resource$Mylibrary$Annotations$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Mylibrary$Annotations$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
@@ -4719,12 +5113,17 @@ export namespace books_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Annotations$Insert
-        | BodyResponseCallback<Schema$Annotation>,
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Annotation>,
-      callback?: BodyResponseCallback<Schema$Annotation>
-    ): void | GaxiosPromise<Schema$Annotation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4758,7 +5157,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Annotation>(parameters, callback);
+        createAPIRequest<Schema$Annotation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Annotation>(parameters);
       }
@@ -4847,9 +5249,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Mylibrary$Annotations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Mylibrary$Annotations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Annotations>;
+    list(
+      params: Params$Resource$Mylibrary$Annotations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Mylibrary$Annotations$List,
       options: MethodOptions | BodyResponseCallback<Schema$Annotations>,
@@ -4863,12 +5274,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Annotations$List
-        | BodyResponseCallback<Schema$Annotations>,
+        | BodyResponseCallback<Schema$Annotations>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Annotations>,
-      callback?: BodyResponseCallback<Schema$Annotations>
-    ): void | GaxiosPromise<Schema$Annotations> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotations>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotations>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotations> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4902,7 +5318,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Annotations>(parameters, callback);
+        createAPIRequest<Schema$Annotations>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Annotations>(parameters);
       }
@@ -4965,9 +5384,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     summary(
+      params: Params$Resource$Mylibrary$Annotations$Summary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summary(
       params?: Params$Resource$Mylibrary$Annotations$Summary,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnnotationsSummary>;
+    summary(
+      params: Params$Resource$Mylibrary$Annotations$Summary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     summary(
       params: Params$Resource$Mylibrary$Annotations$Summary,
       options: MethodOptions | BodyResponseCallback<Schema$AnnotationsSummary>,
@@ -4981,12 +5409,20 @@ export namespace books_v1 {
     summary(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Annotations$Summary
-        | BodyResponseCallback<Schema$AnnotationsSummary>,
+        | BodyResponseCallback<Schema$AnnotationsSummary>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnnotationsSummary>,
-      callback?: BodyResponseCallback<Schema$AnnotationsSummary>
-    ): void | GaxiosPromise<Schema$AnnotationsSummary> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnnotationsSummary>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnnotationsSummary>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnnotationsSummary>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Summary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5020,7 +5456,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnnotationsSummary>(parameters, callback);
+        createAPIRequest<Schema$AnnotationsSummary>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnnotationsSummary>(parameters);
       }
@@ -5123,9 +5562,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Mylibrary$Annotations$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Mylibrary$Annotations$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Annotation>;
+    update(
+      params: Params$Resource$Mylibrary$Annotations$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Mylibrary$Annotations$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
@@ -5139,12 +5587,17 @@ export namespace books_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Annotations$Update
-        | BodyResponseCallback<Schema$Annotation>,
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Annotation>,
-      callback?: BodyResponseCallback<Schema$Annotation>
-    ): void | GaxiosPromise<Schema$Annotation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Annotation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Annotation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Annotations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5177,7 +5630,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Annotation>(parameters, callback);
+        createAPIRequest<Schema$Annotation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Annotation>(parameters);
       }
@@ -5380,9 +5836,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     addVolume(
+      params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Addvolume,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    addVolume(
+      params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5396,10 +5861,15 @@ export namespace books_v1 {
     addVolume(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Addvolume
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Addvolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5432,7 +5902,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5489,9 +5962,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     clearVolumes(
+      params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clearVolumes(
       params?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    clearVolumes(
+      params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     clearVolumes(
       params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5505,10 +5987,15 @@ export namespace books_v1 {
     clearVolumes(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Clearvolumes
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Clearvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5541,7 +6028,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5612,9 +6102,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Mylibrary$Bookshelves$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Mylibrary$Bookshelves$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Bookshelf>;
+    get(
+      params: Params$Resource$Mylibrary$Bookshelves$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Mylibrary$Bookshelves$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Bookshelf>,
@@ -5628,12 +6127,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Get
-        | BodyResponseCallback<Schema$Bookshelf>,
+        | BodyResponseCallback<Schema$Bookshelf>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Bookshelf>,
-      callback?: BodyResponseCallback<Schema$Bookshelf>
-    ): void | GaxiosPromise<Schema$Bookshelf> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Bookshelf>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Bookshelf>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Bookshelf> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5667,7 +6171,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Bookshelf>(parameters, callback);
+        createAPIRequest<Schema$Bookshelf>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Bookshelf>(parameters);
       }
@@ -5727,9 +6234,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Mylibrary$Bookshelves$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Mylibrary$Bookshelves$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Bookshelves>;
+    list(
+      params: Params$Resource$Mylibrary$Bookshelves$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Mylibrary$Bookshelves$List,
       options: MethodOptions | BodyResponseCallback<Schema$Bookshelves>,
@@ -5743,12 +6259,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$List
-        | BodyResponseCallback<Schema$Bookshelves>,
+        | BodyResponseCallback<Schema$Bookshelves>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Bookshelves>,
-      callback?: BodyResponseCallback<Schema$Bookshelves>
-    ): void | GaxiosPromise<Schema$Bookshelves> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Bookshelves>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Bookshelves>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Bookshelves> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5782,7 +6303,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Bookshelves>(parameters, callback);
+        createAPIRequest<Schema$Bookshelves>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Bookshelves>(parameters);
       }
@@ -5845,9 +6369,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     moveVolume(
+      params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    moveVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Movevolume,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    moveVolume(
+      params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     moveVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5861,10 +6394,15 @@ export namespace books_v1 {
     moveVolume(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Movevolume
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Movevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5897,7 +6435,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -5960,9 +6501,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     removeVolume(
+      params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeVolume(
       params?: Params$Resource$Mylibrary$Bookshelves$Removevolume,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    removeVolume(
+      params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     removeVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -5976,10 +6526,15 @@ export namespace books_v1 {
     removeVolume(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Removevolume
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Removevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6012,7 +6567,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6218,9 +6776,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    list(
+      params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -6234,10 +6801,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Bookshelves$Volumes$List
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6270,7 +6844,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
@@ -6389,9 +6966,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Mylibrary$Readingpositions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Mylibrary$Readingpositions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReadingPosition>;
+    get(
+      params: Params$Resource$Mylibrary$Readingpositions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Mylibrary$Readingpositions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ReadingPosition>,
@@ -6405,12 +6991,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Readingpositions$Get
-        | BodyResponseCallback<Schema$ReadingPosition>,
+        | BodyResponseCallback<Schema$ReadingPosition>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReadingPosition>,
-      callback?: BodyResponseCallback<Schema$ReadingPosition>
-    ): void | GaxiosPromise<Schema$ReadingPosition> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReadingPosition>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReadingPosition>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReadingPosition> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Readingpositions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6443,7 +7034,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReadingPosition>(parameters, callback);
+        createAPIRequest<Schema$ReadingPosition>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReadingPosition>(parameters);
       }
@@ -6515,9 +7109,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     setPosition(
+      params: Params$Resource$Mylibrary$Readingpositions$Setposition,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setPosition(
       params?: Params$Resource$Mylibrary$Readingpositions$Setposition,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    setPosition(
+      params: Params$Resource$Mylibrary$Readingpositions$Setposition,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setPosition(
       params: Params$Resource$Mylibrary$Readingpositions$Setposition,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6531,10 +7134,15 @@ export namespace books_v1 {
     setPosition(
       paramsOrCallback?:
         | Params$Resource$Mylibrary$Readingpositions$Setposition
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Mylibrary$Readingpositions$Setposition;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6568,7 +7176,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6712,9 +7323,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Notification$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Notification$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Notification>;
+    get(
+      params: Params$Resource$Notification$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Notification$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Notification>,
@@ -6728,12 +7348,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Notification$Get
-        | BodyResponseCallback<Schema$Notification>,
+        | BodyResponseCallback<Schema$Notification>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Notification>,
-      callback?: BodyResponseCallback<Schema$Notification>
-    ): void | GaxiosPromise<Schema$Notification> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Notification>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Notification>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Notification> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notification$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6766,7 +7391,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Notification>(parameters, callback);
+        createAPIRequest<Schema$Notification>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Notification>(parameters);
       }
@@ -6853,9 +7481,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     listCategories(
+      params: Params$Resource$Onboarding$Listcategories,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listCategories(
       params?: Params$Resource$Onboarding$Listcategories,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Category>;
+    listCategories(
+      params: Params$Resource$Onboarding$Listcategories,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listCategories(
       params: Params$Resource$Onboarding$Listcategories,
       options: MethodOptions | BodyResponseCallback<Schema$Category>,
@@ -6869,10 +7506,17 @@ export namespace books_v1 {
     listCategories(
       paramsOrCallback?:
         | Params$Resource$Onboarding$Listcategories
-        | BodyResponseCallback<Schema$Category>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Category>,
-      callback?: BodyResponseCallback<Schema$Category>
-    ): void | GaxiosPromise<Schema$Category> {
+        | BodyResponseCallback<Schema$Category>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Category>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Category>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Category> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Onboarding$Listcategories;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6906,7 +7550,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Category>(parameters, callback);
+        createAPIRequest<Schema$Category>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Category>(parameters);
       }
@@ -6979,9 +7626,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     listCategoryVolumes(
+      params: Params$Resource$Onboarding$Listcategoryvolumes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listCategoryVolumes(
       params?: Params$Resource$Onboarding$Listcategoryvolumes,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volume2>;
+    listCategoryVolumes(
+      params: Params$Resource$Onboarding$Listcategoryvolumes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listCategoryVolumes(
       params: Params$Resource$Onboarding$Listcategoryvolumes,
       options: MethodOptions | BodyResponseCallback<Schema$Volume2>,
@@ -6995,10 +7651,17 @@ export namespace books_v1 {
     listCategoryVolumes(
       paramsOrCallback?:
         | Params$Resource$Onboarding$Listcategoryvolumes
-        | BodyResponseCallback<Schema$Volume2>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volume2>,
-      callback?: BodyResponseCallback<Schema$Volume2>
-    ): void | GaxiosPromise<Schema$Volume2> {
+        | BodyResponseCallback<Schema$Volume2>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volume2>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volume2>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volume2> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Onboarding$Listcategoryvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7032,7 +7695,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volume2>(parameters, callback);
+        createAPIRequest<Schema$Volume2>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volume2>(parameters);
       }
@@ -7147,9 +7813,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Personalizedstream$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Personalizedstream$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Discoveryclusters>;
+    get(
+      params: Params$Resource$Personalizedstream$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Personalizedstream$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Discoveryclusters>,
@@ -7163,12 +7838,20 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Personalizedstream$Get
-        | BodyResponseCallback<Schema$Discoveryclusters>,
+        | BodyResponseCallback<Schema$Discoveryclusters>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Discoveryclusters>,
-      callback?: BodyResponseCallback<Schema$Discoveryclusters>
-    ): void | GaxiosPromise<Schema$Discoveryclusters> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Discoveryclusters>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Discoveryclusters>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$Discoveryclusters>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Personalizedstream$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7202,7 +7885,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Discoveryclusters>(parameters, callback);
+        createAPIRequest<Schema$Discoveryclusters>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Discoveryclusters>(parameters);
       }
@@ -7304,9 +7990,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     accept(
+      params: Params$Resource$Promooffer$Accept,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accept(
       params?: Params$Resource$Promooffer$Accept,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    accept(
+      params: Params$Resource$Promooffer$Accept,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     accept(
       params: Params$Resource$Promooffer$Accept,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7320,10 +8015,15 @@ export namespace books_v1 {
     accept(
       paramsOrCallback?:
         | Params$Resource$Promooffer$Accept
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Promooffer$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7357,7 +8057,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7428,9 +8131,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Promooffer$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Promooffer$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    dismiss(
+      params: Params$Resource$Promooffer$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Promooffer$Dismiss,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7444,10 +8156,15 @@ export namespace books_v1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Promooffer$Dismiss
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Promooffer$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7481,7 +8198,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7556,9 +8276,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Promooffer$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Promooffer$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Offers>;
+    get(
+      params: Params$Resource$Promooffer$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Promooffer$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Offers>,
@@ -7572,10 +8301,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Promooffer$Get
-        | BodyResponseCallback<Schema$Offers>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Offers>,
-      callback?: BodyResponseCallback<Schema$Offers>
-    ): void | GaxiosPromise<Schema$Offers> {
+        | BodyResponseCallback<Schema$Offers>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Offers>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Offers>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Offers> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Promooffer$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7608,7 +8344,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Offers>(parameters, callback);
+        createAPIRequest<Schema$Offers>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Offers>(parameters);
       }
@@ -7785,9 +8524,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Series$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Series$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Series>;
+    get(
+      params: Params$Resource$Series$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Series$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Series>,
@@ -7801,10 +8549,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Series$Get
-        | BodyResponseCallback<Schema$Series>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Series>,
-      callback?: BodyResponseCallback<Schema$Series>
-    ): void | GaxiosPromise<Schema$Series> {
+        | BodyResponseCallback<Schema$Series>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Series>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Series>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Series> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Series$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7837,7 +8592,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Series>(parameters, callback);
+        createAPIRequest<Schema$Series>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Series>(parameters);
       }
@@ -7923,9 +8681,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Series$Membership$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Series$Membership$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Seriesmembership>;
+    get(
+      params: Params$Resource$Series$Membership$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Series$Membership$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Seriesmembership>,
@@ -7939,12 +8706,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Series$Membership$Get
-        | BodyResponseCallback<Schema$Seriesmembership>,
+        | BodyResponseCallback<Schema$Seriesmembership>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Seriesmembership>,
-      callback?: BodyResponseCallback<Schema$Seriesmembership>
-    ): void | GaxiosPromise<Schema$Seriesmembership> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Seriesmembership>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Seriesmembership>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Seriesmembership> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Series$Membership$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7978,7 +8750,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Seriesmembership>(parameters, callback);
+        createAPIRequest<Schema$Seriesmembership>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Seriesmembership>(parameters);
       }
@@ -8101,9 +8876,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Volumes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Volumes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volume>;
+    get(
+      params: Params$Resource$Volumes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Volumes$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Volume>,
@@ -8117,10 +8901,17 @@ export namespace books_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Volumes$Get
-        | BodyResponseCallback<Schema$Volume>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volume>,
-      callback?: BodyResponseCallback<Schema$Volume>
-    ): void | GaxiosPromise<Schema$Volume> {
+        | BodyResponseCallback<Schema$Volume>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volume>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volume>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volume> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8153,7 +8944,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volume>(parameters, callback);
+        createAPIRequest<Schema$Volume>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volume>(parameters);
       }
@@ -8253,9 +9047,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Volumes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Volumes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    list(
+      params: Params$Resource$Volumes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Volumes$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -8269,10 +9072,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Volumes$List
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8302,7 +9112,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
@@ -8481,9 +9294,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Volumes$Associated$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Volumes$Associated$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    list(
+      params: Params$Resource$Volumes$Associated$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Volumes$Associated$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -8497,10 +9319,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Volumes$Associated$List
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Associated$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8534,7 +9363,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
@@ -8649,9 +9481,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Volumes$Mybooks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Volumes$Mybooks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    list(
+      params: Params$Resource$Volumes$Mybooks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Volumes$Mybooks$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -8665,10 +9506,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Volumes$Mybooks$List
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Mybooks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8702,7 +9550,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
@@ -8813,9 +9664,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Volumes$Recommended$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Volumes$Recommended$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    list(
+      params: Params$Resource$Volumes$Recommended$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Volumes$Recommended$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -8829,10 +9689,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Volumes$Recommended$List
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Recommended$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8866,7 +9733,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
@@ -8934,9 +9804,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     rate(
+      params: Params$Resource$Volumes$Recommended$Rate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rate(
       params?: Params$Resource$Volumes$Recommended$Rate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse>;
+    rate(
+      params: Params$Resource$Volumes$Recommended$Rate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     rate(
       params: Params$Resource$Volumes$Recommended$Rate,
       options:
@@ -8954,14 +9833,20 @@ export namespace books_v1 {
     rate(
       paramsOrCallback?:
         | Params$Resource$Volumes$Recommended$Rate
-        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
+        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
-      callback?: BodyResponseCallback<
-        Schema$BooksVolumesRecommendedRateResponse
-      >
-    ): void | GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Recommended$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8997,7 +9882,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
@@ -9128,9 +10013,18 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Volumes$Useruploaded$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Volumes$Useruploaded$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Volumes>;
+    list(
+      params: Params$Resource$Volumes$Useruploaded$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Volumes$Useruploaded$List,
       options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
@@ -9144,10 +10038,17 @@ export namespace books_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Volumes$Useruploaded$List
-        | BodyResponseCallback<Schema$Volumes>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
-      callback?: BodyResponseCallback<Schema$Volumes>
-    ): void | GaxiosPromise<Schema$Volumes> {
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Volumes>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Volumes> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Volumes$Useruploaded$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9181,7 +10082,10 @@ export namespace books_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Volumes>(parameters, callback);
+        createAPIRequest<Schema$Volumes>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
       }

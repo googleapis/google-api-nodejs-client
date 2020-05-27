@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace webfonts_v1 {
   export interface Options extends GlobalOptions {
@@ -202,9 +204,18 @@ export namespace webfonts_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Webfonts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Webfonts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WebfontList>;
+    list(
+      params: Params$Resource$Webfonts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Webfonts$List,
       options: MethodOptions | BodyResponseCallback<Schema$WebfontList>,
@@ -218,12 +229,17 @@ export namespace webfonts_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Webfonts$List
-        | BodyResponseCallback<Schema$WebfontList>,
+        | BodyResponseCallback<Schema$WebfontList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WebfontList>,
-      callback?: BodyResponseCallback<Schema$WebfontList>
-    ): void | GaxiosPromise<Schema$WebfontList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WebfontList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WebfontList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WebfontList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webfonts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -256,7 +272,10 @@ export namespace webfonts_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WebfontList>(parameters, callback);
+        createAPIRequest<Schema$WebfontList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WebfontList>(parameters);
       }

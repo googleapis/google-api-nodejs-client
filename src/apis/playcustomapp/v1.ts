@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace playcustomapp_v1 {
   export interface Options extends GlobalOptions {
@@ -197,9 +199,18 @@ export namespace playcustomapp_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Accounts$Customapps$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Accounts$Customapps$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomApp>;
+    create(
+      params: Params$Resource$Accounts$Customapps$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Accounts$Customapps$Create,
       options: MethodOptions | BodyResponseCallback<Schema$CustomApp>,
@@ -213,12 +224,17 @@ export namespace playcustomapp_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Accounts$Customapps$Create
-        | BodyResponseCallback<Schema$CustomApp>,
+        | BodyResponseCallback<Schema$CustomApp>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomApp>,
-      callback?: BodyResponseCallback<Schema$CustomApp>
-    ): void | GaxiosPromise<Schema$CustomApp> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomApp>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomApp>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomApp> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Customapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -254,7 +270,10 @@ export namespace playcustomapp_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomApp>(parameters, callback);
+        createAPIRequest<Schema$CustomApp>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomApp>(parameters);
       }

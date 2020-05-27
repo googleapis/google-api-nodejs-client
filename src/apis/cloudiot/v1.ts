@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudiot_v1 {
   export interface Options extends GlobalOptions {
@@ -728,9 +730,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     bindDeviceToGateway(
+      params: Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bindDeviceToGateway(
       params?: Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BindDeviceToGatewayResponse>;
+    bindDeviceToGateway(
+      params: Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     bindDeviceToGateway(
       params: Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
       options:
@@ -748,12 +759,20 @@ export namespace cloudiot_v1 {
     bindDeviceToGateway(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Binddevicetogateway
-        | BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
+        | BodyResponseCallback<Schema$BindDeviceToGatewayResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
-      callback?: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>
-    ): void | GaxiosPromise<Schema$BindDeviceToGatewayResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BindDeviceToGatewayResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BindDeviceToGatewayResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BindDeviceToGatewayResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Binddevicetogateway;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -789,7 +808,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$BindDeviceToGatewayResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BindDeviceToGatewayResponse>(parameters);
@@ -876,9 +895,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Registries$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Registries$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeviceRegistry>;
+    create(
+      params: Params$Resource$Projects$Locations$Registries$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Registries$Create,
       options: MethodOptions | BodyResponseCallback<Schema$DeviceRegistry>,
@@ -892,12 +920,17 @@ export namespace cloudiot_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Create
-        | BodyResponseCallback<Schema$DeviceRegistry>,
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeviceRegistry>,
-      callback?: BodyResponseCallback<Schema$DeviceRegistry>
-    ): void | GaxiosPromise<Schema$DeviceRegistry> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceRegistry> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -931,7 +964,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
+        createAPIRequest<Schema$DeviceRegistry>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeviceRegistry>(parameters);
       }
@@ -992,9 +1028,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Registries$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Registries$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Registries$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Registries$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1008,10 +1053,17 @@ export namespace cloudiot_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1042,7 +1094,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1112,9 +1167,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Registries$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Registries$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeviceRegistry>;
+    get(
+      params: Params$Resource$Projects$Locations$Registries$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Registries$Get,
       options: MethodOptions | BodyResponseCallback<Schema$DeviceRegistry>,
@@ -1128,12 +1192,17 @@ export namespace cloudiot_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Get
-        | BodyResponseCallback<Schema$DeviceRegistry>,
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeviceRegistry>,
-      callback?: BodyResponseCallback<Schema$DeviceRegistry>
-    ): void | GaxiosPromise<Schema$DeviceRegistry> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceRegistry> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1164,7 +1233,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
+        createAPIRequest<Schema$DeviceRegistry>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeviceRegistry>(parameters);
       }
@@ -1239,9 +1311,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Registries$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Registries$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1255,10 +1336,17 @@ export namespace cloudiot_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1292,7 +1380,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1367,9 +1458,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Registries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Registries$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDeviceRegistriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Registries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Registries$List,
       options:
@@ -1387,12 +1487,20 @@ export namespace cloudiot_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$List
-        | BodyResponseCallback<Schema$ListDeviceRegistriesResponse>,
+        | BodyResponseCallback<Schema$ListDeviceRegistriesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDeviceRegistriesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDeviceRegistriesResponse>
-    ): void | GaxiosPromise<Schema$ListDeviceRegistriesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeviceRegistriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeviceRegistriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeviceRegistriesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1428,7 +1536,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDeviceRegistriesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListDeviceRegistriesResponse>(
@@ -1524,9 +1632,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Registries$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Registries$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeviceRegistry>;
+    patch(
+      params: Params$Resource$Projects$Locations$Registries$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Registries$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$DeviceRegistry>,
@@ -1540,12 +1657,17 @@ export namespace cloudiot_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Patch
-        | BodyResponseCallback<Schema$DeviceRegistry>,
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeviceRegistry>,
-      callback?: BodyResponseCallback<Schema$DeviceRegistry>
-    ): void | GaxiosPromise<Schema$DeviceRegistry> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceRegistry>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceRegistry> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1576,7 +1698,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
+        createAPIRequest<Schema$DeviceRegistry>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeviceRegistry>(parameters);
       }
@@ -1651,9 +1776,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Registries$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Registries$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1667,10 +1801,17 @@ export namespace cloudiot_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1704,7 +1845,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1777,9 +1921,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Registries$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Registries$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Registries$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Registries$Testiampermissions,
       options:
@@ -1797,12 +1950,20 @@ export namespace cloudiot_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1838,7 +1999,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1913,9 +2074,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     unbindDeviceFromGateway(
+      params: Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unbindDeviceFromGateway(
       params?: Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
       options?: MethodOptions
     ): GaxiosPromise<Schema$UnbindDeviceFromGatewayResponse>;
+    unbindDeviceFromGateway(
+      params: Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     unbindDeviceFromGateway(
       params: Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
       options:
@@ -1933,12 +2103,20 @@ export namespace cloudiot_v1 {
     unbindDeviceFromGateway(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway
-        | BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
+        | BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
-      callback?: BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>
-    ): void | GaxiosPromise<Schema$UnbindDeviceFromGatewayResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UnbindDeviceFromGatewayResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1974,7 +2152,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
@@ -2265,9 +2443,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Registries$Devices$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Device>;
+    create(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Registries$Devices$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Device>,
@@ -2281,10 +2468,17 @@ export namespace cloudiot_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$Create
-        | BodyResponseCallback<Schema$Device>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
-      callback?: BodyResponseCallback<Schema$Device>
-    ): void | GaxiosPromise<Schema$Device> {
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2318,7 +2512,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Device>(parameters, callback);
+        createAPIRequest<Schema$Device>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
       }
@@ -2381,9 +2578,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Registries$Devices$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Registries$Devices$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2397,10 +2603,17 @@ export namespace cloudiot_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2431,7 +2644,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2516,9 +2732,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Registries$Devices$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Device>;
+    get(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Registries$Devices$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Device>,
@@ -2532,10 +2757,17 @@ export namespace cloudiot_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$Get
-        | BodyResponseCallback<Schema$Device>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
-      callback?: BodyResponseCallback<Schema$Device>
-    ): void | GaxiosPromise<Schema$Device> {
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2566,7 +2798,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Device>(parameters, callback);
+        createAPIRequest<Schema$Device>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
       }
@@ -2671,9 +2906,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Registries$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Registries$Devices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDevicesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Registries$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Registries$Devices$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListDevicesResponse>,
@@ -2687,12 +2931,20 @@ export namespace cloudiot_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$List
-        | BodyResponseCallback<Schema$ListDevicesResponse>,
+        | BodyResponseCallback<Schema$ListDevicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDevicesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDevicesResponse>
-    ): void | GaxiosPromise<Schema$ListDevicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDevicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2726,7 +2978,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDevicesResponse>(parameters);
       }
@@ -2806,9 +3061,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     modifyCloudToDeviceConfig(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyCloudToDeviceConfig(
       params?: Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeviceConfig>;
+    modifyCloudToDeviceConfig(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modifyCloudToDeviceConfig(
       params: Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
       options: MethodOptions | BodyResponseCallback<Schema$DeviceConfig>,
@@ -2824,12 +3088,17 @@ export namespace cloudiot_v1 {
     modifyCloudToDeviceConfig(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig
-        | BodyResponseCallback<Schema$DeviceConfig>,
+        | BodyResponseCallback<Schema$DeviceConfig>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeviceConfig>,
-      callback?: BodyResponseCallback<Schema$DeviceConfig>
-    ): void | GaxiosPromise<Schema$DeviceConfig> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceConfig> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2863,7 +3132,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DeviceConfig>(parameters, callback);
+        createAPIRequest<Schema$DeviceConfig>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DeviceConfig>(parameters);
       }
@@ -2977,9 +3249,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Registries$Devices$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Device>;
+    patch(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Registries$Devices$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Device>,
@@ -2993,10 +3274,17 @@ export namespace cloudiot_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$Patch
-        | BodyResponseCallback<Schema$Device>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
-      callback?: BodyResponseCallback<Schema$Device>
-    ): void | GaxiosPromise<Schema$Device> {
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Device>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Device> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3027,7 +3315,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Device>(parameters, callback);
+        createAPIRequest<Schema$Device>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
       }
@@ -3102,9 +3393,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     sendCommandToDevice(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    sendCommandToDevice(
       params?: Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendCommandToDeviceResponse>;
+    sendCommandToDevice(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     sendCommandToDevice(
       params: Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
       options:
@@ -3122,12 +3422,20 @@ export namespace cloudiot_v1 {
     sendCommandToDevice(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice
-        | BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
+        | BodyResponseCallback<Schema$SendCommandToDeviceResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
-      callback?: BodyResponseCallback<Schema$SendCommandToDeviceResponse>
-    ): void | GaxiosPromise<Schema$SendCommandToDeviceResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendCommandToDeviceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendCommandToDeviceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SendCommandToDeviceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3163,7 +3471,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$SendCommandToDeviceResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SendCommandToDeviceResponse>(parameters);
@@ -3388,9 +3696,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
       options:
@@ -3408,12 +3725,20 @@ export namespace cloudiot_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$Configversions$List
-        | BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        | BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeviceConfigVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$Configversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3449,7 +3774,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
@@ -3546,9 +3871,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Registries$Devices$States$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Registries$Devices$States$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDeviceStatesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Registries$Devices$States$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Registries$Devices$States$List,
       options:
@@ -3564,12 +3898,20 @@ export namespace cloudiot_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Devices$States$List
-        | BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        | BodyResponseCallback<Schema$ListDeviceStatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDeviceStatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDeviceStatesResponse>
-    ): void | GaxiosPromise<Schema$ListDeviceStatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeviceStatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeviceStatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeviceStatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Devices$States$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3600,7 +3942,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDeviceStatesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDeviceStatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDeviceStatesResponse>(parameters);
       }
@@ -3703,9 +4048,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3719,10 +4073,17 @@ export namespace cloudiot_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3756,7 +4117,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3831,9 +4195,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -3847,10 +4220,17 @@ export namespace cloudiot_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3884,7 +4264,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -3959,9 +4342,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
       options:
@@ -3979,12 +4371,20 @@ export namespace cloudiot_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4020,7 +4420,7 @@ export namespace cloudiot_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4186,9 +4586,18 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDevicesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListDevicesResponse>,
@@ -4202,12 +4611,20 @@ export namespace cloudiot_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Registries$Groups$Devices$List
-        | BodyResponseCallback<Schema$ListDevicesResponse>,
+        | BodyResponseCallback<Schema$ListDevicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDevicesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDevicesResponse>
-    ): void | GaxiosPromise<Schema$ListDevicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDevicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Registries$Groups$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4241,7 +4658,10 @@ export namespace cloudiot_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDevicesResponse>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace prod_tt_sasportal_v1alpha1 {
   export interface Options extends GlobalOptions {
@@ -713,9 +715,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalCustomer>;
+    get(
+      params: Params$Resource$Customers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalCustomer>,
@@ -729,12 +740,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customers$Get
-        | BodyResponseCallback<Schema$SasPortalCustomer>,
+        | BodyResponseCallback<Schema$SasPortalCustomer>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalCustomer>,
-      callback?: BodyResponseCallback<Schema$SasPortalCustomer>
-    ): void | GaxiosPromise<Schema$SasPortalCustomer> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalCustomer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalCustomer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalCustomer>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -765,7 +784,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalCustomer>(parameters, callback);
+        createAPIRequest<Schema$SasPortalCustomer>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalCustomer>(parameters);
       }
@@ -830,9 +852,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListCustomersResponse>;
+    list(
+      params: Params$Resource$Customers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$List,
       options:
@@ -850,12 +881,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$List
-        | BodyResponseCallback<Schema$SasPortalListCustomersResponse>,
+        | BodyResponseCallback<Schema$SasPortalListCustomersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListCustomersResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListCustomersResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListCustomersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListCustomersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListCustomersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListCustomersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -891,7 +930,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListCustomersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListCustomersResponse>(
@@ -969,9 +1008,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Customers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Customers$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalCustomer>;
+    patch(
+      params: Params$Resource$Customers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Customers$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalCustomer>,
@@ -985,12 +1033,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Customers$Patch
-        | BodyResponseCallback<Schema$SasPortalCustomer>,
+        | BodyResponseCallback<Schema$SasPortalCustomer>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalCustomer>,
-      callback?: BodyResponseCallback<Schema$SasPortalCustomer>
-    ): void | GaxiosPromise<Schema$SasPortalCustomer> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalCustomer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalCustomer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalCustomer>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1021,7 +1077,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalCustomer>(parameters, callback);
+        createAPIRequest<Schema$SasPortalCustomer>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalCustomer>(parameters);
       }
@@ -1143,9 +1202,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     bulk(
+      params: Params$Resource$Customers$Devices$Bulk,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulk(
       params?: Params$Resource$Customers$Devices$Bulk,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse>;
+    bulk(
+      params: Params$Resource$Customers$Devices$Bulk,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     bulk(
       params: Params$Resource$Customers$Devices$Bulk,
       options:
@@ -1163,12 +1231,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     bulk(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Bulk
-        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
-    ): void | GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Bulk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1205,7 +1281,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -1290,9 +1366,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Customers$Devices$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Customers$Devices$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    create(
+      params: Params$Resource$Customers$Devices$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Customers$Devices$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -1306,12 +1391,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Create
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1346,7 +1436,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -1422,9 +1515,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     createSigned(
+      params: Params$Resource$Customers$Devices$Createsigned,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSigned(
       params?: Params$Resource$Customers$Devices$Createsigned,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    createSigned(
+      params: Params$Resource$Customers$Devices$Createsigned,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createSigned(
       params: Params$Resource$Customers$Devices$Createsigned,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -1438,12 +1540,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Createsigned
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1478,7 +1585,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -1535,9 +1645,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Customers$Devices$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Customers$Devices$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalEmpty>;
+    delete(
+      params: Params$Resource$Customers$Devices$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Customers$Devices$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
@@ -1551,12 +1670,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Delete
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
-      callback?: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1588,7 +1712,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalEmpty>(parameters, callback);
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
       }
@@ -1654,9 +1781,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customers$Devices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customers$Devices$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    get(
+      params: Params$Resource$Customers$Devices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customers$Devices$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -1670,12 +1806,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Get
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1707,7 +1848,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -1781,9 +1925,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$Devices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    list(
+      params: Params$Resource$Customers$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$Devices$List,
       options:
@@ -1801,12 +1954,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$List
-        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListDevicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1843,7 +2004,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -1918,9 +2079,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     move(
+      params: Params$Resource$Customers$Devices$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
       params?: Params$Resource$Customers$Devices$Move,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalOperation>;
+    move(
+      params: Params$Resource$Customers$Devices$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move(
       params: Params$Resource$Customers$Devices$Move,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalOperation>,
@@ -1934,12 +2104,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Move
-        | BodyResponseCallback<Schema$SasPortalOperation>,
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalOperation>,
-      callback?: BodyResponseCallback<Schema$SasPortalOperation>
-    ): void | GaxiosPromise<Schema$SasPortalOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1974,7 +2152,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalOperation>(parameters, callback);
+        createAPIRequest<Schema$SasPortalOperation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
       }
@@ -2059,9 +2240,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Customers$Devices$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Customers$Devices$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    patch(
+      params: Params$Resource$Customers$Devices$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Customers$Devices$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -2075,12 +2265,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Patch
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2112,7 +2307,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -2178,9 +2376,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     signDevice(
+      params: Params$Resource$Customers$Devices$Signdevice,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signDevice(
       params?: Params$Resource$Customers$Devices$Signdevice,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalEmpty>;
+    signDevice(
+      params: Params$Resource$Customers$Devices$Signdevice,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signDevice(
       params: Params$Resource$Customers$Devices$Signdevice,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
@@ -2194,12 +2401,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Signdevice
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
-      callback?: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2234,7 +2446,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalEmpty>(parameters, callback);
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
       }
@@ -2310,9 +2525,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     updateSigned(
+      params: Params$Resource$Customers$Devices$Updatesigned,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateSigned(
       params?: Params$Resource$Customers$Devices$Updatesigned,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    updateSigned(
+      params: Params$Resource$Customers$Devices$Updatesigned,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateSigned(
       params: Params$Resource$Customers$Devices$Updatesigned,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -2326,12 +2550,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       paramsOrCallback?:
         | Params$Resource$Customers$Devices$Updatesigned
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2366,7 +2595,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -2619,9 +2851,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Customers$Nodes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Customers$Nodes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    create(
+      params: Params$Resource$Customers$Nodes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Customers$Nodes$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -2635,12 +2876,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$Create
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2675,7 +2921,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -2732,9 +2981,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Customers$Nodes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Customers$Nodes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalEmpty>;
+    delete(
+      params: Params$Resource$Customers$Nodes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Customers$Nodes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
@@ -2748,12 +3006,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$Delete
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
-      callback?: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2785,7 +3048,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalEmpty>(parameters, callback);
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
       }
@@ -2846,9 +3112,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customers$Nodes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customers$Nodes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    get(
+      params: Params$Resource$Customers$Nodes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customers$Nodes$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -2862,12 +3137,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$Get
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2899,7 +3179,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -2966,9 +3249,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$Nodes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$Nodes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    list(
+      params: Params$Resource$Customers$Nodes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$Nodes$List,
       options:
@@ -2986,12 +3278,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$List
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListNodesResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListNodesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListNodesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3028,7 +3328,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -3102,9 +3402,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     move(
+      params: Params$Resource$Customers$Nodes$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
       params?: Params$Resource$Customers$Nodes$Move,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalOperation>;
+    move(
+      params: Params$Resource$Customers$Nodes$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move(
       params: Params$Resource$Customers$Nodes$Move,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalOperation>,
@@ -3118,12 +3427,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$Move
-        | BodyResponseCallback<Schema$SasPortalOperation>,
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalOperation>,
-      callback?: BodyResponseCallback<Schema$SasPortalOperation>
-    ): void | GaxiosPromise<Schema$SasPortalOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3158,7 +3475,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalOperation>(parameters, callback);
+        createAPIRequest<Schema$SasPortalOperation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
       }
@@ -3233,9 +3553,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Customers$Nodes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Customers$Nodes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    patch(
+      params: Params$Resource$Customers$Nodes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Customers$Nodes$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -3249,12 +3578,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$Patch
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3286,7 +3620,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -3465,9 +3802,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Customers$Nodes$Nodes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Customers$Nodes$Nodes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    create(
+      params: Params$Resource$Customers$Nodes$Nodes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Customers$Nodes$Nodes$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -3481,12 +3827,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$Nodes$Create
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3521,7 +3872,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -3588,9 +3942,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customers$Nodes$Nodes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customers$Nodes$Nodes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    list(
+      params: Params$Resource$Customers$Nodes$Nodes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customers$Nodes$Nodes$List,
       options:
@@ -3608,12 +3971,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customers$Nodes$Nodes$List
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListNodesResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListNodesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListNodesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Customers$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3650,7 +4021,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -3758,9 +4129,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     generateSecret(
+      params: Params$Resource$Installer$Generatesecret,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateSecret(
       params?: Params$Resource$Installer$Generatesecret,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalGenerateSecretResponse>;
+    generateSecret(
+      params: Params$Resource$Installer$Generatesecret,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateSecret(
       params: Params$Resource$Installer$Generatesecret,
       options:
@@ -3778,12 +4158,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     generateSecret(
       paramsOrCallback?:
         | Params$Resource$Installer$Generatesecret
-        | BodyResponseCallback<Schema$SasPortalGenerateSecretResponse>,
+        | BodyResponseCallback<Schema$SasPortalGenerateSecretResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalGenerateSecretResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalGenerateSecretResponse>
-    ): void | GaxiosPromise<Schema$SasPortalGenerateSecretResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalGenerateSecretResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalGenerateSecretResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalGenerateSecretResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Installer$Generatesecret;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3820,7 +4208,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalGenerateSecretResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalGenerateSecretResponse>(
@@ -3887,9 +4275,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     validate(
+      params: Params$Resource$Installer$Validate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validate(
       params?: Params$Resource$Installer$Validate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalValidateInstallerResponse>;
+    validate(
+      params: Params$Resource$Installer$Validate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     validate(
       params: Params$Resource$Installer$Validate,
       options:
@@ -3907,12 +4304,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     validate(
       paramsOrCallback?:
         | Params$Resource$Installer$Validate
-        | BodyResponseCallback<Schema$SasPortalValidateInstallerResponse>,
+        | BodyResponseCallback<Schema$SasPortalValidateInstallerResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalValidateInstallerResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalValidateInstallerResponse>
-    ): void | GaxiosPromise<Schema$SasPortalValidateInstallerResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalValidateInstallerResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalValidateInstallerResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalValidateInstallerResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Installer$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3949,7 +4354,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalValidateInstallerResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalValidateInstallerResponse>(
@@ -4063,9 +4468,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     bulk(
+      params: Params$Resource$Nodes$Devices$Bulk,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulk(
       params?: Params$Resource$Nodes$Devices$Bulk,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse>;
+    bulk(
+      params: Params$Resource$Nodes$Devices$Bulk,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     bulk(
       params: Params$Resource$Nodes$Devices$Bulk,
       options:
@@ -4083,12 +4497,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     bulk(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Bulk
-        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
-    ): void | GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Bulk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4125,7 +4547,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -4210,9 +4632,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Nodes$Devices$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Nodes$Devices$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    create(
+      params: Params$Resource$Nodes$Devices$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Nodes$Devices$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -4226,12 +4657,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Create
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4266,7 +4702,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -4342,9 +4781,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     createSigned(
+      params: Params$Resource$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSigned(
       params?: Params$Resource$Nodes$Devices$Createsigned,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    createSigned(
+      params: Params$Resource$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createSigned(
       params: Params$Resource$Nodes$Devices$Createsigned,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -4358,12 +4806,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Createsigned
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4398,7 +4851,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -4455,9 +4911,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Nodes$Devices$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Nodes$Devices$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalEmpty>;
+    delete(
+      params: Params$Resource$Nodes$Devices$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Nodes$Devices$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
@@ -4471,12 +4936,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Delete
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
-      callback?: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4508,7 +4978,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalEmpty>(parameters, callback);
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
       }
@@ -4574,9 +5047,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Nodes$Devices$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Nodes$Devices$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    get(
+      params: Params$Resource$Nodes$Devices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Nodes$Devices$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -4590,12 +5072,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Get
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4627,7 +5114,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -4701,9 +5191,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Nodes$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Nodes$Devices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    list(
+      params: Params$Resource$Nodes$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Nodes$Devices$List,
       options:
@@ -4721,12 +5220,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$List
-        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListDevicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4763,7 +5270,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -4838,9 +5345,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     move(
+      params: Params$Resource$Nodes$Devices$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
       params?: Params$Resource$Nodes$Devices$Move,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalOperation>;
+    move(
+      params: Params$Resource$Nodes$Devices$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move(
       params: Params$Resource$Nodes$Devices$Move,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalOperation>,
@@ -4854,12 +5370,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Move
-        | BodyResponseCallback<Schema$SasPortalOperation>,
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalOperation>,
-      callback?: BodyResponseCallback<Schema$SasPortalOperation>
-    ): void | GaxiosPromise<Schema$SasPortalOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4894,7 +5418,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalOperation>(parameters, callback);
+        createAPIRequest<Schema$SasPortalOperation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
       }
@@ -4979,9 +5506,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Nodes$Devices$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Nodes$Devices$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    patch(
+      params: Params$Resource$Nodes$Devices$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Nodes$Devices$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -4995,12 +5531,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Patch
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5032,7 +5573,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -5098,9 +5642,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     signDevice(
+      params: Params$Resource$Nodes$Devices$Signdevice,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signDevice(
       params?: Params$Resource$Nodes$Devices$Signdevice,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalEmpty>;
+    signDevice(
+      params: Params$Resource$Nodes$Devices$Signdevice,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signDevice(
       params: Params$Resource$Nodes$Devices$Signdevice,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
@@ -5114,12 +5667,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     signDevice(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Signdevice
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
-      callback?: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Signdevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5154,7 +5712,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalEmpty>(parameters, callback);
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
       }
@@ -5230,9 +5791,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     updateSigned(
+      params: Params$Resource$Nodes$Devices$Updatesigned,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateSigned(
       params?: Params$Resource$Nodes$Devices$Updatesigned,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    updateSigned(
+      params: Params$Resource$Nodes$Devices$Updatesigned,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateSigned(
       params: Params$Resource$Nodes$Devices$Updatesigned,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -5246,12 +5816,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     updateSigned(
       paramsOrCallback?:
         | Params$Resource$Nodes$Devices$Updatesigned
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Devices$Updatesigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5286,7 +5861,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -5541,9 +6119,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Nodes$Nodes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Nodes$Nodes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    create(
+      params: Params$Resource$Nodes$Nodes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Nodes$Nodes$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -5557,12 +6144,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Create
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5597,7 +6189,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -5654,9 +6249,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Nodes$Nodes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Nodes$Nodes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalEmpty>;
+    delete(
+      params: Params$Resource$Nodes$Nodes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Nodes$Nodes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
@@ -5670,12 +6274,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Delete
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalEmpty>,
-      callback?: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalEmpty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5707,7 +6316,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalEmpty>(parameters, callback);
+        createAPIRequest<Schema$SasPortalEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
       }
@@ -5768,9 +6380,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Nodes$Nodes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Nodes$Nodes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    get(
+      params: Params$Resource$Nodes$Nodes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Nodes$Nodes$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -5784,12 +6405,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Get
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5820,7 +6446,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -5887,9 +6516,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Nodes$Nodes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Nodes$Nodes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    list(
+      params: Params$Resource$Nodes$Nodes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Nodes$Nodes$List,
       options:
@@ -5907,12 +6545,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$List
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListNodesResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListNodesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListNodesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5948,7 +6594,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -6022,9 +6668,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     move(
+      params: Params$Resource$Nodes$Nodes$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
       params?: Params$Resource$Nodes$Nodes$Move,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalOperation>;
+    move(
+      params: Params$Resource$Nodes$Nodes$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move(
       params: Params$Resource$Nodes$Nodes$Move,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalOperation>,
@@ -6038,12 +6693,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     move(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Move
-        | BodyResponseCallback<Schema$SasPortalOperation>,
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalOperation>,
-      callback?: BodyResponseCallback<Schema$SasPortalOperation>
-    ): void | GaxiosPromise<Schema$SasPortalOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Nodes$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6077,7 +6740,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalOperation>(parameters, callback);
+        createAPIRequest<Schema$SasPortalOperation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
       }
@@ -6152,9 +6818,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Nodes$Nodes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Nodes$Nodes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    patch(
+      params: Params$Resource$Nodes$Nodes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Nodes$Nodes$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -6168,12 +6843,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Patch
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6205,7 +6885,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -6377,9 +7060,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     bulk(
+      params: Params$Resource$Nodes$Nodes$Devices$Bulk,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulk(
       params?: Params$Resource$Nodes$Nodes$Devices$Bulk,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse>;
+    bulk(
+      params: Params$Resource$Nodes$Nodes$Devices$Bulk,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     bulk(
       params: Params$Resource$Nodes$Nodes$Devices$Bulk,
       options:
@@ -6397,12 +7089,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     bulk(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Devices$Bulk
-        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
-    ): void | GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$Bulk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6439,7 +7139,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -6524,9 +7224,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Nodes$Nodes$Devices$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Nodes$Nodes$Devices$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    create(
+      params: Params$Resource$Nodes$Nodes$Devices$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Nodes$Nodes$Devices$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -6540,12 +7249,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Devices$Create
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6580,7 +7294,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -6656,9 +7373,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     createSigned(
+      params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSigned(
       params?: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalDevice>;
+    createSigned(
+      params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createSigned(
       params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
@@ -6672,12 +7398,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     createSigned(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Devices$Createsigned
-        | BodyResponseCallback<Schema$SasPortalDevice>,
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalDevice>,
-      callback?: BodyResponseCallback<Schema$SasPortalDevice>
-    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalDevice>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$Createsigned;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6712,7 +7443,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+        createAPIRequest<Schema$SasPortalDevice>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
       }
@@ -6786,9 +7520,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Nodes$Nodes$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Nodes$Nodes$Devices$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    list(
+      params: Params$Resource$Nodes$Nodes$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Nodes$Nodes$Devices$List,
       options:
@@ -6806,12 +7549,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Devices$List
-        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListDevicesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListDevicesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6848,7 +7599,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -7006,9 +7757,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Nodes$Nodes$Nodes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Nodes$Nodes$Nodes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalNode>;
+    create(
+      params: Params$Resource$Nodes$Nodes$Nodes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Nodes$Nodes$Nodes$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
@@ -7022,12 +7782,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Nodes$Create
-        | BodyResponseCallback<Schema$SasPortalNode>,
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalNode>,
-      callback?: BodyResponseCallback<Schema$SasPortalNode>
-    ): void | GaxiosPromise<Schema$SasPortalNode> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7062,7 +7827,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
       }
@@ -7129,9 +7897,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Nodes$Nodes$Nodes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Nodes$Nodes$Nodes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    list(
+      params: Params$Resource$Nodes$Nodes$Nodes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Nodes$Nodes$Nodes$List,
       options:
@@ -7149,12 +7926,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Nodes$Nodes$Nodes$List
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalListNodesResponse>
-    ): void | GaxiosPromise<Schema$SasPortalListNodesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalListNodesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Nodes$Nodes$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7191,7 +7976,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -7302,9 +8087,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Policies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Policies$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalPolicy>;
+    get(
+      params: Params$Resource$Policies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Policies$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalPolicy>,
@@ -7318,12 +8112,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Policies$Get
-        | BodyResponseCallback<Schema$SasPortalPolicy>,
+        | BodyResponseCallback<Schema$SasPortalPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalPolicy>,
-      callback?: BodyResponseCallback<Schema$SasPortalPolicy>
-    ): void | GaxiosPromise<Schema$SasPortalPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalPolicy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7357,7 +8156,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalPolicy>(parameters, callback);
+        createAPIRequest<Schema$SasPortalPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalPolicy>(parameters);
       }
@@ -7423,9 +8225,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     set(
+      params: Params$Resource$Policies$Set,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    set(
       params?: Params$Resource$Policies$Set,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalPolicy>;
+    set(
+      params: Params$Resource$Policies$Set,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     set(
       params: Params$Resource$Policies$Set,
       options: MethodOptions | BodyResponseCallback<Schema$SasPortalPolicy>,
@@ -7439,12 +8250,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
     set(
       paramsOrCallback?:
         | Params$Resource$Policies$Set
-        | BodyResponseCallback<Schema$SasPortalPolicy>,
+        | BodyResponseCallback<Schema$SasPortalPolicy>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalPolicy>,
-      callback?: BodyResponseCallback<Schema$SasPortalPolicy>
-    ): void | GaxiosPromise<Schema$SasPortalPolicy> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalPolicy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7478,7 +8294,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SasPortalPolicy>(parameters, callback);
+        createAPIRequest<Schema$SasPortalPolicy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SasPortalPolicy>(parameters);
       }
@@ -7543,9 +8362,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * @return {object} Request object
      */
     test(
+      params: Params$Resource$Policies$Test,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    test(
       params?: Params$Resource$Policies$Test,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SasPortalTestPermissionsResponse>;
+    test(
+      params: Params$Resource$Policies$Test,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     test(
       params: Params$Resource$Policies$Test,
       options:
@@ -7563,12 +8391,20 @@ export namespace prod_tt_sasportal_v1alpha1 {
     test(
       paramsOrCallback?:
         | Params$Resource$Policies$Test
-        | BodyResponseCallback<Schema$SasPortalTestPermissionsResponse>,
+        | BodyResponseCallback<Schema$SasPortalTestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SasPortalTestPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$SasPortalTestPermissionsResponse>
-    ): void | GaxiosPromise<Schema$SasPortalTestPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalTestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalTestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalTestPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Policies$Test;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7604,7 +8440,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalTestPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SasPortalTestPermissionsResponse>(

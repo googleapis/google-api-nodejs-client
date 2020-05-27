@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace androidpublisher_v3 {
   export interface Options extends GlobalOptions {
@@ -1110,9 +1112,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     commit(
+      params: Params$Resource$Edits$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
       params?: Params$Resource$Edits$Commit,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppEdit>;
+    commit(
+      params: Params$Resource$Edits$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     commit(
       params: Params$Resource$Edits$Commit,
       options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
@@ -1126,10 +1137,17 @@ export namespace androidpublisher_v3 {
     commit(
       paramsOrCallback?:
         | Params$Resource$Edits$Commit
-        | BodyResponseCallback<Schema$AppEdit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
-      callback?: BodyResponseCallback<Schema$AppEdit>
-    ): void | GaxiosPromise<Schema$AppEdit> {
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1162,7 +1180,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppEdit>(parameters, callback);
+        createAPIRequest<Schema$AppEdit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
       }
@@ -1219,9 +1240,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Edits$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Edits$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Edits$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Edits$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1235,10 +1265,15 @@ export namespace androidpublisher_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Edits$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1271,7 +1306,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1334,9 +1372,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Edits$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Edits$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppEdit>;
+    get(
+      params: Params$Resource$Edits$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Edits$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
@@ -1350,10 +1397,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Edits$Get
-        | BodyResponseCallback<Schema$AppEdit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
-      callback?: BodyResponseCallback<Schema$AppEdit>
-    ): void | GaxiosPromise<Schema$AppEdit> {
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1386,7 +1440,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppEdit>(parameters, callback);
+        createAPIRequest<Schema$AppEdit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
       }
@@ -1456,9 +1513,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Edits$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Edits$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppEdit>;
+    insert(
+      params: Params$Resource$Edits$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Edits$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
@@ -1472,10 +1538,17 @@ export namespace androidpublisher_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Edits$Insert
-        | BodyResponseCallback<Schema$AppEdit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
-      callback?: BodyResponseCallback<Schema$AppEdit>
-    ): void | GaxiosPromise<Schema$AppEdit> {
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1507,7 +1580,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppEdit>(parameters, callback);
+        createAPIRequest<Schema$AppEdit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
       }
@@ -1570,9 +1646,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     validate(
+      params: Params$Resource$Edits$Validate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validate(
       params?: Params$Resource$Edits$Validate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppEdit>;
+    validate(
+      params: Params$Resource$Edits$Validate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     validate(
       params: Params$Resource$Edits$Validate,
       options: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
@@ -1586,10 +1671,17 @@ export namespace androidpublisher_v3 {
     validate(
       paramsOrCallback?:
         | Params$Resource$Edits$Validate
-        | BodyResponseCallback<Schema$AppEdit>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$AppEdit>,
-      callback?: BodyResponseCallback<Schema$AppEdit>
-    ): void | GaxiosPromise<Schema$AppEdit> {
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppEdit>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppEdit> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1622,7 +1714,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppEdit>(parameters, callback);
+        createAPIRequest<Schema$AppEdit>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppEdit>(parameters);
       }
@@ -1777,9 +1872,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     addexternallyhosted(
+      params: Params$Resource$Edits$Apks$Addexternallyhosted,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addexternallyhosted(
       params?: Params$Resource$Edits$Apks$Addexternallyhosted,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApksAddExternallyHostedResponse>;
+    addexternallyhosted(
+      params: Params$Resource$Edits$Apks$Addexternallyhosted,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addexternallyhosted(
       params: Params$Resource$Edits$Apks$Addexternallyhosted,
       options:
@@ -1797,12 +1901,20 @@ export namespace androidpublisher_v3 {
     addexternallyhosted(
       paramsOrCallback?:
         | Params$Resource$Edits$Apks$Addexternallyhosted
-        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
+        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
-      callback?: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
-    ): void | GaxiosPromise<Schema$ApksAddExternallyHostedResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ApksAddExternallyHostedResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Apks$Addexternallyhosted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1838,7 +1950,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
@@ -1903,9 +2015,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Edits$Apks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Edits$Apks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApksListResponse>;
+    list(
+      params: Params$Resource$Edits$Apks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Edits$Apks$List,
       options: MethodOptions | BodyResponseCallback<Schema$ApksListResponse>,
@@ -1919,12 +2040,17 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Edits$Apks$List
-        | BodyResponseCallback<Schema$ApksListResponse>,
+        | BodyResponseCallback<Schema$ApksListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApksListResponse>,
-      callback?: BodyResponseCallback<Schema$ApksListResponse>
-    ): void | GaxiosPromise<Schema$ApksListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApksListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApksListResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApksListResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Apks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1957,7 +2083,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApksListResponse>(parameters, callback);
+        createAPIRequest<Schema$ApksListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApksListResponse>(parameters);
       }
@@ -2031,9 +2160,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Edits$Apks$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Edits$Apks$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Apk>;
+    upload(
+      params: Params$Resource$Edits$Apks$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Edits$Apks$Upload,
       options: MethodOptions | BodyResponseCallback<Schema$Apk>,
@@ -2047,10 +2185,17 @@ export namespace androidpublisher_v3 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Edits$Apks$Upload
-        | BodyResponseCallback<Schema$Apk>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Apk>,
-      callback?: BodyResponseCallback<Schema$Apk>
-    ): void | GaxiosPromise<Schema$Apk> {
+        | BodyResponseCallback<Schema$Apk>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Apk>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Apk>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Apk> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Apks$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2088,7 +2233,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Apk>(parameters, callback);
+        createAPIRequest<Schema$Apk>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Apk>(parameters);
       }
@@ -2230,9 +2378,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Edits$Bundles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Edits$Bundles$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BundlesListResponse>;
+    list(
+      params: Params$Resource$Edits$Bundles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Edits$Bundles$List,
       options: MethodOptions | BodyResponseCallback<Schema$BundlesListResponse>,
@@ -2246,12 +2403,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Edits$Bundles$List
-        | BodyResponseCallback<Schema$BundlesListResponse>,
+        | BodyResponseCallback<Schema$BundlesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BundlesListResponse>,
-      callback?: BodyResponseCallback<Schema$BundlesListResponse>
-    ): void | GaxiosPromise<Schema$BundlesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BundlesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BundlesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BundlesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Bundles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2285,7 +2450,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BundlesListResponse>(parameters, callback);
+        createAPIRequest<Schema$BundlesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BundlesListResponse>(parameters);
       }
@@ -2363,9 +2531,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Edits$Bundles$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Edits$Bundles$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Bundle>;
+    upload(
+      params: Params$Resource$Edits$Bundles$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Edits$Bundles$Upload,
       options: MethodOptions | BodyResponseCallback<Schema$Bundle>,
@@ -2379,10 +2556,17 @@ export namespace androidpublisher_v3 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Edits$Bundles$Upload
-        | BodyResponseCallback<Schema$Bundle>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Bundle>,
-      callback?: BodyResponseCallback<Schema$Bundle>
-    ): void | GaxiosPromise<Schema$Bundle> {
+        | BodyResponseCallback<Schema$Bundle>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Bundle>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Bundle>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Bundle> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Bundles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2420,7 +2604,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Bundle>(parameters, callback);
+        createAPIRequest<Schema$Bundle>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Bundle>(parameters);
       }
@@ -2563,9 +2750,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Edits$Deobfuscationfiles$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Edits$Deobfuscationfiles$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DeobfuscationFilesUploadResponse>;
+    upload(
+      params: Params$Resource$Edits$Deobfuscationfiles$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Edits$Deobfuscationfiles$Upload,
       options:
@@ -2583,12 +2779,20 @@ export namespace androidpublisher_v3 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Edits$Deobfuscationfiles$Upload
-        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
+        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
-      callback?: BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
-    ): void | GaxiosPromise<Schema$DeobfuscationFilesUploadResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DeobfuscationFilesUploadResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Deobfuscationfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2638,7 +2842,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
@@ -2758,9 +2962,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Edits$Details$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Edits$Details$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppDetails>;
+    get(
+      params: Params$Resource$Edits$Details$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Edits$Details$Get,
       options: MethodOptions | BodyResponseCallback<Schema$AppDetails>,
@@ -2774,12 +2987,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Edits$Details$Get
-        | BodyResponseCallback<Schema$AppDetails>,
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AppDetails>,
-      callback?: BodyResponseCallback<Schema$AppDetails>
-    ): void | GaxiosPromise<Schema$AppDetails> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppDetails> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Details$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2813,7 +3031,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppDetails>(parameters, callback);
+        createAPIRequest<Schema$AppDetails>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppDetails>(parameters);
       }
@@ -2890,9 +3111,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Edits$Details$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Edits$Details$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppDetails>;
+    patch(
+      params: Params$Resource$Edits$Details$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Edits$Details$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$AppDetails>,
@@ -2906,12 +3136,17 @@ export namespace androidpublisher_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Edits$Details$Patch
-        | BodyResponseCallback<Schema$AppDetails>,
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AppDetails>,
-      callback?: BodyResponseCallback<Schema$AppDetails>
-    ): void | GaxiosPromise<Schema$AppDetails> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppDetails> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Details$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2945,7 +3180,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppDetails>(parameters, callback);
+        createAPIRequest<Schema$AppDetails>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppDetails>(parameters);
       }
@@ -3022,9 +3260,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Edits$Details$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Edits$Details$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AppDetails>;
+    update(
+      params: Params$Resource$Edits$Details$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Edits$Details$Update,
       options: MethodOptions | BodyResponseCallback<Schema$AppDetails>,
@@ -3038,12 +3285,17 @@ export namespace androidpublisher_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Edits$Details$Update
-        | BodyResponseCallback<Schema$AppDetails>,
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AppDetails>,
-      callback?: BodyResponseCallback<Schema$AppDetails>
-    ): void | GaxiosPromise<Schema$AppDetails> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AppDetails>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AppDetails> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Details$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3077,7 +3329,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AppDetails>(parameters, callback);
+        createAPIRequest<Schema$AppDetails>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AppDetails>(parameters);
       }
@@ -3212,9 +3467,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Edits$Expansionfiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Edits$Expansionfiles$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ExpansionFile>;
+    get(
+      params: Params$Resource$Edits$Expansionfiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Edits$Expansionfiles$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ExpansionFile>,
@@ -3228,12 +3492,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Edits$Expansionfiles$Get
-        | BodyResponseCallback<Schema$ExpansionFile>,
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ExpansionFile>,
-      callback?: BodyResponseCallback<Schema$ExpansionFile>
-    ): void | GaxiosPromise<Schema$ExpansionFile> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ExpansionFile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3277,7 +3546,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ExpansionFile>(parameters, callback);
+        createAPIRequest<Schema$ExpansionFile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
       }
@@ -3356,9 +3628,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Edits$Expansionfiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Edits$Expansionfiles$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ExpansionFile>;
+    patch(
+      params: Params$Resource$Edits$Expansionfiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Edits$Expansionfiles$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$ExpansionFile>,
@@ -3372,12 +3653,17 @@ export namespace androidpublisher_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Edits$Expansionfiles$Patch
-        | BodyResponseCallback<Schema$ExpansionFile>,
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ExpansionFile>,
-      callback?: BodyResponseCallback<Schema$ExpansionFile>
-    ): void | GaxiosPromise<Schema$ExpansionFile> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ExpansionFile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3421,7 +3707,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ExpansionFile>(parameters, callback);
+        createAPIRequest<Schema$ExpansionFile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
       }
@@ -3500,9 +3789,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Edits$Expansionfiles$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Edits$Expansionfiles$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ExpansionFile>;
+    update(
+      params: Params$Resource$Edits$Expansionfiles$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Edits$Expansionfiles$Update,
       options: MethodOptions | BodyResponseCallback<Schema$ExpansionFile>,
@@ -3516,12 +3814,17 @@ export namespace androidpublisher_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Edits$Expansionfiles$Update
-        | BodyResponseCallback<Schema$ExpansionFile>,
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ExpansionFile>,
-      callback?: BodyResponseCallback<Schema$ExpansionFile>
-    ): void | GaxiosPromise<Schema$ExpansionFile> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExpansionFile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ExpansionFile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3565,7 +3868,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ExpansionFile>(parameters, callback);
+        createAPIRequest<Schema$ExpansionFile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ExpansionFile>(parameters);
       }
@@ -3644,9 +3950,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Edits$Expansionfiles$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Edits$Expansionfiles$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ExpansionFilesUploadResponse>;
+    upload(
+      params: Params$Resource$Edits$Expansionfiles$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Edits$Expansionfiles$Upload,
       options:
@@ -3664,12 +3979,20 @@ export namespace androidpublisher_v3 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Edits$Expansionfiles$Upload
-        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
+        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
-      callback?: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
-    ): void | GaxiosPromise<Schema$ExpansionFilesUploadResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExpansionFilesUploadResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExpansionFilesUploadResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Expansionfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3719,7 +4042,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$ExpansionFilesUploadResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ExpansionFilesUploadResponse>(
@@ -3922,9 +4245,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Edits$Images$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Edits$Images$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Edits$Images$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Edits$Images$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3938,10 +4270,15 @@ export namespace androidpublisher_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Edits$Images$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3987,7 +4324,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4055,9 +4395,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     deleteall(
+      params: Params$Resource$Edits$Images$Deleteall,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteall(
       params?: Params$Resource$Edits$Images$Deleteall,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImagesDeleteAllResponse>;
+    deleteall(
+      params: Params$Resource$Edits$Images$Deleteall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteall(
       params: Params$Resource$Edits$Images$Deleteall,
       options:
@@ -4075,12 +4424,20 @@ export namespace androidpublisher_v3 {
     deleteall(
       paramsOrCallback?:
         | Params$Resource$Edits$Images$Deleteall
-        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
+        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
-      callback?: BodyResponseCallback<Schema$ImagesDeleteAllResponse>
-    ): void | GaxiosPromise<Schema$ImagesDeleteAllResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImagesDeleteAllResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ImagesDeleteAllResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4114,7 +4471,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters, callback);
+        createAPIRequest<Schema$ImagesDeleteAllResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters);
       }
@@ -4182,9 +4542,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Edits$Images$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Edits$Images$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImagesListResponse>;
+    list(
+      params: Params$Resource$Edits$Images$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Edits$Images$List,
       options: MethodOptions | BodyResponseCallback<Schema$ImagesListResponse>,
@@ -4198,12 +4567,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Edits$Images$List
-        | BodyResponseCallback<Schema$ImagesListResponse>,
+        | BodyResponseCallback<Schema$ImagesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImagesListResponse>,
-      callback?: BodyResponseCallback<Schema$ImagesListResponse>
-    ): void | GaxiosPromise<Schema$ImagesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImagesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImagesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ImagesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4237,7 +4614,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImagesListResponse>(parameters, callback);
+        createAPIRequest<Schema$ImagesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImagesListResponse>(parameters);
       }
@@ -4316,9 +4696,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Edits$Images$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Edits$Images$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImagesUploadResponse>;
+    upload(
+      params: Params$Resource$Edits$Images$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Edits$Images$Upload,
       options:
@@ -4334,12 +4723,20 @@ export namespace androidpublisher_v3 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Edits$Images$Upload
-        | BodyResponseCallback<Schema$ImagesUploadResponse>,
+        | BodyResponseCallback<Schema$ImagesUploadResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImagesUploadResponse>,
-      callback?: BodyResponseCallback<Schema$ImagesUploadResponse>
-    ): void | GaxiosPromise<Schema$ImagesUploadResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImagesUploadResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImagesUploadResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ImagesUploadResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Images$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4377,7 +4774,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImagesUploadResponse>(parameters, callback);
+        createAPIRequest<Schema$ImagesUploadResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImagesUploadResponse>(parameters);
       }
@@ -4565,9 +4965,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Edits$Listings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Edits$Listings$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Edits$Listings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Edits$Listings$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4581,10 +4990,15 @@ export namespace androidpublisher_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Edits$Listings$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4618,7 +5032,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4675,9 +5092,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     deleteall(
+      params: Params$Resource$Edits$Listings$Deleteall,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteall(
       params?: Params$Resource$Edits$Listings$Deleteall,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    deleteall(
+      params: Params$Resource$Edits$Listings$Deleteall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteall(
       params: Params$Resource$Edits$Listings$Deleteall,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -4691,10 +5117,15 @@ export namespace androidpublisher_v3 {
     deleteall(
       paramsOrCallback?:
         | Params$Resource$Edits$Listings$Deleteall
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4728,7 +5159,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -4797,9 +5231,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Edits$Listings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Edits$Listings$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Listing>;
+    get(
+      params: Params$Resource$Edits$Listings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Edits$Listings$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Listing>,
@@ -4813,10 +5256,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Edits$Listings$Get
-        | BodyResponseCallback<Schema$Listing>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Listing>,
-      callback?: BodyResponseCallback<Schema$Listing>
-    ): void | GaxiosPromise<Schema$Listing> {
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4850,7 +5300,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Listing>(parameters, callback);
+        createAPIRequest<Schema$Listing>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Listing>(parameters);
       }
@@ -4913,9 +5366,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Edits$Listings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Edits$Listings$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListingsListResponse>;
+    list(
+      params: Params$Resource$Edits$Listings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Edits$Listings$List,
       options:
@@ -4931,12 +5393,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Edits$Listings$List
-        | BodyResponseCallback<Schema$ListingsListResponse>,
+        | BodyResponseCallback<Schema$ListingsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListingsListResponse>,
-      callback?: BodyResponseCallback<Schema$ListingsListResponse>
-    ): void | GaxiosPromise<Schema$ListingsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListingsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListingsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListingsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4970,7 +5440,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListingsListResponse>(parameters, callback);
+        createAPIRequest<Schema$ListingsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListingsListResponse>(parameters);
       }
@@ -5052,9 +5525,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Edits$Listings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Edits$Listings$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Listing>;
+    patch(
+      params: Params$Resource$Edits$Listings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Edits$Listings$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Listing>,
@@ -5068,10 +5550,17 @@ export namespace androidpublisher_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Edits$Listings$Patch
-        | BodyResponseCallback<Schema$Listing>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Listing>,
-      callback?: BodyResponseCallback<Schema$Listing>
-    ): void | GaxiosPromise<Schema$Listing> {
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5105,7 +5594,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Listing>(parameters, callback);
+        createAPIRequest<Schema$Listing>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Listing>(parameters);
       }
@@ -5187,9 +5679,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Edits$Listings$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Edits$Listings$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Listing>;
+    update(
+      params: Params$Resource$Edits$Listings$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Edits$Listings$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Listing>,
@@ -5203,10 +5704,17 @@ export namespace androidpublisher_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Edits$Listings$Update
-        | BodyResponseCallback<Schema$Listing>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Listing>,
-      callback?: BodyResponseCallback<Schema$Listing>
-    ): void | GaxiosPromise<Schema$Listing> {
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Listing>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Listing> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Listings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5240,7 +5748,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Listing>(parameters, callback);
+        createAPIRequest<Schema$Listing>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Listing>(parameters);
       }
@@ -5437,9 +5948,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Edits$Testers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Edits$Testers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Testers>;
+    get(
+      params: Params$Resource$Edits$Testers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Edits$Testers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Testers>,
@@ -5453,10 +5973,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Edits$Testers$Get
-        | BodyResponseCallback<Schema$Testers>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Testers>,
-      callback?: BodyResponseCallback<Schema$Testers>
-    ): void | GaxiosPromise<Schema$Testers> {
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Testers> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Testers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5490,7 +6017,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Testers>(parameters, callback);
+        createAPIRequest<Schema$Testers>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Testers>(parameters);
       }
@@ -5569,9 +6099,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Edits$Testers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Edits$Testers$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Testers>;
+    patch(
+      params: Params$Resource$Edits$Testers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Edits$Testers$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Testers>,
@@ -5585,10 +6124,17 @@ export namespace androidpublisher_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Edits$Testers$Patch
-        | BodyResponseCallback<Schema$Testers>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Testers>,
-      callback?: BodyResponseCallback<Schema$Testers>
-    ): void | GaxiosPromise<Schema$Testers> {
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Testers> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Testers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5622,7 +6168,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Testers>(parameters, callback);
+        createAPIRequest<Schema$Testers>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Testers>(parameters);
       }
@@ -5701,9 +6250,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Edits$Testers$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Edits$Testers$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Testers>;
+    update(
+      params: Params$Resource$Edits$Testers$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Edits$Testers$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Testers>,
@@ -5717,10 +6275,17 @@ export namespace androidpublisher_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Edits$Testers$Update
-        | BodyResponseCallback<Schema$Testers>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Testers>,
-      callback?: BodyResponseCallback<Schema$Testers>
-    ): void | GaxiosPromise<Schema$Testers> {
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Testers>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Testers> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Testers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5754,7 +6319,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Testers>(parameters, callback);
+        createAPIRequest<Schema$Testers>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Testers>(parameters);
       }
@@ -5898,9 +6466,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Edits$Tracks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Edits$Tracks$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Track>;
+    get(
+      params: Params$Resource$Edits$Tracks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Edits$Tracks$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Track>,
@@ -5914,10 +6491,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Edits$Tracks$Get
-        | BodyResponseCallback<Schema$Track>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Track>,
-      callback?: BodyResponseCallback<Schema$Track>
-    ): void | GaxiosPromise<Schema$Track> {
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5950,7 +6534,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Track>(parameters, callback);
+        createAPIRequest<Schema$Track>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Track>(parameters);
       }
@@ -6013,9 +6600,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Edits$Tracks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Edits$Tracks$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TracksListResponse>;
+    list(
+      params: Params$Resource$Edits$Tracks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Edits$Tracks$List,
       options: MethodOptions | BodyResponseCallback<Schema$TracksListResponse>,
@@ -6029,12 +6625,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Edits$Tracks$List
-        | BodyResponseCallback<Schema$TracksListResponse>,
+        | BodyResponseCallback<Schema$TracksListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TracksListResponse>,
-      callback?: BodyResponseCallback<Schema$TracksListResponse>
-    ): void | GaxiosPromise<Schema$TracksListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TracksListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TracksListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TracksListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Tracks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6068,7 +6672,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TracksListResponse>(parameters, callback);
+        createAPIRequest<Schema$TracksListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TracksListResponse>(parameters);
       }
@@ -6144,9 +6751,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Edits$Tracks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Edits$Tracks$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Track>;
+    patch(
+      params: Params$Resource$Edits$Tracks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Edits$Tracks$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Track>,
@@ -6160,10 +6776,17 @@ export namespace androidpublisher_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Edits$Tracks$Patch
-        | BodyResponseCallback<Schema$Track>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Track>,
-      callback?: BodyResponseCallback<Schema$Track>
-    ): void | GaxiosPromise<Schema$Track> {
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Tracks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6197,7 +6820,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Track>(parameters, callback);
+        createAPIRequest<Schema$Track>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Track>(parameters);
       }
@@ -6273,9 +6899,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Edits$Tracks$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Edits$Tracks$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Track>;
+    update(
+      params: Params$Resource$Edits$Tracks$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Edits$Tracks$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Track>,
@@ -6289,10 +6924,17 @@ export namespace androidpublisher_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Edits$Tracks$Update
-        | BodyResponseCallback<Schema$Track>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Track>,
-      callback?: BodyResponseCallback<Schema$Track>
-    ): void | GaxiosPromise<Schema$Track> {
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Track>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Track> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Edits$Tracks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6326,7 +6968,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Track>(parameters, callback);
+        createAPIRequest<Schema$Track>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Track>(parameters);
       }
@@ -6476,9 +7121,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Inappproducts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Inappproducts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Inappproducts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Inappproducts$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6492,10 +7146,15 @@ export namespace androidpublisher_v3 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Inappproducts$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6529,7 +7188,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6600,9 +7262,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Inappproducts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Inappproducts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InAppProduct>;
+    get(
+      params: Params$Resource$Inappproducts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Inappproducts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
@@ -6616,12 +7287,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Inappproducts$Get
-        | BodyResponseCallback<Schema$InAppProduct>,
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InAppProduct>,
-      callback?: BodyResponseCallback<Schema$InAppProduct>
-    ): void | GaxiosPromise<Schema$InAppProduct> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6655,7 +7331,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InAppProduct>(parameters, callback);
+        createAPIRequest<Schema$InAppProduct>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
       }
@@ -6746,9 +7425,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Inappproducts$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Inappproducts$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InAppProduct>;
+    insert(
+      params: Params$Resource$Inappproducts$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Inappproducts$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
@@ -6762,12 +7450,17 @@ export namespace androidpublisher_v3 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Inappproducts$Insert
-        | BodyResponseCallback<Schema$InAppProduct>,
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InAppProduct>,
-      callback?: BodyResponseCallback<Schema$InAppProduct>
-    ): void | GaxiosPromise<Schema$InAppProduct> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6801,7 +7494,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InAppProduct>(parameters, callback);
+        createAPIRequest<Schema$InAppProduct>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
       }
@@ -6871,9 +7567,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Inappproducts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Inappproducts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InappproductsListResponse>;
+    list(
+      params: Params$Resource$Inappproducts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Inappproducts$List,
       options:
@@ -6891,12 +7596,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Inappproducts$List
-        | BodyResponseCallback<Schema$InappproductsListResponse>,
+        | BodyResponseCallback<Schema$InappproductsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InappproductsListResponse>,
-      callback?: BodyResponseCallback<Schema$InappproductsListResponse>
-    ): void | GaxiosPromise<Schema$InappproductsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InappproductsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InappproductsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InappproductsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6932,7 +7645,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InappproductsListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$InappproductsListResponse>(parameters);
@@ -7027,9 +7740,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Inappproducts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Inappproducts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InAppProduct>;
+    patch(
+      params: Params$Resource$Inappproducts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Inappproducts$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
@@ -7043,12 +7765,17 @@ export namespace androidpublisher_v3 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Inappproducts$Patch
-        | BodyResponseCallback<Schema$InAppProduct>,
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InAppProduct>,
-      callback?: BodyResponseCallback<Schema$InAppProduct>
-    ): void | GaxiosPromise<Schema$InAppProduct> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7082,7 +7809,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InAppProduct>(parameters, callback);
+        createAPIRequest<Schema$InAppProduct>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
       }
@@ -7176,9 +7906,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Inappproducts$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Inappproducts$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InAppProduct>;
+    update(
+      params: Params$Resource$Inappproducts$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Inappproducts$Update,
       options: MethodOptions | BodyResponseCallback<Schema$InAppProduct>,
@@ -7192,12 +7931,17 @@ export namespace androidpublisher_v3 {
     update(
       paramsOrCallback?:
         | Params$Resource$Inappproducts$Update
-        | BodyResponseCallback<Schema$InAppProduct>,
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InAppProduct>,
-      callback?: BodyResponseCallback<Schema$InAppProduct>
-    ): void | GaxiosPromise<Schema$InAppProduct> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InAppProduct>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InAppProduct> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inappproducts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7231,7 +7975,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InAppProduct>(parameters, callback);
+        createAPIRequest<Schema$InAppProduct>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InAppProduct>(parameters);
       }
@@ -7438,9 +8185,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     uploadapk(
+      params: Params$Resource$Internalappsharingartifacts$Uploadapk,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    uploadapk(
       params?: Params$Resource$Internalappsharingartifacts$Uploadapk,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InternalAppSharingArtifact>;
+    uploadapk(
+      params: Params$Resource$Internalappsharingartifacts$Uploadapk,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     uploadapk(
       params: Params$Resource$Internalappsharingartifacts$Uploadapk,
       options:
@@ -7458,12 +8214,20 @@ export namespace androidpublisher_v3 {
     uploadapk(
       paramsOrCallback?:
         | Params$Resource$Internalappsharingartifacts$Uploadapk
-        | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
+        | BodyResponseCallback<Schema$InternalAppSharingArtifact>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
-      callback?: BodyResponseCallback<Schema$InternalAppSharingArtifact>
-    ): void | GaxiosPromise<Schema$InternalAppSharingArtifact> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InternalAppSharingArtifact>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InternalAppSharingArtifact>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InternalAppSharingArtifact>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Internalappsharingartifacts$Uploadapk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7503,7 +8267,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InternalAppSharingArtifact>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$InternalAppSharingArtifact>(parameters);
@@ -7576,9 +8340,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     uploadbundle(
+      params: Params$Resource$Internalappsharingartifacts$Uploadbundle,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    uploadbundle(
       params?: Params$Resource$Internalappsharingartifacts$Uploadbundle,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InternalAppSharingArtifact>;
+    uploadbundle(
+      params: Params$Resource$Internalappsharingartifacts$Uploadbundle,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     uploadbundle(
       params: Params$Resource$Internalappsharingartifacts$Uploadbundle,
       options:
@@ -7596,12 +8369,20 @@ export namespace androidpublisher_v3 {
     uploadbundle(
       paramsOrCallback?:
         | Params$Resource$Internalappsharingartifacts$Uploadbundle
-        | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
+        | BodyResponseCallback<Schema$InternalAppSharingArtifact>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InternalAppSharingArtifact>,
-      callback?: BodyResponseCallback<Schema$InternalAppSharingArtifact>
-    ): void | GaxiosPromise<Schema$InternalAppSharingArtifact> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InternalAppSharingArtifact>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InternalAppSharingArtifact>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InternalAppSharingArtifact>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Internalappsharingartifacts$Uploadbundle;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7641,7 +8422,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$InternalAppSharingArtifact>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$InternalAppSharingArtifact>(parameters);
@@ -7774,9 +8555,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     refund(
+      params: Params$Resource$Orders$Refund,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    refund(
       params?: Params$Resource$Orders$Refund,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    refund(
+      params: Params$Resource$Orders$Refund,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     refund(
       params: Params$Resource$Orders$Refund,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7790,10 +8580,15 @@ export namespace androidpublisher_v3 {
     refund(
       paramsOrCallback?:
         | Params$Resource$Orders$Refund
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7826,7 +8621,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7937,9 +8735,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     acknowledge(
+      params: Params$Resource$Purchases$Products$Acknowledge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acknowledge(
       params?: Params$Resource$Purchases$Products$Acknowledge,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    acknowledge(
+      params: Params$Resource$Purchases$Products$Acknowledge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     acknowledge(
       params: Params$Resource$Purchases$Products$Acknowledge,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7953,10 +8760,15 @@ export namespace androidpublisher_v3 {
     acknowledge(
       paramsOrCallback?:
         | Params$Resource$Purchases$Products$Acknowledge
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Products$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7990,7 +8802,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8065,9 +8880,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Purchases$Products$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Purchases$Products$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ProductPurchase>;
+    get(
+      params: Params$Resource$Purchases$Products$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Purchases$Products$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ProductPurchase>,
@@ -8081,12 +8905,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Purchases$Products$Get
-        | BodyResponseCallback<Schema$ProductPurchase>,
+        | BodyResponseCallback<Schema$ProductPurchase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ProductPurchase>,
-      callback?: BodyResponseCallback<Schema$ProductPurchase>
-    ): void | GaxiosPromise<Schema$ProductPurchase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductPurchase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductPurchase>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProductPurchase> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8120,7 +8949,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ProductPurchase>(parameters, callback);
+        createAPIRequest<Schema$ProductPurchase>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ProductPurchase>(parameters);
       }
@@ -8242,9 +9074,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     acknowledge(
+      params: Params$Resource$Purchases$Subscriptions$Acknowledge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acknowledge(
       params?: Params$Resource$Purchases$Subscriptions$Acknowledge,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    acknowledge(
+      params: Params$Resource$Purchases$Subscriptions$Acknowledge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     acknowledge(
       params: Params$Resource$Purchases$Subscriptions$Acknowledge,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8258,10 +9099,15 @@ export namespace androidpublisher_v3 {
     acknowledge(
       paramsOrCallback?:
         | Params$Resource$Purchases$Subscriptions$Acknowledge
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8295,7 +9141,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8355,9 +9204,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Purchases$Subscriptions$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Purchases$Subscriptions$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    cancel(
+      params: Params$Resource$Purchases$Subscriptions$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Purchases$Subscriptions$Cancel,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8371,10 +9229,15 @@ export namespace androidpublisher_v3 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Purchases$Subscriptions$Cancel
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8408,7 +9271,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8482,9 +9348,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     defer(
+      params: Params$Resource$Purchases$Subscriptions$Defer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    defer(
       params?: Params$Resource$Purchases$Subscriptions$Defer,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse>;
+    defer(
+      params: Params$Resource$Purchases$Subscriptions$Defer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     defer(
       params: Params$Resource$Purchases$Subscriptions$Defer,
       options:
@@ -8502,12 +9377,20 @@ export namespace androidpublisher_v3 {
     defer(
       paramsOrCallback?:
         | Params$Resource$Purchases$Subscriptions$Defer
-        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
+        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
-      callback?: BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
-    ): void | GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Defer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8543,7 +9426,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
@@ -8637,9 +9520,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Purchases$Subscriptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Purchases$Subscriptions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SubscriptionPurchase>;
+    get(
+      params: Params$Resource$Purchases$Subscriptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Purchases$Subscriptions$Get,
       options:
@@ -8655,12 +9547,20 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Purchases$Subscriptions$Get
-        | BodyResponseCallback<Schema$SubscriptionPurchase>,
+        | BodyResponseCallback<Schema$SubscriptionPurchase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionPurchase>,
-      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>
-    ): void | GaxiosPromise<Schema$SubscriptionPurchase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SubscriptionPurchase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SubscriptionPurchase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SubscriptionPurchase>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8694,7 +9594,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
+        createAPIRequest<Schema$SubscriptionPurchase>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
       }
@@ -8754,9 +9657,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     refund(
+      params: Params$Resource$Purchases$Subscriptions$Refund,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    refund(
       params?: Params$Resource$Purchases$Subscriptions$Refund,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    refund(
+      params: Params$Resource$Purchases$Subscriptions$Refund,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     refund(
       params: Params$Resource$Purchases$Subscriptions$Refund,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8770,10 +9682,15 @@ export namespace androidpublisher_v3 {
     refund(
       paramsOrCallback?:
         | Params$Resource$Purchases$Subscriptions$Refund
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8807,7 +9724,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8867,9 +9787,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     revoke(
+      params: Params$Resource$Purchases$Subscriptions$Revoke,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revoke(
       params?: Params$Resource$Purchases$Subscriptions$Revoke,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    revoke(
+      params: Params$Resource$Purchases$Subscriptions$Revoke,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     revoke(
       params: Params$Resource$Purchases$Subscriptions$Revoke,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8883,10 +9812,15 @@ export namespace androidpublisher_v3 {
     revoke(
       paramsOrCallback?:
         | Params$Resource$Purchases$Subscriptions$Revoke
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Subscriptions$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8920,7 +9854,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -9139,9 +10076,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Purchases$Voidedpurchases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Purchases$Voidedpurchases$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VoidedPurchasesListResponse>;
+    list(
+      params: Params$Resource$Purchases$Voidedpurchases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Purchases$Voidedpurchases$List,
       options:
@@ -9159,12 +10105,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Purchases$Voidedpurchases$List
-        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
-      callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>
-    ): void | GaxiosPromise<Schema$VoidedPurchasesListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VoidedPurchasesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VoidedPurchasesListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Purchases$Voidedpurchases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9200,7 +10154,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$VoidedPurchasesListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$VoidedPurchasesListResponse>(parameters);
@@ -9312,9 +10266,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Reviews$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Reviews$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Review>;
+    get(
+      params: Params$Resource$Reviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Reviews$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Review>,
@@ -9328,10 +10291,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Reviews$Get
-        | BodyResponseCallback<Schema$Review>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Review>,
-      callback?: BodyResponseCallback<Schema$Review>
-    ): void | GaxiosPromise<Schema$Review> {
+        | BodyResponseCallback<Schema$Review>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Review>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Review>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Review> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9364,7 +10334,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Review>(parameters, callback);
+        createAPIRequest<Schema$Review>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Review>(parameters);
       }
@@ -9436,9 +10409,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Reviews$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Reviews$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReviewsListResponse>;
+    list(
+      params: Params$Resource$Reviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Reviews$List,
       options: MethodOptions | BodyResponseCallback<Schema$ReviewsListResponse>,
@@ -9452,12 +10434,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Reviews$List
-        | BodyResponseCallback<Schema$ReviewsListResponse>,
+        | BodyResponseCallback<Schema$ReviewsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReviewsListResponse>,
-      callback?: BodyResponseCallback<Schema$ReviewsListResponse>
-    ): void | GaxiosPromise<Schema$ReviewsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReviewsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReviewsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReviewsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9490,7 +10480,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReviewsListResponse>(parameters, callback);
+        createAPIRequest<Schema$ReviewsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReviewsListResponse>(parameters);
       }
@@ -9561,9 +10554,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     reply(
+      params: Params$Resource$Reviews$Reply,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reply(
       params?: Params$Resource$Reviews$Reply,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ReviewsReplyResponse>;
+    reply(
+      params: Params$Resource$Reviews$Reply,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reply(
       params: Params$Resource$Reviews$Reply,
       options:
@@ -9579,12 +10581,20 @@ export namespace androidpublisher_v3 {
     reply(
       paramsOrCallback?:
         | Params$Resource$Reviews$Reply
-        | BodyResponseCallback<Schema$ReviewsReplyResponse>,
+        | BodyResponseCallback<Schema$ReviewsReplyResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ReviewsReplyResponse>,
-      callback?: BodyResponseCallback<Schema$ReviewsReplyResponse>
-    ): void | GaxiosPromise<Schema$ReviewsReplyResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReviewsReplyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReviewsReplyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReviewsReplyResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Reply;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9617,7 +10627,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ReviewsReplyResponse>(parameters, callback);
+        createAPIRequest<Schema$ReviewsReplyResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ReviewsReplyResponse>(parameters);
       }
@@ -9772,9 +10785,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Systemapks$Variants$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Systemapks$Variants$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variant>;
+    create(
+      params: Params$Resource$Systemapks$Variants$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Systemapks$Variants$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Variant>,
@@ -9788,10 +10810,17 @@ export namespace androidpublisher_v3 {
     create(
       paramsOrCallback?:
         | Params$Resource$Systemapks$Variants$Create
-        | BodyResponseCallback<Schema$Variant>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variant>,
-      callback?: BodyResponseCallback<Schema$Variant>
-    ): void | GaxiosPromise<Schema$Variant> {
+        | BodyResponseCallback<Schema$Variant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variant>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variant> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9825,7 +10854,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variant>(parameters, callback);
+        createAPIRequest<Schema$Variant>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variant>(parameters);
       }
@@ -9885,9 +10917,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     download(
+      params: Params$Resource$Systemapks$Variants$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
       params?: Params$Resource$Systemapks$Variants$Download,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    download(
+      params: Params$Resource$Systemapks$Variants$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     download(
       params: Params$Resource$Systemapks$Variants$Download,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -9901,10 +10942,15 @@ export namespace androidpublisher_v3 {
     download(
       paramsOrCallback?:
         | Params$Resource$Systemapks$Variants$Download
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9938,7 +10984,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -10004,9 +11053,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Systemapks$Variants$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Systemapks$Variants$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Variant>;
+    get(
+      params: Params$Resource$Systemapks$Variants$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Systemapks$Variants$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Variant>,
@@ -10020,10 +11078,17 @@ export namespace androidpublisher_v3 {
     get(
       paramsOrCallback?:
         | Params$Resource$Systemapks$Variants$Get
-        | BodyResponseCallback<Schema$Variant>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variant>,
-      callback?: BodyResponseCallback<Schema$Variant>
-    ): void | GaxiosPromise<Schema$Variant> {
+        | BodyResponseCallback<Schema$Variant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Variant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Variant>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Variant> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10057,7 +11122,10 @@ export namespace androidpublisher_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Variant>(parameters, callback);
+        createAPIRequest<Schema$Variant>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Variant>(parameters);
       }
@@ -10119,9 +11187,18 @@ export namespace androidpublisher_v3 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Systemapks$Variants$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Systemapks$Variants$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SystemApkVariantsListResponse>;
+    list(
+      params: Params$Resource$Systemapks$Variants$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Systemapks$Variants$List,
       options:
@@ -10139,12 +11216,20 @@ export namespace androidpublisher_v3 {
     list(
       paramsOrCallback?:
         | Params$Resource$Systemapks$Variants$List
-        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>,
+        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>,
-      callback?: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
-    ): void | GaxiosPromise<Schema$SystemApkVariantsListResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SystemApkVariantsListResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Systemapks$Variants$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10180,7 +11265,7 @@ export namespace androidpublisher_v3 {
       if (callback) {
         createAPIRequest<Schema$SystemApkVariantsListResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SystemApkVariantsListResponse>(

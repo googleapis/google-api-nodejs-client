@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace blogger_v2 {
   export interface Options extends GlobalOptions {
@@ -602,9 +604,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Blogs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Blogs$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Blog>;
+    get(
+      params: Params$Resource$Blogs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Blogs$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Blog>,
@@ -618,10 +629,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Blogs$Get
-        | BodyResponseCallback<Schema$Blog>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Blog>,
-      callback?: BodyResponseCallback<Schema$Blog>
-    ): void | GaxiosPromise<Schema$Blog> {
+        | BodyResponseCallback<Schema$Blog>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Blog>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Blog>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Blog> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -651,7 +669,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Blog>(parameters, callback);
+        createAPIRequest<Schema$Blog>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Blog>(parameters);
       }
@@ -711,9 +732,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Blogs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Blogs$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BlogList>;
+    list(
+      params: Params$Resource$Blogs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Blogs$List,
       options: MethodOptions | BodyResponseCallback<Schema$BlogList>,
@@ -727,10 +757,17 @@ export namespace blogger_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Blogs$List
-        | BodyResponseCallback<Schema$BlogList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$BlogList>,
-      callback?: BodyResponseCallback<Schema$BlogList>
-    ): void | GaxiosPromise<Schema$BlogList> {
+        | BodyResponseCallback<Schema$BlogList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BlogList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BlogList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BlogList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -763,7 +800,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BlogList>(parameters, callback);
+        createAPIRequest<Schema$BlogList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$BlogList>(parameters);
       }
@@ -867,9 +907,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Comments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Comments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Comment>,
@@ -883,10 +932,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Comments$Get
-        | BodyResponseCallback<Schema$Comment>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
-      callback?: BodyResponseCallback<Schema$Comment>
-    ): void | GaxiosPromise<Schema$Comment> {
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Comment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Comment> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -918,7 +974,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
+        createAPIRequest<Schema$Comment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
       }
@@ -995,9 +1054,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Comments$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CommentList>;
+    list(
+      params: Params$Resource$Comments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Comments$List,
       options: MethodOptions | BodyResponseCallback<Schema$CommentList>,
@@ -1011,12 +1079,17 @@ export namespace blogger_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Comments$List
-        | BodyResponseCallback<Schema$CommentList>,
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CommentList>,
-      callback?: BodyResponseCallback<Schema$CommentList>
-    ): void | GaxiosPromise<Schema$CommentList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1048,7 +1121,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CommentList>(parameters, callback);
+        createAPIRequest<Schema$CommentList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
       }
@@ -1178,9 +1254,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Pages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Pages$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Page>;
+    get(
+      params: Params$Resource$Pages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Pages$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Page>,
@@ -1194,10 +1279,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Pages$Get
-        | BodyResponseCallback<Schema$Page>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Page>,
-      callback?: BodyResponseCallback<Schema$Page>
-    ): void | GaxiosPromise<Schema$Page> {
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Page>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Page> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1230,7 +1322,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Page>(parameters, callback);
+        createAPIRequest<Schema$Page>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
       }
@@ -1294,9 +1389,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Pages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Pages$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PageList>;
+    list(
+      params: Params$Resource$Pages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Pages$List,
       options: MethodOptions | BodyResponseCallback<Schema$PageList>,
@@ -1310,10 +1414,17 @@ export namespace blogger_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Pages$List
-        | BodyResponseCallback<Schema$PageList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PageList>,
-      callback?: BodyResponseCallback<Schema$PageList>
-    ): void | GaxiosPromise<Schema$PageList> {
+        | BodyResponseCallback<Schema$PageList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PageList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PageList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PageList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1346,7 +1457,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PageList>(parameters, callback);
+        createAPIRequest<Schema$PageList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PageList>(parameters);
       }
@@ -1463,9 +1577,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Posts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Posts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Post>;
+    get(
+      params: Params$Resource$Posts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Posts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Post>,
@@ -1479,10 +1602,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Posts$Get
-        | BodyResponseCallback<Schema$Post>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Post>,
-      callback?: BodyResponseCallback<Schema$Post>
-    ): void | GaxiosPromise<Schema$Post> {
+        | BodyResponseCallback<Schema$Post>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Post>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Post>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Post> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1515,7 +1645,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Post>(parameters, callback);
+        createAPIRequest<Schema$Post>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
       }
@@ -1589,9 +1722,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Posts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Posts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PostList>;
+    list(
+      params: Params$Resource$Posts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Posts$List,
       options: MethodOptions | BodyResponseCallback<Schema$PostList>,
@@ -1605,10 +1747,17 @@ export namespace blogger_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Posts$List
-        | BodyResponseCallback<Schema$PostList>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$PostList>,
-      callback?: BodyResponseCallback<Schema$PostList>
-    ): void | GaxiosPromise<Schema$PostList> {
+        | BodyResponseCallback<Schema$PostList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PostList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PostList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PostList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1641,7 +1790,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PostList>(parameters, callback);
+        createAPIRequest<Schema$PostList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PostList>(parameters);
       }
@@ -1757,9 +1909,18 @@ export namespace blogger_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$User>;
+    get(
+      params: Params$Resource$Users$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Get,
       options: MethodOptions | BodyResponseCallback<Schema$User>,
@@ -1773,10 +1934,17 @@ export namespace blogger_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Get
-        | BodyResponseCallback<Schema$User>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
-      callback?: BodyResponseCallback<Schema$User>
-    ): void | GaxiosPromise<Schema$User> {
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1806,7 +1974,10 @@ export namespace blogger_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$User>(parameters, callback);
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$User>(parameters);
       }

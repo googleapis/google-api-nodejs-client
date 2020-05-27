@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace recommender_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -552,9 +554,18 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>;
+    get(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
       options:
@@ -578,14 +589,20 @@ export namespace recommender_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Insighttypes$Insights$Get
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1Insight
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -618,7 +635,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
@@ -705,9 +722,18 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
       options:
@@ -735,18 +761,24 @@ export namespace recommender_v1beta1 {
         | Params$Resource$Projects$Locations$Insighttypes$Insights$List
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -782,7 +814,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
@@ -866,9 +898,18 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     markAccepted(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markAccepted(
       params?: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>;
+    markAccepted(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     markAccepted(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
       options:
@@ -892,14 +933,20 @@ export namespace recommender_v1beta1 {
     markAccepted(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1Insight
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -935,7 +982,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
@@ -1081,9 +1128,18 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    get(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
       options:
@@ -1111,18 +1167,24 @@ export namespace recommender_v1beta1 {
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Get
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1Recommendation
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudRecommenderV1beta1Recommendation
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1155,7 +1217,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -1244,11 +1306,20 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
     >;
+    list(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options:
@@ -1276,18 +1347,26 @@ export namespace recommender_v1beta1 {
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$List
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1323,7 +1402,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
@@ -1406,9 +1485,18 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     markClaimed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markClaimed(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    markClaimed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     markClaimed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
       options:
@@ -1436,18 +1524,24 @@ export namespace recommender_v1beta1 {
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1Recommendation
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudRecommenderV1beta1Recommendation
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1483,7 +1577,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -1567,9 +1661,18 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     markFailed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markFailed(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    markFailed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     markFailed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
       options:
@@ -1597,18 +1700,24 @@ export namespace recommender_v1beta1 {
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1Recommendation
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudRecommenderV1beta1Recommendation
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1644,7 +1753,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -1728,9 +1837,18 @@ export namespace recommender_v1beta1 {
      * @return {object} Request object
      */
     markSucceeded(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markSucceeded(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    markSucceeded(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     markSucceeded(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
       options:
@@ -1758,18 +1876,24 @@ export namespace recommender_v1beta1 {
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudRecommenderV1beta1Recommendation
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudRecommenderV1beta1Recommendation
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudRecommenderV1beta1Recommendation
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1805,7 +1929,7 @@ export namespace recommender_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<

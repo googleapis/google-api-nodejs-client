@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace licensing_v1 {
   export interface Options extends GlobalOptions {
@@ -227,9 +229,18 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Licenseassignments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Licenseassignments$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Licenseassignments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Licenseassignments$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -243,10 +254,15 @@ export namespace licensing_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -280,7 +296,10 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -354,9 +373,18 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Licenseassignments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Licenseassignments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LicenseAssignment>;
+    get(
+      params: Params$Resource$Licenseassignments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Licenseassignments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
@@ -370,12 +398,20 @@ export namespace licensing_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Get
-        | BodyResponseCallback<Schema$LicenseAssignment>,
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignment>,
-      callback?: BodyResponseCallback<Schema$LicenseAssignment>
-    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LicenseAssignment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -409,7 +445,10 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+        createAPIRequest<Schema$LicenseAssignment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }
@@ -487,9 +526,18 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Licenseassignments$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Licenseassignments$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LicenseAssignment>;
+    insert(
+      params: Params$Resource$Licenseassignments$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Licenseassignments$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
@@ -503,12 +551,20 @@ export namespace licensing_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Insert
-        | BodyResponseCallback<Schema$LicenseAssignment>,
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignment>,
-      callback?: BodyResponseCallback<Schema$LicenseAssignment>
-    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LicenseAssignment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -542,7 +598,10 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+        createAPIRequest<Schema$LicenseAssignment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }
@@ -614,9 +673,18 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     listForProduct(
+      params: Params$Resource$Licenseassignments$Listforproduct,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listForProduct(
       params?: Params$Resource$Licenseassignments$Listforproduct,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LicenseAssignmentList>;
+    listForProduct(
+      params: Params$Resource$Licenseassignments$Listforproduct,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listForProduct(
       params: Params$Resource$Licenseassignments$Listforproduct,
       options:
@@ -634,12 +702,20 @@ export namespace licensing_v1 {
     listForProduct(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Listforproduct
-        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+        | BodyResponseCallback<Schema$LicenseAssignmentList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignmentList>,
-      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>
-    ): void | GaxiosPromise<Schema$LicenseAssignmentList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignmentList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LicenseAssignmentList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LicenseAssignmentList>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Listforproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -672,7 +748,10 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
+        createAPIRequest<Schema$LicenseAssignmentList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
       }
@@ -747,9 +826,18 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     listForProductAndSku(
+      params: Params$Resource$Licenseassignments$Listforproductandsku,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listForProductAndSku(
       params?: Params$Resource$Licenseassignments$Listforproductandsku,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LicenseAssignmentList>;
+    listForProductAndSku(
+      params: Params$Resource$Licenseassignments$Listforproductandsku,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     listForProductAndSku(
       params: Params$Resource$Licenseassignments$Listforproductandsku,
       options:
@@ -767,12 +855,20 @@ export namespace licensing_v1 {
     listForProductAndSku(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Listforproductandsku
-        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+        | BodyResponseCallback<Schema$LicenseAssignmentList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignmentList>,
-      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>
-    ): void | GaxiosPromise<Schema$LicenseAssignmentList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignmentList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LicenseAssignmentList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LicenseAssignmentList>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Listforproductandsku;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -806,7 +902,10 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
+        createAPIRequest<Schema$LicenseAssignmentList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
       }
@@ -896,9 +995,18 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Licenseassignments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Licenseassignments$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LicenseAssignment>;
+    patch(
+      params: Params$Resource$Licenseassignments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Licenseassignments$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
@@ -912,12 +1020,20 @@ export namespace licensing_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Patch
-        | BodyResponseCallback<Schema$LicenseAssignment>,
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignment>,
-      callback?: BodyResponseCallback<Schema$LicenseAssignment>
-    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LicenseAssignment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -951,7 +1067,10 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+        createAPIRequest<Schema$LicenseAssignment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }
@@ -1041,9 +1160,18 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Licenseassignments$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Licenseassignments$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LicenseAssignment>;
+    update(
+      params: Params$Resource$Licenseassignments$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Licenseassignments$Update,
       options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
@@ -1057,12 +1185,20 @@ export namespace licensing_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Update
-        | BodyResponseCallback<Schema$LicenseAssignment>,
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LicenseAssignment>,
-      callback?: BodyResponseCallback<Schema$LicenseAssignment>
-    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LicenseAssignment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LicenseAssignment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1096,7 +1232,10 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
+        createAPIRequest<Schema$LicenseAssignment>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }

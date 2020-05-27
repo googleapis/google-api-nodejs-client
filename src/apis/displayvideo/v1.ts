@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace displayvideo_v1 {
   export interface Options extends GlobalOptions {
@@ -3489,9 +3491,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Advertisers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Advertisers$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Advertiser>;
+    create(
+      params: Params$Resource$Advertisers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Advertisers$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Advertiser>,
@@ -3505,12 +3516,17 @@ export namespace displayvideo_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Create
-        | BodyResponseCallback<Schema$Advertiser>,
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Advertiser>,
-      callback?: BodyResponseCallback<Schema$Advertiser>
-    ): void | GaxiosPromise<Schema$Advertiser> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3541,7 +3557,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Advertiser>(parameters, callback);
+        createAPIRequest<Schema$Advertiser>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
       }
@@ -3598,9 +3617,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Advertisers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Advertisers$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Advertisers$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -3614,10 +3642,17 @@ export namespace displayvideo_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3651,7 +3686,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -3720,9 +3758,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Advertiser>;
+    get(
+      params: Params$Resource$Advertisers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Advertiser>,
@@ -3736,12 +3783,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Get
-        | BodyResponseCallback<Schema$Advertiser>,
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Advertiser>,
-      callback?: BodyResponseCallback<Schema$Advertiser>
-    ): void | GaxiosPromise<Schema$Advertiser> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3774,7 +3826,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Advertiser>(parameters, callback);
+        createAPIRequest<Schema$Advertiser>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
       }
@@ -3877,9 +3932,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListAdvertisersResponse>;
+    list(
+      params: Params$Resource$Advertisers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$List,
       options:
@@ -3895,12 +3959,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$List
-        | BodyResponseCallback<Schema$ListAdvertisersResponse>,
+        | BodyResponseCallback<Schema$ListAdvertisersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAdvertisersResponse>,
-      callback?: BodyResponseCallback<Schema$ListAdvertisersResponse>
-    ): void | GaxiosPromise<Schema$ListAdvertisersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdvertisersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdvertisersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdvertisersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3930,7 +4002,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAdvertisersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListAdvertisersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListAdvertisersResponse>(parameters);
       }
@@ -4021,9 +4096,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Advertisers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Advertisers$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Advertiser>;
+    patch(
+      params: Params$Resource$Advertisers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Advertisers$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Advertiser>,
@@ -4037,12 +4121,17 @@ export namespace displayvideo_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Patch
-        | BodyResponseCallback<Schema$Advertiser>,
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Advertiser>,
-      callback?: BodyResponseCallback<Schema$Advertiser>
-    ): void | GaxiosPromise<Schema$Advertiser> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Advertiser>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Advertiser> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4076,7 +4165,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Advertiser>(parameters, callback);
+        createAPIRequest<Schema$Advertiser>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
       }
@@ -4242,9 +4334,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     upload(
+      params: Params$Resource$Advertisers$Assets$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
       params?: Params$Resource$Advertisers$Assets$Upload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateAssetResponse>;
+    upload(
+      params: Params$Resource$Advertisers$Assets$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     upload(
       params: Params$Resource$Advertisers$Assets$Upload,
       options: MethodOptions | BodyResponseCallback<Schema$CreateAssetResponse>,
@@ -4258,12 +4359,20 @@ export namespace displayvideo_v1 {
     upload(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Assets$Upload
-        | BodyResponseCallback<Schema$CreateAssetResponse>,
+        | BodyResponseCallback<Schema$CreateAssetResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateAssetResponse>,
-      callback?: BodyResponseCallback<Schema$CreateAssetResponse>
-    ): void | GaxiosPromise<Schema$CreateAssetResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateAssetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateAssetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateAssetResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Assets$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4300,7 +4409,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CreateAssetResponse>(parameters, callback);
+        createAPIRequest<Schema$CreateAssetResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CreateAssetResponse>(parameters);
       }
@@ -4424,9 +4536,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Advertisers$Campaigns$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Advertisers$Campaigns$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Campaign>;
+    create(
+      params: Params$Resource$Advertisers$Campaigns$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Advertisers$Campaigns$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Campaign>,
@@ -4440,10 +4561,17 @@ export namespace displayvideo_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Campaigns$Create
-        | BodyResponseCallback<Schema$Campaign>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Campaign>,
-      callback?: BodyResponseCallback<Schema$Campaign>
-    ): void | GaxiosPromise<Schema$Campaign> {
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4476,7 +4604,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Campaign>(parameters, callback);
+        createAPIRequest<Schema$Campaign>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
       }
@@ -4536,9 +4667,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Advertisers$Campaigns$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Advertisers$Campaigns$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Campaigns$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Advertisers$Campaigns$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -4552,10 +4692,17 @@ export namespace displayvideo_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Campaigns$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4589,7 +4736,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -4659,9 +4809,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Campaigns$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Campaigns$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Campaign>;
+    get(
+      params: Params$Resource$Advertisers$Campaigns$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Campaigns$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Campaign>,
@@ -4675,10 +4834,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Campaigns$Get
-        | BodyResponseCallback<Schema$Campaign>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Campaign>,
-      callback?: BodyResponseCallback<Schema$Campaign>
-    ): void | GaxiosPromise<Schema$Campaign> {
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4712,7 +4878,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Campaign>(parameters, callback);
+        createAPIRequest<Schema$Campaign>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
       }
@@ -4816,9 +4985,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Campaigns$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Campaigns$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCampaignsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Campaigns$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Campaigns$List,
       options:
@@ -4834,12 +5012,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Campaigns$List
-        | BodyResponseCallback<Schema$ListCampaignsResponse>,
+        | BodyResponseCallback<Schema$ListCampaignsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCampaignsResponse>,
-      callback?: BodyResponseCallback<Schema$ListCampaignsResponse>
-    ): void | GaxiosPromise<Schema$ListCampaignsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCampaignsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCampaignsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCampaignsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4872,7 +5058,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCampaignsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCampaignsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCampaignsResponse>(parameters);
       }
@@ -4962,9 +5151,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Advertisers$Campaigns$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Advertisers$Campaigns$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Campaign>;
+    patch(
+      params: Params$Resource$Advertisers$Campaigns$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Advertisers$Campaigns$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Campaign>,
@@ -4978,10 +5176,17 @@ export namespace displayvideo_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Campaigns$Patch
-        | BodyResponseCallback<Schema$Campaign>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Campaign>,
-      callback?: BodyResponseCallback<Schema$Campaign>
-    ): void | GaxiosPromise<Schema$Campaign> {
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Campaign>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Campaign> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Campaigns$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5015,7 +5220,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Campaign>(parameters, callback);
+        createAPIRequest<Schema$Campaign>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
       }
@@ -5194,9 +5402,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Channels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Channels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    get(
+      params: Params$Resource$Advertisers$Channels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Channels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -5210,10 +5427,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Channels$Get
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5246,7 +5470,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -5351,9 +5578,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Channels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Channels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListChannelsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Channels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Channels$List,
       options:
@@ -5369,12 +5605,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Channels$List
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
-      callback?: BodyResponseCallback<Schema$ListChannelsResponse>
-    ): void | GaxiosPromise<Schema$ListChannelsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListChannelsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5408,7 +5652,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListChannelsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListChannelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
       }
@@ -5622,9 +5869,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Advertisers$Creatives$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Advertisers$Creatives$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    create(
+      params: Params$Resource$Advertisers$Creatives$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Advertisers$Creatives$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -5638,10 +5894,17 @@ export namespace displayvideo_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Creatives$Create
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5674,7 +5937,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -5734,9 +6000,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Advertisers$Creatives$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Advertisers$Creatives$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Creatives$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Advertisers$Creatives$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -5750,10 +6025,17 @@ export namespace displayvideo_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Creatives$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5787,7 +6069,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -5892,9 +6177,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Creatives$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Creatives$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    get(
+      params: Params$Resource$Advertisers$Creatives$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Creatives$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -5908,10 +6202,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Creatives$Get
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5945,7 +6246,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -6078,9 +6382,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Creatives$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Creatives$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCreativesResponse>;
+    list(
+      params: Params$Resource$Advertisers$Creatives$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Creatives$List,
       options:
@@ -6096,12 +6409,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Creatives$List
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
+        | BodyResponseCallback<Schema$ListCreativesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
-      callback?: BodyResponseCallback<Schema$ListCreativesResponse>
-    ): void | GaxiosPromise<Schema$ListCreativesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCreativesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCreativesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCreativesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6134,7 +6455,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCreativesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCreativesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
       }
@@ -6294,9 +6618,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Advertisers$Creatives$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Advertisers$Creatives$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Creative>;
+    patch(
+      params: Params$Resource$Advertisers$Creatives$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Advertisers$Creatives$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Creative>,
@@ -6310,10 +6643,17 @@ export namespace displayvideo_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Creatives$Patch
-        | BodyResponseCallback<Schema$Creative>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Creative>,
-      callback?: BodyResponseCallback<Schema$Creative>
-    ): void | GaxiosPromise<Schema$Creative> {
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Creative>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Creative> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6347,7 +6687,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Creative>(parameters, callback);
+        createAPIRequest<Schema$Creative>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
       }
@@ -6551,9 +6894,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Advertisers$Insertionorders$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Advertisers$Insertionorders$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InsertionOrder>;
+    create(
+      params: Params$Resource$Advertisers$Insertionorders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Advertisers$Insertionorders$Create,
       options: MethodOptions | BodyResponseCallback<Schema$InsertionOrder>,
@@ -6567,12 +6919,17 @@ export namespace displayvideo_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Insertionorders$Create
-        | BodyResponseCallback<Schema$InsertionOrder>,
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InsertionOrder>,
-      callback?: BodyResponseCallback<Schema$InsertionOrder>
-    ): void | GaxiosPromise<Schema$InsertionOrder> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InsertionOrder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6605,7 +6962,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InsertionOrder>(parameters, callback);
+        createAPIRequest<Schema$InsertionOrder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
       }
@@ -6665,9 +7025,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Advertisers$Insertionorders$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Advertisers$Insertionorders$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Insertionorders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Advertisers$Insertionorders$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -6681,10 +7050,17 @@ export namespace displayvideo_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Insertionorders$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6718,7 +7094,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -6793,9 +7172,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Insertionorders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Insertionorders$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InsertionOrder>;
+    get(
+      params: Params$Resource$Advertisers$Insertionorders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Insertionorders$Get,
       options: MethodOptions | BodyResponseCallback<Schema$InsertionOrder>,
@@ -6809,12 +7197,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Insertionorders$Get
-        | BodyResponseCallback<Schema$InsertionOrder>,
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InsertionOrder>,
-      callback?: BodyResponseCallback<Schema$InsertionOrder>
-    ): void | GaxiosPromise<Schema$InsertionOrder> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InsertionOrder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6848,7 +7241,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InsertionOrder>(parameters, callback);
+        createAPIRequest<Schema$InsertionOrder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
       }
@@ -6955,9 +7351,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Insertionorders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Insertionorders$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListInsertionOrdersResponse>;
+    list(
+      params: Params$Resource$Advertisers$Insertionorders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Insertionorders$List,
       options:
@@ -6975,12 +7380,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Insertionorders$List
-        | BodyResponseCallback<Schema$ListInsertionOrdersResponse>,
+        | BodyResponseCallback<Schema$ListInsertionOrdersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListInsertionOrdersResponse>,
-      callback?: BodyResponseCallback<Schema$ListInsertionOrdersResponse>
-    ): void | GaxiosPromise<Schema$ListInsertionOrdersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInsertionOrdersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInsertionOrdersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInsertionOrdersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7015,7 +7428,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInsertionOrdersResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListInsertionOrdersResponse>(parameters);
@@ -7116,9 +7529,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Advertisers$Insertionorders$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Advertisers$Insertionorders$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InsertionOrder>;
+    patch(
+      params: Params$Resource$Advertisers$Insertionorders$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Advertisers$Insertionorders$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$InsertionOrder>,
@@ -7132,12 +7554,17 @@ export namespace displayvideo_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Insertionorders$Patch
-        | BodyResponseCallback<Schema$InsertionOrder>,
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InsertionOrder>,
-      callback?: BodyResponseCallback<Schema$InsertionOrder>
-    ): void | GaxiosPromise<Schema$InsertionOrder> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InsertionOrder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InsertionOrder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Insertionorders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7171,7 +7598,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InsertionOrder>(parameters, callback);
+        createAPIRequest<Schema$InsertionOrder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InsertionOrder>(parameters);
       }
@@ -7359,9 +7789,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     bulkEditLineItemAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEditLineItemAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>;
+    bulkEditLineItemAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     bulkEditLineItemAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
       options:
@@ -7389,18 +7828,24 @@ export namespace displayvideo_v1 {
         | Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions
         | BodyResponseCallback<
             Schema$BulkEditLineItemAssignedTargetingOptionsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$BulkEditLineItemAssignedTargetingOptionsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$BulkEditLineItemAssignedTargetingOptionsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$BulkEditLineItemAssignedTargetingOptionsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7436,7 +7881,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkEditLineItemAssignedTargetingOptionsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$BulkEditLineItemAssignedTargetingOptionsResponse
@@ -7552,9 +7997,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     bulkListLineItemAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkListLineItemAssignedTargetingOptions(
       params?: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BulkListLineItemAssignedTargetingOptionsResponse>;
+    bulkListLineItemAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     bulkListLineItemAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
       options:
@@ -7582,18 +8036,24 @@ export namespace displayvideo_v1 {
         | Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions
         | BodyResponseCallback<
             Schema$BulkListLineItemAssignedTargetingOptionsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$BulkListLineItemAssignedTargetingOptionsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$BulkListLineItemAssignedTargetingOptionsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$BulkListLineItemAssignedTargetingOptionsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BulkListLineItemAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7629,7 +8089,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<
           Schema$BulkListLineItemAssignedTargetingOptionsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$BulkListLineItemAssignedTargetingOptionsResponse
@@ -7737,9 +8197,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Advertisers$Lineitems$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Advertisers$Lineitems$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LineItem>;
+    create(
+      params: Params$Resource$Advertisers$Lineitems$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Advertisers$Lineitems$Create,
       options: MethodOptions | BodyResponseCallback<Schema$LineItem>,
@@ -7753,10 +8222,17 @@ export namespace displayvideo_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Create
-        | BodyResponseCallback<Schema$LineItem>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LineItem>,
-      callback?: BodyResponseCallback<Schema$LineItem>
-    ): void | GaxiosPromise<Schema$LineItem> {
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7789,7 +8265,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LineItem>(parameters, callback);
+        createAPIRequest<Schema$LineItem>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
       }
@@ -7849,9 +8328,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Advertisers$Lineitems$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Advertisers$Lineitems$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Lineitems$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Advertisers$Lineitems$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -7865,10 +8353,17 @@ export namespace displayvideo_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7902,7 +8397,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -7983,9 +8481,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Lineitems$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Lineitems$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LineItem>;
+    get(
+      params: Params$Resource$Advertisers$Lineitems$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Lineitems$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LineItem>,
@@ -7999,10 +8506,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Get
-        | BodyResponseCallback<Schema$LineItem>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LineItem>,
-      callback?: BodyResponseCallback<Schema$LineItem>
-    ): void | GaxiosPromise<Schema$LineItem> {
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8036,7 +8550,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LineItem>(parameters, callback);
+        createAPIRequest<Schema$LineItem>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
       }
@@ -8146,9 +8663,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Lineitems$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Lineitems$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLineItemsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Lineitems$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Lineitems$List,
       options:
@@ -8164,12 +8690,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$List
-        | BodyResponseCallback<Schema$ListLineItemsResponse>,
+        | BodyResponseCallback<Schema$ListLineItemsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLineItemsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLineItemsResponse>
-    ): void | GaxiosPromise<Schema$ListLineItemsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLineItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLineItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLineItemsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8202,7 +8736,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLineItemsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLineItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLineItemsResponse>(parameters);
       }
@@ -8314,9 +8851,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Advertisers$Lineitems$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Advertisers$Lineitems$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LineItem>;
+    patch(
+      params: Params$Resource$Advertisers$Lineitems$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Advertisers$Lineitems$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$LineItem>,
@@ -8330,10 +8876,17 @@ export namespace displayvideo_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Patch
-        | BodyResponseCallback<Schema$LineItem>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$LineItem>,
-      callback?: BodyResponseCallback<Schema$LineItem>
-    ): void | GaxiosPromise<Schema$LineItem> {
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8367,7 +8920,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LineItem>(parameters, callback);
+        createAPIRequest<Schema$LineItem>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LineItem>(parameters);
       }
@@ -8697,9 +9253,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    create(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options:
@@ -8717,12 +9282,20 @@ export namespace displayvideo_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
-      callback?: BodyResponseCallback<Schema$AssignedTargetingOption>
-    ): void | GaxiosPromise<Schema$AssignedTargetingOption> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8756,7 +9329,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AssignedTargetingOption>(parameters, callback);
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
       }
@@ -8824,9 +9400,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -8840,10 +9425,17 @@ export namespace displayvideo_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8887,7 +9479,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -8998,9 +9593,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    get(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options:
@@ -9016,12 +9620,20 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
-      callback?: BodyResponseCallback<Schema$AssignedTargetingOption>
-    ): void | GaxiosPromise<Schema$AssignedTargetingOption> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9065,7 +9677,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AssignedTargetingOption>(parameters, callback);
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
       }
@@ -9178,9 +9793,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLineItemAssignedTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options:
@@ -9208,18 +9832,24 @@ export namespace displayvideo_v1 {
         | Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List
         | BodyResponseCallback<
             Schema$ListLineItemAssignedTargetingOptionsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$ListLineItemAssignedTargetingOptionsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$ListLineItemAssignedTargetingOptionsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$ListLineItemAssignedTargetingOptionsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$ListLineItemAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLineItemAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9255,7 +9885,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLineItemAssignedTargetingOptionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -9441,9 +10071,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Locationlists$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Locationlists$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LocationList>;
+    get(
+      params: Params$Resource$Advertisers$Locationlists$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Locationlists$Get,
       options: MethodOptions | BodyResponseCallback<Schema$LocationList>,
@@ -9457,12 +10096,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Locationlists$Get
-        | BodyResponseCallback<Schema$LocationList>,
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LocationList>,
-      callback?: BodyResponseCallback<Schema$LocationList>
-    ): void | GaxiosPromise<Schema$LocationList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LocationList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9496,7 +10140,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LocationList>(parameters, callback);
+        createAPIRequest<Schema$LocationList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LocationList>(parameters);
       }
@@ -9600,9 +10247,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Locationlists$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Locationlists$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationListsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Locationlists$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Locationlists$List,
       options:
@@ -9620,12 +10276,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Locationlists$List
-        | BodyResponseCallback<Schema$ListLocationListsResponse>,
+        | BodyResponseCallback<Schema$ListLocationListsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationListsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationListsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationListsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationListsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationListsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationListsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Locationlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9660,7 +10324,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationListsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListLocationListsResponse>(parameters);
@@ -9779,9 +10443,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$NegativeKeywordList>;
+    get(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Advertisers$Negativekeywordlists$Get,
       options: MethodOptions | BodyResponseCallback<Schema$NegativeKeywordList>,
@@ -9795,12 +10468,20 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Negativekeywordlists$Get
-        | BodyResponseCallback<Schema$NegativeKeywordList>,
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$NegativeKeywordList>,
-      callback?: BodyResponseCallback<Schema$NegativeKeywordList>
-    ): void | GaxiosPromise<Schema$NegativeKeywordList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NegativeKeywordList>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9834,7 +10515,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$NegativeKeywordList>(parameters, callback);
+        createAPIRequest<Schema$NegativeKeywordList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$NegativeKeywordList>(parameters);
       }
@@ -9908,9 +10592,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Advertisers$Negativekeywordlists$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Advertisers$Negativekeywordlists$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListNegativeKeywordListsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Negativekeywordlists$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Advertisers$Negativekeywordlists$List,
       options:
@@ -9928,12 +10621,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Negativekeywordlists$List
-        | BodyResponseCallback<Schema$ListNegativeKeywordListsResponse>,
+        | BodyResponseCallback<Schema$ListNegativeKeywordListsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListNegativeKeywordListsResponse>,
-      callback?: BodyResponseCallback<Schema$ListNegativeKeywordListsResponse>
-    ): void | GaxiosPromise<Schema$ListNegativeKeywordListsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNegativeKeywordListsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNegativeKeywordListsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNegativeKeywordListsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Advertisers$Negativekeywordlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9968,7 +10669,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListNegativeKeywordListsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListNegativeKeywordListsResponse>(
@@ -10083,9 +10784,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Combinedaudiences$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Combinedaudiences$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CombinedAudience>;
+    get(
+      params: Params$Resource$Combinedaudiences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Combinedaudiences$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CombinedAudience>,
@@ -10099,12 +10809,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Combinedaudiences$Get
-        | BodyResponseCallback<Schema$CombinedAudience>,
+        | BodyResponseCallback<Schema$CombinedAudience>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CombinedAudience>,
-      callback?: BodyResponseCallback<Schema$CombinedAudience>
-    ): void | GaxiosPromise<Schema$CombinedAudience> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CombinedAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CombinedAudience>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CombinedAudience> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Combinedaudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10137,7 +10852,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CombinedAudience>(parameters, callback);
+        createAPIRequest<Schema$CombinedAudience>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CombinedAudience>(parameters);
       }
@@ -10243,9 +10961,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Combinedaudiences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Combinedaudiences$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCombinedAudiencesResponse>;
+    list(
+      params: Params$Resource$Combinedaudiences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Combinedaudiences$List,
       options:
@@ -10263,12 +10990,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Combinedaudiences$List
-        | BodyResponseCallback<Schema$ListCombinedAudiencesResponse>,
+        | BodyResponseCallback<Schema$ListCombinedAudiencesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCombinedAudiencesResponse>,
-      callback?: BodyResponseCallback<Schema$ListCombinedAudiencesResponse>
-    ): void | GaxiosPromise<Schema$ListCombinedAudiencesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCombinedAudiencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCombinedAudiencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCombinedAudiencesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Combinedaudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10304,7 +11039,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCombinedAudiencesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListCombinedAudiencesResponse>(
@@ -10432,9 +11167,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Customlists$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Customlists$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CustomList>;
+    get(
+      params: Params$Resource$Customlists$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Customlists$Get,
       options: MethodOptions | BodyResponseCallback<Schema$CustomList>,
@@ -10448,12 +11192,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Customlists$Get
-        | BodyResponseCallback<Schema$CustomList>,
+        | BodyResponseCallback<Schema$CustomList>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CustomList>,
-      callback?: BodyResponseCallback<Schema$CustomList>
-    ): void | GaxiosPromise<Schema$CustomList> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customlists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10486,7 +11235,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CustomList>(parameters, callback);
+        createAPIRequest<Schema$CustomList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$CustomList>(parameters);
       }
@@ -10589,9 +11341,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Customlists$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Customlists$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListCustomListsResponse>;
+    list(
+      params: Params$Resource$Customlists$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Customlists$List,
       options:
@@ -10607,12 +11368,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Customlists$List
-        | BodyResponseCallback<Schema$ListCustomListsResponse>,
+        | BodyResponseCallback<Schema$ListCustomListsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomListsResponse>,
-      callback?: BodyResponseCallback<Schema$ListCustomListsResponse>
-    ): void | GaxiosPromise<Schema$ListCustomListsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomListsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomListsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomListsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10642,7 +11411,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListCustomListsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListCustomListsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListCustomListsResponse>(parameters);
       }
@@ -10762,9 +11534,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Firstandthirdpartyaudiences$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Firstandthirdpartyaudiences$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FirstAndThirdPartyAudience>;
+    get(
+      params: Params$Resource$Firstandthirdpartyaudiences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Firstandthirdpartyaudiences$Get,
       options:
@@ -10782,12 +11563,20 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Firstandthirdpartyaudiences$Get
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>,
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>,
-      callback?: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void | GaxiosPromise<Schema$FirstAndThirdPartyAudience> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FirstAndThirdPartyAudience>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Firstandthirdpartyaudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10823,7 +11612,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$FirstAndThirdPartyAudience>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
@@ -10931,9 +11720,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Firstandthirdpartyaudiences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Firstandthirdpartyaudiences$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFirstAndThirdPartyAudiencesResponse>;
+    list(
+      params: Params$Resource$Firstandthirdpartyaudiences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Firstandthirdpartyaudiences$List,
       options:
@@ -10957,14 +11755,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Firstandthirdpartyaudiences$List
-        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>,
+        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>,
-      callback?: BodyResponseCallback<
-        Schema$ListFirstAndThirdPartyAudiencesResponse
-      >
-    ): void | GaxiosPromise<Schema$ListFirstAndThirdPartyAudiencesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFirstAndThirdPartyAudiencesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Firstandthirdpartyaudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11000,7 +11804,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
@@ -11131,9 +11935,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Floodlightgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Floodlightgroups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FloodlightGroup>;
+    get(
+      params: Params$Resource$Floodlightgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Floodlightgroups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$FloodlightGroup>,
@@ -11147,12 +11960,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Floodlightgroups$Get
-        | BodyResponseCallback<Schema$FloodlightGroup>,
+        | BodyResponseCallback<Schema$FloodlightGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightGroup>,
-      callback?: BodyResponseCallback<Schema$FloodlightGroup>
-    ): void | GaxiosPromise<Schema$FloodlightGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FloodlightGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FloodlightGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FloodlightGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11185,7 +12003,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FloodlightGroup>(parameters, callback);
+        createAPIRequest<Schema$FloodlightGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FloodlightGroup>(parameters);
       }
@@ -11271,9 +12092,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Floodlightgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Floodlightgroups$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$FloodlightGroup>;
+    patch(
+      params: Params$Resource$Floodlightgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Floodlightgroups$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$FloodlightGroup>,
@@ -11287,12 +12117,17 @@ export namespace displayvideo_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Floodlightgroups$Patch
-        | BodyResponseCallback<Schema$FloodlightGroup>,
+        | BodyResponseCallback<Schema$FloodlightGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$FloodlightGroup>,
-      callback?: BodyResponseCallback<Schema$FloodlightGroup>
-    ): void | GaxiosPromise<Schema$FloodlightGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FloodlightGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FloodlightGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FloodlightGroup> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Floodlightgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11326,7 +12161,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$FloodlightGroup>(parameters, callback);
+        createAPIRequest<Schema$FloodlightGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$FloodlightGroup>(parameters);
       }
@@ -11443,9 +12281,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Googleaudiences$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Googleaudiences$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleAudience>;
+    get(
+      params: Params$Resource$Googleaudiences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Googleaudiences$Get,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleAudience>,
@@ -11459,12 +12306,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Googleaudiences$Get
-        | BodyResponseCallback<Schema$GoogleAudience>,
+        | BodyResponseCallback<Schema$GoogleAudience>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAudience>,
-      callback?: BodyResponseCallback<Schema$GoogleAudience>
-    ): void | GaxiosPromise<Schema$GoogleAudience> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAudience>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GoogleAudience> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleaudiences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11498,7 +12350,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleAudience>(parameters, callback);
+        createAPIRequest<Schema$GoogleAudience>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleAudience>(parameters);
       }
@@ -11603,9 +12458,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Googleaudiences$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Googleaudiences$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGoogleAudiencesResponse>;
+    list(
+      params: Params$Resource$Googleaudiences$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Googleaudiences$List,
       options:
@@ -11623,12 +12487,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Googleaudiences$List
-        | BodyResponseCallback<Schema$ListGoogleAudiencesResponse>,
+        | BodyResponseCallback<Schema$ListGoogleAudiencesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGoogleAudiencesResponse>,
-      callback?: BodyResponseCallback<Schema$ListGoogleAudiencesResponse>
-    ): void | GaxiosPromise<Schema$ListGoogleAudiencesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoogleAudiencesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoogleAudiencesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGoogleAudiencesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Googleaudiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11664,7 +12536,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGoogleAudiencesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListGoogleAudiencesResponse>(parameters);
@@ -11797,9 +12669,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Inventorysourcegroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Inventorysourcegroups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InventorySourceGroup>;
+    get(
+      params: Params$Resource$Inventorysourcegroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Inventorysourcegroups$Get,
       options:
@@ -11815,12 +12696,20 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Inventorysourcegroups$Get
-        | BodyResponseCallback<Schema$InventorySourceGroup>,
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InventorySourceGroup>,
-      callback?: BodyResponseCallback<Schema$InventorySourceGroup>
-    ): void | GaxiosPromise<Schema$InventorySourceGroup> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InventorySourceGroup>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11853,7 +12742,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InventorySourceGroup>(parameters, callback);
+        createAPIRequest<Schema$InventorySourceGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InventorySourceGroup>(parameters);
       }
@@ -11957,9 +12849,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Inventorysourcegroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Inventorysourcegroups$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListInventorySourceGroupsResponse>;
+    list(
+      params: Params$Resource$Inventorysourcegroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Inventorysourcegroups$List,
       options:
@@ -11977,12 +12878,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Inventorysourcegroups$List
-        | BodyResponseCallback<Schema$ListInventorySourceGroupsResponse>,
+        | BodyResponseCallback<Schema$ListInventorySourceGroupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListInventorySourceGroupsResponse>,
-      callback?: BodyResponseCallback<Schema$ListInventorySourceGroupsResponse>
-    ): void | GaxiosPromise<Schema$ListInventorySourceGroupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInventorySourceGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInventorySourceGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInventorySourceGroupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysourcegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12018,7 +12927,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInventorySourceGroupsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListInventorySourceGroupsResponse>(
@@ -12157,9 +13066,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Inventorysources$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Inventorysources$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$InventorySource>;
+    get(
+      params: Params$Resource$Inventorysources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Inventorysources$Get,
       options: MethodOptions | BodyResponseCallback<Schema$InventorySource>,
@@ -12173,12 +13091,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Inventorysources$Get
-        | BodyResponseCallback<Schema$InventorySource>,
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$InventorySource>,
-      callback?: BodyResponseCallback<Schema$InventorySource>
-    ): void | GaxiosPromise<Schema$InventorySource> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InventorySource>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$InventorySource> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12211,7 +13134,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$InventorySource>(parameters, callback);
+        createAPIRequest<Schema$InventorySource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$InventorySource>(parameters);
       }
@@ -12321,9 +13247,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Inventorysources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Inventorysources$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListInventorySourcesResponse>;
+    list(
+      params: Params$Resource$Inventorysources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Inventorysources$List,
       options:
@@ -12341,12 +13276,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Inventorysources$List
-        | BodyResponseCallback<Schema$ListInventorySourcesResponse>,
+        | BodyResponseCallback<Schema$ListInventorySourcesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListInventorySourcesResponse>,
-      callback?: BodyResponseCallback<Schema$ListInventorySourcesResponse>
-    ): void | GaxiosPromise<Schema$ListInventorySourcesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInventorySourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInventorySourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInventorySourcesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Inventorysources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12382,7 +13325,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInventorySourcesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListInventorySourcesResponse>(
@@ -12504,9 +13447,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
       params?: Params$Resource$Media$Download,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleBytestreamMedia>;
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     download(
       params: Params$Resource$Media$Download,
       options:
@@ -12524,12 +13476,20 @@ export namespace displayvideo_v1 {
     download(
       paramsOrCallback?:
         | Params$Resource$Media$Download
-        | BodyResponseCallback<Schema$GoogleBytestreamMedia>,
+        | BodyResponseCallback<Schema$GoogleBytestreamMedia>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleBytestreamMedia>,
-      callback?: BodyResponseCallback<Schema$GoogleBytestreamMedia>
-    ): void | GaxiosPromise<Schema$GoogleBytestreamMedia> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleBytestreamMedia>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleBytestreamMedia>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleBytestreamMedia>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12562,7 +13522,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleBytestreamMedia>(parameters, callback);
+        createAPIRequest<Schema$GoogleBytestreamMedia>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleBytestreamMedia>(parameters);
       }
@@ -12659,9 +13622,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Partners$Channels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Partners$Channels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Channel>;
+    get(
+      params: Params$Resource$Partners$Channels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Partners$Channels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Channel>,
@@ -12675,10 +13647,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Partners$Channels$Get
-        | BodyResponseCallback<Schema$Channel>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback?: BodyResponseCallback<Schema$Channel>
-    ): void | GaxiosPromise<Schema$Channel> {
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12711,7 +13690,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Channel>(parameters, callback);
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
       }
@@ -12816,9 +13798,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Partners$Channels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Partners$Channels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListChannelsResponse>;
+    list(
+      params: Params$Resource$Partners$Channels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Partners$Channels$List,
       options:
@@ -12834,12 +13825,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Partners$Channels$List
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
-      callback?: BodyResponseCallback<Schema$ListChannelsResponse>
-    ): void | GaxiosPromise<Schema$ListChannelsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListChannelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListChannelsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12873,7 +13872,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListChannelsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListChannelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
       }
@@ -13008,9 +14010,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Sdfdownloadtasks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Sdfdownloadtasks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Sdfdownloadtasks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Sdfdownloadtasks$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -13024,12 +14035,17 @@ export namespace displayvideo_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Sdfdownloadtasks$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtasks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13063,7 +14079,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -13149,9 +14168,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Sdfdownloadtasks$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Sdfdownloadtasks$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -13165,12 +14193,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Sdfdownloadtasks$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Sdfdownloadtasks$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13201,7 +14234,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -13324,9 +14360,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Targetingtypes$Targetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TargetingOption>;
+    get(
+      params: Params$Resource$Targetingtypes$Targetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Targetingtypes$Targetingoptions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$TargetingOption>,
@@ -13340,12 +14385,17 @@ export namespace displayvideo_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Targetingtypes$Targetingoptions$Get
-        | BodyResponseCallback<Schema$TargetingOption>,
+        | BodyResponseCallback<Schema$TargetingOption>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TargetingOption>,
-      callback?: BodyResponseCallback<Schema$TargetingOption>
-    ): void | GaxiosPromise<Schema$TargetingOption> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TargetingOption>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TargetingOption> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13379,7 +14429,10 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$TargetingOption>(parameters, callback);
+        createAPIRequest<Schema$TargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$TargetingOption>(parameters);
       }
@@ -13478,9 +14531,18 @@ export namespace displayvideo_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Targetingtypes$Targetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Targetingtypes$Targetingoptions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Targetingtypes$Targetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Targetingtypes$Targetingoptions$List,
       options:
@@ -13498,12 +14560,20 @@ export namespace displayvideo_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Targetingtypes$Targetingoptions$List
-        | BodyResponseCallback<Schema$ListTargetingOptionsResponse>,
+        | BodyResponseCallback<Schema$ListTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListTargetingOptionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListTargetingOptionsResponse>
-    ): void | GaxiosPromise<Schema$ListTargetingOptionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Targetingtypes$Targetingoptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13538,7 +14608,7 @@ export namespace displayvideo_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTargetingOptionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListTargetingOptionsResponse>(

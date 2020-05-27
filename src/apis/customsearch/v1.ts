@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace customsearch_v1 {
   export interface Options extends GlobalOptions {
@@ -780,9 +782,18 @@ export namespace customsearch_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Cse$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Cse$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Search>;
+    list(
+      params: Params$Resource$Cse$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Cse$List,
       options: MethodOptions | BodyResponseCallback<Schema$Search>,
@@ -796,10 +807,17 @@ export namespace customsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Cse$List
-        | BodyResponseCallback<Schema$Search>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Search>,
-      callback?: BodyResponseCallback<Schema$Search>
-    ): void | GaxiosPromise<Schema$Search> {
+        | BodyResponseCallback<Schema$Search>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Search>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Search>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Search> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cse$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -829,7 +847,10 @@ export namespace customsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Search>(parameters, callback);
+        createAPIRequest<Schema$Search>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Search>(parameters);
       }
@@ -1364,9 +1385,18 @@ export namespace customsearch_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Cse$Siterestrict$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Cse$Siterestrict$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Search>;
+    list(
+      params: Params$Resource$Cse$Siterestrict$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Cse$Siterestrict$List,
       options: MethodOptions | BodyResponseCallback<Schema$Search>,
@@ -1380,10 +1410,17 @@ export namespace customsearch_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Cse$Siterestrict$List
-        | BodyResponseCallback<Schema$Search>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Search>,
-      callback?: BodyResponseCallback<Schema$Search>
-    ): void | GaxiosPromise<Schema$Search> {
+        | BodyResponseCallback<Schema$Search>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Search>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Search>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Search> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Cse$Siterestrict$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1417,7 +1454,10 @@ export namespace customsearch_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Search>(parameters, callback);
+        createAPIRequest<Schema$Search>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Search>(parameters);
       }

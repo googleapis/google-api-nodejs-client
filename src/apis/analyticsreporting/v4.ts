@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace analyticsreporting_v4 {
   export interface Options extends GlobalOptions {
@@ -1157,9 +1159,18 @@ export namespace analyticsreporting_v4 {
      * @return {object} Request object
      */
     batchGet(
+      params: Params$Resource$Reports$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
       params?: Params$Resource$Reports$Batchget,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetReportsResponse>;
+    batchGet(
+      params: Params$Resource$Reports$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchGet(
       params: Params$Resource$Reports$Batchget,
       options: MethodOptions | BodyResponseCallback<Schema$GetReportsResponse>,
@@ -1173,12 +1184,20 @@ export namespace analyticsreporting_v4 {
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Reports$Batchget
-        | BodyResponseCallback<Schema$GetReportsResponse>,
+        | BodyResponseCallback<Schema$GetReportsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetReportsResponse>,
-      callback?: BodyResponseCallback<Schema$GetReportsResponse>
-    ): void | GaxiosPromise<Schema$GetReportsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetReportsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1212,7 +1231,10 @@ export namespace analyticsreporting_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GetReportsResponse>(parameters, callback);
+        createAPIRequest<Schema$GetReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GetReportsResponse>(parameters);
       }
@@ -1306,9 +1328,18 @@ export namespace analyticsreporting_v4 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Useractivity$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Useractivity$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchUserActivityResponse>;
+    search(
+      params: Params$Resource$Useractivity$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Useractivity$Search,
       options:
@@ -1326,12 +1357,20 @@ export namespace analyticsreporting_v4 {
     search(
       paramsOrCallback?:
         | Params$Resource$Useractivity$Search
-        | BodyResponseCallback<Schema$SearchUserActivityResponse>,
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchUserActivityResponse>,
-      callback?: BodyResponseCallback<Schema$SearchUserActivityResponse>
-    ): void | GaxiosPromise<Schema$SearchUserActivityResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchUserActivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchUserActivityResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Useractivity$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1368,7 +1407,7 @@ export namespace analyticsreporting_v4 {
       if (callback) {
         createAPIRequest<Schema$SearchUserActivityResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchUserActivityResponse>(parameters);

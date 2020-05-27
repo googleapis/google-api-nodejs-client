@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace language_v1beta2 {
   export interface Options extends GlobalOptions {
@@ -615,9 +617,18 @@ export namespace language_v1beta2 {
      * @return {object} Request object
      */
     analyzeEntities(
+      params: Params$Resource$Documents$Analyzeentities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeEntities(
       params?: Params$Resource$Documents$Analyzeentities,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
+    analyzeEntities(
+      params: Params$Resource$Documents$Analyzeentities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeEntities(
       params: Params$Resource$Documents$Analyzeentities,
       options:
@@ -635,12 +646,20 @@ export namespace language_v1beta2 {
     analyzeEntities(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzeentities
-        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeEntitiesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeEntitiesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzeentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -674,7 +693,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters, callback);
+        createAPIRequest<Schema$AnalyzeEntitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters);
       }
@@ -743,9 +765,18 @@ export namespace language_v1beta2 {
      * @return {object} Request object
      */
     analyzeEntitySentiment(
+      params: Params$Resource$Documents$Analyzeentitysentiment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeEntitySentiment(
       params?: Params$Resource$Documents$Analyzeentitysentiment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeEntitySentimentResponse>;
+    analyzeEntitySentiment(
+      params: Params$Resource$Documents$Analyzeentitysentiment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeEntitySentiment(
       params: Params$Resource$Documents$Analyzeentitysentiment,
       options:
@@ -763,12 +794,20 @@ export namespace language_v1beta2 {
     analyzeEntitySentiment(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzeentitysentiment
-        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
+        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeEntitySentimentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeEntitySentimentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzeentitysentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -803,7 +842,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
@@ -876,9 +915,18 @@ export namespace language_v1beta2 {
      * @return {object} Request object
      */
     analyzeSentiment(
+      params: Params$Resource$Documents$Analyzesentiment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeSentiment(
       params?: Params$Resource$Documents$Analyzesentiment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeSentimentResponse>;
+    analyzeSentiment(
+      params: Params$Resource$Documents$Analyzesentiment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeSentiment(
       params: Params$Resource$Documents$Analyzesentiment,
       options:
@@ -896,12 +944,20 @@ export namespace language_v1beta2 {
     analyzeSentiment(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzesentiment
-        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeSentimentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeSentimentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeSentimentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzesentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -935,7 +991,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters, callback);
+        createAPIRequest<Schema$AnalyzeSentimentResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters);
       }
@@ -1005,9 +1064,18 @@ export namespace language_v1beta2 {
      * @return {object} Request object
      */
     analyzeSyntax(
+      params: Params$Resource$Documents$Analyzesyntax,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeSyntax(
       params?: Params$Resource$Documents$Analyzesyntax,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnalyzeSyntaxResponse>;
+    analyzeSyntax(
+      params: Params$Resource$Documents$Analyzesyntax,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     analyzeSyntax(
       params: Params$Resource$Documents$Analyzesyntax,
       options:
@@ -1025,12 +1093,20 @@ export namespace language_v1beta2 {
     analyzeSyntax(
       paramsOrCallback?:
         | Params$Resource$Documents$Analyzesyntax
-        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
-      callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
-    ): void | GaxiosPromise<Schema$AnalyzeSyntaxResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeSyntaxResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeSyntaxResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Analyzesyntax;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1064,7 +1140,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters, callback);
+        createAPIRequest<Schema$AnalyzeSyntaxResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters);
       }
@@ -1138,9 +1217,18 @@ export namespace language_v1beta2 {
      * @return {object} Request object
      */
     annotateText(
+      params: Params$Resource$Documents$Annotatetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotateText(
       params?: Params$Resource$Documents$Annotatetext,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AnnotateTextResponse>;
+    annotateText(
+      params: Params$Resource$Documents$Annotatetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotateText(
       params: Params$Resource$Documents$Annotatetext,
       options:
@@ -1158,12 +1246,20 @@ export namespace language_v1beta2 {
     annotateText(
       paramsOrCallback?:
         | Params$Resource$Documents$Annotatetext
-        | BodyResponseCallback<Schema$AnnotateTextResponse>,
+        | BodyResponseCallback<Schema$AnnotateTextResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AnnotateTextResponse>,
-      callback?: BodyResponseCallback<Schema$AnnotateTextResponse>
-    ): void | GaxiosPromise<Schema$AnnotateTextResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnnotateTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnnotateTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnnotateTextResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Annotatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1197,7 +1293,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AnnotateTextResponse>(parameters, callback);
+        createAPIRequest<Schema$AnnotateTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AnnotateTextResponse>(parameters);
       }
@@ -1264,9 +1363,18 @@ export namespace language_v1beta2 {
      * @return {object} Request object
      */
     classifyText(
+      params: Params$Resource$Documents$Classifytext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    classifyText(
       params?: Params$Resource$Documents$Classifytext,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ClassifyTextResponse>;
+    classifyText(
+      params: Params$Resource$Documents$Classifytext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     classifyText(
       params: Params$Resource$Documents$Classifytext,
       options:
@@ -1284,12 +1392,20 @@ export namespace language_v1beta2 {
     classifyText(
       paramsOrCallback?:
         | Params$Resource$Documents$Classifytext
-        | BodyResponseCallback<Schema$ClassifyTextResponse>,
+        | BodyResponseCallback<Schema$ClassifyTextResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ClassifyTextResponse>,
-      callback?: BodyResponseCallback<Schema$ClassifyTextResponse>
-    ): void | GaxiosPromise<Schema$ClassifyTextResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ClassifyTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ClassifyTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ClassifyTextResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Classifytext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1323,7 +1439,10 @@ export namespace language_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ClassifyTextResponse>(parameters, callback);
+        createAPIRequest<Schema$ClassifyTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ClassifyTextResponse>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace appsactivity_v1 {
   export interface Options extends GlobalOptions {
@@ -380,9 +382,18 @@ export namespace appsactivity_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Activities$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListActivitiesResponse>;
+    list(
+      params: Params$Resource$Activities$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Activities$List,
       options:
@@ -398,12 +409,20 @@ export namespace appsactivity_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Activities$List
-        | BodyResponseCallback<Schema$ListActivitiesResponse>,
+        | BodyResponseCallback<Schema$ListActivitiesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListActivitiesResponse>,
-      callback?: BodyResponseCallback<Schema$ListActivitiesResponse>
-    ): void | GaxiosPromise<Schema$ListActivitiesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListActivitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListActivitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListActivitiesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -436,7 +455,10 @@ export namespace appsactivity_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListActivitiesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListActivitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListActivitiesResponse>(parameters);
       }

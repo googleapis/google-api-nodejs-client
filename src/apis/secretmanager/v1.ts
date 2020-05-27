@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace secretmanager_v1 {
   export interface Options extends GlobalOptions {
@@ -500,9 +502,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Location>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Location>,
@@ -516,10 +527,17 @@ export namespace secretmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Location> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -551,7 +569,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
       }
@@ -620,9 +641,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
@@ -638,12 +668,20 @@ export namespace secretmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLocationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -678,7 +716,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
@@ -796,9 +837,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     addVersion(
+      params: Params$Resource$Projects$Secrets$Addversion,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addVersion(
       params?: Params$Resource$Projects$Secrets$Addversion,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SecretVersion>;
+    addVersion(
+      params: Params$Resource$Projects$Secrets$Addversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     addVersion(
       params: Params$Resource$Projects$Secrets$Addversion,
       options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
@@ -812,12 +862,17 @@ export namespace secretmanager_v1 {
     addVersion(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Addversion
-        | BodyResponseCallback<Schema$SecretVersion>,
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SecretVersion>,
-      callback?: BodyResponseCallback<Schema$SecretVersion>
-    ): void | GaxiosPromise<Schema$SecretVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Addversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -852,7 +907,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SecretVersion>(parameters, callback);
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
       }
@@ -934,9 +992,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Secrets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Secrets$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Secret>;
+    create(
+      params: Params$Resource$Projects$Secrets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Secrets$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Secret>,
@@ -950,10 +1017,17 @@ export namespace secretmanager_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Create
-        | BodyResponseCallback<Schema$Secret>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
-      callback?: BodyResponseCallback<Schema$Secret>
-    ): void | GaxiosPromise<Schema$Secret> {
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -988,7 +1062,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Secret>(parameters, callback);
+        createAPIRequest<Schema$Secret>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
       }
@@ -1046,9 +1123,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Secrets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Secrets$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Secrets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Secrets$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1062,10 +1148,17 @@ export namespace secretmanager_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1097,7 +1190,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1159,9 +1255,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Secrets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Secrets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Secret>;
+    get(
+      params: Params$Resource$Projects$Secrets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Secrets$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Secret>,
@@ -1175,10 +1280,17 @@ export namespace secretmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Get
-        | BodyResponseCallback<Schema$Secret>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
-      callback?: BodyResponseCallback<Schema$Secret>
-    ): void | GaxiosPromise<Schema$Secret> {
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1210,7 +1322,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Secret>(parameters, callback);
+        createAPIRequest<Schema$Secret>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
       }
@@ -1287,9 +1402,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Secrets$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Secrets$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Secrets$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Secrets$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1303,10 +1427,17 @@ export namespace secretmanager_v1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1341,7 +1472,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1412,9 +1546,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Secrets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Secrets$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSecretsResponse>;
+    list(
+      params: Params$Resource$Projects$Secrets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Secrets$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSecretsResponse>,
@@ -1428,12 +1571,20 @@ export namespace secretmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$List
-        | BodyResponseCallback<Schema$ListSecretsResponse>,
+        | BodyResponseCallback<Schema$ListSecretsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSecretsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSecretsResponse>
-    ): void | GaxiosPromise<Schema$ListSecretsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSecretsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSecretsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSecretsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1468,7 +1619,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSecretsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSecretsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSecretsResponse>(parameters);
       }
@@ -1545,9 +1699,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Secrets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Secrets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Secret>;
+    patch(
+      params: Params$Resource$Projects$Secrets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Secrets$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Secret>,
@@ -1561,10 +1724,17 @@ export namespace secretmanager_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Patch
-        | BodyResponseCallback<Schema$Secret>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
-      callback?: BodyResponseCallback<Schema$Secret>
-    ): void | GaxiosPromise<Schema$Secret> {
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Secret>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Secret> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1596,7 +1766,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Secret>(parameters, callback);
+        createAPIRequest<Schema$Secret>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
       }
@@ -1669,9 +1842,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Secrets$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Secrets$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Secrets$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Secrets$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1685,10 +1867,17 @@ export namespace secretmanager_v1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1723,7 +1912,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1792,9 +1984,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Secrets$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Secrets$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Secrets$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Secrets$Testiampermissions,
       options:
@@ -1812,12 +2013,20 @@ export namespace secretmanager_v1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1854,7 +2063,7 @@ export namespace secretmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2077,9 +2286,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     access(
+      params: Params$Resource$Projects$Secrets$Versions$Access,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    access(
       params?: Params$Resource$Projects$Secrets$Versions$Access,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessSecretVersionResponse>;
+    access(
+      params: Params$Resource$Projects$Secrets$Versions$Access,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     access(
       params: Params$Resource$Projects$Secrets$Versions$Access,
       options:
@@ -2097,12 +2315,20 @@ export namespace secretmanager_v1 {
     access(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Versions$Access
-        | BodyResponseCallback<Schema$AccessSecretVersionResponse>,
+        | BodyResponseCallback<Schema$AccessSecretVersionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessSecretVersionResponse>,
-      callback?: BodyResponseCallback<Schema$AccessSecretVersionResponse>
-    ): void | GaxiosPromise<Schema$AccessSecretVersionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSecretVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSecretVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSecretVersionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Access;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2136,7 +2362,7 @@ export namespace secretmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessSecretVersionResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$AccessSecretVersionResponse>(parameters);
@@ -2207,9 +2433,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     destroy(
+      params: Params$Resource$Projects$Secrets$Versions$Destroy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    destroy(
       params?: Params$Resource$Projects$Secrets$Versions$Destroy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SecretVersion>;
+    destroy(
+      params: Params$Resource$Projects$Secrets$Versions$Destroy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     destroy(
       params: Params$Resource$Projects$Secrets$Versions$Destroy,
       options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
@@ -2223,12 +2458,17 @@ export namespace secretmanager_v1 {
     destroy(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Versions$Destroy
-        | BodyResponseCallback<Schema$SecretVersion>,
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SecretVersion>,
-      callback?: BodyResponseCallback<Schema$SecretVersion>
-    ): void | GaxiosPromise<Schema$SecretVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2263,7 +2503,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SecretVersion>(parameters, callback);
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
       }
@@ -2333,9 +2576,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     disable(
+      params: Params$Resource$Projects$Secrets$Versions$Disable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disable(
       params?: Params$Resource$Projects$Secrets$Versions$Disable,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SecretVersion>;
+    disable(
+      params: Params$Resource$Projects$Secrets$Versions$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     disable(
       params: Params$Resource$Projects$Secrets$Versions$Disable,
       options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
@@ -2349,12 +2601,17 @@ export namespace secretmanager_v1 {
     disable(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Versions$Disable
-        | BodyResponseCallback<Schema$SecretVersion>,
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SecretVersion>,
-      callback?: BodyResponseCallback<Schema$SecretVersion>
-    ): void | GaxiosPromise<Schema$SecretVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2389,7 +2646,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SecretVersion>(parameters, callback);
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
       }
@@ -2459,9 +2719,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     enable(
+      params: Params$Resource$Projects$Secrets$Versions$Enable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enable(
       params?: Params$Resource$Projects$Secrets$Versions$Enable,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SecretVersion>;
+    enable(
+      params: Params$Resource$Projects$Secrets$Versions$Enable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     enable(
       params: Params$Resource$Projects$Secrets$Versions$Enable,
       options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
@@ -2475,12 +2744,17 @@ export namespace secretmanager_v1 {
     enable(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Versions$Enable
-        | BodyResponseCallback<Schema$SecretVersion>,
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SecretVersion>,
-      callback?: BodyResponseCallback<Schema$SecretVersion>
-    ): void | GaxiosPromise<Schema$SecretVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2512,7 +2786,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SecretVersion>(parameters, callback);
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
       }
@@ -2577,9 +2854,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Secrets$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Secrets$Versions$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SecretVersion>;
+    get(
+      params: Params$Resource$Projects$Secrets$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Secrets$Versions$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
@@ -2593,12 +2879,17 @@ export namespace secretmanager_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Versions$Get
-        | BodyResponseCallback<Schema$SecretVersion>,
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SecretVersion>,
-      callback?: BodyResponseCallback<Schema$SecretVersion>
-    ): void | GaxiosPromise<Schema$SecretVersion> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecretVersion> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2630,7 +2921,10 @@ export namespace secretmanager_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SecretVersion>(parameters, callback);
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
       }
@@ -2702,9 +2996,18 @@ export namespace secretmanager_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Secrets$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Secrets$Versions$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSecretVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Secrets$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Secrets$Versions$List,
       options:
@@ -2722,12 +3025,20 @@ export namespace secretmanager_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Secrets$Versions$List
-        | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
+        | BodyResponseCallback<Schema$ListSecretVersionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSecretVersionsResponse>
-    ): void | GaxiosPromise<Schema$ListSecretVersionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSecretVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSecretVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSecretVersionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Secrets$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2764,7 +3075,7 @@ export namespace secretmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSecretVersionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListSecretVersionsResponse>(parameters);

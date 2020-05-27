@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace billingbudgets_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -347,9 +349,18 @@ export namespace billingbudgets_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Billingaccounts$Budgets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Billingaccounts$Budgets$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    create(
+      params: Params$Resource$Billingaccounts$Budgets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Billingaccounts$Budgets$Create,
       options:
@@ -373,14 +384,20 @@ export namespace billingbudgets_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$Create
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -417,7 +434,7 @@ export namespace billingbudgets_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
@@ -478,9 +495,18 @@ export namespace billingbudgets_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Billingaccounts$Budgets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Billingaccounts$Budgets$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Billingaccounts$Budgets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Billingaccounts$Budgets$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -494,12 +520,20 @@ export namespace billingbudgets_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -531,7 +565,10 @@ export namespace billingbudgets_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -597,9 +634,18 @@ export namespace billingbudgets_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Billingaccounts$Budgets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Billingaccounts$Budgets$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    get(
+      params: Params$Resource$Billingaccounts$Budgets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Billingaccounts$Budgets$Get,
       options:
@@ -623,14 +669,20 @@ export namespace billingbudgets_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$Get
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -664,7 +716,7 @@ export namespace billingbudgets_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
@@ -737,11 +789,20 @@ export namespace billingbudgets_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Billingaccounts$Budgets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Billingaccounts$Budgets$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
     >;
+    list(
+      params: Params$Resource$Billingaccounts$Budgets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Billingaccounts$Budgets$List,
       options:
@@ -769,18 +830,26 @@ export namespace billingbudgets_v1beta1 {
         | Params$Resource$Billingaccounts$Budgets$List
         | BodyResponseCallback<
             Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -817,7 +886,7 @@ export namespace billingbudgets_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse
@@ -896,9 +965,18 @@ export namespace billingbudgets_v1beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Billingaccounts$Budgets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Billingaccounts$Budgets$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>;
+    patch(
+      params: Params$Resource$Billingaccounts$Budgets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Billingaccounts$Budgets$Patch,
       options:
@@ -922,14 +1000,20 @@ export namespace billingbudgets_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$Patch
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1beta1Budget
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBillingBudgetsV1beta1Budget>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Billingaccounts$Budgets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -963,7 +1047,7 @@ export namespace billingbudgets_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1beta1Budget>(

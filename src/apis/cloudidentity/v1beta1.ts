@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudidentity_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -860,9 +862,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Groups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Groups$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Groups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Groups$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -876,12 +887,17 @@ export namespace cloudidentity_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Groups$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -912,7 +928,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -981,9 +1000,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Groups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Groups$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Groups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Groups$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -997,12 +1025,17 @@ export namespace cloudidentity_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Groups$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1033,7 +1066,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1107,9 +1143,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Groups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Groups$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Group>;
+    get(
+      params: Params$Resource$Groups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Groups$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Group>,
@@ -1123,10 +1168,17 @@ export namespace cloudidentity_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Groups$Get
-        | BodyResponseCallback<Schema$Group>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
-      callback?: BodyResponseCallback<Schema$Group>
-    ): void | GaxiosPromise<Schema$Group> {
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Group>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Group> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1157,7 +1209,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Group>(parameters, callback);
+        createAPIRequest<Schema$Group>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
       }
@@ -1244,9 +1299,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Groups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Groups$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListGroupsResponse>;
+    list(
+      params: Params$Resource$Groups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Groups$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListGroupsResponse>,
@@ -1260,12 +1324,20 @@ export namespace cloudidentity_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Groups$List
-        | BodyResponseCallback<Schema$ListGroupsResponse>,
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupsResponse>,
-      callback?: BodyResponseCallback<Schema$ListGroupsResponse>
-    ): void | GaxiosPromise<Schema$ListGroupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGroupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1296,7 +1368,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
       }
@@ -1377,9 +1452,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     lookup(
+      params: Params$Resource$Groups$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
       params?: Params$Resource$Groups$Lookup,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LookupGroupNameResponse>;
+    lookup(
+      params: Params$Resource$Groups$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lookup(
       params: Params$Resource$Groups$Lookup,
       options:
@@ -1397,12 +1481,20 @@ export namespace cloudidentity_v1beta1 {
     lookup(
       paramsOrCallback?:
         | Params$Resource$Groups$Lookup
-        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
-      callback?: BodyResponseCallback<Schema$LookupGroupNameResponse>
-    ): void | GaxiosPromise<Schema$LookupGroupNameResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupGroupNameResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupGroupNameResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1436,7 +1528,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LookupGroupNameResponse>(parameters, callback);
+        createAPIRequest<Schema$LookupGroupNameResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LookupGroupNameResponse>(parameters);
       }
@@ -1527,9 +1622,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Groups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Groups$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Groups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Groups$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1543,12 +1647,17 @@ export namespace cloudidentity_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Groups$Patch
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1579,7 +1688,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1672,9 +1784,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Groups$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Groups$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchGroupsResponse>;
+    search(
+      params: Params$Resource$Groups$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Groups$Search,
       options:
@@ -1690,12 +1811,20 @@ export namespace cloudidentity_v1beta1 {
     search(
       paramsOrCallback?:
         | Params$Resource$Groups$Search
-        | BodyResponseCallback<Schema$SearchGroupsResponse>,
+        | BodyResponseCallback<Schema$SearchGroupsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchGroupsResponse>,
-      callback?: BodyResponseCallback<Schema$SearchGroupsResponse>
-    ): void | GaxiosPromise<Schema$SearchGroupsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchGroupsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1729,7 +1858,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchGroupsResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchGroupsResponse>(parameters);
       }
@@ -1938,9 +2070,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Groups$Memberships$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Groups$Memberships$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Groups$Memberships$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Groups$Memberships$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1954,12 +2095,17 @@ export namespace cloudidentity_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1994,7 +2140,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2063,9 +2212,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Groups$Memberships$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Groups$Memberships$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Groups$Memberships$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Groups$Memberships$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2079,12 +2237,17 @@ export namespace cloudidentity_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Delete
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2116,7 +2279,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -2187,9 +2353,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Groups$Memberships$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Groups$Memberships$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Membership>;
+    get(
+      params: Params$Resource$Groups$Memberships$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Groups$Memberships$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Membership>,
@@ -2203,12 +2378,17 @@ export namespace cloudidentity_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Get
-        | BodyResponseCallback<Schema$Membership>,
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Membership>,
-      callback?: BodyResponseCallback<Schema$Membership>
-    ): void | GaxiosPromise<Schema$Membership> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Membership> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2240,7 +2420,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Membership>(parameters, callback);
+        createAPIRequest<Schema$Membership>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
       }
@@ -2329,9 +2512,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Groups$Memberships$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Groups$Memberships$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMembershipsResponse>;
+    list(
+      params: Params$Resource$Groups$Memberships$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Groups$Memberships$List,
       options:
@@ -2347,12 +2539,20 @@ export namespace cloudidentity_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$List
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
-      callback?: BodyResponseCallback<Schema$ListMembershipsResponse>
-    ): void | GaxiosPromise<Schema$ListMembershipsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMembershipsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2387,7 +2587,10 @@ export namespace cloudidentity_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
       }
@@ -2473,9 +2676,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     lookup(
+      params: Params$Resource$Groups$Memberships$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
       params?: Params$Resource$Groups$Memberships$Lookup,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LookupMembershipNameResponse>;
+    lookup(
+      params: Params$Resource$Groups$Memberships$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     lookup(
       params: Params$Resource$Groups$Memberships$Lookup,
       options:
@@ -2493,12 +2705,20 @@ export namespace cloudidentity_v1beta1 {
     lookup(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Lookup
-        | BodyResponseCallback<Schema$LookupMembershipNameResponse>,
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LookupMembershipNameResponse>,
-      callback?: BodyResponseCallback<Schema$LookupMembershipNameResponse>
-    ): void | GaxiosPromise<Schema$LookupMembershipNameResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupMembershipNameResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupMembershipNameResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2535,7 +2755,7 @@ export namespace cloudidentity_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$LookupMembershipNameResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$LookupMembershipNameResponse>(
@@ -2614,9 +2834,18 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyMembershipRoles(
       params?: Params$Resource$Groups$Memberships$Modifymembershiproles,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ModifyMembershipRolesResponse>;
+    modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modifyMembershipRoles(
       params: Params$Resource$Groups$Memberships$Modifymembershiproles,
       options:
@@ -2634,12 +2863,20 @@ export namespace cloudidentity_v1beta1 {
     modifyMembershipRoles(
       paramsOrCallback?:
         | Params$Resource$Groups$Memberships$Modifymembershiproles
-        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>,
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>,
-      callback?: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
-    ): void | GaxiosPromise<Schema$ModifyMembershipRolesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModifyMembershipRolesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Groups$Memberships$Modifymembershiproles;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2676,7 +2913,7 @@ export namespace cloudidentity_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ModifyMembershipRolesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ModifyMembershipRolesResponse>(

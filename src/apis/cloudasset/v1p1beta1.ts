@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudasset_v1p1beta1 {
   export interface Options extends GlobalOptions {
@@ -382,9 +384,18 @@ export namespace cloudasset_v1p1beta1 {
      * @return {object} Request object
      */
     searchAll(
+      params: Params$Resource$Iampolicies$Searchall,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchAll(
       params?: Params$Resource$Iampolicies$Searchall,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchAllIamPoliciesResponse>;
+    searchAll(
+      params: Params$Resource$Iampolicies$Searchall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     searchAll(
       params: Params$Resource$Iampolicies$Searchall,
       options:
@@ -402,12 +413,20 @@ export namespace cloudasset_v1p1beta1 {
     searchAll(
       paramsOrCallback?:
         | Params$Resource$Iampolicies$Searchall
-        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>,
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>,
-      callback?: BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
-    ): void | GaxiosPromise<Schema$SearchAllIamPoliciesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAllIamPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAllIamPoliciesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Iampolicies$Searchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -442,7 +461,7 @@ export namespace cloudasset_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
@@ -567,9 +586,18 @@ export namespace cloudasset_v1p1beta1 {
      * @return {object} Request object
      */
     searchAll(
+      params: Params$Resource$Resources$Searchall,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchAll(
       params?: Params$Resource$Resources$Searchall,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchAllResourcesResponse>;
+    searchAll(
+      params: Params$Resource$Resources$Searchall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     searchAll(
       params: Params$Resource$Resources$Searchall,
       options:
@@ -587,12 +615,20 @@ export namespace cloudasset_v1p1beta1 {
     searchAll(
       paramsOrCallback?:
         | Params$Resource$Resources$Searchall
-        | BodyResponseCallback<Schema$SearchAllResourcesResponse>,
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchAllResourcesResponse>,
-      callback?: BodyResponseCallback<Schema$SearchAllResourcesResponse>
-    ): void | GaxiosPromise<Schema$SearchAllResourcesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchAllResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchAllResourcesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Resources$Searchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -628,7 +664,7 @@ export namespace cloudasset_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$SearchAllResourcesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$SearchAllResourcesResponse>(parameters);

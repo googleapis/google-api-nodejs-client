@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace iamcredentials_v1 {
   export interface Options extends GlobalOptions {
@@ -285,9 +287,18 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     generateAccessToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateAccessToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateAccessTokenResponse>;
+    generateAccessToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateAccessToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
       options:
@@ -305,12 +316,20 @@ export namespace iamcredentials_v1 {
     generateAccessToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
-        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
-    ): void | GaxiosPromise<Schema$GenerateAccessTokenResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateAccessTokenResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -347,7 +366,7 @@ export namespace iamcredentials_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateAccessTokenResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GenerateAccessTokenResponse>(parameters);
@@ -421,9 +440,18 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     generateIdToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateIdToken(
       params?: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GenerateIdTokenResponse>;
+    generateIdToken(
+      params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
       options:
@@ -441,12 +469,20 @@ export namespace iamcredentials_v1 {
     generateIdToken(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Generateidtoken
-        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GenerateIdTokenResponse>,
-      callback?: BodyResponseCallback<Schema$GenerateIdTokenResponse>
-    ): void | GaxiosPromise<Schema$GenerateIdTokenResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateIdTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateIdTokenResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Generateidtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -481,7 +517,10 @@ export namespace iamcredentials_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GenerateIdTokenResponse>(parameters, callback);
+        createAPIRequest<Schema$GenerateIdTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GenerateIdTokenResponse>(parameters);
       }
@@ -554,9 +593,18 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     signBlob(
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signBlob(
       params?: Params$Resource$Projects$Serviceaccounts$Signblob,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SignBlobResponse>;
+    signBlob(
+      params: Params$Resource$Projects$Serviceaccounts$Signblob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
       options: MethodOptions | BodyResponseCallback<Schema$SignBlobResponse>,
@@ -570,12 +618,17 @@ export namespace iamcredentials_v1 {
     signBlob(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Signblob
-        | BodyResponseCallback<Schema$SignBlobResponse>,
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SignBlobResponse>,
-      callback?: BodyResponseCallback<Schema$SignBlobResponse>
-    ): void | GaxiosPromise<Schema$SignBlobResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignBlobResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SignBlobResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -610,7 +663,10 @@ export namespace iamcredentials_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
+        createAPIRequest<Schema$SignBlobResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SignBlobResponse>(parameters);
       }
@@ -683,9 +739,18 @@ export namespace iamcredentials_v1 {
      * @return {object} Request object
      */
     signJwt(
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signJwt(
       params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SignJwtResponse>;
+    signJwt(
+      params: Params$Resource$Projects$Serviceaccounts$Signjwt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
       options: MethodOptions | BodyResponseCallback<Schema$SignJwtResponse>,
@@ -699,12 +764,17 @@ export namespace iamcredentials_v1 {
     signJwt(
       paramsOrCallback?:
         | Params$Resource$Projects$Serviceaccounts$Signjwt
-        | BodyResponseCallback<Schema$SignJwtResponse>,
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SignJwtResponse>,
-      callback?: BodyResponseCallback<Schema$SignJwtResponse>
-    ): void | GaxiosPromise<Schema$SignJwtResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignJwtResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SignJwtResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -739,7 +809,10 @@ export namespace iamcredentials_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
+        createAPIRequest<Schema$SignJwtResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SignJwtResponse>(parameters);
       }

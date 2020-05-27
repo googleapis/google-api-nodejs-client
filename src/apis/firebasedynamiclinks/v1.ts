@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace firebasedynamiclinks_v1 {
   export interface Options extends GlobalOptions {
@@ -743,9 +745,18 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Managedshortlinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Managedshortlinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateManagedShortLinkResponse>;
+    create(
+      params: Params$Resource$Managedshortlinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Managedshortlinks$Create,
       options:
@@ -763,12 +774,20 @@ export namespace firebasedynamiclinks_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Managedshortlinks$Create
-        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
+        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
-      callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
-    ): void | GaxiosPromise<Schema$CreateManagedShortLinkResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateManagedShortLinkResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateManagedShortLinkResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Managedshortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -805,7 +824,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$CreateManagedShortLinkResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CreateManagedShortLinkResponse>(
@@ -897,9 +916,18 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Shortlinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Shortlinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$CreateShortDynamicLinkResponse>;
+    create(
+      params: Params$Resource$Shortlinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Shortlinks$Create,
       options:
@@ -917,12 +945,20 @@ export namespace firebasedynamiclinks_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Shortlinks$Create
-        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
+        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
-      callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
-    ): void | GaxiosPromise<Schema$CreateShortDynamicLinkResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateShortDynamicLinkResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Shortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -956,7 +992,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
@@ -1044,9 +1080,18 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     getLinkStats(
+      params: Params$Resource$V1$Getlinkstats,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getLinkStats(
       params?: Params$Resource$V1$Getlinkstats,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DynamicLinkStats>;
+    getLinkStats(
+      params: Params$Resource$V1$Getlinkstats,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getLinkStats(
       params: Params$Resource$V1$Getlinkstats,
       options: MethodOptions | BodyResponseCallback<Schema$DynamicLinkStats>,
@@ -1060,12 +1105,17 @@ export namespace firebasedynamiclinks_v1 {
     getLinkStats(
       paramsOrCallback?:
         | Params$Resource$V1$Getlinkstats
-        | BodyResponseCallback<Schema$DynamicLinkStats>,
+        | BodyResponseCallback<Schema$DynamicLinkStats>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DynamicLinkStats>,
-      callback?: BodyResponseCallback<Schema$DynamicLinkStats>
-    ): void | GaxiosPromise<Schema$DynamicLinkStats> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicLinkStats>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicLinkStats>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DynamicLinkStats> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getlinkstats;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1099,7 +1149,10 @@ export namespace firebasedynamiclinks_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DynamicLinkStats>(parameters, callback);
+        createAPIRequest<Schema$DynamicLinkStats>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DynamicLinkStats>(parameters);
       }
@@ -1185,9 +1238,18 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     installAttribution(
+      params: Params$Resource$V1$Installattribution,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    installAttribution(
       params?: Params$Resource$V1$Installattribution,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
+    installAttribution(
+      params: Params$Resource$V1$Installattribution,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     installAttribution(
       params: Params$Resource$V1$Installattribution,
       options:
@@ -1211,14 +1273,20 @@ export namespace firebasedynamiclinks_v1 {
     installAttribution(
       paramsOrCallback?:
         | Params$Resource$V1$Installattribution
-        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
+        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GetIosPostInstallAttributionResponse
-      >
-    ): void | GaxiosPromise<Schema$GetIosPostInstallAttributionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Installattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1255,7 +1323,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
@@ -1332,9 +1400,18 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     reopenAttribution(
+      params: Params$Resource$V1$Reopenattribution,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reopenAttribution(
       params?: Params$Resource$V1$Reopenattribution,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GetIosReopenAttributionResponse>;
+    reopenAttribution(
+      params: Params$Resource$V1$Reopenattribution,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reopenAttribution(
       params: Params$Resource$V1$Reopenattribution,
       options:
@@ -1352,12 +1429,20 @@ export namespace firebasedynamiclinks_v1 {
     reopenAttribution(
       paramsOrCallback?:
         | Params$Resource$V1$Reopenattribution
-        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
-      callback?: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
-    ): void | GaxiosPromise<Schema$GetIosReopenAttributionResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetIosReopenAttributionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetIosReopenAttributionResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V1$Reopenattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1394,7 +1479,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$GetIosReopenAttributionResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GetIosReopenAttributionResponse>(

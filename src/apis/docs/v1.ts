@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace docs_v1 {
   export interface Options extends GlobalOptions {
@@ -3217,9 +3219,18 @@ export namespace docs_v1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Documents$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Documents$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$BatchUpdateDocumentResponse>;
+    batchUpdate(
+      params: Params$Resource$Documents$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Documents$Batchupdate,
       options:
@@ -3237,12 +3248,20 @@ export namespace docs_v1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Documents$Batchupdate
-        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
-      callback?: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
-    ): void | GaxiosPromise<Schema$BatchUpdateDocumentResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateDocumentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Documents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3278,7 +3297,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateDocumentResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateDocumentResponse>(parameters);
@@ -3377,9 +3396,18 @@ export namespace docs_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Documents$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Documents$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Document>;
+    create(
+      params: Params$Resource$Documents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Documents$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Document>,
@@ -3393,10 +3421,17 @@ export namespace docs_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Documents$Create
-        | BodyResponseCallback<Schema$Document>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Document>,
-      callback?: BodyResponseCallback<Schema$Document>
-    ): void | GaxiosPromise<Schema$Document> {
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3426,7 +3461,10 @@ export namespace docs_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Document>(parameters, callback);
+        createAPIRequest<Schema$Document>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
       }
@@ -3512,9 +3550,18 @@ export namespace docs_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Documents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Documents$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Document>;
+    get(
+      params: Params$Resource$Documents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Documents$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Document>,
@@ -3528,10 +3575,17 @@ export namespace docs_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Documents$Get
-        | BodyResponseCallback<Schema$Document>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Document>,
-      callback?: BodyResponseCallback<Schema$Document>
-    ): void | GaxiosPromise<Schema$Document> {
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Document>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Document> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3564,7 +3618,10 @@ export namespace docs_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Document>(parameters, callback);
+        createAPIRequest<Schema$Document>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
       }

@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace videointelligence_v1p1beta1 {
   export interface Options extends GlobalOptions {
@@ -3017,9 +3019,18 @@ export namespace videointelligence_v1p1beta1 {
      * @return {object} Request object
      */
     annotate(
+      params: Params$Resource$Videos$Annotate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    annotate(
       params?: Params$Resource$Videos$Annotate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunning_Operation>;
+    annotate(
+      params: Params$Resource$Videos$Annotate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     annotate(
       params: Params$Resource$Videos$Annotate,
       options:
@@ -3037,12 +3048,20 @@ export namespace videointelligence_v1p1beta1 {
     annotate(
       paramsOrCallback?:
         | Params$Resource$Videos$Annotate
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunning_Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunning_Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunning_Operation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3078,7 +3097,7 @@ export namespace videointelligence_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);

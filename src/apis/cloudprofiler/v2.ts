@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudprofiler_v2 {
   export interface Options extends GlobalOptions {
@@ -260,9 +262,18 @@ export namespace cloudprofiler_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Profiles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Profiles$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    create(
+      params: Params$Resource$Projects$Profiles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Profiles$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -276,10 +287,17 @@ export namespace cloudprofiler_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Profiles$Create
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -314,7 +332,10 @@ export namespace cloudprofiler_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -396,9 +417,18 @@ export namespace cloudprofiler_v2 {
      * @return {object} Request object
      */
     createOffline(
+      params: Params$Resource$Projects$Profiles$Createoffline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createOffline(
       params?: Params$Resource$Projects$Profiles$Createoffline,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    createOffline(
+      params: Params$Resource$Projects$Profiles$Createoffline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     createOffline(
       params: Params$Resource$Projects$Profiles$Createoffline,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -412,10 +442,17 @@ export namespace cloudprofiler_v2 {
     createOffline(
       paramsOrCallback?:
         | Params$Resource$Projects$Profiles$Createoffline
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Createoffline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -450,7 +487,10 @@ export namespace cloudprofiler_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -538,9 +578,18 @@ export namespace cloudprofiler_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Profiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Profiles$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    patch(
+      params: Params$Resource$Projects$Profiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Profiles$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -554,10 +603,17 @@ export namespace cloudprofiler_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Profiles$Patch
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -589,7 +645,10 @@ export namespace cloudprofiler_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }

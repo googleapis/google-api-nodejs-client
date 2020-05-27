@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace bigqueryconnection_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -448,9 +450,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Connections$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Connections$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Connection>;
+    create(
+      params: Params$Resource$Projects$Locations$Connections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Connections$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Connection>,
@@ -464,12 +475,17 @@ export namespace bigqueryconnection_v1beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Create
-        | BodyResponseCallback<Schema$Connection>,
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Connection>,
-      callback?: BodyResponseCallback<Schema$Connection>
-    ): void | GaxiosPromise<Schema$Connection> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Connection> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -504,7 +520,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Connection>(parameters, callback);
+        createAPIRequest<Schema$Connection>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Connection>(parameters);
       }
@@ -565,9 +584,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Connections$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Connections$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Connections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Connections$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -581,10 +609,17 @@ export namespace bigqueryconnection_v1beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -616,7 +651,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -685,9 +723,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Connections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Connections$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Connection>;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Connections$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Connection>,
@@ -701,12 +748,17 @@ export namespace bigqueryconnection_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Get
-        | BodyResponseCallback<Schema$Connection>,
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Connection>,
-      callback?: BodyResponseCallback<Schema$Connection>
-    ): void | GaxiosPromise<Schema$Connection> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Connection> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -738,7 +790,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Connection>(parameters, callback);
+        createAPIRequest<Schema$Connection>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Connection>(parameters);
       }
@@ -816,9 +871,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -832,10 +896,17 @@ export namespace bigqueryconnection_v1beta1 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -870,7 +941,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -940,9 +1014,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Connections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Connections$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListConnectionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options:
@@ -958,12 +1041,20 @@ export namespace bigqueryconnection_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$List
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
-      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>
-    ): void | GaxiosPromise<Schema$ListConnectionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListConnectionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -998,7 +1089,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
       }
@@ -1085,9 +1179,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Connections$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Connections$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Connection>;
+    patch(
+      params: Params$Resource$Projects$Locations$Connections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Connections$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Connection>,
@@ -1101,12 +1204,17 @@ export namespace bigqueryconnection_v1beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Patch
-        | BodyResponseCallback<Schema$Connection>,
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Connection>,
-      callback?: BodyResponseCallback<Schema$Connection>
-    ): void | GaxiosPromise<Schema$Connection> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Connection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Connection> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1138,7 +1246,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Connection>(parameters, callback);
+        createAPIRequest<Schema$Connection>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Connection>(parameters);
       }
@@ -1217,9 +1328,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Connections$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1233,10 +1353,17 @@ export namespace bigqueryconnection_v1beta1 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1271,7 +1398,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1346,9 +1476,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options:
@@ -1366,12 +1505,20 @@ export namespace bigqueryconnection_v1beta1 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1408,7 +1555,7 @@ export namespace bigqueryconnection_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1482,9 +1629,18 @@ export namespace bigqueryconnection_v1beta1 {
      * @return {object} Request object
      */
     updateCredential(
+      params: Params$Resource$Projects$Locations$Connections$Updatecredential,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCredential(
       params?: Params$Resource$Projects$Locations$Connections$Updatecredential,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    updateCredential(
+      params: Params$Resource$Projects$Locations$Connections$Updatecredential,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateCredential(
       params: Params$Resource$Projects$Locations$Connections$Updatecredential,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1498,10 +1654,17 @@ export namespace bigqueryconnection_v1beta1 {
     updateCredential(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Connections$Updatecredential
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Connections$Updatecredential;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1533,7 +1696,10 @@ export namespace bigqueryconnection_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }

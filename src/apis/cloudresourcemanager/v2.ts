@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace cloudresourcemanager_v2 {
   export interface Options extends GlobalOptions {
@@ -497,9 +499,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Folders$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Folders$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Folders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Folders$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -513,12 +524,17 @@ export namespace cloudresourcemanager_v2 {
     create(
       paramsOrCallback?:
         | Params$Resource$Folders$Create
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -549,7 +565,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -613,9 +632,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Folders$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Folders$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    delete(
+      params: Params$Resource$Folders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Folders$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -629,10 +657,17 @@ export namespace cloudresourcemanager_v2 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Folders$Delete
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -663,7 +698,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -730,9 +768,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    get(
+      params: Params$Resource$Folders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -746,10 +793,17 @@ export namespace cloudresourcemanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Get
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -780,7 +834,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -855,9 +912,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     getIamPolicy(
+      params: Params$Resource$Folders$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
       params?: Params$Resource$Folders$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Folders$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getIamPolicy(
       params: Params$Resource$Folders$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -871,10 +937,17 @@ export namespace cloudresourcemanager_v2 {
     getIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Folders$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -909,7 +982,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -988,9 +1064,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFoldersResponse>;
+    list(
+      params: Params$Resource$Folders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListFoldersResponse>,
@@ -1004,12 +1089,20 @@ export namespace cloudresourcemanager_v2 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$List
-        | BodyResponseCallback<Schema$ListFoldersResponse>,
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFoldersResponse>,
-      callback?: BodyResponseCallback<Schema$ListFoldersResponse>
-    ): void | GaxiosPromise<Schema$ListFoldersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFoldersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFoldersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1040,7 +1133,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFoldersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFoldersResponse>(parameters);
       }
@@ -1113,9 +1209,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     move(
+      params: Params$Resource$Folders$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
       params?: Params$Resource$Folders$Move,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    move(
+      params: Params$Resource$Folders$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     move(
       params: Params$Resource$Folders$Move,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -1129,12 +1234,17 @@ export namespace cloudresourcemanager_v2 {
     move(
       paramsOrCallback?:
         | Params$Resource$Folders$Move
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1165,7 +1275,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }
@@ -1246,9 +1359,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Folders$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Folders$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    patch(
+      params: Params$Resource$Folders$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Folders$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -1262,10 +1384,17 @@ export namespace cloudresourcemanager_v2 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Folders$Patch
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1296,7 +1425,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -1366,9 +1498,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Folders$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Folders$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SearchFoldersResponse>;
+    search(
+      params: Params$Resource$Folders$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Folders$Search,
       options:
@@ -1384,12 +1525,20 @@ export namespace cloudresourcemanager_v2 {
     search(
       paramsOrCallback?:
         | Params$Resource$Folders$Search
-        | BodyResponseCallback<Schema$SearchFoldersResponse>,
+        | BodyResponseCallback<Schema$SearchFoldersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SearchFoldersResponse>,
-      callback?: BodyResponseCallback<Schema$SearchFoldersResponse>
-    ): void | GaxiosPromise<Schema$SearchFoldersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchFoldersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchFoldersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchFoldersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1420,7 +1569,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SearchFoldersResponse>(parameters, callback);
+        createAPIRequest<Schema$SearchFoldersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SearchFoldersResponse>(parameters);
       }
@@ -1493,9 +1645,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     setIamPolicy(
+      params: Params$Resource$Folders$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
       params?: Params$Resource$Folders$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Folders$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setIamPolicy(
       params: Params$Resource$Folders$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
@@ -1509,10 +1670,17 @@ export namespace cloudresourcemanager_v2 {
     setIamPolicy(
       paramsOrCallback?:
         | Params$Resource$Folders$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback?: BodyResponseCallback<Schema$Policy>
-    ): void | GaxiosPromise<Schema$Policy> {
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1547,7 +1715,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
       }
@@ -1616,9 +1787,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     testIamPermissions(
+      params: Params$Resource$Folders$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
       params?: Params$Resource$Folders$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Folders$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     testIamPermissions(
       params: Params$Resource$Folders$Testiampermissions,
       options:
@@ -1636,12 +1816,20 @@ export namespace cloudresourcemanager_v2 {
     testIamPermissions(
       paramsOrCallback?:
         | Params$Resource$Folders$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1678,7 +1866,7 @@ export namespace cloudresourcemanager_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1750,9 +1938,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     undelete(
+      params: Params$Resource$Folders$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
       params?: Params$Resource$Folders$Undelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Folder>;
+    undelete(
+      params: Params$Resource$Folders$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     undelete(
       params: Params$Resource$Folders$Undelete,
       options: MethodOptions | BodyResponseCallback<Schema$Folder>,
@@ -1766,10 +1963,17 @@ export namespace cloudresourcemanager_v2 {
     undelete(
       paramsOrCallback?:
         | Params$Resource$Folders$Undelete
-        | BodyResponseCallback<Schema$Folder>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Folder>,
-      callback?: BodyResponseCallback<Schema$Folder>
-    ): void | GaxiosPromise<Schema$Folder> {
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Folder> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Folders$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1803,7 +2007,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Folder>(parameters, callback);
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Folder>(parameters);
       }
@@ -2052,9 +2259,18 @@ export namespace cloudresourcemanager_v2 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
@@ -2068,12 +2284,17 @@ export namespace cloudresourcemanager_v2 {
     get(
       paramsOrCallback?:
         | Params$Resource$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2104,7 +2325,10 @@ export namespace cloudresourcemanager_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
       }

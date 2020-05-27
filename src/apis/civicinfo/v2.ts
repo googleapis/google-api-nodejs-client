@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace civicinfo_v2 {
   export interface Options extends GlobalOptions {
@@ -914,9 +916,18 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Divisions$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Divisions$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$DivisionSearchResponse>;
+    search(
+      params: Params$Resource$Divisions$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Divisions$Search,
       options:
@@ -932,12 +943,20 @@ export namespace civicinfo_v2 {
     search(
       paramsOrCallback?:
         | Params$Resource$Divisions$Search
-        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+        | BodyResponseCallback<Schema$DivisionSearchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$DivisionSearchResponse>,
-      callback?: BodyResponseCallback<Schema$DivisionSearchResponse>
-    ): void | GaxiosPromise<Schema$DivisionSearchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DivisionSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DivisionSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DivisionSearchResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Divisions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -970,7 +989,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback);
+        createAPIRequest<Schema$DivisionSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$DivisionSearchResponse>(parameters);
       }
@@ -1059,9 +1081,18 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     electionQuery(
+      params: Params$Resource$Elections$Electionquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    electionQuery(
       params?: Params$Resource$Elections$Electionquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ElectionsQueryResponse>;
+    electionQuery(
+      params: Params$Resource$Elections$Electionquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     electionQuery(
       params: Params$Resource$Elections$Electionquery,
       options:
@@ -1079,12 +1110,20 @@ export namespace civicinfo_v2 {
     electionQuery(
       paramsOrCallback?:
         | Params$Resource$Elections$Electionquery
-        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
-      callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>
-    ): void | GaxiosPromise<Schema$ElectionsQueryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ElectionsQueryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Elections$Electionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1118,7 +1157,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback);
+        createAPIRequest<Schema$ElectionsQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ElectionsQueryResponse>(parameters);
       }
@@ -1207,9 +1249,18 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     voterInfoQuery(
+      params: Params$Resource$Elections$Voterinfoquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    voterInfoQuery(
       params?: Params$Resource$Elections$Voterinfoquery,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VoterInfoResponse>;
+    voterInfoQuery(
+      params: Params$Resource$Elections$Voterinfoquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     voterInfoQuery(
       params: Params$Resource$Elections$Voterinfoquery,
       options: MethodOptions | BodyResponseCallback<Schema$VoterInfoResponse>,
@@ -1225,12 +1276,20 @@ export namespace civicinfo_v2 {
     voterInfoQuery(
       paramsOrCallback?:
         | Params$Resource$Elections$Voterinfoquery
-        | BodyResponseCallback<Schema$VoterInfoResponse>,
+        | BodyResponseCallback<Schema$VoterInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VoterInfoResponse>,
-      callback?: BodyResponseCallback<Schema$VoterInfoResponse>
-    ): void | GaxiosPromise<Schema$VoterInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VoterInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VoterInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VoterInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Elections$Voterinfoquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1264,7 +1323,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VoterInfoResponse>(parameters, callback);
+        createAPIRequest<Schema$VoterInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$VoterInfoResponse>(parameters);
       }
@@ -1394,9 +1456,18 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     representativeInfoByAddress(
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    representativeInfoByAddress(
       params?: Params$Resource$Representatives$Representativeinfobyaddress,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RepresentativeInfoResponse>;
+    representativeInfoByAddress(
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     representativeInfoByAddress(
       params: Params$Resource$Representatives$Representativeinfobyaddress,
       options:
@@ -1414,12 +1485,20 @@ export namespace civicinfo_v2 {
     representativeInfoByAddress(
       paramsOrCallback?:
         | Params$Resource$Representatives$Representativeinfobyaddress
-        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-      callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>
-    ): void | GaxiosPromise<Schema$RepresentativeInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RepresentativeInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Representatives$Representativeinfobyaddress;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1455,7 +1534,7 @@ export namespace civicinfo_v2 {
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoResponse>(parameters);
@@ -1535,9 +1614,18 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     representativeInfoByDivision(
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    representativeInfoByDivision(
       params?: Params$Resource$Representatives$Representativeinfobydivision,
       options?: MethodOptions
     ): GaxiosPromise<Schema$RepresentativeInfoData>;
+    representativeInfoByDivision(
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     representativeInfoByDivision(
       params: Params$Resource$Representatives$Representativeinfobydivision,
       options:
@@ -1555,12 +1643,20 @@ export namespace civicinfo_v2 {
     representativeInfoByDivision(
       paramsOrCallback?:
         | Params$Resource$Representatives$Representativeinfobydivision
-        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+        | BodyResponseCallback<Schema$RepresentativeInfoData>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$RepresentativeInfoData>,
-      callback?: BodyResponseCallback<Schema$RepresentativeInfoData>
-    ): void | GaxiosPromise<Schema$RepresentativeInfoData> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoData>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RepresentativeInfoData>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RepresentativeInfoData>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Representatives$Representativeinfobydivision;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1594,7 +1690,10 @@ export namespace civicinfo_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback);
+        createAPIRequest<Schema$RepresentativeInfoData>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoData>(parameters);
       }

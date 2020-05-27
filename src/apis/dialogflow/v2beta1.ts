@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace dialogflow_v2beta1 {
   export interface Options extends GlobalOptions {
@@ -3292,9 +3294,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     deleteAgent(
+      params: Params$Resource$Projects$Deleteagent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAgent(
       params?: Params$Resource$Projects$Deleteagent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteAgent(
+      params: Params$Resource$Projects$Deleteagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteAgent(
       params: Params$Resource$Projects$Deleteagent,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -3310,12 +3321,20 @@ export namespace dialogflow_v2beta1 {
     deleteAgent(
       paramsOrCallback?:
         | Params$Resource$Projects$Deleteagent
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deleteagent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3349,7 +3368,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -3423,9 +3445,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     getAgent(
+      params: Params$Resource$Projects$Getagent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAgent(
       params?: Params$Resource$Projects$Getagent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>;
+    getAgent(
+      params: Params$Resource$Projects$Getagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAgent(
       params: Params$Resource$Projects$Getagent,
       options:
@@ -3443,12 +3474,20 @@ export namespace dialogflow_v2beta1 {
     getAgent(
       paramsOrCallback?:
         | Params$Resource$Projects$Getagent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getagent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3484,7 +3523,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
@@ -3584,9 +3623,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     setAgent(
+      params: Params$Resource$Projects$Setagent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setAgent(
       params?: Params$Resource$Projects$Setagent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>;
+    setAgent(
+      params: Params$Resource$Projects$Setagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setAgent(
       params: Params$Resource$Projects$Setagent,
       options:
@@ -3604,12 +3652,20 @@ export namespace dialogflow_v2beta1 {
     setAgent(
       paramsOrCallback?:
         | Params$Resource$Projects$Setagent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Setagent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3645,7 +3701,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
@@ -3791,9 +3847,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     export(
+      params: Params$Resource$Projects$Agent$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
       params?: Params$Resource$Projects$Agent$Export,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Agent$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     export(
       params: Params$Resource$Projects$Agent$Export,
       options:
@@ -3811,12 +3876,20 @@ export namespace dialogflow_v2beta1 {
     export(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Export
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3852,7 +3925,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3920,9 +3993,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     getFulfillment(
+      params: Params$Resource$Projects$Agent$Getfulfillment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getFulfillment(
       params?: Params$Resource$Projects$Agent$Getfulfillment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>;
+    getFulfillment(
+      params: Params$Resource$Projects$Agent$Getfulfillment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getFulfillment(
       params: Params$Resource$Projects$Agent$Getfulfillment,
       options:
@@ -3946,14 +4028,20 @@ export namespace dialogflow_v2beta1 {
     getFulfillment(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Getfulfillment
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Fulfillment
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Getfulfillment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3986,7 +4074,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
@@ -4059,9 +4147,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     getValidationResult(
+      params: Params$Resource$Projects$Agent$Getvalidationresult,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getValidationResult(
       params?: Params$Resource$Projects$Agent$Getvalidationresult,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ValidationResult>;
+    getValidationResult(
+      params: Params$Resource$Projects$Agent$Getvalidationresult,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getValidationResult(
       params: Params$Resource$Projects$Agent$Getvalidationresult,
       options:
@@ -4089,18 +4186,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Getvalidationresult
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ValidationResult
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ValidationResult
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ValidationResult
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ValidationResult
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ValidationResult
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ValidationResult>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Getvalidationresult;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4135,7 +4238,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ValidationResult>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -4215,9 +4318,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     import(
+      params: Params$Resource$Projects$Agent$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
       params?: Params$Resource$Projects$Agent$Import,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Agent$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     import(
       params: Params$Resource$Projects$Agent$Import,
       options:
@@ -4235,12 +4347,20 @@ export namespace dialogflow_v2beta1 {
     import(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Import
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4276,7 +4396,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4354,9 +4474,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     restore(
+      params: Params$Resource$Projects$Agent$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
       params?: Params$Resource$Projects$Agent$Restore,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    restore(
+      params: Params$Resource$Projects$Agent$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     restore(
       params: Params$Resource$Projects$Agent$Restore,
       options:
@@ -4374,12 +4503,20 @@ export namespace dialogflow_v2beta1 {
     restore(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Restore
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4415,7 +4552,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4487,9 +4624,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     search(
+      params: Params$Resource$Projects$Agent$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
       params?: Params$Resource$Projects$Agent$Search,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse>;
+    search(
+      params: Params$Resource$Projects$Agent$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     search(
       params: Params$Resource$Projects$Agent$Search,
       options:
@@ -4517,18 +4663,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Search
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4564,7 +4716,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
@@ -4640,9 +4792,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     train(
+      params: Params$Resource$Projects$Agent$Train,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    train(
       params?: Params$Resource$Projects$Agent$Train,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    train(
+      params: Params$Resource$Projects$Agent$Train,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     train(
       params: Params$Resource$Projects$Agent$Train,
       options:
@@ -4660,12 +4821,20 @@ export namespace dialogflow_v2beta1 {
     train(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Train
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Train;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4701,7 +4870,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4786,9 +4955,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     updateFulfillment(
+      params: Params$Resource$Projects$Agent$Updatefulfillment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateFulfillment(
       params?: Params$Resource$Projects$Agent$Updatefulfillment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>;
+    updateFulfillment(
+      params: Params$Resource$Projects$Agent$Updatefulfillment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateFulfillment(
       params: Params$Resource$Projects$Agent$Updatefulfillment,
       options:
@@ -4812,14 +4990,20 @@ export namespace dialogflow_v2beta1 {
     updateFulfillment(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Updatefulfillment
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Fulfillment
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Updatefulfillment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4852,7 +5036,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
@@ -5080,9 +5264,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Projects$Agent$Entitytypes$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Projects$Agent$Entitytypes$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDelete(
+      params: Params$Resource$Projects$Agent$Entitytypes$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Projects$Agent$Entitytypes$Batchdelete,
       options:
@@ -5100,12 +5293,20 @@ export namespace dialogflow_v2beta1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Batchdelete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5140,7 +5341,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -5220,9 +5421,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Projects$Agent$Entitytypes$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Projects$Agent$Entitytypes$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchUpdate(
+      params: Params$Resource$Projects$Agent$Entitytypes$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Projects$Agent$Entitytypes$Batchupdate,
       options:
@@ -5240,12 +5450,20 @@ export namespace dialogflow_v2beta1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Batchupdate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5280,7 +5498,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -5370,9 +5588,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Entitytypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Entitytypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>;
+    create(
+      params: Params$Resource$Projects$Agent$Entitytypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Entitytypes$Create,
       options:
@@ -5396,14 +5623,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1EntityType
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5439,7 +5672,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -5503,9 +5736,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Entitytypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Entitytypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Entitytypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Entitytypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -5519,12 +5761,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5555,7 +5805,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -5630,9 +5883,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Entitytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Entitytypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>;
+    get(
+      params: Params$Resource$Projects$Agent$Entitytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Entitytypes$Get,
       options:
@@ -5656,14 +5918,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1EntityType
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5696,7 +5964,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -5777,11 +6045,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Entitytypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Entitytypes$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Agent$Entitytypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Entitytypes$List,
       options:
@@ -5809,18 +6086,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Entitytypes$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5856,7 +6141,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
@@ -5952,9 +6237,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Entitytypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Entitytypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>;
+    patch(
+      params: Params$Resource$Projects$Agent$Entitytypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Entitytypes$Patch,
       options:
@@ -5978,14 +6272,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1EntityType
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6018,7 +6318,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -6238,9 +6538,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchCreate(
+      params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
       params?: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchCreate(
+      params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchCreate(
       params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate,
       options:
@@ -6258,12 +6567,20 @@ export namespace dialogflow_v2beta1 {
     batchCreate(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6299,7 +6616,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -6377,9 +6694,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDelete(
+      params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete,
       options:
@@ -6397,12 +6723,20 @@ export namespace dialogflow_v2beta1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6438,7 +6772,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -6517,9 +6851,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchUpdate(
+      params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate,
       options:
@@ -6537,12 +6880,20 @@ export namespace dialogflow_v2beta1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6578,7 +6929,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -6711,11 +7062,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Environments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Environments$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
     >;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Environments$List,
       options:
@@ -6743,18 +7103,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Environments$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6790,7 +7158,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
@@ -6906,9 +7274,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     deleteContexts(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteContexts(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteContexts(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteContexts(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -6924,12 +7301,20 @@ export namespace dialogflow_v2beta1 {
     deleteContexts(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6963,7 +7348,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -7054,9 +7442,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     detectIntent(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detectIntent(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>;
+    detectIntent(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     detectIntent(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent,
       options:
@@ -7084,18 +7481,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7131,7 +7534,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
@@ -7253,9 +7656,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create,
       options:
@@ -7273,14 +7685,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7316,7 +7734,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -7387,9 +7805,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -7403,12 +7830,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7439,7 +7874,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -7511,9 +7949,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get,
       options:
@@ -7531,14 +7978,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7571,7 +8024,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -7652,9 +8105,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List,
       options:
@@ -7682,18 +8144,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7729,7 +8197,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
@@ -7828,9 +8296,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch,
       options:
@@ -7848,14 +8325,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7888,7 +8371,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -8064,9 +8547,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create,
       options:
@@ -8094,18 +8586,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8141,7 +8639,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8212,9 +8710,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -8228,12 +8735,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8264,7 +8779,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -8336,9 +8854,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get,
       options:
@@ -8366,18 +8893,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8410,7 +8943,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8491,11 +9024,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List,
       options:
@@ -8523,18 +9065,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8570,7 +9120,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
@@ -8662,9 +9212,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch,
       options:
@@ -8692,18 +9251,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8736,7 +9301,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -8905,9 +9470,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Projects$Agent$Intents$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Projects$Agent$Intents$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDelete(
+      params: Params$Resource$Projects$Agent$Intents$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Projects$Agent$Intents$Batchdelete,
       options:
@@ -8925,12 +9499,20 @@ export namespace dialogflow_v2beta1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Intents$Batchdelete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Intents$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8966,7 +9548,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -9047,9 +9629,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Projects$Agent$Intents$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Projects$Agent$Intents$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchUpdate(
+      params: Params$Resource$Projects$Agent$Intents$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Projects$Agent$Intents$Batchupdate,
       options:
@@ -9067,12 +9658,20 @@ export namespace dialogflow_v2beta1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Intents$Batchupdate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Intents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9108,7 +9707,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -9229,9 +9828,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Intents$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Intents$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>;
+    create(
+      params: Params$Resource$Projects$Agent$Intents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Intents$Create,
       options:
@@ -9249,12 +9857,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Intents$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Intents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9290,7 +9906,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -9356,9 +9972,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Intents$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Intents$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Intents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Intents$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -9372,12 +9997,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Intents$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Intents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9408,7 +10041,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -9500,9 +10136,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Intents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Intents$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>;
+    get(
+      params: Params$Resource$Projects$Agent$Intents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Intents$Get,
       options:
@@ -9520,12 +10165,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Intents$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Intents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9558,7 +10211,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -9642,9 +10295,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Intents$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Intents$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse>;
+    list(
+      params: Params$Resource$Projects$Agent$Intents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Intents$List,
       options:
@@ -9672,18 +10334,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Intents$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Intents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9719,7 +10387,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
@@ -9846,9 +10514,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Intents$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Intents$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>;
+    patch(
+      params: Params$Resource$Projects$Agent$Intents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Intents$Patch,
       options:
@@ -9866,12 +10543,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Intents$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Intents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9904,7 +10589,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -10143,9 +10828,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    create(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Knowledgebases$Create,
       options:
@@ -10171,18 +10865,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10218,7 +10914,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -10286,9 +10982,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Knowledgebases$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -10302,12 +11007,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10338,7 +11051,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -10403,9 +11119,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    get(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Knowledgebases$Get,
       options:
@@ -10431,18 +11156,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10475,7 +11202,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -10549,11 +11276,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Knowledgebases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Knowledgebases$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Agent$Knowledgebases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Knowledgebases$List,
       options:
@@ -10581,18 +11317,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Knowledgebases$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10628,7 +11372,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
@@ -10712,9 +11456,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    patch(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Knowledgebases$Patch,
       options:
@@ -10740,18 +11493,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10784,7 +11539,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -10965,9 +11720,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Create,
       options:
@@ -10985,12 +11749,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Documents$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11026,7 +11798,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -11096,9 +11868,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete,
       options:
@@ -11116,12 +11897,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Documents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11154,7 +11943,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -11228,9 +12017,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Document>;
+    get(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Get,
       options:
@@ -11254,14 +12052,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Documents$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Document
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Document> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Document>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11294,7 +12098,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
@@ -11368,9 +12172,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse>;
+    list(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Knowledgebases$Documents$List,
       options:
@@ -11398,18 +12211,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Knowledgebases$Documents$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Documents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11445,7 +12264,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
@@ -11539,9 +12358,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch,
       options:
@@ -11559,12 +12387,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11597,7 +12433,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -11676,9 +12512,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     reload(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reload(
       params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    reload(
+      params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reload(
       params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload,
       options:
@@ -11696,12 +12541,20 @@ export namespace dialogflow_v2beta1 {
     reload(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11737,7 +12590,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -11917,9 +12770,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     deleteContexts(
+      params: Params$Resource$Projects$Agent$Sessions$Deletecontexts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteContexts(
       params?: Params$Resource$Projects$Agent$Sessions$Deletecontexts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteContexts(
+      params: Params$Resource$Projects$Agent$Sessions$Deletecontexts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteContexts(
       params: Params$Resource$Projects$Agent$Sessions$Deletecontexts,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -11935,12 +12797,20 @@ export namespace dialogflow_v2beta1 {
     deleteContexts(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Sessions$Deletecontexts
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Deletecontexts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11974,7 +12844,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -12062,9 +12935,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     detectIntent(
+      params: Params$Resource$Projects$Agent$Sessions$Detectintent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detectIntent(
       params?: Params$Resource$Projects$Agent$Sessions$Detectintent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>;
+    detectIntent(
+      params: Params$Resource$Projects$Agent$Sessions$Detectintent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     detectIntent(
       params: Params$Resource$Projects$Agent$Sessions$Detectintent,
       options:
@@ -12092,18 +12974,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Sessions$Detectintent
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Detectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12139,7 +13027,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
@@ -12258,9 +13146,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Sessions$Contexts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    create(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Sessions$Contexts$Create,
       options:
@@ -12278,14 +13175,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Sessions$Contexts$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Contexts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12321,7 +13224,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -12389,9 +13292,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Sessions$Contexts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Sessions$Contexts$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -12405,12 +13317,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Sessions$Contexts$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Contexts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12441,7 +13361,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -12510,9 +13433,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Sessions$Contexts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    get(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Sessions$Contexts$Get,
       options:
@@ -12530,14 +13462,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Sessions$Contexts$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Contexts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12570,7 +13508,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -12648,9 +13586,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Sessions$Contexts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>;
+    list(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Sessions$Contexts$List,
       options:
@@ -12678,18 +13625,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Sessions$Contexts$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Contexts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12725,7 +13678,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
@@ -12821,9 +13774,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Sessions$Contexts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    patch(
+      params: Params$Resource$Projects$Agent$Sessions$Contexts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Sessions$Contexts$Patch,
       options:
@@ -12841,14 +13803,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Sessions$Contexts$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Contexts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12881,7 +13849,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -13054,9 +14022,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    create(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Create,
       options:
@@ -13084,18 +14061,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Sessions$Entitytypes$Create
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13131,7 +14114,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -13200,9 +14183,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -13216,12 +14208,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13252,7 +14252,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -13322,9 +14325,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    get(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Get,
       options:
@@ -13352,18 +14364,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Sessions$Entitytypes$Get
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13396,7 +14414,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -13474,11 +14492,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Agent$Sessions$Entitytypes$List,
       options:
@@ -13506,18 +14533,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Sessions$Entitytypes$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13553,7 +14588,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
@@ -13643,9 +14678,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    patch(
+      params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch,
       options:
@@ -13673,18 +14717,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13717,7 +14767,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -13890,9 +14940,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Knowledgebases$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Knowledgebases$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    create(
+      params: Params$Resource$Projects$Knowledgebases$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Knowledgebases$Create,
       options:
@@ -13918,18 +14977,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13965,7 +15026,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -14033,9 +15094,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Knowledgebases$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Knowledgebases$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Knowledgebases$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Knowledgebases$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -14049,12 +15119,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14085,7 +15163,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -14150,9 +15231,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Knowledgebases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Knowledgebases$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    get(
+      params: Params$Resource$Projects$Knowledgebases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Knowledgebases$Get,
       options:
@@ -14178,18 +15268,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14222,7 +15314,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -14296,11 +15388,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Knowledgebases$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Knowledgebases$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Knowledgebases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Knowledgebases$List,
       options:
@@ -14328,18 +15429,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Knowledgebases$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14375,7 +15484,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse
@@ -14459,9 +15568,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Knowledgebases$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Knowledgebases$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    patch(
+      params: Params$Resource$Projects$Knowledgebases$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Knowledgebases$Patch,
       options:
@@ -14487,18 +15605,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1KnowledgeBase
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14531,7 +15651,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -14712,9 +15832,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Knowledgebases$Documents$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Knowledgebases$Documents$Create,
       options:
@@ -14732,12 +15861,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Documents$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14773,7 +15910,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -14843,9 +15980,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Knowledgebases$Documents$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Knowledgebases$Documents$Delete,
       options:
@@ -14863,12 +16009,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Documents$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Documents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14901,7 +16055,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -14975,9 +16129,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Knowledgebases$Documents$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Document>;
+    get(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Knowledgebases$Documents$Get,
       options:
@@ -15001,14 +16164,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Documents$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Document
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Document> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Document>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Document>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15041,7 +16210,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
@@ -15115,9 +16284,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Knowledgebases$Documents$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Knowledgebases$Documents$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse>;
+    list(
+      params: Params$Resource$Projects$Knowledgebases$Documents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Knowledgebases$Documents$List,
       options:
@@ -15145,18 +16323,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Knowledgebases$Documents$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Documents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15192,7 +16376,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListDocumentsResponse
@@ -15286,9 +16470,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Knowledgebases$Documents$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Knowledgebases$Documents$Patch,
       options:
@@ -15306,12 +16499,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Documents$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Documents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15344,7 +16545,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -15423,9 +16624,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     reload(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Reload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reload(
       params?: Params$Resource$Projects$Knowledgebases$Documents$Reload,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    reload(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Reload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     reload(
       params: Params$Resource$Projects$Knowledgebases$Documents$Reload,
       options:
@@ -15443,12 +16653,20 @@ export namespace dialogflow_v2beta1 {
     reload(
       paramsOrCallback?:
         | Params$Resource$Projects$Knowledgebases$Documents$Reload
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Knowledgebases$Documents$Reload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15484,7 +16702,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -15659,9 +16877,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     deleteAgent(
+      params: Params$Resource$Projects$Locations$Deleteagent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAgent(
       params?: Params$Resource$Projects$Locations$Deleteagent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteAgent(
+      params: Params$Resource$Projects$Locations$Deleteagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteAgent(
       params: Params$Resource$Projects$Locations$Deleteagent,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -15677,12 +16904,20 @@ export namespace dialogflow_v2beta1 {
     deleteAgent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Deleteagent
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Deleteagent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15716,7 +16951,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -15790,9 +17028,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     getAgent(
+      params: Params$Resource$Projects$Locations$Getagent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAgent(
       params?: Params$Resource$Projects$Locations$Getagent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>;
+    getAgent(
+      params: Params$Resource$Projects$Locations$Getagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAgent(
       params: Params$Resource$Projects$Locations$Getagent,
       options:
@@ -15810,12 +17057,20 @@ export namespace dialogflow_v2beta1 {
     getAgent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Getagent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Getagent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15851,7 +17106,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
@@ -15951,9 +17206,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     setAgent(
+      params: Params$Resource$Projects$Locations$Setagent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setAgent(
       params?: Params$Resource$Projects$Locations$Setagent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>;
+    setAgent(
+      params: Params$Resource$Projects$Locations$Setagent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setAgent(
       params: Params$Resource$Projects$Locations$Setagent,
       options:
@@ -15971,12 +17235,20 @@ export namespace dialogflow_v2beta1 {
     setAgent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Setagent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Agent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Agent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Setagent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16012,7 +17284,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
@@ -16160,9 +17432,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     export(
+      params: Params$Resource$Projects$Locations$Agent$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
       params?: Params$Resource$Projects$Locations$Agent$Export,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Agent$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     export(
       params: Params$Resource$Projects$Locations$Agent$Export,
       options:
@@ -16180,12 +17461,20 @@ export namespace dialogflow_v2beta1 {
     export(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Export
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16221,7 +17510,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -16306,9 +17595,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     fulfillment(
+      params: Params$Resource$Projects$Locations$Agent$Fulfillment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fulfillment(
       params?: Params$Resource$Projects$Locations$Agent$Fulfillment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>;
+    fulfillment(
+      params: Params$Resource$Projects$Locations$Agent$Fulfillment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     fulfillment(
       params: Params$Resource$Projects$Locations$Agent$Fulfillment,
       options:
@@ -16332,14 +17630,20 @@ export namespace dialogflow_v2beta1 {
     fulfillment(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Fulfillment
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Fulfillment
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Fulfillment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16372,7 +17676,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
@@ -16442,9 +17746,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     getFulfillment(
+      params: Params$Resource$Projects$Locations$Agent$Getfulfillment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getFulfillment(
       params?: Params$Resource$Projects$Locations$Agent$Getfulfillment,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>;
+    getFulfillment(
+      params: Params$Resource$Projects$Locations$Agent$Getfulfillment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getFulfillment(
       params: Params$Resource$Projects$Locations$Agent$Getfulfillment,
       options:
@@ -16468,14 +17781,20 @@ export namespace dialogflow_v2beta1 {
     getFulfillment(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Getfulfillment
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Fulfillment
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Fulfillment>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Getfulfillment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16508,7 +17827,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Fulfillment>(
@@ -16588,9 +17907,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     import(
+      params: Params$Resource$Projects$Locations$Agent$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
       params?: Params$Resource$Projects$Locations$Agent$Import,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Agent$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     import(
       params: Params$Resource$Projects$Locations$Agent$Import,
       options:
@@ -16608,12 +17936,20 @@ export namespace dialogflow_v2beta1 {
     import(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Import
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16649,7 +17985,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -16727,9 +18063,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     restore(
+      params: Params$Resource$Projects$Locations$Agent$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
       params?: Params$Resource$Projects$Locations$Agent$Restore,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    restore(
+      params: Params$Resource$Projects$Locations$Agent$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     restore(
       params: Params$Resource$Projects$Locations$Agent$Restore,
       options:
@@ -16747,12 +18092,20 @@ export namespace dialogflow_v2beta1 {
     restore(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Restore
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16788,7 +18141,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -16863,9 +18216,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     train(
+      params: Params$Resource$Projects$Locations$Agent$Train,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    train(
       params?: Params$Resource$Projects$Locations$Agent$Train,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    train(
+      params: Params$Resource$Projects$Locations$Agent$Train,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     train(
       params: Params$Resource$Projects$Locations$Agent$Train,
       options:
@@ -16883,12 +18245,20 @@ export namespace dialogflow_v2beta1 {
     train(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Train
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Train;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16924,7 +18294,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -17116,9 +18486,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete,
       options:
@@ -17136,12 +18515,20 @@ export namespace dialogflow_v2beta1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17176,7 +18563,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -17258,9 +18645,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate,
       options:
@@ -17278,12 +18674,20 @@ export namespace dialogflow_v2beta1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17318,7 +18722,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -17408,9 +18812,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>;
+    create(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Create,
       options:
@@ -17434,14 +18847,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1EntityType
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17477,7 +18896,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -17542,9 +18961,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -17558,12 +18986,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17594,7 +19030,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -17670,9 +19109,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>;
+    get(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Get,
       options:
@@ -17696,14 +19144,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1EntityType
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17736,7 +19190,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -17817,11 +19271,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$List,
       options:
@@ -17849,18 +19312,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Entitytypes$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17896,7 +19367,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEntityTypesResponse
@@ -17993,9 +19464,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Patch,
       options:
@@ -18019,14 +19499,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1EntityType
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EntityType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18059,7 +19545,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -18282,9 +19768,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchCreate(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchCreate(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate,
       options:
@@ -18302,12 +19797,20 @@ export namespace dialogflow_v2beta1 {
     batchCreate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18343,7 +19846,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -18424,9 +19927,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete,
       options:
@@ -18444,12 +19956,20 @@ export namespace dialogflow_v2beta1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18485,7 +20005,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -18567,9 +20087,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate,
       options:
@@ -18587,12 +20116,20 @@ export namespace dialogflow_v2beta1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Entitytypes$Entities$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18628,7 +20165,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -18763,11 +20300,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Agent$Environments$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
     >;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Agent$Environments$List,
       options:
@@ -18795,18 +20341,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Environments$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18842,7 +20396,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
@@ -18958,9 +20512,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     deleteContexts(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteContexts(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteContexts(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteContexts(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -18976,12 +20539,20 @@ export namespace dialogflow_v2beta1 {
     deleteContexts(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Deletecontexts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19015,7 +20586,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -19106,9 +20680,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     detectIntent(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detectIntent(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>;
+    detectIntent(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     detectIntent(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent,
       options:
@@ -19136,18 +20719,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Detectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19183,7 +20772,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
@@ -19305,9 +20894,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    create(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create,
       options:
@@ -19325,14 +20923,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19368,7 +20972,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -19439,9 +21043,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -19455,12 +21068,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19491,7 +21112,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -19563,9 +21187,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    get(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get,
       options:
@@ -19583,14 +21216,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19623,7 +21262,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -19704,9 +21343,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List,
       options:
@@ -19734,18 +21382,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19781,7 +21435,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
@@ -19880,9 +21534,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch,
       options:
@@ -19900,14 +21563,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Contexts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19940,7 +21609,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -20116,9 +21785,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    create(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create,
       options:
@@ -20146,18 +21824,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20193,7 +21877,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -20264,9 +21948,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -20280,12 +21973,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20316,7 +22017,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -20388,9 +22092,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    get(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get,
       options:
@@ -20418,18 +22131,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20462,7 +22181,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -20543,11 +22262,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List,
       options:
@@ -20575,18 +22303,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20622,7 +22358,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
@@ -20714,9 +22450,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch,
       options:
@@ -20744,18 +22489,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Environments$Users$Sessions$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20788,7 +22539,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -20957,9 +22708,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Projects$Locations$Agent$Intents$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Projects$Locations$Agent$Intents$Batchdelete,
       options:
@@ -20977,12 +22737,20 @@ export namespace dialogflow_v2beta1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Intents$Batchdelete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Intents$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21018,7 +22786,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -21099,9 +22867,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     batchUpdate(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
       params?: Params$Resource$Projects$Locations$Agent$Intents$Batchupdate,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchUpdate(
       params: Params$Resource$Projects$Locations$Agent$Intents$Batchupdate,
       options:
@@ -21119,12 +22896,20 @@ export namespace dialogflow_v2beta1 {
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Intents$Batchupdate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Intents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21160,7 +22945,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -21281,9 +23066,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Agent$Intents$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>;
+    create(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Agent$Intents$Create,
       options:
@@ -21301,12 +23095,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Intents$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Intents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21342,7 +23144,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -21408,9 +23210,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Agent$Intents$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Agent$Intents$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -21424,12 +23235,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Intents$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Intents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21460,7 +23279,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -21552,9 +23374,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Agent$Intents$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>;
+    get(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Agent$Intents$Get,
       options:
@@ -21572,12 +23403,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Intents$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Intents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21610,7 +23449,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -21694,9 +23533,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Agent$Intents$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Agent$Intents$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Intents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Agent$Intents$List,
       options:
@@ -21724,18 +23572,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Intents$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Intents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21771,7 +23625,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse
@@ -21898,9 +23752,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Agent$Intents$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agent$Intents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agent$Intents$Patch,
       options:
@@ -21918,12 +23781,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Intents$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>,
-      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Intent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Intent>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Intents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21956,7 +23827,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -22190,9 +24061,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     deleteContexts(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteContexts(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteContexts(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteContexts(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -22208,12 +24088,20 @@ export namespace dialogflow_v2beta1 {
     deleteContexts(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Deletecontexts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22247,7 +24135,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -22336,9 +24227,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     detectIntent(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Detectintent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detectIntent(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Detectintent,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>;
+    detectIntent(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Detectintent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     detectIntent(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Detectintent,
       options:
@@ -22366,18 +24266,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Sessions$Detectintent
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Detectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22413,7 +24319,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse
@@ -22535,9 +24441,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    create(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create,
       options:
@@ -22555,14 +24470,20 @@ export namespace dialogflow_v2beta1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22598,7 +24519,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -22669,9 +24590,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -22685,12 +24615,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22721,7 +24659,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -22791,9 +24732,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    get(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get,
       options:
@@ -22811,14 +24761,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22851,7 +24807,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -22930,9 +24886,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List,
       options:
@@ -22960,18 +24925,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListContextsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Contexts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23007,7 +24978,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListContextsResponse
@@ -23106,9 +25077,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch,
       options:
@@ -23126,14 +25106,20 @@ export namespace dialogflow_v2beta1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1Context
-      >
-    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Context>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Context>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Contexts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23166,7 +25152,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -23342,9 +25328,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    create(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create,
       options:
@@ -23372,18 +25367,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23419,7 +25420,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -23490,9 +25491,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -23506,12 +25516,20 @@ export namespace dialogflow_v2beta1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23542,7 +25560,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -23614,9 +25635,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    get(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get,
       options:
@@ -23644,18 +25674,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23688,7 +25724,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -23769,11 +25805,20 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List,
       options?: MethodOptions
     ): GaxiosPromise<
       Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
     >;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List,
       options:
@@ -23801,18 +25846,26 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
+        >
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23848,7 +25901,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
-        >(parameters, callback);
+        >(parameters, callback as BodyResponseCallback<{} | void>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse
@@ -23940,9 +25993,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>;
+    patch(
+      params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch,
       options:
@@ -23970,18 +26032,24 @@ export namespace dialogflow_v2beta1 {
         | Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
+          >
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
+        | StreamMethodOptions
         | BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-          >,
-      callback?: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-      >
-    ): void | GaxiosPromise<
-      Schema$GoogleCloudDialogflowV2beta1SessionEntityType
-    > {
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SessionEntityType
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agent$Sessions$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24014,7 +26082,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<
@@ -24167,9 +26235,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -24183,12 +26260,20 @@ export namespace dialogflow_v2beta1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24222,7 +26307,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -24288,9 +26376,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
@@ -24308,12 +26405,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24346,7 +26451,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -24419,9 +26524,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
@@ -24445,14 +26559,20 @@ export namespace dialogflow_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24488,7 +26608,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -24607,9 +26727,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
       params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancel(
+      params: Params$Resource$Projects$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -24623,12 +26752,20 @@ export namespace dialogflow_v2beta1 {
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24662,7 +26799,10 @@ export namespace dialogflow_v2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
@@ -24728,9 +26868,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
@@ -24748,12 +26897,20 @@ export namespace dialogflow_v2beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24786,7 +26943,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -24859,9 +27016,18 @@ export namespace dialogflow_v2beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
       options:
@@ -24885,14 +27051,20 @@ export namespace dialogflow_v2beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback?: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
-    ): void | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24928,7 +27100,7 @@ export namespace dialogflow_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

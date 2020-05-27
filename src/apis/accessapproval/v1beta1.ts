@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace accessapproval_v1beta1 {
   export interface Options extends GlobalOptions {
@@ -338,9 +340,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     deleteAccessApprovalSettings(
+      params: Params$Resource$Folders$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAccessApprovalSettings(
       params?: Params$Resource$Folders$Deleteaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Folders$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteAccessApprovalSettings(
       params: Params$Resource$Folders$Deleteaccessapprovalsettings,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -356,10 +367,17 @@ export namespace accessapproval_v1beta1 {
     deleteAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Folders$Deleteaccessapprovalsettings
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Deleteaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -391,7 +409,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -453,9 +474,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
+      params: Params$Resource$Folders$Getaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAccessApprovalSettings(
       params?: Params$Resource$Folders$Getaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    getAccessApprovalSettings(
+      params: Params$Resource$Folders$Getaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAccessApprovalSettings(
       params: Params$Resource$Folders$Getaccessapprovalsettings,
       options:
@@ -473,12 +503,20 @@ export namespace accessapproval_v1beta1 {
     getAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Folders$Getaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -510,7 +548,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -595,9 +636,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
+      params: Params$Resource$Folders$Updateaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAccessApprovalSettings(
       params?: Params$Resource$Folders$Updateaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    updateAccessApprovalSettings(
+      params: Params$Resource$Folders$Updateaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAccessApprovalSettings(
       params: Params$Resource$Folders$Updateaccessapprovalsettings,
       options:
@@ -615,12 +665,20 @@ export namespace accessapproval_v1beta1 {
     updateAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Folders$Updateaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -652,7 +710,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -781,9 +842,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     approve(
+      params: Params$Resource$Folders$Approvalrequests$Approve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    approve(
       params?: Params$Resource$Folders$Approvalrequests$Approve,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    approve(
+      params: Params$Resource$Folders$Approvalrequests$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     approve(
       params: Params$Resource$Folders$Approvalrequests$Approve,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -797,12 +867,17 @@ export namespace accessapproval_v1beta1 {
     approve(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$Approve
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -837,7 +912,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -911,9 +989,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Folders$Approvalrequests$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Folders$Approvalrequests$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    dismiss(
+      params: Params$Resource$Folders$Approvalrequests$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Folders$Approvalrequests$Dismiss,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -927,12 +1014,17 @@ export namespace accessapproval_v1beta1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$Dismiss
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -967,7 +1059,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1034,9 +1129,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Folders$Approvalrequests$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Folders$Approvalrequests$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Folders$Approvalrequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Folders$Approvalrequests$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1050,12 +1154,17 @@ export namespace accessapproval_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$Get
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1087,7 +1196,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1165,9 +1277,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Folders$Approvalrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Folders$Approvalrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    list(
+      params: Params$Resource$Folders$Approvalrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Folders$Approvalrequests$List,
       options:
@@ -1185,12 +1306,20 @@ export namespace accessapproval_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Folders$Approvalrequests$List
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Folders$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1227,7 +1356,7 @@ export namespace accessapproval_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -1369,9 +1498,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     deleteAccessApprovalSettings(
+      params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAccessApprovalSettings(
       params?: Params$Resource$Organizations$Deleteaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteAccessApprovalSettings(
       params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -1387,10 +1525,17 @@ export namespace accessapproval_v1beta1 {
     deleteAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Organizations$Deleteaccessapprovalsettings
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Deleteaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1422,7 +1567,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -1484,9 +1632,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
+      params: Params$Resource$Organizations$Getaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAccessApprovalSettings(
       params?: Params$Resource$Organizations$Getaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    getAccessApprovalSettings(
+      params: Params$Resource$Organizations$Getaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAccessApprovalSettings(
       params: Params$Resource$Organizations$Getaccessapprovalsettings,
       options:
@@ -1504,12 +1661,20 @@ export namespace accessapproval_v1beta1 {
     getAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Organizations$Getaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1541,7 +1706,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -1626,9 +1794,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
+      params: Params$Resource$Organizations$Updateaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAccessApprovalSettings(
       params?: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    updateAccessApprovalSettings(
+      params: Params$Resource$Organizations$Updateaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAccessApprovalSettings(
       params: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options:
@@ -1646,12 +1823,20 @@ export namespace accessapproval_v1beta1 {
     updateAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Organizations$Updateaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1683,7 +1868,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -1812,9 +2000,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     approve(
+      params: Params$Resource$Organizations$Approvalrequests$Approve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    approve(
       params?: Params$Resource$Organizations$Approvalrequests$Approve,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    approve(
+      params: Params$Resource$Organizations$Approvalrequests$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     approve(
       params: Params$Resource$Organizations$Approvalrequests$Approve,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1828,12 +2025,17 @@ export namespace accessapproval_v1beta1 {
     approve(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$Approve
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1868,7 +2070,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -1942,9 +2147,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Organizations$Approvalrequests$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Organizations$Approvalrequests$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    dismiss(
+      params: Params$Resource$Organizations$Approvalrequests$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Organizations$Approvalrequests$Dismiss,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -1958,12 +2172,17 @@ export namespace accessapproval_v1beta1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$Dismiss
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1998,7 +2217,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -2065,9 +2287,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Organizations$Approvalrequests$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Organizations$Approvalrequests$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Organizations$Approvalrequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Organizations$Approvalrequests$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -2081,12 +2312,17 @@ export namespace accessapproval_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$Get
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2118,7 +2354,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -2196,9 +2435,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Organizations$Approvalrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Organizations$Approvalrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    list(
+      params: Params$Resource$Organizations$Approvalrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Organizations$Approvalrequests$List,
       options:
@@ -2216,12 +2464,20 @@ export namespace accessapproval_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Approvalrequests$List
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2258,7 +2514,7 @@ export namespace accessapproval_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -2400,9 +2656,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     deleteAccessApprovalSettings(
+      params: Params$Resource$Projects$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteAccessApprovalSettings(
       params?: Params$Resource$Projects$Deleteaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
+    deleteAccessApprovalSettings(
+      params: Params$Resource$Projects$Deleteaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     deleteAccessApprovalSettings(
       params: Params$Resource$Projects$Deleteaccessapprovalsettings,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
@@ -2418,10 +2683,17 @@ export namespace accessapproval_v1beta1 {
     deleteAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Projects$Deleteaccessapprovalsettings
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Deleteaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2453,7 +2725,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
       }
@@ -2515,9 +2790,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     getAccessApprovalSettings(
+      params: Params$Resource$Projects$Getaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAccessApprovalSettings(
       params?: Params$Resource$Projects$Getaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    getAccessApprovalSettings(
+      params: Params$Resource$Projects$Getaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAccessApprovalSettings(
       params: Params$Resource$Projects$Getaccessapprovalsettings,
       options:
@@ -2535,12 +2819,20 @@ export namespace accessapproval_v1beta1 {
     getAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Projects$Getaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Getaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2572,7 +2864,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -2657,9 +2952,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     updateAccessApprovalSettings(
+      params: Params$Resource$Projects$Updateaccessapprovalsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAccessApprovalSettings(
       params?: Params$Resource$Projects$Updateaccessapprovalsettings,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AccessApprovalSettings>;
+    updateAccessApprovalSettings(
+      params: Params$Resource$Projects$Updateaccessapprovalsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAccessApprovalSettings(
       params: Params$Resource$Projects$Updateaccessapprovalsettings,
       options:
@@ -2677,12 +2981,20 @@ export namespace accessapproval_v1beta1 {
     updateAccessApprovalSettings(
       paramsOrCallback?:
         | Params$Resource$Projects$Updateaccessapprovalsettings
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
-      callback?: BodyResponseCallback<Schema$AccessApprovalSettings>
-    ): void | GaxiosPromise<Schema$AccessApprovalSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalSettings>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Updateaccessapprovalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2714,7 +3026,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AccessApprovalSettings>(parameters, callback);
+        createAPIRequest<Schema$AccessApprovalSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
       }
@@ -2843,9 +3158,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     approve(
+      params: Params$Resource$Projects$Approvalrequests$Approve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    approve(
       params?: Params$Resource$Projects$Approvalrequests$Approve,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    approve(
+      params: Params$Resource$Projects$Approvalrequests$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     approve(
       params: Params$Resource$Projects$Approvalrequests$Approve,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -2859,12 +3183,17 @@ export namespace accessapproval_v1beta1 {
     approve(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$Approve
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2899,7 +3228,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -2973,9 +3305,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     dismiss(
+      params: Params$Resource$Projects$Approvalrequests$Dismiss,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    dismiss(
       params?: Params$Resource$Projects$Approvalrequests$Dismiss,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    dismiss(
+      params: Params$Resource$Projects$Approvalrequests$Dismiss,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     dismiss(
       params: Params$Resource$Projects$Approvalrequests$Dismiss,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -2989,12 +3330,17 @@ export namespace accessapproval_v1beta1 {
     dismiss(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$Dismiss
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3029,7 +3375,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -3096,9 +3445,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Projects$Approvalrequests$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Projects$Approvalrequests$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ApprovalRequest>;
+    get(
+      params: Params$Resource$Projects$Approvalrequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Projects$Approvalrequests$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ApprovalRequest>,
@@ -3112,12 +3470,17 @@ export namespace accessapproval_v1beta1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$Get
-        | BodyResponseCallback<Schema$ApprovalRequest>,
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ApprovalRequest>,
-      callback?: BodyResponseCallback<Schema$ApprovalRequest>
-    ): void | GaxiosPromise<Schema$ApprovalRequest> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalRequest>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ApprovalRequest> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3149,7 +3512,10 @@ export namespace accessapproval_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ApprovalRequest>(parameters, callback);
+        createAPIRequest<Schema$ApprovalRequest>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
       }
@@ -3227,9 +3593,18 @@ export namespace accessapproval_v1beta1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Projects$Approvalrequests$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Projects$Approvalrequests$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListApprovalRequestsResponse>;
+    list(
+      params: Params$Resource$Projects$Approvalrequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Projects$Approvalrequests$List,
       options:
@@ -3247,12 +3622,20 @@ export namespace accessapproval_v1beta1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Approvalrequests$List
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>,
-      callback?: BodyResponseCallback<Schema$ListApprovalRequestsResponse>
-    ): void | GaxiosPromise<Schema$ListApprovalRequestsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApprovalRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApprovalRequestsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Approvalrequests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3289,7 +3672,7 @@ export namespace accessapproval_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(

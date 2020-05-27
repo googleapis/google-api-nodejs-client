@@ -27,10 +27,12 @@ import {
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
+  StreamMethodOptions,
   GlobalOptions,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
+import {Readable} from 'stream';
 
 export namespace gmail_v1 {
   export interface Options extends GlobalOptions {
@@ -905,9 +907,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     getProfile(
+      params: Params$Resource$Users$Getprofile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getProfile(
       params?: Params$Resource$Users$Getprofile,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Profile>;
+    getProfile(
+      params: Params$Resource$Users$Getprofile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getProfile(
       params: Params$Resource$Users$Getprofile,
       options: MethodOptions | BodyResponseCallback<Schema$Profile>,
@@ -921,10 +932,17 @@ export namespace gmail_v1 {
     getProfile(
       paramsOrCallback?:
         | Params$Resource$Users$Getprofile
-        | BodyResponseCallback<Schema$Profile>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
-      callback?: BodyResponseCallback<Schema$Profile>
-    ): void | GaxiosPromise<Schema$Profile> {
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Profile>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Profile> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Getprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -957,7 +975,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Profile>(parameters, callback);
+        createAPIRequest<Schema$Profile>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
       }
@@ -1016,9 +1037,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     stop(
+      params: Params$Resource$Users$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
       params?: Params$Resource$Users$Stop,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    stop(
+      params: Params$Resource$Users$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     stop(
       params: Params$Resource$Users$Stop,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1032,10 +1062,15 @@ export namespace gmail_v1 {
     stop(
       paramsOrCallback?:
         | Params$Resource$Users$Stop
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1068,7 +1103,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1144,9 +1182,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     watch(
+      params: Params$Resource$Users$Watch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    watch(
       params?: Params$Resource$Users$Watch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WatchResponse>;
+    watch(
+      params: Params$Resource$Users$Watch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     watch(
       params: Params$Resource$Users$Watch,
       options: MethodOptions | BodyResponseCallback<Schema$WatchResponse>,
@@ -1160,12 +1207,17 @@ export namespace gmail_v1 {
     watch(
       paramsOrCallback?:
         | Params$Resource$Users$Watch
-        | BodyResponseCallback<Schema$WatchResponse>,
+        | BodyResponseCallback<Schema$WatchResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$WatchResponse>,
-      callback?: BodyResponseCallback<Schema$WatchResponse>
-    ): void | GaxiosPromise<Schema$WatchResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WatchResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WatchResponse> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1198,7 +1250,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WatchResponse>(parameters, callback);
+        createAPIRequest<Schema$WatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$WatchResponse>(parameters);
       }
@@ -1326,9 +1381,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Drafts$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Drafts$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Draft>;
+    create(
+      params: Params$Resource$Users$Drafts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Drafts$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Draft>,
@@ -1342,10 +1406,17 @@ export namespace gmail_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Drafts$Create
-        | BodyResponseCallback<Schema$Draft>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Draft>,
-      callback?: BodyResponseCallback<Schema$Draft>
-    ): void | GaxiosPromise<Schema$Draft> {
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Draft> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1383,7 +1454,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Draft>(parameters, callback);
+        createAPIRequest<Schema$Draft>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Draft>(parameters);
       }
@@ -1444,9 +1518,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Drafts$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Drafts$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Drafts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Drafts$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -1460,10 +1543,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Drafts$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1497,7 +1585,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -1568,9 +1659,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Drafts$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Drafts$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Draft>;
+    get(
+      params: Params$Resource$Users$Drafts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Drafts$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Draft>,
@@ -1584,10 +1684,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Drafts$Get
-        | BodyResponseCallback<Schema$Draft>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Draft>,
-      callback?: BodyResponseCallback<Schema$Draft>
-    ): void | GaxiosPromise<Schema$Draft> {
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Draft> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1620,7 +1727,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Draft>(parameters, callback);
+        createAPIRequest<Schema$Draft>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Draft>(parameters);
       }
@@ -1698,9 +1808,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Drafts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Drafts$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDraftsResponse>;
+    list(
+      params: Params$Resource$Users$Drafts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Drafts$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListDraftsResponse>,
@@ -1714,12 +1833,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Drafts$List
-        | BodyResponseCallback<Schema$ListDraftsResponse>,
+        | BodyResponseCallback<Schema$ListDraftsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDraftsResponse>,
-      callback?: BodyResponseCallback<Schema$ListDraftsResponse>
-    ): void | GaxiosPromise<Schema$ListDraftsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDraftsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDraftsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDraftsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1753,7 +1880,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDraftsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDraftsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDraftsResponse>(parameters);
       }
@@ -1841,9 +1971,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     send(
+      params: Params$Resource$Users$Drafts$Send,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    send(
       params?: Params$Resource$Users$Drafts$Send,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    send(
+      params: Params$Resource$Users$Drafts$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     send(
       params: Params$Resource$Users$Drafts$Send,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -1857,10 +1996,17 @@ export namespace gmail_v1 {
     send(
       paramsOrCallback?:
         | Params$Resource$Users$Drafts$Send
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1897,7 +2043,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -1981,9 +2130,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Users$Drafts$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Users$Drafts$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Draft>;
+    update(
+      params: Params$Resource$Users$Drafts$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Users$Drafts$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Draft>,
@@ -1997,10 +2155,17 @@ export namespace gmail_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Users$Drafts$Update
-        | BodyResponseCallback<Schema$Draft>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Draft>,
-      callback?: BodyResponseCallback<Schema$Draft>
-    ): void | GaxiosPromise<Schema$Draft> {
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Draft>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Draft> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Drafts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2037,7 +2202,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Draft>(parameters, callback);
+        createAPIRequest<Schema$Draft>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Draft>(parameters);
       }
@@ -2289,9 +2457,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$History$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$History$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListHistoryResponse>;
+    list(
+      params: Params$Resource$Users$History$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$History$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListHistoryResponse>,
@@ -2305,12 +2482,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$History$List
-        | BodyResponseCallback<Schema$ListHistoryResponse>,
+        | BodyResponseCallback<Schema$ListHistoryResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListHistoryResponse>,
-      callback?: BodyResponseCallback<Schema$ListHistoryResponse>
-    ): void | GaxiosPromise<Schema$ListHistoryResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListHistoryResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$History$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2344,7 +2529,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListHistoryResponse>(parameters, callback);
+        createAPIRequest<Schema$ListHistoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListHistoryResponse>(parameters);
       }
@@ -2474,9 +2662,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Labels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Labels$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Label>;
+    create(
+      params: Params$Resource$Users$Labels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Labels$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Label>,
@@ -2490,10 +2687,17 @@ export namespace gmail_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Labels$Create
-        | BodyResponseCallback<Schema$Label>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
-      callback?: BodyResponseCallback<Schema$Label>
-    ): void | GaxiosPromise<Schema$Label> {
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2527,7 +2731,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Label>(parameters, callback);
+        createAPIRequest<Schema$Label>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
       }
@@ -2588,9 +2795,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Labels$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Labels$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Labels$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Labels$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -2604,10 +2820,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Labels$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2641,7 +2862,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -2718,9 +2942,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Labels$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Labels$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Label>;
+    get(
+      params: Params$Resource$Users$Labels$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Labels$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Label>,
@@ -2734,10 +2967,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Labels$Get
-        | BodyResponseCallback<Schema$Label>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
-      callback?: BodyResponseCallback<Schema$Label>
-    ): void | GaxiosPromise<Schema$Label> {
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Labels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2770,7 +3010,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Label>(parameters, callback);
+        createAPIRequest<Schema$Label>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
       }
@@ -2835,9 +3078,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Labels$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Labels$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListLabelsResponse>;
+    list(
+      params: Params$Resource$Users$Labels$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Labels$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListLabelsResponse>,
@@ -2851,12 +3103,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Labels$List
-        | BodyResponseCallback<Schema$ListLabelsResponse>,
+        | BodyResponseCallback<Schema$ListLabelsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLabelsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLabelsResponse>
-    ): void | GaxiosPromise<Schema$ListLabelsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLabelsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLabelsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLabelsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2890,7 +3150,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListLabelsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListLabelsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListLabelsResponse>(parameters);
       }
@@ -2983,9 +3246,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Users$Labels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Users$Labels$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Label>;
+    patch(
+      params: Params$Resource$Users$Labels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Users$Labels$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$Label>,
@@ -2999,10 +3271,17 @@ export namespace gmail_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Users$Labels$Patch
-        | BodyResponseCallback<Schema$Label>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
-      callback?: BodyResponseCallback<Schema$Label>
-    ): void | GaxiosPromise<Schema$Label> {
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3036,7 +3315,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Label>(parameters, callback);
+        createAPIRequest<Schema$Label>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
       }
@@ -3129,9 +3411,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Users$Labels$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Users$Labels$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Label>;
+    update(
+      params: Params$Resource$Users$Labels$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Users$Labels$Update,
       options: MethodOptions | BodyResponseCallback<Schema$Label>,
@@ -3145,10 +3436,17 @@ export namespace gmail_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Users$Labels$Update
-        | BodyResponseCallback<Schema$Label>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Label>,
-      callback?: BodyResponseCallback<Schema$Label>
-    ): void | GaxiosPromise<Schema$Label> {
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Label>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Label> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Labels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3182,7 +3480,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Label>(parameters, callback);
+        createAPIRequest<Schema$Label>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Label>(parameters);
       }
@@ -3357,9 +3658,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     batchDelete(
+      params: Params$Resource$Users$Messages$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
       params?: Params$Resource$Users$Messages$Batchdelete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    batchDelete(
+      params: Params$Resource$Users$Messages$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchDelete(
       params: Params$Resource$Users$Messages$Batchdelete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3373,10 +3683,15 @@ export namespace gmail_v1 {
     batchDelete(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Batchdelete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3409,7 +3724,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3477,9 +3795,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     batchModify(
+      params: Params$Resource$Users$Messages$Batchmodify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchModify(
       params?: Params$Resource$Users$Messages$Batchmodify,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    batchModify(
+      params: Params$Resource$Users$Messages$Batchmodify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     batchModify(
       params: Params$Resource$Users$Messages$Batchmodify,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3493,10 +3820,15 @@ export namespace gmail_v1 {
     batchModify(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Batchmodify
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3529,7 +3861,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3586,9 +3921,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Messages$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Messages$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Messages$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Messages$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -3602,10 +3946,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3639,7 +3988,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -3723,9 +4075,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Messages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Messages$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    get(
+      params: Params$Resource$Users$Messages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Messages$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -3739,10 +4100,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Get
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3776,7 +4144,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -3883,9 +4254,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     import(
+      params: Params$Resource$Users$Messages$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
       params?: Params$Resource$Users$Messages$Import,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    import(
+      params: Params$Resource$Users$Messages$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     import(
       params: Params$Resource$Users$Messages$Import,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -3899,10 +4279,17 @@ export namespace gmail_v1 {
     import(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Import
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Import;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3939,7 +4326,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -4040,9 +4430,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Users$Messages$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Users$Messages$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    insert(
+      params: Params$Resource$Users$Messages$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Users$Messages$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -4056,10 +4455,17 @@ export namespace gmail_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Insert
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4096,7 +4502,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -4177,9 +4586,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Messages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Messages$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListMessagesResponse>;
+    list(
+      params: Params$Resource$Users$Messages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Messages$List,
       options:
@@ -4195,12 +4613,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$List
-        | BodyResponseCallback<Schema$ListMessagesResponse>,
+        | BodyResponseCallback<Schema$ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListMessagesResponse>,
-      callback?: BodyResponseCallback<Schema$ListMessagesResponse>
-    ): void | GaxiosPromise<Schema$ListMessagesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMessagesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4234,7 +4660,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListMessagesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListMessagesResponse>(parameters);
       }
@@ -4317,9 +4746,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     modify(
+      params: Params$Resource$Users$Messages$Modify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modify(
       params?: Params$Resource$Users$Messages$Modify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    modify(
+      params: Params$Resource$Users$Messages$Modify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modify(
       params: Params$Resource$Users$Messages$Modify,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -4333,10 +4771,17 @@ export namespace gmail_v1 {
     modify(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Modify
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4369,7 +4814,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -4466,9 +4914,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     send(
+      params: Params$Resource$Users$Messages$Send,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    send(
       params?: Params$Resource$Users$Messages$Send,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    send(
+      params: Params$Resource$Users$Messages$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     send(
       params: Params$Resource$Users$Messages$Send,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -4482,10 +4939,17 @@ export namespace gmail_v1 {
     send(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Send
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4522,7 +4986,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -4595,9 +5062,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     trash(
+      params: Params$Resource$Users$Messages$Trash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    trash(
       params?: Params$Resource$Users$Messages$Trash,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    trash(
+      params: Params$Resource$Users$Messages$Trash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     trash(
       params: Params$Resource$Users$Messages$Trash,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -4611,10 +5087,17 @@ export namespace gmail_v1 {
     trash(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Trash
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4647,7 +5130,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -4720,9 +5206,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     untrash(
+      params: Params$Resource$Users$Messages$Untrash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    untrash(
       params?: Params$Resource$Users$Messages$Untrash,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Message>;
+    untrash(
+      params: Params$Resource$Users$Messages$Untrash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     untrash(
       params: Params$Resource$Users$Messages$Untrash,
       options: MethodOptions | BodyResponseCallback<Schema$Message>,
@@ -4736,10 +5231,17 @@ export namespace gmail_v1 {
     untrash(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Untrash
-        | BodyResponseCallback<Schema$Message>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>
-    ): void | GaxiosPromise<Schema$Message> {
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4772,7 +5274,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(parameters, callback);
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
       }
@@ -5132,9 +5637,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Messages$Attachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Messages$Attachments$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$MessagePartBody>;
+    get(
+      params: Params$Resource$Users$Messages$Attachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Messages$Attachments$Get,
       options: MethodOptions | BodyResponseCallback<Schema$MessagePartBody>,
@@ -5148,12 +5662,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Messages$Attachments$Get
-        | BodyResponseCallback<Schema$MessagePartBody>,
+        | BodyResponseCallback<Schema$MessagePartBody>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$MessagePartBody>,
-      callback?: BodyResponseCallback<Schema$MessagePartBody>
-    ): void | GaxiosPromise<Schema$MessagePartBody> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MessagePartBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MessagePartBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MessagePartBody> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Messages$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5187,7 +5706,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$MessagePartBody>(parameters, callback);
+        createAPIRequest<Schema$MessagePartBody>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$MessagePartBody>(parameters);
       }
@@ -5291,9 +5813,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     getAutoForwarding(
+      params: Params$Resource$Users$Settings$Getautoforwarding,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAutoForwarding(
       params?: Params$Resource$Users$Settings$Getautoforwarding,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoForwarding>;
+    getAutoForwarding(
+      params: Params$Resource$Users$Settings$Getautoforwarding,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getAutoForwarding(
       params: Params$Resource$Users$Settings$Getautoforwarding,
       options: MethodOptions | BodyResponseCallback<Schema$AutoForwarding>,
@@ -5309,12 +5840,17 @@ export namespace gmail_v1 {
     getAutoForwarding(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Getautoforwarding
-        | BodyResponseCallback<Schema$AutoForwarding>,
+        | BodyResponseCallback<Schema$AutoForwarding>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoForwarding>,
-      callback?: BodyResponseCallback<Schema$AutoForwarding>
-    ): void | GaxiosPromise<Schema$AutoForwarding> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoForwarding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoForwarding>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AutoForwarding> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5347,7 +5883,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoForwarding>(parameters, callback);
+        createAPIRequest<Schema$AutoForwarding>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoForwarding>(parameters);
       }
@@ -5414,9 +5953,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     getImap(
+      params: Params$Resource$Users$Settings$Getimap,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getImap(
       params?: Params$Resource$Users$Settings$Getimap,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImapSettings>;
+    getImap(
+      params: Params$Resource$Users$Settings$Getimap,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getImap(
       params: Params$Resource$Users$Settings$Getimap,
       options: MethodOptions | BodyResponseCallback<Schema$ImapSettings>,
@@ -5430,12 +5978,17 @@ export namespace gmail_v1 {
     getImap(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Getimap
-        | BodyResponseCallback<Schema$ImapSettings>,
+        | BodyResponseCallback<Schema$ImapSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImapSettings>,
-      callback?: BodyResponseCallback<Schema$ImapSettings>
-    ): void | GaxiosPromise<Schema$ImapSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImapSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImapSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ImapSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5469,7 +6022,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImapSettings>(parameters, callback);
+        createAPIRequest<Schema$ImapSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImapSettings>(parameters);
       }
@@ -5533,9 +6089,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     getLanguage(
+      params: Params$Resource$Users$Settings$Getlanguage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getLanguage(
       params?: Params$Resource$Users$Settings$Getlanguage,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LanguageSettings>;
+    getLanguage(
+      params: Params$Resource$Users$Settings$Getlanguage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getLanguage(
       params: Params$Resource$Users$Settings$Getlanguage,
       options: MethodOptions | BodyResponseCallback<Schema$LanguageSettings>,
@@ -5549,12 +6114,17 @@ export namespace gmail_v1 {
     getLanguage(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Getlanguage
-        | BodyResponseCallback<Schema$LanguageSettings>,
+        | BodyResponseCallback<Schema$LanguageSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LanguageSettings>,
-      callback?: BodyResponseCallback<Schema$LanguageSettings>
-    ): void | GaxiosPromise<Schema$LanguageSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LanguageSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LanguageSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LanguageSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getlanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5587,7 +6157,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LanguageSettings>(parameters, callback);
+        createAPIRequest<Schema$LanguageSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LanguageSettings>(parameters);
       }
@@ -5652,9 +6225,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     getPop(
+      params: Params$Resource$Users$Settings$Getpop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getPop(
       params?: Params$Resource$Users$Settings$Getpop,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PopSettings>;
+    getPop(
+      params: Params$Resource$Users$Settings$Getpop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getPop(
       params: Params$Resource$Users$Settings$Getpop,
       options: MethodOptions | BodyResponseCallback<Schema$PopSettings>,
@@ -5668,12 +6250,17 @@ export namespace gmail_v1 {
     getPop(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Getpop
-        | BodyResponseCallback<Schema$PopSettings>,
+        | BodyResponseCallback<Schema$PopSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PopSettings>,
-      callback?: BodyResponseCallback<Schema$PopSettings>
-    ): void | GaxiosPromise<Schema$PopSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PopSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PopSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PopSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getpop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5707,7 +6294,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PopSettings>(parameters, callback);
+        createAPIRequest<Schema$PopSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PopSettings>(parameters);
       }
@@ -5778,9 +6368,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     getVacation(
+      params: Params$Resource$Users$Settings$Getvacation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVacation(
       params?: Params$Resource$Users$Settings$Getvacation,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VacationSettings>;
+    getVacation(
+      params: Params$Resource$Users$Settings$Getvacation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     getVacation(
       params: Params$Resource$Users$Settings$Getvacation,
       options: MethodOptions | BodyResponseCallback<Schema$VacationSettings>,
@@ -5794,12 +6393,17 @@ export namespace gmail_v1 {
     getVacation(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Getvacation
-        | BodyResponseCallback<Schema$VacationSettings>,
+        | BodyResponseCallback<Schema$VacationSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VacationSettings>,
-      callback?: BodyResponseCallback<Schema$VacationSettings>
-    ): void | GaxiosPromise<Schema$VacationSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VacationSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VacationSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$VacationSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Getvacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5832,7 +6436,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VacationSettings>(parameters, callback);
+        createAPIRequest<Schema$VacationSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$VacationSettings>(parameters);
       }
@@ -5904,9 +6511,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     updateAutoForwarding(
+      params: Params$Resource$Users$Settings$Updateautoforwarding,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAutoForwarding(
       params?: Params$Resource$Users$Settings$Updateautoforwarding,
       options?: MethodOptions
     ): GaxiosPromise<Schema$AutoForwarding>;
+    updateAutoForwarding(
+      params: Params$Resource$Users$Settings$Updateautoforwarding,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateAutoForwarding(
       params: Params$Resource$Users$Settings$Updateautoforwarding,
       options: MethodOptions | BodyResponseCallback<Schema$AutoForwarding>,
@@ -5922,12 +6538,17 @@ export namespace gmail_v1 {
     updateAutoForwarding(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Updateautoforwarding
-        | BodyResponseCallback<Schema$AutoForwarding>,
+        | BodyResponseCallback<Schema$AutoForwarding>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$AutoForwarding>,
-      callback?: BodyResponseCallback<Schema$AutoForwarding>
-    ): void | GaxiosPromise<Schema$AutoForwarding> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutoForwarding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutoForwarding>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AutoForwarding> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updateautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5960,7 +6581,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$AutoForwarding>(parameters, callback);
+        createAPIRequest<Schema$AutoForwarding>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$AutoForwarding>(parameters);
       }
@@ -6034,9 +6658,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     updateImap(
+      params: Params$Resource$Users$Settings$Updateimap,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateImap(
       params?: Params$Resource$Users$Settings$Updateimap,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ImapSettings>;
+    updateImap(
+      params: Params$Resource$Users$Settings$Updateimap,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateImap(
       params: Params$Resource$Users$Settings$Updateimap,
       options: MethodOptions | BodyResponseCallback<Schema$ImapSettings>,
@@ -6050,12 +6683,17 @@ export namespace gmail_v1 {
     updateImap(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Updateimap
-        | BodyResponseCallback<Schema$ImapSettings>,
+        | BodyResponseCallback<Schema$ImapSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ImapSettings>,
-      callback?: BodyResponseCallback<Schema$ImapSettings>
-    ): void | GaxiosPromise<Schema$ImapSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ImapSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ImapSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ImapSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updateimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6089,7 +6727,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ImapSettings>(parameters, callback);
+        createAPIRequest<Schema$ImapSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ImapSettings>(parameters);
       }
@@ -6157,9 +6798,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     updateLanguage(
+      params: Params$Resource$Users$Settings$Updatelanguage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateLanguage(
       params?: Params$Resource$Users$Settings$Updatelanguage,
       options?: MethodOptions
     ): GaxiosPromise<Schema$LanguageSettings>;
+    updateLanguage(
+      params: Params$Resource$Users$Settings$Updatelanguage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateLanguage(
       params: Params$Resource$Users$Settings$Updatelanguage,
       options: MethodOptions | BodyResponseCallback<Schema$LanguageSettings>,
@@ -6175,12 +6825,17 @@ export namespace gmail_v1 {
     updateLanguage(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Updatelanguage
-        | BodyResponseCallback<Schema$LanguageSettings>,
+        | BodyResponseCallback<Schema$LanguageSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$LanguageSettings>,
-      callback?: BodyResponseCallback<Schema$LanguageSettings>
-    ): void | GaxiosPromise<Schema$LanguageSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LanguageSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LanguageSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LanguageSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatelanguage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6213,7 +6868,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LanguageSettings>(parameters, callback);
+        createAPIRequest<Schema$LanguageSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$LanguageSettings>(parameters);
       }
@@ -6283,9 +6941,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     updatePop(
+      params: Params$Resource$Users$Settings$Updatepop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updatePop(
       params?: Params$Resource$Users$Settings$Updatepop,
       options?: MethodOptions
     ): GaxiosPromise<Schema$PopSettings>;
+    updatePop(
+      params: Params$Resource$Users$Settings$Updatepop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updatePop(
       params: Params$Resource$Users$Settings$Updatepop,
       options: MethodOptions | BodyResponseCallback<Schema$PopSettings>,
@@ -6299,12 +6966,17 @@ export namespace gmail_v1 {
     updatePop(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Updatepop
-        | BodyResponseCallback<Schema$PopSettings>,
+        | BodyResponseCallback<Schema$PopSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$PopSettings>,
-      callback?: BodyResponseCallback<Schema$PopSettings>
-    ): void | GaxiosPromise<Schema$PopSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PopSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PopSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PopSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatepop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6338,7 +7010,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$PopSettings>(parameters, callback);
+        createAPIRequest<Schema$PopSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$PopSettings>(parameters);
       }
@@ -6420,9 +7095,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     updateVacation(
+      params: Params$Resource$Users$Settings$Updatevacation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateVacation(
       params?: Params$Resource$Users$Settings$Updatevacation,
       options?: MethodOptions
     ): GaxiosPromise<Schema$VacationSettings>;
+    updateVacation(
+      params: Params$Resource$Users$Settings$Updatevacation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     updateVacation(
       params: Params$Resource$Users$Settings$Updatevacation,
       options: MethodOptions | BodyResponseCallback<Schema$VacationSettings>,
@@ -6438,12 +7122,17 @@ export namespace gmail_v1 {
     updateVacation(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Updatevacation
-        | BodyResponseCallback<Schema$VacationSettings>,
+        | BodyResponseCallback<Schema$VacationSettings>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$VacationSettings>,
-      callback?: BodyResponseCallback<Schema$VacationSettings>
-    ): void | GaxiosPromise<Schema$VacationSettings> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VacationSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VacationSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$VacationSettings> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Updatevacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6476,7 +7165,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VacationSettings>(parameters, callback);
+        createAPIRequest<Schema$VacationSettings>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$VacationSettings>(parameters);
       }
@@ -6699,9 +7391,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Settings$Delegates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Settings$Delegates$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Delegate>;
+    create(
+      params: Params$Resource$Users$Settings$Delegates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Settings$Delegates$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Delegate>,
@@ -6715,10 +7416,17 @@ export namespace gmail_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Delegates$Create
-        | BodyResponseCallback<Schema$Delegate>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Delegate>,
-      callback?: BodyResponseCallback<Schema$Delegate>
-    ): void | GaxiosPromise<Schema$Delegate> {
+        | BodyResponseCallback<Schema$Delegate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Delegate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Delegate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Delegate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6751,7 +7459,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Delegate>(parameters, callback);
+        createAPIRequest<Schema$Delegate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Delegate>(parameters);
       }
@@ -6808,9 +7519,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Settings$Delegates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Settings$Delegates$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Settings$Delegates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Settings$Delegates$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -6824,10 +7544,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Delegates$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6861,7 +7586,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -6929,9 +7657,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Settings$Delegates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Settings$Delegates$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Delegate>;
+    get(
+      params: Params$Resource$Users$Settings$Delegates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Settings$Delegates$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Delegate>,
@@ -6945,10 +7682,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Delegates$Get
-        | BodyResponseCallback<Schema$Delegate>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Delegate>,
-      callback?: BodyResponseCallback<Schema$Delegate>
-    ): void | GaxiosPromise<Schema$Delegate> {
+        | BodyResponseCallback<Schema$Delegate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Delegate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Delegate>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Delegate> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6982,7 +7726,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Delegate>(parameters, callback);
+        createAPIRequest<Schema$Delegate>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Delegate>(parameters);
       }
@@ -7046,9 +7793,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Settings$Delegates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Settings$Delegates$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListDelegatesResponse>;
+    list(
+      params: Params$Resource$Users$Settings$Delegates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Settings$Delegates$List,
       options:
@@ -7064,12 +7820,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Delegates$List
-        | BodyResponseCallback<Schema$ListDelegatesResponse>,
+        | BodyResponseCallback<Schema$ListDelegatesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListDelegatesResponse>,
-      callback?: BodyResponseCallback<Schema$ListDelegatesResponse>
-    ): void | GaxiosPromise<Schema$ListDelegatesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDelegatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDelegatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDelegatesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Delegates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7102,7 +7866,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListDelegatesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListDelegatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListDelegatesResponse>(parameters);
       }
@@ -7243,9 +8010,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Settings$Filters$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Settings$Filters$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filter>;
+    create(
+      params: Params$Resource$Users$Settings$Filters$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Settings$Filters$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Filter>,
@@ -7259,10 +8035,17 @@ export namespace gmail_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Filters$Create
-        | BodyResponseCallback<Schema$Filter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
-      callback?: BodyResponseCallback<Schema$Filter>
-    ): void | GaxiosPromise<Schema$Filter> {
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7295,7 +8078,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filter>(parameters, callback);
+        createAPIRequest<Schema$Filter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
       }
@@ -7352,9 +8138,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Settings$Filters$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Settings$Filters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Settings$Filters$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Settings$Filters$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7368,10 +8163,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Filters$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7404,7 +8204,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -7473,9 +8276,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Settings$Filters$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Settings$Filters$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Filter>;
+    get(
+      params: Params$Resource$Users$Settings$Filters$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Settings$Filters$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Filter>,
@@ -7489,10 +8301,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Filters$Get
-        | BodyResponseCallback<Schema$Filter>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
-      callback?: BodyResponseCallback<Schema$Filter>
-    ): void | GaxiosPromise<Schema$Filter> {
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Filter>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Filter> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7525,7 +8344,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Filter>(parameters, callback);
+        createAPIRequest<Schema$Filter>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
       }
@@ -7589,9 +8411,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Settings$Filters$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Settings$Filters$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListFiltersResponse>;
+    list(
+      params: Params$Resource$Users$Settings$Filters$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Settings$Filters$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListFiltersResponse>,
@@ -7605,12 +8436,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Filters$List
-        | BodyResponseCallback<Schema$ListFiltersResponse>,
+        | BodyResponseCallback<Schema$ListFiltersResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListFiltersResponse>,
-      callback?: BodyResponseCallback<Schema$ListFiltersResponse>
-    ): void | GaxiosPromise<Schema$ListFiltersResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFiltersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFiltersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFiltersResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7643,7 +8482,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListFiltersResponse>(parameters, callback);
+        createAPIRequest<Schema$ListFiltersResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListFiltersResponse>(parameters);
       }
@@ -7782,9 +8624,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ForwardingAddress>;
+    create(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
       options: MethodOptions | BodyResponseCallback<Schema$ForwardingAddress>,
@@ -7798,12 +8649,20 @@ export namespace gmail_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Forwardingaddresses$Create
-        | BodyResponseCallback<Schema$ForwardingAddress>,
+        | BodyResponseCallback<Schema$ForwardingAddress>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ForwardingAddress>,
-      callback?: BodyResponseCallback<Schema$ForwardingAddress>
-    ): void | GaxiosPromise<Schema$ForwardingAddress> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ForwardingAddress>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ForwardingAddress>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ForwardingAddress>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7836,7 +8695,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
+        createAPIRequest<Schema$ForwardingAddress>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ForwardingAddress>(parameters);
       }
@@ -7893,9 +8755,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -7909,10 +8780,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Forwardingaddresses$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7946,7 +8822,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8014,9 +8893,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ForwardingAddress>;
+    get(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
       options: MethodOptions | BodyResponseCallback<Schema$ForwardingAddress>,
@@ -8030,12 +8918,20 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Forwardingaddresses$Get
-        | BodyResponseCallback<Schema$ForwardingAddress>,
+        | BodyResponseCallback<Schema$ForwardingAddress>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ForwardingAddress>,
-      callback?: BodyResponseCallback<Schema$ForwardingAddress>
-    ): void | GaxiosPromise<Schema$ForwardingAddress> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ForwardingAddress>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ForwardingAddress>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ForwardingAddress>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8069,7 +8965,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
+        createAPIRequest<Schema$ForwardingAddress>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ForwardingAddress>(parameters);
       }
@@ -8133,9 +9032,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListForwardingAddressesResponse>;
+    list(
+      params: Params$Resource$Users$Settings$Forwardingaddresses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Settings$Forwardingaddresses$List,
       options:
@@ -8153,12 +9061,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Forwardingaddresses$List
-        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
+        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
-      callback?: BodyResponseCallback<Schema$ListForwardingAddressesResponse>
-    ): void | GaxiosPromise<Schema$ListForwardingAddressesResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListForwardingAddressesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListForwardingAddressesResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Forwardingaddresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8193,7 +9109,7 @@ export namespace gmail_v1 {
       if (callback) {
         createAPIRequest<Schema$ListForwardingAddressesResponse>(
           parameters,
-          callback
+          callback as BodyResponseCallback<{} | void>
         );
       } else {
         return createAPIRequest<Schema$ListForwardingAddressesResponse>(
@@ -8353,9 +9269,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     create(
+      params: Params$Resource$Users$Settings$Sendas$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
       params?: Params$Resource$Users$Settings$Sendas$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendAs>;
+    create(
+      params: Params$Resource$Users$Settings$Sendas$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     create(
       params: Params$Resource$Users$Settings$Sendas$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
@@ -8369,10 +9294,17 @@ export namespace gmail_v1 {
     create(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Create
-        | BodyResponseCallback<Schema$SendAs>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
-      callback?: BodyResponseCallback<Schema$SendAs>
-    ): void | GaxiosPromise<Schema$SendAs> {
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8406,7 +9338,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SendAs>(parameters, callback);
+        createAPIRequest<Schema$SendAs>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
       }
@@ -8463,9 +9398,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Settings$Sendas$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Settings$Sendas$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Settings$Sendas$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Settings$Sendas$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -8479,10 +9423,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8515,7 +9464,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -8590,9 +9542,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Settings$Sendas$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Settings$Sendas$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendAs>;
+    get(
+      params: Params$Resource$Users$Settings$Sendas$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Settings$Sendas$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
@@ -8606,10 +9567,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Get
-        | BodyResponseCallback<Schema$SendAs>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
-      callback?: BodyResponseCallback<Schema$SendAs>
-    ): void | GaxiosPromise<Schema$SendAs> {
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8642,7 +9610,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SendAs>(parameters, callback);
+        createAPIRequest<Schema$SendAs>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
       }
@@ -8706,9 +9677,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Settings$Sendas$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Settings$Sendas$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSendAsResponse>;
+    list(
+      params: Params$Resource$Users$Settings$Sendas$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Settings$Sendas$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListSendAsResponse>,
@@ -8722,12 +9702,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$List
-        | BodyResponseCallback<Schema$ListSendAsResponse>,
+        | BodyResponseCallback<Schema$ListSendAsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSendAsResponse>,
-      callback?: BodyResponseCallback<Schema$ListSendAsResponse>
-    ): void | GaxiosPromise<Schema$ListSendAsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSendAsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSendAsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSendAsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8761,7 +9749,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSendAsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSendAsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSendAsResponse>(parameters);
       }
@@ -8851,9 +9842,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     patch(
+      params: Params$Resource$Users$Settings$Sendas$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
       params?: Params$Resource$Users$Settings$Sendas$Patch,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendAs>;
+    patch(
+      params: Params$Resource$Users$Settings$Sendas$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     patch(
       params: Params$Resource$Users$Settings$Sendas$Patch,
       options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
@@ -8867,10 +9867,17 @@ export namespace gmail_v1 {
     patch(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Patch
-        | BodyResponseCallback<Schema$SendAs>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
-      callback?: BodyResponseCallback<Schema$SendAs>
-    ): void | GaxiosPromise<Schema$SendAs> {
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8903,7 +9910,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SendAs>(parameters, callback);
+        createAPIRequest<Schema$SendAs>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
       }
@@ -8993,9 +10003,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     update(
+      params: Params$Resource$Users$Settings$Sendas$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
       params?: Params$Resource$Users$Settings$Sendas$Update,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SendAs>;
+    update(
+      params: Params$Resource$Users$Settings$Sendas$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     update(
       params: Params$Resource$Users$Settings$Sendas$Update,
       options: MethodOptions | BodyResponseCallback<Schema$SendAs>,
@@ -9009,10 +10028,17 @@ export namespace gmail_v1 {
     update(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Update
-        | BodyResponseCallback<Schema$SendAs>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$SendAs>,
-      callback?: BodyResponseCallback<Schema$SendAs>
-    ): void | GaxiosPromise<Schema$SendAs> {
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SendAs>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SendAs> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9045,7 +10071,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SendAs>(parameters, callback);
+        createAPIRequest<Schema$SendAs>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SendAs>(parameters);
       }
@@ -9102,9 +10131,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     verify(
+      params: Params$Resource$Users$Settings$Sendas$Verify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verify(
       params?: Params$Resource$Users$Settings$Sendas$Verify,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    verify(
+      params: Params$Resource$Users$Settings$Sendas$Verify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     verify(
       params: Params$Resource$Users$Settings$Sendas$Verify,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -9118,10 +10156,15 @@ export namespace gmail_v1 {
     verify(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Verify
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9155,7 +10198,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -9345,9 +10391,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -9361,10 +10416,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9398,7 +10458,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -9475,9 +10538,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SmimeInfo>;
+    get(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
       options: MethodOptions | BodyResponseCallback<Schema$SmimeInfo>,
@@ -9491,12 +10563,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Smimeinfo$Get
-        | BodyResponseCallback<Schema$SmimeInfo>,
+        | BodyResponseCallback<Schema$SmimeInfo>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SmimeInfo>,
-      callback?: BodyResponseCallback<Schema$SmimeInfo>
-    ): void | GaxiosPromise<Schema$SmimeInfo> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SmimeInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SmimeInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SmimeInfo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9530,7 +10607,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SmimeInfo>(parameters, callback);
+        createAPIRequest<Schema$SmimeInfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SmimeInfo>(parameters);
       }
@@ -9616,9 +10696,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     insert(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SmimeInfo>;
+    insert(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     insert(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
       options: MethodOptions | BodyResponseCallback<Schema$SmimeInfo>,
@@ -9632,12 +10721,17 @@ export namespace gmail_v1 {
     insert(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert
-        | BodyResponseCallback<Schema$SmimeInfo>,
+        | BodyResponseCallback<Schema$SmimeInfo>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SmimeInfo>,
-      callback?: BodyResponseCallback<Schema$SmimeInfo>
-    ): void | GaxiosPromise<Schema$SmimeInfo> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SmimeInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SmimeInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SmimeInfo> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9671,7 +10765,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SmimeInfo>(parameters, callback);
+        createAPIRequest<Schema$SmimeInfo>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$SmimeInfo>(parameters);
       }
@@ -9739,9 +10836,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListSmimeInfoResponse>;
+    list(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options:
@@ -9757,12 +10863,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Smimeinfo$List
-        | BodyResponseCallback<Schema$ListSmimeInfoResponse>,
+        | BodyResponseCallback<Schema$ListSmimeInfoResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSmimeInfoResponse>,
-      callback?: BodyResponseCallback<Schema$ListSmimeInfoResponse>
-    ): void | GaxiosPromise<Schema$ListSmimeInfoResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSmimeInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSmimeInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSmimeInfoResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9796,7 +10910,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSmimeInfoResponse>(parameters, callback);
+        createAPIRequest<Schema$ListSmimeInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListSmimeInfoResponse>(parameters);
       }
@@ -9859,9 +10976,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     setDefault(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setDefault(
       params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    setDefault(
+      params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     setDefault(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -9875,10 +11001,15 @@ export namespace gmail_v1 {
     setDefault(
       paramsOrCallback?:
         | Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9912,7 +11043,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -10074,9 +11208,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     delete(
+      params: Params$Resource$Users$Threads$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
       params?: Params$Resource$Users$Threads$Delete,
       options?: MethodOptions
     ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Threads$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     delete(
       params: Params$Resource$Users$Threads$Delete,
       options: MethodOptions | BodyResponseCallback<void>,
@@ -10090,10 +11233,15 @@ export namespace gmail_v1 {
     delete(
       paramsOrCallback?:
         | Params$Resource$Users$Threads$Delete
-        | BodyResponseCallback<void>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
-      callback?: BodyResponseCallback<void>
-    ): void | GaxiosPromise<void> {
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10127,7 +11275,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<void>(parameters);
       }
@@ -10206,9 +11357,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(
+      params: Params$Resource$Users$Threads$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
       params?: Params$Resource$Users$Threads$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Thread>;
+    get(
+      params: Params$Resource$Users$Threads$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     get(
       params: Params$Resource$Users$Threads$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Thread>,
@@ -10222,10 +11382,17 @@ export namespace gmail_v1 {
     get(
       paramsOrCallback?:
         | Params$Resource$Users$Threads$Get
-        | BodyResponseCallback<Schema$Thread>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
-      callback?: BodyResponseCallback<Schema$Thread>
-    ): void | GaxiosPromise<Schema$Thread> {
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10259,7 +11426,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Thread>(parameters, callback);
+        createAPIRequest<Schema$Thread>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);
       }
@@ -10340,9 +11510,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(
+      params: Params$Resource$Users$Threads$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
       params?: Params$Resource$Users$Threads$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListThreadsResponse>;
+    list(
+      params: Params$Resource$Users$Threads$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     list(
       params: Params$Resource$Users$Threads$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListThreadsResponse>,
@@ -10356,12 +11535,20 @@ export namespace gmail_v1 {
     list(
       paramsOrCallback?:
         | Params$Resource$Users$Threads$List
-        | BodyResponseCallback<Schema$ListThreadsResponse>,
+        | BodyResponseCallback<Schema$ListThreadsResponse>
+        | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListThreadsResponse>,
-      callback?: BodyResponseCallback<Schema$ListThreadsResponse>
-    ): void | GaxiosPromise<Schema$ListThreadsResponse> {
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListThreadsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListThreadsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListThreadsResponse>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10395,7 +11582,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListThreadsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListThreadsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$ListThreadsResponse>(parameters);
       }
@@ -10473,9 +11663,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     modify(
+      params: Params$Resource$Users$Threads$Modify,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modify(
       params?: Params$Resource$Users$Threads$Modify,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Thread>;
+    modify(
+      params: Params$Resource$Users$Threads$Modify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     modify(
       params: Params$Resource$Users$Threads$Modify,
       options: MethodOptions | BodyResponseCallback<Schema$Thread>,
@@ -10489,10 +11688,17 @@ export namespace gmail_v1 {
     modify(
       paramsOrCallback?:
         | Params$Resource$Users$Threads$Modify
-        | BodyResponseCallback<Schema$Thread>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
-      callback?: BodyResponseCallback<Schema$Thread>
-    ): void | GaxiosPromise<Schema$Thread> {
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10525,7 +11731,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Thread>(parameters, callback);
+        createAPIRequest<Schema$Thread>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);
       }
@@ -10593,9 +11802,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     trash(
+      params: Params$Resource$Users$Threads$Trash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    trash(
       params?: Params$Resource$Users$Threads$Trash,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Thread>;
+    trash(
+      params: Params$Resource$Users$Threads$Trash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     trash(
       params: Params$Resource$Users$Threads$Trash,
       options: MethodOptions | BodyResponseCallback<Schema$Thread>,
@@ -10609,10 +11827,17 @@ export namespace gmail_v1 {
     trash(
       paramsOrCallback?:
         | Params$Resource$Users$Threads$Trash
-        | BodyResponseCallback<Schema$Thread>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
-      callback?: BodyResponseCallback<Schema$Thread>
-    ): void | GaxiosPromise<Schema$Thread> {
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10645,7 +11870,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Thread>(parameters, callback);
+        createAPIRequest<Schema$Thread>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);
       }
@@ -10713,9 +11941,18 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     untrash(
+      params: Params$Resource$Users$Threads$Untrash,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    untrash(
       params?: Params$Resource$Users$Threads$Untrash,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Thread>;
+    untrash(
+      params: Params$Resource$Users$Threads$Untrash,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
     untrash(
       params: Params$Resource$Users$Threads$Untrash,
       options: MethodOptions | BodyResponseCallback<Schema$Thread>,
@@ -10729,10 +11966,17 @@ export namespace gmail_v1 {
     untrash(
       paramsOrCallback?:
         | Params$Resource$Users$Threads$Untrash
-        | BodyResponseCallback<Schema$Thread>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Thread>,
-      callback?: BodyResponseCallback<Schema$Thread>
-    ): void | GaxiosPromise<Schema$Thread> {
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Thread>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Thread> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Users$Threads$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10765,7 +12009,10 @@ export namespace gmail_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Thread>(parameters, callback);
+        createAPIRequest<Schema$Thread>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
       } else {
         return createAPIRequest<Schema$Thread>(parameters);
       }
