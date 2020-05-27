@@ -27,20 +27,17 @@ describe('Query params', () => {
   let remoteGmail: APIEndpoint;
 
   before(async () => {
-    nock.cleanAll();
+    nock.disableNetConnect();
     const google = new GoogleApis();
-    nock.enableNetConnect();
     [remoteCompute, remoteDrive, remoteGmail] = await Promise.all([
       Utils.loadApi(google, 'compute', 'v1'),
       Utils.loadApi(google, 'drive', 'v2'),
       Utils.loadApi(google, 'gmail', 'v1'),
     ]);
-    nock.disableNetConnect();
   });
 
   beforeEach(() => {
     nock.cleanAll();
-    nock.disableNetConnect();
     const google = new GoogleApis();
     localCompute = google.compute('v1');
     localDrive = google.drive('v2');
@@ -252,6 +249,5 @@ describe('Query params', () => {
 
   after(() => {
     nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

@@ -26,7 +26,6 @@ describe('Path params', () => {
   before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
-    nock.enableNetConnect();
     remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
     nock.disableNetConnect();
   });
@@ -234,6 +233,5 @@ describe('Path params', () => {
 
   after(() => {
     nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

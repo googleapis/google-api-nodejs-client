@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it, before, beforeEach, after} from 'mocha';
+import {describe, it, before, beforeEach, afterEach} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {drive_v2, GoogleApis} from '../src';
@@ -24,18 +24,18 @@ describe('drive:v2', () => {
   let localDrive: drive_v2.Drive, remoteDrive: APIEndpoint;
 
   before(async () => {
-    nock.cleanAll();
     const google = new GoogleApis();
-    nock.enableNetConnect();
     remoteDrive = await Utils.loadApi(google, 'drive', 'v2');
-    nock.disableNetConnect();
   });
 
   beforeEach(() => {
-    nock.cleanAll();
     nock.disableNetConnect();
     const google = new GoogleApis();
     localDrive = google.drive('v2');
+  });
+
+  afterEach(() => {
+    nock.cleanAll();
   });
 
   it('should exist', done => {
@@ -121,10 +121,5 @@ describe('drive:v2', () => {
       await localDrive.files.list({q: 'hello'});
       await remoteDrive.files.list({q: 'hello'});
     });
-  });
-
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
   });
 });

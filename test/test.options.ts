@@ -12,23 +12,25 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it, beforeEach, after} from 'mocha';
+import {describe, it, afterEach, before} from 'mocha';
 import * as nock from 'nock';
 import {URL} from 'url';
 import {GoogleApis} from '../src';
 import {Utils} from './utils';
 
 function createNock(path?: string) {
-  const p = path ? path : '/drive/v2/files/woot';
-  nock(Utils.baseUrl).get(p).reply(200);
+  const p = path || '/drive/v2/files/woot';
+  return nock(Utils.baseUrl).get(p).reply(200);
 }
 
 describe('Options', () => {
-  let authClient;
-
-  beforeEach(() => {
-    nock.cleanAll();
+  before(() => {
     nock.disableNetConnect();
+  });
+
+  afterEach(() => {
+    nock.disableNetConnect();
+    nock.cleanAll();
   });
 
   it('should be a function', () => {
@@ -72,12 +74,7 @@ describe('Options', () => {
       -1,
       'Default param not found in query'
     );
-    // I can't explain why, but the `nock.enableNetConnect()` call below simply
-    // won't work unless I call `nock.cleanAll()` first.
-    nock.cleanAll();
-    nock.enableNetConnect();
     const d = await Utils.loadApi(google, 'drive', 'v2');
-    nock.disableNetConnect();
     nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res3 = await (d as any).files.get({fileId: '123'});
@@ -99,6 +96,21 @@ describe('Options', () => {
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.strictEqual(Utils.getQs(res), 'key=apikey3');
+  });
+
+  it('should use the same per-API setting twice', async () => {
+    const google = new GoogleApis();
+    google.options({auth: 'apikey1'});
+    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    const scope = nock(Utils.baseUrl)
+      .get('/drive/v2/files/woot?key=apikey3')
+      .twice()
+      .reply(200);
+    for (let i = 0; i < 2; i++) {
+      const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
+      assert.strictEqual(Utils.getQs(res), 'key=apikey3');
+    }
+    scope.done();
   });
 
   it('should apply google options to request object like timeout', async () => {
@@ -150,7 +162,7 @@ describe('Options', () => {
   it('should apply endpoint options like timeout to oauth transporter', async () => {
     const google = new GoogleApis();
     const OAuth2 = google.auth.OAuth2;
-    authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
+    const authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
     authClient.credentials = {access_token: 'abc'};
     const drive = google.drive({
       version: 'v2',
@@ -192,10 +204,5 @@ describe('Options', () => {
     const res = await drive.files.list({}, {validateStatus: () => true});
     assert.strictEqual(res.status, 500);
     scope.done();
-  });
-
-  after(() => {
-    nock.cleanAll();
-    nock.enableNetConnect();
   });
 });
