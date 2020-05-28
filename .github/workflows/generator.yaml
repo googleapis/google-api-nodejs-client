@@ -2,6 +2,8 @@ name: generator
 on:
   schedule:
     - cron:  '0 4 * * *'
+  repository_dispatch:
+    types: [generate]
 jobs:
   generate:
     runs-on: ubuntu-latest
