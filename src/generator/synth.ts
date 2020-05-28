@@ -103,7 +103,7 @@ export async function synth(options: SynthOptions = {}) {
     '-m',
     'feat: regenerate index files',
     '--author',
-    '"Yoshi Automation <yoshi-automation@google.com>"',
+    'Yoshi Automation <yoshi-automation@google.com>',
   ]);
   const prefix = getPrefix(totalSemverity);
   await execa('git', ['push', 'origin', branch, '--force']);
