@@ -53,7 +53,6 @@ export async function synth(options: SynthOptions = {}) {
   const statusResult = await execa('git', ['status', '--porcelain']);
   const status = statusResult.stdout;
   const statusFiles = status.split('\n').map(x => x.slice(3));
-  console.log(statusFiles);
   const apiDir = path.resolve('./src/apis');
   const files = fs.readdirSync(apiDir);
   const token = process.env.GITHUB_TOKEN;
@@ -87,38 +86,46 @@ export async function synth(options: SynthOptions = {}) {
     const postfix = semverity === Semverity.MAJOR ? '!' : '';
     console.log(`Submitting change for ${dir}...`);
     const title = `"${prefix}(${dir})${postfix}: update the API"`;
-
-    console.log(`git add ${path.join('src/apis', dir)}`);
     await execa('git', ['add', path.join('src/apis', dir)]);
     if (statusFiles.filter(x => x.startsWith(`discovery/${dir}-`)).length > 0) {
-      console.log(`git add discovery/${dir}-*`);
       await execa('git', ['add', `discovery/${dir}-*`]);
     }
     const commitParams = ['commit', '-m', title];
     if (changelog) {
       commitParams.push('-m', changelog);
     }
-    console.log(`git ${commitParams.join(' ')}`);
     await execa('git', commitParams);
   }
   await execa('git', ['add', '-A']);
   await execa('git', ['commit', '-m', 'feat: regenerate index files']);
   const prefix = getPrefix(totalSemverity);
   await execa('git', ['push', 'origin', branch, '--force']);
-  await gaxios.request({
-    method: 'POST',
-    headers: {
-      Authorization: `token ${token}`,
-    },
-    url:
-      'https://api.github.com/repos/googleapis/google-api-nodejs-client/pulls',
-    data: {
-      title: `${prefix}: run the generator`,
-      head: branch,
-      base: 'master',
-      body: changelogs.join('\n\n'),
-    },
-  });
+  try {
+    await gaxios.request({
+      method: 'POST',
+      headers: {
+        Authorization: `token ${token}`,
+      },
+      url:
+        'https://api.github.com/repos/googleapis/google-api-nodejs-client/pulls',
+      data: {
+        title: `${prefix}: run the generator`,
+        head: branch,
+        base: 'master',
+        body: changelogs.join('\n\n').slice(0, 65000),
+      },
+    });
+  } catch (e) {
+    if (e.response?.data) {
+      console.error(e.response.data);
+      if (e.response?.data?.errors) {
+        for (const err of e.response.data.errors) {
+          console.error(err);
+        }
+      }
+    }
+    throw e;
+  }
   await execa('git', ['checkout', 'master']);
 }
 
