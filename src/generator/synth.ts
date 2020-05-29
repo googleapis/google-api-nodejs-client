@@ -60,6 +60,11 @@ export async function synth(options: SynthOptions = {}) {
   if (!token) {
     throw new Error('please include a GITHUB_TOKEN');
   }
+  // only set these while running in the GitHub Actions environment
+  if (process.env.GITHUB_ACTIONS) {
+    await execa('git', ['config', 'user.email', 'yoshi-automation@google.com']);
+    await execa('git', ['config', 'user.name', 'Yoshi Automation']);
+  }
   const dirs = files.filter(f => {
     return (
       fs.statSync(path.join(apiDir, f)).isDirectory() &&
@@ -68,7 +73,6 @@ export async function synth(options: SynthOptions = {}) {
   });
   console.log(`Changes found in ${dirs.length} APIs`);
   const branch = 'autodisco';
-  const author = '"Yoshi Automation <yoshi-automation@google.com>"';
   const changelogs = new Array<string>();
   let totalSemverity = 0;
   await execa('git', ['checkout', '-B', branch]);
@@ -90,7 +94,7 @@ export async function synth(options: SynthOptions = {}) {
       console.log(`git add discovery/${dir}-*`);
       await execa('git', ['add', `discovery/${dir}-*`]);
     }
-    const commitParams = ['commit', '-m', title, '--author', author];
+    const commitParams = ['commit', '-m', title];
     if (changelog) {
       commitParams.push('-m', changelog);
     }
@@ -98,13 +102,7 @@ export async function synth(options: SynthOptions = {}) {
     await execa('git', commitParams);
   }
   await execa('git', ['add', '-A']);
-  await execa('git', [
-    'commit',
-    '-m',
-    'feat: regenerate index files',
-    '--author',
-    'Yoshi Automation <yoshi-automation@google.com>',
-  ]);
+  await execa('git', ['commit', '-m', 'feat: regenerate index files']);
   const prefix = getPrefix(totalSemverity);
   await execa('git', ['push', 'origin', branch, '--force']);
   await gaxios.request({
