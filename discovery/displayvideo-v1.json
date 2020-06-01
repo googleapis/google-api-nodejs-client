@@ -110,6 +110,82 @@
   "resources": {
     "advertisers": {
       "methods": {
+        "bulkEditAdvertiserAssignedTargetingOptions": {
+          "description": "Bulk edits targeting options under a single advertiser.\nThe operation will delete the assigned targeting options provided in\nBulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and\nthen create the assigned targeting options provided in\nBulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .",
+          "flatPath": "v1/advertisers/{advertisersId}:bulkEditAdvertiserAssignedTargetingOptions",
+          "httpMethod": "POST",
+          "id": "displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions",
+          "parameterOrder": [
+            "advertiserId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "Required. The ID of the advertiser.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/advertisers/{+advertiserId}:bulkEditAdvertiserAssignedTargetingOptions",
+          "request": {
+            "$ref": "BulkEditAdvertiserAssignedTargetingOptionsRequest"
+          },
+          "response": {
+            "$ref": "BulkEditAdvertiserAssignedTargetingOptionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "bulkListAdvertiserAssignedTargetingOptions": {
+          "description": "Lists assigned targeting options of an advertiser across targeting types.",
+          "flatPath": "v1/advertisers/{advertisersId}:bulkListAdvertiserAssignedTargetingOptions",
+          "httpMethod": "GET",
+          "id": "displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions",
+          "parameterOrder": [
+            "advertiserId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "Required. The ID of the advertiser the line item belongs to.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "filter": {
+              "description": "Allows filtering by assigned targeting option properties.\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restrictions can be combined by the logical operator `OR`..\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)`.\n* Supported fields:\n    - `targetingType`\n\nExamples:\n\n* targetingType with value TARGETING_TYPE_CHANNEL\n`targetingType=\"TARGETING_TYPE_CHANNEL\"`\n\nThe length of this field should be no more than 500 characters.",
+              "location": "query",
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "Field by which to sort the list.\nAcceptable values are:\n\n* `targetingType` (default)\n\nThe default sorting order is ascending. To specify descending order for\na field, a suffix \"desc\" should be added to the field name. Example:\n`targetingType desc`.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Requested page size.\nThe size must be an integer between `1` and `5000`. If unspecified,\nthe default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid\nvalue is specified.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token that lets the client fetch the next page of results.\nTypically, this is the value of\nnext_page_token\nreturned from the previous call to\n`BulkListAdvertiserAssignedTargetingOptions` method.\nIf not specified, the first page of results will be returned.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/advertisers/{+advertiserId}:bulkListAdvertiserAssignedTargetingOptions",
+          "response": {
+            "$ref": "BulkListAdvertiserAssignedTargetingOptionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
         "create": {
           "description": "Creates a new advertiser.\nReturns the newly created advertiser if successful.\nThis method can take up to 180 seconds to complete.",
           "flatPath": "v1/advertisers",
@@ -1343,7 +1419,6 @@
                             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE"
                           ],
@@ -1438,7 +1513,6 @@
                             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE"
                           ],
@@ -1530,7 +1604,6 @@
                             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE"
                           ],
@@ -1635,7 +1708,6 @@
                             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                            "TARGETING_TYPE_PROXIMITY_LOCATION",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE"
                           ],
@@ -1818,6 +1890,350 @@
               "scopes": [
                 "https://www.googleapis.com/auth/display-video"
               ]
+            }
+          }
+        },
+        "targetingTypes": {
+          "resources": {
+            "assignedTargetingOptions": {
+              "methods": {
+                "create": {
+                  "description": "Assigns a targeting option to an advertiser.\nReturns the assigned targeting option if successful.",
+                  "flatPath": "v1/advertisers/{advertisersId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "targetingType"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the advertiser.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "targetingType": {
+                      "description": "Required. Identifies the type of this assigned targeting option.",
+                      "enum": [
+                        "TARGETING_TYPE_UNSPECIFIED",
+                        "TARGETING_TYPE_CHANNEL",
+                        "TARGETING_TYPE_APP_CATEGORY",
+                        "TARGETING_TYPE_APP",
+                        "TARGETING_TYPE_URL",
+                        "TARGETING_TYPE_DAY_AND_TIME",
+                        "TARGETING_TYPE_AGE_RANGE",
+                        "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                        "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                        "TARGETING_TYPE_GENDER",
+                        "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                        "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                        "TARGETING_TYPE_PARENTAL_STATUS",
+                        "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                        "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                        "TARGETING_TYPE_DEVICE_TYPE",
+                        "TARGETING_TYPE_AUDIENCE_GROUP",
+                        "TARGETING_TYPE_BROWSER",
+                        "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                        "TARGETING_TYPE_ON_SCREEN_POSITION",
+                        "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                        "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                        "TARGETING_TYPE_ENVIRONMENT",
+                        "TARGETING_TYPE_CARRIER_AND_ISP",
+                        "TARGETING_TYPE_OPERATING_SYSTEM",
+                        "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                        "TARGETING_TYPE_KEYWORD",
+                        "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                        "TARGETING_TYPE_VIEWABILITY",
+                        "TARGETING_TYPE_CATEGORY",
+                        "TARGETING_TYPE_INVENTORY_SOURCE",
+                        "TARGETING_TYPE_LANGUAGE",
+                        "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                        "TARGETING_TYPE_GEO_REGION",
+                        "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                        "TARGETING_TYPE_EXCHANGE",
+                        "TARGETING_TYPE_SUB_EXCHANGE"
+                      ],
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions",
+                  "request": {
+                    "$ref": "AssignedTargetingOption"
+                  },
+                  "response": {
+                    "$ref": "AssignedTargetingOption"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an assigned targeting option from an advertiser.",
+                  "flatPath": "v1/advertisers/{advertisersId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions/{assignedTargetingOptionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "targetingType",
+                    "assignedTargetingOptionId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the advertiser.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "assignedTargetingOptionId": {
+                      "description": "Required. The ID of the assigned targeting option to delete.",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "targetingType": {
+                      "description": "Required. Identifies the type of this assigned targeting option.",
+                      "enum": [
+                        "TARGETING_TYPE_UNSPECIFIED",
+                        "TARGETING_TYPE_CHANNEL",
+                        "TARGETING_TYPE_APP_CATEGORY",
+                        "TARGETING_TYPE_APP",
+                        "TARGETING_TYPE_URL",
+                        "TARGETING_TYPE_DAY_AND_TIME",
+                        "TARGETING_TYPE_AGE_RANGE",
+                        "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                        "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                        "TARGETING_TYPE_GENDER",
+                        "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                        "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                        "TARGETING_TYPE_PARENTAL_STATUS",
+                        "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                        "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                        "TARGETING_TYPE_DEVICE_TYPE",
+                        "TARGETING_TYPE_AUDIENCE_GROUP",
+                        "TARGETING_TYPE_BROWSER",
+                        "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                        "TARGETING_TYPE_ON_SCREEN_POSITION",
+                        "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                        "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                        "TARGETING_TYPE_ENVIRONMENT",
+                        "TARGETING_TYPE_CARRIER_AND_ISP",
+                        "TARGETING_TYPE_OPERATING_SYSTEM",
+                        "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                        "TARGETING_TYPE_KEYWORD",
+                        "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                        "TARGETING_TYPE_VIEWABILITY",
+                        "TARGETING_TYPE_CATEGORY",
+                        "TARGETING_TYPE_INVENTORY_SOURCE",
+                        "TARGETING_TYPE_LANGUAGE",
+                        "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                        "TARGETING_TYPE_GEO_REGION",
+                        "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                        "TARGETING_TYPE_EXCHANGE",
+                        "TARGETING_TYPE_SUB_EXCHANGE"
+                      ],
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a single targeting option assigned to an advertiser.",
+                  "flatPath": "v1/advertisers/{advertisersId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions/{assignedTargetingOptionsId}",
+                  "httpMethod": "GET",
+                  "id": "displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "targetingType",
+                    "assignedTargetingOptionId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the advertiser.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "assignedTargetingOptionId": {
+                      "description": "Required. An identifier unique to the targeting type in this advertiser that\nidentifies the assigned targeting option being requested.",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "targetingType": {
+                      "description": "Required. Identifies the type of this assigned targeting option.",
+                      "enum": [
+                        "TARGETING_TYPE_UNSPECIFIED",
+                        "TARGETING_TYPE_CHANNEL",
+                        "TARGETING_TYPE_APP_CATEGORY",
+                        "TARGETING_TYPE_APP",
+                        "TARGETING_TYPE_URL",
+                        "TARGETING_TYPE_DAY_AND_TIME",
+                        "TARGETING_TYPE_AGE_RANGE",
+                        "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                        "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                        "TARGETING_TYPE_GENDER",
+                        "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                        "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                        "TARGETING_TYPE_PARENTAL_STATUS",
+                        "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                        "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                        "TARGETING_TYPE_DEVICE_TYPE",
+                        "TARGETING_TYPE_AUDIENCE_GROUP",
+                        "TARGETING_TYPE_BROWSER",
+                        "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                        "TARGETING_TYPE_ON_SCREEN_POSITION",
+                        "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                        "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                        "TARGETING_TYPE_ENVIRONMENT",
+                        "TARGETING_TYPE_CARRIER_AND_ISP",
+                        "TARGETING_TYPE_OPERATING_SYSTEM",
+                        "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                        "TARGETING_TYPE_KEYWORD",
+                        "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                        "TARGETING_TYPE_VIEWABILITY",
+                        "TARGETING_TYPE_CATEGORY",
+                        "TARGETING_TYPE_INVENTORY_SOURCE",
+                        "TARGETING_TYPE_LANGUAGE",
+                        "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                        "TARGETING_TYPE_GEO_REGION",
+                        "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                        "TARGETING_TYPE_EXCHANGE",
+                        "TARGETING_TYPE_SUB_EXCHANGE"
+                      ],
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}",
+                  "response": {
+                    "$ref": "AssignedTargetingOption"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the targeting options assigned to an advertiser.",
+                  "flatPath": "v1/advertisers/{advertisersId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions",
+                  "httpMethod": "GET",
+                  "id": "displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "targetingType"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the advertiser.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Allows filtering by assigned targeting option properties.\n\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restrictions can be combined by the logical operator `OR`.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)`.\n* Supported fields:\n    - `assignedTargetingOptionId`\n\nExamples:\n\n* AssignedTargetingOption with ID 123456\n`assignedTargetingOptionId=\"123456\"`\n\nThe length of this field should be no more than 500 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Field by which to sort the list.\nAcceptable values are:\n\n* `assignedTargetingOptionId` (default)\n\nThe default sorting order is ascending. To specify descending order for\na field, a suffix \"desc\" should be added to the field name. Example:\n`assignedTargetingOptionId desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Must be between `1` and `100`. If unspecified will\ndefault to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value\nis specified.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.\nTypically, this is the value of\nnext_page_token\nreturned from the previous call to `ListAdvertiserAssignedTargetingOptions`\nmethod. If not specified, the first page of results will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "targetingType": {
+                      "description": "Required. Identifies the type of assigned targeting options to list.",
+                      "enum": [
+                        "TARGETING_TYPE_UNSPECIFIED",
+                        "TARGETING_TYPE_CHANNEL",
+                        "TARGETING_TYPE_APP_CATEGORY",
+                        "TARGETING_TYPE_APP",
+                        "TARGETING_TYPE_URL",
+                        "TARGETING_TYPE_DAY_AND_TIME",
+                        "TARGETING_TYPE_AGE_RANGE",
+                        "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                        "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                        "TARGETING_TYPE_GENDER",
+                        "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                        "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                        "TARGETING_TYPE_PARENTAL_STATUS",
+                        "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                        "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                        "TARGETING_TYPE_DEVICE_TYPE",
+                        "TARGETING_TYPE_AUDIENCE_GROUP",
+                        "TARGETING_TYPE_BROWSER",
+                        "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                        "TARGETING_TYPE_ON_SCREEN_POSITION",
+                        "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                        "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                        "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                        "TARGETING_TYPE_ENVIRONMENT",
+                        "TARGETING_TYPE_CARRIER_AND_ISP",
+                        "TARGETING_TYPE_OPERATING_SYSTEM",
+                        "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                        "TARGETING_TYPE_KEYWORD",
+                        "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                        "TARGETING_TYPE_VIEWABILITY",
+                        "TARGETING_TYPE_CATEGORY",
+                        "TARGETING_TYPE_INVENTORY_SOURCE",
+                        "TARGETING_TYPE_LANGUAGE",
+                        "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                        "TARGETING_TYPE_GEO_REGION",
+                        "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                        "TARGETING_TYPE_EXCHANGE",
+                        "TARGETING_TYPE_SUB_EXCHANGE"
+                      ],
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions",
+                  "response": {
+                    "$ref": "ListAdvertiserAssignedTargetingOptionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                }
+              }
             }
           }
         }
@@ -2680,7 +3096,6 @@
                     "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
                     "TARGETING_TYPE_GEO_REGION",
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                    "TARGETING_TYPE_PROXIMITY_LOCATION",
                     "TARGETING_TYPE_EXCHANGE",
                     "TARGETING_TYPE_SUB_EXCHANGE"
                   ],
@@ -2773,7 +3188,6 @@
                     "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
                     "TARGETING_TYPE_GEO_REGION",
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-                    "TARGETING_TYPE_PROXIMITY_LOCATION",
                     "TARGETING_TYPE_EXCHANGE",
                     "TARGETING_TYPE_SUB_EXCHANGE"
                   ],
@@ -2796,7 +3210,7 @@
       }
     }
   },
-  "revision": "20200519",
+  "revision": "20200528",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -3012,6 +3426,10 @@
           "format": "int64",
           "type": "string"
         },
+        "servingConfig": {
+          "$ref": "AdvertiserTargetingConfig",
+          "description": "Targeting settings related to ad serving of the advertiser."
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the advertiser was last updated. Assigned by the system.",
           "format": "google-datetime",
@@ -3100,6 +3518,17 @@
         "sdfConfig": {
           "$ref": "SdfConfig",
           "description": "The SDF configuration for the advertiser.\n\n* Required when\noverridePartnerSdfConfig\nis `true`.\n* Output only when\noverridePartnerSdfConfig\nis `false`."
+        }
+      },
+      "type": "object"
+    },
+    "AdvertiserTargetingConfig": {
+      "description": "Targeting settings related to ad serving of an advertiser.",
+      "id": "AdvertiserTargetingConfig",
+      "properties": {
+        "exemptTvFromViewabilityTargeting": {
+          "description": "Whether or not connected TV devices are exempt from viewability targeting\nfor all video line items under the advertiser.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3483,7 +3912,6 @@
             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-            "TARGETING_TYPE_PROXIMITY_LOCATION",
             "TARGETING_TYPE_EXCHANGE",
             "TARGETING_TYPE_SUB_EXCHANGE"
           ],
@@ -3524,7 +3952,6 @@
             "Target ads to ads.txt authorized sellers.",
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
-            "Target ads to business chains, individual points of interests (POIs),\nstreet addresses, and latitude/longitude coordinates.",
             "Purchase impressions from specific exchanges.",
             "Purchase impressions from specific sub-exchanges."
           ],
@@ -3699,6 +4126,40 @@
       },
       "type": "object"
     },
+    "BulkEditAdvertiserAssignedTargetingOptionsRequest": {
+      "description": "Request message for\nBulkEditAdvertiserAssignedTargetingOptions.",
+      "id": "BulkEditAdvertiserAssignedTargetingOptionsRequest",
+      "properties": {
+        "createRequests": {
+          "description": "The assigned targeting options to create in batch, specified as a list of\n`CreateAssignedTargetingOptionsRequest`.",
+          "items": {
+            "$ref": "CreateAssignedTargetingOptionsRequest"
+          },
+          "type": "array"
+        },
+        "deleteRequests": {
+          "description": "The assigned targeting options to delete in batch, specified as a list of\n`DeleteAssignedTargetingOptionsRequest`.",
+          "items": {
+            "$ref": "DeleteAssignedTargetingOptionsRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditAdvertiserAssignedTargetingOptionsResponse": {
+      "id": "BulkEditAdvertiserAssignedTargetingOptionsResponse",
+      "properties": {
+        "createdAssignedTargetingOptions": {
+          "description": "The list of assigned targeting options that have been successfully created.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedTargetingOption"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BulkEditLineItemAssignedTargetingOptionsRequest": {
       "description": "Request message for\nBulkEditLineItemAssignedTargetingOptions.",
       "id": "BulkEditLineItemAssignedTargetingOptionsRequest",
@@ -3729,6 +4190,23 @@
             "$ref": "AssignedTargetingOption"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkListAdvertiserAssignedTargetingOptionsResponse": {
+      "id": "BulkListAdvertiserAssignedTargetingOptionsResponse",
+      "properties": {
+        "assignedTargetingOptions": {
+          "description": "The list of assigned targeting options.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedTargetingOption"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying the next page of results. This value should be\nspecified as the\npageToken\nin a subsequent BulkListAdvertiserAssignedTargetingOptionsRequest to\nfetch the next page of results. This token will be absent if there are no\nmore\nassigned_targeting_options\nto return.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4296,7 +4774,6 @@
             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-            "TARGETING_TYPE_PROXIMITY_LOCATION",
             "TARGETING_TYPE_EXCHANGE",
             "TARGETING_TYPE_SUB_EXCHANGE"
           ],
@@ -4337,7 +4814,6 @@
             "Target ads to ads.txt authorized sellers.",
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
-            "Target ads to business chains, individual points of interests (POIs),\nstreet addresses, and latitude/longitude coordinates.",
             "Purchase impressions from specific exchanges.",
             "Purchase impressions from specific sub-exchanges."
           ],
@@ -4625,6 +5101,14 @@
         "jsTrackerUrl": {
           "description": "JavaScript measurement URL from supported third-party verification\nproviders (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not\nsupported.\n\nThis field is only supported in following\ncreative_type:\n\n* `CREATIVE_TYPE_NATIVE`\n* `CREATIVE_TYPE_NATIVE_SITE_SQUARE`\n* `CREATIVE_TYPE_NATIVE_APP_INSTALL`\n* `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE`\n* `CREATIVE_TYPE_NATIVE_VIDEO`",
           "type": "string"
+        },
+        "lineItemIds": {
+          "description": "Output only. The IDs of the line items this creative associated with.\n\nTo associate a creative to a line item, use\nLineItem.creative_ids instead.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
         },
         "mediaDuration": {
           "description": "Output only. Media duration of the creative.\nApplicable when creative_type\nis one of:\n\n* `CREATIVE_TYPE_VIDEO`\n* `CREATIVE_TYPE_AUDIO`\n* `CREATIVE_TYPE_NATIVE_VIDEO`\n* `CREATIVE_TYPE_PUBLISHER_HOSTED`",
@@ -4964,7 +5448,6 @@
             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-            "TARGETING_TYPE_PROXIMITY_LOCATION",
             "TARGETING_TYPE_EXCHANGE",
             "TARGETING_TYPE_SUB_EXCHANGE"
           ],
@@ -5005,7 +5488,6 @@
             "Target ads to ads.txt authorized sellers.",
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
-            "Target ads to business chains, individual points of interests (POIs),\nstreet addresses, and latitude/longitude coordinates.",
             "Purchase impressions from specific exchanges.",
             "Purchase impressions from specific sub-exchanges."
           ],
@@ -7512,6 +7994,24 @@
       },
       "type": "object"
     },
+    "ListAdvertiserAssignedTargetingOptionsResponse": {
+      "description": "Response message for\nListAdvertiserAssignedTargetingOptions.",
+      "id": "ListAdvertiserAssignedTargetingOptionsResponse",
+      "properties": {
+        "assignedTargetingOptions": {
+          "description": "The list of assigned targeting options.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedTargetingOption"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying the next page of results. This value should be\nspecified as the\npageToken in a\nsubsequent ListAdvertiserAssignedTargetingOptionsRequest to fetch the\nnext page of results. This token will be absent if there are no more\nassigned_targeting_options\nto return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAdvertisersResponse": {
       "id": "ListAdvertisersResponse",
       "properties": {
@@ -9045,7 +9545,6 @@
             "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
-            "TARGETING_TYPE_PROXIMITY_LOCATION",
             "TARGETING_TYPE_EXCHANGE",
             "TARGETING_TYPE_SUB_EXCHANGE"
           ],
@@ -9086,7 +9585,6 @@
             "Target ads to ads.txt authorized sellers.",
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
-            "Target ads to business chains, individual points of interests (POIs),\nstreet addresses, and latitude/longitude coordinates.",
             "Purchase impressions from specific exchanges.",
             "Purchase impressions from specific sub-exchanges."
           ],
