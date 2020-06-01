@@ -110,6 +110,8 @@ export namespace youtube_v3 {
     sponsors: Resource$Sponsors;
     subscriptions: Resource$Subscriptions;
     superChatEvents: Resource$Superchatevents;
+    thirdPartyLink: Resource$Thirdpartylink;
+    thirdPartyLinks: Resource$Thirdpartylinks;
     thumbnails: Resource$Thumbnails;
     videoAbuseReportReasons: Resource$Videoabusereportreasons;
     videoCategories: Resource$Videocategories;
@@ -145,6 +147,8 @@ export namespace youtube_v3 {
       this.sponsors = new Resource$Sponsors(this.context);
       this.subscriptions = new Resource$Subscriptions(this.context);
       this.superChatEvents = new Resource$Superchatevents(this.context);
+      this.thirdPartyLink = new Resource$Thirdpartylink(this.context);
+      this.thirdPartyLinks = new Resource$Thirdpartylinks(this.context);
       this.thumbnails = new Resource$Thumbnails(this.context);
       this.videoAbuseReportReasons = new Resource$Videoabusereportreasons(
         this.context
@@ -462,7 +466,7 @@ export namespace youtube_v3 {
      */
     groupId?: string | null;
     /**
-     * The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the video was uploaded. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -558,7 +562,7 @@ export namespace youtube_v3 {
      */
     language?: string | null;
     /**
-     * The date and time when the caption track was last updated. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the caption track was last updated. The value is specified in ISO 8601 format.
      */
     lastUpdated?: string | null;
     /**
@@ -740,7 +744,7 @@ export namespace youtube_v3 {
      */
     contentOwner?: string | null;
     /**
-     * The date and time of when the channel was linked to the content owner. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time of when the channel was linked to the content owner. The value is specified in ISO 8601 format.
      */
     timeLinked?: string | null;
   }
@@ -1036,7 +1040,7 @@ export namespace youtube_v3 {
      */
     localized?: Schema$ChannelLocalization;
     /**
-     * The date and time that the channel was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the channel was created. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -1104,6 +1108,19 @@ export namespace youtube_v3 {
      * A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the Freebase Topic API.
      */
     topicIds?: string[] | null;
+  }
+  /**
+   * Information specific to a store on a merchandising platform linked to a YouTube channel.
+   */
+  export interface Schema$ChannelToStoreLinkDetails {
+    /**
+     * Name of the store.
+     */
+    storeName?: string | null;
+    /**
+     * Landing page of the store.
+     */
+    storeUrl?: string | null;
   }
   /**
    * A comment represents a single YouTube comment.
@@ -1195,7 +1212,7 @@ export namespace youtube_v3 {
      */
     parentId?: string | null;
     /**
-     * The date and time when the comment was orignally published. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the comment was orignally published. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -1207,7 +1224,7 @@ export namespace youtube_v3 {
      */
     textOriginal?: string | null;
     /**
-     * The date and time when was last updated . The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when was last updated . The value is specified in ISO 8601 format.
      */
     updatedAt?: string | null;
     /**
@@ -1894,6 +1911,14 @@ export namespace youtube_v3 {
      */
     ingestionAddress?: string | null;
     /**
+     * This ingestion url may be used instead of backupIngestionAddress in order to stream via RTMPS. Not applicable to non-RTMP streams.
+     */
+    rtmpsBackupIngestionAddress?: string | null;
+    /**
+     * This ingestion url may be used instead of ingestionAddress in order to stream via RTMPS. Not applicable to non-RTMP streams.
+     */
+    rtmpsIngestionAddress?: string | null;
+    /**
      * The HTTP or RTMP stream name that YouTube assigns to the video stream.
      */
     streamName?: string | null;
@@ -2093,11 +2118,11 @@ export namespace youtube_v3 {
   }
   export interface Schema$LiveBroadcastSnippet {
     /**
-     * The date and time that the broadcast actually ended. This information is only available once the broadcast&#39;s state is complete. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast actually ended. This information is only available once the broadcast&#39;s state is complete. The value is specified in ISO 8601 format.
      */
     actualEndTime?: string | null;
     /**
-     * The date and time that the broadcast actually started. This information is only available once the broadcast&#39;s state is live. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast actually started. This information is only available once the broadcast&#39;s state is live. The value is specified in ISO 8601 format.
      */
     actualStartTime?: string | null;
     broadcastType?: string | null;
@@ -2115,15 +2140,15 @@ export namespace youtube_v3 {
      */
     liveChatId?: string | null;
     /**
-     * The date and time that the broadcast was added to YouTube&#39;s live broadcast schedule. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast was added to YouTube&#39;s live broadcast schedule. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
-     * The date and time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast is scheduled to end. The value is specified in ISO 8601 format.
      */
     scheduledEndTime?: string | null;
     /**
-     * The date and time that the broadcast is scheduled to start. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the broadcast is scheduled to start. The value is specified in ISO 8601 format.
      */
     scheduledStartTime?: string | null;
     /**
@@ -2343,12 +2368,8 @@ export namespace youtube_v3 {
     liveChatId?: string | null;
     messageDeletedDetails?: Schema$LiveChatMessageDeletedDetails;
     messageRetractedDetails?: Schema$LiveChatMessageRetractedDetails;
-    pollClosedDetails?: Schema$LiveChatPollClosedDetails;
-    pollEditedDetails?: Schema$LiveChatPollEditedDetails;
-    pollOpenedDetails?: Schema$LiveChatPollOpenedDetails;
-    pollVotedDetails?: Schema$LiveChatPollVotedDetails;
     /**
-     * The date and time when the message was orignally published. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the message was orignally published. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -2431,39 +2452,6 @@ export namespace youtube_v3 {
      * Details about the moderator.
      */
     moderatorDetails?: Schema$ChannelProfileDetails;
-  }
-  export interface Schema$LiveChatPollClosedDetails {
-    /**
-     * The id of the poll that was closed.
-     */
-    pollId?: string | null;
-  }
-  export interface Schema$LiveChatPollEditedDetails {
-    id?: string | null;
-    items?: Schema$LiveChatPollItem[];
-    prompt?: string | null;
-  }
-  export interface Schema$LiveChatPollItem {
-    /**
-     * Plain text description of the item.
-     */
-    description?: string | null;
-    itemId?: string | null;
-  }
-  export interface Schema$LiveChatPollOpenedDetails {
-    id?: string | null;
-    items?: Schema$LiveChatPollItem[];
-    prompt?: string | null;
-  }
-  export interface Schema$LiveChatPollVotedDetails {
-    /**
-     * The poll item the user chose.
-     */
-    itemId?: string | null;
-    /**
-     * The poll the user voted on.
-     */
-    pollId?: string | null;
   }
   export interface Schema$LiveChatSuperChatDetails {
     /**
@@ -2650,7 +2638,7 @@ export namespace youtube_v3 {
     description?: string | null;
     isDefaultStream?: boolean | null;
     /**
-     * The date and time that the stream was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the stream was created. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -2971,7 +2959,7 @@ export namespace youtube_v3 {
      */
     videoId?: string | null;
     /**
-     * The date and time that the video was published to YouTube. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the video was published to YouTube. The value is specified in ISO 8601 format.
      */
     videoPublishedAt?: string | null;
   }
@@ -3032,7 +3020,7 @@ export namespace youtube_v3 {
      */
     position?: number | null;
     /**
-     * The date and time that the item was added to the playlist. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the item was added to the playlist. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -3133,7 +3121,7 @@ export namespace youtube_v3 {
      */
     localized?: Schema$PlaylistLocalization;
     /**
-     * The date and time that the playlist was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the playlist was created. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -3306,7 +3294,7 @@ export namespace youtube_v3 {
      */
     liveBroadcastContent?: string | null;
     /**
-     * The creation date and time of the resource that the search result identifies. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The creation date and time of the resource that the search result identifies. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -3377,7 +3365,7 @@ export namespace youtube_v3 {
      */
     sponsorDetails?: Schema$ChannelProfileDetails;
     /**
-     * The date and time when the user became a sponsor. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the user became a sponsor. The value is specified in ISO 8601 format.
      */
     sponsorSince?: string | null;
   }
@@ -3476,7 +3464,7 @@ export namespace youtube_v3 {
      */
     description?: string | null;
     /**
-     * The date and time that the subscription was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the subscription was created. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -3576,7 +3564,7 @@ export namespace youtube_v3 {
      */
     commentText?: string | null;
     /**
-     * The date and time when the event occurred. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the event occurred. The value is specified in ISO 8601 format.
      */
     createdAt?: string | null;
     /**
@@ -3625,6 +3613,72 @@ export namespace youtube_v3 {
      * Unique identifier of the Super Sticker. This is a shorter form of the alt_text that includes pack name and a recognizable characteristic of the sticker.
      */
     stickerId?: string | null;
+  }
+  /**
+   * A third party account link resource represents a link between a YouTube account or a channel and an account on a third-party service.
+   */
+  export interface Schema$ThirdPartyLink {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#thirdPartyLink&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The linking_token object identifies a YouTube account and channel with which the third-party account is linked.
+     */
+    linkingToken?: string | null;
+    /**
+     * The snippet object contains basic details about the third-party link.
+     */
+    snippet?: Schema$ThirdPartyLinkSnippet;
+    /**
+     * The status object contains information about the status of the link.
+     */
+    status?: Schema$ThirdPartyLinkStatus;
+  }
+  export interface Schema$ThirdPartyLinkListResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Serialized EventId of the request which produced this response.
+     */
+    eventId?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#thirdPartyLinkListResponse&quot;.
+     */
+    kind?: string | null;
+    /**
+     * A link between an account on a third-party service and a YouTube account or channel relevant for the calling thid party.
+     */
+    links?: Schema$ThirdPartyLink[];
+    /**
+     * The visitorId identifies the visitor.
+     */
+    visitorId?: string | null;
+  }
+  /**
+   * Basic information about a third-party account link, including its type and type-specific information.
+   */
+  export interface Schema$ThirdPartyLinkSnippet {
+    /**
+     * Information specific to a link between a channel and a store on a merchandising platform.
+     */
+    channelToStoreLink?: Schema$ChannelToStoreLinkDetails;
+    /**
+     * Type of the link named after the entities that are being linked.
+     */
+    type?: string | null;
+  }
+  /**
+   * The third-party link status object contains information about the status of the link.
+   */
+  export interface Schema$ThirdPartyLinkStatus {
+    linkStatus?: string | null;
   }
   /**
    * A thumbnail is an image representing a YouTube resource.
@@ -4160,11 +4214,11 @@ export namespace youtube_v3 {
      */
     activeLiveChatId?: string | null;
     /**
-     * The time that the broadcast actually ended. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast is over.
+     * The time that the broadcast actually ended. The value is specified in ISO 8601 format. This value will not be available until the broadcast is over.
      */
     actualEndTime?: string | null;
     /**
-     * The time that the broadcast actually started. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast begins.
+     * The time that the broadcast actually started. The value is specified in ISO 8601 format. This value will not be available until the broadcast begins.
      */
     actualStartTime?: string | null;
     /**
@@ -4172,11 +4226,11 @@ export namespace youtube_v3 {
      */
     concurrentViewers?: string | null;
     /**
-     * The time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
+     * The time that the broadcast is scheduled to end. The value is specified in ISO 8601 format. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
      */
     scheduledEndTime?: string | null;
     /**
-     * The time that the broadcast is scheduled to begin. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The time that the broadcast is scheduled to begin. The value is specified in ISO 8601 format.
      */
     scheduledStartTime?: string | null;
   }
@@ -4337,7 +4391,7 @@ export namespace youtube_v3 {
      */
     localized?: Schema$VideoLocalization;
     /**
-     * The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time that the video was uploaded. The value is specified in ISO 8601 format.
      */
     publishedAt?: string | null;
     /**
@@ -4404,7 +4458,7 @@ export namespace youtube_v3 {
      */
     publicStatsViewable?: boolean | null;
     /**
-     * The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+     * The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private. The value is specified in ISO 8601 format.
      */
     publishAt?: string | null;
     /**
@@ -4494,157 +4548,6 @@ export namespace youtube_v3 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * youtube.activities.insert
-     * @desc Posts a bulletin for a specific channel. (The user submitting the request must be authorized to act on the channel's behalf.)  Note: Even though an activity resource can contain information about actions like a user rating a video or marking a video as a favorite, you need to use other API methods to generate those activity resources. For example, you would use the API's videos.rate() method to rate a video and the playlistItems.insert() method to mark a video as a favorite.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/youtube',
-     *       'https://www.googleapis.com/auth/youtube.force-ssl',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
-     *
-     *   // Do the magic
-     *   const res = await youtube.activities.insert({
-     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentDetails": {},
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentDetails": {},
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias youtube.activities.insert
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
-     * @param {().Activity} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert(
-      params: Params$Resource$Activities$Insert,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    insert(
-      params?: Params$Resource$Activities$Insert,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Activity>;
-    insert(
-      params: Params$Resource$Activities$Insert,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    insert(
-      params: Params$Resource$Activities$Insert,
-      options: MethodOptions | BodyResponseCallback<Schema$Activity>,
-      callback: BodyResponseCallback<Schema$Activity>
-    ): void;
-    insert(
-      params: Params$Resource$Activities$Insert,
-      callback: BodyResponseCallback<Schema$Activity>
-    ): void;
-    insert(callback: BodyResponseCallback<Schema$Activity>): void;
-    insert(
-      paramsOrCallback?:
-        | Params$Resource$Activities$Insert
-        | BodyResponseCallback<Schema$Activity>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Activity>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Activity>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Activity> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Activities$Insert;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Activities$Insert;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/youtube/v3/activities').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['part'],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Activity>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$Activity>(parameters);
-      }
     }
 
     /**
@@ -4821,23 +4724,6 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Activities$Insert
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
-     */
-    part?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Activity;
-  }
   export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -15886,6 +15772,674 @@ export namespace youtube_v3 {
      * The part parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
      */
     part?: string;
+  }
+
+  export class Resource$Thirdpartylink {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.thirdPartyLink.delete
+     * @desc Deletes a third-party account link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLink.delete({
+     *     // The linkingToken parameter specifies the linking token for the link that is being deleted.
+     *     linkingToken: 'placeholder-value',
+     *     // The type parameter specifies the third-party account link type for which all matching resources should be retrieved.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLink.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.linkingToken The linkingToken parameter specifies the linking token for the link that is being deleted.
+     * @param {string} params.type The type parameter specifies the third-party account link type for which all matching resources should be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Thirdpartylink$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Thirdpartylink$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Thirdpartylink$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Thirdpartylink$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Thirdpartylink$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylink$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylink$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylink$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['linkingToken', 'type'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * youtube.thirdPartyLink.insert
+     * @desc Creates a third-party account link.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLink.insert({
+     *     // The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID
+     *     debugProjectIdOverride: 'placeholder-value',
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "linkingToken": "my_linkingToken",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "linkingToken": "my_linkingToken",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLink.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.debugProjectIdOverride The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     * @param {().ThirdPartyLink} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params: Params$Resource$Thirdpartylink$Insert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    insert(
+      params?: Params$Resource$Thirdpartylink$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    insert(
+      params: Params$Resource$Thirdpartylink$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Thirdpartylink$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ThirdPartyLink>,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    insert(
+      params: Params$Resource$Thirdpartylink$Insert,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$ThirdPartyLink>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylink$Insert
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylink$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylink$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ThirdPartyLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ThirdPartyLink>(parameters);
+      }
+    }
+
+    /**
+     * youtube.thirdPartyLink.update
+     * @desc Modifies a third-party account link. For example, you could change a third-party account link's type.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLink.update({
+     *     // The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     *     //
+     *     // Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a third-party account link's type is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.type property, the third-party account link's existing type will be deleted.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "kind": "my_kind",
+     *       //   "linkingToken": "my_linkingToken",
+     *       //   "snippet": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "kind": "my_kind",
+     *   //   "linkingToken": "my_linkingToken",
+     *   //   "snippet": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLink.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a third-party account link's type is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.type property, the third-party account link's existing type will be deleted.
+     * @param {().ThirdPartyLink} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params: Params$Resource$Thirdpartylink$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Thirdpartylink$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThirdPartyLink>;
+    update(
+      params: Params$Resource$Thirdpartylink$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Thirdpartylink$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ThirdPartyLink>,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    update(
+      params: Params$Resource$Thirdpartylink$Update,
+      callback: BodyResponseCallback<Schema$ThirdPartyLink>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$ThirdPartyLink>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylink$Update
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ThirdPartyLink>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ThirdPartyLink> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylink$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylink$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ThirdPartyLink>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ThirdPartyLink>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Thirdpartylink$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The linkingToken parameter specifies the linking token for the link that is being deleted.
+     */
+    linkingToken?: string;
+    /**
+     * The type parameter specifies the third-party account link type for which all matching resources should be retrieved.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Thirdpartylink$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The debugProjectIdOverride parameter should be used for mimicking a request for a certain project ID
+     */
+    debugProjectIdOverride?: string;
+    /**
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+     */
+    part?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ThirdPartyLink;
+  }
+  export interface Params$Resource$Thirdpartylink$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for mutable properties that are contained in any parts that the request body specifies. For example, a third-party account link's type is contained in the snippet part, which must be included in the request body. If the request does not specify a value for the snippet.type property, the third-party account link's existing type will be deleted.
+     */
+    part?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ThirdPartyLink;
+  }
+
+  export class Resource$Thirdpartylinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * youtube.thirdPartyLinks.list
+     * @desc Returns a collection of third-party account links that match the API request parameters. For example, you can retrieve all links that the authenticated user owns, or you can retrieve one or more links by their unique IDs.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await youtube.thirdPartyLinks.list({
+     *     // The linkingToken parameter specifies a unique linking token for the resource that is being retrieved. In a thirdPartyLink resource, the linking_token property specifies the link's unique identifying token.
+     *     linkingToken: 'placeholder-value',
+     *     // The part parameter specifies a comma-separated list of one or more third-party account link resource properties that the API response will include.
+     *     //
+     *     // If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a thirdPartyLink resource, the snippet property contains properties like type, and link_content. As such, if you set part=snippet, the API response will contain all of those properties.
+     *     part: 'placeholder-value',
+     *     // The type parameter specifies the third-party account link type for which all matching resources should be retrieved.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "kind": "my_kind",
+     *   //   "links": [],
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias youtube.thirdPartyLinks.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.linkingToken The linkingToken parameter specifies a unique linking token for the resource that is being retrieved. In a thirdPartyLink resource, the linking_token property specifies the link's unique identifying token.
+     * @param {string} params.part The part parameter specifies a comma-separated list of one or more third-party account link resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a thirdPartyLink resource, the snippet property contains properties like type, and link_content. As such, if you set part=snippet, the API response will contain all of those properties.
+     * @param {string=} params.type The type parameter specifies the third-party account link type for which all matching resources should be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Thirdpartylinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ThirdPartyLinkListResponse>;
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>,
+      callback: BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Thirdpartylinks$List,
+      callback: BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Thirdpartylinks$List
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ThirdPartyLinkListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ThirdPartyLinkListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Thirdpartylinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Thirdpartylinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thirdPartyLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ThirdPartyLinkListResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ThirdPartyLinkListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Thirdpartylinks$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The linkingToken parameter specifies a unique linking token for the resource that is being retrieved. In a thirdPartyLink resource, the linking_token property specifies the link's unique identifying token.
+     */
+    linkingToken?: string;
+    /**
+     * The part parameter specifies a comma-separated list of one or more third-party account link resource properties that the API response will include.  If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a thirdPartyLink resource, the snippet property contains properties like type, and link_content. As such, if you set part=snippet, the API response will contain all of those properties.
+     */
+    part?: string;
+    /**
+     * The type parameter specifies the third-party account link type for which all matching resources should be retrieved.
+     */
+    type?: string;
   }
 
   export class Resource$Thumbnails {
