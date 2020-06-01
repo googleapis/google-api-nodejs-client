@@ -41,9 +41,21 @@ export namespace tasks_v1 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -61,19 +73,23 @@ export namespace tasks_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * Tasks API
    *
-   * Manages your tasks and task lists.
+   * The Google Tasks API lets you manage your tasks and task lists.
    *
    * @example
    * const {google} = require('googleapis');
@@ -107,7 +123,7 @@ export namespace tasks_v1 {
      */
     completed?: string | null;
     /**
-     * Flag indicating whether the task has been deleted. The default if False.
+     * Flag indicating whether the task has been deleted. The default is False.
      */
     deleted?: boolean | null;
     /**
@@ -495,7 +511,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasklists.insert
-     * @desc Creates a new task list and adds it to the authenticated user's task lists. Fails with HTTP code 403 or 429 after reaching the storage limit of 2,000 lists.
+     * @desc Creates a new task list and adds it to the authenticated user's task lists.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -668,7 +684,8 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasklists.list({
-     *     // Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     *     // Maximum number of task lists returned on one page. Optional. The default is
+     *     // 20 (max allowed: 100).
      *     maxResults: 'placeholder-value',
      *     // Token specifying the result page to return. Optional.
      *     pageToken: 'placeholder-value',
@@ -692,8 +709,8 @@ export namespace tasks_v1 {
      * @alias tasks.tasklists.list
      * @memberOf! ()
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1118,7 +1135,7 @@ export namespace tasks_v1 {
     /**
      * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
-    maxResults?: string;
+    maxResults?: number;
     /**
      * Token specifying the result page to return. Optional.
      */
@@ -1564,7 +1581,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasks.insert
-     * @desc Creates a new task on the specified task list. Fails with HTTP code 403 or 429 after reaching the storage limit of 100,000 tasks per account.
+     * @desc Creates a new task on the specified task list.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -1589,9 +1606,11 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.insert({
-     *     // Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
+     *     // Parent task identifier. If the task is created at the top level, this
+     *     // parameter is omitted. Optional.
      *     parent: 'placeholder-value',
-     *     // Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
+     *     // Previous sibling task identifier. If the task is created at the first
+     *     // position among its siblings, this parameter is omitted. Optional.
      *     previous: 'placeholder-value',
      *     // Task list identifier.
      *     tasklist: 'placeholder-value',
@@ -1765,27 +1784,37 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.list({
-     *     // Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     *     // Upper bound for a task's completion date (as a RFC 3339 timestamp) to
+     *     // filter by. Optional. The default is not to filter by completion date.
      *     completedMax: 'placeholder-value',
-     *     // Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     *     // Lower bound for a task's completion date (as a RFC 3339 timestamp) to
+     *     // filter by. Optional. The default is not to filter by completion date.
      *     completedMin: 'placeholder-value',
-     *     // Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     *     // Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by.
+     *     // Optional. The default is not to filter by due date.
      *     dueMax: 'placeholder-value',
-     *     // Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     *     // Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by.
+     *     // Optional. The default is not to filter by due date.
      *     dueMin: 'placeholder-value',
-     *     // Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     *     // Maximum number of task lists returned on one page. Optional. The default is
+     *     // 20 (max allowed: 100).
      *     maxResults: 'placeholder-value',
      *     // Token specifying the result page to return. Optional.
      *     pageToken: 'placeholder-value',
-     *     // Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
+     *     // Flag indicating whether completed tasks are returned in the result.
+     *     // Optional. The default is True.
      *     showCompleted: 'placeholder-value',
-     *     // Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
+     *     // Flag indicating whether deleted tasks are returned in the result. Optional.
+     *     // The default is False.
      *     showDeleted: 'placeholder-value',
-     *     // Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
+     *     // Flag indicating whether hidden tasks are returned in the result. Optional.
+     *     // The default is False.
      *     showHidden: 'placeholder-value',
      *     // Task list identifier.
      *     tasklist: 'placeholder-value',
-     *     // Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+     *     // Lower bound for a task's last modification time (as a RFC 3339 timestamp)
+     *     // to filter by. Optional. The default is not to filter by last modification
+     *     // time.
      *     updatedMin: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1812,7 +1841,7 @@ export namespace tasks_v1 {
      * @param {string=} params.completedMin Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      * @param {string=} params.dueMax Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      * @param {string=} params.dueMin Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
-     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
+     * @param {integer=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
      * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
      * @param {boolean=} params.showDeleted Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
@@ -1928,9 +1957,11 @@ export namespace tasks_v1 {
      *
      *   // Do the magic
      *   const res = await tasks.tasks.move({
-     *     // New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
+     *     // New parent task identifier. If the task is moved to the top level, this
+     *     // parameter is omitted. Optional.
      *     parent: 'placeholder-value',
-     *     // New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
+     *     // New previous sibling task identifier. If the task is moved to the first
+     *     // position among its siblings, this parameter is omitted. Optional.
      *     previous: 'placeholder-value',
      *     // Task identifier.
      *     task: 'placeholder-value',
@@ -2484,7 +2515,7 @@ export namespace tasks_v1 {
     /**
      * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
-    maxResults?: string;
+    maxResults?: number;
     /**
      * Token specifying the result page to return. Optional.
      */
