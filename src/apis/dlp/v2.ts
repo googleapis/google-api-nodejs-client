@@ -614,7 +614,7 @@ export namespace dlp_v2 {
      */
     deidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
     /**
-     * The geographic location to store the deidentification template. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
     /**
@@ -635,7 +635,7 @@ export namespace dlp_v2 {
      */
     jobId?: string | null;
     /**
-     * The geographic location to store and process the job. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
     /**
@@ -652,7 +652,7 @@ export namespace dlp_v2 {
      */
     inspectTemplate?: Schema$GooglePrivacyDlpV2InspectTemplate;
     /**
-     * The geographic location to store the inspection template. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
     /**
@@ -669,7 +669,7 @@ export namespace dlp_v2 {
      */
     jobTrigger?: Schema$GooglePrivacyDlpV2JobTrigger;
     /**
-     * The geographic location to store the job trigger. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
     /**
@@ -686,7 +686,7 @@ export namespace dlp_v2 {
      */
     config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
     /**
-     * The geographic location to store the stored infoType. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
     /**
@@ -909,7 +909,7 @@ export namespace dlp_v2 {
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
     /**
-     * The geographic location to process de-identification. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
   }
@@ -1567,7 +1567,7 @@ export namespace dlp_v2 {
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
     /**
-     * The geographic location to process content inspection. Reserved for future extensions. When inspecting images location is restricted to &#39;global&#39;, &#39;us&#39;, &#39;asia&#39;, and &#39;europe&#39;.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
   }
@@ -2447,7 +2447,7 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * The geographic location to process the request. Reserved for future extensions. Location is restricted to &#39;global&#39;, &#39;us&#39;, &#39;asia&#39;, and &#39;europe&#39;.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
   }
@@ -2498,7 +2498,7 @@ export namespace dlp_v2 {
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
     /**
-     * The geographic location to process content reidentification.  Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string | null;
     /**
@@ -3165,9 +3165,10 @@ export namespace dlp_v2 {
      *     // names. If omitted, or if localized strings are not available,
      *     // en-US strings will be returned.
      *     languageCode: 'placeholder-value',
-     *     // The geographic location to list info types. Reserved for future
-     *     // extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
+     *     // The parent resource name, for example locations/{location_id}.
+     *     parent: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3188,7 +3189,8 @@ export namespace dlp_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      * @param {string=} params.languageCode BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
-     * @param {string=} params.locationId The geographic location to list info types. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
+     * @param {string=} params.parent The parent resource name, for example locations/{location_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3299,9 +3301,13 @@ export namespace dlp_v2 {
      */
     languageCode?: string;
     /**
-     * The geographic location to list info types. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
+    /**
+     * The parent resource name, for example locations/{location_id}.
+     */
+    parent?: string;
   }
 
   export class Resource$Locations {
@@ -3353,9 +3359,10 @@ export namespace dlp_v2 {
      *     // names. If omitted, or if localized strings are not available,
      *     // en-US strings will be returned.
      *     languageCode: 'placeholder-value',
-     *     // The geographic location to list info types. Reserved for future
-     *     // extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
+     *     // The parent resource name, for example locations/{location_id}.
+     *     parent: 'locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -3376,7 +3383,8 @@ export namespace dlp_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      * @param {string=} params.languageCode BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
-     * @param {string} params.locationId The geographic location to list info types. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
+     * @param {string} params.parent The parent resource name, for example locations/{location_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3450,7 +3458,7 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2/locations/{locationId}/infoTypes').replace(
+            url: (rootUrl + '/v2/{+parent}/infoTypes').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3459,8 +3467,8 @@ export namespace dlp_v2 {
           options
         ),
         params,
-        requiredParams: ['locationId'],
-        pathParams: ['locationId'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -3492,9 +3500,13 @@ export namespace dlp_v2 {
      */
     languageCode?: string;
     /**
-     * The geographic location to list info types. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
+    /**
+     * The parent resource name, for example locations/{location_id}.
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations {
@@ -3997,8 +4009,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.list({
-     *     // The geographic location where deidentifications templates will be retrieved
-     *     // from. Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -4042,7 +4053,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
@@ -4363,7 +4374,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -4866,8 +4877,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.list({
-     *     // The geographic location where inspection templates will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -4911,7 +4921,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
@@ -5226,7 +5236,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -5316,12 +5326,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.create({
-     *     // The geographic location to store the deidentification template. Reserved
-     *     // for future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'organizations/my-organization',
+     *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5355,7 +5362,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store the deidentification template. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5431,17 +5437,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl +
-              '/v2/{+parent}/locations/{locationId}/deidentifyTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/deidentifyTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -5766,8 +5772,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.list({
-     *     // The geographic location where deidentifications templates will be retrieved
-     *     // from. Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -5791,7 +5796,7 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'organizations/my-organization',
+     *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -5811,7 +5816,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
@@ -5897,17 +5902,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl +
-              '/v2/{+parent}/locations/{locationId}/deidentifyTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/deidentifyTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -6091,10 +6096,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to store the deidentification template. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      */
     parent?: string;
@@ -6136,7 +6137,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -6207,12 +6208,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.create({
-     *     // The geographic location to store the inspection template. Reserved for
-     *     // future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'organizations/my-organization',
+     *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6246,7 +6244,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store the inspection template. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6316,16 +6313,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/inspectTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/inspectTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -6644,8 +6642,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.list({
-     *     // The geographic location where inspection templates will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -6669,7 +6666,7 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'organizations/my-organization',
+     *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -6689,7 +6686,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
@@ -6775,16 +6772,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/inspectTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/inspectTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -6963,10 +6961,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to store the inspection template. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      */
     parent?: string;
@@ -7008,7 +7002,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -7079,12 +7073,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.create({
-     *     // The geographic location to store the stored infoType. Reserved for
-     *     // future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'organizations/my-organization',
+     *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -7115,7 +7106,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store the stored infoType. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7185,16 +7175,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/storedInfoTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/storedInfoTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -7510,8 +7501,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.list({
-     *     // The geographic location where stored infoTypes will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -7536,7 +7526,7 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'organizations/my-organization',
+     *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -7556,7 +7546,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
@@ -7642,16 +7632,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/storedInfoTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/storedInfoTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -7827,10 +7818,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to store the stored infoType. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      */
     parent?: string;
@@ -7872,7 +7859,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -8369,8 +8356,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.list({
-     *     // The geographic location where stored infoTypes will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -8415,7 +8401,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
@@ -8727,7 +8713,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -9826,8 +9812,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.list({
-     *     // The geographic location where deidentifications templates will be retrieved
-     *     // from. Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -9871,7 +9856,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
@@ -10191,7 +10176,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -10857,8 +10842,7 @@ export namespace dlp_v2 {
      *     //
      *     // The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // The geographic location where jobs will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -10902,7 +10886,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
-     * @param {string=} params.locationId The geographic location where jobs will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
@@ -11077,7 +11061,7 @@ export namespace dlp_v2 {
      */
     filter?: string;
     /**
-     * The geographic location where jobs will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -11753,8 +11737,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.list({
-     *     // The geographic location where inspection templates will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -11798,7 +11781,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
@@ -12113,7 +12096,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -12801,8 +12784,7 @@ export namespace dlp_v2 {
      *     //
      *     // The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // The geographic location where job triggers will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of triggeredJob fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -12848,7 +12830,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
-     * @param {string=} params.locationId The geographic location where job triggers will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      * @param {integer=} params.pageSize Size of the page, can be limited by a server.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
@@ -13181,7 +13163,7 @@ export namespace dlp_v2 {
      */
     filter?: string;
     /**
-     * The geographic location where job triggers will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -13281,11 +13263,8 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.deidentify({
-     *     // The geographic location to process de-identification. Reserved for future
-     *     // extensions.
-     *     locationId: 'placeholder-value',
      *     // The parent resource name, for example projects/my-project-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13318,7 +13297,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to process de-identification. Reserved for future extensions.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id.
      * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13402,17 +13380,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl +
-              '/v2/{+parent}/locations/{locationId}/content:deidentify'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/content:deidentify').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -13454,13 +13432,8 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.inspect({
-     *     // The geographic location to process content inspection. Reserved for future
-     *     // extensions.
-     *     // When inspecting images location is restricted to 'global', 'us', 'asia',
-     *     // and 'europe'.
-     *     locationId: 'placeholder-value',
      *     // The parent resource name, for example projects/my-project-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13490,7 +13463,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to process content inspection. Reserved for future extensions. When inspecting images location is restricted to 'global', 'us', 'asia', and 'europe'.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id.
      * @param {().GooglePrivacyDlpV2InspectContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13566,16 +13538,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/content:inspect'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/content:inspect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -13617,11 +13590,8 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.reidentify({
-     *     // The geographic location to process content reidentification.  Reserved for
-     *     // future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13654,7 +13624,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to process content reidentification.  Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name.
      * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13738,17 +13707,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl +
-              '/v2/{+parent}/locations/{locationId}/content:reidentify'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/content:reidentify').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -13772,10 +13741,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to process de-identification. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
@@ -13793,10 +13758,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to process content inspection. Reserved for future extensions. When inspecting images location is restricted to 'global', 'us', 'asia', and 'europe'.
-     */
-    locationId?: string;
-    /**
      * The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
@@ -13813,10 +13774,6 @@ export namespace dlp_v2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
-    /**
-     * The geographic location to process content reidentification.  Reserved for future extensions.
-     */
-    locationId?: string;
     /**
      * Required. The parent resource name.
      */
@@ -13861,12 +13818,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.create({
-     *     // The geographic location to store the deidentification template. Reserved
-     *     // for future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13900,7 +13854,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store the deidentification template. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13976,17 +13929,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl +
-              '/v2/{+parent}/locations/{locationId}/deidentifyTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/deidentifyTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -14311,8 +14264,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.list({
-     *     // The geographic location where deidentifications templates will be retrieved
-     *     // from. Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -14336,7 +14288,7 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -14356,7 +14308,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
@@ -14442,17 +14394,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl +
-              '/v2/{+parent}/locations/{locationId}/deidentifyTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/deidentifyTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -14636,10 +14588,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to store the deidentification template. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      */
     parent?: string;
@@ -14681,7 +14629,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -14888,11 +14836,8 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.create({
-     *     // The geographic location to store and process the job. Reserved for
-     *     // future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14931,7 +14876,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store and process the job. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
      * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15001,16 +14945,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/dlpJobs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/dlpJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -15640,8 +15585,7 @@ export namespace dlp_v2 {
      *     //
      *     // The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // The geographic location where jobs will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -15662,7 +15606,7 @@ export namespace dlp_v2 {
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
      *   });
@@ -15685,7 +15629,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
-     * @param {string} params.locationId The geographic location where jobs will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
@@ -15764,16 +15708,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/dlpJobs'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/dlpJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -15813,10 +15758,6 @@ export namespace dlp_v2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
-    /**
-     * The geographic location to store and process the job. Reserved for future extensions.
-     */
-    locationId?: string;
     /**
      * Required. The parent resource name, for example projects/my-project-id.
      */
@@ -15897,7 +15838,7 @@ export namespace dlp_v2 {
      */
     filter?: string;
     /**
-     * The geographic location where jobs will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -15955,12 +15896,8 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.image.redact({
-     *     // The geographic location to process the request. Reserved for future
-     *     // extensions.
-     *     // Location is restricted to 'global', 'us', 'asia', and 'europe'.
-     *     locationId: 'placeholder-value',
      *     // The parent resource name, for example projects/my-project-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -15993,7 +15930,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to process the request. Reserved for future extensions. Location is restricted to 'global', 'us', 'asia', and 'europe'.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id.
      * @param {().GooglePrivacyDlpV2RedactImageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16069,16 +16005,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/image:redact'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/image:redact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -16101,10 +16038,6 @@ export namespace dlp_v2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
-    /**
-     * The geographic location to process the request. Reserved for future extensions. Location is restricted to 'global', 'us', 'asia', and 'europe'.
-     */
-    locationId?: string;
     /**
      * The parent resource name, for example projects/my-project-id.
      */
@@ -16149,12 +16082,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.create({
-     *     // The geographic location to store the inspection template. Reserved for
-     *     // future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -16188,7 +16118,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store the inspection template. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16258,16 +16187,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/inspectTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/inspectTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -16586,8 +16516,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.list({
-     *     // The geographic location where inspection templates will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -16611,7 +16540,7 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -16631,7 +16560,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
@@ -16717,16 +16646,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/inspectTemplates'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/inspectTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -16905,10 +16835,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to store the inspection template. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      */
     parent?: string;
@@ -16950,7 +16876,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -17176,11 +17102,8 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.create({
-     *     // The geographic location to store the job trigger. Reserved for
-     *     // future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -17218,7 +17141,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store the job trigger. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
      * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17288,16 +17210,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/jobTriggers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/jobTriggers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -17795,8 +17718,7 @@ export namespace dlp_v2 {
      *     //
      *     // The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // The geographic location where job triggers will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of triggeredJob fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -17821,7 +17743,7 @@ export namespace dlp_v2 {
      *     // change for subsequent calls.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example `projects/my-project-id`.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -17842,7 +17764,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
-     * @param {string} params.locationId The geographic location where job triggers will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      * @param {integer=} params.pageSize Size of the page, can be limited by a server.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
@@ -17922,16 +17844,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/jobTriggers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/jobTriggers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -18129,10 +18052,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to store the job trigger. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * Required. The parent resource name, for example projects/my-project-id.
      */
     parent?: string;
@@ -18195,7 +18114,7 @@ export namespace dlp_v2 {
      */
     filter?: string;
     /**
-     * The geographic location where job triggers will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -18266,12 +18185,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.create({
-     *     // The geographic location to store the stored infoType. Reserved for
-     *     // future extensions.
-     *     locationId: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -18302,7 +18218,6 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to store the stored infoType. Reserved for future extensions.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18372,16 +18287,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/storedInfoTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/storedInfoTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -18697,8 +18613,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.list({
-     *     // The geographic location where stored infoTypes will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -18723,7 +18638,7 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name, for example projects/my-project-id or
      *     // organizations/my-org-id.
-     *     parent: 'projects/my-project',
+     *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -18743,7 +18658,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
@@ -18829,16 +18744,17 @@ export namespace dlp_v2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v2/{+parent}/locations/{locationId}/storedInfoTypes'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/storedInfoTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: ['parent', 'locationId'],
-        pathParams: ['locationId', 'parent'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -19014,10 +18930,6 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to store the stored infoType. Reserved for future extensions.
-     */
-    locationId?: string;
-    /**
      * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      */
     parent?: string;
@@ -19059,7 +18971,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
@@ -19556,8 +19468,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.list({
-     *     // The geographic location where stored infoTypes will be retrieved from.
-     *     // Use `-` for all locations. Reserved for future extensions.
+     *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
      *     // Comma separated list of fields to order by,
      *     // followed by `asc` or `desc` postfix. This list is case-insensitive,
@@ -19602,7 +19513,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * @param {string=} params.locationId Deprecated. This field has no effect.
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
@@ -19914,7 +19825,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
+     * Deprecated. This field has no effect.
      */
     locationId?: string;
     /**
