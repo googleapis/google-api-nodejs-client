@@ -380,7 +380,13 @@ export namespace tpu_v1alpha1 {
      */
     tensorflowVersion?: string | null;
   }
+  /**
+   * Sets the scheduling options for this node.
+   */
   export interface Schema$SchedulingConfig {
+    /**
+     * Defines whether the node is preemptible.
+     */
     preemptible?: boolean | null;
     /**
      * Whether the node is created under a reservation.
