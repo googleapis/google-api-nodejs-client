@@ -125,7 +125,12 @@
               "type": "string"
             },
             "locationId": {
-              "description": "The geographic location to list info types. Reserved for future\nextensions.",
+              "description": "Deprecated. This field has no effect.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "The parent resource name, for example locations/{location_id}.",
               "location": "query",
               "type": "string"
             }
@@ -146,11 +151,11 @@
           "methods": {
             "list": {
               "description": "Returns a list of the sensitive information types that the DLP API\nsupports. See https://cloud.google.com/dlp/docs/infotypes-reference to\nlearn more.",
-              "flatPath": "v2/locations/{locationId}/infoTypes",
+              "flatPath": "v2/locations/{locationsId}/infoTypes",
               "httpMethod": "GET",
               "id": "dlp.locations.infoTypes.list",
               "parameterOrder": [
-                "locationId"
+                "parent"
               ],
               "parameters": {
                 "filter": {
@@ -164,13 +169,19 @@
                   "type": "string"
                 },
                 "locationId": {
-                  "description": "The geographic location to list info types. Reserved for future\nextensions.",
+                  "description": "Deprecated. This field has no effect.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "The parent resource name, for example locations/{location_id}.",
                   "location": "path",
+                  "pattern": "^locations/[^/]+$",
                   "required": true,
                   "type": "string"
                 }
               },
-              "path": "v2/locations/{locationId}/infoTypes",
+              "path": "v2/{+parent}/infoTypes",
               "response": {
                 "$ref": "GooglePrivacyDlpV2ListInfoTypesResponse"
               },
@@ -274,7 +285,7 @@
               ],
               "parameters": {
                 "locationId": {
-                  "description": "The geographic location where deidentifications templates will be retrieved\nfrom. Use `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -430,7 +441,7 @@
               ],
               "parameters": {
                 "locationId": {
-                  "description": "The geographic location where inspection templates will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -502,29 +513,22 @@
               "methods": {
                 "create": {
                   "description": "Creates a DeidentifyTemplate for re-using frequently used configuration\nfor de-identifying content, images, and storage.\nSee https://cloud.google.com/dlp/docs/creating-templates-deid to learn\nmore.",
-                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationId}/deidentifyTemplates",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/deidentifyTemplates",
                   "httpMethod": "POST",
                   "id": "dlp.organizations.locations.deidentifyTemplates.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store the deidentification template. Reserved\nfor future extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^organizations/[^/]+$",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/deidentifyTemplates",
+                  "path": "v2/{+parent}/deidentifyTemplates",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateDeidentifyTemplateRequest"
                   },
@@ -587,18 +591,16 @@
                 },
                 "list": {
                   "description": "Lists DeidentifyTemplates.\nSee https://cloud.google.com/dlp/docs/creating-templates-deid to learn\nmore.",
-                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationId}/deidentifyTemplates",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/deidentifyTemplates",
                   "httpMethod": "GET",
                   "id": "dlp.organizations.locations.deidentifyTemplates.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "locationId": {
-                      "description": "The geographic location where deidentifications templates will be retrieved\nfrom. Use `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -620,12 +622,12 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^organizations/[^/]+$",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/deidentifyTemplates",
+                  "path": "v2/{+parent}/deidentifyTemplates",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListDeidentifyTemplatesResponse"
                   },
@@ -667,29 +669,22 @@
               "methods": {
                 "create": {
                   "description": "Creates an InspectTemplate for re-using frequently used configuration\nfor inspecting content, images, and storage.\nSee https://cloud.google.com/dlp/docs/creating-templates to learn more.",
-                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationId}/inspectTemplates",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/inspectTemplates",
                   "httpMethod": "POST",
                   "id": "dlp.organizations.locations.inspectTemplates.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store the inspection template. Reserved for\nfuture extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^organizations/[^/]+$",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/inspectTemplates",
+                  "path": "v2/{+parent}/inspectTemplates",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateInspectTemplateRequest"
                   },
@@ -752,18 +747,16 @@
                 },
                 "list": {
                   "description": "Lists InspectTemplates.\nSee https://cloud.google.com/dlp/docs/creating-templates to learn more.",
-                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationId}/inspectTemplates",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/inspectTemplates",
                   "httpMethod": "GET",
                   "id": "dlp.organizations.locations.inspectTemplates.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "locationId": {
-                      "description": "The geographic location where inspection templates will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -785,12 +778,12 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^organizations/[^/]+$",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/inspectTemplates",
+                  "path": "v2/{+parent}/inspectTemplates",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListInspectTemplatesResponse"
                   },
@@ -832,29 +825,22 @@
               "methods": {
                 "create": {
                   "description": "Creates a pre-built stored infoType to be used for inspection.\nSee https://cloud.google.com/dlp/docs/creating-stored-infotypes to\nlearn more.",
-                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationId}/storedInfoTypes",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/storedInfoTypes",
                   "httpMethod": "POST",
                   "id": "dlp.organizations.locations.storedInfoTypes.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store the stored infoType. Reserved for\nfuture extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^organizations/[^/]+$",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/storedInfoTypes",
+                  "path": "v2/{+parent}/storedInfoTypes",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateStoredInfoTypeRequest"
                   },
@@ -917,18 +903,16 @@
                 },
                 "list": {
                   "description": "Lists stored infoTypes.\nSee https://cloud.google.com/dlp/docs/creating-stored-infotypes to\nlearn more.",
-                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationId}/storedInfoTypes",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/storedInfoTypes",
                   "httpMethod": "GET",
                   "id": "dlp.organizations.locations.storedInfoTypes.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "locationId": {
-                      "description": "The geographic location where stored infoTypes will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -950,12 +934,12 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^organizations/[^/]+$",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/storedInfoTypes",
+                  "path": "v2/{+parent}/storedInfoTypes",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListStoredInfoTypesResponse"
                   },
@@ -1085,7 +1069,7 @@
               ],
               "parameters": {
                 "locationId": {
-                  "description": "The geographic location where stored infoTypes will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1333,7 +1317,7 @@
               ],
               "parameters": {
                 "locationId": {
-                  "description": "The geographic location where deidentifications templates will be retrieved\nfrom. Use `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1522,7 +1506,7 @@
                   "type": "string"
                 },
                 "locationId": {
-                  "description": "The geographic location where jobs will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1692,7 +1676,7 @@
               ],
               "parameters": {
                 "locationId": {
-                  "description": "The geographic location where inspection templates will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1881,7 +1865,7 @@
                   "type": "string"
                 },
                 "locationId": {
-                  "description": "The geographic location where job triggers will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1953,29 +1937,22 @@
               "methods": {
                 "deidentify": {
                   "description": "De-identifies potentially sensitive info from a ContentItem.\nThis method has limits on input size and output size.\nSee https://cloud.google.com/dlp/docs/deidentify-sensitive-data to\nlearn more.\n\nWhen no InfoTypes or CustomInfoTypes are specified in this request, the\nsystem will automatically choose what detectors to run. By default this may\nbe all types, but may change over time as detectors are updated.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/content:deidentify",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/content:deidentify",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.content.deidentify",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to process de-identification. Reserved for future\nextensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "The parent resource name, for example projects/my-project-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/content:deidentify",
+                  "path": "v2/{+parent}/content:deidentify",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2DeidentifyContentRequest"
                   },
@@ -1988,29 +1965,22 @@
                 },
                 "inspect": {
                   "description": "Finds potentially sensitive info in content.\nThis method has limits on input size, processing time, and output size.\n\nWhen no InfoTypes or CustomInfoTypes are specified in this request, the\nsystem will automatically choose what detectors to run. By default this may\nbe all types, but may change over time as detectors are updated.\n\nFor how to guides, see https://cloud.google.com/dlp/docs/inspecting-images\nand https://cloud.google.com/dlp/docs/inspecting-text,",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/content:inspect",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/content:inspect",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.content.inspect",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to process content inspection. Reserved for future\nextensions.\nWhen inspecting images location is restricted to 'global', 'us', 'asia',\nand 'europe'.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "The parent resource name, for example projects/my-project-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/content:inspect",
+                  "path": "v2/{+parent}/content:inspect",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2InspectContentRequest"
                   },
@@ -2023,29 +1993,22 @@
                 },
                 "reidentify": {
                   "description": "Re-identifies content that has been de-identified.\nSee\nhttps://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example\nto learn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/content:reidentify",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/content:reidentify",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.content.reidentify",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to process content reidentification.  Reserved for\nfuture extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/content:reidentify",
+                  "path": "v2/{+parent}/content:reidentify",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2ReidentifyContentRequest"
                   },
@@ -2062,29 +2025,22 @@
               "methods": {
                 "create": {
                   "description": "Creates a DeidentifyTemplate for re-using frequently used configuration\nfor de-identifying content, images, and storage.\nSee https://cloud.google.com/dlp/docs/creating-templates-deid to learn\nmore.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/deidentifyTemplates",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/deidentifyTemplates",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.deidentifyTemplates.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store the deidentification template. Reserved\nfor future extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/deidentifyTemplates",
+                  "path": "v2/{+parent}/deidentifyTemplates",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateDeidentifyTemplateRequest"
                   },
@@ -2147,18 +2103,16 @@
                 },
                 "list": {
                   "description": "Lists DeidentifyTemplates.\nSee https://cloud.google.com/dlp/docs/creating-templates-deid to learn\nmore.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/deidentifyTemplates",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/deidentifyTemplates",
                   "httpMethod": "GET",
                   "id": "dlp.projects.locations.deidentifyTemplates.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "locationId": {
-                      "description": "The geographic location where deidentifications templates will be retrieved\nfrom. Use `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -2180,12 +2134,12 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/deidentifyTemplates",
+                  "path": "v2/{+parent}/deidentifyTemplates",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListDeidentifyTemplatesResponse"
                   },
@@ -2255,29 +2209,22 @@
                 },
                 "create": {
                   "description": "Creates a new job to inspect storage or calculate risk metrics.\nSee https://cloud.google.com/dlp/docs/inspecting-storage and\nhttps://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.\n\nWhen no InfoTypes or CustomInfoTypes are specified in inspect jobs, the\nsystem will automatically choose what detectors to run. By default this may\nbe all types, but may change over time as detectors are updated.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/dlpJobs",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/dlpJobs",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.dlpJobs.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store and process the job. Reserved for\nfuture extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/dlpJobs",
+                  "path": "v2/{+parent}/dlpJobs",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateDlpJobRequest"
                   },
@@ -2396,12 +2343,11 @@
                 },
                 "list": {
                   "description": "Lists DlpJobs that match the specified filter in the request.\nSee https://cloud.google.com/dlp/docs/inspecting-storage and\nhttps://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/dlpJobs",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/dlpJobs",
                   "httpMethod": "GET",
                   "id": "dlp.projects.locations.dlpJobs.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "filter": {
@@ -2410,9 +2356,8 @@
                       "type": "string"
                     },
                     "locationId": {
-                      "description": "The geographic location where jobs will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -2434,7 +2379,7 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
@@ -2449,7 +2394,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/dlpJobs",
+                  "path": "v2/{+parent}/dlpJobs",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListDlpJobsResponse"
                   },
@@ -2463,29 +2408,22 @@
               "methods": {
                 "redact": {
                   "description": "Redacts potentially sensitive info from an image.\nThis method has limits on input size, processing time, and output size.\nSee https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to\nlearn more.\n\nWhen no InfoTypes or CustomInfoTypes are specified in this request, the\nsystem will automatically choose what detectors to run. By default this may\nbe all types, but may change over time as detectors are updated.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/image:redact",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/image:redact",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.image.redact",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to process the request. Reserved for future\nextensions.\nLocation is restricted to 'global', 'us', 'asia', and 'europe'.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "The parent resource name, for example projects/my-project-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/image:redact",
+                  "path": "v2/{+parent}/image:redact",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2RedactImageRequest"
                   },
@@ -2502,29 +2440,22 @@
               "methods": {
                 "create": {
                   "description": "Creates an InspectTemplate for re-using frequently used configuration\nfor inspecting content, images, and storage.\nSee https://cloud.google.com/dlp/docs/creating-templates to learn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/inspectTemplates",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/inspectTemplates",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.inspectTemplates.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store the inspection template. Reserved for\nfuture extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/inspectTemplates",
+                  "path": "v2/{+parent}/inspectTemplates",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateInspectTemplateRequest"
                   },
@@ -2587,18 +2518,16 @@
                 },
                 "list": {
                   "description": "Lists InspectTemplates.\nSee https://cloud.google.com/dlp/docs/creating-templates to learn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/inspectTemplates",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/inspectTemplates",
                   "httpMethod": "GET",
                   "id": "dlp.projects.locations.inspectTemplates.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "locationId": {
-                      "description": "The geographic location where inspection templates will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -2620,12 +2549,12 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/inspectTemplates",
+                  "path": "v2/{+parent}/inspectTemplates",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListInspectTemplatesResponse"
                   },
@@ -2695,29 +2624,22 @@
                 },
                 "create": {
                   "description": "Creates a job trigger to run DLP actions such as scanning storage for\nsensitive information on a set schedule.\nSee https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/jobTriggers",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobTriggers",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.jobTriggers.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store the job trigger. Reserved for\nfuture extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/jobTriggers",
+                  "path": "v2/{+parent}/jobTriggers",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateJobTriggerRequest"
                   },
@@ -2808,12 +2730,11 @@
                 },
                 "list": {
                   "description": "Lists job triggers.\nSee https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/jobTriggers",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobTriggers",
                   "httpMethod": "GET",
                   "id": "dlp.projects.locations.jobTriggers.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "filter": {
@@ -2822,9 +2743,8 @@
                       "type": "string"
                     },
                     "locationId": {
-                      "description": "The geographic location where job triggers will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -2846,12 +2766,12 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example `projects/my-project-id`.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/jobTriggers",
+                  "path": "v2/{+parent}/jobTriggers",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListJobTriggersResponse"
                   },
@@ -2893,29 +2813,22 @@
               "methods": {
                 "create": {
                   "description": "Creates a pre-built stored infoType to be used for inspection.\nSee https://cloud.google.com/dlp/docs/creating-stored-infotypes to\nlearn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/storedInfoTypes",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/storedInfoTypes",
                   "httpMethod": "POST",
                   "id": "dlp.projects.locations.storedInfoTypes.create",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
-                    "locationId": {
-                      "description": "The geographic location to store the stored infoType. Reserved for\nfuture extensions.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/storedInfoTypes",
+                  "path": "v2/{+parent}/storedInfoTypes",
                   "request": {
                     "$ref": "GooglePrivacyDlpV2CreateStoredInfoTypeRequest"
                   },
@@ -2978,18 +2891,16 @@
                 },
                 "list": {
                   "description": "Lists stored infoTypes.\nSee https://cloud.google.com/dlp/docs/creating-stored-infotypes to\nlearn more.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationId}/storedInfoTypes",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/storedInfoTypes",
                   "httpMethod": "GET",
                   "id": "dlp.projects.locations.storedInfoTypes.list",
                   "parameterOrder": [
-                    "parent",
-                    "locationId"
+                    "parent"
                   ],
                   "parameters": {
                     "locationId": {
-                      "description": "The geographic location where stored infoTypes will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
-                      "location": "path",
-                      "required": true,
+                      "description": "Deprecated. This field has no effect.",
+                      "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
@@ -3011,12 +2922,12 @@
                     "parent": {
                       "description": "Required. The parent resource name, for example projects/my-project-id or\norganizations/my-org-id.",
                       "location": "path",
-                      "pattern": "^projects/[^/]+$",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2/{+parent}/locations/{locationId}/storedInfoTypes",
+                  "path": "v2/{+parent}/storedInfoTypes",
                   "response": {
                     "$ref": "GooglePrivacyDlpV2ListStoredInfoTypesResponse"
                   },
@@ -3146,7 +3057,7 @@
               ],
               "parameters": {
                 "locationId": {
-                  "description": "The geographic location where stored infoTypes will be retrieved from.\nUse `-` for all locations. Reserved for future extensions.",
+                  "description": "Deprecated. This field has no effect.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3215,7 +3126,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200516",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3923,7 +3834,7 @@
           "description": "Required. The DeidentifyTemplate to create."
         },
         "locationId": {
-          "description": "The geographic location to store the deidentification template. Reserved\nfor future extensions.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
         "templateId": {
@@ -3946,7 +3857,7 @@
           "type": "string"
         },
         "locationId": {
-          "description": "The geographic location to store and process the job. Reserved for\nfuture extensions.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
         "riskJob": {
@@ -3965,7 +3876,7 @@
           "description": "Required. The InspectTemplate to create."
         },
         "locationId": {
-          "description": "The geographic location to store the inspection template. Reserved for\nfuture extensions.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
         "templateId": {
@@ -3984,7 +3895,7 @@
           "description": "Required. The JobTrigger to create."
         },
         "locationId": {
-          "description": "The geographic location to store the job trigger. Reserved for\nfuture extensions.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
         "triggerId": {
@@ -4003,7 +3914,7 @@
           "description": "Required. Configuration of the storedInfoType to create."
         },
         "locationId": {
-          "description": "The geographic location to store the stored infoType. Reserved for\nfuture extensions.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
         "storedInfoTypeId": {
@@ -4312,7 +4223,7 @@
           "description": "The item to de-identify. Will be treated as text."
         },
         "locationId": {
-          "description": "The geographic location to process de-identification. Reserved for future\nextensions.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         }
       },
@@ -5240,7 +5151,7 @@
           "description": "The item to inspect."
         },
         "locationId": {
-          "description": "The geographic location to process content inspection. Reserved for future\nextensions.\nWhen inspecting images location is restricted to 'global', 'us', 'asia',\nand 'europe'.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         }
       },
@@ -6426,7 +6337,7 @@
           "description": "Configuration for the inspector."
         },
         "locationId": {
-          "description": "The geographic location to process the request. Reserved for future\nextensions.\nLocation is restricted to 'global', 'us', 'asia', and 'europe'.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         }
       },
@@ -6488,7 +6399,7 @@
           "description": "The item to re-identify. Will be treated as text."
         },
         "locationId": {
-          "description": "The geographic location to process content reidentification.  Reserved for\nfuture extensions.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
         "reidentifyConfig": {
