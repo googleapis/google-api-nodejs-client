@@ -187,7 +187,7 @@ export namespace websecurityscanner_v1beta {
      */
     finalUrl?: string | null;
     /**
-     * The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-scanner/docs/scan-result-details
+     * The type of the Finding. Detailed and up-to-date information on findings can be found here: https://cloud.google.com/security-command-center/docs/how-to-remediate-web-security-scanner
      */
     findingType?: string | null;
     /**
@@ -400,7 +400,7 @@ export namespace websecurityscanner_v1beta {
      */
     authentication?: Schema$Authentication;
     /**
-     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+     * The excluded URL patterns as described in https://cloud.google.com/security-command-center/docs/how-to-use-web-security-scanner#excluding_urls
      */
     blacklistPatterns?: string[] | null;
     /**
@@ -408,7 +408,7 @@ export namespace websecurityscanner_v1beta {
      */
     displayName?: string | null;
     /**
-     * Controls export of scan configurations and results to Cloud Security Command Center.
+     * Controls export of scan configurations and results to Security Command Center.
      */
     exportToSecurityCommandCenter?: string | null;
     /**
@@ -416,7 +416,7 @@ export namespace websecurityscanner_v1beta {
      */
     latestRun?: Schema$ScanRun;
     /**
-     * Whether the scan config is managed by Cloud Web Security Scanner, output only.
+     * Whether the scan config is managed by Web Security Scanner, output only.
      */
     managedScan?: boolean | null;
     /**
@@ -444,7 +444,7 @@ export namespace websecurityscanner_v1beta {
      */
     staticIpScan?: boolean | null;
     /**
-     * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
+     * Set of Google Cloud platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     targetPlatforms?: string[] | null;
     /**

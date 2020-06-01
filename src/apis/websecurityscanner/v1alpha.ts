@@ -357,7 +357,7 @@ export namespace websecurityscanner_v1alpha {
      */
     authentication?: Schema$Authentication;
     /**
-     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+     * The excluded URL patterns as described in https://cloud.google.com/security-command-center/docs/how-to-use-web-security-scanner#excluding_urls
      */
     blacklistPatterns?: string[] | null;
     /**
@@ -385,7 +385,7 @@ export namespace websecurityscanner_v1alpha {
      */
     startingUrls?: string[] | null;
     /**
-     * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
+     * Set of Google Cloud platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     targetPlatforms?: string[] | null;
     /**
