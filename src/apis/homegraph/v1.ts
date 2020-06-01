@@ -317,7 +317,7 @@ export namespace homegraph_v1 {
      */
     eventId?: string | null;
     /**
-     * Token to maintain state in the follow up notification response.
+     * Token to maintain state in the follow up notification response. Deprecated. See the [notifications guide](https://developers.google.com/assistant/smarthome/develop/notifications) for details on implementing follow up notifications.
      */
     followUpToken?: string | null;
     /**

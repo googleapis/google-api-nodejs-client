@@ -192,7 +192,7 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200522",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -460,7 +460,7 @@
           "type": "string"
         },
         "followUpToken": {
-          "description": "Token to maintain state in the follow up notification response.",
+          "description": "Token to maintain state in the follow up notification response.\nDeprecated. See the [notifications\nguide](https://developers.google.com/assistant/smarthome/develop/notifications)\nfor details on implementing follow up notifications.",
           "type": "string"
         },
         "payload": {
