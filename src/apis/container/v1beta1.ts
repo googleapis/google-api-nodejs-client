@@ -595,6 +595,10 @@ export namespace container_v1beta1 {
      */
     desiredDatabaseEncryption?: Schema$DatabaseEncryption;
     /**
+     * The desired status of whether to disable default sNAT for this cluster.
+     */
+    desiredDefaultSnatStatus?: Schema$DefaultSnatStatus;
+    /**
      * The desired image type for the node pool. NOTE: Set the &quot;desired_node_pool&quot; field as well.
      */
     desiredImageType?: string | null;
@@ -777,6 +781,15 @@ export namespace container_v1beta1 {
      * Denotes the state of etcd encryption.
      */
     state?: string | null;
+  }
+  /**
+   * DefaultSnatStatus contains the desired state of whether default sNAT should be disabled on the cluster.
+   */
+  export interface Schema$DefaultSnatStatus {
+    /**
+     * Disables cluster default sNAT rules.
+     */
+    disabled?: boolean | null;
   }
   /**
    * Configuration for NodeLocal DNSCache
@@ -1217,6 +1230,10 @@ export namespace container_v1beta1 {
    * NetworkConfig reports the relative names of network &amp; subnetwork.
    */
   export interface Schema$NetworkConfig {
+    /**
+     * Whether the cluster disables default in-node sNAT rules. In-node sNAT rules will be disabled when default_snat_status is disabled. When disabled is set to false, default IP masquerade rules will be applied to the nodes to prevent sNAT on cluster internal traffic.
+     */
+    defaultSnatStatus?: Schema$DefaultSnatStatus;
     /**
      * Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
      */
