@@ -192,6 +192,10 @@ export namespace billingbudgets_v1beta1 {
      */
     creditTypesTreatment?: string | null;
     /**
+     * Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. Currently, multiple entries or multiple values per entry are not allowed. If omitted, the report will include all labeled and unlabeled usage.
+     */
+    labels?: {[key: string]: any[]} | null;
+    /**
      * Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
      */
     projects?: string[] | null;
@@ -199,6 +203,10 @@ export namespace billingbudgets_v1beta1 {
      * Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api.
      */
     services?: string[] | null;
+    /**
+     * Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the master account, usage from the master account will be included. If omitted, the report will include usage from the master account and all subaccounts, if they exist.
+     */
+    subaccounts?: string[] | null;
   }
   /**
    * Describes a budget amount targeted to last period&#39;s spend. At this time, the amount is automatically 100% of last period&#39;s spend; that is, there are no other options yet. Future configuration will be described here (for example, configuring a percentage of last period&#39;s spend).
