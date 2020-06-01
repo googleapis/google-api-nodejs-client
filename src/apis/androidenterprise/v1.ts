@@ -1473,20 +1473,6 @@ export namespace androidenterprise_v1 {
     user?: Schema$User[];
   }
   /**
-   * A UserToken is used by a user when setting up a managed device or profile with their managed Google Play account on a device. When the user enters their email address and token (activation code) the appropriate EMM app can be automatically downloaded.
-   */
-  export interface Schema$UserToken {
-    kind?: string | null;
-    /**
-     * The token (activation code) to be entered by the user. This consists of a sequence of decimal digits. Note that the leading digit may be 0.
-     */
-    token?: string | null;
-    /**
-     * The unique ID for the user.
-     */
-    userId?: string | null;
-  }
-  /**
    * A variable set is a key-value pair of EMM-provided placeholders and its corresponding value, which is attributed to a user. For example, $FIRSTNAME could be a placeholder, and its value could be Alice. Placeholders should start with a &#39;$&#39; sign and should be alphanumeric only.
    */
   export interface Schema$VariableSet {
@@ -11765,142 +11751,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.users.generateToken
-     * @desc Generates a token (activation code) to allow this user to configure their managed account in the Android Setup Wizard. Revokes any previously generated token.  This call only works with Google managed accounts.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidenterprise = google.androidenterprise('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
-     *
-     *   // Do the magic
-     *   const res = await androidenterprise.users.generateToken({
-     *     // The ID of the enterprise.
-     *     enterpriseId: 'placeholder-value',
-     *     // The ID of the user.
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "token": "my_token",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias androidenterprise.users.generateToken
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    generateToken(
-      params: Params$Resource$Users$Generatetoken,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    generateToken(
-      params?: Params$Resource$Users$Generatetoken,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$UserToken>;
-    generateToken(
-      params: Params$Resource$Users$Generatetoken,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generateToken(
-      params: Params$Resource$Users$Generatetoken,
-      options: MethodOptions | BodyResponseCallback<Schema$UserToken>,
-      callback: BodyResponseCallback<Schema$UserToken>
-    ): void;
-    generateToken(
-      params: Params$Resource$Users$Generatetoken,
-      callback: BodyResponseCallback<Schema$UserToken>
-    ): void;
-    generateToken(callback: BodyResponseCallback<Schema$UserToken>): void;
-    generateToken(
-      paramsOrCallback?:
-        | Params$Resource$Users$Generatetoken
-        | BodyResponseCallback<Schema$UserToken>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$UserToken>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$UserToken>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$UserToken> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Users$Generatetoken;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Generatetoken;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$UserToken>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$UserToken>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.users.get
      * @desc Retrieves a user's details.
      * @example
@@ -12592,133 +12442,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.users.revokeToken
-     * @desc Revokes a previously generated token (activation code) for the user.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidenterprise = google.androidenterprise('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
-     *
-     *   // Do the magic
-     *   const res = await androidenterprise.users.revokeToken({
-     *     // The ID of the enterprise.
-     *     enterpriseId: 'placeholder-value',
-     *     // The ID of the user.
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias androidenterprise.users.revokeToken
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    revokeToken(
-      params: Params$Resource$Users$Revoketoken,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    revokeToken(
-      params?: Params$Resource$Users$Revoketoken,
-      options?: MethodOptions
-    ): GaxiosPromise<void>;
-    revokeToken(
-      params: Params$Resource$Users$Revoketoken,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    revokeToken(
-      params: Params$Resource$Users$Revoketoken,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    revokeToken(
-      params: Params$Resource$Users$Revoketoken,
-      callback: BodyResponseCallback<void>
-    ): void;
-    revokeToken(callback: BodyResponseCallback<void>): void;
-    revokeToken(
-      paramsOrCallback?:
-        | Params$Resource$Users$Revoketoken
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Users$Revoketoken;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Revoketoken;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.users.setAvailableProductSet
      * @desc Modifies the set of products that a user is entitled to access (referred to as whitelisted products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted.
      * @example
@@ -13055,22 +12778,6 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generatetoken
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-  }
   export interface Params$Resource$Users$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -13134,22 +12841,6 @@ export namespace androidenterprise_v1 {
     enterpriseId?: string;
   }
   export interface Params$Resource$Users$Revokedeviceaccess
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-  }
-  export interface Params$Resource$Users$Revoketoken
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
