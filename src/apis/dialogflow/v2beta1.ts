@@ -116,6 +116,253 @@ export namespace dialogflow_v2beta1 {
   }
 
   /**
+   * The response message for Agents.ExportAgent.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportAgentResponse {
+    /**
+     * Uncompressed raw byte content for agent.
+     */
+    agentContent?: string | null;
+    /**
+     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
+     */
+    agentUri?: string | null;
+  }
+  /**
+   * Represents page information communicated to and from the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PageInfo {
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;/pages/&lt;Page ID&gt;`.
+     */
+    currentPage?: string | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. Information about the form.
+     */
+    formInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfo;
+    /**
+     * Deprecated. Please use WebhookResponse.target_page or WebhookResponse.target_flow instead.  Optional for WebhookResponse. The unique identifier of the next page. This field can be set by the webhook to immediately transition to a page different from `current_page`. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;/pages/&lt;Page ID&gt;`.
+     */
+    nextPage?: string | null;
+  }
+  /**
+   * Represents form information.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfo {
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. The parameters contained in the form. Note that the webhook cannot add or remove any form parameter.
+     */
+    parameterInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo[];
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The current state of the form.
+     */
+    state?: string | null;
+  }
+  /**
+   * Represents parameter information.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo {
+    /**
+     * Always present for WebhookRequest. Required for WebhookResponse. The human-readable name of the parameter, unique within the form. This field cannot be modified by the webhook.
+     */
+    displayName?: string | null;
+    /**
+     * Optional for WebhookRequest. Ignored for WebhookResponse. Indicates if the parameter value was just collected on the last conversation turn.
+     */
+    justCollected?: boolean | null;
+    /**
+     * Not set for WebhookRequest. Optional for WebhookResponse. The prompt to send to the user to fill a required form parameter. This field can be set by the webhook. If set, this field overrides the prompt defined for the form parameter.
+     */
+    prompt?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. Indicates whether the parameter is required. Optional parameters will not trigger prompts; however, they are filled if the user specifies them. Required parameters must be filled before form filling concludes.
+     */
+    required?: boolean | null;
+    /**
+     * Always present for WebhookRequest. Required for WebhookResponse. The state of the parameter. This field can be set to INVALID by the webhook to invalidate the parameter; other values set by the webhook will be ignored.
+     */
+    state?: string | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. The value of the parameter. This field can be set by the webhook to change the parameter value.
+     */
+    value?: any | null;
+  }
+  /**
+   * Represents a response message that can be returned by a conversational agent.  Response messages are also used for output audio synthesis. The approach is as follows:  * If at least one OutputAudioText response is present, then all   OutputAudioText responses are linearly concatenated, and the result is used   for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the   concatenated result is treated as SSML; otherwise, the result is treated as   either text or SSML as appropriate. The agent designer should ideally use   either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is   used for output audio synthesis.  This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage {
+    /**
+     * Indicates that the conversation succeeded.
+     */
+    conversationSuccess?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess;
+    /**
+     * Hands off conversation to a human agent.
+     */
+    humanAgentHandoff?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff;
+    /**
+     * Returns a response containing a custom, platform-specific payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Returns a text response.
+     */
+    text?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText;
+  }
+  /**
+   * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about.  Dialogflow only uses this to determine which conversations should be counted as successful and doesn&#39;t process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don&#39;t return ConversationSuccess.  You may set this, for example: * In the entry_fulfillment of a Page if   entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer   issue.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess {
+    /**
+     * Custom metadata. Dialogflow doesn&#39;t impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Indicates that the conversation should be handed off to a human agent.  Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures.  You may set this, for example: * In the entry_fulfillment of a Page if   entering the page indicates something went extremely wrong in the   conversation. * In a webhook response when you determine that the customer issue can only   be handled by a human.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageHumanAgentHandoff {
+    /**
+     * Custom metadata for your handoff procedure. Dialogflow doesn&#39;t impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * The text response message.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText {
+    /**
+     * A collection of text responses.
+     */
+    text?: string[] | null;
+  }
+  /**
+   * Represents session information communicated to and from the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SessionInfo {
+    /**
+     * Optional for WebhookRequest. Optional for WebhookResponse. All parameters collected from forms and intents during the session. Parameters can be created, updated, or removed by the webhook. To remove a parameter from the session, the webhook should explicitly set the parameter value to null in WebhookResponse. The map is keyed by parameters&#39; display names.
+     */
+    parameters?: {[key: string]: any} | null;
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the session. This field can be used by the webhook to identify a user. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/sessions/&lt;Session ID&gt;`.
+     */
+    session?: string | null;
+  }
+  /**
+   * The request message for a webhook call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequest {
+    /**
+     * Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.
+     */
+    detectIntentResponseId?: string | null;
+    /**
+     * Always present. Information about the fulfillment that triggered this webhook call.
+     */
+    fulfillmentInfo?: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo;
+    /**
+     * Information about the last matched intent.
+     */
+    intentInfo?: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo;
+    /**
+     * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
+     */
+    messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+    /**
+     * Information about page status.
+     */
+    pageInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfo;
+    /**
+     * Custom data set in QueryParameters.payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Information about session status.
+     */
+    sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
+  }
+  /**
+   * Represents fulfillment information communicated to the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo {
+    /**
+     * Always present. The tag used to identify which fulfillment is being called.
+     */
+    tag?: string | null;
+  }
+  /**
+   * Represents intent information communicated to the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo {
+    /**
+     * Always present. The unique identifier of the last matched intent. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/intents/&lt;Intent ID&gt;`.
+     */
+    lastMatchedIntent?: string | null;
+    /**
+     * Parameters identified as a result of intent matching. This is a map of the name of the identified parameter to the value of the parameter identified from the user&#39;s utterance. All parameters defined in the matched intent that are identified will be surfaced here.
+     */
+    parameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue;
+    } | null;
+  }
+  /**
+   * Represents a value for an intent parameter.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue {
+    /**
+     * Always present. Original text value extracted from user utterance.
+     */
+    originalValue?: string | null;
+    /**
+     * Always present. Structured value for the parameter extracted from user utterance.
+     */
+    resolvedValue?: any | null;
+  }
+  /**
+   * The response message for a webhook call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookResponse {
+    /**
+     * The fulfillment response to send to the user. This field can be omitted by the webhook if it does not intend to send any response to the user.
+     */
+    fulfillmentResponse?: Schema$GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse;
+    /**
+     * Information about page status. This field can be omitted by the webhook if it does not intend to modify page status.
+     */
+    pageInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfo;
+    /**
+     * Value to append directly to QueryResult.webhook_payloads.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Information about session status. This field can be omitted by the webhook if it does not intend to modify session status.
+     */
+    sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
+    /**
+     * The target flow to transition to. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;`.
+     */
+    targetFlow?: string | null;
+    /**
+     * The target page to transition to. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;/pages/&lt;Page ID&gt;`.
+     */
+    targetPage?: string | null;
+  }
+  /**
+   * Represents a fulfillment response to the user.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse {
+    /**
+     * Merge behavior for `messages`.
+     */
+    mergeBehavior?: string | null;
+    /**
+     * The list of rich message responses to present to the user.
+     */
+    messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+  }
+  /**
    * Represents a part of a message possibly annotated with an entity. The part can be an entity or purely a part of the message between two entities or message start/end.
    */
   export interface Schema$GoogleCloudDialogflowV2AnnotatedMessagePart {
@@ -412,7 +659,7 @@ export namespace dialogflow_v2beta1 {
      */
     alternativeQueryResults?: Schema$GoogleCloudDialogflowV2beta1QueryResult[];
     /**
-     * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.fulfillment_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty.
+     * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.fulfillment_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty.  In some scenarios, multiple output audio fields may be present in the response structure. In these cases, only the top-most-level audio output has content.
      */
     outputAudio?: string | null;
     /**
@@ -1248,7 +1495,7 @@ export namespace dialogflow_v2beta1 {
     thumbnailUri?: string | null;
   }
   /**
-   * Carousel Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards. If you want to show a single card with more control over the layout, please use RbmStandaloneCard instead.
+   * Carousel Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards If you want to show a single card with more control over the layout, please use RbmStandaloneCard instead.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard {
     /**
@@ -1261,7 +1508,7 @@ export namespace dialogflow_v2beta1 {
     cardWidth?: string | null;
   }
   /**
-   * Standalone Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/rcs-business-messaging/rbm/guides/build/send-messages#rich-cards. You can group multiple rich cards into one using RbmCarouselCard but carousel cards will give you less control over the card layout.
+   * Standalone Rich Business Messaging (RBM) rich card.  Rich cards allow you to respond to users with more vivid content, e.g. with media and suggestions.  For more details about RBM rich cards, please see: https://developers.google.com/business-communications/rcs-business-messaging/guides/build/messages/send#rich-cards You can group multiple rich cards into one using RbmCarouselCard but carousel cards will give you less control over the card layout.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCard {
     /**
@@ -1920,7 +2167,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ReloadDocumentRequest {
     /**
-     * Optional. The path for a Cloud Storage source file for reloading document content. If not provided, the Document&#39;s existing source will be reloaded.
+     * The path for a Cloud Storage source file for reloading document content. If not provided, the Document&#39;s existing source will be reloaded.
      */
     gcsSource?: Schema$GoogleCloudDialogflowV2beta1GcsSource;
   }
@@ -11672,7 +11919,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.create({
-     *     // The knoweldge base to create a document for.
+     *     // Required. The knoweldge base to create a document for.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      *     parent: 'projects/my-project/agent/knowledgeBases/my-knowledgeBase',
      *
@@ -11713,7 +11960,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string} params.parent Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -12606,7 +12853,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
@@ -15784,7 +16031,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.create({
-     *     // The knoweldge base to create a document for.
+     *     // Required. The knoweldge base to create a document for.
      *     // Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      *     parent: 'projects/my-project/knowledgeBases/my-knowledgeBase',
      *
@@ -15825,7 +16072,7 @@ export namespace dialogflow_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string} params.parent Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      * @param {().GoogleCloudDialogflowV2beta1Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16718,7 +16965,7 @@ export namespace dialogflow_v2beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * Required. The knoweldge base to create a document for. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
 
@@ -18149,6 +18396,171 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
+     * dialogflow.projects.locations.agent.search
+     * @desc Returns the list of agents. Since there is at most one conversational agent per project, this method is useful primarily for listing all agents across projects the caller has access to. One can achieve that with a wildcard project collection id "-". Refer to [List Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agent.search({
+     *     // Optional. The maximum number of items to return in a single page. By
+     *     // default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list agents from.
+     *     // Format: `projects/<Project ID or '-'>`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias dialogflow.projects.locations.agent.search
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The project to list agents from. Format: `projects/<Project ID or '-'>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Agent$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Agent$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Agent$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Agent$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+      >
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Agent$Search,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+      >
+    ): void;
+    search(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+      >
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agent$Search
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agent$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agent$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/agent:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+        >(parameters, callback as BodyResponseCallback<{} | void>);
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2beta1SearchAgentsResponse
+        >(parameters);
+      }
+    }
+
+    /**
      * dialogflow.projects.locations.agent.train
      * @desc Trains the specified agent.   Operation <response: google.protobuf.Empty>
      * @example
@@ -18385,6 +18797,26 @@ export namespace dialogflow_v2beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2beta1RestoreAgentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Agent$Search
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list agents from. Format: `projects/<Project ID or '-'>`.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Agent$Train
     extends StandardParameters {
