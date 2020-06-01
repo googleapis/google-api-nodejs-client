@@ -32,6 +32,7 @@ import * as androidmanagement from './androidmanagement';
 import * as androidpublisher from './androidpublisher';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
+import * as artifactregistry from './artifactregistry';
 import * as bigquery from './bigquery';
 import * as bigqueryconnection from './bigqueryconnection';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
@@ -43,6 +44,7 @@ import * as blogger from './blogger';
 import * as books from './books';
 import * as calendar from './calendar';
 import * as chat from './chat';
+import * as chromeuxreport from './chromeuxreport';
 import * as civicinfo from './civicinfo';
 import * as classroom from './classroom';
 import * as cloudasset from './cloudasset';
@@ -207,6 +209,7 @@ export const APIS: APIList = {
   androidpublisher: androidpublisher.VERSIONS,
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
+  artifactregistry: artifactregistry.VERSIONS,
   bigquery: bigquery.VERSIONS,
   bigqueryconnection: bigqueryconnection.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
@@ -218,6 +221,7 @@ export const APIS: APIList = {
   books: books.VERSIONS,
   calendar: calendar.VERSIONS,
   chat: chat.VERSIONS,
+  chromeuxreport: chromeuxreport.VERSIONS,
   civicinfo: civicinfo.VERSIONS,
   classroom: classroom.VERSIONS,
   cloudasset: cloudasset.VERSIONS,
@@ -379,6 +383,7 @@ export class GeneratedAPIs {
   androidpublisher = androidpublisher.androidpublisher;
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;
+  artifactregistry = artifactregistry.artifactregistry;
   bigquery = bigquery.bigquery;
   bigqueryconnection = bigqueryconnection.bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
@@ -390,6 +395,7 @@ export class GeneratedAPIs {
   books = books.books;
   calendar = calendar.calendar;
   chat = chat.chat;
+  chromeuxreport = chromeuxreport.chromeuxreport;
   civicinfo = civicinfo.civicinfo;
   classroom = classroom.classroom;
   cloudasset = cloudasset.cloudasset;
