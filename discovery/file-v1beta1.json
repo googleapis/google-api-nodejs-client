@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20200513",
+  "revision": "20200528",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "AttributeValue": {
@@ -807,6 +807,10 @@
           "description": "The MaintenanceSchedule contains the scheduling information of published\nmaintenance schedule.",
           "type": "object"
         },
+        "maintenanceSettings": {
+          "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings",
+          "description": "Optional. The MaintenanceSettings associated with instance."
+        },
         "name": {
           "description": "Unique name of the resource. It uses the form:\n `projects/{project_id}/locations/{location_id}/instances/{instance_id}`",
           "type": "string"
@@ -895,6 +899,17 @@
           "description": "The scheduled start time for the maintenance.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings": {
+      "description": "Maintenance settings associated with instance. Allows service producers and\nend users to assign settings that controls maintenance on this instance.",
+      "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings",
+      "properties": {
+        "exclude": {
+          "description": "Optional. Exclude instance from maintenance. When true, rollout service will not\nattempt maintenance on the instance. Rollout service will include the\ninstance in reported rollout progress as not attempted.",
+          "type": "boolean"
         }
       },
       "type": "object"
