@@ -659,7 +659,7 @@
       }
     }
   },
-  "revision": "20200318",
+  "revision": "20200527",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -1055,9 +1055,11 @@
       "type": "object"
     },
     "SchedulingConfig": {
+      "description": "Sets the scheduling options for this node.",
       "id": "SchedulingConfig",
       "properties": {
         "preemptible": {
+          "description": "Defines whether the node is preemptible.",
           "type": "boolean"
         },
         "reserved": {

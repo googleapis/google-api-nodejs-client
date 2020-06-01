@@ -968,6 +968,10 @@ export namespace bigquery_v2 {
      */
     compression?: string | null;
     /**
+     * [Optional, Trusted Tester] Connection for external data source.
+     */
+    connectionId?: string | null;
+    /**
      * Additional properties to set if sourceFormat is set to CSV.
      */
     csvOptions?: Schema$CsvOptions;
@@ -2021,9 +2025,17 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
     /**
+     * The labels associated with this job. You can use these to organize and group your jobs. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The geographic location where the job should run. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string | null;
+    /**
+     * [Optional] Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
+     */
+    maximumBytesBilled?: string | null;
     /**
      * [Optional] The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
      */
@@ -2044,6 +2056,10 @@ export namespace bigquery_v2 {
      * Query parameters for Standard SQL queries.
      */
     queryParameters?: Schema$QueryParameter[];
+    /**
+     * A unique user provided identifier to ensure idempotent behavior for queries. Note that this is different from the job_id. It has the following properties: 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended. 2. Read only queries can ignore this token since they are nullipotent by definition. 3. When a duplicate mutating query request is detected (i.e. having the same request_id as an earlier query), it returns: a. the results of the mutation if it completes successfully within the timeout. b. the running operation if it is still in progress at the end of the timeout. 4. Its lifetime is limited to 15 minutes. In other words, if two requests are sent with the same request_id, but more than 15 minutes apart, idempotency is not guaranteed.
+     */
+    requestId?: string | null;
     /**
      * [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the &#39;jobComplete&#39; flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
      */
@@ -2824,6 +2840,9 @@ export namespace bigquery_v2 {
      */
     trainingOptions?: Schema$TrainingOptions;
   }
+  /**
+   * This is used for defining User Defined Function (UDF) resources only when using legacy SQL. Users of Standard SQL should leverage either DDL (e.g. CREATE [TEMPORARY] FUNCTION ... ) or the Routines API to define UDF resources. For additional information on migrating, see: https://cloud.google.com/bigquery/docs/reference/standard-sql/migrating-from-legacy-sql#differences_in_user-defined_javascript_functions
+   */
   export interface Schema$UserDefinedFunctionResource {
     /**
      * [Pick one] An inline resource that contains code for a user-defined function (UDF). Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
@@ -4761,12 +4780,15 @@ export namespace bigquery_v2 {
      *       //   "defaultDataset": {},
      *       //   "dryRun": false,
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "maxResults": 0,
+     *       //   "maximumBytesBilled": "my_maximumBytesBilled",
      *       //   "parameterMode": "my_parameterMode",
      *       //   "preserveNulls": false,
      *       //   "query": "my_query",
      *       //   "queryParameters": [],
+     *       //   "requestId": "my_requestId",
      *       //   "timeoutMs": 0,
      *       //   "useLegacySql": false,
      *       //   "useQueryCache": false

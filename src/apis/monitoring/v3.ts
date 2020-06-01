@@ -844,6 +844,10 @@ export namespace monitoring_v3 {
      * If there might be more results than were returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.
      */
     nextPageToken?: string | null;
+    /**
+     * The total number of alert policies in all pages. This number is only an estimate, and may change in subsequent pages. https://aip.dev/158
+     */
+    totalSize?: number | null;
   }
   /**
    * The ListGroupMembers response.
@@ -2380,7 +2384,8 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "alertPolicies": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
      *   // }
      * }
      *

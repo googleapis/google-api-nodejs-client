@@ -220,6 +220,10 @@ export namespace displayvideo_v1 {
      */
     partnerId?: string | null;
     /**
+     * Targeting settings related to ad serving of the advertiser.
+     */
+    servingConfig?: Schema$AdvertiserTargetingConfig;
+    /**
      * Output only. The timestamp when the advertiser was last updated. Assigned by the system.
      */
     updateTime?: string | null;
@@ -296,6 +300,15 @@ export namespace displayvideo_v1 {
      * The SDF configuration for the advertiser.  * Required when overridePartnerSdfConfig is `true`. * Output only when overridePartnerSdfConfig is `false`.
      */
     sdfConfig?: Schema$SdfConfig;
+  }
+  /**
+   * Targeting settings related to ad serving of an advertiser.
+   */
+  export interface Schema$AdvertiserTargetingConfig {
+    /**
+     * Whether or not connected TV devices are exempt from viewability targeting for all video line items under the advertiser.
+     */
+    exemptTvFromViewabilityTargeting?: boolean | null;
   }
   /**
    * Represents a targetable age range. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AGE_RANGE`.
@@ -665,6 +678,25 @@ export namespace displayvideo_v1 {
     displayName?: string | null;
   }
   /**
+   * Request message for BulkEditAdvertiserAssignedTargetingOptions.
+   */
+  export interface Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest {
+    /**
+     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`.
+     */
+    createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
+    /**
+     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`.
+     */
+    deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
+  }
+  export interface Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options that have been successfully created.  This list will be absent if empty.
+     */
+    createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
+  }
+  /**
    * Request message for BulkEditLineItemAssignedTargetingOptions.
    */
   export interface Schema$BulkEditLineItemAssignedTargetingOptionsRequest {
@@ -682,6 +714,16 @@ export namespace displayvideo_v1 {
      * The list of assigned targeting options that have been successfully created.  This list will be absent if empty.
      */
     createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
+  }
+  export interface Schema$BulkListAdvertiserAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options.  This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent BulkListAdvertiserAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
   }
   export interface Schema$BulkListLineItemAssignedTargetingOptionsResponse {
     /**
@@ -1165,6 +1207,10 @@ export namespace displayvideo_v1 {
      * JavaScript measurement URL from supported third-party verification providers (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not supported.  This field is only supported in following creative_type:  * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     jsTrackerUrl?: string | null;
+    /**
+     * Output only. The IDs of the line items this creative associated with.  To associate a creative to a line item, use LineItem.creative_ids instead.
+     */
+    lineItemIds?: string[] | null;
     /**
      * Output only. Media duration of the creative. Applicable when creative_type is one of:  * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_PUBLISHER_HOSTED`
      */
@@ -2357,6 +2403,19 @@ export namespace displayvideo_v1 {
      */
     flightDateType?: string | null;
   }
+  /**
+   * Response message for ListAdvertiserAssignedTargetingOptions.
+   */
+  export interface Schema$ListAdvertiserAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options.  This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListAdvertiserAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
+  }
   export interface Schema$ListAdvertisersResponse {
     /**
      * The list of advertisers.  This list will be absent if empty.
@@ -3397,6 +3456,7 @@ export namespace displayvideo_v1 {
     lineItems: Resource$Advertisers$Lineitems;
     locationLists: Resource$Advertisers$Locationlists;
     negativeKeywordLists: Resource$Advertisers$Negativekeywordlists;
+    targetingTypes: Resource$Advertisers$Targetingtypes;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Advertisers$Assets(this.context);
@@ -3411,6 +3471,372 @@ export namespace displayvideo_v1 {
       this.negativeKeywordLists = new Resource$Advertisers$Negativekeywordlists(
         this.context
       );
+      this.targetingTypes = new Resource$Advertisers$Targetingtypes(
+        this.context
+      );
+    }
+
+    /**
+     * displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions
+     * @desc Bulk edits targeting options under a single advertiser. The operation will delete the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions(
+     *     {
+     *       // Required. The ID of the advertiser.
+     *       advertiserId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createRequests": [],
+     *         //   "deleteRequests": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdAssignedTargetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the advertiser.
+     * @param {().BulkEditAdvertiserAssignedTargetingOptionsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEditAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEditAdvertiserAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>;
+    bulkEditAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEditAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkEditAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
+      callback: BodyResponseCallback<
+        Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkEditAdvertiserAssignedTargetingOptions(
+      callback: BodyResponseCallback<
+        Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkEditAdvertiserAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}:bulkEditAdvertiserAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<{} | void>);
+      } else {
+        return createAPIRequest<
+          Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+        >(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions
+     * @desc Lists assigned targeting options of an advertiser across targeting types.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions(
+     *     {
+     *       // Required. The ID of the advertiser the line item belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties.
+     *       // Supported syntax:
+     *       //
+     *       // * Filter expressions are made up of one or more restrictions.
+     *       // * Restrictions can be combined by the logical operator `OR`..
+     *       // * A restriction has the form of `{field} {operator} {value}`.
+     *       // * The operator must be `EQUALS (=)`.
+     *       // * Supported fields:
+     *       //     - `targetingType`
+     *       //
+     *       // Examples:
+     *       //
+     *       // * targetingType with value TARGETING_TYPE_CHANNEL
+     *       // `targetingType="TARGETING_TYPE_CHANNEL"`
+     *       //
+     *       // The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Field by which to sort the list.
+     *       // Acceptable values are:
+     *       //
+     *       // * `targetingType` (default)
+     *       //
+     *       // The default sorting order is ascending. To specify descending order for
+     *       // a field, a suffix "desc" should be added to the field name. Example:
+     *       // `targetingType desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size.
+     *       // The size must be an integer between `1` and `5000`. If unspecified,
+     *       // the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid
+     *       // value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token that lets the client fetch the next page of results.
+     *       // Typically, this is the value of
+     *       // next_page_token
+     *       // returned from the previous call to
+     *       // `BulkListAdvertiserAssignedTargetingOptions` method.
+     *       // If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the advertiser the line item belongs to.
+     * @param {string=} params.filter Allows filtering by assigned targeting option properties. Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `targetingType`  Examples:  * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `targetingType` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     * @param {integer=} params.pageSize Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkListAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkListAdvertiserAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>;
+    bulkListAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkListAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkListAdvertiserAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
+      callback: BodyResponseCallback<
+        Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkListAdvertiserAssignedTargetingOptions(
+      callback: BodyResponseCallback<
+        Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    bulkListAdvertiserAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}:bulkListAdvertiserAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<{} | void>);
+      } else {
+        return createAPIRequest<
+          Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+        >(parameters);
+      }
     }
 
     /**
@@ -3454,6 +3880,7 @@ export namespace displayvideo_v1 {
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
+     *       //   "servingConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -3472,6 +3899,7 @@ export namespace displayvideo_v1 {
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
+     *   //   "servingConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -3739,6 +4167,7 @@ export namespace displayvideo_v1 {
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
+     *   //   "servingConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -4057,6 +4486,7 @@ export namespace displayvideo_v1 {
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
+     *       //   "servingConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -4075,6 +4505,7 @@ export namespace displayvideo_v1 {
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
+     *   //   "servingConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -4175,6 +4606,51 @@ export namespace displayvideo_v1 {
     }
   }
 
+  export interface Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The ID of the advertiser.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest;
+  }
+  export interface Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The ID of the advertiser the line item belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `targetingType`  Examples:  * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"`  The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are:  * `targetingType` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Advertisers$Create
     extends StandardParameters {
     /**
@@ -5779,6 +6255,7 @@ export namespace displayvideo_v1 {
      *       //   "iasCampaignMonitoring": false,
      *       //   "integrationCode": "my_integrationCode",
      *       //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *       //   "lineItemIds": [],
      *       //   "mediaDuration": "my_mediaDuration",
      *       //   "name": "my_name",
      *       //   "notes": "my_notes",
@@ -5830,6 +6307,7 @@ export namespace displayvideo_v1 {
      *   //   "iasCampaignMonitoring": false,
      *   //   "integrationCode": "my_integrationCode",
      *   //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *   //   "lineItemIds": [],
      *   //   "mediaDuration": "my_mediaDuration",
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
@@ -6138,6 +6616,7 @@ export namespace displayvideo_v1 {
      *   //   "iasCampaignMonitoring": false,
      *   //   "integrationCode": "my_integrationCode",
      *   //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *   //   "lineItemIds": [],
      *   //   "mediaDuration": "my_mediaDuration",
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
@@ -6526,6 +7005,7 @@ export namespace displayvideo_v1 {
      *       //   "iasCampaignMonitoring": false,
      *       //   "integrationCode": "my_integrationCode",
      *       //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *       //   "lineItemIds": [],
      *       //   "mediaDuration": "my_mediaDuration",
      *       //   "name": "my_name",
      *       //   "notes": "my_notes",
@@ -6577,6 +7057,7 @@ export namespace displayvideo_v1 {
      *   //   "iasCampaignMonitoring": false,
      *   //   "integrationCode": "my_integrationCode",
      *   //   "jsTrackerUrl": "my_jsTrackerUrl",
+     *   //   "lineItemIds": [],
      *   //   "mediaDuration": "my_mediaDuration",
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
@@ -10714,6 +11195,889 @@ export namespace displayvideo_v1 {
      * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Advertisers$Targetingtypes {
+    context: APIRequestContext;
+    assignedTargetingOptions: Resource$Advertisers$Targetingtypes$Assignedtargetingoptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.assignedTargetingOptions = new Resource$Advertisers$Targetingtypes$Assignedtargetingoptions(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Advertisers$Targetingtypes$Assignedtargetingoptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create
+     * @desc Assigns a targeting option to an advertiser. Returns the assigned targeting option if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create(
+     *     {
+     *       // Required. The ID of the advertiser.
+     *       advertiserId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option.
+     *       targetingType: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "ageRangeDetails": {},
+     *         //   "appCategoryDetails": {},
+     *         //   "appDetails": {},
+     *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *         //   "audienceGroupDetails": {},
+     *         //   "authorizedSellerStatusDetails": {},
+     *         //   "browserDetails": {},
+     *         //   "carrierAndIspDetails": {},
+     *         //   "categoryDetails": {},
+     *         //   "channelDetails": {},
+     *         //   "contentInstreamPositionDetails": {},
+     *         //   "contentOutstreamPositionDetails": {},
+     *         //   "dayAndTimeDetails": {},
+     *         //   "deviceMakeModelDetails": {},
+     *         //   "deviceTypeDetails": {},
+     *         //   "digitalContentLabelExclusionDetails": {},
+     *         //   "environmentDetails": {},
+     *         //   "exchangeDetails": {},
+     *         //   "genderDetails": {},
+     *         //   "geoRegionDetails": {},
+     *         //   "householdIncomeDetails": {},
+     *         //   "inheritance": "my_inheritance",
+     *         //   "inventorySourceDetails": {},
+     *         //   "inventorySourceGroupDetails": {},
+     *         //   "keywordDetails": {},
+     *         //   "languageDetails": {},
+     *         //   "name": "my_name",
+     *         //   "negativeKeywordListDetails": {},
+     *         //   "onScreenPositionDetails": {},
+     *         //   "operatingSystemDetails": {},
+     *         //   "parentalStatusDetails": {},
+     *         //   "proximityLocationListDetails": {},
+     *         //   "regionalLocationListDetails": {},
+     *         //   "sensitiveCategoryExclusionDetails": {},
+     *         //   "subExchangeDetails": {},
+     *         //   "targetingType": "my_targetingType",
+     *         //   "thirdPartyVerifierDetails": {},
+     *         //   "urlDetails": {},
+     *         //   "userRewardedContentDetails": {},
+     *         //   "videoPlayerSizeDetails": {},
+     *         //   "viewabilityDetails": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "audienceGroupDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the advertiser.
+     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
+     * @param {().AssignedTargetingOption} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    create(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'targetingType'],
+        pathParams: ['advertiserId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete
+     * @desc Deletes an assigned targeting option from an advertiser.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete(
+     *     {
+     *       // Required. The ID of the advertiser.
+     *       advertiserId: '[^/]+',
+     *       // Required. The ID of the assigned targeting option to delete.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option.
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the advertiser.
+     * @param {string} params.assignedTargetingOptionId Required. The ID of the assigned targeting option to delete.
+     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: [
+          'advertiserId',
+          'assignedTargetingOptionId',
+          'targetingType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get
+     * @desc Gets a single targeting option assigned to an advertiser.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get(
+     *     {
+     *       // Required. The ID of the advertiser.
+     *       advertiserId: '[^/]+',
+     *       // Required. An identifier unique to the targeting type in this advertiser that
+     *       // identifies the assigned targeting option being requested.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option.
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "audienceGroupDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the advertiser.
+     * @param {string} params.assignedTargetingOptionId Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
+     * @param {string} params.targetingType Required. Identifies the type of this assigned targeting option.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    get(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssignedTargetingOption>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: [
+          'advertiserId',
+          'assignedTargetingOptionId',
+          'targetingType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list
+     * @desc Lists the targeting options assigned to an advertiser.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list(
+     *     {
+     *       // Required. The ID of the advertiser.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties.
+     *       //
+     *       // Supported syntax:
+     *       //
+     *       // * Filter expressions are made up of one or more restrictions.
+     *       // * Restrictions can be combined by the logical operator `OR`.
+     *       // * A restriction has the form of `{field} {operator} {value}`.
+     *       // * The operator must be `EQUALS (=)`.
+     *       // * Supported fields:
+     *       //     - `assignedTargetingOptionId`
+     *       //
+     *       // Examples:
+     *       //
+     *       // * AssignedTargetingOption with ID 123456
+     *       // `assignedTargetingOptionId="123456"`
+     *       //
+     *       // The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Field by which to sort the list.
+     *       // Acceptable values are:
+     *       //
+     *       // * `assignedTargetingOptionId` (default)
+     *       //
+     *       // The default sorting order is ascending. To specify descending order for
+     *       // a field, a suffix "desc" should be added to the field name. Example:
+     *       // `assignedTargetingOptionId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will
+     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
+     *       // is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       // Typically, this is the value of
+     *       // next_page_token
+     *       // returned from the previous call to `ListAdvertiserAssignedTargetingOptions`
+     *       // method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Identifies the type of assigned targeting options to list.
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the advertiser.
+     * @param {string=} params.filter Allows filtering by assigned targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedTargetingOptionId`  Examples:  * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `assignedTargetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     * @param {string} params.targetingType Required. Identifies the type of assigned targeting options to list.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdvertiserAssignedTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
+      callback: BodyResponseCallback<
+        Schema$ListAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$ListAdvertiserAssignedTargetingOptionsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'targetingType'],
+        pathParams: ['advertiserId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdvertiserAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$ListAdvertiserAssignedTargetingOptionsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The ID of the advertiser.
+     */
+    advertiserId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option.
+     */
+    targetingType?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssignedTargetingOption;
+  }
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The ID of the advertiser.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the assigned targeting option to delete.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option.
+     */
+    targetingType?: string;
+  }
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The ID of the advertiser.
+     */
+    advertiserId?: string;
+    /**
+     * Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option.
+     */
+    targetingType?: string;
+  }
+  export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The ID of the advertiser.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedTargetingOptionId`  Examples:  * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"`  The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are:  * `assignedTargetingOptionId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. Identifies the type of assigned targeting options to list.
+     */
+    targetingType?: string;
   }
 
   export class Resource$Combinedaudiences {

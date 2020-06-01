@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20200502",
+  "revision": "20200522",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {
@@ -356,6 +356,16 @@
           ],
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "items": {
+              "type": "any"
+            },
+            "type": "array"
+          },
+          "description": "Optional. A single label and value pair specifying that usage from only this set of\nlabeled resources should be included in the budget. Currently, multiple\nentries or multiple values per entry are not allowed. If omitted, the\nreport will include all labeled and unlabeled usage.",
+          "type": "object"
+        },
         "projects": {
           "description": "Optional. A set of projects of the form `projects/{project}`,\nspecifying that usage from only this set of projects should be\nincluded in the budget. If omitted, the report will include all usage for\nthe billing account, regardless of which project the usage occurred on.\nOnly zero or one project can be specified currently.",
           "items": {
@@ -365,6 +375,13 @@
         },
         "services": {
           "description": "Optional. A set of services of the form `services/{service_id}`,\nspecifying that usage from only this set of services should be\nincluded in the budget. If omitted, the report will include usage for\nall the services.\nThe service names are available through the Catalog API:\nhttps://cloud.google.com/billing/v1/how-tos/catalog-api.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "subaccounts": {
+          "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying\nthat usage from only this set of subaccounts should be included in the\nbudget. If a subaccount is set to the name of the master account, usage\nfrom the master account will be included. If omitted, the report will\ninclude usage from the master account and all subaccounts, if they exist.",
           "items": {
             "type": "string"
           },
