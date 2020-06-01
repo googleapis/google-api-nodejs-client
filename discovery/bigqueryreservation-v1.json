@@ -231,7 +231,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The resource name of the admin project(containing project and location),\ne.g.:\n  \"projects/myproject/locations/US\".",
+                  "description": "Required. The resource name of the admin project(containing project and location),\ne.g.:\n  `projects/myproject/locations/US`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+$",
                   "required": true,
@@ -306,7 +306,7 @@
                       "type": "boolean"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the parent reservation. E.g.,\n   projects/myproject/locations/US",
+                      "description": "Required. Resource name of the parent reservation. E.g.,\n   `projects/myproject/locations/US`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -335,7 +335,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the capacity commitment to delete. E.g.,\n   projects/myproject/locations/US/capacityCommitments/123",
+                      "description": "Required. Resource name of the capacity commitment to delete. E.g.,\n   `projects/myproject/locations/US/capacityCommitments/123`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/capacityCommitments/[^/]+$",
                       "required": true,
@@ -361,7 +361,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the capacity commitment to retrieve. E.g.,\n   projects/myproject/locations/US/capacityCommitments/123",
+                      "description": "Required. Resource name of the capacity commitment to retrieve. E.g.,\n   `projects/myproject/locations/US/capacityCommitments/123`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/capacityCommitments/[^/]+$",
                       "required": true,
@@ -398,7 +398,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the parent reservation. E.g.,\n   projects/myproject/locations/US",
+                      "description": "Required. Resource name of the parent reservation. E.g.,\n   `projects/myproject/locations/US`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -424,7 +424,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Parent resource that identifies admin project and location e.g.,\nprojects/myproject/locations/us",
+                      "description": "Parent resource that identifies admin project and location e.g.,\n `projects/myproject/locations/us`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -488,7 +488,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name e.g.,:\n  projects/myproject/locations/US/capacityCommitments/123",
+                      "description": "Required. The resource name e.g.,:\n `projects/myproject/locations/US/capacityCommitments/123`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/capacityCommitments/[^/]+$",
                       "required": true,
@@ -618,7 +618,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource name containing project and location, e.g.:\n  \"projects/myproject/locations/US\"",
+                      "description": "Required. The parent resource name containing project and location, e.g.:\n  `projects/myproject/locations/US`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -803,7 +803,7 @@
       }
     }
   },
-  "revision": "20200509",
+  "revision": "20200519",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1041,7 +1041,7 @@
       "id": "MergeCapacityCommitmentsRequest",
       "properties": {
         "capacityCommitmentIds": {
-          "description": "Ids of capacity commitments to merge.\nThese capacity commitments must exist under admin project and location\nspecified in the parent.",
+          "description": "Ids of capacity commitments to merge.\nThese capacity commitments must exist under admin project and location\nspecified in the parent.\nID is the last portion of capacity commitment name e.g., 'abc' for\nprojects/myproject/locations/US/capacityCommitments/abc",
           "items": {
             "type": "string"
           },
