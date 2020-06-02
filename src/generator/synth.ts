@@ -85,7 +85,7 @@ export async function synth(options: SynthOptions = {}) {
     const prefix = getPrefix(semverity);
     const postfix = semverity === Semverity.MAJOR ? '!' : '';
     console.log(`Submitting change for ${dir}...`);
-    const title = `"${prefix}(${dir})${postfix}: update the API"`;
+    const title = `${prefix}(${dir})${postfix}: update the API`;
     await execa('git', ['add', path.join('src/apis', dir)]);
     if (statusFiles.filter(x => x.startsWith(`discovery/${dir}-`)).length > 0) {
       await execa('git', ['add', `discovery/${dir}-*`]);
