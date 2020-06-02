@@ -409,7 +409,7 @@ For more fine-tuned control over how your API calls are made, we provide you wit
 
 You may specify additional options either in the global `google` object or on a service client basis. The options you specify are attached to the `gaxios` object so whatever `gaxios` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
 
-A full list of supported options can be [found here][requestopts].
+A full list of supported options can be [found here](https://github.com/googleapis/gaxios/#request-options).
 
 #### Global options
 You can choose default options that will be sent with each request. These options will be used for every service instantiated by the google client. In this example, the `timeout` property of `GaxiosOptions` will be set for every request:
@@ -565,8 +565,6 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [david-url]: https://david-dm.org/googleapis/google-api-nodejs-client
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
-[circle]: https://circleci.com/gh/googleapis/google-api-nodejs-client
-[circleimg]: https://circleci.com/gh/googleapis/google-api-nodejs-client.svg?style=shield
 [bugs]: https://github.com/googleapis/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
