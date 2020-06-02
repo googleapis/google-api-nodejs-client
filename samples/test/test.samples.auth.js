@@ -51,7 +51,6 @@ describe('Auth samples', () => {
   it('should accept an access token header', async () => {
     const scope = nock('https://www.googleapis.com')
       .get('/drive/v2/files')
-      .twice()
       .reply(200, {});
     const res = await samples.accessToken.runSample(12345);
     assert.strictEqual(res.config.headers['Authorization'], 'Bearer 12345');
