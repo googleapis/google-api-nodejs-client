@@ -278,7 +278,7 @@ Service accounts allow you to perform server to server, app-level authentication
 
 Save the service account credential file somewhere safe, and *do not check this file into source control*!  To reference the service account credential file, you have a few options.
 
-#### Using the `GOOGLE_APPLICATION_CREDENTIALS env var
+#### Using the `GOOGLE_APPLICATION_CREDENTIALS` env var
 You can start process with an environment variable named `GOOGLE_APPLICATION_CREDENTIALS`. The value of this env var should be the full path to the service account credential file:
 
 ```
