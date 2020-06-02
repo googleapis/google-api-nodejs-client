@@ -3124,6 +3124,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "recommender:v1",
+      "name": "recommender",
+      "version": "v1",
+      "title": "Recommender API",
+      "description": "",
+      "discoveryRestUrl": "https://recommender.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/recommender/docs/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "recommender:v1beta1",
       "name": "recommender",
       "version": "v1beta1",
@@ -3135,7 +3150,7 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/recommender/docs/",
-      "preferred": true
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
