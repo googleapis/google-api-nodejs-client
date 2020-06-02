@@ -12,6 +12,7 @@
 
 * [Before you begin](#before-you-begin)
 * [Samples](#samples)
+  * [Access Token Auth](#access-token-auth)
   * [Defaultauth](#defaultauth)
   * [Jwt](#jwt)
   * [Mediaupload](#mediaupload)
@@ -30,6 +31,23 @@ Before running the samples, make sure you've followed the steps outlined in
 `cd ..`
 
 ## Samples
+
+
+
+### Access Token Auth
+
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/accessTokenAuth.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/accessTokenAuth.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/accessTokenAuth.js`
+
+
+-----
+
 
 
 
