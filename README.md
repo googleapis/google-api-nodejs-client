@@ -2,7 +2,6 @@
 
 # Google APIs Node.js Client
 
-[![Release Level][releaselevelimg]][releaselevel]
 [![npm version][npmimg]][npm]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
@@ -20,7 +19,8 @@
 * [Authentication and authorization](#authentication-and-authorization)
   * [OAuth2 client](#oauth2-client)
   * [Using API keys](#using-api-keys)
-  * [Service <--> Service authentication](#service-to-service-authentication)
+  * [Application default credentials](#application-default-credentials)
+  * [Service account credentials](#service-account-credentials)
   * [Setting global or service-level auth](#setting-global-or-service-level-auth)
 * [Usage](#usage)
   * [Specifying request body](#specifying-request-body)
@@ -109,20 +109,29 @@ There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-cli
 This library has a full set of [API Reference Documentation](https://googleapis.dev/nodejs/googleapis/latest). This documentation is auto-generated, and the location may change.
 
 ## Authentication and authorization
-There are three primary ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
+There are multiple ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
 
 - **OAuth2** - This allows you to make API calls on behalf of a given user.  In this model, the user visits your application, signs in with their Google account, and provides your application with authorization against a set of scopes.  [Learn more](#oauth2-client).
 
-- **Service <--> Service** - In this model, your application talks directly to Google APIs using a Service Account.  It's useful when you have a backend application that will talk directly to Google APIs from the backend. [Learn more](#service-to-service-authentication).
-
 - **API Key** - With an API key, you can access your service from a client or the server.  Typically less secure, this is only available on a small subset of services with limited scopes.  [Learn more](#using-api-keys).
+
+- **Application default credentials** - Provides automatic access to Google APIs using the [Google Cloud SDK](https://cloud.google.com/sdk/) for local development, or the [GCE Metadata Server](https://cloud.google.com/compute/docs/storing-retrieving-metadata) for applications deployed to Google Cloud Platform. [Learn more](#application-default-credentials).
+
+- **Service account credentials** - In this model, your application talks directly to Google APIs using a Service Account. It's useful when you have a backend application that will talk directly to Google APIs from the backend. [Learn more](#service-account-credentials).
 
 To learn more about the authentication client, see the [Google Auth Library](https://github.com/googleapis/google-auth-library-nodejs).
 
 ### OAuth2 client
-This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token, refresh it, and retry the request seamlessly. The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
+This module comes with an [OAuth2][oauth] client that allows you to retrieve an access token, refresh it, and retry the request seamlessly. The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
 
 In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and `REDIRECT_URL`. You can find these pieces of information by going to the [Developer Console][devconsole], clicking your project --> APIs & auth --> credentials.
+- Navigate to the Cloud Console and [Create a new OAuth2 Client Id](https://console.cloud.google.com/apis/credentials/oauthclient)
+- Select `Web Application` for the application type
+- Add an authorized redirect URI with the value `http://localhost:3000/oauth2callback` (or applicable value for your scenario)
+- Click `Create`, and `Ok` on the following screen
+- Click the `Download` icon next to your newly created OAuth2 Client Id
+
+Make sure to store this file in safe place, and *do not check this file into source control!*
 
 For more information about OAuth2 and how it works, [see here][oauth].
 
@@ -224,19 +233,25 @@ main().catch(console.error);
 
 To learn more about API keys, please see the [documentation][usingkeys].
 
-#### Service to Service Authentication
+#### Application default credentials
 
 Rather than manually creating an OAuth2 client, JWT client, or Compute client, the auth library can create the correct credential type for you, depending upon the environment your code is running under.
 
-For example, a JWT auth client will be created when your code is running on your local developer machine, and a Compute client will be created when the same code is running on a configured instance of Google Compute Engine. The code below shows how to retrieve a default credential type, depending upon the runtime environment. 
+For example, a JWT auth client will be created when your code is running on your local developer machine, and a Compute client will be created when the same code is running on a configured instance of Google Compute Engine. The code below shows how to retrieve a default credential type, depending upon the runtime environment.
+
+To use Application default credentials locally with the [Google Cloud SDK](https://cloud.google.com/sdk/), run:
+
+```sh
+$ gcloud auth application-default login
+```
+
+When running in GCP, service authorize is automatically provided via the GCE Metadata server.
 
 ```js
 const {google} = require('googleapis');
 const compute = google.compute('v1');
 
 async function main () {
-  // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
-  // environment variables.
   const auth = new google.auth.GoogleAuth({
     // Scopes can be specified either as an array or as a single, space-delimited string.
     scopes: ['https://www.googleapis.com/auth/compute']
@@ -253,6 +268,35 @@ async function main () {
 
 main().catch(console.error);
 ```
+
+### Service account credentials
+
+Service accounts allow you to perform server to server, app-level authentication using a robot account.  You will create a service account, download a keyfile, and use that to authenticate to Google APIs.  To create a service account:
+- Go to the [Create Service Account Key page](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
+- Select `New Service Account` in the drop down
+- Click the `Create` button
+
+Save the service account credential file somewhere safe, and *do not check this file into source control*!  To reference the service account credential file, you have a few options.
+
+#### Using the `GOOGLE_APPLICATION_CREDENTIALS` env var
+You can start process with an environment variable named `GOOGLE_APPLICATION_CREDENTIALS`. The value of this env var should be the full path to the service account credential file:
+
+```
+$ GOOGLE_APPLICATION_CREDENTIALS=./your-secret-key.json node server.js
+```
+
+#### Using the `keyFile` property
+Alternatively, you can specify the path to the service account credential file via the `keyFile` property in the `GoogleAuth` constructor:
+
+```js
+const {google} = require('googleapis');
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: '/path/to/your-secret-key.json',
+  scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+});
+```
+
 
 ### Setting global or service-level auth
 
@@ -363,7 +407,7 @@ For more examples of creation and modification requests with media attachments, 
 ### Request Options
 For more fine-tuned control over how your API calls are made, we provide you with the ability to specify additional options that can be applied directly to the ['gaxios'][gaxios] object used in this library to make network calls to the API.
 
-You may specify additional options either in the global `google` object or on a service client basis.  The options you specify are attached to the `gaxios` object so whatever `gaxios` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
+You may specify additional options either in the global `google` object or on a service client basis. The options you specify are attached to the `gaxios` object so whatever `gaxios` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
 
 A full list of supported options can be [found here][requestopts].
 
@@ -495,7 +539,7 @@ const apis = google.getSupportedAPIs();
 This will return an object with the API name as object property names, and an array of version strings as the object values;
 
 ### TypeScript
-This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace.  For example, the Drive v3 API types are all available from the `drive_v3` namespace:
+This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace. For example, the Drive v3 API types are all available from the `drive_v3` namespace:
 
 ```ts
 import { drive_v3 } from 'googleapis';
@@ -523,8 +567,6 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [npm]: https://www.npmjs.org/package/googleapis
 [circle]: https://circleci.com/gh/googleapis/google-api-nodejs-client
 [circleimg]: https://circleci.com/gh/googleapis/google-api-nodejs-client.svg?style=shield
-[releaselevel]: https://cloud.google.com/terms/launch-stages
-[releaselevelimg]: https://img.shields.io/badge/Release%20Level-Alpha-ff69b4.svg
 [bugs]: https://github.com/googleapis/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
