@@ -4,6 +4,19 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [52.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v52.0.0...v52.1.0) (2020-06-03)
+
+
+### Features
+
+* support GoogleAuth parameter ([#2210](https://www.github.com/googleapis/google-api-nodejs-client/issues/2210)) ([b08ef52](https://www.github.com/googleapis/google-api-nodejs-client/commit/b08ef52eb5db13067d8b5c52452d51208b7733cd))
+
+
+### Bug Fixes
+
+* ensure params are not deleted from global options ([#2190](https://www.github.com/googleapis/google-api-nodejs-client/issues/2190)) ([787e296](https://www.github.com/googleapis/google-api-nodejs-client/commit/787e296773f1d7daa655b4294cea41ecd1476ceb))
+* **deps:** update dependency googleapis to v52 ([#2213](https://www.github.com/googleapis/google-api-nodejs-client/issues/2213)) ([78ff014](https://www.github.com/googleapis/google-api-nodejs-client/commit/78ff01482a67ca4385d80042eaf80ee756106edd))
+
 ## [52.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v51.0.0...v52.0.0) (2020-06-01)
 
 
