@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace safebrowsing_v4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -716,11 +728,6 @@ export namespace safebrowsing_v4 {
   export interface Params$Resource$Encodedfullhashes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
      */
     clientId?: string;
@@ -891,11 +898,6 @@ export namespace safebrowsing_v4 {
   export interface Params$Resource$Encodedupdates$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A client ID that uniquely identifies the client implementation of the Safe Browsing API.
      */
     clientId?: string;
@@ -1063,11 +1065,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Fullhashes$Find extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$FindFullHashesRequest;
@@ -1219,11 +1216,6 @@ export namespace safebrowsing_v4 {
   export interface Params$Resource$Threathits$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ThreatHit;
@@ -1364,12 +1356,8 @@ export namespace safebrowsing_v4 {
     }
   }
 
-  export interface Params$Resource$Threatlists$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Threatlists$List
+    extends StandardParameters {}
 
   export class Resource$Threatlistupdates {
     context: APIRequestContext;
@@ -1527,11 +1515,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Threatlistupdates$Fetch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1691,11 +1674,6 @@ export namespace safebrowsing_v4 {
 
   export interface Params$Resource$Threatmatches$Find
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

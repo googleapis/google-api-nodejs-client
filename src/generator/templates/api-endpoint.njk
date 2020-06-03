@@ -22,6 +22,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,11 @@ export interface Options extends GlobalOptions {
 }
 
 interface StandardParameters {
+  /**
+   * Auth client or API Key for the request
+   */
+  auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient|GoogleAuth;
+
   {% for pname, p in api.parameters|dictsort %}
   /**
     * {{ p.description|oneLine|cleanComments|safe }}
@@ -123,12 +129,6 @@ export interface Schema${{ schema.id }} {
 {% if api.methods %}
   {% for mname, m in api.methods|dictsort %}
     export interface Params$${{ mname|capitalize }} extends StandardParameters {
-
-      /**
-       * Auth client or API Key for the request
-       */
-      auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
       {% if m.parameters %}
         {% for pname, p in m.parameters|dictsort %}
         /**

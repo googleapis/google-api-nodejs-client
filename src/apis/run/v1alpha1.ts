@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace run_v1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2581,11 +2593,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Authorizeddomains$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Maximum results to return per page.
      */
     pageSize?: number;
@@ -3217,11 +3224,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudauditlogssources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this cloudauditlogssource should be created.
      */
     parent?: string;
@@ -3233,11 +3235,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Cloudauditlogssources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -3258,22 +3255,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudauditlogssources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Cloudauditlogssources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -3920,11 +3907,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudpubsubsources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this cloudpubsubsource should be created.
      */
     parent?: string;
@@ -3936,11 +3918,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Cloudpubsubsources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -3961,22 +3938,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudpubsubsources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Cloudpubsubsources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -4787,11 +4754,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudschedulersources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project ID or project number in which this cloudschedulersource should be created.
      */
     parent?: string;
@@ -4803,11 +4765,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Cloudschedulersources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -4828,22 +4785,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudschedulersources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Cloudschedulersources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -4879,11 +4826,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Cloudschedulersources$Replacecloudschedulersource
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -5662,11 +5604,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudstoragesources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project ID or project number in which this cloudstoragesource should be created.
      */
     parent?: string;
@@ -5678,11 +5615,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Cloudstoragesources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -5703,22 +5635,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudstoragesources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Cloudstoragesources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -5754,11 +5676,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Cloudstoragesources$Replacecloudstoragesource
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -6084,22 +6001,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Configurations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Configurations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -6745,11 +6652,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Domainmappings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this domain mapping should be created.
      */
     parent?: string;
@@ -6761,11 +6663,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Domainmappings$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -6790,22 +6687,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Domainmappings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -7298,11 +7185,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Revisions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
@@ -7326,22 +7208,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Revisions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Revisions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -7684,22 +7556,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Routes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Routes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -8487,11 +8349,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Services$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this service should be created.
      */
     parent?: string;
@@ -8503,11 +8360,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Services$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -8532,22 +8384,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Services$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Services$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -8583,11 +8425,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Services$Replaceservice
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
      */
@@ -9199,11 +9036,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Triggers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this trigger should be created.
      */
     parent?: string;
@@ -9215,11 +9047,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Namespaces$Triggers$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -9240,22 +9067,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Triggers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Namespaces$Triggers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Encoded string to continue paging.
      */
@@ -9491,11 +9308,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The standard list filter.
      */
     filter?: string;
@@ -9669,11 +9481,6 @@ export namespace run_v1alpha1 {
 
   export interface Params$Resource$Projects$Locations$Authorizeddomains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum results to return per page.
      */
@@ -10300,11 +10107,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudauditlogssources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this cloudauditlogssource should be created.
      */
     parent?: string;
@@ -10316,11 +10118,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Cloudauditlogssources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -10341,22 +10138,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudauditlogssources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Cloudauditlogssources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -11001,11 +10788,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudpubsubsources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this cloudpubsubsource should be created.
      */
     parent?: string;
@@ -11017,11 +10799,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Cloudpubsubsources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -11042,22 +10819,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudpubsubsources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Cloudpubsubsources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -11860,11 +11627,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudschedulersources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project ID or project number in which this cloudschedulersource should be created.
      */
     parent?: string;
@@ -11876,11 +11638,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Cloudschedulersources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -11901,22 +11658,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudschedulersources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Cloudschedulersources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -11952,11 +11699,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Cloudschedulersources$Replacecloudschedulersource
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -12732,11 +12474,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudstoragesources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project ID or project number in which this cloudstoragesource should be created.
      */
     parent?: string;
@@ -12748,11 +12485,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Cloudstoragesources$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -12773,22 +12505,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudstoragesources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Cloudstoragesources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -12824,11 +12546,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Cloudstoragesources$Replacecloudstoragesource
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -13153,22 +12870,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Configurations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Configurations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -13812,11 +13519,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this domain mapping should be created.
      */
     parent?: string;
@@ -13828,11 +13530,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Domainmappings$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -13857,22 +13554,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Domainmappings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -14362,11 +14049,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Revisions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
@@ -14390,22 +14072,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Revisions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Revisions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -14747,22 +14419,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Routes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Routes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -15988,11 +15650,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this service should be created.
      */
     parent?: string;
@@ -16004,11 +15661,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Services$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -16033,22 +15685,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -16060,11 +15702,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Services$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */
@@ -16101,11 +15738,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
@@ -16118,11 +15750,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Services$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -16134,11 +15761,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Services$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -16748,11 +16370,6 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Triggers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID or project number in which this trigger should be created.
      */
     parent?: string;
@@ -16764,11 +16381,6 @@ export namespace run_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Triggers$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -16789,22 +16401,12 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Triggers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Triggers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Encoded string to continue paging.
      */

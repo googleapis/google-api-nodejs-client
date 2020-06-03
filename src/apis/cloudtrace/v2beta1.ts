@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudtrace_v2beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -916,11 +928,6 @@ export namespace cloudtrace_v2beta1 {
   export interface Params$Resource$Projects$Tracesinks$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource in which to create the sink (currently only project sinks are supported):      "projects/[PROJECT_ID]"  Examples: `"projects/my-trace-project"`, `"projects/123456789"`.
      */
     parent?: string;
@@ -933,11 +940,6 @@ export namespace cloudtrace_v2beta1 {
   export interface Params$Resource$Projects$Tracesinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
     name?: string;
@@ -945,22 +947,12 @@ export namespace cloudtrace_v2beta1 {
   export interface Params$Resource$Projects$Tracesinks$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the sink:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Tracesinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
      */
@@ -976,11 +968,6 @@ export namespace cloudtrace_v2beta1 {
   }
   export interface Params$Resource$Projects$Tracesinks$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier:      "projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]"  Example: `"projects/12345/traceSinks/my-sink-id"`.
      */

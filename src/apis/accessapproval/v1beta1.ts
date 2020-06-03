@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace accessapproval_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -723,11 +735,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Folders$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
@@ -735,22 +742,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Folders$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Updateaccessapprovalsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
@@ -1369,11 +1366,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Folders$Approvalrequests$Approve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to approve.
      */
     name?: string;
@@ -1385,11 +1377,6 @@ export namespace accessapproval_v1beta1 {
   }
   export interface Params$Resource$Folders$Approvalrequests$Dismiss
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -1403,22 +1390,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Folders$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
@@ -1881,11 +1858,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Organizations$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
@@ -1893,22 +1865,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Organizations$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Updateaccessapprovalsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
@@ -2527,11 +2489,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Organizations$Approvalrequests$Approve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to approve.
      */
     name?: string;
@@ -2543,11 +2500,6 @@ export namespace accessapproval_v1beta1 {
   }
   export interface Params$Resource$Organizations$Approvalrequests$Dismiss
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -2561,22 +2513,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Organizations$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */
@@ -3039,11 +2981,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Projects$Deleteaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to delete.
      */
     name?: string;
@@ -3051,22 +2988,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Projects$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the AccessApprovalSettings to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updateaccessapprovalsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      */
@@ -3685,11 +3612,6 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Projects$Approvalrequests$Approve
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to approve.
      */
     name?: string;
@@ -3701,11 +3623,6 @@ export namespace accessapproval_v1beta1 {
   }
   export interface Params$Resource$Projects$Approvalrequests$Dismiss
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the ApprovalRequest to dismiss.
      */
@@ -3719,22 +3636,12 @@ export namespace accessapproval_v1beta1 {
   export interface Params$Resource$Projects$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the approval request to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Approvalrequests$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the following values: <ol>   <li>[not set]: Requests that are pending or have active approvals.</li>   <li>ALL: All requests.</li>   <li>PENDING: Only pending requests.</li>   <li>ACTIVE: Only active (i.e. currently approved) requests.</li>   <li>DISMISSED: Only dismissed (including expired) requests.</li> </ol>
      */

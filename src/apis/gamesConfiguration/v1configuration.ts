@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace gamesConfiguration_v1configuration {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1136,11 +1148,6 @@ export namespace gamesConfiguration_v1configuration {
   export interface Params$Resource$Achievementconfigurations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
@@ -1148,22 +1155,12 @@ export namespace gamesConfiguration_v1configuration {
   export interface Params$Resource$Achievementconfigurations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
   export interface Params$Resource$Achievementconfigurations$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -1176,11 +1173,6 @@ export namespace gamesConfiguration_v1configuration {
   }
   export interface Params$Resource$Achievementconfigurations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -1196,11 +1188,6 @@ export namespace gamesConfiguration_v1configuration {
   }
   export interface Params$Resource$Achievementconfigurations$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the achievement used by this method.
      */
@@ -1376,11 +1363,6 @@ export namespace gamesConfiguration_v1configuration {
 
   export interface Params$Resource$Imageconfigurations$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Selects which image in a resource for this method.
      */
@@ -2163,11 +2145,6 @@ export namespace gamesConfiguration_v1configuration {
   export interface Params$Resource$Leaderboardconfigurations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
@@ -2175,22 +2152,12 @@ export namespace gamesConfiguration_v1configuration {
   export interface Params$Resource$Leaderboardconfigurations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the leaderboard.
      */
     leaderboardId?: string;
   }
   export interface Params$Resource$Leaderboardconfigurations$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -2203,11 +2170,6 @@ export namespace gamesConfiguration_v1configuration {
   }
   export interface Params$Resource$Leaderboardconfigurations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -2223,11 +2185,6 @@ export namespace gamesConfiguration_v1configuration {
   }
   export interface Params$Resource$Leaderboardconfigurations$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the leaderboard.
      */

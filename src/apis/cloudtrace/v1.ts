@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudtrace_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -344,11 +356,6 @@ export namespace cloudtrace_v1 {
 
   export interface Params$Resource$Projects$Patchtraces
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. ID of the Cloud project where the trace data is stored.
      */
@@ -714,11 +721,6 @@ export namespace cloudtrace_v1 {
   export interface Params$Resource$Projects$Traces$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the Cloud project where the trace data is stored.
      */
     projectId?: string;
@@ -729,11 +731,6 @@ export namespace cloudtrace_v1 {
   }
   export interface Params$Resource$Projects$Traces$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * End of the time interval (inclusive) during which the trace data was collected from the application.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace domainsrdap_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -374,11 +386,6 @@ export namespace domainsrdap_v1 {
 
   export interface Params$Resource$Autnum$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     autnumId?: string;
@@ -524,11 +531,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Domain$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Full domain name to look up. Example: "example.com"
      */
@@ -678,11 +680,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Entity$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -836,11 +833,6 @@ export namespace domainsrdap_v1 {
 
   export interface Params$Resource$Ip$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     ipId?: string;
@@ -993,11 +985,6 @@ export namespace domainsrdap_v1 {
   }
 
   export interface Params$Resource$Nameserver$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -1649,35 +1636,10 @@ export namespace domainsrdap_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Getdomains extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Getentities extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Gethelp extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$V1$Getip extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$V1$Getdomains extends StandardParameters {}
+  export interface Params$Resource$V1$Getentities extends StandardParameters {}
+  export interface Params$Resource$V1$Gethelp extends StandardParameters {}
+  export interface Params$Resource$V1$Getip extends StandardParameters {}
   export interface Params$Resource$V1$Getnameservers
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 }

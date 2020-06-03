@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace sql_v1beta4 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2194,11 +2206,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Backupruns$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the Backup Run to delete. To find a Backup Run ID, use the <a href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a> method.
      */
     id?: string;
@@ -2212,11 +2219,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Backupruns$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of this Backup Run.
      */
@@ -2233,11 +2235,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Backupruns$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -2252,11 +2249,6 @@ export namespace sql_v1beta4 {
     requestBody?: Schema$BackupRun;
   }
   export interface Params$Resource$Backupruns$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -3233,11 +3225,6 @@ export namespace sql_v1beta4 {
 
   export interface Params$Resource$Databases$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the database to be deleted in the instance.
      */
     database?: string;
@@ -3252,11 +3239,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Databases$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the database in the instance.
      */
     database?: string;
@@ -3270,11 +3252,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Databases$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Database instance ID. This does not include the project ID.
      */
@@ -3291,11 +3268,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Databases$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -3305,11 +3277,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Databases$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the database to be updated in the instance.
      */
@@ -3329,11 +3296,6 @@ export namespace sql_v1beta4 {
     requestBody?: Schema$Database;
   }
   export interface Params$Resource$Databases$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the database to be updated in the instance.
      */
@@ -3496,11 +3458,6 @@ export namespace sql_v1beta4 {
   }
 
   export interface Params$Resource$Flags$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.
      */
@@ -6869,11 +6826,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Addserverca
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -6883,11 +6835,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Instances$Clone extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      */
@@ -6904,11 +6851,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -6919,11 +6861,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$Demotemaster
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance name.
      */
@@ -6939,11 +6876,6 @@ export namespace sql_v1beta4 {
     requestBody?: Schema$InstancesDemoteMasterRequest;
   }
   export interface Params$Resource$Instances$Export extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -6961,11 +6893,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Failover
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -6981,11 +6908,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -6995,11 +6917,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Instances$Import extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -7016,11 +6933,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project ID of the project to which the newly created Cloud SQL instances should belong.
      */
     project?: string;
@@ -7031,11 +6943,6 @@ export namespace sql_v1beta4 {
     requestBody?: Schema$DatabaseInstance;
   }
   export interface Params$Resource$Instances$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'.  Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      */
@@ -7056,11 +6963,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Listservercas
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -7070,11 +6972,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Instances$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -7092,11 +6989,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Promotereplica
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL read replica instance name.
      */
     instance?: string;
@@ -7107,11 +6999,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$Resetsslconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -7124,11 +7011,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Restart
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -7139,11 +7021,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$Restorebackup
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -7161,11 +7038,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Rotateserverca
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -7182,11 +7054,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Startreplica
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL read replica instance name.
      */
     instance?: string;
@@ -7198,11 +7065,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Instances$Stopreplica
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL read replica instance name.
      */
     instance?: string;
@@ -7213,11 +7075,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Instances$Truncatelog
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -7233,11 +7090,6 @@ export namespace sql_v1beta4 {
     requestBody?: Schema$InstancesTruncateLogRequest;
   }
   export interface Params$Resource$Instances$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -7560,11 +7412,6 @@ export namespace sql_v1beta4 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Instance operation ID.
      */
     operation?: string;
@@ -7574,11 +7421,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -8099,11 +7941,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Projects$Instances$Reschedulemaintenance
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -8120,11 +7957,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Projects$Instances$Startexternalsync
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -8139,11 +7971,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Projects$Instances$Verifyexternalsyncsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -8921,11 +8748,6 @@ export namespace sql_v1beta4 {
   export interface Params$Resource$Sslcerts$Createephemeral
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -8941,11 +8763,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Sslcerts$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -8959,11 +8776,6 @@ export namespace sql_v1beta4 {
     sha1Fingerprint?: string;
   }
   export interface Params$Resource$Sslcerts$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -8979,11 +8791,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Sslcerts$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -8998,11 +8805,6 @@ export namespace sql_v1beta4 {
     requestBody?: Schema$SslCertsInsertRequest;
   }
   export interface Params$Resource$Sslcerts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -9158,11 +8960,6 @@ export namespace sql_v1beta4 {
   }
 
   export interface Params$Resource$Tiers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Project ID of the project for which to list tiers.
      */
@@ -9813,11 +9610,6 @@ export namespace sql_v1beta4 {
 
   export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Host of the user in the instance.
      */
     host?: string;
@@ -9836,11 +9628,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -9856,11 +9643,6 @@ export namespace sql_v1beta4 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -9870,11 +9652,6 @@ export namespace sql_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Users$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Host of the user in the instance.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace oauth2_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -315,11 +327,6 @@ export namespace oauth2_v2 {
 
   export interface Params$$Tokeninfo extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     access_token?: string;
@@ -477,12 +484,7 @@ export namespace oauth2_v2 {
     }
   }
 
-  export interface Params$Resource$Userinfo$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Userinfo$Get extends StandardParameters {}
 
   export class Resource$Userinfo$V2 {
     context: APIRequestContext;
@@ -638,10 +640,5 @@ export namespace oauth2_v2 {
   }
 
   export interface Params$Resource$Userinfo$V2$Me$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
 }

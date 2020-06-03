@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace securitycenter_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1245,22 +1257,12 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Getorganizationsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Updateorganizationsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/organizationSettings".
      */
@@ -1978,11 +1980,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Assets$Group
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the organization to groupBy. Its format is "organizations/[organization_id]".
      */
     parent?: string;
@@ -1994,11 +1991,6 @@ export namespace securitycenter_v1beta1 {
   }
   export interface Params$Resource$Organizations$Assets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * When compare_duration is set, the ListAssetResult's "state" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again.  Possible "state" values when compare_duration is specified:  * "ADDED": indicates that the asset was not present before              compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of              compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the              start and the end of the time period defined by              compare_duration and read_time.  If compare_duration is not specified, then the only possible state is "UNUSED", which indicates that the asset is present at read_time.
      */
@@ -2035,11 +2027,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Assets$Rundiscovery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
      */
     parent?: string;
@@ -2051,11 +2038,6 @@ export namespace securitycenter_v1beta1 {
   }
   export interface Params$Resource$Organizations$Assets$Updatesecuritymarks
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      */
@@ -2626,11 +2608,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -2643,11 +2620,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Operations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
@@ -2655,22 +2627,12 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -3713,11 +3675,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
      */
     parent?: string;
@@ -3730,22 +3687,12 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Sources$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3758,11 +3705,6 @@ export namespace securitycenter_v1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -3778,11 +3720,6 @@ export namespace securitycenter_v1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}"
      */
@@ -3800,11 +3737,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3816,11 +3748,6 @@ export namespace securitycenter_v1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4899,11 +4826,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      */
     findingId?: string;
@@ -4920,11 +4842,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Group
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-
      */
     parent?: string;
@@ -4936,11 +4853,6 @@ export namespace securitycenter_v1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Findings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      */
@@ -4973,11 +4885,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
      */
     name?: string;
@@ -4994,11 +4901,6 @@ export namespace securitycenter_v1beta1 {
   export interface Params$Resource$Organizations$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      */
     name?: string;
@@ -5010,11 +4912,6 @@ export namespace securitycenter_v1beta1 {
   }
   export interface Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      */

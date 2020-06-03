@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1089,21 +1101,11 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the customer.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of customers to return in the response.
      */
@@ -1114,11 +1116,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
     pageToken?: string;
   }
   export interface Params$Resource$Customers$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name of the customer.
      */
@@ -2608,11 +2605,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Bulk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -2624,11 +2616,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Devices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the parent resource.
      */
@@ -2642,11 +2629,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Createsigned
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -2659,11 +2641,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
@@ -2671,22 +2648,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      */
@@ -2707,11 +2674,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Move
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device to move.
      */
     name?: string;
@@ -2723,11 +2685,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Devices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource path name.
      */
@@ -2745,11 +2702,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Devices$Signdevice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource path name.
      */
     name?: string;
@@ -2761,11 +2713,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Devices$Updatesigned
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the device to update.
      */
@@ -3633,11 +3580,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -3650,11 +3592,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
@@ -3662,22 +3599,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Nodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -3694,11 +3621,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Move
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node to move.
      */
     name?: string;
@@ -3710,11 +3632,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Nodes$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name.
      */
@@ -4032,11 +3949,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Customers$Nodes$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -4048,11 +3960,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Customers$Nodes$Nodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -4367,22 +4274,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Installer$Generatesecret
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalGenerateSecretRequest;
   }
   export interface Params$Resource$Installer$Validate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5874,11 +5771,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Bulk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -5890,11 +5782,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Devices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the parent resource.
      */
@@ -5908,11 +5795,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Createsigned
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -5925,11 +5807,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
@@ -5937,22 +5814,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device.
      */
     name?: string;
   }
   export interface Params$Resource$Nodes$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      */
@@ -5973,11 +5840,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Move
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device to move.
      */
     name?: string;
@@ -5989,11 +5851,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Devices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource path name.
      */
@@ -6011,11 +5868,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Devices$Signdevice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The resource path name.
      */
     name?: string;
@@ -6027,11 +5879,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Devices$Updatesigned
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the device to update.
      */
@@ -6898,11 +6745,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -6915,32 +6757,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
   }
   export interface Params$Resource$Nodes$Nodes$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node.
      */
     name?: string;
   }
   export interface Params$Resource$Nodes$Nodes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -6956,11 +6783,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Move extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the node to move.
      */
     name?: string;
@@ -6972,11 +6794,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name.
      */
@@ -7612,11 +7429,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Devices$Bulk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -7628,11 +7440,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Devices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the parent resource.
      */
@@ -7646,11 +7453,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Devices$Createsigned
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the parent resource.
      */
     parent?: string;
@@ -7662,11 +7464,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
      */
@@ -7987,11 +7784,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   export interface Params$Resource$Nodes$Nodes$Nodes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource name where the node is to be created.
      */
     parent?: string;
@@ -8003,11 +7795,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
   }
   export interface Params$Resource$Nodes$Nodes$Nodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of nodes to return in the response.
      */
@@ -8452,32 +8239,17 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export interface Params$Resource$Policies$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalGetPolicyRequest;
   }
   export interface Params$Resource$Policies$Set extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SasPortalSetPolicyRequest;
   }
   export interface Params$Resource$Policies$Test extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

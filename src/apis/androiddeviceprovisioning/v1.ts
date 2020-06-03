@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -952,11 +964,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Customers$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of customers to show in a page of results. A number between 1 and 100 (inclusive).
      */
     pageSize?: number;
@@ -1710,11 +1717,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Configurations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
@@ -1727,22 +1729,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Configurations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The configuration to delete. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. If the configuration is applied to any devices, the API call fails.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Configurations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The configuration to get. An API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`.
      */
@@ -1751,22 +1743,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Configurations$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The customer that manages the listed configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Customers$Configurations$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by the server.
      */
@@ -2499,11 +2481,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Devices$Applyconfiguration
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
@@ -2516,22 +2493,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The device to get. An API resource name in the format `customers/[CUSTOMER_ID]/devices/[DEVICE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Customers$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
      */
@@ -2548,11 +2515,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Devices$Removeconfiguration
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The customer managing the device in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
@@ -2564,11 +2526,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Customers$Devices$Unclaim
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
@@ -2725,11 +2682,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Dpcs$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The customer that can use the DPCs in configurations. An API resource name in the format `customers/[CUSTOMER_ID]`.
      */
     parent?: string;
@@ -2875,11 +2827,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -3202,11 +3149,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Customers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent resource ID in the format `partners/[PARTNER_ID]` that identifies the reseller.
      */
     parent?: string;
@@ -3218,11 +3160,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Partners$Customers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to be returned. If not specified or 0, all the records are returned.
      */
@@ -4563,11 +4500,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Claim
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
@@ -4579,11 +4511,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Partners$Devices$Claimasync
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the reseller partner.
      */
@@ -4597,11 +4524,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Findbyidentifier
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
@@ -4613,11 +4535,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Partners$Devices$Findbyowner
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the reseller partner.
      */
@@ -4631,22 +4548,12 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The device API resource name in the format `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
      */
     name?: string;
   }
   export interface Params$Resource$Partners$Devices$Metadata
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the device.
      */
@@ -4664,11 +4571,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Unclaim
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the reseller partner.
      */
     partnerId?: string;
@@ -4681,11 +4583,6 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Partners$Devices$Unclaimasync
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The reseller partner ID.
      */
     partnerId?: string;
@@ -4697,11 +4594,6 @@ export namespace androiddeviceprovisioning_v1 {
   }
   export interface Params$Resource$Partners$Devices$Updatemetadataasync
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The reseller partner ID.
      */
@@ -4867,11 +4759,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Partners$Vendors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to be returned.
      */
@@ -5043,11 +4930,6 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Partners$Vendors$Customers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of results to be returned.
      */

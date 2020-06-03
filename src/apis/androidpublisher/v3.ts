@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace androidpublisher_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1726,11 +1738,6 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Edits$Commit extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -1740,11 +1747,6 @@ export namespace androidpublisher_v3 {
     packageName?: string;
   }
   export interface Params$Resource$Edits$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -1756,11 +1758,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -1770,11 +1767,6 @@ export namespace androidpublisher_v3 {
     packageName?: string;
   }
   export interface Params$Resource$Edits$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
@@ -1786,11 +1778,6 @@ export namespace androidpublisher_v3 {
     requestBody?: Schema$AppEdit;
   }
   export interface Params$Resource$Edits$Validate extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -2246,11 +2233,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Apks$Addexternallyhosted
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -2266,11 +2248,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Apks$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -2281,11 +2258,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Apks$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -2617,11 +2589,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Bundles$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -2632,11 +2599,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Bundles$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      */
@@ -2854,11 +2816,6 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Edits$Deobfuscationfiles$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The version code of the APK whose deobfuscation file is being uploaded.
      */
@@ -3342,11 +3299,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Details$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -3357,11 +3309,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Details$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -3378,11 +3325,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Details$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -4055,11 +3997,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Expansionfiles$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The version code of the APK whose Expansion File configuration is being read or modified.
      */
     apkVersionCode?: number;
@@ -4078,11 +4015,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Expansionfiles$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The version code of the APK whose Expansion File configuration is being read or modified.
      */
@@ -4108,11 +4040,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Expansionfiles$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The version code of the APK whose Expansion File configuration is being read or modified.
      */
     apkVersionCode?: number;
@@ -4136,11 +4063,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Expansionfiles$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The version code of the APK whose Expansion File configuration is being read or modified.
      */
@@ -4787,11 +4709,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Images$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -4815,11 +4732,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Images$Deleteall
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -4839,11 +4751,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Images$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -4862,11 +4769,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Images$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -5761,11 +5663,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Listings$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -5781,11 +5678,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Listings$Deleteall
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -5796,11 +5688,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Listings$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -5817,11 +5704,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Listings$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -5832,11 +5714,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Listings$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -5857,11 +5734,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Listings$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -6332,11 +6204,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Testers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -6351,11 +6218,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Testers$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -6376,11 +6238,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Testers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -6980,11 +6837,6 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Edits$Tracks$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -7000,11 +6852,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Tracks$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for this edit.
      */
     editId?: string;
@@ -7015,11 +6862,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Tracks$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -7040,11 +6882,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Edits$Tracks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for this edit.
      */
@@ -7988,11 +7825,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      */
     packageName?: string;
@@ -8004,11 +7836,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     packageName?: string;
@@ -8019,11 +7846,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Inappproducts$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
@@ -8040,11 +7862,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Inappproducts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -8065,11 +7882,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
     autoConvertMissingPrices?: boolean;
@@ -8089,11 +7901,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Inappproducts$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
@@ -8433,11 +8240,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Internalappsharingartifacts$Uploadapk
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */
     packageName?: string;
@@ -8464,11 +8266,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Internalappsharingartifacts$Uploadbundle
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */
@@ -8632,11 +8429,6 @@ export namespace androidpublisher_v3 {
   }
 
   export interface Params$Resource$Orders$Refund extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The order ID provided to the user when the subscription or in-app order was purchased.
      */
@@ -8962,11 +8754,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Products$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -8986,11 +8773,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Purchases$Products$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
@@ -9867,11 +9649,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -9892,11 +9669,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -9911,11 +9683,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Purchases$Subscriptions$Defer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -9937,11 +9704,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -9957,11 +9719,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Purchases$Subscriptions$Refund
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
     packageName?: string;
@@ -9976,11 +9733,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Purchases$Subscriptions$Revoke
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -10164,11 +9916,6 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Purchases$Voidedpurchases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
@@ -10639,11 +10386,6 @@ export namespace androidpublisher_v3 {
 
   export interface Params$Resource$Reviews$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      */
     packageName?: string;
@@ -10657,11 +10399,6 @@ export namespace androidpublisher_v3 {
     translationLanguage?: string;
   }
   export interface Params$Resource$Reviews$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -10684,11 +10421,6 @@ export namespace androidpublisher_v3 {
     translationLanguage?: string;
   }
   export interface Params$Resource$Reviews$Reply extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      */
@@ -11278,11 +11010,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Systemapks$Variants$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */
     packageName?: string;
@@ -11299,11 +11026,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Systemapks$Variants$Download
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */
     packageName?: string;
@@ -11319,11 +11041,6 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Systemapks$Variants$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */
     packageName?: string;
@@ -11338,11 +11055,6 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Systemapks$Variants$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */

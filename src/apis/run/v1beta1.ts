@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace run_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -690,11 +702,6 @@ export namespace run_v1beta1 {
   export interface Params$Resource$Customresourcedefinitions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional encoded string to continue paging.
      */
     continue?: string;
@@ -888,11 +895,6 @@ export namespace run_v1beta1 {
 
   export interface Params$Resource$Namespaces$Customresourcedefinitions$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
      */
@@ -1243,22 +1245,12 @@ export namespace run_v1beta1 {
   export interface Params$Resource$Projects$Locations$Customresourcedefinitions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Customresourcedefinitions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional encoded string to continue paging.
      */

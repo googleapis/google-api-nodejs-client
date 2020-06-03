@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace pubsub_v1beta2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2016,11 +2028,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Subscriptions$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The subscription whose message is being acknowledged.
      */
     subscription?: string;
@@ -2032,11 +2039,6 @@ export namespace pubsub_v1beta2 {
   }
   export interface Params$Resource$Projects$Subscriptions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
@@ -2050,11 +2052,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The subscription to delete.
      */
     subscription?: string;
@@ -2062,22 +2059,12 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the subscription to get.
      */
     subscription?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2089,11 +2076,6 @@ export namespace pubsub_v1beta2 {
   }
   export interface Params$Resource$Projects$Subscriptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of subscriptions to return.
      */
@@ -2110,11 +2092,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the subscription.
      */
     subscription?: string;
@@ -2126,11 +2103,6 @@ export namespace pubsub_v1beta2 {
   }
   export interface Params$Resource$Projects$Subscriptions$Modifypushconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the subscription.
      */
@@ -2144,11 +2116,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Subscriptions$Pull
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The subscription from which messages should be pulled.
      */
     subscription?: string;
@@ -2161,11 +2128,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Subscriptions$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2177,11 +2139,6 @@ export namespace pubsub_v1beta2 {
   }
   export interface Params$Resource$Projects$Subscriptions$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3349,11 +3306,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Topics$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
@@ -3366,11 +3318,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Topics$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the topic to delete.
      */
     topic?: string;
@@ -3378,22 +3325,12 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Topics$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the topic to get.
      */
     topic?: string;
   }
   export interface Params$Resource$Projects$Topics$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3405,11 +3342,6 @@ export namespace pubsub_v1beta2 {
   }
   export interface Params$Resource$Projects$Topics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of topics to return.
      */
@@ -3426,11 +3358,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Topics$Publish
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The messages in the request will be published on this topic.
      */
     topic?: string;
@@ -3443,11 +3370,6 @@ export namespace pubsub_v1beta2 {
   export interface Params$Resource$Projects$Topics$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -3459,11 +3381,6 @@ export namespace pubsub_v1beta2 {
   }
   export interface Params$Resource$Projects$Topics$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3636,11 +3553,6 @@ export namespace pubsub_v1beta2 {
 
   export interface Params$Resource$Projects$Topics$Subscriptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of subscription names to return.
      */

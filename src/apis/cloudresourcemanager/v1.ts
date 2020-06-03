@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudresourcemanager_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1671,11 +1683,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Folders$Clearorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
@@ -1687,11 +1694,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Folders$Geteffectiveorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
@@ -1705,11 +1707,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Folders$Getorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource the `Policy` is set on.
      */
     resource?: string;
@@ -1721,11 +1718,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Folders$Listavailableorgpolicyconstraints
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to list `Constraints` for.
      */
@@ -1739,11 +1731,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Folders$Listorgpolicies
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource to list Policies for.
      */
     resource?: string;
@@ -1755,11 +1742,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Folders$Setorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name of the resource to attach the `Policy`.
      */
@@ -2337,21 +2319,11 @@ export namespace cloudresourcemanager_v1 {
 
   export interface Params$Resource$Liens$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Lien;
   }
   export interface Params$Resource$Liens$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name/identifier of the Lien to delete.
      */
@@ -2359,21 +2331,11 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Liens$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name/identifier of the Lien.
      */
     name?: string;
   }
   export interface Params$Resource$Liens$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. This is a suggestion for the server.
      */
@@ -2531,11 +2493,6 @@ export namespace cloudresourcemanager_v1 {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -4192,11 +4149,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Clearorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
@@ -4209,22 +4161,12 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Geteffectiveorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
@@ -4238,11 +4180,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -4254,11 +4191,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Organizations$Getorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource the `Policy` is set on.
      */
@@ -4272,11 +4204,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Listavailableorgpolicyconstraints
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource to list `Constraints` for.
      */
     resource?: string;
@@ -4288,11 +4215,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Organizations$Listorgpolicies
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to list Policies for.
      */
@@ -4306,22 +4228,12 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Search
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchOrganizationsRequest;
   }
   export interface Params$Resource$Organizations$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -4335,11 +4247,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Organizations$Setorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the resource to attach the `Policy`.
      */
     resource?: string;
@@ -4351,11 +4258,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Organizations$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -6768,11 +6670,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Clearorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource for the `Policy` to clear.
      */
     resource?: string;
@@ -6784,21 +6681,11 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Project;
   }
   export interface Params$Resource$Projects$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Project ID (for example, `foo-bar-123`).  Required.
      */
@@ -6806,22 +6693,12 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Getancestry
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
@@ -6835,11 +6712,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Geteffectiveorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the resource to start computing the effective `Policy`.
      */
     resource?: string;
@@ -6851,11 +6723,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -6869,11 +6736,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Getorgpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource the `Policy` is set on.
      */
     resource?: string;
@@ -6884,11 +6746,6 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$GetOrgPolicyRequest;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + `labels.<key>` (where *key* is the name of a label) + `parent.type` + `parent.id`  Some examples of using labels as filters:  | Filter           | Description                                         | |------------------|-----------------------------------------------------| | name:how*        | The project's name starts with "how".               | | name:Howl        | The project's name is `Howl` or `howl`.             | | name:HOWL        | Equivalent to above.                                | | NAME:howl        | Equivalent to above.                                | | labels.color:*   | The project has the label `color`.                  | | labels.color:red | The project's label `color` has the value `red`.    | | labels.color:red&nbsp;labels.size:big |The project's label `color` has   the value `red` and its label `size` has the value `big`.              |  If no filter is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.  NOTE: To perform a by-parent query (eg., what projects are directly in a Folder), the caller must have the `resourcemanager.projects.list` permission on the parent and the filter must contain both a `parent.type` and a `parent.id` restriction (example: "parent.type:folder parent.id:123"). In this case an alternate search index is used which provides more consistent results.  Optional.
      */
@@ -6905,11 +6762,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Listavailableorgpolicyconstraints
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource to list `Constraints` for.
      */
     resource?: string;
@@ -6921,11 +6773,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Listorgpolicies
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to list Policies for.
      */
@@ -6939,11 +6786,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -6955,11 +6797,6 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Projects$Setorgpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name of the resource to attach the `Policy`.
      */
@@ -6973,11 +6810,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -6990,11 +6822,6 @@ export namespace cloudresourcemanager_v1 {
   export interface Params$Resource$Projects$Undelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project ID (for example, `foo-bar-123`).  Required.
      */
     projectId?: string;
@@ -7005,11 +6832,6 @@ export namespace cloudresourcemanager_v1 {
     requestBody?: Schema$UndeleteProjectRequest;
   }
   export interface Params$Resource$Projects$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The project ID (for example, `my-project-123`).  Required.
      */

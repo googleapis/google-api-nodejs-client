@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace games_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -2530,11 +2542,6 @@ export namespace games_v1 {
   export interface Params$Resource$Achievementdefinitions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -3425,11 +3432,6 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Increment
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
@@ -3444,11 +3446,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Achievements$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3473,22 +3470,12 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Reveal
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
   export interface Params$Resource$Achievements$Setstepsatleast
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the achievement used by this method.
      */
@@ -3501,22 +3488,12 @@ export namespace games_v1 {
   export interface Params$Resource$Achievements$Unlock
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
   }
   export interface Params$Resource$Achievements$Updatemultiple
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3939,11 +3916,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Applications$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The application ID from the Google Play developer console.
      */
     applicationId?: string;
@@ -3957,19 +3929,9 @@ export namespace games_v1 {
     platformType?: string;
   }
   export interface Params$Resource$Applications$Played
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Applications$Verify
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The application ID from the Google Play developer console.
      */
@@ -4420,11 +4382,6 @@ export namespace games_v1 {
   export interface Params$Resource$Events$Listbyplayer
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -4440,11 +4397,6 @@ export namespace games_v1 {
   export interface Params$Resource$Events$Listdefinitions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -4458,11 +4410,6 @@ export namespace games_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$Events$Record extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4765,11 +4712,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Leaderboards$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -4780,11 +4722,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Leaderboards$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -5089,19 +5026,9 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Metagame$Getmetagameconfig
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Metagame$Listcategoriesbyplayer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of categories for which data will be returned.
      */
@@ -5421,11 +5348,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Players$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -5435,11 +5357,6 @@ export namespace games_v1 {
     playerId?: string;
   }
   export interface Params$Resource$Players$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Collection of players being retrieved
      */
@@ -5730,22 +5647,12 @@ export namespace games_v1 {
   export interface Params$Resource$Pushtokens$Remove
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$PushTokenId;
   }
   export interface Params$Resource$Pushtokens$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5902,11 +5809,6 @@ export namespace games_v1 {
   }
 
   export interface Params$Resource$Revisions$Check extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The revision of the client SDK used by your application. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
      */
@@ -7090,11 +6992,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Rooms$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7106,11 +7003,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Decline extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7121,21 +7013,11 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Dismiss extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the room.
      */
     roomId?: string;
   }
   export interface Params$Resource$Rooms$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7146,11 +7028,6 @@ export namespace games_v1 {
     roomId?: string;
   }
   export interface Params$Resource$Rooms$Join extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -7167,11 +7044,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Leave extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7187,11 +7059,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -7206,11 +7073,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Rooms$Reportstatus
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -8003,11 +7865,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Scores$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The types of ranks to return. If the parameter is omitted, no ranks will be returned.
      */
     includeRankType?: string;
@@ -8038,11 +7895,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The collection of scores you're requesting.
      */
     collection?: string;
@@ -8069,11 +7921,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Listwindow
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The collection of scores you're requesting.
      */
@@ -8109,11 +7956,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Submit extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -8132,11 +7974,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Scores$Submitmultiple
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -8452,11 +8289,6 @@ export namespace games_v1 {
 
   export interface Params$Resource$Snapshots$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -8466,11 +8298,6 @@ export namespace games_v1 {
     snapshotId?: string;
   }
   export interface Params$Resource$Snapshots$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -10447,22 +10274,12 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the match.
      */
     matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -10476,11 +10293,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Decline
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10492,22 +10304,12 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the match.
      */
     matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Finish
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -10525,11 +10327,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Get match data along with metadata.
      */
     includeMatchData?: boolean;
@@ -10545,11 +10342,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Join
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10561,11 +10353,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Leave
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10576,11 +10363,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Leaveturn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -10600,11 +10382,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
@@ -10629,11 +10406,6 @@ export namespace games_v1 {
   export interface Params$Resource$Turnbasedmatches$Rematch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The preferred language to use for strings returned by this method.
      */
     language?: string;
@@ -10648,11 +10420,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Sync
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * True if match data should be returned in the response. Note that not all data will necessarily be returned if include_match_data is true; the server may decide to only return data for some of the matches to limit download size for the client. The remainder of the data for these matches will be retrievable on request.
      */
@@ -10676,11 +10443,6 @@ export namespace games_v1 {
   }
   export interface Params$Resource$Turnbasedmatches$Taketurn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language to use for strings returned by this method.
      */

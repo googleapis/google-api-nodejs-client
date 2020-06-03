@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace testing_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1503,11 +1515,6 @@ export namespace testing_v1 {
   export interface Params$Resource$Applicationdetailservice$Getapkdetails
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$FileReference;
@@ -1990,11 +1997,6 @@ export namespace testing_v1 {
   export interface Params$Resource$Projects$Testmatrices$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Cloud project that owns the test.
      */
     projectId?: string;
@@ -2005,11 +2007,6 @@ export namespace testing_v1 {
   }
   export interface Params$Resource$Projects$Testmatrices$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GCE project under which this job will run.
      */
@@ -2026,11 +2023,6 @@ export namespace testing_v1 {
   }
   export interface Params$Resource$Projects$Testmatrices$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Cloud project that owns the test matrix.
      */
@@ -2194,11 +2186,6 @@ export namespace testing_v1 {
 
   export interface Params$Resource$Testenvironmentcatalog$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The type of environment that should be listed.
      */

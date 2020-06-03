@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace identitytoolkit_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -4720,22 +4732,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Createauthuri
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest;
   }
   export interface Params$Resource$Relyingparty$Deleteaccount
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4744,22 +4746,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Downloadaccount
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest;
   }
   export interface Params$Resource$Relyingparty$Emaillinksignin
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4768,11 +4760,6 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Getaccountinfo
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest;
@@ -4780,22 +4767,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Getoobconfirmationcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Relyingparty;
   }
   export interface Params$Resource$Relyingparty$Getprojectconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Delegated GCP project number of the request.
      */
@@ -4806,26 +4783,11 @@ export namespace identitytoolkit_v3 {
     projectNumber?: string;
   }
   export interface Params$Resource$Relyingparty$Getpublickeys
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Relyingparty$Getrecaptchaparam
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Relyingparty$Resetpassword
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4834,22 +4796,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Sendverificationcode
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySendVerificationCodeRequest;
   }
   export interface Params$Resource$Relyingparty$Setaccountinfo
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4858,22 +4810,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Setprojectconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetProjectConfigRequest;
   }
   export interface Params$Resource$Relyingparty$Signoutuser
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4882,22 +4824,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Signupnewuser
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignupNewUserRequest;
   }
   export interface Params$Resource$Relyingparty$Uploadaccount
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4906,22 +4838,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Verifyassertion
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest;
   }
   export interface Params$Resource$Relyingparty$Verifycustomtoken
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -4930,22 +4852,12 @@ export namespace identitytoolkit_v3 {
   export interface Params$Resource$Relyingparty$Verifypassword
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPasswordRequest;
   }
   export interface Params$Resource$Relyingparty$Verifyphonenumber
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

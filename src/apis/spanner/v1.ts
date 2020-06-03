@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace spanner_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1729,22 +1741,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instanceconfigs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the requested instance configuration. Values are of the form `projects/<project>/instanceConfigs/<config>`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instanceconfigs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of instance configurations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      */
@@ -2966,11 +2968,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the project in which to create the instance. Values are of the form `projects/<project>`.
      */
     parent?: string;
@@ -2983,22 +2980,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the instance to be deleted. Values are of the form `projects/<project>/instances/<instance>`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If field_mask is present, specifies the subset of Instance fields that should be returned. If absent, all Instance fields are returned.
      */
@@ -3011,11 +2998,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
      */
     resource?: string;
@@ -3027,11 +3009,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are:    * `name`   * `display_name`   * `labels.key` where key is the name of a label  Some examples of using filters are:    * `name:*` --> The instance has a name.   * `name:Howl` --> The instance's name contains the string "howl".   * `name:HOWL` --> Equivalent to above.   * `NAME:howl` --> Equivalent to above.   * `labels.env:*` --> The instance has the label "env".   * `labels.env:dev` --> The instance has the label "env" and the value of                        the label contains the string "dev".   * `name:howl labels.env:dev` --> The instance's name contains "howl" and                                  it has the label "env" with its value                                  containing "dev".
      */
@@ -3052,11 +3029,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length.
      */
     name?: string;
@@ -3069,11 +3041,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
      */
     resource?: string;
@@ -3085,11 +3052,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
      */
@@ -3305,11 +3267,6 @@ export namespace spanner_v1 {
 
   export interface Params$Resource$Projects$Instances$Backupoperations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An expression that filters the list of returned backup operations.  A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive.  The following fields in the operation are eligible for filtering:    * `name` - The name of the long-running operation   * `done` - False if the operation is in progress, else true.   * `metadata.@type` - the type of metadata. For example, the type string      for CreateBackupMetadata is      `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`.   * `metadata.<field_name>` - any field in metadata.value.   * `error` - Error associated with the long-running operation.   * `response.@type` - the type of response.   * `response.<field_name>` - any field in response.value.  You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly.  Here are a few examples:    * `done:true` - The operation is complete.   * `metadata.database:prod` - The database the backup was taken from has      a name containing the string "prod".   * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \     `(metadata.name:howl) AND` \     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \     `(error:*)` - Returns operations where:     * The operation's metadata type is CreateBackupMetadata.     * The backup name contains the string "howl".     * The operation started before 2018-03-28T14:50:00Z.     * The operation resulted in an error.
      */
@@ -4571,11 +4528,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backups$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The id of the backup to be created. The `backup_id` appended to `parent` forms the full backup name of the form `projects/<project>/instances/<instance>/backups/<backup_id>`.
      */
     backupId?: string;
@@ -4592,11 +4544,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backups$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the backup to delete. Values are of the form `projects/<project>/instances/<instance>/backups/<backup>`.
      */
     name?: string;
@@ -4604,22 +4551,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the backup. Values are of the form `projects/<project>/instances/<instance>/backups/<backup>`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Backups$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
      */
@@ -4632,11 +4569,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Backups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An expression that filters the list of returned backups.  A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive.  The following fields in the Backup are eligible for filtering:    * `name`   * `database`   * `state`   * `create_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `size_bytes`  You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly.  Here are a few examples:    * `name:Howl` - The backup's name contains the string "howl".   * `database:prod`          - The database's name contains the string "prod".   * `state:CREATING` - The backup is pending creation.   * `state:READY` - The backup is fully created and ready for use.   * `(name:howl) AND (create_time < \"2018-03-28T14:50:00Z\")`          - The backup name contains the string "howl" and `create_time`              of the backup is before 2018-03-28T14:50:00Z.   * `expire_time < \"2018-03-28T14:50:00Z\"`          - The backup `expire_time` is before 2018-03-28T14:50:00Z.   * `size_bytes > 10000000000` - The backup's size is greater than 10GB
      */
@@ -4657,11 +4589,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backups$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only for the CreateBackup operation. Required for the UpdateBackup operation.  A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/<project>/instances/<instance>/backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length.  The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects/<project>/instances/<instance>`.
      */
     name?: string;
@@ -4678,11 +4605,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backups$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
      */
     resource?: string;
@@ -4694,11 +4616,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Backups$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
      */
@@ -5263,22 +5180,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backups$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Backups$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -5287,22 +5194,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backups$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Backups$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -5527,11 +5424,6 @@ export namespace spanner_v1 {
 
   export interface Params$Resource$Projects$Instances$Databaseoperations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * An expression that filters the list of returned operations.  A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive.  The following fields in the Operation are eligible for filtering:    * `name` - The name of the long-running operation   * `done` - False if the operation is in progress, else true.   * `metadata.@type` - the type of metadata. For example, the type string      for RestoreDatabaseMetadata is      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.   * `metadata.<field_name>` - any field in metadata.value.   * `error` - Error associated with the long-running operation.   * `response.@type` - the type of response.   * `response.<field_name>` - any field in response.value.  You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly.  Here are a few examples:    * `done:true` - The operation is complete.   * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \     `(metadata.source_type:BACKUP) AND` \     `(metadata.backup_info.backup:backup_howl) AND` \     `(metadata.name:restored_howl) AND` \     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \     `(error:*)` - Return operations where:     * The operation's metadata type is RestoreDatabaseMetadata.     * The database is restored from a backup.     * The backup name contains "backup_howl".     * The restored database's name contains "restored_howl".     * The operation started before 2018-03-28T14:50:00Z.     * The operation resulted in an error.
      */
@@ -7010,11 +6902,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the instance that will serve the new database. Values are of the form `projects/<project>/instances/<instance>`.
      */
     parent?: string;
@@ -7027,22 +6914,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Dropdatabase
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The database to be dropped.
      */
     database?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the requested database. Values are of the form `projects/<project>/instances/<instance>/databases/<database>`.
      */
@@ -7051,22 +6928,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Getddl
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The database whose schema we wish to get.
      */
     database?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
      */
@@ -7079,11 +6946,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of databases to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      */
@@ -7100,11 +6962,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Restore
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the instance in which to create the restored database. This instance must be in the same project and have the same instance configuration as the instance containing the source backup. Values are of the form `projects/<project>/instances/<instance>`.
      */
     parent?: string;
@@ -7116,11 +6973,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
      */
@@ -7134,11 +6986,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
      */
     resource?: string;
@@ -7150,11 +6997,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$Updateddl
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The database to update.
      */
@@ -7719,22 +7561,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -7743,22 +7575,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -10040,11 +9862,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The database in which the new sessions are created.
      */
     database?: string;
@@ -10056,11 +9873,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The session in which the transaction runs.
      */
@@ -10074,11 +9886,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session in which the transaction to be committed is running.
      */
     session?: string;
@@ -10090,11 +9897,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The database in which the new session is created.
      */
@@ -10108,22 +9910,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the session to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The session in which the DML statements should be performed.
      */
@@ -10137,11 +9929,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session in which the SQL query should be performed.
      */
     session?: string;
@@ -10153,11 +9940,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The session in which the SQL query should be performed.
      */
@@ -10171,22 +9953,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the session to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The database in which to list sessions.
      */
@@ -10207,11 +9979,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session used to create the partitions.
      */
     session?: string;
@@ -10223,11 +9990,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The session used to create the partitions.
      */
@@ -10241,11 +10003,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Read
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session in which the read should be performed.
      */
     session?: string;
@@ -10258,11 +10015,6 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The session in which the transaction to roll back is running.
      */
     session?: string;
@@ -10274,11 +10026,6 @@ export namespace spanner_v1 {
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The session in which the read should be performed.
      */
@@ -10839,22 +10586,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -10863,22 +10600,12 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

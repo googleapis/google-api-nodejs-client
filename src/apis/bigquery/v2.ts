@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace bigquery_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -3821,11 +3833,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Datasets$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of dataset being deleted
      */
     datasetId?: string;
@@ -3840,11 +3847,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the requested dataset
      */
     datasetId?: string;
@@ -3854,11 +3856,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Datasets$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Project ID of the new dataset
      */
@@ -3870,11 +3867,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to list all datasets, including hidden ones
      */
@@ -3898,11 +3890,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the dataset being updated
      */
     datasetId?: string;
@@ -3917,11 +3904,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Dataset;
   }
   export interface Params$Resource$Datasets$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the dataset being updated
      */
@@ -4908,11 +4890,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Jobs$Cancel extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * [Required] Job ID of the job to cancel
      */
     jobId?: string;
@@ -4926,11 +4903,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Jobs$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * [Required] Job ID of the requested job
      */
@@ -4946,11 +4918,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Getqueryresults
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * [Required] Job ID of the query job
      */
@@ -4982,11 +4949,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project ID of the project that will be billed for the job
      */
     projectId?: string;
@@ -5012,11 +4974,6 @@ export namespace bigquery_v2 {
     };
   }
   export interface Params$Resource$Jobs$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to display jobs owned by all users in the project. Default false
      */
@@ -5055,11 +5012,6 @@ export namespace bigquery_v2 {
     stateFilter?: string[];
   }
   export interface Params$Resource$Jobs$Query extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Project ID of the project billed for the query
      */
@@ -5690,11 +5642,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Models$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the model to delete.
      */
     datasetId?: string;
@@ -5709,11 +5656,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Models$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the requested model.
      */
     datasetId?: string;
@@ -5727,11 +5669,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Models$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the models to list.
      */
@@ -5750,11 +5687,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Models$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the model to patch.
      */
@@ -6069,21 +6001,11 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Projects$Getserviceaccount
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project ID for which the service account is requested.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results to return
      */
@@ -6888,11 +6810,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Routines$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the routine to delete
      */
     datasetId?: string;
@@ -6906,11 +6823,6 @@ export namespace bigquery_v2 {
     routineId?: string;
   }
   export interface Params$Resource$Routines$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the requested routine
      */
@@ -6930,11 +6842,6 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Routines$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Dataset ID of the new routine
      */
     datasetId?: string;
@@ -6949,11 +6856,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Routine;
   }
   export interface Params$Resource$Routines$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the routines to list
      */
@@ -6980,11 +6882,6 @@ export namespace bigquery_v2 {
     readMask?: string;
   }
   export interface Params$Resource$Routines$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Dataset ID of the routine to update
      */
@@ -7333,11 +7230,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tabledata$Insertall
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the destination table.
      */
     datasetId?: string;
@@ -7356,11 +7248,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$TableDataInsertAllRequest;
   }
   export interface Params$Resource$Tabledata$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the table to read
      */
@@ -8903,11 +8790,6 @@ export namespace bigquery_v2 {
 
   export interface Params$Resource$Tables$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset ID of the table to delete
      */
     datasetId?: string;
@@ -8921,11 +8803,6 @@ export namespace bigquery_v2 {
     tableId?: string;
   }
   export interface Params$Resource$Tables$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the requested table
      */
@@ -8946,11 +8823,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -8961,11 +8833,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Tables$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the new table
      */
@@ -8981,11 +8848,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Table;
   }
   export interface Params$Resource$Tables$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the tables to list
      */
@@ -9004,11 +8866,6 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Tables$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the table to update
      */
@@ -9030,11 +8887,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -9047,11 +8899,6 @@ export namespace bigquery_v2 {
   export interface Params$Resource$Tables$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -9062,11 +8909,6 @@ export namespace bigquery_v2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Tables$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dataset ID of the table to update
      */

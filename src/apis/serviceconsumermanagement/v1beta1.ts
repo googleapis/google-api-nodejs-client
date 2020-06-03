@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace serviceconsumermanagement_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1703,11 +1715,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -2203,11 +2210,6 @@ export namespace serviceconsumermanagement_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the quota metric, returned by a ListConsumerQuotaMetrics call.  An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus`
      */
     name?: string;
@@ -2218,11 +2220,6 @@ export namespace serviceconsumermanagement_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$Importproduceroverrides
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the consumer.  An example name would be: `services/compute.googleapis.com/projects/123`
      */
@@ -2235,11 +2232,6 @@ export namespace serviceconsumermanagement_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested size of the next page of data.
      */
@@ -2419,11 +2411,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
      */
@@ -3078,11 +3065,6 @@ export namespace serviceconsumermanagement_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
     force?: boolean;
@@ -3099,11 +3081,6 @@ export namespace serviceconsumermanagement_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
     force?: boolean;
@@ -3114,11 +3091,6 @@ export namespace serviceconsumermanagement_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested size of the next page of data.
      */
@@ -3134,11 +3106,6 @@ export namespace serviceconsumermanagement_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */

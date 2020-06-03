@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace bigqueryreservation_v1alpha2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -485,11 +497,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Searchreservationgrants
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of items to return.
      */
     pageSize?: number;
@@ -786,22 +793,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -1260,11 +1257,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservationgrants$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent resource name of the reservation grant E.g.: projects/myproject/location/eu.
      */
     parent?: string;
@@ -1277,22 +1269,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservationgrants$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource, e.g.:   projects/myproject/locations/eu/reservationGrants/123
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservationgrants$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return.
      */
@@ -2208,11 +2190,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project, location, and (optionally) reservation name. E.g.,    projects/myproject/locations/us-central1/reservations/parent
      */
     parent?: string;
@@ -2228,11 +2205,6 @@ export namespace bigqueryreservation_v1alpha2 {
   }
   export interface Params$Resource$Projects$Locations$Reservations$Createreservation
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Project, location, and (optionally) reservation name. E.g.,    projects/myproject/locations/us-central1/reservations/parent
      */
@@ -2250,11 +2222,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * If true, deletes all the child reservations of the given reservation. Otherwise, attempting to delete a reservation that has child reservations will fail with error code `google.rpc.Code.FAILED_PRECONDITION`.
      */
     force?: boolean;
@@ -2266,22 +2233,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/us-central1/reservations/path/to/reserv
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
      */
@@ -2301,11 +2258,6 @@ export namespace bigqueryreservation_v1alpha2 {
   }
   export interface Params$Resource$Projects$Locations$Reservations$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the reservation, e.g., "projects/x/locations/x/reservations/dev/team/product". Reservation names (e.g., "dev/team/product") exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.
      */
@@ -2758,11 +2710,6 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Slotpools$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the slot pool to delete. E.g.,    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
      */
     name?: string;
@@ -2770,22 +2717,12 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$Slotpools$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name of the slot pool to retrieve. E.g.,    projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Reservations$Slotpools$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return.
      */

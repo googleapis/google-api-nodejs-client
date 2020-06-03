@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace tasks_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1095,21 +1107,11 @@ export namespace tasks_v1 {
 
   export interface Params$Resource$Tasklists$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task list identifier.
      */
     tasklist?: string;
   }
   export interface Params$Resource$Tasklists$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task list identifier.
      */
@@ -1117,21 +1119,11 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasklists$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$TaskList;
   }
   export interface Params$Resource$Tasklists$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      */
@@ -1143,11 +1135,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasklists$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task list identifier.
      */
     tasklist?: string;
@@ -1158,11 +1145,6 @@ export namespace tasks_v1 {
     requestBody?: Schema$TaskList;
   }
   export interface Params$Resource$Tasklists$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task list identifier.
      */
@@ -2427,21 +2409,11 @@ export namespace tasks_v1 {
 
   export interface Params$Resource$Tasks$Clear extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task list identifier.
      */
     tasklist?: string;
   }
   export interface Params$Resource$Tasks$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task identifier.
      */
@@ -2453,11 +2425,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task identifier.
      */
     task?: string;
@@ -2467,11 +2434,6 @@ export namespace tasks_v1 {
     tasklist?: string;
   }
   export interface Params$Resource$Tasks$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      */
@@ -2491,11 +2453,6 @@ export namespace tasks_v1 {
     requestBody?: Schema$Task;
   }
   export interface Params$Resource$Tasks$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      */
@@ -2543,11 +2500,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Move extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
      */
     parent?: string;
@@ -2566,11 +2518,6 @@ export namespace tasks_v1 {
   }
   export interface Params$Resource$Tasks$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Task identifier.
      */
     task?: string;
@@ -2585,11 +2532,6 @@ export namespace tasks_v1 {
     requestBody?: Schema$Task;
   }
   export interface Params$Resource$Tasks$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Task identifier.
      */

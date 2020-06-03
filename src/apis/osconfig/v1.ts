@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace osconfig_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1320,11 +1332,6 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchdeployments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The project to apply this patch deployment to in the form `projects/x`.
      */
     parent?: string;
@@ -1341,11 +1348,6 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchdeployments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
@@ -1353,22 +1355,12 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchdeployments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Patchdeployments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of patch deployments to return. Default is 100.
      */
@@ -1993,11 +1985,6 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchjobs$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
     name?: string;
@@ -2009,11 +1996,6 @@ export namespace osconfig_v1 {
   }
   export interface Params$Resource$Projects$Patchjobs$Execute
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project in which to run this patch in the form `projects/x`
      */
@@ -2027,22 +2009,12 @@ export namespace osconfig_v1 {
   export interface Params$Resource$Projects$Patchjobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the patch in the form `projects/x/patchJobs/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Patchjobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
      */
@@ -2223,11 +2195,6 @@ export namespace osconfig_v1 {
 
   export interface Params$Resource$Projects$Patchjobs$Instancedetails$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
      */

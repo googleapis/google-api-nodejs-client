@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace dataflow_v1b3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -3754,11 +3766,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Deletesnapshots
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The location that contains this snapshot.
      */
     location?: string;
@@ -3773,11 +3780,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Workermessages
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The project to send the WorkerMessages to.
      */
@@ -4545,11 +4547,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Catalogtemplates$Commit
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The location of the template, name includes project_id and display_name.  Commit using project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
      */
     name?: string;
@@ -4562,11 +4559,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Catalogtemplates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * name includes project_id and display_name.  Delete by project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
      */
     name?: string;
@@ -4574,22 +4566,12 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Catalogtemplates$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set.  Get by project_id(pid1) and display_name(tid1):   Format: projects/{pid1}/catalogTemplates/{tid1}  Get by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Catalogtemplates$Label
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name includes project_id, display_name, and version_id.  Updates by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
      */
@@ -4602,11 +4584,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Catalogtemplates$Tag
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Resource name includes project_id, display_name, and version_id.  Updates by project_id(pid1), display_name(tid1), and version_id(vid1):   Format: projects/{pid1}/catalogTemplates/{tid1@vid}
      */
@@ -4782,11 +4759,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Catalogtemplates$Templateversions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent project and template that the TemplateVersion will be created under.  Create using project_id(pid1) and display_name(tid1).   Format: projects/{pid1}/catalogTemplates/{tid1}
      */
@@ -6006,11 +5978,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Aggregated
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The kind of filter to use.
      */
     filter?: string;
@@ -6038,11 +6005,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
@@ -6067,11 +6029,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job ID.
      */
     jobId?: string;
@@ -6091,11 +6048,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Getmetrics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job to get messages for.
      */
     jobId?: string;
@@ -6114,11 +6066,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Jobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The kind of filter to use.
      */
@@ -6147,11 +6094,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Snapshot
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job to be snapshotted.
      */
     jobId?: string;
@@ -6167,11 +6109,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Jobs$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job ID.
      */
@@ -6514,11 +6451,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Debug$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job id.
      */
     jobId?: string;
@@ -6534,11 +6466,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Jobs$Debug$Sendcapture
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job id.
      */
@@ -6734,11 +6661,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Jobs$Messages$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
@@ -7105,11 +7027,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Jobs$Workitems$Lease
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifies the workflow job this worker belongs to.
      */
     jobId?: string;
@@ -7125,11 +7042,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job which the WorkItem is part of.
      */
@@ -7325,11 +7237,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Workermessages
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      */
     location?: string;
@@ -7511,11 +7418,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Flextemplates$Launch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
      */
@@ -8593,11 +8495,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string;
@@ -8622,11 +8519,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job ID.
      */
     jobId?: string;
@@ -8646,11 +8538,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Getmetrics
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job to get messages for.
      */
     jobId?: string;
@@ -8669,11 +8556,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The kind of filter to use.
      */
@@ -8702,11 +8584,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Snapshot
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job to be snapshotted.
      */
     jobId?: string;
@@ -8726,11 +8603,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job ID.
      */
@@ -9083,11 +8955,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The job id.
      */
     jobId?: string;
@@ -9107,11 +8974,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job id.
      */
@@ -9313,11 +9175,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Messages$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      */
     endTime?: string;
@@ -9507,11 +9364,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Jobs$Snapshots$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If specified, list snapshots created from this job.
      */
@@ -9868,11 +9720,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifies the workflow job this worker belongs to.
      */
     jobId?: string;
@@ -9892,11 +9739,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The job which the WorkItem is part of.
      */
@@ -10368,11 +10210,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Snapshots$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The location that contains this snapshot.
      */
     location?: string;
@@ -10388,11 +10225,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Snapshots$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The location that contains this snapshot.
      */
     location?: string;
@@ -10407,11 +10239,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Snapshots$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If specified, list snapshots created from this job.
      */
@@ -10578,11 +10405,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Locations$Sql$Validate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
@@ -11115,11 +10937,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Templates$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      */
     location?: string;
@@ -11135,11 +10952,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Templates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
@@ -11159,11 +10971,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Locations$Templates$Launch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
@@ -11501,11 +11308,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Snapshots$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The location that contains this snapshot.
      */
     location?: string;
@@ -11520,11 +11322,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Snapshots$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If specified, list snapshots created from this job.
      */
@@ -12051,11 +11848,6 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Templates$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
     projectId?: string;
@@ -12067,11 +11859,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Templates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
@@ -12091,11 +11878,6 @@ export namespace dataflow_v1b3 {
   }
   export interface Params$Resource$Projects$Templates$Launch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
@@ -12293,11 +12075,6 @@ export namespace dataflow_v1b3 {
 
   export interface Params$Resource$Projects$Templateversions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of TemplateVersions to return per page.
      */

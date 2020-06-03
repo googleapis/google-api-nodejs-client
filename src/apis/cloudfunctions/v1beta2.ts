@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudfunctions_v1beta2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -783,21 +795,11 @@ export namespace cloudfunctions_v1beta2 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for a specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
      */
@@ -983,11 +985,6 @@ export namespace cloudfunctions_v1beta2 {
 
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -2226,11 +2223,6 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Call
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the function to be called.
      */
     name?: string;
@@ -2242,11 +2234,6 @@ export namespace cloudfunctions_v1beta2 {
   }
   export interface Params$Resource$Projects$Locations$Functions$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
      */
@@ -2260,22 +2247,12 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the function which should be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of function for which source code Google Cloud Storage signed URL should be generated.
      */
@@ -2289,11 +2266,6 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
@@ -2306,22 +2278,12 @@ export namespace cloudfunctions_v1beta2 {
   export interface Params$Resource$Projects$Locations$Functions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the function which details should be obtained.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
      */
@@ -2337,11 +2299,6 @@ export namespace cloudfunctions_v1beta2 {
   }
   export interface Params$Resource$Projects$Locations$Functions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the function to be updated.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace books_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1446,11 +1458,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Bookshelves$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of bookshelf to retrieve.
      */
     shelf?: string;
@@ -1464,11 +1471,6 @@ export namespace books_v1 {
     userId?: string;
   }
   export interface Params$Resource$Bookshelves$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * String to identify the originator of this request.
      */
@@ -1635,11 +1637,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Bookshelves$Volumes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of results to return
      */
@@ -2097,11 +2094,6 @@ export namespace books_v1 {
   export interface Params$Resource$Cloudloading$Addbook
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A drive document id. The upload_client_token must not be set.
      */
     drive_document_id?: string;
@@ -2121,22 +2113,12 @@ export namespace books_v1 {
   export interface Params$Resource$Cloudloading$Deletebook
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The id of the book to be removed.
      */
     volumeId?: string;
   }
   export interface Params$Resource$Cloudloading$Updatebook
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -2284,11 +2266,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Dictionary$Listofflinemetadata
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The device/version ID from which to request the data.
      */
@@ -2697,22 +2674,12 @@ export namespace books_v1 {
   export interface Params$Resource$Familysharing$Getfamilyinfo
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
   export interface Params$Resource$Familysharing$Share
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The docid to share.
      */
@@ -2728,11 +2695,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Familysharing$Unshare
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The docid to unshare.
      */
@@ -3055,11 +3017,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Layers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The content version for the requested volume.
      */
     contentVersion?: string;
@@ -3077,11 +3034,6 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Params$Resource$Layers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The content version for the requested volume.
      */
@@ -3454,11 +3406,6 @@ export namespace books_v1 {
   export interface Params$Resource$Layers$Annotationdata$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * For the dictionary layer. Whether or not to allow web definitions.
      */
     allowWebDefinitions?: boolean;
@@ -3501,11 +3448,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Layers$Annotationdata$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
      */
@@ -3905,11 +3847,6 @@ export namespace books_v1 {
   export interface Params$Resource$Layers$Volumeannotations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the volume annotation to retrieve.
      */
     annotationId?: string;
@@ -3932,11 +3869,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Layers$Volumeannotations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The content version for the requested volume.
      */
@@ -4723,19 +4655,9 @@ export namespace books_v1 {
   }
 
   export interface Params$Resource$Myconfig$Getusersettings
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Myconfig$Releasedownloadaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The device/version ID from which to release the restriction.
      */
@@ -4755,11 +4677,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Myconfig$Requestaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The device/version ID from which to request the restrictions.
      */
@@ -4787,11 +4704,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Myconfig$Syncvolumelicenses
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The device/version ID from which to release the restriction.
      */
@@ -4827,11 +4739,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Myconfig$Updateusersettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -5643,11 +5550,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Annotations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID for the annotation to delete.
      */
     annotationId?: string;
@@ -5658,11 +5560,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Annotations$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID for the annotation to insert.
      */
@@ -5687,11 +5584,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Annotations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The content version for the requested volume.
      */
@@ -5736,11 +5628,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Annotations$Summary
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Array of layer IDs to get the summary for.
      */
     layerIds?: string[];
@@ -5751,11 +5638,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Annotations$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID for the annotation to update.
      */
@@ -6580,11 +6462,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Bookshelves$Addvolume
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The reason for which the book is added to the library.
      */
     reason?: string;
@@ -6604,11 +6481,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of bookshelf from which to remove a volume.
      */
     shelf?: string;
@@ -6619,11 +6491,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of bookshelf to retrieve.
      */
@@ -6636,22 +6503,12 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Bookshelves$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Movevolume
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of bookshelf with the volume.
      */
@@ -6671,11 +6528,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Removevolume
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The reason for which the book is removed from the library.
      */
@@ -6856,11 +6708,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ISO-3166-1 code to override the IP-based location.
      */
@@ -7189,11 +7036,6 @@ export namespace books_v1 {
   export interface Params$Resource$Mylibrary$Readingpositions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Volume content version for which this reading position is requested.
      */
     contentVersion?: string;
@@ -7208,11 +7050,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Mylibrary$Readingpositions$Setposition
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Action that caused this reading position to be set.
      */
@@ -7402,11 +7239,6 @@ export namespace books_v1 {
   }
 
   export interface Params$Resource$Notification$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
      */
@@ -7708,22 +7540,12 @@ export namespace books_v1 {
   export interface Params$Resource$Onboarding$Listcategories
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
      */
     locale?: string;
   }
   export interface Params$Resource$Onboarding$Listcategoryvolumes
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * List of category ids requested.
      */
@@ -7897,11 +7719,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Personalizedstream$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
@@ -8357,11 +8174,6 @@ export namespace books_v1 {
   export interface Params$Resource$Promooffer$Accept
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * device android_id
      */
     androidId?: string;
@@ -8397,11 +8209,6 @@ export namespace books_v1 {
   export interface Params$Resource$Promooffer$Dismiss
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * device android_id
      */
     androidId?: string;
@@ -8431,11 +8238,6 @@ export namespace books_v1 {
     serial?: string;
   }
   export interface Params$Resource$Promooffer$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * device android_id
      */
@@ -8604,11 +8406,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Series$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * String that identifies the series
      */
     series_id?: string[];
@@ -8762,11 +8559,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Series$Membership$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of maximum results per page to be included in the response.
      */
@@ -9124,11 +8916,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Volumes$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-3166-1 code to override the IP-based location.
      */
     country?: string;
@@ -9158,11 +8945,6 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Params$Resource$Volumes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Restrict to volumes by download availability.
      */
@@ -9376,11 +9158,6 @@ export namespace books_v1 {
   export interface Params$Resource$Volumes$Associated$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Association type.
      */
     association?: string;
@@ -9562,11 +9339,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Volumes$Mybooks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * How the book was acquired
      */
@@ -9895,11 +9667,6 @@ export namespace books_v1 {
   export interface Params$Resource$Volumes$Recommended$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
     locale?: string;
@@ -9914,11 +9681,6 @@ export namespace books_v1 {
   }
   export interface Params$Resource$Volumes$Recommended$Rate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */
@@ -10094,11 +9856,6 @@ export namespace books_v1 {
 
   export interface Params$Resource$Volumes$Useruploaded$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      */

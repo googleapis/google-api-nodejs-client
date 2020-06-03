@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace datastore_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2429,11 +2441,6 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Allocateids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -2446,11 +2453,6 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Begintransaction
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -2461,11 +2463,6 @@ export namespace datastore_v1 {
     requestBody?: Schema$BeginTransactionRequest;
   }
   export interface Params$Resource$Projects$Commit extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2478,11 +2475,6 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Export extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Project ID against which to make the request.
      */
     projectId?: string;
@@ -2494,11 +2486,6 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Import extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Project ID against which to make the request.
      */
     projectId?: string;
@@ -2509,11 +2496,6 @@ export namespace datastore_v1 {
     requestBody?: Schema$GoogleDatastoreAdminV1ImportEntitiesRequest;
   }
   export interface Params$Resource$Projects$Lookup extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -2527,11 +2509,6 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Reserveids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -2544,11 +2521,6 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Rollback
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
@@ -2560,11 +2532,6 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Runquery
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the project against which to make the request.
      */
@@ -3201,11 +3168,6 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Indexes$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Project ID against which to make the request.
      */
     projectId?: string;
@@ -3218,11 +3180,6 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Indexes$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource ID of the index to delete.
      */
     indexId?: string;
@@ -3234,11 +3191,6 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Indexes$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource ID of the index to get.
      */
     indexId?: string;
@@ -3249,11 +3201,6 @@ export namespace datastore_v1 {
   }
   export interface Params$Resource$Projects$Indexes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -3841,22 +3788,12 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -3865,22 +3802,12 @@ export namespace datastore_v1 {
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */

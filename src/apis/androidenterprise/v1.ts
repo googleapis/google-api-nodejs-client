@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace androidenterprise_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -2415,11 +2427,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Devices$Forcereportupload
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the device.
      */
     deviceId?: string;
@@ -2433,11 +2440,6 @@ export namespace androidenterprise_v1 {
     userId?: string;
   }
   export interface Params$Resource$Devices$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the device.
      */
@@ -2453,11 +2455,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Devices$Getstate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the device.
      */
     deviceId?: string;
@@ -2472,11 +2469,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Devices$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -2486,11 +2478,6 @@ export namespace androidenterprise_v1 {
     userId?: string;
   }
   export interface Params$Resource$Devices$Setstate extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the device.
      */
@@ -2510,11 +2497,6 @@ export namespace androidenterprise_v1 {
     requestBody?: Schema$DeviceState;
   }
   export interface Params$Resource$Devices$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the device.
      */
@@ -4490,22 +4472,12 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Acknowledgenotificationset
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The notification set ID as returned by Enterprises.PullNotificationSet. This must be provided.
      */
     notificationSetId?: string;
   }
   export interface Params$Resource$Enterprises$Completesignup
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Completion token initially returned by GenerateSignupUrl.
      */
@@ -4517,11 +4489,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Enterprises$Createwebtoken
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -4535,11 +4502,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Enroll
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The token provided by the enterprise to register the EMM.
      */
     token?: string;
@@ -4552,21 +4514,11 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Generatesignupurl
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request. Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
      */
     callbackUrl?: string;
   }
   export interface Params$Resource$Enterprises$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -4574,11 +4526,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Enterprises$Getserviceaccount
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -4591,21 +4538,11 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Getstorelayout
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The exact primary domain name of the enterprise to look up.
      */
@@ -4614,11 +4551,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Pullnotificationset
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
      */
     requestMode?: string;
@@ -4626,22 +4558,12 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Sendtestpushnotification
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$Setaccount
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -4655,11 +4577,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Setstorelayout
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -4671,11 +4588,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Enterprises$Unenroll
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -5253,11 +5165,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Entitlements$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -5271,11 +5178,6 @@ export namespace androidenterprise_v1 {
     userId?: string;
   }
   export interface Params$Resource$Entitlements$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -5292,11 +5194,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Entitlements$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -5307,11 +5204,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Entitlements$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -5624,11 +5516,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Grouplicenses$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -5639,11 +5526,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Grouplicenses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -5803,11 +5685,6 @@ export namespace androidenterprise_v1 {
 
   export interface Params$Resource$Grouplicenseusers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -6397,11 +6274,6 @@ export namespace androidenterprise_v1 {
 
   export interface Params$Resource$Installs$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Android ID of the device.
      */
     deviceId?: string;
@@ -6419,11 +6291,6 @@ export namespace androidenterprise_v1 {
     userId?: string;
   }
   export interface Params$Resource$Installs$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Android ID of the device.
      */
@@ -6443,11 +6310,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Installs$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Android ID of the device.
      */
     deviceId?: string;
@@ -6461,11 +6323,6 @@ export namespace androidenterprise_v1 {
     userId?: string;
   }
   export interface Params$Resource$Installs$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Android ID of the device.
      */
@@ -7131,11 +6988,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Managedconfigurationsfordevice$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Android ID of the device.
      */
     deviceId?: string;
@@ -7154,11 +7006,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Managedconfigurationsfordevice$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Android ID of the device.
      */
@@ -7179,11 +7026,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Managedconfigurationsfordevice$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Android ID of the device.
      */
     deviceId?: string;
@@ -7198,11 +7040,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Managedconfigurationsfordevice$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Android ID of the device.
      */
@@ -7830,11 +7667,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Managedconfigurationsforuser$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -7849,11 +7681,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Managedconfigurationsforuser$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -7870,11 +7697,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Managedconfigurationsforuser$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -7885,11 +7707,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Managedconfigurationsforuser$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -8071,11 +7888,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Managedconfigurationssettings$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -8228,11 +8040,6 @@ export namespace androidenterprise_v1 {
   }
 
   export interface Params$Resource$Permissions$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The BCP47 tag for the user's preferred language (e.g. "en-US", "de")
      */
@@ -9260,11 +9067,6 @@ export namespace androidenterprise_v1 {
 
   export interface Params$Resource$Products$Approve extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -9281,11 +9083,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Products$Generateapprovalurl
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -9299,11 +9096,6 @@ export namespace androidenterprise_v1 {
     productId?: string;
   }
   export interface Params$Resource$Products$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -9320,11 +9112,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Products$Getapprestrictionsschema
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -9340,11 +9127,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Products$Getpermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -9354,11 +9136,6 @@ export namespace androidenterprise_v1 {
     productId?: string;
   }
   export interface Params$Resource$Products$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specifies whether to search among all products (false) or among only products that have been approved (true). Only "true" is supported, and should be specified.
      */
@@ -9386,11 +9163,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Products$Unapprove
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -9829,11 +9601,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Serviceaccountkeys$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -9844,11 +9611,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Serviceaccountkeys$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -9861,11 +9623,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Serviceaccountkeys$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -10602,11 +10359,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Storelayoutclusters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the cluster.
      */
     clusterId?: string;
@@ -10622,11 +10374,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Storelayoutclusters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the cluster.
      */
     clusterId?: string;
@@ -10641,11 +10388,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Storelayoutclusters$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -10663,11 +10405,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Storelayoutclusters$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -10678,11 +10415,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Storelayoutclusters$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the cluster.
      */
@@ -11412,11 +11144,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Storelayoutpages$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -11428,11 +11155,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Storelayoutpages$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -11443,11 +11165,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Storelayoutpages$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -11461,22 +11178,12 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Storelayoutpages$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
   export interface Params$Resource$Storelayoutpages$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13026,11 +12733,6 @@ export namespace androidenterprise_v1 {
 
   export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -13041,11 +12743,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Users$Generateauthenticationtoken
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13058,11 +12755,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Users$Generatetoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -13072,11 +12764,6 @@ export namespace androidenterprise_v1 {
     userId?: string;
   }
   export interface Params$Resource$Users$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13089,11 +12776,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Users$Getavailableproductset
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -13103,11 +12785,6 @@ export namespace androidenterprise_v1 {
     userId?: string;
   }
   export interface Params$Resource$Users$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13120,11 +12797,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The exact primary email address of the user to look up.
      */
     email?: string;
@@ -13135,11 +12807,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Users$Revokedeviceaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13152,11 +12819,6 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Users$Revoketoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -13167,11 +12829,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Users$Setavailableproductset
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13187,11 +12844,6 @@ export namespace androidenterprise_v1 {
     requestBody?: Schema$ProductSet;
   }
   export interface Params$Resource$Users$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13920,11 +13572,6 @@ export namespace androidenterprise_v1 {
 
   export interface Params$Resource$Webapps$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -13935,11 +13582,6 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Webapps$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
@@ -13949,11 +13591,6 @@ export namespace androidenterprise_v1 {
     webAppId?: string;
   }
   export interface Params$Resource$Webapps$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */
@@ -13966,21 +13603,11 @@ export namespace androidenterprise_v1 {
   }
   export interface Params$Resource$Webapps$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the enterprise.
      */
     enterpriseId?: string;
   }
   export interface Params$Resource$Webapps$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the enterprise.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace youtubereporting_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1160,11 +1172,6 @@ export namespace youtubereporting_v1 {
 
   export interface Params$Resource$Jobs$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      */
     onBehalfOfContentOwner?: string;
@@ -1176,11 +1183,6 @@ export namespace youtubereporting_v1 {
   }
   export interface Params$Resource$Jobs$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the job to delete.
      */
     jobId?: string;
@@ -1191,11 +1193,6 @@ export namespace youtubereporting_v1 {
   }
   export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the job to retrieve.
      */
     jobId?: string;
@@ -1205,11 +1202,6 @@ export namespace youtubereporting_v1 {
     onBehalfOfContentOwner?: string;
   }
   export interface Params$Resource$Jobs$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
      */
@@ -1548,11 +1540,6 @@ export namespace youtubereporting_v1 {
 
   export interface Params$Resource$Jobs$Reports$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the job.
      */
     jobId?: string;
@@ -1567,11 +1554,6 @@ export namespace youtubereporting_v1 {
   }
   export interface Params$Resource$Jobs$Reports$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only reports created after the specified date/time are returned.
      */
@@ -1774,11 +1756,6 @@ export namespace youtubereporting_v1 {
 
   export interface Params$Resource$Media$Download extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the media that is being downloaded.
      */
     resourceName?: string;
@@ -1945,11 +1922,6 @@ export namespace youtubereporting_v1 {
   }
 
   export interface Params$Resource$Reporttypes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
      */
