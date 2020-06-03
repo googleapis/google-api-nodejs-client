@@ -670,6 +670,251 @@
               "scopes": [
                 "https://www.googleapis.com/auth/display-video"
               ]
+            },
+            "patch": {
+              "description": "Updates a channel. Returns the updated channel if successful.",
+              "flatPath": "v1/advertisers/{advertisersId}/channels/{channelId}",
+              "httpMethod": "PATCH",
+              "id": "displayvideo.advertisers.channels.patch",
+              "parameterOrder": [
+                "advertiserId",
+                "channelId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the created channel.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "channelId": {
+                  "description": "Output only. The unique ID of the channel. Assigned by the system.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the created channel.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The mask to control which fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/channels/{channelId}",
+              "request": {
+                "$ref": "Channel"
+              },
+              "response": {
+                "$ref": "Channel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          },
+          "resources": {
+            "sites": {
+              "methods": {
+                "bulkEdit": {
+                  "description": "Bulk edits sites under a single channel.\n\nThe operation will delete the sites provided in\nBulkEditSitesRequest.deleted_sites and then create the sites\nprovided in BulkEditSitesRequest.created_sites.",
+                  "flatPath": "v1/advertisers/{advertiserId}/channels/{channelsId}/sites:bulkEdit",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.advertisers.channels.sites.bulkEdit",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "channelId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "The ID of the advertiser that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel to which the sites belong.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit",
+                  "request": {
+                    "$ref": "BulkEditSitesRequest"
+                  },
+                  "response": {
+                    "$ref": "BulkEditSitesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a site in a channel.",
+                  "flatPath": "v1/advertisers/{advertiserId}/channels/{channelsId}/sites",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.advertisers.channels.sites.create",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "channelId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "The ID of the advertiser that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel in which the site will be created.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "description": "The ID of the partner that owns the parent channel.",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/channels/{+channelId}/sites",
+                  "request": {
+                    "$ref": "Site"
+                  },
+                  "response": {
+                    "$ref": "Site"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a site from a channel.",
+                  "flatPath": "v1/advertisers/{advertiserId}/channels/{channelsId}/sites/{sitesId}",
+                  "httpMethod": "DELETE",
+                  "id": "displayvideo.advertisers.channels.sites.delete",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "channelId",
+                    "urlOrAppId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "The ID of the advertiser that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel to which the site belongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "description": "The ID of the partner that owns the parent channel.",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "urlOrAppId": {
+                      "description": "Required. The URL or app ID of the site to delete.",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "list": {
+                  "description": "Lists sites in a channel.",
+                  "flatPath": "v1/advertisers/{advertisersId}/channels/{channelsId}/sites",
+                  "httpMethod": "GET",
+                  "id": "displayvideo.advertisers.channels.sites.list",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "channelId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "The ID of the advertiser that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel to which the requested sites belong.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Allows filtering by site fields.\n\nSupported syntax:\n\n* Filter expressions for site currently can only contain at most one\n* restriction.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `CONTAINS (:)`.\n* Supported fields:\n    - `urlOrAppId`\n\nExamples:\n\n* All sites for which the URL or app ID contains \"google\":\n`urlOrAppId : \"google\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Field by which to sort the list.\nAcceptable values are:\n\n* `urlOrAppId` (default)\n\nThe default sorting order is ascending. To specify descending order for a\nfield, a suffix \" desc\" should be added to the field name. Example:\n`urlOrAppId desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Must be between `1` and `100`. If unspecified will\ndefault to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value\nis specified.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.\n\nTypically, this is the value of\nnext_page_token returned from the\nprevious call to `ListSites` method. If not specified, the first page\nof results will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "description": "The ID of the partner that owns the parent channel.",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{+advertiserId}/channels/{+channelId}/sites",
+                  "response": {
+                    "$ref": "ListSitesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                }
+              }
             }
           }
         },
@@ -1733,6 +1978,35 @@
         },
         "locationLists": {
           "methods": {
+            "create": {
+              "description": "Creates a new location list. Returns the newly created location list if\nsuccessful.",
+              "flatPath": "v1/advertisers/{advertisersId}/locationLists",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.locationLists.create",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the DV360 advertiser to which the location list belongs.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/locationLists",
+              "request": {
+                "$ref": "LocationList"
+              },
+              "response": {
+                "$ref": "LocationList"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
             "get": {
               "description": "Gets a location list.",
               "flatPath": "v1/advertisers/{advertisersId}/locationLists/{locationListsId}",
@@ -1814,11 +2088,293 @@
               "scopes": [
                 "https://www.googleapis.com/auth/display-video"
               ]
+            },
+            "patch": {
+              "description": "Updates a location list. Returns the updated location list if successful.",
+              "flatPath": "v1/advertisers/{advertisersId}/locationLists/{locationListId}",
+              "httpMethod": "PATCH",
+              "id": "displayvideo.advertisers.locationLists.patch",
+              "parameterOrder": [
+                "advertiserId",
+                "locationListId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the DV360 advertiser to which the location lists belongs.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "locationListId": {
+                  "description": "Output only. The unique ID of the location list. Assigned by the system.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The mask to control which fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/locationLists/{locationListId}",
+              "request": {
+                "$ref": "LocationList"
+              },
+              "response": {
+                "$ref": "LocationList"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          },
+          "resources": {
+            "assignedLocations": {
+              "methods": {
+                "bulkEdit": {
+                  "description": "Bulk edits multiple assignments between locations and a single location\nlist.\n\nThe operation will delete the assigned locations provided in\nBulkEditAssignedLocationsRequest.deleted_assigned_locations and then\ncreate the assigned locations provided in\nBulkEditAssignedLocationsRequest.created_assigned_locations.",
+                  "flatPath": "v1/advertisers/{advertiserId}/locationLists/{locationListsId}/assignedLocations:bulkEdit",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.advertisers.locationLists.assignedLocations.bulkEdit",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "locationListId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the location list belongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "locationListId": {
+                      "description": "Required. The ID of the location list to which these assignments are assigned.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit",
+                  "request": {
+                    "$ref": "BulkEditAssignedLocationsRequest"
+                  },
+                  "response": {
+                    "$ref": "BulkEditAssignedLocationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "create": {
+                  "description": "Creates an assignment between a location and a location list.",
+                  "flatPath": "v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.advertisers.locationLists.assignedLocations.create",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "locationListId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the location list belongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "locationListId": {
+                      "description": "Required. The ID of the location list for which the assignment will be created.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations",
+                  "request": {
+                    "$ref": "AssignedLocation"
+                  },
+                  "response": {
+                    "$ref": "AssignedLocation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the assignment between a location and a location list.",
+                  "flatPath": "v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{assignedLocationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "displayvideo.advertisers.locationLists.assignedLocations.delete",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "locationListId",
+                    "assignedLocationId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the location list belongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "assignedLocationId": {
+                      "description": "Required. The ID of the assigned location to delete.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "locationListId": {
+                      "description": "Required. The ID of the location list to which this assignment is assigned.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "list": {
+                  "description": "Lists locations assigned to a location list.",
+                  "flatPath": "v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations",
+                  "httpMethod": "GET",
+                  "id": "displayvideo.advertisers.locationLists.assignedLocations.list",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "locationListId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the location list belongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Allows filtering by location list assignment fields.\n\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restrictions can be combined by the logical operator `OR`.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)`.\n* Supported fields:\n    - `assignedLocationId`\n\nThe length of this field should be no more than 500 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "locationListId": {
+                      "description": "Required. The ID of the location list to which these assignments are assigned.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Field by which to sort the list.\nAcceptable values are:\n\n* `assignedLocationId` (default)\n\nThe default sorting order is ascending. To specify descending order for a\nfield, a suffix \" desc\" should be added to the field name. Example:\n`assignedLocationId desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Must be between `1` and `100`. If unspecified will\ndefault to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value\nis specified.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.\n\nTypically, this is the value of\nnext_page_token\nreturned from the previous call to `ListAssignedLocations`\nmethod. If not specified, the first page of results will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations",
+                  "response": {
+                    "$ref": "ListAssignedLocationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                }
+              }
             }
           }
         },
         "negativeKeywordLists": {
           "methods": {
+            "create": {
+              "description": "Creates a new negative keyword list. Returns the newly created negative\nkeyword list if successful.",
+              "flatPath": "v1/advertisers/{advertisersId}/negativeKeywordLists",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.negativeKeywordLists.create",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the DV360 advertiser to which the negative keyword list will\nbelong.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/negativeKeywordLists",
+              "request": {
+                "$ref": "NegativeKeywordList"
+              },
+              "response": {
+                "$ref": "NegativeKeywordList"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a negative keyword list given an advertiser ID and a negative\nkeyword list ID.",
+              "flatPath": "v1/advertisers/{advertisersId}/negativeKeywordLists/{negativeKeywordListsId}",
+              "httpMethod": "DELETE",
+              "id": "displayvideo.advertisers.negativeKeywordLists.delete",
+              "parameterOrder": [
+                "advertiserId",
+                "negativeKeywordListId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the DV360 advertiser to which the negative keyword list belongs.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "negativeKeywordListId": {
+                  "description": "Required. The ID of the negative keyword list to delete.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
             "get": {
               "description": "Gets a negative keyword list given an advertiser ID and a negative keyword\nlist ID.",
               "flatPath": "v1/advertisers/{advertisersId}/negativeKeywordLists/{negativeKeywordListsId}",
@@ -1890,6 +2446,227 @@
               "scopes": [
                 "https://www.googleapis.com/auth/display-video"
               ]
+            },
+            "patch": {
+              "description": "Updates a negative keyword list. Returns the updated negative keyword list\nif successful.",
+              "flatPath": "v1/advertisers/{advertisersId}/negativeKeywordLists/{negativeKeywordListId}",
+              "httpMethod": "PATCH",
+              "id": "displayvideo.advertisers.negativeKeywordLists.patch",
+              "parameterOrder": [
+                "advertiserId",
+                "negativeKeywordListId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the DV360 advertiser to which the negative keyword list belongs.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "negativeKeywordListId": {
+                  "description": "Output only. The unique ID of the negative keyword list. Assigned by the system.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The mask to control which fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}",
+              "request": {
+                "$ref": "NegativeKeywordList"
+              },
+              "response": {
+                "$ref": "NegativeKeywordList"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          },
+          "resources": {
+            "negativeKeywords": {
+              "methods": {
+                "bulkEdit": {
+                  "description": "Bulk edits negative keywords in a single negative keyword list.\n\nThe operation will delete the negative keywords provided in\nBulkEditNegativeKeywordsRequest.deleted_negative_keywords and then\ncreate the negative keywords provided in\nBulkEditNegativeKeywordsRequest.created_negative_keywords.\n\nThis operation is guaranteed to be atomic and will never result in a\npartial success or partial failure.",
+                  "flatPath": "v1/advertisers/{advertiserId}/negativeKeywordLists/{negativeKeywordListsId}/negativeKeywords:bulkEdit",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "negativeKeywordListId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the parent negative keyword list\nbelongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "negativeKeywordListId": {
+                      "description": "Required. The ID of the parent negative keyword list to which the negative keywords\nbelong.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit",
+                  "request": {
+                    "$ref": "BulkEditNegativeKeywordsRequest"
+                  },
+                  "response": {
+                    "$ref": "BulkEditNegativeKeywordsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a negative keyword in a negative keyword list.",
+                  "flatPath": "v1/advertisers/{advertiserId}/negativeKeywordLists/{negativeKeywordListsId}/negativeKeywords",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "negativeKeywordListId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the parent negative keyword list\nbelongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "negativeKeywordListId": {
+                      "description": "Required. The ID of the parent negative keyword list in which the negative keyword\nwill be created.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords",
+                  "request": {
+                    "$ref": "NegativeKeyword"
+                  },
+                  "response": {
+                    "$ref": "NegativeKeyword"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a negative keyword from a negative keyword list.",
+                  "flatPath": "v1/advertisers/{advertiserId}/negativeKeywordLists/{negativeKeywordListsId}/negativeKeywords/{negativeKeywordsId}",
+                  "httpMethod": "DELETE",
+                  "id": "displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "negativeKeywordListId",
+                    "keywordValue"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the parent negative keyword list\nbelongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "keywordValue": {
+                      "description": "Required. The keyword value of the negative keyword to delete.",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "negativeKeywordListId": {
+                      "description": "Required. The ID of the parent negative keyword list to which the negative keyword\nbelongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "list": {
+                  "description": "Lists negative keywords in a negative keyword list.",
+                  "flatPath": "v1/advertisers/{advertisersId}/negativeKeywordLists/{negativeKeywordListsId}/negativeKeywords",
+                  "httpMethod": "GET",
+                  "id": "displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list",
+                  "parameterOrder": [
+                    "advertiserId",
+                    "negativeKeywordListId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "Required. The ID of the DV360 advertiser to which the parent negative keyword list\nbelongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Allows filtering by negative keyword fields.\n\nSupported syntax:\n\n* Filter expressions for negative keyword currently can only contain at\nmost one\n* restriction.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `CONTAINS (:)`.\n* Supported fields:\n    - `keywordValue`\n\nExamples:\n\n* All negative keywords for which the keyword value contains \"google\":\n`keywordValue : \"google\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "negativeKeywordListId": {
+                      "description": "Required. The ID of the parent negative keyword list to which the requested negative\nkeywords belong.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Field by which to sort the list.\nAcceptable values are:\n\n* `keywordValue` (default)\n\nThe default sorting order is ascending. To specify descending order for a\nfield, a suffix \" desc\" should be added to the field name. Example:\n`keywordValue desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Must be between `1` and `100`. If unspecified will\ndefault to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value\nis specified.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.\n\nTypically, this is the value of\nnext_page_token returned\nfrom the previous call to `ListNegativeKeywords` method. If not specified,\nthe first page of results will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords",
+                  "response": {
+                    "$ref": "ListNegativeKeywordsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                }
+              }
             }
           }
         },
@@ -2669,6 +3446,75 @@
     },
     "inventorySourceGroups": {
       "methods": {
+        "create": {
+          "description": "Creates a new inventory source group. Returns the newly created inventory\nsource group if successful.",
+          "flatPath": "v1/inventorySourceGroups",
+          "httpMethod": "POST",
+          "id": "displayvideo.inventorySourceGroups.create",
+          "parameterOrder": [],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that owns the inventory source group.\n\nThe parent partner will not have access to this group.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that owns the inventory source group.\n\nOnly this partner will have write access to this group. Only advertisers\nto which this group is explicitly shared will have read access to this\ngroup.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/inventorySourceGroups",
+          "request": {
+            "$ref": "InventorySourceGroup"
+          },
+          "response": {
+            "$ref": "InventorySourceGroup"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "delete": {
+          "description": "Deletes an inventory source group.",
+          "flatPath": "v1/inventorySourceGroups/{inventorySourceGroupsId}",
+          "httpMethod": "DELETE",
+          "id": "displayvideo.inventorySourceGroups.delete",
+          "parameterOrder": [
+            "inventorySourceGroupId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that owns the inventory source group.\n\nThe parent partner does not have access to this group.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "inventorySourceGroupId": {
+              "description": "Required. The ID of the inventory source group to delete.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that owns the inventory source group.\n\nOnly this partner has write access to this group.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/inventorySourceGroups/{+inventorySourceGroupId}",
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
         "get": {
           "description": "Gets an inventory source group.",
           "flatPath": "v1/inventorySourceGroups/{inventorySourceGroupsId}",
@@ -2755,6 +3601,234 @@
           "scopes": [
             "https://www.googleapis.com/auth/display-video"
           ]
+        },
+        "patch": {
+          "description": "Updates an inventory source group. Returns the updated inventory source\ngroup if successful.",
+          "flatPath": "v1/inventorySourceGroups/{inventorySourceGroupId}",
+          "httpMethod": "PATCH",
+          "id": "displayvideo.inventorySourceGroups.patch",
+          "parameterOrder": [
+            "inventorySourceGroupId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that owns the inventory source group.\n\nThe parent partner does not have access to this group.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "inventorySourceGroupId": {
+              "description": "Output only. The unique ID of the inventory source group. Assigned by the system.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that owns the inventory source group.\n\nOnly this partner has write access to this group.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The mask to control which fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/inventorySourceGroups/{inventorySourceGroupId}",
+          "request": {
+            "$ref": "InventorySourceGroup"
+          },
+          "response": {
+            "$ref": "InventorySourceGroup"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        }
+      },
+      "resources": {
+        "assignedInventorySources": {
+          "methods": {
+            "bulkEdit": {
+              "description": "Bulk edits multiple assignments between inventory sources and a single\ninventory source group.\n\nThe operation will delete the assigned inventory sources provided in\nBulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources\nand then create the assigned inventory sources provided in\nBulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.",
+              "flatPath": "v1/inventorySourceGroups/{inventorySourceGroupsId}/assignedInventorySources:bulkEdit",
+              "httpMethod": "POST",
+              "id": "displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit",
+              "parameterOrder": [
+                "inventorySourceGroupId"
+              ],
+              "parameters": {
+                "inventorySourceGroupId": {
+                  "description": "Required. The ID of the inventory source group to which the assignments are\nassigned.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit",
+              "request": {
+                "$ref": "BulkEditAssignedInventorySourcesRequest"
+              },
+              "response": {
+                "$ref": "BulkEditAssignedInventorySourcesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "create": {
+              "description": "Creates an assignment between an inventory source and an inventory source\ngroup.",
+              "flatPath": "v1/inventorySourceGroups/{inventorySourceGroupsId}/assignedInventorySources",
+              "httpMethod": "POST",
+              "id": "displayvideo.inventorySourceGroups.assignedInventorySources.create",
+              "parameterOrder": [
+                "inventorySourceGroupId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the parent inventory source group.\n\nThe parent partner will not have access to this assigned inventory\nsource.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "inventorySourceGroupId": {
+                  "description": "Required. The ID of the inventory source group to which the assignment will be\nassigned.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the parent inventory source group.\n\nOnly this partner will have write access to this assigned inventory\nsource.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources",
+              "request": {
+                "$ref": "AssignedInventorySource"
+              },
+              "response": {
+                "$ref": "AssignedInventorySource"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the assignment between an inventory source and an inventory source\ngroup.",
+              "flatPath": "v1/inventorySourceGroups/{inventorySourceGroupsId}/assignedInventorySources/{assignedInventorySourcesId}",
+              "httpMethod": "DELETE",
+              "id": "displayvideo.inventorySourceGroups.assignedInventorySources.delete",
+              "parameterOrder": [
+                "inventorySourceGroupId",
+                "assignedInventorySourceId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the parent inventory source group.\n\nThe parent partner does not have access to this assigned inventory\nsource.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "assignedInventorySourceId": {
+                  "description": "Required. The ID of the assigned inventory source to delete.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "inventorySourceGroupId": {
+                  "description": "Required. The ID of the inventory source group to which this assignment is assigned.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the parent inventory source group.\n\nOnly this partner has write access to this assigned inventory source.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "list": {
+              "description": "Lists inventory sources assigned to an inventory source group.",
+              "flatPath": "v1/inventorySourceGroups/{inventorySourceGroupsId}/assignedInventorySources",
+              "httpMethod": "GET",
+              "id": "displayvideo.inventorySourceGroups.assignedInventorySources.list",
+              "parameterOrder": [
+                "inventorySourceGroupId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that has access to the assignment.\n\nIf the parent inventory source group is partner-owned, only advertisers\nto which the parent group is explicitly shared can access the assigned\ninventory source.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Allows filtering by assigned inventory source fields.\n\nSupported syntax:\n\n* Filter expressions are made up of one or more restrictions.\n* Restrictions can be combined by the logical operator `OR`.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `EQUALS (=)`.\n* Supported fields:\n    - `assignedInventorySourceId`\n\nThe length of this field should be no more than 500 characters.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "inventorySourceGroupId": {
+                  "description": "Required. The ID of the inventory source group to which these assignments are\nassigned.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field by which to sort the list.\nAcceptable values are:\n\n* `assignedInventorySourceId` (default)\n\nThe default sorting order is ascending. To specify descending order for a\nfield, a suffix \" desc\" should be added to the field name. Example:\n`assignedInventorySourceId desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will\ndefault to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value\nis specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return.\n\nTypically, this is the value of\nnext_page_token\nreturned from the previous call to `ListAssignedInventorySources`\nmethod. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that has access to the assignment.\n\nIf the parent inventory source group is advertiser-owned, the assignment\ncannot be accessed via a partner.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources",
+              "response": {
+                "$ref": "ListAssignedInventorySourcesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          }
         }
       }
     },
@@ -2971,6 +4045,251 @@
               "scopes": [
                 "https://www.googleapis.com/auth/display-video"
               ]
+            },
+            "patch": {
+              "description": "Updates a channel. Returns the updated channel if successful.",
+              "flatPath": "v1/partners/{partnersId}/channels/{channelId}",
+              "httpMethod": "PATCH",
+              "id": "displayvideo.partners.channels.patch",
+              "parameterOrder": [
+                "partnerId",
+                "channelId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the created channel.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "channelId": {
+                  "description": "Output only. The unique ID of the channel. Assigned by the system.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the created channel.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The mask to control which fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/partners/{+partnerId}/channels/{channelId}",
+              "request": {
+                "$ref": "Channel"
+              },
+              "response": {
+                "$ref": "Channel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          },
+          "resources": {
+            "sites": {
+              "methods": {
+                "bulkEdit": {
+                  "description": "Bulk edits sites under a single channel.\n\nThe operation will delete the sites provided in\nBulkEditSitesRequest.deleted_sites and then create the sites\nprovided in BulkEditSitesRequest.created_sites.",
+                  "flatPath": "v1/partners/{partnerId}/channels/{channelsId}/sites:bulkEdit",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.partners.channels.sites.bulkEdit",
+                  "parameterOrder": [
+                    "partnerId",
+                    "channelId"
+                  ],
+                  "parameters": {
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel to which the sites belong.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "description": "The ID of the partner that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit",
+                  "request": {
+                    "$ref": "BulkEditSitesRequest"
+                  },
+                  "response": {
+                    "$ref": "BulkEditSitesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a site in a channel.",
+                  "flatPath": "v1/partners/{partnerId}/channels/{channelsId}/sites",
+                  "httpMethod": "POST",
+                  "id": "displayvideo.partners.channels.sites.create",
+                  "parameterOrder": [
+                    "partnerId",
+                    "channelId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "The ID of the advertiser that owns the parent channel.",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel in which the site will be created.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "description": "The ID of the partner that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/partners/{partnerId}/channels/{+channelId}/sites",
+                  "request": {
+                    "$ref": "Site"
+                  },
+                  "response": {
+                    "$ref": "Site"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a site from a channel.",
+                  "flatPath": "v1/partners/{partnerId}/channels/{channelsId}/sites/{sitesId}",
+                  "httpMethod": "DELETE",
+                  "id": "displayvideo.partners.channels.sites.delete",
+                  "parameterOrder": [
+                    "partnerId",
+                    "channelId",
+                    "urlOrAppId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "The ID of the advertiser that owns the parent channel.",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel to which the site belongs.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "description": "The ID of the partner that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "urlOrAppId": {
+                      "description": "Required. The URL or app ID of the site to delete.",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                },
+                "list": {
+                  "description": "Lists sites in a channel.",
+                  "flatPath": "v1/partners/{partnersId}/channels/{channelsId}/sites",
+                  "httpMethod": "GET",
+                  "id": "displayvideo.partners.channels.sites.list",
+                  "parameterOrder": [
+                    "partnerId",
+                    "channelId"
+                  ],
+                  "parameters": {
+                    "advertiserId": {
+                      "description": "The ID of the advertiser that owns the parent channel.",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "channelId": {
+                      "description": "Required. The ID of the parent channel to which the requested sites belong.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Allows filtering by site fields.\n\nSupported syntax:\n\n* Filter expressions for site currently can only contain at most one\n* restriction.\n* A restriction has the form of `{field} {operator} {value}`.\n* The operator must be `CONTAINS (:)`.\n* Supported fields:\n    - `urlOrAppId`\n\nExamples:\n\n* All sites for which the URL or app ID contains \"google\":\n`urlOrAppId : \"google\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Field by which to sort the list.\nAcceptable values are:\n\n* `urlOrAppId` (default)\n\nThe default sorting order is ascending. To specify descending order for a\nfield, a suffix \" desc\" should be added to the field name. Example:\n`urlOrAppId desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Must be between `1` and `100`. If unspecified will\ndefault to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value\nis specified.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.\n\nTypically, this is the value of\nnext_page_token returned from the\nprevious call to `ListSites` method. If not specified, the first page\nof results will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "description": "The ID of the partner that owns the parent channel.",
+                      "format": "int64",
+                      "location": "path",
+                      "pattern": "^[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/partners/{+partnerId}/channels/{+channelId}/sites",
+                  "response": {
+                    "$ref": "ListSitesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/display-video"
+                  ]
+                }
+              }
             }
           }
         }
@@ -3210,7 +4529,7 @@
       }
     }
   },
-  "revision": "20200528",
+  "revision": "20200602",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -3717,6 +5036,46 @@
       },
       "type": "object"
     },
+    "AssignedInventorySource": {
+      "description": "An assignment between a targetable inventory source and an inventory source\ngroup.",
+      "id": "AssignedInventorySource",
+      "properties": {
+        "assignedInventorySourceId": {
+          "description": "Output only. The unique ID of the assigned inventory source. The ID is only\nunique within a given inventory source group. It may be reused in other\ncontexts.",
+          "format": "int64",
+          "type": "string"
+        },
+        "inventorySourceId": {
+          "description": "Required. The ID of the inventory source entity being targeted.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the assigned inventory source.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssignedLocation": {
+      "description": "An assignment between a location list and a relevant targeting option.\nCurrently, geo region targeting options are the only supported option for\nassignment.",
+      "id": "AssignedLocation",
+      "properties": {
+        "assignedLocationId": {
+          "description": "Output only. The unique ID of the assigned location. The ID is only unique within a\nlocation list. It may be reused in other contexts.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the assigned location.",
+          "type": "string"
+        },
+        "targetingOptionId": {
+          "description": "Required. The ID of the targeting option assigned to the location list. Must be of\ntype TARGETING_TYPE_GEO_REGION.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AssignedTargetingOption": {
       "description": "A single assigned targeting option, which defines the state of a targeting\noption for an entity with targeting settings, such as a Line Item or\nInsertion Order.",
       "id": "AssignedTargetingOption",
@@ -4160,6 +5519,88 @@
       },
       "type": "object"
     },
+    "BulkEditAssignedInventorySourcesRequest": {
+      "description": "Request message for AssignedInventorySourceService.BulkEdit.",
+      "id": "BulkEditAssignedInventorySourcesRequest",
+      "properties": {
+        "advertiserId": {
+          "description": "The ID of the advertiser that owns the parent inventory source group.\n\nThe parent partner does not have access to these assigned inventory\nsources.",
+          "format": "int64",
+          "type": "string"
+        },
+        "createdAssignedInventorySources": {
+          "description": "The assigned inventory sources to create in bulk, specified as a list of\nAssignedInventorySources.",
+          "items": {
+            "$ref": "AssignedInventorySource"
+          },
+          "type": "array"
+        },
+        "deletedAssignedInventorySources": {
+          "description": "The IDs of the assigned inventory sources to delete in bulk, specified as a\nlist of\nassigned_inventory_source_ids.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "partnerId": {
+          "description": "The ID of the partner that owns the inventory source group.\n\nOnly this partner has write access to these assigned inventory sources.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditAssignedInventorySourcesResponse": {
+      "description": "Response message for AssignedInventorySourceService.BulkEdit.",
+      "id": "BulkEditAssignedInventorySourcesResponse",
+      "properties": {
+        "assignedInventorySources": {
+          "description": "The list of assigned inventory sources that have been successfully created.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedInventorySource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditAssignedLocationsRequest": {
+      "description": "Request message for AssignedLocationService.BulkEditAssignedLocations.",
+      "id": "BulkEditAssignedLocationsRequest",
+      "properties": {
+        "createdAssignedLocations": {
+          "description": "The assigned locations to create in bulk, specified as a list of\nAssignedLocations.",
+          "items": {
+            "$ref": "AssignedLocation"
+          },
+          "type": "array"
+        },
+        "deletedAssignedLocations": {
+          "description": "The IDs of the assigned locations to delete in bulk, specified as a list of\nassigned_location_ids.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditAssignedLocationsResponse": {
+      "description": "Response message for AssignedLocationService.BulkEditAssignedLocations.",
+      "id": "BulkEditAssignedLocationsResponse",
+      "properties": {
+        "assignedLocations": {
+          "description": "The list of assigned locations that have been successfully created.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedLocation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BulkEditLineItemAssignedTargetingOptionsRequest": {
       "description": "Request message for\nBulkEditLineItemAssignedTargetingOptions.",
       "id": "BulkEditLineItemAssignedTargetingOptionsRequest",
@@ -4188,6 +5629,86 @@
           "description": "The list of assigned targeting options that have been successfully created.\n\nThis list will be absent if empty.",
           "items": {
             "$ref": "AssignedTargetingOption"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditNegativeKeywordsRequest": {
+      "description": "Request message for NegativeKeywordService.BulkEditNegativeKeywords.",
+      "id": "BulkEditNegativeKeywordsRequest",
+      "properties": {
+        "createdNegativeKeywords": {
+          "description": "The negative keywords to create in batch, specified as a list of\nNegativeKeywords.",
+          "items": {
+            "$ref": "NegativeKeyword"
+          },
+          "type": "array"
+        },
+        "deletedNegativeKeywords": {
+          "description": "The negative keywords to delete in batch, specified as a list of\nkeyword_values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditNegativeKeywordsResponse": {
+      "description": "Response message for NegativeKeywordService.BulkEditNegativeKeywords.",
+      "id": "BulkEditNegativeKeywordsResponse",
+      "properties": {
+        "negativeKeywords": {
+          "description": "The list of negative keywords that have been successfully created.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "NegativeKeyword"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditSitesRequest": {
+      "description": "Request message for SiteService.BulkEditSites.",
+      "id": "BulkEditSitesRequest",
+      "properties": {
+        "advertiserId": {
+          "description": "The ID of the advertiser that owns the parent channel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "createdSites": {
+          "description": "The sites to create in batch, specified as a list of Sites.",
+          "items": {
+            "$ref": "Site"
+          },
+          "type": "array"
+        },
+        "deletedSites": {
+          "description": "The sites to delete in batch, specified as a list of site\nurl_or_app_ids.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "partnerId": {
+          "description": "The ID of the partner that owns the parent channel.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BulkEditSitesResponse": {
+      "description": "Response message for SiteService.BulkEditSites.",
+      "id": "BulkEditSitesResponse",
+      "properties": {
+        "sites": {
+          "description": "The list of sites that have been successfully created.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "Site"
           },
           "type": "array"
         }
@@ -6120,6 +7641,9 @@
             "EXCHANGE_UNITED",
             "EXCHANGE_YIELDLAB",
             "EXCHANGE_YIELDMO",
+            "EXCHANGE_UNRULYX",
+            "EXCHANGE_OPEN8",
+            "EXCHANGE_TRITON",
             "EXCHANGE_TRIPLELIFT",
             "EXCHANGE_TABOOLA",
             "EXCHANGE_INMOBI",
@@ -6179,6 +7703,9 @@
             "United.",
             "Yieldlab.",
             "Yieldmo.",
+            "UnrulyX",
+            "Open8",
+            "Triton.",
             "TripleLift",
             "Taboola",
             "InMobi.",
@@ -6265,6 +7792,9 @@
             "EXCHANGE_UNITED",
             "EXCHANGE_YIELDLAB",
             "EXCHANGE_YIELDMO",
+            "EXCHANGE_UNRULYX",
+            "EXCHANGE_OPEN8",
+            "EXCHANGE_TRITON",
             "EXCHANGE_TRIPLELIFT",
             "EXCHANGE_TABOOLA",
             "EXCHANGE_INMOBI",
@@ -6324,6 +7854,9 @@
             "United.",
             "Yieldlab.",
             "Yieldmo.",
+            "UnrulyX",
+            "Open8",
+            "Triton.",
             "TripleLift",
             "Taboola",
             "InMobi.",
@@ -7478,6 +9011,9 @@
             "EXCHANGE_UNITED",
             "EXCHANGE_YIELDLAB",
             "EXCHANGE_YIELDMO",
+            "EXCHANGE_UNRULYX",
+            "EXCHANGE_OPEN8",
+            "EXCHANGE_TRITON",
             "EXCHANGE_TRIPLELIFT",
             "EXCHANGE_TABOOLA",
             "EXCHANGE_INMOBI",
@@ -7537,6 +9073,9 @@
             "United.",
             "Yieldlab.",
             "Yieldmo.",
+            "UnrulyX",
+            "Open8",
+            "Triton.",
             "TripleLift",
             "Taboola",
             "InMobi.",
@@ -8029,6 +9568,42 @@
       },
       "type": "object"
     },
+    "ListAssignedInventorySourcesResponse": {
+      "description": "Response message for\nAssignedInventorySourceService.ListAssignedInventorySources.",
+      "id": "ListAssignedInventorySourcesResponse",
+      "properties": {
+        "assignedInventorySources": {
+          "description": "The list of assigned inventory sources.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedInventorySource"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results.\n\nPass this value in the\npage_token field\nin the subsequent call to `ListAssignedInventorySources` method to\nretrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAssignedLocationsResponse": {
+      "description": "Response message for\nAssignedLocationService.ListAssignedLocations.",
+      "id": "ListAssignedLocationsResponse",
+      "properties": {
+        "assignedLocations": {
+          "description": "The list of assigned locations.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedLocation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results.\n\nPass this value in the\npage_token field\nin the subsequent call to `ListAssignedLocations` method to\nretrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListCampaignsResponse": {
       "id": "ListCampaignsResponse",
       "properties": {
@@ -8270,6 +9845,42 @@
       },
       "type": "object"
     },
+    "ListNegativeKeywordsResponse": {
+      "description": "Response message for NegativeKeywordService.ListNegativeKeywords.",
+      "id": "ListNegativeKeywordsResponse",
+      "properties": {
+        "negativeKeywords": {
+          "description": "The list of negative keywords.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "NegativeKeyword"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results.\n\nPass this value in the page_token\nfield in the subsequent call to `ListNegativeKeywords` method to retrieve\nthe next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListSitesResponse": {
+      "description": "Response message for SiteService.ListSites.",
+      "id": "ListSitesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results.\n\nPass this value in the page_token field\nin the subsequent call to `ListSites` method to retrieve the next page\nof results.",
+          "type": "string"
+        },
+        "sites": {
+          "description": "The list of sites.\n\nThis list will be absent if empty.",
+          "items": {
+            "$ref": "Site"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTargetingOptionsResponse": {
       "description": "Response message for\nListTargetingOptions.",
       "id": "ListTargetingOptionsResponse",
@@ -8394,6 +10005,21 @@
         "units": {
           "description": "The whole units of the amount.\nFor example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NegativeKeyword": {
+      "description": "A negatively targeted keyword that belongs to a negative keyword list.",
+      "id": "NegativeKeyword",
+      "properties": {
+        "keywordValue": {
+          "description": "Required. Immutable. The negatively targeted keyword, for example `car insurance`.\n\nMust be UTF-8 encoded with a maximum size of 255 bytes. Maximum number\nof characters is 80. Maximum number of words is 10.\n\nValid characters are restricted to ASCII characters only. The only\nURL-escaping permitted is for representing whitespace between words.\nLeading or trailing whitespace is ignored.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the negative keyword.",
           "type": "string"
         }
       },
@@ -9352,6 +10978,21 @@
             "Issues that evoke strong, opposing views and spark debate. These include\nissues that are controversial in most countries and markets (such as\nabortion), as well as those that are controversial in specific countries\nand markets (such as immigration reform in the United States).",
             "Content which may be considered shocking or disturbing, such as violent\nnews stories, stunts, or toilet humor."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Site": {
+      "description": "A single site. Sites are apps or websites belonging to a channel.",
+      "id": "Site",
+      "properties": {
+        "name": {
+          "description": "Output only. The resource name of the site.",
+          "type": "string"
+        },
+        "urlOrAppId": {
+          "description": "Required. The URL or app ID of the site.\nMust be UTF-8 encoded with a maximum length of 240 bytes.",
           "type": "string"
         }
       },
