@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace remotebuildexecution_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1846,11 +1858,6 @@ export namespace remotebuildexecution_v2 {
   export interface Params$Resource$Actionresults$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      */
     hash?: string;
@@ -1877,11 +1884,6 @@ export namespace remotebuildexecution_v2 {
   }
   export interface Params$Resource$Actionresults$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      */
@@ -2071,11 +2073,6 @@ export namespace remotebuildexecution_v2 {
   }
 
   export interface Params$Resource$Actions$Execute extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
@@ -2781,11 +2778,6 @@ export namespace remotebuildexecution_v2 {
 
   export interface Params$Resource$Blobs$Batchread extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
     instanceName?: string;
@@ -2797,11 +2789,6 @@ export namespace remotebuildexecution_v2 {
   }
   export interface Params$Resource$Blobs$Batchupdate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
@@ -2815,11 +2802,6 @@ export namespace remotebuildexecution_v2 {
   export interface Params$Resource$Blobs$Findmissing
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */
     instanceName?: string;
@@ -2830,11 +2812,6 @@ export namespace remotebuildexecution_v2 {
     requestBody?: Schema$BuildBazelRemoteExecutionV2FindMissingBlobsRequest;
   }
   export interface Params$Resource$Blobs$Gettree extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
      */
@@ -3018,11 +2995,6 @@ export namespace remotebuildexecution_v2 {
   export interface Params$Resource$Operations$Waitexecution
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the Operation returned by Execute.
      */
     name?: string;
@@ -3205,11 +3177,6 @@ export namespace remotebuildexecution_v2 {
 
   export interface Params$Resource$V2$Getcapabilities
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      */

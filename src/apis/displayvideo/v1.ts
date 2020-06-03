@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace displayvideo_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -4609,11 +4621,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser.
      */
     advertiserId?: string;
@@ -4625,11 +4632,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -4654,11 +4656,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Advertiser;
@@ -4666,32 +4663,17 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser we need to delete.
      */
     advertiserId?: string;
   }
   export interface Params$Resource$Advertisers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser to fetch.
      */
     advertiserId?: string;
   }
   export interface Params$Resource$Advertisers$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Allows filtering by advertiser properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `entityStatus`  Examples:  * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"`  The length of this field should be no more than 500 characters.
      */
@@ -4715,11 +4697,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The unique ID of the advertiser. Assigned by the system.
      */
@@ -4897,11 +4874,6 @@ export namespace displayvideo_v1 {
 
   export interface Params$Resource$Advertisers$Assets$Upload
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser this asset belongs to.
      */
@@ -5709,11 +5681,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Campaigns$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The unique ID of the advertiser the campaign belongs to.
      */
     advertiserId?: string;
@@ -5726,11 +5693,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Campaigns$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser this campaign belongs to.
      */
     advertiserId?: string;
@@ -5742,11 +5704,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Campaigns$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser this campaign belongs to.
      */
     advertiserId?: string;
@@ -5757,11 +5714,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Campaigns$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser to list campaigns for.
      */
@@ -5785,11 +5737,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Campaigns$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The unique ID of the advertiser the campaign belongs to.
      */
@@ -6141,11 +6088,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Channels$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser that owns the fetched channel.
      */
     advertiserId?: string;
@@ -6160,11 +6102,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Channels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser that owns the channels.
      */
@@ -7181,11 +7118,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Creatives$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The unique ID of the advertiser the creative belongs to.
      */
     advertiserId?: string;
@@ -7198,11 +7130,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Creatives$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser this creative belongs to.
      */
     advertiserId?: string;
@@ -7214,11 +7141,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Creatives$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser this creative belongs to.
      */
     advertiserId?: string;
@@ -7229,11 +7151,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Creatives$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser to list creatives for.
      */
@@ -7257,11 +7174,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Creatives$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The unique ID of the advertiser the creative belongs to.
      */
@@ -8092,11 +8004,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Insertionorders$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The unique ID of the advertiser the insertion order belongs to.
      */
     advertiserId?: string;
@@ -8109,11 +8016,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Insertionorders$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser this insertion order belongs to.
      */
     advertiserId?: string;
@@ -8125,11 +8027,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Insertionorders$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser this insertion order belongs to.
      */
     advertiserId?: string;
@@ -8140,11 +8037,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Insertionorders$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser to list insertion orders for.
      */
@@ -8168,11 +8060,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Insertionorders$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The unique ID of the advertiser the insertion order belongs to.
      */
@@ -9414,11 +9301,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser the line item belongs to.
      */
     advertiserId?: string;
@@ -9434,11 +9316,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -9467,11 +9344,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Lineitems$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Output only. The unique ID of the advertiser the line item belongs to.
      */
     advertiserId?: string;
@@ -9484,11 +9356,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Lineitems$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser this line item belongs to.
      */
     advertiserId?: string;
@@ -9500,11 +9367,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Lineitems$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser this line item belongs to.
      */
     advertiserId?: string;
@@ -9515,11 +9377,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Lineitems$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser to list line items for.
      */
@@ -9543,11 +9400,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Lineitems$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The unique ID of the advertiser the line item belongs to.
      */
@@ -10379,11 +10231,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser the line item belongs to.
      */
     advertiserId?: string;
@@ -10404,11 +10251,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser the line item belongs to.
      */
     advertiserId?: string;
@@ -10428,11 +10270,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser the line item belongs to.
      */
     advertiserId?: string;
@@ -10451,11 +10288,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser the line item belongs to.
      */
@@ -10816,11 +10648,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Locationlists$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the DV360 advertiser to which the fetched location list belongs.
      */
     advertiserId?: string;
@@ -10831,11 +10658,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Locationlists$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the DV360 advertiser to which the fetched location lists belong.
      */
@@ -11163,11 +10985,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Negativekeywordlists$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the DV360 advertiser to which the fetched negative keyword list belongs.
      */
     advertiserId?: string;
@@ -11178,11 +10995,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Negativekeywordlists$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
      */
@@ -11989,11 +11801,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser.
      */
     advertiserId?: string;
@@ -12010,11 +11817,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser.
      */
     advertiserId?: string;
@@ -12030,11 +11832,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the advertiser.
      */
     advertiserId?: string;
@@ -12049,11 +11846,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The ID of the advertiser.
      */
@@ -12416,11 +12208,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Combinedaudiences$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser that has access to the fetched combined audience.
      */
     advertiserId?: string;
@@ -12435,11 +12222,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Combinedaudiences$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser that has access to the fetched combined audiences.
      */
@@ -12787,11 +12569,6 @@ export namespace displayvideo_v1 {
 
   export interface Params$Resource$Customlists$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the DV360 advertiser that has access to the fetched custom lists.
      */
     advertiserId?: string;
@@ -12801,11 +12578,6 @@ export namespace displayvideo_v1 {
     customListId?: string;
   }
   export interface Params$Resource$Customlists$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the DV360 advertiser that has access to the fetched custom lists.
      */
@@ -13181,11 +12953,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Firstandthirdpartyaudiences$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser that has access to the fetched first and third party audience.
      */
     advertiserId?: string;
@@ -13200,11 +12967,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Firstandthirdpartyaudiences$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser that has access to the fetched first and third party audiences.
      */
@@ -13538,11 +13300,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Floodlightgroups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the Floodlight group to fetch.
      */
     floodlightGroupId?: string;
@@ -13553,11 +13310,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Floodlightgroups$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The unique ID of the Floodlight group. Assigned by the system.
      */
@@ -13911,11 +13663,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Googleaudiences$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser that has access to the fetched Google audience.
      */
     advertiserId?: string;
@@ -13930,11 +13677,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Googleaudiences$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser that has access to the fetched Google audiences.
      */
@@ -14304,11 +14046,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Inventorysourcegroups$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser that has access to the inventory source group.  If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      */
     advertiserId?: string;
@@ -14323,11 +14060,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Inventorysourcegroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser that has access to the inventory source group.  If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
      */
@@ -14702,11 +14434,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Inventorysources$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The ID of the inventory source to fetch.
      */
     inventorySourceId?: string;
@@ -14717,11 +14444,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Inventorysources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser that has access to the inventory source.
      */
@@ -14897,11 +14619,6 @@ export namespace displayvideo_v1 {
   }
 
   export interface Params$Resource$Media$Download extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the media that is being downloaded.  See ReadRequest.resource_name.
      */
@@ -15249,11 +14966,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Partners$Channels$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the advertiser that owns the fetched channel.
      */
     advertiserId?: string;
@@ -15268,11 +14980,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Partners$Channels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the advertiser that owns the channels.
      */
@@ -15456,11 +15163,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Sdfdownloadtasks$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateSdfDownloadTaskRequest;
@@ -15610,11 +15312,6 @@ export namespace displayvideo_v1 {
 
   export interface Params$Resource$Sdfdownloadtasks$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */
@@ -15985,11 +15682,6 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Targetingtypes$Targetingoptions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The Advertiser this request is being made in the context of.
      */
     advertiserId?: string;
@@ -16004,11 +15696,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Targetingtypes$Targetingoptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The Advertiser this request is being made in the context of.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudresourcemanager_v2beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2019,11 +2031,6 @@ export namespace cloudresourcemanager_v2beta1 {
 
   export interface Params$Resource$Folders$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
      */
     parent?: string;
@@ -2035,21 +2042,11 @@ export namespace cloudresourcemanager_v2beta1 {
   }
   export interface Params$Resource$Folders$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
      */
@@ -2057,11 +2054,6 @@ export namespace cloudresourcemanager_v2beta1 {
   }
   export interface Params$Resource$Folders$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2073,11 +2065,6 @@ export namespace cloudresourcemanager_v2beta1 {
     requestBody?: Schema$GetIamPolicyRequest;
   }
   export interface Params$Resource$Folders$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of Folders to return in the response.
      */
@@ -2097,11 +2084,6 @@ export namespace cloudresourcemanager_v2beta1 {
   }
   export interface Params$Resource$Folders$Move extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}
      */
     name?: string;
@@ -2112,11 +2094,6 @@ export namespace cloudresourcemanager_v2beta1 {
     requestBody?: Schema$MoveFolderRequest;
   }
   export interface Params$Resource$Folders$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
      */
@@ -2133,22 +2110,12 @@ export namespace cloudresourcemanager_v2beta1 {
   }
   export interface Params$Resource$Folders$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$SearchFoldersRequest;
   }
   export interface Params$Resource$Folders$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -2162,11 +2129,6 @@ export namespace cloudresourcemanager_v2beta1 {
   export interface Params$Resource$Folders$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2177,11 +2139,6 @@ export namespace cloudresourcemanager_v2beta1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Folders$Undelete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
      */
@@ -2336,11 +2293,6 @@ export namespace cloudresourcemanager_v2beta1 {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudshell_v1alpha1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -905,11 +917,6 @@ export namespace cloudshell_v1alpha1 {
   export interface Params$Resource$Users$Environments$Authorize
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
     name?: string;
@@ -922,22 +929,12 @@ export namespace cloudshell_v1alpha1 {
   export interface Params$Resource$Users$Environments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the requested resource, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
     name?: string;
   }
   export interface Params$Resource$Users$Environments$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to be updated, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
@@ -954,11 +951,6 @@ export namespace cloudshell_v1alpha1 {
   }
   export interface Params$Resource$Users$Environments$Start
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource that should be started, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
@@ -1249,11 +1241,6 @@ export namespace cloudshell_v1alpha1 {
   export interface Params$Resource$Users$Environments$Publickeys$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Parent resource name, e.g. `users/me/environments/default`.
      */
     parent?: string;
@@ -1265,11 +1252,6 @@ export namespace cloudshell_v1alpha1 {
   }
   export interface Params$Resource$Users$Environments$Publickeys$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the resource to be deleted, e.g. `users/me/environments/default/publicKeys/my-key`.
      */

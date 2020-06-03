@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace sourcerepo_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -702,22 +714,12 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the requested project. Values are of the form `projects/<project>`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updateconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the requested project. Values are of the form `projects/<project>`.
      */
@@ -2044,11 +2046,6 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The project in which to create the repo. Values are of the form `projects/<project>`.
      */
     parent?: string;
@@ -2061,11 +2058,6 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
      */
     name?: string;
@@ -2073,22 +2065,12 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Repos$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2100,11 +2082,6 @@ export namespace sourcerepo_v1 {
   }
   export interface Params$Resource$Projects$Repos$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The project ID whose repos should be listed. Values are of the form `projects/<project>`.
      */
@@ -2121,11 +2098,6 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
      */
     name?: string;
@@ -2137,11 +2109,6 @@ export namespace sourcerepo_v1 {
   }
   export interface Params$Resource$Projects$Repos$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -2155,11 +2122,6 @@ export namespace sourcerepo_v1 {
   export interface Params$Resource$Projects$Repos$Sync
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the repo to synchronize. Values are of the form `projects/<project>/repos/<repo>`.
      */
     name?: string;
@@ -2171,11 +2133,6 @@ export namespace sourcerepo_v1 {
   }
   export interface Params$Resource$Projects$Repos$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

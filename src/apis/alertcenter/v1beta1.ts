@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace alertcenter_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1938,11 +1950,6 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$Alerts$Batchdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchDeleteAlertsRequest;
@@ -1950,21 +1957,11 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$Alerts$Batchundelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$BatchUndeleteAlertsRequest;
   }
   export interface Params$Resource$Alerts$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The identifier of the alert to delete.
      */
@@ -1975,11 +1972,6 @@ export namespace alertcenter_v1beta1 {
     customerId?: string;
   }
   export interface Params$Resource$Alerts$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The identifier of the alert to retrieve.
      */
@@ -1992,11 +1984,6 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$Alerts$Getmetadata
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The identifier of the alert this metadata belongs to.
      */
     alertId?: string;
@@ -2006,11 +1993,6 @@ export namespace alertcenter_v1beta1 {
     customerId?: string;
   }
   export interface Params$Resource$Alerts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      */
@@ -2033,11 +2015,6 @@ export namespace alertcenter_v1beta1 {
     pageToken?: string;
   }
   export interface Params$Resource$Alerts$Undelete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The identifier of the alert to undelete.
      */
@@ -2365,11 +2342,6 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$Alerts$Feedback$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The identifier of the alert this feedback belongs to.
      */
     alertId?: string;
@@ -2385,11 +2357,6 @@ export namespace alertcenter_v1beta1 {
   }
   export interface Params$Resource$Alerts$Feedback$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      */
@@ -2683,22 +2650,12 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$V1beta1$Getsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
   export interface Params$Resource$V1beta1$Updatesettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */

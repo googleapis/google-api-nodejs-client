@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace firebasehosting_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -741,11 +753,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
@@ -1056,22 +1063,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Getconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site for which to get the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Sites$Updateconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The site for which to update the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
@@ -1422,11 +1419,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -1442,11 +1434,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Channels$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -2195,11 +2182,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Domains$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the domain association for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -2212,11 +2194,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Domains$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain association to delete.
      */
     name?: string;
@@ -2224,22 +2201,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Domains$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain configuration to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Sites$Domains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 50.
      */
@@ -2255,11 +2222,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Domains$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the domain association to update or create, if an association doesn't already exist.
      */
@@ -2595,11 +2557,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -2615,11 +2572,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -3443,11 +3395,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the version for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -3468,22 +3415,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the version to be deleted, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Sites$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter string used to return a subset of versions in the response. Currently supported fields for filtering are: name, status, and create_time. Filter processing will be implemented in accordance with go/filtering.
      */
@@ -3504,11 +3441,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique identifier for a version, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code> This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
@@ -3524,11 +3456,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Projects$Sites$Versions$Populatefiles
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The version to add files to, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
@@ -3703,11 +3630,6 @@ export namespace firebasehosting_v1beta1 {
 
   export interface Params$Resource$Projects$Sites$Versions$Files$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 1000.
      */
@@ -4029,22 +3951,12 @@ export namespace firebasehosting_v1beta1 {
 
   export interface Params$Resource$Sites$Getconfig extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site for which to get the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
     name?: string;
   }
   export interface Params$Resource$Sites$Updateconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The site for which to update the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
      */
@@ -4393,11 +4305,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -4413,11 +4320,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Channels$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -5166,11 +5068,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Domains$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the domain association for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -5183,11 +5080,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Domains$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain association to delete.
      */
     name?: string;
@@ -5195,22 +5087,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Domains$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the domain configuration to get.
      */
     name?: string;
   }
   export interface Params$Resource$Sites$Domains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 50.
      */
@@ -5226,11 +5108,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Domains$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the domain association to update or create, if an association doesn't already exist.
      */
@@ -5566,11 +5443,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -5586,11 +5458,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Releases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 100.
      */
@@ -6414,11 +6281,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The parent to create the version for, in the format: <code>sites/<var>site-name</var></code>
      */
     parent?: string;
@@ -6439,22 +6301,12 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the version to be deleted, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
     name?: string;
   }
   export interface Params$Resource$Sites$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The filter string used to return a subset of versions in the response. Currently supported fields for filtering are: name, status, and create_time. Filter processing will be implemented in accordance with go/filtering.
      */
@@ -6475,11 +6327,6 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique identifier for a version, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code> This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
@@ -6495,11 +6342,6 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Params$Resource$Sites$Versions$Populatefiles
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The version to add files to, in the format: <code>sites/<var>site-name</var>/versions/<var>versionID</var></code>
      */
@@ -6674,11 +6516,6 @@ export namespace firebasehosting_v1beta1 {
 
   export interface Params$Resource$Sites$Versions$Files$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The page size to return. Defaults to 1000.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace admin_directory_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -2725,11 +2737,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Asps$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID of the ASP to be deleted.
      */
     codeId?: number;
@@ -2740,11 +2747,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Asps$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID of the ASP.
      */
     codeId?: number;
@@ -2754,11 +2756,6 @@ export namespace admin_directory_v1 {
     userKey?: string;
   }
   export interface Params$Resource$Asps$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
@@ -2915,11 +2912,6 @@ export namespace admin_directory_v1 {
   }
 
   export interface Params$Resource$Channels$Stop extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -3969,11 +3961,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Action
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -3990,11 +3977,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -4009,11 +3991,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Chromeosdevices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -4050,11 +4027,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Movedevicestoou
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -4070,11 +4042,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Chromeosdevices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -4095,11 +4062,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Chromeosdevices$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -4576,21 +4538,11 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Id of the customer to be retrieved
      */
     customerKey?: string;
   }
   export interface Params$Resource$Customers$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Id of the customer to be updated
      */
@@ -4602,11 +4554,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Customer;
   }
   export interface Params$Resource$Customers$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Id of the customer to be updated
      */
@@ -5184,11 +5131,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -5199,11 +5141,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domainaliases$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -5216,11 +5153,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -5232,11 +5164,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domainaliases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -5808,11 +5735,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Domains$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -5822,11 +5744,6 @@ export namespace admin_directory_v1 {
     domainName?: string;
   }
   export interface Params$Resource$Domains$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -5838,11 +5755,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -5853,11 +5765,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Domains;
   }
   export interface Params$Resource$Domains$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -6764,21 +6671,11 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Groups$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the group
      */
     groupKey?: string;
   }
   export interface Params$Resource$Groups$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group
      */
@@ -6786,21 +6683,11 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Group;
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
      */
@@ -6836,11 +6723,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the group. If ID, it should match with id of group object
      */
     groupKey?: string;
@@ -6851,11 +6733,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Group;
   }
   export interface Params$Resource$Groups$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group. If ID, it should match with id of group object
      */
@@ -7285,11 +7162,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Groups$Aliases$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The alias to be removed
      */
     alias?: string;
@@ -7300,11 +7172,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$Aliases$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group
      */
@@ -7317,11 +7184,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$Aliases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group
      */
@@ -8372,11 +8234,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Members$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the group
      */
     groupKey?: string;
@@ -8386,11 +8243,6 @@ export namespace admin_directory_v1 {
     memberKey?: string;
   }
   export interface Params$Resource$Members$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group
      */
@@ -8403,11 +8255,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Members$Hasmember
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
@@ -8417,11 +8264,6 @@ export namespace admin_directory_v1 {
     memberKey?: string;
   }
   export interface Params$Resource$Members$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group
      */
@@ -8433,11 +8275,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Member;
   }
   export interface Params$Resource$Members$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group
      */
@@ -8461,11 +8298,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Members$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the group. If ID, it should match with id of group object
      */
     groupKey?: string;
@@ -8480,11 +8312,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Member;
   }
   export interface Params$Resource$Members$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the group. If ID, it should match with id of group object
      */
@@ -9112,11 +8939,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Action
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -9133,11 +8955,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -9148,11 +8965,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Mobiledevices$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -9168,11 +8980,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Mobiledevices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -9938,11 +9745,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Notifications$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
      */
     customer?: string;
@@ -9954,11 +9756,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Notifications$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
      */
     customer?: string;
@@ -9969,11 +9766,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Notifications$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the customer's G Suite account.
      */
@@ -9994,11 +9786,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Notifications$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account.
      */
     customer?: string;
@@ -10014,11 +9801,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Notifications$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the customer's G Suite account.
      */
@@ -10923,11 +10705,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Orgunits$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -10937,11 +10714,6 @@ export namespace admin_directory_v1 {
     orgUnitPath?: string[];
   }
   export interface Params$Resource$Orgunits$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -10953,11 +10725,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -10968,11 +10735,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$OrgUnit;
   }
   export interface Params$Resource$Orgunits$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -10988,11 +10750,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -11007,11 +10764,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$OrgUnit;
   }
   export interface Params$Resource$Orgunits$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -11170,11 +10922,6 @@ export namespace admin_directory_v1 {
   }
 
   export interface Params$Resource$Privileges$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -12103,11 +11850,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the building to delete.
      */
     buildingId?: string;
@@ -12119,11 +11861,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID of the building to retrieve.
      */
     buildingId?: string;
@@ -12134,11 +11871,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Buildings$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Source from which Building.coordinates are derived.
      */
@@ -12156,11 +11888,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
@@ -12175,11 +11902,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Buildings$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the building to update.
      */
@@ -12200,11 +11922,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Buildings$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the building to update.
      */
@@ -13182,11 +12899,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Calendars$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID of the calendar resource to delete.
      */
     calendarResourceId?: string;
@@ -13197,11 +12909,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Calendars$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID of the calendar resource to retrieve.
      */
@@ -13214,11 +12921,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Calendars$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
@@ -13230,11 +12932,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Calendars$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
@@ -13259,11 +12956,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Calendars$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID of the calendar resource to update.
      */
     calendarResourceId?: string;
@@ -13279,11 +12971,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Calendars$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID of the calendar resource to update.
      */
@@ -14302,11 +13989,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
@@ -14317,11 +13999,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Features$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
@@ -14334,11 +14011,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
@@ -14350,11 +14022,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Features$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
@@ -14370,11 +14037,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Features$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
@@ -14392,11 +14054,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Rename
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
     customer?: string;
@@ -14412,11 +14069,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Resources$Features$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      */
@@ -15013,11 +14665,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -15028,11 +14675,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roleassignments$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -15045,11 +14687,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -15061,11 +14698,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roleassignments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -15967,11 +15599,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Roles$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -15981,11 +15608,6 @@ export namespace admin_directory_v1 {
     roleId?: string;
   }
   export interface Params$Resource$Roles$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -15997,11 +15619,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -16012,11 +15629,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Role;
   }
   export interface Params$Resource$Roles$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -16032,11 +15644,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account.
      */
     customer?: string;
@@ -16051,11 +15658,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Role;
   }
   export interface Params$Resource$Roles$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account.
      */
@@ -16933,11 +16535,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Schemas$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -16948,11 +16545,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
@@ -16962,11 +16554,6 @@ export namespace admin_directory_v1 {
     schemaKey?: string;
   }
   export interface Params$Resource$Schemas$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -16979,21 +16566,11 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Immutable ID of the G Suite account
      */
     customerId?: string;
   }
   export interface Params$Resource$Schemas$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -17009,11 +16586,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$Schema;
   }
   export interface Params$Resource$Schemas$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account
      */
@@ -17433,11 +17005,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Tokens$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Client ID of the application the token is issued to.
      */
     clientId?: string;
@@ -17448,11 +17015,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Tokens$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Client ID of the application the token is issued to.
      */
     clientId?: string;
@@ -17462,11 +17024,6 @@ export namespace admin_directory_v1 {
     userKey?: string;
   }
   export interface Params$Resource$Tokens$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
@@ -19106,21 +18663,11 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the user
      */
     userKey?: string;
   }
   export interface Params$Resource$Users$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      */
@@ -19140,21 +18687,11 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      */
@@ -19206,11 +18743,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Makeadmin extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the user as admin
      */
     userKey?: string;
@@ -19221,11 +18753,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$UserMakeAdmin;
   }
   export interface Params$Resource$Users$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the user. If ID, it should match with id of user object
      */
@@ -19238,11 +18765,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Undelete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The immutable id of the user
      */
     userKey?: string;
@@ -19254,11 +18776,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Update extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the user. If ID, it should match with id of user object
      */
     userKey?: string;
@@ -19269,11 +18786,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$User;
   }
   export interface Params$Resource$Users$Watch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      */
@@ -19923,11 +19435,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Users$Aliases$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The alias to be removed
      */
     alias?: string;
@@ -19938,11 +19445,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Aliases$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the user
      */
@@ -19956,11 +19458,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Users$Aliases$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Event on which subscription is intended (if subscribing)
      */
     event?: string;
@@ -19971,11 +19468,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Aliases$Watch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Event on which subscription is intended (if subscribing)
      */
@@ -20569,21 +20061,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Users$Photos$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the user
      */
     userKey?: string;
   }
   export interface Params$Resource$Users$Photos$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the user
      */
@@ -20591,11 +20073,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Photos$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the user
      */
@@ -20608,11 +20085,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Photos$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Email or immutable ID of the user
      */
@@ -21017,11 +20489,6 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Verificationcodes$Generate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the user
      */
     userKey?: string;
@@ -21029,22 +20496,12 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Verificationcodes$Invalidate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Email or immutable ID of the user
      */
     userKey?: string;
   }
   export interface Params$Resource$Verificationcodes$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace script_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1071,11 +1083,6 @@ export namespace script_v1 {
 
   export interface Params$Resource$Processes$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of returned processes per page of results. Defaults to 50.
      */
     pageSize?: number;
@@ -1122,11 +1129,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Processes$Listscriptprocesses
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of returned processes per page of results. Defaults to 50.
      */
@@ -1880,21 +1882,11 @@ export namespace script_v1 {
 
   export interface Params$Resource$Projects$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$CreateProjectRequest;
   }
   export interface Params$Resource$Projects$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -1902,11 +1894,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Getcontent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -1918,11 +1905,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Getmetrics
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional field indicating a specific deployment to retrieve metrics from.
      */
@@ -1938,11 +1920,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Updatecontent
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script project's Drive ID.
      */
@@ -2672,11 +2649,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Deployments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The script project's Drive ID.
      */
     scriptId?: string;
@@ -2689,11 +2661,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Deployments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The deployment ID to be undeployed.
      */
     deploymentId?: string;
@@ -2705,11 +2672,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Deployments$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The deployment ID.
      */
     deploymentId?: string;
@@ -2720,11 +2682,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Deployments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of deployments on each returned page. Defaults to 50.
      */
@@ -2740,11 +2697,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Deployments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The deployment ID for this deployment.
      */
@@ -3202,11 +3154,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The script project's Drive ID.
      */
     scriptId?: string;
@@ -3219,11 +3166,6 @@ export namespace script_v1 {
   export interface Params$Resource$Projects$Versions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The script project's Drive ID.
      */
     scriptId?: string;
@@ -3234,11 +3176,6 @@ export namespace script_v1 {
   }
   export interface Params$Resource$Projects$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of versions on each returned page. Defaults to 50.
      */
@@ -3419,11 +3356,6 @@ export namespace script_v1 {
   }
 
   export interface Params$Resource$Scripts$Run extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
      */

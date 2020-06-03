@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace secretmanager_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -729,22 +741,12 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Resource name for the location.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -2074,11 +2076,6 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Secrets$Addversion
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x`.
      */
     parent?: string;
@@ -2090,11 +2087,6 @@ export namespace secretmanager_v1beta1 {
   }
   export interface Params$Resource$Projects$Secrets$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the project to associate with the Secret, in the format `projects/x`.
      */
@@ -2112,11 +2104,6 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Secrets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Secret to delete in the format `projects/x/secrets/x`.
      */
     name?: string;
@@ -2124,22 +2111,12 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Secrets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the Secret, in the format `projects/x/secrets/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Secrets$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2151,11 +2128,6 @@ export namespace secretmanager_v1beta1 {
   }
   export interface Params$Resource$Projects$Secrets$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
      */
@@ -2171,11 +2143,6 @@ export namespace secretmanager_v1beta1 {
   }
   export interface Params$Resource$Projects$Secrets$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource name of the Secret in the format `projects/x/secrets/x`.
      */
@@ -2193,11 +2160,6 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Secrets$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2209,11 +2171,6 @@ export namespace secretmanager_v1beta1 {
   }
   export interface Params$Resource$Projects$Secrets$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3092,22 +3049,12 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Secrets$Versions$Access
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Secrets$Versions$Destroy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the SecretVersion to destroy in the format `projects/x/secrets/x/versions/x`.
      */
@@ -3121,11 +3068,6 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Secrets$Versions$Disable
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the SecretVersion to disable in the format `projects/x/secrets/x/versions/x`.
      */
     name?: string;
@@ -3137,11 +3079,6 @@ export namespace secretmanager_v1beta1 {
   }
   export interface Params$Resource$Projects$Secrets$Versions$Enable
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the SecretVersion to enable in the format `projects/x/secrets/x/versions/x`.
      */
@@ -3155,22 +3092,12 @@ export namespace secretmanager_v1beta1 {
   export interface Params$Resource$Projects$Secrets$Versions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Secrets$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of results to be returned in a single page. If set to 0, the server decides the number of results to return. If the number is greater than 25000, it is capped at 25000.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudbuild_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1193,11 +1205,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -1209,21 +1216,11 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -2037,11 +2034,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Builds$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the build.
      */
     id?: string;
@@ -2058,11 +2050,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Builds$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the project.
      */
     projectId?: string;
@@ -2075,11 +2062,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Builds$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the build.
      */
     id?: string;
@@ -2090,11 +2072,6 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Builds$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The raw filter text to constrain the results.
      */
@@ -2114,11 +2091,6 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Builds$Retry
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Build ID of the original build.
      */
@@ -2566,11 +2538,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
@@ -2583,22 +2550,12 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -3531,11 +3488,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Triggers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the project for which to configure automatic builds.
      */
     projectId?: string;
@@ -3548,11 +3500,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Triggers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
@@ -3564,11 +3511,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Triggers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
@@ -3579,11 +3521,6 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Triggers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of results to return in the list.
      */
@@ -3600,11 +3537,6 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Triggers$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
@@ -3620,11 +3552,6 @@ export namespace cloudbuild_v1 {
   }
   export interface Params$Resource$Projects$Triggers$Run
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. ID of the project.
      */

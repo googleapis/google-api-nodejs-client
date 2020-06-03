@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace drive_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1294,12 +1306,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$About$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$About$Get extends StandardParameters {}
 
   export class Resource$Changes {
     context: APIRequestContext;
@@ -1831,11 +1838,6 @@ export namespace drive_v3 {
   export interface Params$Resource$Changes$Getstartpagetoken
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
      */
     driveId?: string;
@@ -1853,11 +1855,6 @@ export namespace drive_v3 {
     teamDriveId?: string;
   }
   export interface Params$Resource$Changes$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
@@ -1908,11 +1905,6 @@ export namespace drive_v3 {
     teamDriveId?: string;
   }
   export interface Params$Resource$Changes$Watch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
@@ -2121,11 +2113,6 @@ export namespace drive_v3 {
   }
 
   export interface Params$Resource$Channels$Stop extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -2897,11 +2884,6 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Comments$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -2913,11 +2895,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the comment.
      */
     commentId?: string;
@@ -2927,11 +2904,6 @@ export namespace drive_v3 {
     fileId?: string;
   }
   export interface Params$Resource$Comments$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -2946,11 +2918,6 @@ export namespace drive_v3 {
     includeDeleted?: boolean;
   }
   export interface Params$Resource$Comments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -2973,11 +2940,6 @@ export namespace drive_v3 {
     startModifiedTime?: string;
   }
   export interface Params$Resource$Comments$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -4010,11 +3972,6 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Drives$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
      */
     requestId?: string;
@@ -4026,21 +3983,11 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the shared drive.
      */
     driveId?: string;
   }
   export interface Params$Resource$Drives$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the shared drive.
      */
@@ -4052,21 +3999,11 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$Hide extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the shared drive.
      */
     driveId?: string;
   }
   export interface Params$Resource$Drives$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of shared drives to return.
      */
@@ -4086,21 +4023,11 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$Unhide extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the shared drive.
      */
     driveId?: string;
   }
   export interface Params$Resource$Drives$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the shared drive.
      */
@@ -6038,11 +5965,6 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Files$Copy extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      */
     enforceSingleParent?: boolean;
@@ -6077,11 +5999,6 @@ export namespace drive_v3 {
     requestBody?: Schema$File;
   }
   export interface Params$Resource$Files$Create extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      */
@@ -6133,11 +6050,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -6150,18 +6062,9 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Emptytrash extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Files$Emptytrash
+    extends StandardParameters {}
   export interface Params$Resource$Files$Export extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -6174,11 +6077,6 @@ export namespace drive_v3 {
   export interface Params$Resource$Files$Generateids
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The number of IDs to return.
      */
     count?: number;
@@ -6188,11 +6086,6 @@ export namespace drive_v3 {
     space?: string;
   }
   export interface Params$Resource$Files$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      */
@@ -6211,11 +6104,6 @@ export namespace drive_v3 {
     supportsTeamDrives?: boolean;
   }
   export interface Params$Resource$Files$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
      */
@@ -6270,11 +6158,6 @@ export namespace drive_v3 {
     teamDriveId?: string;
   }
   export interface Params$Resource$Files$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A comma-separated list of parent IDs to add.
      */
@@ -6333,11 +6216,6 @@ export namespace drive_v3 {
     };
   }
   export interface Params$Resource$Files$Watch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      */
@@ -7198,11 +7076,6 @@ export namespace drive_v3 {
   export interface Params$Resource$Permissions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A plain text custom message to include in the notification email.
      */
     emailMessage?: string;
@@ -7247,11 +7120,6 @@ export namespace drive_v3 {
   export interface Params$Resource$Permissions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file or shared drive.
      */
     fileId?: string;
@@ -7274,11 +7142,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Permissions$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -7300,11 +7163,6 @@ export namespace drive_v3 {
     useDomainAdminAccess?: boolean;
   }
   export interface Params$Resource$Permissions$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file or shared drive.
      */
@@ -7332,11 +7190,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Permissions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file or shared drive.
      */
@@ -8135,11 +7988,6 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Replies$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the comment.
      */
     commentId?: string;
@@ -8155,11 +8003,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Replies$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the comment.
      */
     commentId?: string;
@@ -8173,11 +8016,6 @@ export namespace drive_v3 {
     replyId?: string;
   }
   export interface Params$Resource$Replies$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -8196,11 +8034,6 @@ export namespace drive_v3 {
     replyId?: string;
   }
   export interface Params$Resource$Replies$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -8223,11 +8056,6 @@ export namespace drive_v3 {
     pageToken?: string;
   }
   export interface Params$Resource$Replies$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the comment.
      */
@@ -8855,11 +8683,6 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Revisions$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -8869,11 +8692,6 @@ export namespace drive_v3 {
     revisionId?: string;
   }
   export interface Params$Resource$Revisions$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      */
@@ -8889,11 +8707,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Revisions$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the file.
      */
     fileId?: string;
@@ -8907,11 +8720,6 @@ export namespace drive_v3 {
     pageToken?: string;
   }
   export interface Params$Resource$Revisions$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the file.
      */
@@ -9669,11 +9477,6 @@ export namespace drive_v3 {
   export interface Params$Resource$Teamdrives$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
      */
     requestId?: string;
@@ -9686,21 +9489,11 @@ export namespace drive_v3 {
   export interface Params$Resource$Teamdrives$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the Team Drive
      */
     teamDriveId?: string;
   }
   export interface Params$Resource$Teamdrives$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the Team Drive
      */
@@ -9711,11 +9504,6 @@ export namespace drive_v3 {
     useDomainAdminAccess?: boolean;
   }
   export interface Params$Resource$Teamdrives$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Maximum number of Team Drives to return.
      */
@@ -9735,11 +9523,6 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Teamdrives$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the Team Drive
      */

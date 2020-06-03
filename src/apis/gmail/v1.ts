@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace gmail_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1262,32 +1274,17 @@ export namespace gmail_v1 {
 
   export interface Params$Resource$Users$Getprofile extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Stop extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Watch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
@@ -2215,11 +2212,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Drafts$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -2247,11 +2239,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Drafts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the draft to delete.
      */
     id?: string;
@@ -2261,11 +2248,6 @@ export namespace gmail_v1 {
     userId?: string;
   }
   export interface Params$Resource$Users$Drafts$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The format to return the draft in.
      */
@@ -2281,11 +2263,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Drafts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Include drafts from SPAM and TRASH in the results.
      */
@@ -2309,11 +2286,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Drafts$Send
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
@@ -2341,11 +2313,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Drafts$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the draft to update.
      */
@@ -2541,11 +2508,6 @@ export namespace gmail_v1 {
 
   export interface Params$Resource$Users$History$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * History types to be returned by the function
      */
@@ -3493,11 +3455,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Labels$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -3510,11 +3467,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Labels$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the label to delete.
      */
     id?: string;
@@ -3524,11 +3476,6 @@ export namespace gmail_v1 {
     userId?: string;
   }
   export interface Params$Resource$Users$Labels$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the label to retrieve.
      */
@@ -3541,22 +3488,12 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Labels$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Labels$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the label to update.
      */
@@ -3573,11 +3510,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Labels$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the label to update.
      */
@@ -5287,11 +5219,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Batchdelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -5303,11 +5230,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Messages$Batchmodify
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
@@ -5321,11 +5243,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the message to delete.
      */
     id?: string;
@@ -5336,11 +5253,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Messages$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The format to return the message in.
      */
@@ -5360,11 +5272,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Messages$Import
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
      */
@@ -5409,11 +5316,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
      */
     deleted?: boolean;
@@ -5449,11 +5351,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Include messages from SPAM and TRASH in the results.
      */
     includeSpamTrash?: boolean;
@@ -5481,11 +5378,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Modify
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the message to modify.
      */
     id?: string;
@@ -5501,11 +5393,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Messages$Send
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The user's email address. The special value me can be used to indicate the authenticated user.
      */
@@ -5534,11 +5421,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Trash
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the message to Trash.
      */
     id?: string;
@@ -5549,11 +5431,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Messages$Untrash
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the message to remove from Trash.
      */
@@ -5718,11 +5595,6 @@ export namespace gmail_v1 {
 
   export interface Params$Resource$Users$Messages$Attachments$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the attachment.
      */
@@ -7178,22 +7050,12 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Getautoforwarding
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Getimap
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7202,22 +7064,12 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Getlanguage
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Getpop
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7226,22 +7078,12 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Getvacation
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Updateautoforwarding
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7255,11 +7097,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Updateimap
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -7271,11 +7108,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Updatelanguage
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7289,11 +7121,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Updatepop
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -7305,11 +7132,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Updatevacation
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -7879,11 +7701,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Delegates$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -7896,11 +7713,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Delegates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The email address of the user to be removed as a delegate.
      */
     delegateEmail?: string;
@@ -7912,11 +7724,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Delegates$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The email address of the user whose delegate relationship is to be retrieved.
      */
     delegateEmail?: string;
@@ -7927,11 +7734,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Delegates$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -8495,11 +8297,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Filters$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -8512,11 +8309,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Filters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the filter to be deleted.
      */
     id?: string;
@@ -8528,11 +8320,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Filters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the filter to be fetched.
      */
     id?: string;
@@ -8543,11 +8330,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Filters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -9122,11 +8904,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -9139,11 +8916,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The forwarding address to be deleted.
      */
     forwardingEmail?: string;
@@ -9155,11 +8927,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The forwarding address to be retrieved.
      */
     forwardingEmail?: string;
@@ -9170,11 +8937,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Forwardingaddresses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
@@ -10211,11 +9973,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Sendas$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
@@ -10228,11 +9985,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Sendas$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The send-as alias to be deleted.
      */
     sendAsEmail?: string;
@@ -10243,11 +9995,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Sendas$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The send-as alias to be retrieved.
      */
@@ -10260,22 +10007,12 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Sendas$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * User's email address. The special value "me" can be used to indicate the authenticated user.
      */
     userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The send-as alias to be updated.
      */
@@ -10293,11 +10030,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Sendas$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The send-as alias to be updated.
      */
     sendAsEmail?: string;
@@ -10313,11 +10045,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Sendas$Verify
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The send-as alias to be verified.
      */
@@ -11056,11 +10783,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The immutable ID for the SmimeInfo.
      */
     id?: string;
@@ -11076,11 +10798,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The immutable ID for the SmimeInfo.
      */
     id?: string;
@@ -11095,11 +10812,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The email address that appears in the "From:" header for mail sent using this alias.
      */
@@ -11117,11 +10829,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The email address that appears in the "From:" header for mail sent using this alias.
      */
     sendAsEmail?: string;
@@ -11132,11 +10839,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The immutable ID for the SmimeInfo.
      */
@@ -12022,11 +11724,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Threads$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the Thread to delete.
      */
     id?: string;
@@ -12037,11 +11734,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Threads$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The format to return the messages in.
      */
@@ -12061,11 +11753,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Threads$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Include threads from SPAM and TRASH in the results.
      */
@@ -12094,11 +11781,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Threads$Modify
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the thread to modify.
      */
     id?: string;
@@ -12115,11 +11797,6 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Threads$Trash
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the thread to Trash.
      */
     id?: string;
@@ -12130,11 +11807,6 @@ export namespace gmail_v1 {
   }
   export interface Params$Resource$Users$Threads$Untrash
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the thread to remove from Trash.
      */

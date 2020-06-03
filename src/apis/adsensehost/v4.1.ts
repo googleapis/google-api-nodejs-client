@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace adsensehost_v4_1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -693,21 +705,11 @@ export namespace adsensehost_v4_1 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account to get information about.
      */
     accountId?: string;
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad clients to list accounts for.
      */
@@ -1001,11 +1003,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Accounts$Adclients$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad client.
      */
     accountId?: string;
@@ -1016,11 +1013,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Accounts$Adclients$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account for which to list ad clients.
      */
@@ -2094,11 +2086,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Accounts$Adunits$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad unit.
      */
     accountId?: string;
@@ -2114,11 +2101,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Accounts$Adunits$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad unit.
      */
     accountId?: string;
@@ -2133,11 +2115,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Accounts$Adunits$Getadcode
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account which contains the ad client.
      */
@@ -2158,11 +2135,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Accounts$Adunits$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which will contain the ad unit.
      */
     accountId?: string;
@@ -2178,11 +2150,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Accounts$Adunits$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account which contains the ad client.
      */
@@ -2207,11 +2174,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Accounts$Adunits$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account which contains the ad client.
      */
     accountId?: string;
@@ -2231,11 +2193,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Accounts$Adunits$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account which contains the ad client.
      */
@@ -2425,11 +2382,6 @@ export namespace adsensehost_v4_1 {
 
   export interface Params$Resource$Accounts$Reports$Generate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Hosted account upon which to report.
      */
@@ -2751,21 +2703,11 @@ export namespace adsensehost_v4_1 {
 
   export interface Params$Resource$Adclients$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client to get.
      */
     adClientId?: string;
   }
   export interface Params$Resource$Adclients$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of ad clients to include in the response, used for paging.
      */
@@ -3080,11 +3022,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Associationsessions$Start
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The URL to redirect the user to once association is completed. It receives a token parameter that can then be used to retrieve the associated account.
      */
     callbackUrl?: string;
@@ -3107,11 +3044,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Associationsessions$Verify
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The token returned to the association callback URL.
      */
@@ -3983,11 +3915,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Customchannels$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client from which to delete the custom channel.
      */
     adClientId?: string;
@@ -3998,11 +3925,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Customchannels$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client from which to get the custom channel.
      */
@@ -4015,11 +3937,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Customchannels$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client to which the new custom channel will be added.
      */
     adClientId?: string;
@@ -4031,11 +3948,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Customchannels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list custom channels.
      */
@@ -4052,11 +3964,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Customchannels$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client in which the custom channel will be updated.
      */
     adClientId?: string;
@@ -4072,11 +3979,6 @@ export namespace adsensehost_v4_1 {
   }
   export interface Params$Resource$Customchannels$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client in which the custom channel will be updated.
      */
@@ -4258,11 +4160,6 @@ export namespace adsensehost_v4_1 {
   }
 
   export interface Params$Resource$Reports$Generate extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Dimensions to base the report on.
      */
@@ -4728,11 +4625,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Urlchannels$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client from which to delete the URL channel.
      */
     adClientId?: string;
@@ -4744,11 +4636,6 @@ export namespace adsensehost_v4_1 {
   export interface Params$Resource$Urlchannels$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Ad client to which the new URL channel will be added.
      */
     adClientId?: string;
@@ -4759,11 +4646,6 @@ export namespace adsensehost_v4_1 {
     requestBody?: Schema$UrlChannel;
   }
   export interface Params$Resource$Urlchannels$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Ad client for which to list URL channels.
      */

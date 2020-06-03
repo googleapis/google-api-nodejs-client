@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace iap_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -881,11 +893,6 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id}.
      */
     parent?: string;
@@ -898,22 +905,12 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the brand to be fetched. In the following format: projects/{project_number/id}/brands/{brand}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Brands$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. GCP Project number/id. In the following format: projects/{project_number/id}.
      */
@@ -1663,11 +1660,6 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Path to create the client in. In the following format: projects/{project_number/id}/brands/{brand}. The project must belong to a G Suite account.
      */
     parent?: string;
@@ -1680,11 +1672,6 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
      */
     name?: string;
@@ -1692,22 +1679,12 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of clients to return. The service may return fewer than this value. If unspecified, at most 100 clients will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -1723,11 +1700,6 @@ export namespace iap_v1 {
   }
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
      */
@@ -2464,11 +2436,6 @@ export namespace iap_v1 {
 
   export interface Params$Resource$V1$Getiampolicy extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2481,21 +2448,11 @@ export namespace iap_v1 {
   export interface Params$Resource$V1$Getiapsettings
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name for which to retrieve the settings. Authorization: Requires the `getSettings` permission for the associated resource.
      */
     name?: string;
   }
   export interface Params$Resource$V1$Setiampolicy extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -2509,11 +2466,6 @@ export namespace iap_v1 {
   export interface Params$Resource$V1$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2525,11 +2477,6 @@ export namespace iap_v1 {
   }
   export interface Params$Resource$V1$Updateiapsettings
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name of the IAP protected resource.
      */

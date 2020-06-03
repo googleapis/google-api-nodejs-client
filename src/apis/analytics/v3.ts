@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace analytics_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -2701,11 +2713,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Data$Ga$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'.
      */
     dimensions?: string;
@@ -2942,11 +2949,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Data$Mcf$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A comma-separated list of Multi-Channel Funnels dimensions. E.g., 'mcf:source,mcf:medium'.
      */
     dimensions?: string;
@@ -3154,11 +3156,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Data$Realtime$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A comma-separated list of real time dimensions. E.g., 'rt:medium,rt:city'.
      */
@@ -3407,11 +3404,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Accounts$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of accounts to include in this response.
      */
     'max-results'?: number;
@@ -3573,11 +3565,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Accountsummaries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
      */
@@ -4174,11 +4161,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Accountuserlinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to delete the user link for.
      */
     accountId?: string;
@@ -4189,11 +4171,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Accountuserlinks$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the user link for.
      */
@@ -4206,11 +4183,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Accountuserlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve the user links for.
      */
@@ -4226,11 +4198,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Accountuserlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the account-user link for.
      */
@@ -4406,11 +4373,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Clientid$Hashclientid
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$HashClientIdRequest;
@@ -4579,11 +4541,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Customdatasources$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account Id for the custom data sources to retrieve.
      */
@@ -5420,11 +5377,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Customdimensions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID for the custom dimension to retrieve.
      */
     accountId?: string;
@@ -5439,11 +5391,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Customdimensions$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimension to create.
      */
@@ -5460,11 +5407,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Customdimensions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimensions to retrieve.
      */
@@ -5484,11 +5426,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Customdimensions$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimension to update.
      */
@@ -5513,11 +5450,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Customdimensions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom dimension to update.
      */
@@ -6380,11 +6312,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Custommetrics$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID for the custom metric to retrieve.
      */
     accountId?: string;
@@ -6399,11 +6326,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Custommetrics$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metric to create.
      */
@@ -6420,11 +6342,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Custommetrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metrics to retrieve.
      */
@@ -6444,11 +6361,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Custommetrics$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metric to update.
      */
@@ -6473,11 +6385,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Custommetrics$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the custom metric to update.
      */
@@ -7607,11 +7514,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Experiments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the experiment belongs
      */
     accountId?: string;
@@ -7630,11 +7532,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Experiments$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve the experiment for.
      */
@@ -7655,11 +7552,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Experiments$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the experiment for.
      */
     accountId?: string;
@@ -7679,11 +7571,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Experiments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve experiments for.
      */
@@ -7708,11 +7595,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Experiments$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID of the experiment to update.
      */
     accountId?: string;
@@ -7736,11 +7618,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Experiments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID of the experiment to update.
      */
@@ -8728,11 +8605,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Filters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to delete the filter for.
      */
     accountId?: string;
@@ -8743,11 +8615,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Filters$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve filters for.
      */
@@ -8760,11 +8627,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Filters$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create filter for.
      */
     accountId?: string;
@@ -8776,11 +8638,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Filters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve filters for.
      */
@@ -8797,11 +8654,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Filters$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the filter belongs.
      */
     accountId?: string;
@@ -8817,11 +8669,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Filters$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the filter belongs.
      */
@@ -9707,11 +9554,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Goals$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to retrieve the goal for.
      */
     accountId?: string;
@@ -9730,11 +9572,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Goals$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the goal for.
      */
@@ -9755,11 +9592,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Goals$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve goals for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
@@ -9784,11 +9616,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Goals$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to update the goal.
      */
     accountId?: string;
@@ -9812,11 +9639,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Goals$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the goal.
      */
@@ -10773,11 +10595,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profilefilterlinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the profile filter link belongs.
      */
     accountId?: string;
@@ -10796,11 +10613,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profilefilterlinks$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve profile filter link for.
      */
@@ -10821,11 +10633,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profilefilterlinks$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create profile filter link for.
      */
     accountId?: string;
@@ -10845,11 +10652,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profilefilterlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve profile filter links for.
      */
@@ -10874,11 +10676,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profilefilterlinks$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which profile filter link belongs.
      */
     accountId?: string;
@@ -10902,11 +10699,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profilefilterlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which profile filter link belongs.
      */
@@ -11971,11 +11763,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profiles$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to delete the view (profile) for.
      */
     accountId?: string;
@@ -11990,11 +11777,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profiles$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve the view (profile) for.
      */
@@ -12011,11 +11793,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profiles$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the view (profile) for.
      */
     accountId?: string;
@@ -12031,11 +11808,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profiles$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID for the view (profiles) to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access.
      */
@@ -12056,11 +11828,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profiles$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the view (profile) belongs
      */
     accountId?: string;
@@ -12080,11 +11847,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profiles$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the view (profile) belongs
      */
@@ -12714,11 +12476,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Profileuserlinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to delete the user link for.
      */
     accountId?: string;
@@ -12737,11 +12494,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profileuserlinks$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the user link for.
      */
@@ -12762,11 +12514,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profileuserlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID which the given view (profile) belongs to.
      */
@@ -12790,11 +12537,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Profileuserlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the user link for.
      */
@@ -13794,11 +13536,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Remarketingaudience$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the remarketing audience belongs.
      */
     accountId?: string;
@@ -13813,11 +13550,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Remarketingaudience$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account ID of the remarketing audience to retrieve.
      */
@@ -13834,11 +13566,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Remarketingaudience$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account ID for which to create the remarketing audience.
      */
     accountId?: string;
@@ -13854,11 +13581,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Remarketingaudience$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account ID of the remarketing audiences to retrieve.
      */
@@ -13883,11 +13605,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Remarketingaudience$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The account ID of the remarketing audience to update.
      */
     accountId?: string;
@@ -13907,11 +13624,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Remarketingaudience$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The account ID of the remarketing audience to update.
      */
@@ -14085,11 +13797,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Management$Segments$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of segments to include in this response.
      */
@@ -14764,11 +14471,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Unsampledreports$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to delete the unsampled report for.
      */
     accountId?: string;
@@ -14787,11 +14489,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Unsampledreports$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve unsampled report for.
      */
@@ -14812,11 +14509,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Unsampledreports$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to create the unsampled report for.
      */
     accountId?: string;
@@ -14836,11 +14528,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Unsampledreports$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve unsampled reports for. Must be a specific account ID, ~all is not supported.
      */
@@ -15489,11 +15176,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Uploads$Deleteuploaddata
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account Id for the uploads to be deleted.
      */
     accountId?: string;
@@ -15514,11 +15196,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Uploads$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account Id for the upload to retrieve.
      */
     accountId?: string;
@@ -15537,11 +15214,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Uploads$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account Id for the uploads to retrieve.
      */
@@ -15565,11 +15237,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Uploads$Uploaddata
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account Id associated with the upload.
      */
@@ -16451,11 +16118,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webproperties$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to retrieve the web property for.
      */
     accountId?: string;
@@ -16466,11 +16128,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webproperties$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the web property for.
      */
@@ -16483,11 +16140,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webproperties$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
      */
@@ -16504,11 +16156,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webproperties$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to which the web property belongs
      */
     accountId?: string;
@@ -16524,11 +16171,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webproperties$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to which the web property belongs
      */
@@ -17481,11 +17123,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webpropertyadwordslinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the account which the given web property belongs to.
      */
     accountId?: string;
@@ -17500,11 +17137,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -17521,11 +17153,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webpropertyadwordslinks$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the Google Analytics account to create the link for.
      */
     accountId?: string;
@@ -17541,11 +17168,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -17566,11 +17188,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webpropertyadwordslinks$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the account which the given web property belongs to.
      */
     accountId?: string;
@@ -17590,11 +17207,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the account which the given web property belongs to.
      */
@@ -18212,11 +17824,6 @@ export namespace analytics_v3 {
   export interface Params$Resource$Management$Webpropertyuserlinks$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Account ID to delete the user link for.
      */
     accountId?: string;
@@ -18231,11 +17838,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to create the user link for.
      */
@@ -18252,11 +17854,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID which the given web property belongs to.
      */
@@ -18276,11 +17873,6 @@ export namespace analytics_v3 {
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Account ID to update the account-user link for.
      */
@@ -18456,11 +18048,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Metadata$Columns$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
      */
@@ -18772,22 +18359,12 @@ export namespace analytics_v3 {
   export interface Params$Resource$Provisioning$Createaccountticket
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccountTicket;
   }
   export interface Params$Resource$Provisioning$Createaccounttree
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -18962,11 +18539,6 @@ export namespace analytics_v3 {
 
   export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */

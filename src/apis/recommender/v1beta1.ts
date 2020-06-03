@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace recommender_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -995,22 +1007,12 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the insight.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Insighttypes$Insights$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
      */
@@ -1030,11 +1032,6 @@ export namespace recommender_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Name of the insight.
      */
@@ -1942,22 +1939,12 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the recommendation.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
      */
@@ -1978,11 +1965,6 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the recommendation.
      */
     name?: string;
@@ -1995,11 +1977,6 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the recommendation.
      */
     name?: string;
@@ -2011,11 +1988,6 @@ export namespace recommender_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Name of the recommendation.
      */

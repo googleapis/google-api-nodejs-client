@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace youtube_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -4707,11 +4719,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Activities$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     channelId?: string;
@@ -5580,11 +5587,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Captions$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -5599,11 +5601,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Captions$Download
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the caption track to download, required for One Platform.
      */
@@ -5626,11 +5623,6 @@ export namespace youtube_v3 {
     tlang?: string;
   }
   export interface Params$Resource$Captions$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the Google+ Page for the channel that the request is be on behalf of
      */
@@ -5670,11 +5662,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Captions$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Returns the captions with the given IDs for Stubby or Apiary.
      */
     id?: string[];
@@ -5696,11 +5683,6 @@ export namespace youtube_v3 {
     videoId?: string;
   }
   export interface Params$Resource$Captions$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * ID of the Google+ Page for the channel that the request is on behalf of.
      */
@@ -5946,11 +5928,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Channelbanners$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Unused, channel_id is currently derived from the security context of the requestor.
      */
@@ -6386,11 +6363,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Channels$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Return the channels within the specified guide category ID.
      */
     categoryId?: string;
@@ -6436,11 +6408,6 @@ export namespace youtube_v3 {
     part?: string[];
   }
   export interface Params$Resource$Channels$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
      */
@@ -7159,11 +7126,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Channelsections$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -7174,11 +7136,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Channelsections$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -7199,11 +7156,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Channelsections$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return the ChannelSections owned by the specified channel ID.
      */
@@ -7231,11 +7183,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Channelsections$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -8103,21 +8050,11 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
   }
   export interface Params$Resource$Comments$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. Set the parameter value to <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2 units.
      */
@@ -8129,11 +8066,6 @@ export namespace youtube_v3 {
     requestBody?: Schema$Comment;
   }
   export interface Params$Resource$Comments$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Returns the comments with the given IDs for One Platform.
      */
@@ -8162,22 +8094,12 @@ export namespace youtube_v3 {
   export interface Params$Resource$Comments$Markasspam
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Flags the comments with the given IDs as spam in the caller's opinion.
      */
     id?: string[];
   }
   export interface Params$Resource$Comments$Setmoderationstatus
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set to true the author of the comment gets added to the ban list. This means all future comments of the author will autmomatically be rejected. Only valid in combination with STATUS_REJECTED.
      */
@@ -8192,11 +8114,6 @@ export namespace youtube_v3 {
     moderationStatus?: string;
   }
   export interface Params$Resource$Comments$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. You must at least include the <code>snippet</code> part in the parameter value since that part contains all of the properties that the API request can update.
      */
@@ -8707,11 +8624,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Commentthreads$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The <code><strong>part</strong></code> parameter identifies the properties that the API response will include. Set the parameter value to <code>snippet</code>. The <code>snippet</code> part has a quota cost of 2 units.
      */
     part?: string[];
@@ -8723,11 +8635,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Commentthreads$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Returns the comment threads of all videos of the channel and the channel comments as well.
      */
@@ -8775,11 +8682,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Commentthreads$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter specifies a comma-separated list of <code>commentThread</code> resource properties that the API response will include. You must at least include the <code>snippet</code> part in the parameter value since that part contains all of the properties that the API request can update.
      */
@@ -8962,11 +8864,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Guidecategories$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     hl?: string;
@@ -9143,11 +9040,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$I18nlanguages$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     hl?: string;
@@ -9313,11 +9205,6 @@ export namespace youtube_v3 {
   }
 
   export interface Params$Resource$I18nregions$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -10676,11 +10563,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Livebroadcasts$Bind
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Broadcast to bind to the stream
      */
     id?: string;
@@ -10703,11 +10585,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livebroadcasts$Control
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether display or hide slate.
      */
@@ -10740,11 +10617,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Livebroadcasts$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -10759,11 +10631,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livebroadcasts$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -10784,11 +10651,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livebroadcasts$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return broadcasts with a certain status, e.g. active broadcasts.
      */
@@ -10829,11 +10691,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Livebroadcasts$Transition
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The status to which the broadcast is going to transition.
      */
     broadcastStatus?: string;
@@ -10856,11 +10713,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livebroadcasts$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -11168,22 +11020,12 @@ export namespace youtube_v3 {
   export interface Params$Resource$Livechatbans$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
   }
   export interface Params$Resource$Livechatbans$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to <code>snippet</code>.
      */
@@ -11659,22 +11501,12 @@ export namespace youtube_v3 {
   export interface Params$Resource$Livechatmessages$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
   }
   export interface Params$Resource$Livechatmessages$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter serves two purposes. It identifies the properties that the write operation will set as well as the properties that the API response will include. Set the parameter value to <code>snippet</code>.
      */
@@ -11687,11 +11519,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livechatmessages$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Specifies the localization language in which the system messages should be returned.
      */
@@ -12176,22 +12003,12 @@ export namespace youtube_v3 {
   export interface Params$Resource$Livechatmoderators$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
   }
   export interface Params$Resource$Livechatmoderators$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response returns. Set the parameter value to <code>snippet</code>.
      */
@@ -12204,11 +12021,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livechatmoderators$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The id of the live chat for which moderators should be returned.
      */
@@ -12994,11 +12806,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Livestreams$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -13013,11 +12820,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livestreams$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -13037,11 +12839,6 @@ export namespace youtube_v3 {
     requestBody?: Schema$LiveStream;
   }
   export interface Params$Resource$Livestreams$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return LiveStreams with the given ids from Stubby or Apiary.
      */
@@ -13073,11 +12870,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Livestreams$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -13274,11 +13066,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Members$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Comma separated list of channel IDs. Only data about members that are part of this list will be included in the response.
      */
     filterByMemberChannelId?: string;
@@ -13465,11 +13252,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Membershipslevels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter specifies the <code>membershipsLevel</code> resource parts that the API response will include. Supported values are <code>id</code> and <code>snippet</code>.
      */
@@ -14169,11 +13951,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Playlistitems$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -14184,11 +13961,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Playlistitems$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -14205,11 +13977,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Playlistitems$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -14241,11 +14008,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Playlistitems$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -14998,11 +14760,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Playlists$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -15012,11 +14769,6 @@ export namespace youtube_v3 {
     onBehalfOfContentOwner?: string;
   }
   export interface Params$Resource$Playlists$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -15036,11 +14788,6 @@ export namespace youtube_v3 {
     requestBody?: Schema$Playlist;
   }
   export interface Params$Resource$Playlists$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return the playlists owned by the specified channel ID.
      */
@@ -15079,11 +14826,6 @@ export namespace youtube_v3 {
     part?: string[];
   }
   export interface Params$Resource$Playlists$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -15361,11 +15103,6 @@ export namespace youtube_v3 {
   }
 
   export interface Params$Resource$Search$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Filter on resources belonging to this channelId.
      */
@@ -15659,11 +15396,6 @@ export namespace youtube_v3 {
   }
 
   export interface Params$Resource$Sponsors$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Parameter that specifies which channel sponsors to return.
      */
@@ -16199,22 +15931,12 @@ export namespace youtube_v3 {
   export interface Params$Resource$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
   }
   export interface Params$Resource$Subscriptions$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The <code><strong>part</strong></code> parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
      */
@@ -16227,11 +15949,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Subscriptions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return the subscriptions of the given channel owner.
      */
@@ -16456,11 +16173,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Superchatevents$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Return rendered funding amounts in specified language.
      */
     hl?: string;
@@ -16660,11 +16372,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Thumbnails$Set extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
@@ -16856,11 +16563,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Videoabusereportreasons$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     hl?: string;
@@ -17040,11 +16742,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Videocategories$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */
@@ -18312,11 +18009,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Videos$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -18327,11 +18019,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Videos$Getrating extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string[];
@@ -18341,11 +18028,6 @@ export namespace youtube_v3 {
     onBehalfOfContentOwner?: string;
   }
   export interface Params$Resource$Videos$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Should auto-levels be applied to the upload.
      */
@@ -18392,11 +18074,6 @@ export namespace youtube_v3 {
     };
   }
   export interface Params$Resource$Videos$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Return the videos that are in the specified chart.
      */
@@ -18452,11 +18129,6 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Videos$Rate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     id?: string;
@@ -18468,11 +18140,6 @@ export namespace youtube_v3 {
   export interface Params$Resource$Videos$Reportabuse
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
@@ -18483,11 +18150,6 @@ export namespace youtube_v3 {
     requestBody?: Schema$VideoAbuseReport;
   }
   export interface Params$Resource$Videos$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * <strong>Note:</strong> This parameter is intended exclusively for YouTube content partners.<br><br>The <code><strong>onBehalfOfContentOwner</strong></code> parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
@@ -18817,11 +18479,6 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Watermarks$Set extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      *
      */
     channelId?: string;
@@ -18851,11 +18508,6 @@ export namespace youtube_v3 {
     };
   }
   export interface Params$Resource$Watermarks$Unset extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      *
      */

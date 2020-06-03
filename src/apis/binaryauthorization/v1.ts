@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace binaryauthorization_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -647,22 +659,12 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Getpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The resource name of the policy to retrieve, in the format `projects/x/policy`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updatepolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. The resource name, in the format `projects/x/policy`. There is at most one policy per project.
      */
@@ -1830,11 +1832,6 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Attestors$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The attestors ID.
      */
     attestorId?: string;
@@ -1851,11 +1848,6 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Attestors$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the attestors to delete, in the format `projects/x/attestors/x`.
      */
     name?: string;
@@ -1863,22 +1855,12 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Attestors$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the attestor to retrieve, in the format `projects/x/attestors/x`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Attestors$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1890,11 +1872,6 @@ export namespace binaryauthorization_v1 {
   }
   export interface Params$Resource$Projects$Attestors$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      */
@@ -1911,11 +1888,6 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Attestors$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1928,11 +1900,6 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Attestors$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1944,11 +1911,6 @@ export namespace binaryauthorization_v1 {
   }
   export interface Params$Resource$Projects$Attestors$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The resource name, in the format: `projects/x/attestors/x`. This field may not be updated.
      */
@@ -2412,11 +2374,6 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Policy$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
@@ -2427,11 +2384,6 @@ export namespace binaryauthorization_v1 {
   }
   export interface Params$Resource$Projects$Policy$Setiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
@@ -2444,11 +2396,6 @@ export namespace binaryauthorization_v1 {
   }
   export interface Params$Resource$Projects$Policy$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

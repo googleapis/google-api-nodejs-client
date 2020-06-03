@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace bigqueryconnection_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1709,11 +1721,6 @@ export namespace bigqueryconnection_v1beta1 {
   export interface Params$Resource$Projects$Locations$Connections$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. Connection id that should be assigned to the created connection.
      */
     connectionId?: string;
@@ -1730,11 +1737,6 @@ export namespace bigqueryconnection_v1beta1 {
   export interface Params$Resource$Projects$Locations$Connections$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the deleted connection, for example: `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
      */
     name?: string;
@@ -1742,22 +1744,12 @@ export namespace bigqueryconnection_v1beta1 {
   export interface Params$Resource$Projects$Locations$Connections$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Name of the requested connection, for example: `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -1770,11 +1762,6 @@ export namespace bigqueryconnection_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Connections$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Maximum number of results per page.
      */
@@ -1790,11 +1777,6 @@ export namespace bigqueryconnection_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Connections$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Name of the connection to update, for example: `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
      */
@@ -1812,11 +1794,6 @@ export namespace bigqueryconnection_v1beta1 {
   export interface Params$Resource$Projects$Locations$Connections$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1829,11 +1806,6 @@ export namespace bigqueryconnection_v1beta1 {
   export interface Params$Resource$Projects$Locations$Connections$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -1845,11 +1817,6 @@ export namespace bigqueryconnection_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Connections$Updatecredential
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Name of the connection, for example: `projects/{project_id}/locations/{location_id}/connections/{connection_id}/credential`
      */

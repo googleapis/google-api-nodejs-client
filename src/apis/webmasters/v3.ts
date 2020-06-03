@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace webmasters_v3 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -424,11 +436,6 @@ export namespace webmasters_v3 {
 
   export interface Params$Resource$Searchanalytics$Query
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
@@ -983,11 +990,6 @@ export namespace webmasters_v3 {
 
   export interface Params$Resource$Sitemaps$Delete extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      */
     feedpath?: string;
@@ -997,11 +999,6 @@ export namespace webmasters_v3 {
     siteUrl?: string;
   }
   export interface Params$Resource$Sitemaps$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      */
@@ -1013,11 +1010,6 @@ export namespace webmasters_v3 {
   }
   export interface Params$Resource$Sitemaps$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
      */
     sitemapIndex?: string;
@@ -1027,11 +1019,6 @@ export namespace webmasters_v3 {
     siteUrl?: string;
   }
   export interface Params$Resource$Sitemaps$Submit extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
      */
@@ -1563,21 +1550,11 @@ export namespace webmasters_v3 {
 
   export interface Params$Resource$Sites$Add extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The URL of the site to add.
      */
     siteUrl?: string;
   }
   export interface Params$Resource$Sites$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
      */
@@ -1585,19 +1562,9 @@ export namespace webmasters_v3 {
   }
   export interface Params$Resource$Sites$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sites$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Sites$List extends StandardParameters {}
 }

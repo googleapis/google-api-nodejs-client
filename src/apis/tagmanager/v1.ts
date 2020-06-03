@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace tagmanager_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1404,27 +1416,12 @@ export namespace tagmanager_v1 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+  export interface Params$Resource$Accounts$List extends StandardParameters {}
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -2210,11 +2207,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -2227,11 +2219,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -2242,11 +2229,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -2259,22 +2241,12 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -3064,11 +3036,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Environments$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3085,11 +3052,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Environments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3104,11 +3066,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Environments$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -3125,11 +3082,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Environments$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3140,11 +3092,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -3905,11 +3852,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3926,11 +3868,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3945,11 +3882,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Folders$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -3966,11 +3898,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -3981,11 +3908,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Folders$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -4161,11 +4083,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Folders$Entities$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -4340,11 +4257,6 @@ export namespace tagmanager_v1 {
 
   export interface Params$Resource$Accounts$Containers$Move_folders$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -4555,11 +4467,6 @@ export namespace tagmanager_v1 {
 
   export interface Params$Resource$Accounts$Containers$Reauthorize_environments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -5389,11 +5296,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Tags$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -5410,11 +5312,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Tags$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -5429,11 +5326,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Tags$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -5450,11 +5342,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Tags$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -5465,11 +5352,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Tags$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -6343,11 +6225,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Triggers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -6364,11 +6241,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Triggers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -6383,11 +6255,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Triggers$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -6404,11 +6271,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Triggers$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -6419,11 +6281,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Triggers$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -7222,11 +7079,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Variables$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -7243,11 +7095,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Variables$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -7262,11 +7109,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Variables$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -7283,11 +7125,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Variables$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -7298,11 +7135,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Variables$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -8565,11 +8397,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8586,11 +8413,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8606,11 +8428,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8625,11 +8442,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -8650,11 +8462,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Publish
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8674,11 +8481,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Restore
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8694,11 +8496,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Containers$Versions$Undelete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -8713,11 +8510,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Containers$Versions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -9449,11 +9241,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Permissions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -9466,11 +9253,6 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Permissions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
@@ -9481,11 +9263,6 @@ export namespace tagmanager_v1 {
   }
   export interface Params$Resource$Accounts$Permissions$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */
@@ -9498,22 +9275,12 @@ export namespace tagmanager_v1 {
   export interface Params$Resource$Accounts$Permissions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The GTM Account ID.
      */
     accountId?: string;
   }
   export interface Params$Resource$Accounts$Permissions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The GTM Account ID.
      */

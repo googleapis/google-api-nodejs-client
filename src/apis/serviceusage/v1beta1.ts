@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace serviceusage_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1999,21 +2011,11 @@ export namespace serviceusage_v1beta1 {
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -2796,11 +2798,6 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Batchenable
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Parent to enable services on.  An example name would be: `projects/123` where `123` is the project number (not project ID).  The `BatchEnableServices` method currently only supports projects.
      */
     parent?: string;
@@ -2811,11 +2808,6 @@ export namespace serviceusage_v1beta1 {
     requestBody?: Schema$BatchEnableServicesRequest;
   }
   export interface Params$Resource$Services$Disable extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Name of the consumer and service to disable the service on.  The enable and disable methods currently only support projects.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
      */
@@ -2828,11 +2820,6 @@ export namespace serviceusage_v1beta1 {
   }
   export interface Params$Resource$Services$Enable extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the consumer and service to enable the service on.  The `EnableService` and `DisableService` methods currently only support projects.  Enabling a service requires that the service is public or is shared with the user enabling the service.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
      */
     name?: string;
@@ -2844,21 +2831,11 @@ export namespace serviceusage_v1beta1 {
   }
   export interface Params$Resource$Services$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Name of the consumer and service to get the `ConsumerState` for.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
      */
     name?: string;
   }
   export interface Params$Resource$Services$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Only list services that conform to the given filter. The allowed filter strings are `state:ENABLED` and `state:DISABLED`.
      */
@@ -3194,11 +3171,6 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The resource name of the quota limit.  An example name would be: projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests
      */
     name?: string;
@@ -3209,11 +3181,6 @@ export namespace serviceusage_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested size of the next page of data.
      */
@@ -3395,11 +3362,6 @@ export namespace serviceusage_v1beta1 {
 
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the quota limit.  Use the quota limit resource name returned by previous ListConsumerQuotaMetrics and GetConsumerQuotaMetric API calls.
      */
@@ -4054,11 +4016,6 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
     force?: boolean;
@@ -4075,11 +4032,6 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
     force?: boolean;
@@ -4090,11 +4042,6 @@ export namespace serviceusage_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested size of the next page of data.
      */
@@ -4110,11 +4057,6 @@ export namespace serviceusage_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
@@ -4780,11 +4722,6 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
     force?: boolean;
@@ -4801,11 +4738,6 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */
     force?: boolean;
@@ -4816,11 +4748,6 @@ export namespace serviceusage_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Requested size of the next page of data.
      */
@@ -4836,11 +4763,6 @@ export namespace serviceusage_v1beta1 {
   }
   export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
      */

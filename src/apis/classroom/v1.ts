@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace classroom_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2207,21 +2219,11 @@ export namespace classroom_v1 {
 
   export interface Params$Resource$Courses$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Course;
   }
   export interface Params$Resource$Courses$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course to delete. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -2229,21 +2231,11 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course to return. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     id?: string;
   }
   export interface Params$Resource$Courses$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Restricts returned courses to those in one of the specified states The default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
      */
@@ -2267,11 +2259,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Patch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     id?: string;
@@ -2286,11 +2273,6 @@ export namespace classroom_v1 {
     requestBody?: Schema$Course;
   }
   export interface Params$Resource$Courses$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -2748,11 +2730,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Aliases$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -2765,11 +2742,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Aliases$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Alias to delete. This may not be the Classroom-assigned identifier.
      */
     alias?: string;
@@ -2780,11 +2752,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Aliases$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -3764,11 +3731,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Announcements$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -3781,11 +3743,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Announcements$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -3797,11 +3754,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Announcements$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -3812,11 +3764,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Announcements$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
      */
@@ -3841,11 +3788,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Announcements$Modifyassignees
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -3861,11 +3803,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Announcements$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -4925,11 +4862,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -4942,11 +4874,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -4958,11 +4885,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -4973,11 +4895,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Coursework$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -5002,11 +4919,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Modifyassignees
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -5022,11 +4934,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Coursework$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -6211,11 +6118,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -6230,11 +6132,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -6267,11 +6164,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -6291,11 +6183,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -6321,11 +6208,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -6346,11 +6228,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -6370,11 +6247,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7008,11 +6880,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Students$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -7029,11 +6896,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Students$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -7045,11 +6907,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Students$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -7060,11 +6917,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Students$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -7684,11 +7536,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Teachers$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -7701,11 +7548,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Teachers$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -7717,11 +7559,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Teachers$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -7732,11 +7569,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Teachers$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -8502,11 +8334,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Topics$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -8519,11 +8346,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Topics$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
     courseId?: string;
@@ -8535,11 +8357,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Courses$Topics$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the course.
      */
     courseId?: string;
@@ -8550,11 +8367,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Topics$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -8570,11 +8382,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Courses$Topics$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      */
@@ -9296,22 +9103,12 @@ export namespace classroom_v1 {
   export interface Params$Resource$Invitations$Accept
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the invitation to accept.
      */
     id?: string;
   }
   export interface Params$Resource$Invitations$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -9320,32 +9117,17 @@ export namespace classroom_v1 {
   export interface Params$Resource$Invitations$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the invitation to delete.
      */
     id?: string;
   }
   export interface Params$Resource$Invitations$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Identifier of the invitation to return.
      */
     id?: string;
   }
   export interface Params$Resource$Invitations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Restricts returned invitations to those for a course with the specified identifier.
      */
@@ -9642,22 +9424,12 @@ export namespace classroom_v1 {
   export interface Params$Resource$Registrations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Registration;
   }
   export interface Params$Resource$Registrations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `registration_id` of the `Registration` to be deleted.
      */
@@ -9823,11 +9595,6 @@ export namespace classroom_v1 {
   }
 
   export interface Params$Resource$Userprofiles$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Identifier of the profile to return. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      */
@@ -10481,11 +10248,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Userprofiles$Guardianinvitations$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the student (in standard format)
      */
     studentId?: string;
@@ -10498,11 +10260,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Userprofiles$Guardianinvitations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `id` field of the `GuardianInvitation` being requested.
      */
     invitationId?: string;
@@ -10513,11 +10270,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Userprofiles$Guardianinvitations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If specified, only results with the specified `invited_email_address` are returned.
      */
@@ -10541,11 +10293,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Userprofiles$Guardianinvitations$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The `id` field of the `GuardianInvitation` to be modified.
      */
@@ -11024,11 +10771,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Userprofiles$Guardians$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `id` field from a `Guardian`.
      */
     guardianId?: string;
@@ -11040,11 +10782,6 @@ export namespace classroom_v1 {
   export interface Params$Resource$Userprofiles$Guardians$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The `id` field from a `Guardian`.
      */
     guardianId?: string;
@@ -11055,11 +10792,6 @@ export namespace classroom_v1 {
   }
   export interface Params$Resource$Userprofiles$Guardians$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
      */

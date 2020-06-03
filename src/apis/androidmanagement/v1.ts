@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace androidmanagement_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2387,11 +2399,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The enterprise token appended to the callback URL.
      */
     enterpriseToken?: string;
@@ -2411,22 +2418,12 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
@@ -2587,11 +2584,6 @@ export namespace androidmanagement_v1 {
 
   export interface Params$Resource$Enterprises$Applications$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
      */
@@ -3405,11 +3397,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
     name?: string;
@@ -3425,22 +3412,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Issuecommand
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
@@ -3453,11 +3430,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The requested page size. The actual page size may be fixed to a min or max value.
      */
@@ -3473,11 +3445,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Devices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
@@ -4034,22 +4001,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Operations$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource to be deleted.
      */
@@ -4058,22 +4015,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the operation resource.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The standard list filter.
      */
@@ -4386,11 +4333,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Enrollmenttokens$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
@@ -4402,11 +4344,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Enrollmenttokens$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the enrollment token in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
      */
@@ -5201,11 +5138,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Policies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      */
     name?: string;
@@ -5213,22 +5145,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Policies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Policies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The requested page size. The actual page size may be fixed to a min or max value.
      */
@@ -5244,11 +5166,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Policies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      */
@@ -5979,11 +5896,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
@@ -5996,11 +5908,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.
      */
     name?: string;
@@ -6008,22 +5915,12 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the web app in the form enterprises/{enterpriseId}/webApp/{packageName}.
      */
     name?: string;
   }
   export interface Params$Resource$Enterprises$Webapps$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The requested page size. The actual page size may be fixed to a min or max value.
      */
@@ -6039,11 +5936,6 @@ export namespace androidmanagement_v1 {
   }
   export interface Params$Resource$Enterprises$Webapps$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.
      */
@@ -6218,11 +6110,6 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webtokens$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
     parent?: string;
@@ -6375,11 +6262,6 @@ export namespace androidmanagement_v1 {
 
   export interface Params$Resource$Signupurls$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
      */

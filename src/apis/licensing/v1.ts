@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace licensing_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1245,11 +1257,6 @@ export namespace licensing_v1 {
   export interface Params$Resource$Licenseassignments$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
@@ -1264,11 +1271,6 @@ export namespace licensing_v1 {
   }
   export interface Params$Resource$Licenseassignments$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
@@ -1285,11 +1287,6 @@ export namespace licensing_v1 {
   export interface Params$Resource$Licenseassignments$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
@@ -1305,11 +1302,6 @@ export namespace licensing_v1 {
   }
   export interface Params$Resource$Licenseassignments$Listforproduct
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      */
@@ -1329,11 +1321,6 @@ export namespace licensing_v1 {
   }
   export interface Params$Resource$Licenseassignments$Listforproductandsku
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      */
@@ -1358,11 +1345,6 @@ export namespace licensing_v1 {
   export interface Params$Resource$Licenseassignments$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
@@ -1382,11 +1364,6 @@ export namespace licensing_v1 {
   }
   export interface Params$Resource$Licenseassignments$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */

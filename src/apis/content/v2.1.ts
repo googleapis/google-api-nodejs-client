@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace content_v2_1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -6839,19 +6851,9 @@ export namespace content_v2_1 {
   }
 
   export interface Params$Resource$Accounts$Authinfo
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Accounts$Claimwebsite
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account whose website is claimed.
      */
@@ -6868,21 +6870,11 @@ export namespace content_v2_1 {
   export interface Params$Resource$Accounts$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccountsCustomBatchRequest;
   }
   export interface Params$Resource$Accounts$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account.
      */
@@ -6898,11 +6890,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account.
      */
     accountId?: string;
@@ -6912,11 +6899,6 @@ export namespace content_v2_1 {
     merchantId?: string;
   }
   export interface Params$Resource$Accounts$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the managing account. This must be a multi-client account.
      */
@@ -6928,11 +6910,6 @@ export namespace content_v2_1 {
     requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Link extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that should be linked.
      */
@@ -6949,11 +6926,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The maximum number of accounts to return in the response, used for paging.
      */
     maxResults?: number;
@@ -6968,11 +6940,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Accounts$Listlinks
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to list links.
      */
@@ -6991,11 +6958,6 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account.
      */
@@ -7455,22 +7417,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Accountstatuses$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccountstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Accountstatuses$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account.
      */
@@ -7486,11 +7438,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Accountstatuses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -8088,21 +8035,11 @@ export namespace content_v2_1 {
   export interface Params$Resource$Accounttax$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccounttaxCustomBatchRequest;
   }
   export interface Params$Resource$Accounttax$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get/update account tax settings.
      */
@@ -8113,11 +8050,6 @@ export namespace content_v2_1 {
     merchantId?: string;
   }
   export interface Params$Resource$Accounttax$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of tax settings to return in the response, used for paging.
      */
@@ -8133,11 +8065,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Accounttax$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get/update account tax settings.
      */
@@ -9170,21 +9097,11 @@ export namespace content_v2_1 {
   export interface Params$Resource$Datafeeds$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DatafeedsCustomBatchRequest;
   }
   export interface Params$Resource$Datafeeds$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the datafeed.
      */
@@ -9197,11 +9114,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Datafeeds$Fetchnow
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the datafeed to be fetched.
      */
     datafeedId?: string;
@@ -9211,11 +9123,6 @@ export namespace content_v2_1 {
     merchantId?: string;
   }
   export interface Params$Resource$Datafeeds$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the datafeed.
      */
@@ -9227,11 +9134,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Datafeeds$Insert extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      */
     merchantId?: string;
@@ -9242,11 +9144,6 @@ export namespace content_v2_1 {
     requestBody?: Schema$Datafeed;
   }
   export interface Params$Resource$Datafeeds$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of products to return in the response, used for paging.
      */
@@ -9261,11 +9158,6 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
   export interface Params$Resource$Datafeeds$Update extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the datafeed.
      */
@@ -9733,22 +9625,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Datafeedstatuses$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$DatafeedstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Datafeedstatuses$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      */
@@ -9768,11 +9650,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Datafeedstatuses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of products to return in the response, used for paging.
      */
@@ -11305,21 +11182,11 @@ export namespace content_v2_1 {
   export interface Params$Resource$Liasettings$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$LiasettingsCustomBatchRequest;
   }
   export interface Params$Resource$Liasettings$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get or update LIA settings.
      */
@@ -11332,11 +11199,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve accessible Google My Business accounts.
      */
     accountId?: string;
@@ -11346,11 +11208,6 @@ export namespace content_v2_1 {
     merchantId?: string;
   }
   export interface Params$Resource$Liasettings$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of LIA settings to return in the response, used for paging.
      */
@@ -11365,19 +11222,9 @@ export namespace content_v2_1 {
     pageToken?: string;
   }
   export interface Params$Resource$Liasettings$Listposdataproviders
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
+    extends StandardParameters {}
   export interface Params$Resource$Liasettings$Requestgmbaccess
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which GMB access is requested.
      */
@@ -11394,11 +11241,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Liasettings$Requestinventoryverification
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     accountId?: string;
@@ -11413,11 +11255,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Liasettings$Setinventoryverificationcontact
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -11446,11 +11283,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Liasettings$Setposdataprovider
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve accessible Google My Business accounts.
      */
     accountId?: string;
@@ -11473,11 +11305,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Liasettings$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get or update LIA settings.
      */
@@ -11810,22 +11637,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Localinventory$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$LocalinventoryCustomBatchRequest;
   }
   export interface Params$Resource$Localinventory$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
@@ -12177,11 +11994,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orderinvoices$Createchargeinvoice
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -12197,11 +12009,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orderinvoices$Createrefundinvoice
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -12553,11 +12360,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orderreports$Listdisbursements
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The last date which disbursements occurred. In ISO 8601 format. Default: current date.
      */
     disbursementEndDate?: string;
@@ -12580,11 +12382,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orderreports$Listtransactions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Google-provided ID of the disbursement (found in Wallet).
      */
@@ -13243,11 +13040,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orderreturns$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -13263,11 +13055,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orderreturns$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -13278,11 +13065,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orderreturns$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Obtains order returns that match the acknowledgement status. When set to true, obtains order returns that have been acknowledged. When false, obtains order returns that have not been acknowledged. When not provided, obtains order returns regardless of their acknowledgement status. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged order returns are returned.
      */
@@ -13334,11 +13116,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orderreturns$Process
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16302,11 +16079,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Acknowledge
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16323,11 +16095,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Advancetestorder
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16337,11 +16104,6 @@ export namespace content_v2_1 {
     orderId?: string;
   }
   export interface Params$Resource$Orders$Cancel extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16359,11 +16121,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Cancellineitem
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16379,11 +16136,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orders$Canceltestorderbycustomer
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16401,11 +16153,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Createtestorder
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that should manage the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16417,11 +16164,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orders$Createtestreturn
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16438,11 +16180,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orders$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16454,11 +16191,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Getbymerchantorderid
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16469,11 +16201,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orders$Gettestordertemplate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The country of the template to retrieve. Defaults to `US`.
      */
@@ -16490,11 +16217,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Instorerefundlineitem
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16509,11 +16231,6 @@ export namespace content_v2_1 {
     requestBody?: Schema$OrdersInStoreRefundLineItemRequest;
   }
   export interface Params$Resource$Orders$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
      */
@@ -16550,11 +16267,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Rejectreturnlineitem
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16570,11 +16282,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orders$Returnrefundlineitem
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16592,11 +16299,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Setlineitemmetadata
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16612,11 +16314,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orders$Shiplineitems
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -16634,11 +16331,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Updatelineitemshippingdetails
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16655,11 +16347,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Updatemerchantorderid
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
     merchantId?: string;
@@ -16675,11 +16362,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Orders$Updateshipment
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that manages the order. This cannot be a multi-client account.
      */
@@ -17716,21 +17398,11 @@ export namespace content_v2_1 {
 
   export interface Params$Resource$Pos$Custombatch extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$PosCustomBatchRequest;
   }
   export interface Params$Resource$Pos$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the POS or inventory data provider.
      */
@@ -17746,11 +17418,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Pos$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the POS or inventory data provider.
      */
     merchantId?: string;
@@ -17764,11 +17431,6 @@ export namespace content_v2_1 {
     targetMerchantId?: string;
   }
   export interface Params$Resource$Pos$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the POS or inventory data provider.
      */
@@ -17785,11 +17447,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Pos$Inventory extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the POS or inventory data provider.
      */
     merchantId?: string;
@@ -17805,11 +17462,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Pos$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the POS or inventory data provider.
      */
     merchantId?: string;
@@ -17819,11 +17471,6 @@ export namespace content_v2_1 {
     targetMerchantId?: string;
   }
   export interface Params$Resource$Pos$Sale extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the POS or inventory data provider.
      */
@@ -18760,21 +18407,11 @@ export namespace content_v2_1 {
   export interface Params$Resource$Products$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ProductsCustomBatchRequest;
   }
   export interface Params$Resource$Products$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Content API Supplemental Feed ID.
      */
@@ -18790,11 +18427,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Products$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
     merchantId?: string;
@@ -18804,11 +18436,6 @@ export namespace content_v2_1 {
     productId?: string;
   }
   export interface Params$Resource$Products$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Content API Supplemental Feed ID.
      */
@@ -18824,11 +18451,6 @@ export namespace content_v2_1 {
     requestBody?: Schema$Product;
   }
   export interface Params$Resource$Products$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of products to return in the response, used for paging.
      */
@@ -19291,22 +18913,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Productstatuses$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ProductstatusesCustomBatchRequest;
   }
   export interface Params$Resource$Productstatuses$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -19322,11 +18934,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Productstatuses$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
@@ -19644,22 +19251,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Pubsubnotificationsettings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to get pubsub notification settings.
      */
     merchantId?: string;
   }
   export interface Params$Resource$Pubsubnotificationsettings$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account.
      */
@@ -19991,22 +19588,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Regionalinventory$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$RegionalinventoryCustomBatchRequest;
   }
   export interface Params$Resource$Regionalinventory$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account that contains the product. This account cannot be a multi-client account.
      */
@@ -20743,22 +20330,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Returnaddress$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ReturnaddressCustomBatchRequest;
   }
   export interface Params$Resource$Returnaddress$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Merchant Center account from which to delete the given return address.
      */
@@ -20771,11 +20348,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Returnaddress$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Merchant Center account to get a return address for.
      */
     merchantId?: string;
@@ -20786,11 +20358,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Returnaddress$Insert
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Merchant Center account to insert a return address for.
      */
@@ -20803,11 +20370,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Returnaddress$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * List only return addresses applicable to the given country of sale. When omitted, all return addresses are listed.
      */
@@ -21540,22 +21102,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Returnpolicy$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ReturnpolicyCustomBatchRequest;
   }
   export interface Params$Resource$Returnpolicy$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Merchant Center account from which to delete the given return policy.
      */
@@ -21566,11 +21118,6 @@ export namespace content_v2_1 {
     returnPolicyId?: string;
   }
   export interface Params$Resource$Returnpolicy$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Merchant Center account to get a return policy for.
      */
@@ -21583,11 +21130,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Returnpolicy$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Merchant Center account to insert a return policy for.
      */
     merchantId?: string;
@@ -21599,11 +21141,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Returnpolicy$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The Merchant Center account to list return policies for.
      */
@@ -21914,11 +21451,6 @@ export namespace content_v2_1 {
   export interface Params$Resource$Settlementreports$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Merchant Center account of the settlement report.
      */
     merchantId?: string;
@@ -21929,11 +21461,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Settlementreports$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of settlements to return in the response, used for paging. The default value is 200 returns per page, and the maximum allowed value is 5000 returns per page.
      */
@@ -22119,11 +21646,6 @@ export namespace content_v2_1 {
 
   export interface Params$Resource$Settlementtransactions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of transactions to return in the response, used for paging. The default value is 200 transactions per page, and the maximum allowed value is 5000 transactions per page.
      */
@@ -23193,22 +22715,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Shippingsettings$Custombatch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ShippingsettingsCustomBatchRequest;
   }
   export interface Params$Resource$Shippingsettings$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get/update shipping settings.
      */
@@ -23221,22 +22733,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Shippingsettings$Getsupportedcarriers
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve the supported carriers.
      */
     merchantId?: string;
   }
   export interface Params$Resource$Shippingsettings$Getsupportedholidays
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to retrieve the supported holidays.
      */
@@ -23245,22 +22747,12 @@ export namespace content_v2_1 {
   export interface Params$Resource$Shippingsettings$Getsupportedpickupservices
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The ID of the account for which to retrieve the supported pickup services.
      */
     merchantId?: string;
   }
   export interface Params$Resource$Shippingsettings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of shipping settings to return in the response, used for paging.
      */
@@ -23276,11 +22768,6 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Shippingsettings$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The ID of the account for which to get/update shipping settings.
      */

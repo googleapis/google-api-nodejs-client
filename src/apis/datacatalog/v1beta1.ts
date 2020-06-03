@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace datacatalog_v1beta1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1020,11 +1032,6 @@ export namespace datacatalog_v1beta1 {
 
   export interface Params$Resource$Catalog$Search extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1beta1SearchCatalogRequest;
@@ -1211,11 +1218,6 @@ export namespace datacatalog_v1beta1 {
   }
 
   export interface Params$Resource$Entries$Lookup extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive.  Examples:   * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId  * //pubsub.googleapis.com/projects/projectId/topics/topicId
      */
@@ -2498,11 +2500,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The id of the entry group to create. The id must begin with a letter or underscore, contain only English letters, numbers and underscores, and be at most 64 characters.
      */
     entryGroupId?: string;
@@ -2519,11 +2516,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Optional. If true, deletes all entries in the entry group.
      */
     force?: boolean;
@@ -2534,11 +2526,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the entry group. For example, `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`.
      */
@@ -2551,11 +2538,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2567,11 +2549,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Optional. The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
      */
@@ -2587,11 +2564,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the entry group in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}  Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
      */
@@ -2609,11 +2581,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2625,11 +2592,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3785,11 +3747,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The id of the entry to create.
      */
     entryId?: string;
@@ -3806,11 +3763,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the entry. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      */
     name?: string;
@@ -3818,22 +3770,12 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the entry. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -3846,11 +3788,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
      */
@@ -3871,11 +3808,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The Data Catalog resource name of the entry in URL format. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
@@ -3891,11 +3823,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4552,11 +4479,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Tag and its child resources may not actually be stored in the location in this name.
      */
     parent?: string;
@@ -4569,22 +4491,12 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the tag to delete. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of tags to return. Default is 10. Max limit is 1000.
      */
@@ -4600,11 +4512,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the tag in URL format. Example:  * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}  where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
@@ -5257,11 +5164,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}  Note that this Tag and its child resources may not actually be stored in the location in this name.
      */
     parent?: string;
@@ -5274,22 +5176,12 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the tag to delete. Example:  * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of tags to return. Default is 10. Max limit is 1000.
      */
@@ -5305,11 +5197,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Tags$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the tag in URL format. Example:  * projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}/tags/{tag_id}  where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
      */
@@ -6398,11 +6285,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions.  Example:  * projects/{project_id}/locations/us-central1
      */
     parent?: string;
@@ -6419,11 +6301,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Currently, this field must always be set to `true`. This confirms the deletion of any possible tags using this template. `force = false` will be supported in the future.
      */
     force?: boolean;
@@ -6435,22 +6312,12 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the tag template. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -6463,11 +6330,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Tagtemplates$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource name of the tag template in URL format. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}  Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
      */
@@ -6485,11 +6347,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -6501,11 +6358,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -7202,11 +7054,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).  Example:  * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      */
     parent?: string;
@@ -7223,11 +7070,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Currently, this field must always be set to `true`. This confirms the deletion of this field from any tags using this field. `force = false` will be supported in the future.
      */
     force?: boolean;
@@ -7238,11 +7080,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the tag template field. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      */
@@ -7259,11 +7096,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the tag template. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
      */
@@ -8823,11 +8655,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the project that the taxonomy will belong to.
      */
     parent?: string;
@@ -8840,22 +8667,12 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the taxonomy to be deleted. All policy tags in this taxonomy will also be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Export
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name of the project that taxonomies to be exported will share.
      */
@@ -8872,22 +8689,12 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the requested taxonomy.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -8901,11 +8708,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Import
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of project that the imported taxonomies will belong to.
      */
     parent?: string;
@@ -8917,11 +8719,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
      */
@@ -8937,11 +8734,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name of this taxonomy, whose format is: "projects/{project_number}/locations/{location_id}/taxonomies/{id}".
      */
@@ -8959,11 +8751,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -8975,11 +8762,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -10225,11 +10007,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the taxonomy that the policy tag will belong to.
      */
     parent?: string;
@@ -10242,11 +10019,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the policy tag to be deleted. All of its descendant policy tags will also be deleted.
      */
     name?: string;
@@ -10254,22 +10026,12 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name of the requested policy tag.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -10282,11 +10044,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
      */
@@ -10302,11 +10059,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name of this policy tag, whose format is: "projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{id}".
      */
@@ -10324,11 +10076,6 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -10340,11 +10087,6 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */

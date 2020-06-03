@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace customsearch_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -859,11 +871,6 @@ export namespace customsearch_v1 {
 
   export interface Params$Resource$Cse$List extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
      */
     c2coff?: string;
@@ -1466,11 +1473,6 @@ export namespace customsearch_v1 {
 
   export interface Params$Resource$Cse$Siterestrict$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
      */

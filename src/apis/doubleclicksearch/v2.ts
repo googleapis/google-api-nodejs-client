@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace doubleclicksearch_v2 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * Data format for the response.
      */
@@ -1124,11 +1136,6 @@ export namespace doubleclicksearch_v2 {
 
   export interface Params$Resource$Conversion$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Numeric ID of the ad group.
      */
     adGroupId?: string;
@@ -1176,11 +1183,6 @@ export namespace doubleclicksearch_v2 {
   export interface Params$Resource$Conversion$Insert
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ConversionList;
@@ -1188,22 +1190,12 @@ export namespace doubleclicksearch_v2 {
   export interface Params$Resource$Conversion$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ConversionList;
   }
   export interface Params$Resource$Conversion$Updateavailability
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1795,32 +1787,17 @@ export namespace doubleclicksearch_v2 {
 
   export interface Params$Resource$Reports$Generate extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$ReportRequest;
   }
   export interface Params$Resource$Reports$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * ID of the report request being polled.
      */
     reportId?: string;
   }
   export interface Params$Resource$Reports$Getfile extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The index of the report fragment to download.
      */
@@ -1831,11 +1808,6 @@ export namespace doubleclicksearch_v2 {
     reportId?: string;
   }
   export interface Params$Resource$Reports$Request extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Request body metadata
      */
@@ -1986,11 +1958,6 @@ export namespace doubleclicksearch_v2 {
 
   export interface Params$Resource$Savedcolumns$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * DS ID of the advertiser.
      */

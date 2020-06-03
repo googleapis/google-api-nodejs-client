@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace appengine_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2196,32 +2208,17 @@ export namespace appengine_v1 {
 
   export interface Params$Resource$Apps$Create extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Application;
   }
   export interface Params$Resource$Apps$Get extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the Application resource to get. Example: apps/myapp.
      */
     appsId?: string;
   }
   export interface Params$Resource$Apps$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the Application resource to update. Example: apps/myapp.
      */
@@ -2237,11 +2234,6 @@ export namespace appengine_v1 {
     requestBody?: Schema$Application;
   }
   export interface Params$Resource$Apps$Repair extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the application to repair. Example: apps/myapp
      */
@@ -3031,11 +3023,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizedcertificates$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
@@ -3048,11 +3035,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizedcertificates$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
      */
     appsId?: string;
@@ -3063,11 +3045,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
      */
@@ -3083,11 +3060,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -3107,11 +3079,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      */
@@ -3291,11 +3258,6 @@ export namespace appengine_v1 {
 
   export interface Params$Resource$Apps$Authorizeddomains$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -4048,11 +4010,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
@@ -4069,11 +4026,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
@@ -4085,11 +4037,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
@@ -4100,11 +4047,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Domainmappings$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -4120,11 +4062,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Domainmappings$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
      */
@@ -5032,11 +4969,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Firewall$Ingressrules$Batchupdate
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the Firewall collection to set. Example: apps/myapp/firewall/ingressRules.
      */
     appsId?: string;
@@ -5048,11 +4980,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Firewall$Ingressrules$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
      */
@@ -5066,11 +4993,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Firewall$Ingressrules$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the Firewall resource to delete. Example: apps/myapp/firewall/ingressRules/100.
      */
     appsId?: string;
@@ -5082,11 +5004,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Firewall$Ingressrules$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the Firewall resource to retrieve. Example: apps/myapp/firewall/ingressRules/100.
      */
     appsId?: string;
@@ -5097,11 +5014,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Firewall$Ingressrules$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the Firewall collection to retrieve. Example: apps/myapp/firewall/ingressRules.
      */
@@ -5121,11 +5033,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Firewall$Ingressrules$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the Firewall resource to update. Example: apps/myapp/firewall/ingressRules/100.
      */
@@ -5446,11 +5353,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Locations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Resource name for the location.
      */
     appsId?: string;
@@ -5461,11 +5363,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Locations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. The resource that owns the locations collection, if applicable.
      */
@@ -5785,11 +5682,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. The name of the operation resource.
      */
     appsId?: string;
@@ -5800,11 +5692,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. The name of the operation's parent resource.
      */
@@ -6415,11 +6302,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
      */
     appsId?: string;
@@ -6431,11 +6313,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
      */
     appsId?: string;
@@ -6446,11 +6323,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Services$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
@@ -6466,11 +6338,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Services$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
      */
@@ -7352,11 +7219,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
      */
     appsId?: string;
@@ -7373,11 +7235,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      */
     appsId?: string;
@@ -7392,11 +7249,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Services$Versions$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      */
@@ -7416,11 +7268,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Services$Versions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Service resource. Example: apps/myapp/services/default.
      */
@@ -7444,11 +7291,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Services$Versions$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
      */
@@ -8091,11 +7933,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Instances$Debug
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      */
     appsId?: string;
@@ -8120,11 +7957,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Instances$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      */
     appsId?: string;
@@ -8144,11 +7976,6 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Instances$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      */
     appsId?: string;
@@ -8167,11 +7994,6 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Services$Versions$Instances$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Part of `parent`. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
      */

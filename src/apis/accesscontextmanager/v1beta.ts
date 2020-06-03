@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace accesscontextmanager_v1beta {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -1150,22 +1162,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$AccessPolicy;
   }
   export interface Params$Resource$Accesspolicies$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name for the access policy to delete.  Format `accessPolicies/{policy_id}`
      */
@@ -1174,22 +1176,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the access policy to get.  Format `accessPolicies/{policy_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of AccessPolicy instances to include in the list. Default 100.
      */
@@ -1205,11 +1197,6 @@ export namespace accesscontextmanager_v1beta {
   }
   export interface Params$Resource$Accesspolicies$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
@@ -1974,11 +1961,6 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Accesslevels$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the access policy which owns this Access Level.  Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
@@ -1991,22 +1973,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Accesslevels$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the Access Level.  Format: `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$Accesslevels$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where Access Levels are returned as `BasicLevels` or `CustomLevels` based on how they were created. If set to CEL, all Access Levels are returned as `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent `CustomLevels`.
      */
@@ -2018,11 +1990,6 @@ export namespace accesscontextmanager_v1beta {
   }
   export interface Params$Resource$Accesspolicies$Accesslevels$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression language, as `CustomLevels`, rather than as `BasicLevels`. Defaults to returning `AccessLevels` in the format they were defined.
      */
@@ -2042,11 +2009,6 @@ export namespace accesscontextmanager_v1beta {
   }
   export interface Params$Resource$Accesspolicies$Accesslevels$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length  // of the `short_name` component is 50 characters.
      */
@@ -2809,11 +2771,6 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the access policy which owns this Service Perimeter.  Format: `accessPolicies/{policy_id}`
      */
     parent?: string;
@@ -2826,11 +2783,6 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
      */
     name?: string;
@@ -2838,22 +2790,12 @@ export namespace accesscontextmanager_v1beta {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. Resource name for the Service Perimeter.  Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
      */
     name?: string;
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Number of Service Perimeters to include in the list. Default 100.
      */
@@ -2869,11 +2811,6 @@ export namespace accesscontextmanager_v1beta {
   }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      */
@@ -3029,11 +2966,6 @@ export namespace accesscontextmanager_v1beta {
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name of the operation resource.
      */

@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace container_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2267,11 +2279,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
      */
     filter?: string;
@@ -2451,11 +2458,6 @@ export namespace container_v1 {
 
   export interface Params$Resource$Projects$Locations$Getserverconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      */
@@ -5337,11 +5339,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
@@ -5354,11 +5351,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x`.
      */
     parent?: string;
@@ -5370,11 +5362,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      */
@@ -5395,11 +5382,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -5419,22 +5401,12 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Getjwks
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The cluster (project, location, cluster id) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
@@ -5451,11 +5423,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setaddons
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
@@ -5467,11 +5434,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -5485,11 +5447,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setlocations
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
@@ -5501,11 +5458,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setlogging
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -5519,11 +5471,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
@@ -5535,11 +5482,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -5553,11 +5495,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
@@ -5569,11 +5506,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -5587,11 +5519,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
@@ -5603,11 +5530,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Startiprotation
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -5621,11 +5543,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Update
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
@@ -5637,11 +5554,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Updatemaster
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -7110,11 +7022,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
@@ -7126,11 +7033,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -7155,11 +7057,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -7183,11 +7080,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
     clusterId?: string;
@@ -7207,11 +7099,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
@@ -7223,11 +7110,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -7241,11 +7123,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
@@ -7258,11 +7135,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string;
@@ -7274,11 +7146,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -7447,11 +7314,6 @@ export namespace container_v1 {
 
   export interface Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The cluster (project, location, cluster id) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -7914,11 +7776,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x`.
      */
     name?: string;
@@ -7930,11 +7787,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      */
@@ -7954,11 +7806,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
@@ -8132,11 +7979,6 @@ export namespace container_v1 {
 
   export interface Params$Resource$Projects$Zones$Getserverconfig
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      */
@@ -11030,11 +10872,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Addons
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -11054,11 +10891,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -11080,11 +10912,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
@@ -11100,11 +10927,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      */
@@ -11125,11 +10947,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -11148,11 +10965,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Legacyabac
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
@@ -11174,11 +10986,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
     parent?: string;
@@ -11193,11 +11000,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Locations
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -11219,11 +11021,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Logging
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -11243,11 +11040,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Master
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -11269,11 +11061,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Monitoring
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -11293,11 +11080,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -11319,11 +11101,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the cluster to update.
      */
     clusterId?: string;
@@ -11343,11 +11120,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -11369,11 +11141,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -11394,11 +11161,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Startiprotation
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -11418,11 +11180,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -12977,11 +12734,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -13006,11 +12758,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
     clusterId?: string;
@@ -13030,11 +12777,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -13059,11 +12801,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -13087,11 +12824,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
     clusterId?: string;
@@ -13110,11 +12842,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
      */
@@ -13140,11 +12867,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -13169,11 +12891,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
@@ -13197,11 +12914,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -13697,11 +13409,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Operations$Cancel
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      */
     operationId?: string;
@@ -13722,11 +13429,6 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Operations$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      */
     name?: string;
@@ -13745,11 +13447,6 @@ export namespace container_v1 {
   }
   export interface Params$Resource$Projects$Zones$Operations$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */

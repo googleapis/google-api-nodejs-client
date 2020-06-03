@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace cloudiot_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -2165,11 +2177,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Binddevicetogateway
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
@@ -2181,11 +2188,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$Create
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The project and cloud region where this device registry must be created. For example, `projects/example-project/locations/us-central1`.
      */
@@ -2199,11 +2201,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     name?: string;
@@ -2211,22 +2208,12 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Registries$Getiampolicy
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -2239,11 +2226,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The maximum number of registries to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      */
@@ -2259,11 +2241,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource path name. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
@@ -2281,11 +2258,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2298,11 +2270,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Testiampermissions
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -2314,11 +2281,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
@@ -3482,11 +3444,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Devices$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device registry where this device should be created. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      */
     parent?: string;
@@ -3499,22 +3456,12 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Devices$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Registries$Devices$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
      */
@@ -3526,11 +3473,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
      */
@@ -3571,11 +3513,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
@@ -3587,11 +3524,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$Devices$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
      */
@@ -3608,11 +3540,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
@@ -3787,11 +3714,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Devices$Configversions$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
     name?: string;
@@ -3954,11 +3876,6 @@ export namespace cloudiot_v1 {
 
   export interface Params$Resource$Projects$Locations$Registries$Devices$States$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      */
@@ -4431,11 +4348,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -4448,11 +4360,6 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
@@ -4464,11 +4371,6 @@ export namespace cloudiot_v1 {
   }
   export interface Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      */
@@ -4670,11 +4572,6 @@ export namespace cloudiot_v1 {
 
   export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
      */

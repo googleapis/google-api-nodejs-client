@@ -29,6 +29,7 @@ import {
   MethodOptions,
   StreamMethodOptions,
   GlobalOptions,
+  GoogleAuth,
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
@@ -40,6 +41,17 @@ export namespace fitness_v1 {
   }
 
   interface StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?:
+      | string
+      | OAuth2Client
+      | JWT
+      | Compute
+      | UserRefreshClient
+      | GoogleAuth;
+
     /**
      * V1 error format.
      */
@@ -703,11 +715,6 @@ export namespace fitness_v1 {
 
   export interface Params$Resource$Users$Dataset$Aggregate
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * Aggregate data for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
@@ -1543,11 +1550,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Create
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Create the data source for the person identified. Use <code>me</code> to indicate the authenticated user. Only <code>me</code> is supported at this time.
      */
     userId?: string;
@@ -1560,11 +1562,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The data stream ID of the data source to delete.
      */
     dataSourceId?: string;
@@ -1575,11 +1572,6 @@ export namespace fitness_v1 {
   }
   export interface Params$Resource$Users$Datasources$Get
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The data stream ID of the data source to retrieve.
      */
@@ -1592,11 +1584,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$List
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The names of data types to include in the list. If not specified, all data sources will be returned.
      */
     dataTypeName?: string[];
@@ -1607,11 +1594,6 @@ export namespace fitness_v1 {
   }
   export interface Params$Resource$Users$Datasources$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The data stream ID of the data source to update.
      */
@@ -1811,11 +1793,6 @@ export namespace fitness_v1 {
 
   export interface Params$Resource$Users$Datasources$Datapointchanges$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The data stream ID of the data source that created the dataset.
      */
@@ -2344,11 +2321,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Datasets$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The client's current time in milliseconds since epoch.
      */
     currentTimeMillis?: string;
@@ -2372,11 +2344,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Datasets$Get
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "<var>startTime</var>-<var>endTime</var>" where <var>startTime</var> and <var>endTime</var> are 64 bit integers.
      */
     datasetId?: string;
@@ -2399,11 +2366,6 @@ export namespace fitness_v1 {
   }
   export interface Params$Resource$Users$Datasources$Datasets$Patch
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The client's current time in milliseconds since epoch. Note that the <code>minStartTimeNs</code> and <code>maxEndTimeNs</code> properties in the request body are in nanoseconds instead of milliseconds.
      */
@@ -2917,11 +2879,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Sessions$Delete
     extends StandardParameters {
     /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
      * The client's current time in milliseconds since epoch.
      */
     currentTimeMillis?: string;
@@ -2936,11 +2893,6 @@ export namespace fitness_v1 {
   }
   export interface Params$Resource$Users$Sessions$List
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * If non-empty, only sessions with these activity types should be returned.
      */
@@ -2968,11 +2920,6 @@ export namespace fitness_v1 {
   }
   export interface Params$Resource$Users$Sessions$Update
     extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
     /**
      * The client's current time in milliseconds since epoch.
      */
