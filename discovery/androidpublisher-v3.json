@@ -15,7 +15,7 @@
   "description": "Accesses Android application developers' Google Play accounts.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/android-publisher",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/SetFLBXGvnz8NnoZq8WRUMdUaG4\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/JGLPV1zqOHPwqh54vY170XqwJ98\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/android-16.png",
     "x32": "https://www.google.com/images/icons/product/android-32.png"
@@ -2555,7 +2555,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200526",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -3105,10 +3105,19 @@
     "InAppProductListing": {
       "id": "InAppProductListing",
       "properties": {
+        "benefits": {
+          "description": "The localized entitlement benefits of the in-app product. These are supported only for subscriptions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "description": {
+          "description": "The localized description of the in-app product. These are deprecated for subscriptions.",
           "type": "string"
         },
         "title": {
+          "description": "The localized title of the in-app product.",
           "type": "string"
         }
       },
