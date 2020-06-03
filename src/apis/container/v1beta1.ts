@@ -199,11 +199,11 @@ export namespace container_v1beta1 {
      */
     minCpuPlatform?: string | null;
     /**
-     * Scopes that are used by NAP when creating node pools. If oauth_scopes are specified, service_account should be empty.
+     * Scopes that are used by NAP when creating node pools.
      */
     oauthScopes?: string[] | null;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. If service_account is specified, scopes should be empty.
+     * The Google Cloud Platform Service Account to be used by the node VMs.
      */
     serviceAccount?: string | null;
     /**
@@ -424,6 +424,10 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
+     * Configuration for master components.
+     */
+    master?: Schema$Master;
+    /**
      * The authentication information for accessing the master endpoint. If unspecified, the defaults are used: For clusters before v1.12, if master_auth is unspecified, `username` will be set to &quot;admin&quot;, a random password will be generated, and a client certificate will be issued.
      */
     masterAuth?: Schema$MasterAuth;
@@ -614,6 +618,10 @@ export namespace container_v1beta1 {
      * The logging service the cluster should use to write logs. Currently available options:  * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer   available as of GKE 1.15). * `none` - no logs will be exported from the cluster.  If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     desiredLoggingService?: string | null;
+    /**
+     * Configuration for master components.
+     */
+    desiredMaster?: Schema$Master;
     /**
      * The desired configuration options for master authorized networks feature.
      */
@@ -1157,6 +1165,10 @@ export namespace container_v1beta1 {
      */
     recurringWindow?: Schema$RecurringTimeWindow;
   }
+  /**
+   * Master is the configuration for components on master.
+   */
+  export interface Schema$Master {}
   /**
    * The authentication information for accessing the master endpoint. Authentication can be done using HTTP basic auth or using client certificates.
    */
@@ -3461,6 +3473,7 @@ export namespace container_v1beta1 {
      *   //   "locations": [],
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "master": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "masterIpv4CidrBlock": "my_masterIpv4CidrBlock",
@@ -9341,6 +9354,7 @@ export namespace container_v1beta1 {
      *   //   "locations": [],
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "master": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "masterIpv4CidrBlock": "my_masterIpv4CidrBlock",
