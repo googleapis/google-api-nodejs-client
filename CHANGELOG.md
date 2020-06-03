@@ -4,6 +4,14 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [52.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v52.0.0...v52.0.1) (2020-06-03)
+
+
+### Bug Fixes
+
+* ensure params are not deleted from global options ([#2190](https://www.github.com/googleapis/google-api-nodejs-client/issues/2190)) ([787e296](https://www.github.com/googleapis/google-api-nodejs-client/commit/787e296773f1d7daa655b4294cea41ecd1476ceb))
+* **deps:** update dependency googleapis to v52 ([#2213](https://www.github.com/googleapis/google-api-nodejs-client/issues/2213)) ([78ff014](https://www.github.com/googleapis/google-api-nodejs-client/commit/78ff01482a67ca4385d80042eaf80ee756106edd))
+
 ## [52.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v51.0.0...v52.0.0) (2020-06-01)
 
 
