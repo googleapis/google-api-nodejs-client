@@ -674,9 +674,53 @@
           }
         }
       }
+    },
+    "vbeta1": {
+      "resources": {
+        "projects": {
+          "resources": {
+            "locations": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+                      "flatPath": "vbeta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "cloudbuild.vbeta1.projects.locations.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "vbeta1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelOperationRequest"
+                      },
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20200520",
+  "revision": "20200601",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -901,6 +945,10 @@
           "format": "int64",
           "type": "string"
         },
+        "dynamicSubstitutions": {
+          "description": "Option to specify whether or not to apply bash style string\noperations to the substitutions.\n\nNOTE: this is always enabled for triggered builds and cannot be\noverridden in the build configuration file.",
+          "type": "boolean"
+        },
         "env": {
           "description": "A list of global environment variable definitions that will exist for all\nbuild steps in this build. If a variable is defined in both globally and in\na build step, the variable will use the build step value.\n\nThe elements are of the form \"KEY=VALUE\" for the environment variable \"KEY\"\nbeing given the value \"VALUE\".",
           "items": {
@@ -987,7 +1035,7 @@
           "type": "array"
         },
         "substitutionOption": {
-          "description": "Option to specify behavior when there is an error in the substitution\nchecks.",
+          "description": "Option to specify behavior when there is an error in the substitution\nchecks.\n\nNOTE: this is always set to ALLOW_LOOSE for triggered builds and cannot\nbe overridden in the build configuration file.",
           "enum": [
             "MUST_MATCH",
             "ALLOW_LOOSE"
@@ -1384,7 +1432,7 @@
           "type": "string"
         },
         "commentControl": {
-          "description": "Configure builds to run only when a repository owner or collaborator\ncomments `/gcbrun`.",
+          "description": "Configure builds to run whether a repository owner or collaborator need to\ncomment `/gcbrun`.",
           "enum": [
             "COMMENTS_DISABLED",
             "COMMENTS_ENABLED"
