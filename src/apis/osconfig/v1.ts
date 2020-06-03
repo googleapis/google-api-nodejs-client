@@ -402,7 +402,7 @@ export namespace osconfig_v1 {
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
+   * A high level representation of a patch job that is either in progress or has completed.  Instance details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).
    */
   export interface Schema$PatchJob {
     /**
@@ -454,7 +454,7 @@ export namespace osconfig_v1 {
      */
     percentComplete?: number | null;
     /**
-     * The current state of the PatchJob .
+     * The current state of the PatchJob.
      */
     state?: string | null;
     /**
