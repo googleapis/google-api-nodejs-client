@@ -474,7 +474,17 @@ export namespace androidpublisher_v3 {
     trialPeriod?: string | null;
   }
   export interface Schema$InAppProductListing {
+    /**
+     * The localized entitlement benefits of the in-app product. These are supported only for subscriptions.
+     */
+    benefits?: string[] | null;
+    /**
+     * The localized description of the in-app product. These are deprecated for subscriptions.
+     */
     description?: string | null;
+    /**
+     * The localized title of the in-app product.
+     */
     title?: string | null;
   }
   export interface Schema$InappproductsListResponse {
