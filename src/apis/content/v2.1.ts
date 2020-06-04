@@ -2466,11 +2466,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderPromotion {
     /**
-     * Items which this promotion may be applied to. If empty, there are no restrictions on applicable items and quantity.
+     * Items that this promotion may be applied to. If empty, there are no restrictions on applicable items and quantity. This field will also be empty for shipping promotions because shipping is not tied to any specific item.
      */
     applicableItems?: Schema$OrderPromotionItem[];
     /**
-     * Items which this promotion have been applied to. Do not provide for `orders.createtestorder`.
+     * Items that this promotion have been applied to. Do not provide for `orders.createtestorder`. This field will be empty for shipping promotions because shipping is not tied to any specific item.
      */
     appliedItems?: Schema$OrderPromotionItem[];
     /**
@@ -2974,6 +2974,10 @@ export namespace content_v2_1 {
      */
     lineItems?: Schema$OrderShipmentLineItemShipment[];
     /**
+     * Delivery details of the shipment if scheduling is needed.
+     */
+    scheduledDeliveryDetails?: Schema$OrderShipmentScheduledDeliveryDetails;
+    /**
      * The shipment group ID of the shipment. This is set in shiplineitems request.
      */
     shipmentGroupId?: string | null;
@@ -2999,6 +3003,16 @@ export namespace content_v2_1 {
      * The quantity that is shipped.
      */
     quantity?: number | null;
+  }
+  export interface Schema$OrderShipmentScheduledDeliveryDetails {
+    /**
+     * The phone number of the carrier fulfilling the delivery.
+     */
+    carrierPhoneNumber?: string | null;
+    /**
+     * The date a shipment is scheduled for delivery, in ISO 8601 format.
+     */
+    scheduledDate?: string | null;
   }
   export interface Schema$OrdersInStoreRefundLineItemRequest {
     /**
@@ -4188,6 +4202,9 @@ export namespace content_v2_1 {
      * The name of the destination
      */
     destination?: string | null;
+    /**
+     * Destination approval status in targetCountry of the offer.
+     */
     status?: string | null;
   }
   export interface Schema$ProductstatusesCustomBatchRequest {
@@ -4794,7 +4811,7 @@ export namespace content_v2_1 {
      */
     shippingDate?: string | null;
     /**
-     * State of the shipment.  Acceptable values are:   - &quot;`completed`&quot;  - &quot;`new`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;
+     * State of the shipment.  Acceptable values are:   - &quot;`completed`&quot;  - &quot;`new`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;  - &quot;`pending`&quot;
      */
     state?: string | null;
   }
@@ -15124,7 +15141,7 @@ export namespace content_v2_1 {
 
     /**
      * content.orders.returnrefundlineitem
-     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders.
+     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

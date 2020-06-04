@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/Yryi_j1si0UYSDrVQgsmKlmNp7Q\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/eW17Vp7lQKK_eQEfqEgs3DMjBm4\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2215,7 +2215,7 @@
           ]
         },
         "returnrefundlineitem": {
-          "description": "Returns and refunds a line item. Note that this method can only be called on fully shipped orders.",
+          "description": "Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.",
           "httpMethod": "POST",
           "id": "content.orders.returnrefundlineitem",
           "parameterOrder": [
@@ -3608,7 +3608,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200526",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6720,14 +6720,14 @@
       "id": "OrderPromotion",
       "properties": {
         "applicableItems": {
-          "description": "Items which this promotion may be applied to. If empty, there are no restrictions on applicable items and quantity.",
+          "description": "Items that this promotion may be applied to. If empty, there are no restrictions on applicable items and quantity. This field will also be empty for shipping promotions because shipping is not tied to any specific item.",
           "items": {
             "$ref": "OrderPromotionItem"
           },
           "type": "array"
         },
         "appliedItems": {
-          "description": "Items which this promotion have been applied to. Do not provide for `orders.createtestorder`.",
+          "description": "Items that this promotion have been applied to. Do not provide for `orders.createtestorder`. This field will be empty for shipping promotions because shipping is not tied to any specific item.",
           "items": {
             "$ref": "OrderPromotionItem"
           },
@@ -6979,6 +6979,10 @@
           },
           "type": "array"
         },
+        "scheduledDeliveryDetails": {
+          "$ref": "OrderShipmentScheduledDeliveryDetails",
+          "description": "Delivery details of the shipment if scheduling is needed."
+        },
         "shipmentGroupId": {
           "description": "The shipment group ID of the shipment. This is set in shiplineitems request.",
           "type": "string"
@@ -7009,6 +7013,20 @@
           "description": "The quantity that is shipped.",
           "format": "uint32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "OrderShipmentScheduledDeliveryDetails": {
+      "id": "OrderShipmentScheduledDeliveryDetails",
+      "properties": {
+        "carrierPhoneNumber": {
+          "description": "The phone number of the carrier fulfilling the delivery.",
+          "type": "string"
+        },
+        "scheduledDate": {
+          "description": "The date a shipment is scheduled for delivery, in ISO 8601 format.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9217,6 +9235,7 @@
           "type": "string"
         },
         "status": {
+          "description": "Destination approval status in targetCountry of the offer.",
           "type": "string"
         }
       },
@@ -10019,7 +10038,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of the shipment.\n\nAcceptable values are:  \n- \"`completed`\" \n- \"`new`\" \n- \"`shipped`\" \n- \"`undeliverable`\"",
+          "description": "State of the shipment.\n\nAcceptable values are:  \n- \"`completed`\" \n- \"`new`\" \n- \"`shipped`\" \n- \"`undeliverable`\" \n- \"`pending`\"",
           "type": "string"
         }
       },
