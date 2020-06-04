@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/PZk7-wpz6XHgQMe6JksWYBgwpSs\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/TsQz1DNIXY-nbvufkMv4C85tMsw\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -23387,7 +23387,7 @@
       }
     }
   },
-  "revision": "20200501",
+  "revision": "20200511",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -26986,7 +26986,7 @@
           "type": "string"
         },
         "type": {
-          "description": "URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard or pd-ssd",
+          "description": "URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard  or pd-ssd",
           "type": "string"
         },
         "users": {
@@ -29170,11 +29170,13 @@
             "FEATURE_TYPE_UNSPECIFIED",
             "MULTI_IP_SUBNET",
             "SECURE_BOOT",
+            "SEV_CAPABLE",
             "UEFI_COMPATIBLE",
             "VIRTIO_SCSI_MULTIQUEUE",
             "WINDOWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -31064,7 +31066,7 @@
           "type": "boolean"
         },
         "status": {
-          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.",
+          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED.",
           "enum": [
             "DEPROVISIONING",
             "PROVISIONING",
@@ -39526,6 +39528,8 @@
             "IN_USE_BACKUP_SCHEDULES",
             "IN_USE_SNAPSHOT_SCHEDULES",
             "LOCAL_SSD_TOTAL_GB",
+            "M1_CPUS",
+            "M2_CPUS",
             "MACHINE_IMAGES",
             "N2D_CPUS",
             "N2_CPUS",
@@ -39581,6 +39585,8 @@
             "VPN_TUNNELS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -42140,7 +42146,7 @@
       "type": "object"
     },
     "Router": {
-      "description": "Represents a Cloud Router resource.\n\nFor more information about Cloud Router, read the the Cloud Router overview.",
+      "description": "Represents a Cloud Router resource.\n\nFor more information about Cloud Router, read the Cloud Router overview.",
       "id": "Router",
       "properties": {
         "bgp": {

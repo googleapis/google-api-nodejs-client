@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/dg0TZAIlKG-SEb73iIfHYrxa9tA\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/C6naPwndpbeXcTR-HqK1djbE6fw\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -3785,6 +3785,36 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getOwnerInstance": {
+          "description": "Find owner instance from given ip address",
+          "httpMethod": "GET",
+          "id": "compute.globalAddresses.getOwnerInstance",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "ipAddress": {
+              "description": "The ip_address could be external IPv4, or internal IPv4 within IPv6 form of virtual_network_id with internal IPv4. IPv6 is not supported yet.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{project}/global/addresses/getOwnerInstance",
+          "response": {
+            "$ref": "GetOwnerInstanceResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
           ]
         },
         "insert": {
@@ -31666,7 +31696,7 @@
       }
     }
   },
-  "revision": "20200501",
+  "revision": "20200511",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -33580,10 +33610,6 @@
           ],
           "type": "string"
         },
-        "queueBasedScaling": {
-          "$ref": "AutoscalingPolicyQueueBasedScaling",
-          "description": "Configuration parameters of autoscaling based on queuing system."
-        },
         "scaleDownControl": {
           "$ref": "AutoscalingPolicyScaleDownControl"
         },
@@ -33666,42 +33692,6 @@
           "description": "Fraction of backend capacity utilization (set in HTTP(S) load balancing configuration) that autoscaler should maintain. Must be a positive float value. If not defined, the default is 0.8.",
           "format": "double",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "AutoscalingPolicyQueueBasedScaling": {
-      "description": "Configuration parameters of autoscaling based on queuing system.",
-      "id": "AutoscalingPolicyQueueBasedScaling",
-      "properties": {
-        "acceptableBacklogPerInstance": {
-          "description": "Scaling based on the average number of tasks in the queue per each active instance. The autoscaler keeps the average number of tasks per instance below this number, based on data collected in the last couple of minutes. The autoscaler will also take into account incoming tasks when calculating when to scale.",
-          "format": "double",
-          "type": "number"
-        },
-        "cloudPubSub": {
-          "$ref": "AutoscalingPolicyQueueBasedScalingCloudPubSub",
-          "description": "Configuration for Cloud Pub/Sub subscription queue."
-        },
-        "singleWorkerThroughputPerSec": {
-          "description": "The scaling algorithm will also calculate throughput estimates on its own; if you explicitly provide this value, the autoscaler will take into account your value as well as automatic estimates when deciding how to scale.",
-          "format": "double",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "AutoscalingPolicyQueueBasedScalingCloudPubSub": {
-      "description": "Configuration parameters for scaling based on Cloud Pub/Sub subscription queue.",
-      "id": "AutoscalingPolicyQueueBasedScalingCloudPubSub",
-      "properties": {
-        "subscription": {
-          "description": "Cloud Pub/Sub subscription used for scaling. Provide the partial URL (starting with projects/) or just the subscription name. The subscription must be assigned to the topic specified in topicName and must be in a pull configuration. The subscription must belong to the same project as the Autoscaler.",
-          "type": "string"
-        },
-        "topic": {
-          "description": "Cloud Pub/Sub topic used for scaling. Provide the partial URL or partial URL (starting with projects/) or just the topic name. The topic must belong to the same project as the Autoscaler resource.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -35942,6 +35932,20 @@
           "format": "uint64",
           "type": "string"
         },
+        "interface": {
+          "description": "Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI.",
+          "enum": [
+            "NVME",
+            "SCSI",
+            "UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "kind": {
           "default": "compute#disk",
           "description": "[Output Only] Type of the resource. Always compute#disk for disks.",
@@ -36111,7 +36115,7 @@
           "type": "string"
         },
         "type": {
-          "description": "URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard or pd-ssd",
+          "description": "URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project/zones/zone/diskTypes/pd-standard  or pd-ssd",
           "type": "string"
         },
         "users": {
@@ -38288,6 +38292,16 @@
       },
       "type": "object"
     },
+    "GetOwnerInstanceResponse": {
+      "id": "GetOwnerInstanceResponse",
+      "properties": {
+        "instance": {
+          "description": "Full instance resource URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GlobalNetworkEndpointGroupsAttachEndpointsRequest": {
       "id": "GlobalNetworkEndpointGroupsAttachEndpointsRequest",
       "properties": {
@@ -38449,11 +38463,13 @@
             "GVNIC",
             "MULTI_IP_SUBNET",
             "SECURE_BOOT",
+            "SEV_CAPABLE",
             "UEFI_COMPATIBLE",
             "VIRTIO_SCSI_MULTIQUEUE",
             "WINDOWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -38910,7 +38926,7 @@
           "type": "string"
         },
         "healthStatusAggregationStrategy": {
-          "description": "Policy for how the results from multiple health checks for the same endpoint are aggregated.  \n- NO_AGGREGATION. An EndpointHealth message is returned for each backend in the health check service. \n- AND. If any backend's health check reports UNHEALTHY, then UNHEALTHY is the HealthState of the entire health check service. If all backend's are healthy, the HealthState of the health check service is HEALTHY. .",
+          "description": "This field is deprecated. Use health_status_aggregation_policy instead.\n\nPolicy for how the results from multiple health checks for the same endpoint are aggregated.  \n- NO_AGGREGATION. An EndpointHealth message is returned for each backend in the health check service. \n- AND. If any backend's health check reports UNHEALTHY, then UNHEALTHY is the HealthState of the entire health check service. If all backend's are healthy, the HealthState of the health check service is HEALTHY. .",
           "enum": [
             "AND",
             "NO_AGGREGATION"
@@ -40917,7 +40933,7 @@
           "type": "boolean"
         },
         "status": {
-          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.",
+          "description": "[Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED.",
           "enum": [
             "DEPROVISIONING",
             "PROVISIONING",
@@ -52116,6 +52132,8 @@
             "IN_USE_MAINTENANCE_WINDOWS",
             "IN_USE_SNAPSHOT_SCHEDULES",
             "LOCAL_SSD_TOTAL_GB",
+            "M1_CPUS",
+            "M2_CPUS",
             "MACHINE_IMAGES",
             "N2D_CPUS",
             "N2_CPUS",
@@ -52175,6 +52193,8 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -55097,7 +55117,7 @@
       "type": "object"
     },
     "Router": {
-      "description": "Represents a Cloud Router resource.\n\nFor more information about Cloud Router, read the the Cloud Router overview.",
+      "description": "Represents a Cloud Router resource.\n\nFor more information about Cloud Router, read the Cloud Router overview.",
       "id": "Router",
       "properties": {
         "bgp": {
@@ -55360,7 +55380,7 @@
           "type": "integer"
         },
         "keepaliveInterval": {
-          "description": "The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 1 and 120. The default is 20.",
+          "description": "The interval in seconds between BGP keepalive messages that are sent to the peer.\nNot currently available publicly.\nHold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer.\nBGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers.\nIf set, this value must be between 1 and 120. The default is 20.",
           "format": "uint32",
           "type": "integer"
         }
@@ -55413,10 +55433,10 @@
         },
         "bfd": {
           "$ref": "RouterBgpPeerBfd",
-          "description": "BFD configuration for the BGP peering."
+          "description": "BFD configuration for the BGP peering.\nNot currently available publicly."
         },
         "enable": {
-          "description": "The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.",
+          "description": "The status of the BGP peer connection.\nNot currently available publicly.\nIf set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.",
           "enum": [
             "FALSE",
             "TRUE"
@@ -55478,12 +55498,12 @@
       "id": "RouterBgpPeerBfd",
       "properties": {
         "minReceiveInterval": {
-          "description": "The minimum interval, in milliseconds, between BFD control packets received from the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the transmit interval of the other router. If set, this value must be between 100 and 30000. The default is 300.",
+          "description": "The minimum interval, in milliseconds, between BFD control packets received from the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the transmit interval of the other router.\nNot currently available publicly.\nIf set, this value must be between 100 and 30000.\nThe default is 300.",
           "format": "uint32",
           "type": "integer"
         },
         "minTransmitInterval": {
-          "description": "The minimum interval, in milliseconds, between BFD control packets transmitted to the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the corresponding receive interval of the other router. If set, this value must be between 100 and 30000. The default is 300.",
+          "description": "The minimum interval, in milliseconds, between BFD control packets transmitted to the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the corresponding receive interval of the other router.\nNot currently available publicly.\nIf set, this value must be between 100 and 30000.\nThe default is 300.",
           "format": "uint32",
           "type": "integer"
         },
@@ -55502,7 +55522,7 @@
           "type": "string"
         },
         "multiplier": {
-          "description": "The number of consecutive BFD packets that must be missed before BFD declares that a peer is unavailable. If set, the value must be a value between 2 and 16. The default is 3.",
+          "description": "The number of consecutive BFD packets that must be missed before BFD declares that a peer is unavailable.\nNot currently available publicly.\nIf set, the value must be a value between 2 and 16.\nThe default is 3.",
           "format": "uint32",
           "type": "integer"
         },
@@ -55519,7 +55539,7 @@
           "type": "string"
         },
         "sessionInitializationMode": {
-          "description": "The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.",
+          "description": "The BFD session initialization mode for this BGP peer.\nNot currently available publicly.\nIf set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.",
           "enum": [
             "ACTIVE",
             "DISABLED",
