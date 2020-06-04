@@ -1183,7 +1183,7 @@
                   "type": "boolean"
                 },
                 "name": {
-                  "description": "Name of the search application.\n<br />Format: applications/{application_id}.",
+                  "description": "Name of the search application.\n<br />Format: searchapplications/{application_id}.",
                   "location": "path",
                   "pattern": "^searchapplications/[^/]+$",
                   "required": true,
@@ -1805,7 +1805,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200519",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "BooleanOperatorOptions": {
