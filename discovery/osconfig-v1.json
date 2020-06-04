@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20200504",
+  "revision": "20200601",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -804,7 +804,7 @@
       "type": "object"
     },
     "PatchJob": {
-      "description": "A high level representation of a patch job that is either in progress\nor has completed.\n\nInstances details are not included in the job. To paginate through instance\ndetails, use ListPatchJobInstanceDetails.\n\nFor more information about patch jobs, see\n[Creating patch\njobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).",
+      "description": "A high level representation of a patch job that is either in progress\nor has completed.\n\nInstance details are not included in the job. To paginate through instance\ndetails, use ListPatchJobInstanceDetails.\n\nFor more information about patch jobs, see\n[Creating patch\njobs](https://cloud.google.com/compute/docs/os-patch-management/create-patch-job).",
       "id": "PatchJob",
       "properties": {
         "createTime": {
@@ -859,7 +859,7 @@
           "type": "number"
         },
         "state": {
-          "description": "The current state of the PatchJob .",
+          "description": "The current state of the PatchJob.",
           "enum": [
             "STATE_UNSPECIFIED",
             "STARTED",
