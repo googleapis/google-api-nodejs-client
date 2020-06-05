@@ -813,7 +813,7 @@
       }
     }
   },
-  "revision": "20200527",
+  "revision": "20200601",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AggregateBucket": {
@@ -903,7 +903,7 @@
         },
         "bucketByActivityType": {
           "$ref": "BucketByActivity",
-          "description": "Specifies that data be aggregated by the type of activity being performed\nwhen the data was recorded. All data that was recorded during a certain\nactivity type (for the given time range) will be aggregated into the same\nbucket. Data that was recorded while the user was not active will not be\nincluded in the response. Mutually exclusive of other bucketing\nspecifications."
+          "description": "Specifies that data be aggregated by the type of activity being performed\nwhen the data was recorded. All data that was recorded during a certain\nactivity type (.for the given time range) will be aggregated into the same\nbucket. Data that was recorded while the user was not active will not be\nincluded in the response. Mutually exclusive of other bucketing\nspecifications."
         },
         "bucketBySession": {
           "$ref": "BucketBySession",
