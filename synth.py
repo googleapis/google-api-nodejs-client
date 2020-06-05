@@ -27,4 +27,5 @@ s.copy(templates, excludes=[
   ".eslintignore",
   ".prettierignore"
 ])
+subprocess.run(['npm', 'install'])
 subprocess.run(['npm', 'run', 'submit-prs'])
