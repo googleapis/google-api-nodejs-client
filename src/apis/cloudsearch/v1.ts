@@ -7173,7 +7173,7 @@ export namespace cloudsearch_v1 {
      *     // Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
      *     // Name of the search application.
-     *     // <br />Format: applications/{application_id}.
+     *     // <br />Format: searchapplications/{application_id}.
      *     name: 'searchapplications/my-searchapplication',
      *   });
      *   console.log(res.data);
@@ -7201,7 +7201,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string} params.name Name of the search application. <br />Format: applications/{application_id}.
+     * @param {string} params.name Name of the search application. <br />Format: searchapplications/{application_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7772,7 +7772,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the search application. <br />Format: applications/{application_id}.
+     * Name of the search application. <br />Format: searchapplications/{application_id}.
      */
     name?: string;
   }
