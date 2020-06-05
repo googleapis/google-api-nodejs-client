@@ -460,6 +460,10 @@ export namespace androidpublisher_v3 {
      */
     purchaseType?: string | null;
     /**
+     * Whether or not the developer wants the specific subscription to be resubscribable. If the developer doesn&#39;t use PBL2.0, this value is ignored since the feature is only for developers using PBL2.0. This feature allows users to resubscribe to an expired subscription directly from the subscription center by clicking on a &quot;Resubscribe&quot; CTA under the entry for the expired subscription.
+     */
+    resubscribeEligibility?: string | null;
+    /**
      * The stock-keeping-unit (SKU) of the product, unique within an app.
      */
     sku?: string | null;
@@ -474,7 +478,17 @@ export namespace androidpublisher_v3 {
     trialPeriod?: string | null;
   }
   export interface Schema$InAppProductListing {
+    /**
+     * The localized entitlement benefits of the in-app product. These are supported only for subscriptions.
+     */
+    benefits?: string[] | null;
+    /**
+     * The localized description of the in-app product. These are deprecated for subscriptions.
+     */
     description?: string | null;
+    /**
+     * The localized title of the in-app product.
+     */
     title?: string | null;
   }
   export interface Schema$InappproductsListResponse {
@@ -7076,6 +7090,7 @@ export namespace androidpublisher_v3 {
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
+     *   //   "resubscribeEligibility": "my_resubscribeEligibility",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
@@ -7220,6 +7235,7 @@ export namespace androidpublisher_v3 {
      *       //   "packageName": "my_packageName",
      *       //   "prices": {},
      *       //   "purchaseType": "my_purchaseType",
+     *       //   "resubscribeEligibility": "my_resubscribeEligibility",
      *       //   "sku": "my_sku",
      *       //   "status": "my_status",
      *       //   "subscriptionPeriod": "my_subscriptionPeriod",
@@ -7238,6 +7254,7 @@ export namespace androidpublisher_v3 {
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
+     *   //   "resubscribeEligibility": "my_resubscribeEligibility",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
@@ -7534,6 +7551,7 @@ export namespace androidpublisher_v3 {
      *       //   "packageName": "my_packageName",
      *       //   "prices": {},
      *       //   "purchaseType": "my_purchaseType",
+     *       //   "resubscribeEligibility": "my_resubscribeEligibility",
      *       //   "sku": "my_sku",
      *       //   "status": "my_status",
      *       //   "subscriptionPeriod": "my_subscriptionPeriod",
@@ -7552,6 +7570,7 @@ export namespace androidpublisher_v3 {
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
+     *   //   "resubscribeEligibility": "my_resubscribeEligibility",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
@@ -7700,6 +7719,7 @@ export namespace androidpublisher_v3 {
      *       //   "packageName": "my_packageName",
      *       //   "prices": {},
      *       //   "purchaseType": "my_purchaseType",
+     *       //   "resubscribeEligibility": "my_resubscribeEligibility",
      *       //   "sku": "my_sku",
      *       //   "status": "my_status",
      *       //   "subscriptionPeriod": "my_subscriptionPeriod",
@@ -7718,6 +7738,7 @@ export namespace androidpublisher_v3 {
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
+     *   //   "resubscribeEligibility": "my_resubscribeEligibility",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
