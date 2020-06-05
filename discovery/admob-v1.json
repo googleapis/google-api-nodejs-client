@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200604",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {
@@ -259,7 +259,7 @@
       "type": "object"
     },
     "GenerateMediationReportResponse": {
-      "description": "The streaming response for the AdMob Mediation report where the first\nresponse contains the report header, then a stream of row responses, and\nfinally a footer as the last response message.\n\nFor example:\n\n    [{\n      \"header\": {\n        \"date_range\": {\n          \"start_date\": {\"year\": 2018, \"month\": 9, \"day\": 1},\n          \"end_date\": {\"year\": 2018, \"month\": 9, \"day\": 30}\n        }\n        \"localization_settings\": {\n          \"currency_code\": \"USD\",\n          \"language_code\": \"en-US\"\n        }\n      }\n    },\n    {\n      \"row\": {\n        \"dimension_values\": {\n          \"DATE\": {\"value\": \"20180918\"},\n          \"APP\": {\n            \"value\": \"ca-app-pub-8123415297019784~1001342552\",\n             \"display_label\": \"My app name!\"\n          }\n        },\n        \"metric_values\": {\n          \"ESTIMATED_EARNINGS\": {\"decimal_value\": \"1324746\"}\n        }\n      }\n    },\n    {\n      \"footer\": {\"matching_row_count\": 1}\n    }]",
+      "description": "The streaming response for the AdMob Mediation report where the first\nresponse contains the report header, then a stream of row responses, and\nfinally a footer as the last response message.\n\nFor example:\n\n    [{\n      \"header\": {\n        \"date_range\": {\n          \"start_date\": {\"year\": 2018, \"month\": 9, \"day\": 1},\n          \"end_date\": {\"year\": 2018, \"month\": 9, \"day\": 1}\n        },\n        \"localization_settings\": {\n          \"currency_code\": \"USD\",\n          \"language_code\": \"en-US\"\n        }\n      }\n    },\n    {\n      \"row\": {\n        \"dimension_values\": {\n          \"DATE\": {\"value\": \"20180918\"},\n          \"APP\": {\n            \"value\": \"ca-app-pub-8123415297019784~1001342552\",\n             \"display_label\": \"My app name!\"\n          }\n        },\n        \"metric_values\": {\n          \"ESTIMATED_EARNINGS\": {\"decimal_value\": \"1324746\"}\n        }\n      }\n    },\n    {\n      \"footer\": {\"matching_row_count\": 1}\n    }]",
       "id": "GenerateMediationReportResponse",
       "properties": {
         "footer": {
@@ -289,7 +289,7 @@
       "type": "object"
     },
     "GenerateNetworkReportResponse": {
-      "description": "The streaming response for the AdMob Network report where the first response\ncontains the report header, then a stream of row responses, and finally a\nfooter as the last response message.\n\nFor example:\n\n    [{\n      \"header\": {\n        \"dateRange\": {\n          \"startDate\": {\"year\": 2018, \"month\": 9, \"day\": 1},\n          \"endDate\": {\"year\": 2018, \"month\": 9, \"day\": 30}\n        }\n        \"localizationSettings\": {\n          \"currencyCode\": \"USD\",\n          \"languageCode\": \"en-US\"\n        }\n      }\n    },\n    {\n      \"row\": {\n        \"dimensionValues\": {\n          \"DATE\": {\"value\": \"20180918\"},\n          \"APP\": {\n            \"value\": \"ca-app-pub-8123415297019784~1001342552\",\n             displayLabel: \"My app name!\"\n          }\n        },\n        \"metricValues\": {\n          \"ESTIMATED_EARNINGS\": {\"microsValue\": 6500000}\n        }\n      }\n    },\n    ...\n    {\n      \"footer\": {\"matchingRowCount\": 5}\n    }]",
+      "description": "The streaming response for the AdMob Network report where the first response\ncontains the report header, then a stream of row responses, and finally a\nfooter as the last response message.\n\nFor example:\n\n    [{\n      \"header\": {\n        \"dateRange\": {\n          \"startDate\": {\"year\": 2018, \"month\": 9, \"day\": 1},\n          \"endDate\": {\"year\": 2018, \"month\": 9, \"day\": 1}\n        },\n        \"localizationSettings\": {\n          \"currencyCode\": \"USD\",\n          \"languageCode\": \"en-US\"\n        }\n      }\n    },\n    {\n      \"row\": {\n        \"dimensionValues\": {\n          \"DATE\": {\"value\": \"20180918\"},\n          \"APP\": {\n            \"value\": \"ca-app-pub-8123415297019784~1001342552\",\n             displayLabel: \"My app name!\"\n          }\n        },\n        \"metricValues\": {\n          \"ESTIMATED_EARNINGS\": {\"microsValue\": 6500000}\n        }\n      }\n    },\n    {\n      \"footer\": {\"matchingRowCount\": 1}\n    }]",
       "id": "GenerateNetworkReportResponse",
       "properties": {
         "footer": {
