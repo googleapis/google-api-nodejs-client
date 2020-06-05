@@ -2162,7 +2162,7 @@ export namespace videointelligence_v1beta2 {
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults;
     /**
-     * Google Cloud Storage(GCS) URI that stores annotation results of one streaming session in JSON format. It is the annotation_result_storage_directory from the request followed by &#39;/cloud_project_number-session_id&#39;.
+     * Google Cloud Storage URI that stores annotation results of one streaming session in JSON format. It is the annotation_result_storage_directory from the request followed by &#39;/cloud_project_number-session_id&#39;.
      */
     annotationResultsUri?: string | null;
     /**
