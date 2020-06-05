@@ -1381,7 +1381,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200601",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -1603,11 +1603,11 @@
       "type": "object"
     },
     "Header": {
-      "description": "A [`header`](/docs/hosting/full-config#headers) defines custom headers to\nadd to a response should the request URL path match the pattern.",
+      "description": "A [`header`](/docs/hosting/full-config#headers) is an object that specifies\na URL pattern that, if matched to the request URL path, triggers Hosting to\napply the specified custom response headers.",
       "id": "Header",
       "properties": {
         "glob": {
-          "description": "The user-supplied [glob\npattern](/docs/hosting/full-config#glob_pattern_matching) to match\nagainst the request URL path.",
+          "description": "The user-supplied\n[glob](/docs/hosting/full-config#glob_pattern_matching) to match\nagainst the request URL path.",
           "type": "string"
         },
         "headers": {
@@ -1776,11 +1776,11 @@
       "type": "object"
     },
     "Redirect": {
-      "description": "A [`redirect`](/docs/hosting/full-config#redirects) represents the\nconfiguration for returning an HTTP redirect response given a matching\nrequest URL path.",
+      "description": "A [`redirect`](/docs/hosting/full-config#redirects) object specifies a URL\npattern that, if matched to the request URL path, triggers Hosting to\nrespond with a redirect to the specified destination path.",
       "id": "Redirect",
       "properties": {
         "glob": {
-          "description": "The user-supplied [glob\npattern](/docs/hosting/full-config#glob_pattern_matching) to match\nagainst the request URL path.",
+          "description": "The user-supplied\n[glob](/docs/hosting/full-config#glob_pattern_matching) to match\nagainst the request URL path.",
           "type": "string"
         },
         "location": {
@@ -1844,7 +1844,7 @@
       "type": "object"
     },
     "Rewrite": {
-      "description": "A [`rewrite`](/docs/hosting/full-config#rewrites) represents an internal\ncontent rewrite on the version. If the pattern matches, the request will be\nhandled as if it were to the destination path specified in the\nconfiguration.",
+      "description": "A [`rewrite`](/docs/hosting/full-config#rewrites) object specifies a URL\npattern that, if matched to the request URL path, triggers Hosting to\nrespond as if the service were given the specified destination URL.",
       "id": "Rewrite",
       "properties": {
         "dynamicLinks": {
@@ -1856,7 +1856,7 @@
           "type": "string"
         },
         "glob": {
-          "description": "The user-supplied [glob\npattern](/docs/hosting/full-config#glob_pattern_matching) to match\nagainst the request URL path.",
+          "description": "The user-supplied\n[glob](/docs/hosting/full-config#glob_pattern_matching) to match\nagainst the request URL path.",
           "type": "string"
         },
         "path": {
@@ -1875,7 +1875,7 @@
       "type": "object"
     },
     "ServingConfig": {
-      "description": "The configuration for how incoming requests to a site should be routed and\nprocessed before serving content. The patterns are matched and applied\naccording to a specific\n[priority order](/docs/hosting/full-config#hosting_priority_order).",
+      "description": "The configuration for how incoming requests to a site should be routed and\nprocessed before serving content. The URL request paths are matched against\nthe specified URL patterns in the configuration, then Hosting applies the\napplicable configuration according to a specific\n[priority order](/docs/hosting/full-config#hosting_priority_order).",
       "id": "ServingConfig",
       "properties": {
         "appAssociation": {
@@ -1895,21 +1895,21 @@
           "type": "boolean"
         },
         "headers": {
-          "description": "A list of custom response headers that are added to the content if the\nrequest URL path matches the glob.",
+          "description": "An array of objects, where each object specifies a URL pattern that, if\nmatched to the request URL path, triggers Hosting to apply the specified\ncustom response headers.",
           "items": {
             "$ref": "Header"
           },
           "type": "array"
         },
         "redirects": {
-          "description": "A list of globs that will cause the response to redirect to another\nlocation.",
+          "description": "An array of objects (called redirect rules), where each rule specifies a\nURL pattern that, if matched to the request URL path, triggers Hosting to\nrespond with a redirect to the specified destination path.",
           "items": {
             "$ref": "Redirect"
           },
           "type": "array"
         },
         "rewrites": {
-          "description": "A list of rewrites that will act as if the service were given the\ndestination URL.",
+          "description": "An array of objects (called rewrite rules), where each rule specifies a URL\npattern that, if matched to the request URL path, triggers Hosting to\nrespond as if the service were given the specified destination URL.",
           "items": {
             "$ref": "Rewrite"
           },

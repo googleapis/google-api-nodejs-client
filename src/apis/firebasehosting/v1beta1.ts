@@ -265,11 +265,11 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * A [`header`](/docs/hosting/full-config#headers) defines custom headers to add to a response should the request URL path match the pattern.
+   * A [`header`](/docs/hosting/full-config#headers) is an object that specifies a URL pattern that, if matched to the request URL path, triggers Hosting to apply the specified custom response headers.
    */
   export interface Schema$Header {
     /**
-     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -382,11 +382,11 @@ export namespace firebasehosting_v1beta1 {
     expireTime?: string | null;
   }
   /**
-   * A [`redirect`](/docs/hosting/full-config#redirects) represents the configuration for returning an HTTP redirect response given a matching request URL path.
+   * A [`redirect`](/docs/hosting/full-config#redirects) object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.
    */
   export interface Schema$Redirect {
     /**
-     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -432,7 +432,7 @@ export namespace firebasehosting_v1beta1 {
     version?: Schema$Version;
   }
   /**
-   * A [`rewrite`](/docs/hosting/full-config#rewrites) represents an internal content rewrite on the version. If the pattern matches, the request will be handled as if it were to the destination path specified in the configuration.
+   * A [`rewrite`](/docs/hosting/full-config#rewrites) object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond as if the service were given the specified destination URL.
    */
   export interface Schema$Rewrite {
     /**
@@ -444,7 +444,7 @@ export namespace firebasehosting_v1beta1 {
      */
     function?: string | null;
     /**
-     * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -461,7 +461,7 @@ export namespace firebasehosting_v1beta1 {
     run?: Schema$CloudRunRewrite;
   }
   /**
-   * The configuration for how incoming requests to a site should be routed and processed before serving content. The patterns are matched and applied according to a specific [priority order](/docs/hosting/full-config#hosting_priority_order).
+   * The configuration for how incoming requests to a site should be routed and processed before serving content. The URL request paths are matched against the specified URL patterns in the configuration, then Hosting applies the applicable configuration according to a specific [priority order](/docs/hosting/full-config#hosting_priority_order).
    */
   export interface Schema$ServingConfig {
     /**
@@ -473,15 +473,15 @@ export namespace firebasehosting_v1beta1 {
      */
     cleanUrls?: boolean | null;
     /**
-     * A list of custom response headers that are added to the content if the request URL path matches the glob.
+     * An array of objects, where each object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to apply the specified custom response headers.
      */
     headers?: Schema$Header[];
     /**
-     * A list of globs that will cause the response to redirect to another location.
+     * An array of objects (called redirect rules), where each rule specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.
      */
     redirects?: Schema$Redirect[];
     /**
-     * A list of rewrites that will act as if the service were given the destination URL.
+     * An array of objects (called rewrite rules), where each rule specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond as if the service were given the specified destination URL.
      */
     rewrites?: Schema$Rewrite[];
     /**
