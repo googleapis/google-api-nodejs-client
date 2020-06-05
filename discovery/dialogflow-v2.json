@@ -2049,7 +2049,7 @@
       }
     }
   },
-  "revision": "20200527",
+  "revision": "20200604",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3beta1ExportAgentResponse": {
@@ -2079,10 +2079,6 @@
         "formInfo": {
           "$ref": "GoogleCloudDialogflowCxV3beta1PageInfoFormInfo",
           "description": "Optional for both WebhookRequest and WebhookResponse.\nInformation about the form."
-        },
-        "nextPage": {
-          "description": "Deprecated. Please use WebhookResponse.target_page or\nWebhookResponse.target_flow instead.\n\nOptional for WebhookResponse.\nThe unique identifier of the next page. This field can be set by the\nwebhook to immediately transition to a page different from `current_page`.\nFormat: `projects/<Project ID>/locations/<Location ID>/agents/<Agent\nID>/flows/<Flow ID>/pages/<Page ID>`.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -2097,22 +2093,6 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo"
           },
           "type": "array"
-        },
-        "state": {
-          "description": "Always present for WebhookRequest. Ignored for WebhookResponse.\nThe current state of the form.",
-          "enum": [
-            "FORM_STATE_UNSPECIFIED",
-            "INITIALIZING",
-            "COLLECTING",
-            "FINALIZED"
-          ],
-          "enumDescriptions": [
-            "Not specified. This value should be never used.",
-            "The server is initializing the form. The webhook can process the form\nbefore parameter collection begins.",
-            "The server is collecting form parameters from the user. The webhook can\nmodify form parameters that have been collected or are to be collected.",
-            "The server has collected all required form parameters from the user.\nThe webhook can modify collected form parameters. If any required\nparameter is invalidated by the webhook, the form will return to the\nparameter collection state; otherwise, parameter collection will\nconclude."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -2128,13 +2108,6 @@
         "justCollected": {
           "description": "Optional for WebhookRequest. Ignored for WebhookResponse.\nIndicates if the parameter value was just collected on the last\nconversation turn.",
           "type": "boolean"
-        },
-        "prompt": {
-          "description": "Not set for WebhookRequest. Optional for WebhookResponse.\nThe prompt to send to the user to fill a required form parameter. This\nfield can be set by the webhook. If set, this field overrides the\nprompt defined for the form parameter.",
-          "items": {
-            "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage"
-          },
-          "type": "array"
         },
         "required": {
           "description": "Optional for both WebhookRequest and WebhookResponse.\nIndicates whether the parameter is required. Optional parameters will\nnot trigger prompts; however, they are filled if the user specifies\nthem. Required parameters must be filled before form filling concludes.",
@@ -2402,7 +2375,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Agent": {
-      "description": "Represents a conversational agent.",
+      "description": "A Dialogflow agent is a virtual agent that handles conversations with your\nend-users. It is a natural language understanding module that understands the\nnuances of human language. Dialogflow translates end-user text or audio\nduring a conversation to structured data that your apps and services can\nunderstand. You design and build a Dialogflow agent to handle the types of\nconversations required for your system.\n\nFor more information about agents, see the\n[Agents\ndocumentation](https://cloud.google.com/dialogflow/docs/agents-overview).",
       "id": "GoogleCloudDialogflowV2Agent",
       "properties": {
         "apiVersion": {

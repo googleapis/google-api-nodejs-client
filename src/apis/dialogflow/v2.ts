@@ -152,10 +152,6 @@ export namespace dialogflow_v2 {
      * Optional for both WebhookRequest and WebhookResponse. Information about the form.
      */
     formInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfo;
-    /**
-     * Deprecated. Please use WebhookResponse.target_page or WebhookResponse.target_flow instead.  Optional for WebhookResponse. The unique identifier of the next page. This field can be set by the webhook to immediately transition to a page different from `current_page`. Format: `projects/&lt;Project ID&gt;/locations/&lt;Location ID&gt;/agents/&lt;Agent ID&gt;/flows/&lt;Flow ID&gt;/pages/&lt;Page ID&gt;`.
-     */
-    nextPage?: string | null;
   }
   /**
    * Represents form information.
@@ -165,10 +161,6 @@ export namespace dialogflow_v2 {
      * Optional for both WebhookRequest and WebhookResponse. The parameters contained in the form. Note that the webhook cannot add or remove any form parameter.
      */
     parameterInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo[];
-    /**
-     * Always present for WebhookRequest. Ignored for WebhookResponse. The current state of the form.
-     */
-    state?: string | null;
   }
   /**
    * Represents parameter information.
@@ -182,10 +174,6 @@ export namespace dialogflow_v2 {
      * Optional for WebhookRequest. Ignored for WebhookResponse. Indicates if the parameter value was just collected on the last conversation turn.
      */
     justCollected?: boolean | null;
-    /**
-     * Not set for WebhookRequest. Optional for WebhookResponse. The prompt to send to the user to fill a required form parameter. This field can be set by the webhook. If set, this field overrides the prompt defined for the form parameter.
-     */
-    prompt?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
     /**
      * Optional for both WebhookRequest and WebhookResponse. Indicates whether the parameter is required. Optional parameters will not trigger prompts; however, they are filled if the user specifies them. Required parameters must be filled before form filling concludes.
      */
@@ -375,7 +363,7 @@ export namespace dialogflow_v2 {
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
   }
   /**
-   * Represents a conversational agent.
+   * A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow agent to handle the types of conversations required for your system.  For more information about agents, see the [Agents documentation](https://cloud.google.com/dialogflow/docs/agents-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Agent {
     /**
