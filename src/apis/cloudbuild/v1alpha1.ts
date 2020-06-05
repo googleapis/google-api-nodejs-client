@@ -285,6 +285,10 @@ export namespace cloudbuild_v1alpha1 {
      */
     diskSizeGb?: string | null;
     /**
+     * Option to specify whether or not to apply bash style string operations to the substitutions.  NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.
+     */
+    dynamicSubstitutions?: boolean | null;
+    /**
      * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value.  The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot; being given the value &quot;VALUE&quot;.
      */
     env?: string[] | null;
@@ -313,7 +317,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     sourceProvenanceHash?: string[] | null;
     /**
-     * Option to specify behavior when there is an error in the substitution checks.
+     * Option to specify behavior when there is an error in the substitution checks.  NOTE: this is always set to ALLOW_LOOSE for triggered builds and cannot be overridden in the build configuration file.
      */
     substitutionOption?: string | null;
     /**
