@@ -187,11 +187,11 @@ export namespace container_v1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Scopes that are used by NAP when creating node pools. If oauth_scopes are specified, service_account should be empty.
+     * Scopes that are used by NAP when creating node pools.
      */
     oauthScopes?: string[] | null;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. If service_account is specified, scopes should be empty.
+     * The Google Cloud Platform Service Account to be used by the node VMs.
      */
     serviceAccount?: string | null;
     /**
