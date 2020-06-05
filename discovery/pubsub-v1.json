@@ -436,6 +436,32 @@
                 "https://www.googleapis.com/auth/pubsub"
               ]
             },
+            "detach": {
+              "description": "Detaches a subscription from this topic. All messages retained in the\nsubscription are dropped. Subsequent `Pull` and `StreamingPull` requests\nwill return FAILED_PRECONDITION. If the subscription is a push\nsubscription, pushes to the endpoint will stop.",
+              "flatPath": "v1/projects/{projectsId}/subscriptions/{subscriptionsId}:detach",
+              "httpMethod": "POST",
+              "id": "pubsub.projects.subscriptions.detach",
+              "parameterOrder": [
+                "subscription"
+              ],
+              "parameters": {
+                "subscription": {
+                  "description": "Required. The subscription to detach.\nFormat is `projects/{project}/subscriptions/{subscription}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+subscription}:detach",
+              "response": {
+                "$ref": "DetachSubscriptionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/pubsub"
+              ]
+            },
             "get": {
               "description": "Gets the configuration details of a subscription.",
               "flatPath": "v1/projects/{projectsId}/subscriptions/{subscriptionsId}",
@@ -1050,7 +1076,7 @@
             "subscriptions": {
               "methods": {
                 "list": {
-                  "description": "Lists the names of the subscriptions on this topic.",
+                  "description": "Lists the names of the attached subscriptions on this topic.",
                   "flatPath": "v1/projects/{projectsId}/topics/{topicsId}/subscriptions",
                   "httpMethod": "GET",
                   "id": "pubsub.projects.topics.subscriptions.list",
@@ -1093,7 +1119,7 @@
       }
     }
   },
-  "revision": "20200505",
+  "revision": "20200525",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1164,6 +1190,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "DetachSubscriptionResponse": {
+      "description": "Response for the DetachSubscription method.\nReserved for future use.",
+      "id": "DetachSubscriptionResponse",
+      "properties": {},
       "type": "object"
     },
     "Empty": {
@@ -1270,7 +1302,7 @@
           "type": "string"
         },
         "subscriptions": {
-          "description": "The names of the subscriptions that match the request.",
+          "description": "The names of subscriptions attached to the topic specified in the request.",
           "items": {
             "type": "string"
           },

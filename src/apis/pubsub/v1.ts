@@ -180,6 +180,10 @@ export namespace pubsub_v1 {
     maxDeliveryAttempts?: number | null;
   }
   /**
+   * Response for the DetachSubscription method. Reserved for future use.
+   */
+  export interface Schema$DetachSubscriptionResponse {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
@@ -274,7 +278,7 @@ export namespace pubsub_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The names of the subscriptions that match the request.
+     * The names of subscriptions attached to the topic specified in the request.
      */
     subscriptions?: string[] | null;
   }
@@ -2311,6 +2315,146 @@ export namespace pubsub_v1 {
     }
 
     /**
+     * pubsub.projects.subscriptions.detach
+     * @desc Detaches a subscription from this topic. All messages retained in the subscription are dropped. Subsequent `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will stop.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.subscriptions.detach({
+     *     // Required. The subscription to detach.
+     *     // Format is `projects/{project}/subscriptions/{subscription}`.
+     *     subscription: 'projects/my-project/subscriptions/my-subscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias pubsub.projects.subscriptions.detach
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.subscription Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    detach(
+      params?: Params$Resource$Projects$Subscriptions$Detach,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DetachSubscriptionResponse>;
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$DetachSubscriptionResponse>
+    ): void;
+    detach(
+      params: Params$Resource$Projects$Subscriptions$Detach,
+      callback: BodyResponseCallback<Schema$DetachSubscriptionResponse>
+    ): void;
+    detach(
+      callback: BodyResponseCallback<Schema$DetachSubscriptionResponse>
+    ): void;
+    detach(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Subscriptions$Detach
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DetachSubscriptionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DetachSubscriptionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Subscriptions$Detach;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscriptions$Detach;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+subscription}:detach').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['subscription'],
+        pathParams: ['subscription'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DetachSubscriptionResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$DetachSubscriptionResponse>(parameters);
+      }
+    }
+
+    /**
      * pubsub.projects.subscriptions.get
      * @desc Gets the configuration details of a subscription.
      * @example
@@ -3809,6 +3953,13 @@ export namespace pubsub_v1 {
     extends StandardParameters {
     /**
      * Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
+     */
+    subscription?: string;
+  }
+  export interface Params$Resource$Projects$Subscriptions$Detach
+    extends StandardParameters {
+    /**
+     * Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
      */
     subscription?: string;
   }
@@ -5530,7 +5681,7 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.subscriptions.list
-     * @desc Lists the names of the subscriptions on this topic.
+     * @desc Lists the names of the attached subscriptions on this topic.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
