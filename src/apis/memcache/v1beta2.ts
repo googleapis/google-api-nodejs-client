@@ -280,6 +280,10 @@ export namespace memcache_v1beta2 {
       ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule;
     } | null;
     /**
+     * Optional. The MaintenanceSettings associated with instance.
+     */
+    maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
+    /**
      * Unique name of the resource. It uses the form:  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      */
     name?: string | null;
@@ -336,6 +340,15 @@ export namespace memcache_v1beta2 {
      * The scheduled start time for the maintenance.
      */
     startTime?: string | null;
+  }
+  /**
+   * Maintenance settings associated with instance. Allows service producers and end users to assign settings that controls maintenance on this instance.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings {
+    /**
+     * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
+     */
+    exclude?: boolean | null;
   }
   /**
    * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
@@ -424,7 +437,7 @@ export namespace memcache_v1beta2 {
   }
   export interface Schema$Instance {
     /**
-     * Optional. The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
+     * The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
      */
     authorizedNetwork?: string | null;
     /**
@@ -436,7 +449,7 @@ export namespace memcache_v1beta2 {
      */
     discoveryEndpoint?: string | null;
     /**
-     * Optional. User provided name for the instance only used for display purposes. Cannot be more than 80 characters.
+     * User provided name for the instance only used for display purposes. Cannot be more than 80 characters.
      */
     displayName?: string | null;
     /**
@@ -444,7 +457,7 @@ export namespace memcache_v1beta2 {
      */
     instanceMessages?: Schema$InstanceMessage[];
     /**
-     * Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
+     * Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -456,7 +469,7 @@ export namespace memcache_v1beta2 {
      */
     memcacheNodes?: Schema$Node[];
     /**
-     * Optional. The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is MEMCACHE_1_5. The minor version will be automatically determined by our system based on the latest supported minor version.
+     * The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is MEMCACHE_1_5. The minor version will be automatically determined by our system based on the latest supported minor version.
      */
     memcacheVersion?: string | null;
     /**
@@ -484,7 +497,7 @@ export namespace memcache_v1beta2 {
      */
     updateTime?: string | null;
     /**
-     * Optional. Zones where Memcached nodes should be provisioned in. Memcached nodes will be equally distributed across these zones. If not provided, the service will by default create nodes in all zones in the region for the instance.
+     * Zones where Memcached nodes should be provisioned in. Memcached nodes will be equally distributed across these zones. If not provided, the service will by default create nodes in all zones in the region for the instance.
      */
     zones?: string[] | null;
   }
