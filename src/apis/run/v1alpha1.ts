@@ -926,6 +926,10 @@ export namespace run_v1alpha1 {
      * The resource records required to configure this domain mapping. These records must be added to the domain&#39;s DNS configuration in order to serve the application via this domain mapping.
      */
     resourceRecords?: Schema$ResourceRecord[];
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Holds the URL that will serve the traffic of the DomainMapping. +optional
+     */
+    url?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
