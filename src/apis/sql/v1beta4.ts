@@ -629,6 +629,10 @@ export namespace sql_v1beta4 {
      */
     kind?: string | null;
     /**
+     * Option for export offload.
+     */
+    offload?: boolean | null;
+    /**
      * Options for exporting data as SQL statements.
      */
     sqlExportOptions?: {
