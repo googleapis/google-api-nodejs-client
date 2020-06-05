@@ -116,7 +116,9 @@ export namespace people_v1 {
   export class People {
     context: APIRequestContext;
     contactGroups: Resource$Contactgroups;
+    otherContacts: Resource$Othercontacts;
     people: Resource$People;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,7 +127,9 @@ export namespace people_v1 {
       };
 
       this.contactGroups = new Resource$Contactgroups(this.context);
+      this.otherContacts = new Resource$Othercontacts(this.context);
       this.people = new Resource$People(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -330,6 +334,19 @@ export namespace people_v1 {
      * The status of the response.
      */
     status?: Schema$Status;
+  }
+  /**
+   * A request to copy an other contact to my contacts group.
+   */
+  export interface Schema$CopyOtherContactToMyContactsGroupRequest {
+    /**
+     * Required. A field mask to restrict which fields are copied into the new contact. Valid values are:  * emailAddresses * names * phoneNumbers
+     */
+    copyMask?: string | null;
+    /**
+     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     */
+    readMask?: string | null;
   }
   /**
    * A person&#39;s cover photo. A large image shown on the person&#39;s profile page that represents who they are or what they care about.
@@ -576,6 +593,23 @@ export namespace people_v1 {
      * The total number of items in the list without pagination.
      */
     totalItems?: number | null;
+  }
+  /**
+   * The response to a request for the authenticated user&#39;s other contacts.
+   */
+  export interface Schema$ListOtherContactsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token.
+     */
+    nextSyncToken?: string | null;
+    /**
+     * The list of other contacts returned as Person resources. Other contacts support a limited subset of supported fields. See ListOtherContactsRequest.request_mask for more detailed information.
+     */
+    otherContacts?: Schema$Person[];
   }
   /**
    * A person&#39;s locale preference.
@@ -2361,6 +2395,199 @@ export namespace people_v1 {
     requestBody?: Schema$ModifyContactGroupMembersRequest;
   }
 
+  export class Resource$Othercontacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * people.otherContacts.copyOtherContactToMyContactsGroup
+     * @desc Copies an other contact to a new contact in the user's MY_CONTACTS group
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.otherContacts.copyOtherContactToMyContactsGroup({
+     *     // Required. The resource name of the other contact to copy.
+     *     resourceName: 'otherContacts/my-otherContact',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "copyMask": "my_copyMask",
+     *       //   "readMask": "my_readMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addresses": [],
+     *   //   "ageRange": "my_ageRange",
+     *   //   "ageRanges": [],
+     *   //   "biographies": [],
+     *   //   "birthdays": [],
+     *   //   "braggingRights": [],
+     *   //   "coverPhotos": [],
+     *   //   "emailAddresses": [],
+     *   //   "etag": "my_etag",
+     *   //   "events": [],
+     *   //   "genders": [],
+     *   //   "imClients": [],
+     *   //   "interests": [],
+     *   //   "locales": [],
+     *   //   "memberships": [],
+     *   //   "metadata": {},
+     *   //   "names": [],
+     *   //   "nicknames": [],
+     *   //   "occupations": [],
+     *   //   "organizations": [],
+     *   //   "phoneNumbers": [],
+     *   //   "photos": [],
+     *   //   "relations": [],
+     *   //   "relationshipInterests": [],
+     *   //   "relationshipStatuses": [],
+     *   //   "residences": [],
+     *   //   "resourceName": "my_resourceName",
+     *   //   "sipAddresses": [],
+     *   //   "skills": [],
+     *   //   "taglines": [],
+     *   //   "urls": [],
+     *   //   "userDefined": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias people.otherContacts.copyOtherContactToMyContactsGroup
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resourceName Required. The resource name of the other contact to copy.
+     * @param {().CopyOtherContactToMyContactsGroupRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    copyOtherContactToMyContactsGroup(
+      params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    copyOtherContactToMyContactsGroup(
+      params?: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
+    copyOtherContactToMyContactsGroup(
+      params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    copyOtherContactToMyContactsGroup(
+      params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
+    copyOtherContactToMyContactsGroup(
+      params: Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
+    copyOtherContactToMyContactsGroup(
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
+    copyOtherContactToMyContactsGroup(
+      paramsOrCallback?:
+        | Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Person>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Person> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+resourceName}:copyOtherContactToMyContactsGroup'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resourceName'],
+        pathParams: ['resourceName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Person>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Person>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the other contact to copy.
+     */
+    resourceName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CopyOtherContactToMyContactsGroupRequest;
+  }
+
   export class Resource$People {
     context: APIRequestContext;
     connections: Resource$People$Connections;
@@ -3740,7 +3967,7 @@ export namespace people_v1 {
 
     /**
      * people.people.connections.list
-     * @desc Provides a list of the authenticated user's contacts merged with any connected profiles.  The request throws a 400 error if 'personFields' is not specified.
+     * @desc Provides a list of the authenticated user's contacts.  The request throws a 400 error if 'personFields' is not specified.
      * @example
      * // Before running the sample:
      * // - Enable the API at:
@@ -3978,6 +4205,202 @@ export namespace people_v1 {
     sortOrder?: string;
     /**
      * Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.
+     */
+    syncToken?: string;
+  }
+
+  export class Resource$V1 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * people.otherContacts
+     * @desc List all other contacts, that is contacts that are not in a contact group. Other contacts are typically auto created contacts from interactions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await people.otherContacts({
+     *     // Optional. The number of other contacts to include in the response. Valid values are
+     *     // between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListOtherContacts` call.
+     *     // Provide this to retrieve the subsequent page.
+     *     //
+     *     // When paginating, all other parameters provided to `ListOtherContacts`
+     *     // must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Valid values are:
+     *     //
+     *     // * emailAddresses
+     *     // * names
+     *     // * phoneNumbers
+     *     readMask: 'placeholder-value',
+     *     // Optional. Whether the response should include `next_sync_token`, which can be used to
+     *     // get all changes since the last request. For subsequent sync requests use
+     *     // the `sync_token` param instead. Initial sync requests that specify
+     *     // `request_sync_token` have an additional rate limit.
+     *     requestSyncToken: 'placeholder-value',
+     *     // Optional. A sync token, received from a previous `ListOtherContacts` call.
+     *     // Provide this to retrieve only the resources changed since the last request.
+     *     // Sync requests that specify `sync_token` have an additional rate limit.
+     *     //
+     *     // When syncing, all other parameters provided to `ListOtherContacts`
+     *     // must match the call that provided the sync token.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "otherContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias people.otherContacts
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
+     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * emailAddresses * names * phoneNumbers
+     * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * @param {string=} params.syncToken Optional. A sync token, received from a previous `ListOtherContacts` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListOtherContacts` must match the call that provided the sync token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    otherContacts(
+      params: Params$Resource$V1$Othercontacts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    otherContacts(
+      params?: Params$Resource$V1$Othercontacts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOtherContactsResponse>;
+    otherContacts(
+      params: Params$Resource$V1$Othercontacts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    otherContacts(
+      params: Params$Resource$V1$Othercontacts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>,
+      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
+    ): void;
+    otherContacts(
+      params: Params$Resource$V1$Othercontacts,
+      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
+    ): void;
+    otherContacts(
+      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
+    ): void;
+    otherContacts(
+      paramsOrCallback?:
+        | Params$Resource$V1$Othercontacts
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOtherContactsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Othercontacts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Othercontacts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/otherContacts').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOtherContactsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOtherContactsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1$Othercontacts extends StandardParameters {
+    /**
+     * Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * emailAddresses * names * phoneNumbers
+     */
+    readMask?: string;
+    /**
+     * Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     */
+    requestSyncToken?: boolean;
+    /**
+     * Optional. A sync token, received from a previous `ListOtherContacts` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListOtherContacts` must match the call that provided the sync token.
      */
     syncToken?: string;
   }

@@ -342,6 +342,38 @@
         }
       }
     },
+    "otherContacts": {
+      "methods": {
+        "copyOtherContactToMyContactsGroup": {
+          "description": "Copies an other contact to a new contact in the user's MY_CONTACTS group",
+          "flatPath": "v1/otherContacts/{otherContactsId}:copyOtherContactToMyContactsGroup",
+          "httpMethod": "POST",
+          "id": "people.otherContacts.copyOtherContactToMyContactsGroup",
+          "parameterOrder": [
+            "resourceName"
+          ],
+          "parameters": {
+            "resourceName": {
+              "description": "Required. The resource name of the other contact to copy.",
+              "location": "path",
+              "pattern": "^otherContacts/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+resourceName}:copyOtherContactToMyContactsGroup",
+          "request": {
+            "$ref": "CopyOtherContactToMyContactsGroupRequest"
+          },
+          "response": {
+            "$ref": "Person"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/contacts"
+          ]
+        }
+      }
+    },
     "people": {
       "methods": {
         "createContact": {
@@ -576,7 +608,7 @@
         "connections": {
           "methods": {
             "list": {
-              "description": "Provides a list of the authenticated user's contacts merged with any\nconnected profiles.\n\nThe request throws a 400 error if 'personFields' is not specified.",
+              "description": "Provides a list of the authenticated user's contacts.\n\nThe request throws a 400 error if 'personFields' is not specified.",
               "flatPath": "v1/people/{peopleId}/connections",
               "httpMethod": "GET",
               "id": "people.people.connections.list",
@@ -648,9 +680,53 @@
           }
         }
       }
+    },
+    "v1": {
+      "methods": {
+        "otherContacts": {
+          "description": "List all other contacts, that is contacts that are not in a contact group.\nOther contacts are typically auto created contacts from interactions.",
+          "flatPath": "v1/otherContacts",
+          "httpMethod": "POST",
+          "id": "people.otherContacts",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The number of other contacts to include in the response. Valid values are\nbetween 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListOtherContacts` call.\nProvide this to retrieve the subsequent page.\n\nWhen paginating, all other parameters provided to `ListOtherContacts`\nmust match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "readMask": {
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple\nfields can be specified by separating them with commas. Valid values are:\n\n* emailAddresses\n* names\n* phoneNumbers",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
+            "requestSyncToken": {
+              "description": "Optional. Whether the response should include `next_sync_token`, which can be used to\nget all changes since the last request. For subsequent sync requests use\nthe `sync_token` param instead. Initial sync requests that specify\n`request_sync_token` have an additional rate limit.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "syncToken": {
+              "description": "Optional. A sync token, received from a previous `ListOtherContacts` call.\nProvide this to retrieve only the resources changed since the last request.\nSync requests that specify `sync_token` have an additional rate limit.\n\nWhen syncing, all other parameters provided to `ListOtherContacts`\nmust match the call that provided the sync token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/otherContacts",
+          "response": {
+            "$ref": "ListOtherContactsResponse"
+          }
+        }
+      }
     }
   },
-  "revision": "20200513",
+  "revision": "20200603",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -911,6 +987,23 @@
         "status": {
           "$ref": "Status",
           "description": "The status of the response."
+        }
+      },
+      "type": "object"
+    },
+    "CopyOtherContactToMyContactsGroupRequest": {
+      "description": "A request to copy an other contact to my contacts group.",
+      "id": "CopyOtherContactToMyContactsGroupRequest",
+      "properties": {
+        "copyMask": {
+          "description": "Required. A field mask to restrict which fields are copied into the new contact.\nValid values are:\n\n* emailAddresses\n* names\n* phoneNumbers",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "readMask": {
+          "description": "Optional. A field mask to restrict which fields on the person are returned. Multiple\nfields can be specified by separating them with commas. Defaults to empty\nif not set, which will skip the post mutate get. Valid values are:\n\n* addresses\n* ageRanges\n* biographies\n* birthdays\n* coverPhotos\n* emailAddresses\n* events\n* genders\n* imClients\n* interests\n* locales\n* memberships\n* metadata\n* names\n* nicknames\n* occupations\n* organizations\n* phoneNumbers\n* photos\n* relations\n* residences\n* sipAddresses\n* skills\n* urls\n* userDefined",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1202,6 +1295,28 @@
           "description": "The total number of items in the list without pagination.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ListOtherContactsResponse": {
+      "description": "The response to a request for the authenticated user's other contacts.",
+      "id": "ListOtherContactsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page.\nIf this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "nextSyncToken": {
+          "description": "A token, which can be sent as `sync_token` to retrieve changes since the\nlast request. Request must set `request_sync_token` to return the sync\ntoken.",
+          "type": "string"
+        },
+        "otherContacts": {
+          "description": "The list of other contacts returned as Person resources. Other contacts\nsupport a limited subset of supported fields. See\nListOtherContactsRequest.request_mask for more detailed information.",
+          "items": {
+            "$ref": "Person"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1988,14 +2103,16 @@
             "ACCOUNT",
             "PROFILE",
             "DOMAIN_PROFILE",
-            "CONTACT"
+            "CONTACT",
+            "OTHER_CONTACT"
           ],
           "enumDescriptions": [
             "Unspecified.",
             "[Google Account](https://accounts.google.com).",
             "[Google profile](https://profiles.google.com). You can view the\nprofile at\n[https://profiles.google.com/](https://profiles.google.com/){id}, where\n{id} is the source id.",
             "[G Suite domain profile](https://support.google.com/a/answer/1628008).",
-            "[Google contact](https://contacts.google.com). You can view the\ncontact at\n[https://contact.google.com/](https://contact.google.com/){id}, where\n{id} is the source id."
+            "[Google contact](https://contacts.google.com). You can view the\ncontact at\n[https://contact.google.com/](https://contact.google.com/){id}, where\n{id} is the source id.",
+            "[Google contact](https://contacts.google.com). You can view these kinds\nof contacts under the 'Other contacts' tab."
           ],
           "type": "string"
         },
