@@ -22,8 +22,10 @@ AUTOSYNTH_MULTIPLE_COMMITS = True
 common_templates = gcp.CommonTemplates()
 templates = common_templates.node_library()
 s.copy(templates, excludes=[
-  ".github/CONTRIBUTING.md", 
+  ".github/CONTRIBUTING.md",
   "README.md",
   ".eslintignore",
   ".prettierignore"
 ])
+subprocess.run(['npm', 'install'])
+subprocess.run(['npm', 'run', 'submit-prs'])
