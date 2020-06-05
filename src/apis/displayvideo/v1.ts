@@ -414,6 +414,40 @@ export namespace displayvideo_v1 {
     role?: string | null;
   }
   /**
+   * An assignment between a targetable inventory source and an inventory source group.
+   */
+  export interface Schema$AssignedInventorySource {
+    /**
+     * Output only. The unique ID of the assigned inventory source. The ID is only unique within a given inventory source group. It may be reused in other contexts.
+     */
+    assignedInventorySourceId?: string | null;
+    /**
+     * Required. The ID of the inventory source entity being targeted.
+     */
+    inventorySourceId?: string | null;
+    /**
+     * Output only. The resource name of the assigned inventory source.
+     */
+    name?: string | null;
+  }
+  /**
+   * An assignment between a location list and a relevant targeting option. Currently, geo region targeting options are the only supported option for assignment.
+   */
+  export interface Schema$AssignedLocation {
+    /**
+     * Output only. The unique ID of the assigned location. The ID is only unique within a location list. It may be reused in other contexts.
+     */
+    assignedLocationId?: string | null;
+    /**
+     * Output only. The resource name of the assigned location.
+     */
+    name?: string | null;
+    /**
+     * Required. The ID of the targeting option assigned to the location list. Must be of type TARGETING_TYPE_GEO_REGION.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
    * A single assigned targeting option, which defines the state of a targeting option for an entity with targeting settings, such as a Line Item or Insertion Order.
    */
   export interface Schema$AssignedTargetingOption {
@@ -709,6 +743,58 @@ export namespace displayvideo_v1 {
     createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
   }
   /**
+   * Request message for AssignedInventorySourceService.BulkEdit.
+   */
+  export interface Schema$BulkEditAssignedInventorySourcesRequest {
+    /**
+     * The ID of the advertiser that owns the parent inventory source group.  The parent partner does not have access to these assigned inventory sources.
+     */
+    advertiserId?: string | null;
+    /**
+     * The assigned inventory sources to create in bulk, specified as a list of AssignedInventorySources.
+     */
+    createdAssignedInventorySources?: Schema$AssignedInventorySource[];
+    /**
+     * The IDs of the assigned inventory sources to delete in bulk, specified as a list of assigned_inventory_source_ids.
+     */
+    deletedAssignedInventorySources?: string[] | null;
+    /**
+     * The ID of the partner that owns the inventory source group.  Only this partner has write access to these assigned inventory sources.
+     */
+    partnerId?: string | null;
+  }
+  /**
+   * Response message for AssignedInventorySourceService.BulkEdit.
+   */
+  export interface Schema$BulkEditAssignedInventorySourcesResponse {
+    /**
+     * The list of assigned inventory sources that have been successfully created.  This list will be absent if empty.
+     */
+    assignedInventorySources?: Schema$AssignedInventorySource[];
+  }
+  /**
+   * Request message for AssignedLocationService.BulkEditAssignedLocations.
+   */
+  export interface Schema$BulkEditAssignedLocationsRequest {
+    /**
+     * The assigned locations to create in bulk, specified as a list of AssignedLocations.
+     */
+    createdAssignedLocations?: Schema$AssignedLocation[];
+    /**
+     * The IDs of the assigned locations to delete in bulk, specified as a list of assigned_location_ids.
+     */
+    deletedAssignedLocations?: string[] | null;
+  }
+  /**
+   * Response message for AssignedLocationService.BulkEditAssignedLocations.
+   */
+  export interface Schema$BulkEditAssignedLocationsResponse {
+    /**
+     * The list of assigned locations that have been successfully created.  This list will be absent if empty.
+     */
+    assignedLocations?: Schema$AssignedLocation[];
+  }
+  /**
    * Request message for BulkEditLineItemAssignedTargetingOptions.
    */
   export interface Schema$BulkEditLineItemAssignedTargetingOptionsRequest {
@@ -726,6 +812,58 @@ export namespace displayvideo_v1 {
      * The list of assigned targeting options that have been successfully created.  This list will be absent if empty.
      */
     createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
+  }
+  /**
+   * Request message for NegativeKeywordService.BulkEditNegativeKeywords.
+   */
+  export interface Schema$BulkEditNegativeKeywordsRequest {
+    /**
+     * The negative keywords to create in batch, specified as a list of NegativeKeywords.
+     */
+    createdNegativeKeywords?: Schema$NegativeKeyword[];
+    /**
+     * The negative keywords to delete in batch, specified as a list of keyword_values.
+     */
+    deletedNegativeKeywords?: string[] | null;
+  }
+  /**
+   * Response message for NegativeKeywordService.BulkEditNegativeKeywords.
+   */
+  export interface Schema$BulkEditNegativeKeywordsResponse {
+    /**
+     * The list of negative keywords that have been successfully created.  This list will be absent if empty.
+     */
+    negativeKeywords?: Schema$NegativeKeyword[];
+  }
+  /**
+   * Request message for SiteService.BulkEditSites.
+   */
+  export interface Schema$BulkEditSitesRequest {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string | null;
+    /**
+     * The sites to create in batch, specified as a list of Sites.
+     */
+    createdSites?: Schema$Site[];
+    /**
+     * The sites to delete in batch, specified as a list of site url_or_app_ids.
+     */
+    deletedSites?: string[] | null;
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string | null;
+  }
+  /**
+   * Response message for SiteService.BulkEditSites.
+   */
+  export interface Schema$BulkEditSitesResponse {
+    /**
+     * The list of sites that have been successfully created.  This list will be absent if empty.
+     */
+    sites?: Schema$Site[];
   }
   export interface Schema$BulkListAdvertiserAssignedTargetingOptionsResponse {
     /**
@@ -2438,6 +2576,32 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * Response message for AssignedInventorySourceService.ListAssignedInventorySources.
+   */
+  export interface Schema$ListAssignedInventorySourcesResponse {
+    /**
+     * The list of assigned inventory sources.  This list will be absent if empty.
+     */
+    assignedInventorySources?: Schema$AssignedInventorySource[];
+    /**
+     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListAssignedInventorySources` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for AssignedLocationService.ListAssignedLocations.
+   */
+  export interface Schema$ListAssignedLocationsResponse {
+    /**
+     * The list of assigned locations.  This list will be absent if empty.
+     */
+    assignedLocations?: Schema$AssignedLocation[];
+    /**
+     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListAssignedLocations` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   export interface Schema$ListCampaignsResponse {
     /**
      * The list of campaigns.  This list will be absent if empty.
@@ -2588,6 +2752,32 @@ export namespace displayvideo_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for NegativeKeywordService.ListNegativeKeywords.
+   */
+  export interface Schema$ListNegativeKeywordsResponse {
+    /**
+     * The list of negative keywords.  This list will be absent if empty.
+     */
+    negativeKeywords?: Schema$NegativeKeyword[];
+    /**
+     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListNegativeKeywords` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for SiteService.ListSites.
+   */
+  export interface Schema$ListSitesResponse {
+    /**
+     * A token to retrieve the next page of results.  Pass this value in the page_token field in the subsequent call to `ListSites` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of sites.  This list will be absent if empty.
+     */
+    sites?: Schema$Site[];
+  }
+  /**
    * Response message for ListTargetingOptions.
    */
   export interface Schema$ListTargetingOptionsResponse {
@@ -2667,6 +2857,19 @@ export namespace displayvideo_v1 {
      * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * A negatively targeted keyword that belongs to a negative keyword list.
+   */
+  export interface Schema$NegativeKeyword {
+    /**
+     * Required. Immutable. The negatively targeted keyword, for example `car insurance`.  Must be UTF-8 encoded with a maximum size of 255 bytes. Maximum number of characters is 80. Maximum number of words is 10.  Valid characters are restricted to ASCII characters only. The only URL-escaping permitted is for representing whitespace between words. Leading or trailing whitespace is ignored.
+     */
+    keywordValue?: string | null;
+    /**
+     * Output only. The resource name of the negative keyword.
+     */
+    name?: string | null;
   }
   /**
    * A list of negative keywords used for targeting.
@@ -3089,6 +3292,19 @@ export namespace displayvideo_v1 {
      * Output only. An enum for the DV360 Sensitive category content classifier.
      */
     sensitiveCategory?: string | null;
+  }
+  /**
+   * A single site. Sites are apps or websites belonging to a channel.
+   */
+  export interface Schema$Site {
+    /**
+     * Output only. The resource name of the site.
+     */
+    name?: string | null;
+    /**
+     * Required. The URL or app ID of the site. Must be UTF-8 encoded with a maximum length of 240 bytes.
+     */
+    urlOrAppId?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -5758,8 +5974,10 @@ export namespace displayvideo_v1 {
 
   export class Resource$Advertisers$Channels {
     context: APIRequestContext;
+    sites: Resource$Advertisers$Channels$Sites;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.sites = new Resource$Advertisers$Channels$Sites(this.context);
     }
 
     /**
@@ -6083,6 +6301,162 @@ export namespace displayvideo_v1 {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
       }
     }
+
+    /**
+     * displayvideo.advertisers.channels.patch
+     * @desc Updates a channel. Returns the updated channel if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.patch({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the channel. Assigned by the system.
+     *     channelId: 'placeholder-value',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.channels.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId The ID of the advertiser that owns the created channel.
+     * @param {string} params.channelId Output only. The unique ID of the channel. Assigned by the system.
+     * @param {string=} params.partnerId The ID of the partner that owns the created channel.
+     * @param {string=} params.updateMask Required. The mask to control which fields to update.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Advertisers$Channels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Advertisers$Channels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    patch(
+      params: Params$Resource$Advertisers$Channels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Channels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Channels$Patch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Channel>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Channels$Patch
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Channels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Channels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/advertisers/{+advertiserId}/channels/{channelId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'channelId'],
+        pathParams: ['advertiserId', 'channelId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Advertisers$Channels$Get
@@ -6124,6 +6498,744 @@ export namespace displayvideo_v1 {
     pageToken?: string;
     /**
      * The ID of the partner that owns the channels.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Advertisers$Channels$Patch
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the created channel.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the channel. Assigned by the system.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the created channel.
+     */
+    partnerId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
+  }
+
+  export class Resource$Advertisers$Channels$Sites {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.advertisers.channels.sites.bulkEdit
+     * @desc Bulk edits sites under a single channel.  The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.bulkEdit({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the sites belong.
+     *     channelId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "createdSites": [],
+     *       //   "deletedSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.channels.sites.bulkEdit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
+     * @param {string} params.channelId Required. The ID of the parent channel to which the sites belong.
+     * @param {().BulkEditSitesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEdit(
+      params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEdit(
+      params?: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditSitesResponse>;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>,
+      callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
+      callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
+    ): void;
+    bulkEdit(
+      callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
+    ): void;
+    bulkEdit(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Channels$Sites$Bulkedit
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Channels$Sites$Bulkedit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Channels$Sites$Bulkedit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites:bulkEdit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'channelId'],
+        pathParams: ['advertiserId', 'channelId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkEditSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkEditSitesResponse>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.channels.sites.create
+     * @desc Creates a site in a channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.create({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel in which the site will be created.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "urlOrAppId": "my_urlOrAppId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "urlOrAppId": "my_urlOrAppId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.channels.sites.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
+     * @param {string} params.channelId Required. The ID of the parent channel in which the site will be created.
+     * @param {string=} params.partnerId The ID of the partner that owns the parent channel.
+     * @param {().Site} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Advertisers$Channels$Sites$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Channels$Sites$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
+    create(
+      params: Params$Resource$Advertisers$Channels$Sites$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Channels$Sites$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Channels$Sites$Create,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Site>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Channels$Sites$Create
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Channels$Sites$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Channels$Sites$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'channelId'],
+        pathParams: ['advertiserId', 'channelId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Site>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Site>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.channels.sites.delete
+     * @desc Deletes a site from a channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.delete({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the site belongs.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The URL or app ID of the site to delete.
+     *     urlOrAppId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.channels.sites.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
+     * @param {string} params.channelId Required. The ID of the parent channel to which the site belongs.
+     * @param {string=} params.partnerId The ID of the partner that owns the parent channel.
+     * @param {string} params.urlOrAppId Required. The URL or app ID of the site to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Advertisers$Channels$Sites$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Advertisers$Channels$Sites$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Channels$Sites$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Channels$Sites$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Channels$Sites$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Channels$Sites$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Channels$Sites$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Channels$Sites$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites/{+urlOrAppId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'channelId', 'urlOrAppId'],
+        pathParams: ['advertiserId', 'channelId', 'urlOrAppId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.channels.sites.list
+     * @desc Lists sites in a channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.list({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the parent channel to which the requested sites belong.
+     *     channelId: '[^/]+',
+     *     // Allows filtering by site fields.
+     *     //
+     *     // Supported syntax:
+     *     //
+     *     // * Filter expressions for site currently can only contain at most one
+     *     // * restriction.
+     *     // * A restriction has the form of `{field} {operator} {value}`.
+     *     // * The operator must be `CONTAINS (:)`.
+     *     // * Supported fields:
+     *     //     - `urlOrAppId`
+     *     //
+     *     // Examples:
+     *     //
+     *     // * All sites for which the URL or app ID contains "google":
+     *     // `urlOrAppId : "google"`
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     // Acceptable values are:
+     *     //
+     *     // * `urlOrAppId` (default)
+     *     //
+     *     // The default sorting order is ascending. To specify descending order for a
+     *     // field, a suffix " desc" should be added to the field name. Example:
+     *     // `urlOrAppId desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will
+     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
+     *     // is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     //
+     *     // Typically, this is the value of
+     *     // next_page_token returned from the
+     *     // previous call to `ListSites` method. If not specified, the first page
+     *     // of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.channels.sites.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId The ID of the advertiser that owns the parent channel.
+     * @param {string} params.channelId Required. The ID of the parent channel to which the requested sites belong.
+     * @param {string=} params.filter Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.partnerId The ID of the partner that owns the parent channel.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Advertisers$Channels$Sites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Channels$Sites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSitesResponse>;
+    list(
+      params: Params$Resource$Advertisers$Channels$Sites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Channels$Sites$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSitesResponse>,
+      callback: BodyResponseCallback<Schema$ListSitesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Channels$Sites$List,
+      callback: BodyResponseCallback<Schema$ListSitesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSitesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Channels$Sites$List
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Channels$Sites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Channels$Sites$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/channels/{+channelId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'channelId'],
+        pathParams: ['advertiserId', 'channelId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSitesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Channels$Sites$Bulkedit
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel to which the sites belong.
+     */
+    channelId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditSitesRequest;
+  }
+  export interface Params$Resource$Advertisers$Channels$Sites$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel in which the site will be created.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Site;
+  }
+  export interface Params$Resource$Advertisers$Channels$Sites$Delete
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel to which the site belongs.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string;
+    /**
+     * Required. The URL or app ID of the site to delete.
+     */
+    urlOrAppId?: string;
+  }
+  export interface Params$Resource$Advertisers$Channels$Sites$List
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel to which the requested sites belong.
+     */
+    channelId?: string;
+    /**
+     * Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
      */
     partnerId?: string;
   }
@@ -10320,8 +11432,159 @@ export namespace displayvideo_v1 {
 
   export class Resource$Advertisers$Locationlists {
     context: APIRequestContext;
+    assignedLocations: Resource$Advertisers$Locationlists$Assignedlocations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.assignedLocations = new Resource$Advertisers$Locationlists$Assignedlocations(
+        this.context
+      );
+    }
+
+    /**
+     * displayvideo.advertisers.locationLists.create
+     * @desc Creates a new location list. Returns the newly created location list if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.create({
+     *     // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "locationListId": "my_locationListId",
+     *       //   "locationType": "my_locationType",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "locationListId": "my_locationListId",
+     *   //   "locationType": "my_locationType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.locationLists.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
+     * @param {().LocationList} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Locationlists$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LocationList>;
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LocationList>,
+      callback: BodyResponseCallback<Schema$LocationList>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Create,
+      callback: BodyResponseCallback<Schema$LocationList>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LocationList>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Locationlists$Create
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LocationList> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Locationlists$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Locationlists$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/advertisers/{+advertiserId}/locationLists'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LocationList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LocationList>(parameters);
+      }
     }
 
     /**
@@ -10643,8 +11906,174 @@ export namespace displayvideo_v1 {
         return createAPIRequest<Schema$ListLocationListsResponse>(parameters);
       }
     }
+
+    /**
+     * displayvideo.advertisers.locationLists.patch
+     * @desc Updates a location list. Returns the updated location list if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.patch({
+     *     // Required. The ID of the DV360 advertiser to which the location lists belongs.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the location list. Assigned by the system.
+     *     locationListId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "locationListId": "my_locationListId",
+     *       //   "locationType": "my_locationType",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "locationListId": "my_locationListId",
+     *   //   "locationType": "my_locationType",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.locationLists.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location lists belongs.
+     * @param {string} params.locationListId Output only. The unique ID of the location list. Assigned by the system.
+     * @param {string=} params.updateMask Required. The mask to control which fields to update.
+     * @param {().LocationList} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Advertisers$Locationlists$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Advertisers$Locationlists$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LocationList>;
+    patch(
+      params: Params$Resource$Advertisers$Locationlists$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Locationlists$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LocationList>,
+      callback: BodyResponseCallback<Schema$LocationList>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Locationlists$Patch,
+      callback: BodyResponseCallback<Schema$LocationList>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LocationList>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Locationlists$Patch
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LocationList>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LocationList> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Locationlists$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Locationlists$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/locationLists/{locationListId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'locationListId'],
+        pathParams: ['advertiserId', 'locationListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LocationList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$LocationList>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Advertisers$Locationlists$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the location list belongs.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LocationList;
+  }
   export interface Params$Resource$Advertisers$Locationlists$Get
     extends StandardParameters {
     /**
@@ -10679,11 +12108,1026 @@ export namespace displayvideo_v1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Advertisers$Locationlists$Patch
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the location lists belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the location list. Assigned by the system.
+     */
+    locationListId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
 
-  export class Resource$Advertisers$Negativekeywordlists {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LocationList;
+  }
+
+  export class Resource$Advertisers$Locationlists$Assignedlocations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * displayvideo.advertisers.locationLists.assignedLocations.bulkEdit
+     * @desc Bulk edits multiple assignments between locations and a single location list.  The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.bulkEdit(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the location list to which these assignments are assigned.
+     *       locationListId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createdAssignedLocations": [],
+     *         //   "deletedAssignedLocations": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.locationLists.assignedLocations.bulkEdit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
+     * @param {string} params.locationListId Required. The ID of the location list to which these assignments are assigned.
+     * @param {().BulkEditAssignedLocationsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEdit(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEdit(
+      params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditAssignedLocationsResponse>;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkEditAssignedLocationsResponse>,
+      callback: BodyResponseCallback<Schema$BulkEditAssignedLocationsResponse>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit,
+      callback: BodyResponseCallback<Schema$BulkEditAssignedLocationsResponse>
+    ): void;
+    bulkEdit(
+      callback: BodyResponseCallback<Schema$BulkEditAssignedLocationsResponse>
+    ): void;
+    bulkEdit(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit
+        | BodyResponseCallback<Schema$BulkEditAssignedLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkEditAssignedLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkEditAssignedLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditAssignedLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/locationLists/{+locationListId}/assignedLocations:bulkEdit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'locationListId'],
+        pathParams: ['advertiserId', 'locationListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkEditAssignedLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkEditAssignedLocationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.locationLists.assignedLocations.create
+     * @desc Creates an assignment between a location and a location list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.create(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the location list for which the assignment will be created.
+     *       locationListId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignedLocationId": "my_assignedLocationId",
+     *         //   "name": "my_name",
+     *         //   "targetingOptionId": "my_targetingOptionId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedLocationId": "my_assignedLocationId",
+     *   //   "name": "my_name",
+     *   //   "targetingOptionId": "my_targetingOptionId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.locationLists.assignedLocations.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
+     * @param {string} params.locationListId Required. The ID of the location list for which the assignment will be created.
+     * @param {().AssignedLocation} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedLocation>;
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AssignedLocation>,
+      callback: BodyResponseCallback<Schema$AssignedLocation>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Create,
+      callback: BodyResponseCallback<Schema$AssignedLocation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AssignedLocation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Locationlists$Assignedlocations$Create
+        | BodyResponseCallback<Schema$AssignedLocation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedLocation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedLocation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AssignedLocation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'locationListId'],
+        pathParams: ['advertiserId', 'locationListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedLocation>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedLocation>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.locationLists.assignedLocations.delete
+     * @desc Deletes the assignment between a location and a location list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.delete(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the assigned location to delete.
+     *       assignedLocationId: '[^/]+',
+     *       // Required. The ID of the location list to which this assignment is assigned.
+     *       locationListId: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.locationLists.assignedLocations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
+     * @param {string} params.assignedLocationId Required. The ID of the assigned location to delete.
+     * @param {string} params.locationListId Required. The ID of the location list to which this assignment is assigned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations/{+assignedLocationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'locationListId',
+          'assignedLocationId',
+        ],
+        pathParams: ['advertiserId', 'assignedLocationId', 'locationListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.locationLists.assignedLocations.list
+     * @desc Lists locations assigned to a location list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.list(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Allows filtering by location list assignment fields.
+     *       //
+     *       // Supported syntax:
+     *       //
+     *       // * Filter expressions are made up of one or more restrictions.
+     *       // * Restrictions can be combined by the logical operator `OR`.
+     *       // * A restriction has the form of `{field} {operator} {value}`.
+     *       // * The operator must be `EQUALS (=)`.
+     *       // * Supported fields:
+     *       //     - `assignedLocationId`
+     *       //
+     *       // The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the location list to which these assignments are assigned.
+     *       locationListId: 'placeholder-value',
+     *       // Field by which to sort the list.
+     *       // Acceptable values are:
+     *       //
+     *       // * `assignedLocationId` (default)
+     *       //
+     *       // The default sorting order is ascending. To specify descending order for a
+     *       // field, a suffix " desc" should be added to the field name. Example:
+     *       // `assignedLocationId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will
+     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
+     *       // is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       //
+     *       // Typically, this is the value of
+     *       // next_page_token
+     *       // returned from the previous call to `ListAssignedLocations`
+     *       // method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedLocations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.locationLists.assignedLocations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the location list belongs.
+     * @param {string=} params.filter Allows filtering by location list assignment fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedLocationId`  The length of this field should be no more than 500 characters.
+     * @param {string} params.locationListId Required. The ID of the location list to which these assignments are assigned.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `assignedLocationId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAssignedLocationsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAssignedLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListAssignedLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Locationlists$Assignedlocations$List,
+      callback: BodyResponseCallback<Schema$ListAssignedLocationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAssignedLocationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Locationlists$Assignedlocations$List
+        | BodyResponseCallback<Schema$ListAssignedLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssignedLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssignedLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAssignedLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Locationlists$Assignedlocations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/locationLists/{locationListId}/assignedLocations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'locationListId'],
+        pathParams: ['advertiserId', 'locationListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAssignedLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAssignedLocationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the location list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the location list to which these assignments are assigned.
+     */
+    locationListId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditAssignedLocationsRequest;
+  }
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the location list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the location list for which the assignment will be created.
+     */
+    locationListId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssignedLocation;
+  }
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the location list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the assigned location to delete.
+     */
+    assignedLocationId?: string;
+    /**
+     * Required. The ID of the location list to which this assignment is assigned.
+     */
+    locationListId?: string;
+  }
+  export interface Params$Resource$Advertisers$Locationlists$Assignedlocations$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the location list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by location list assignment fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedLocationId`  The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Required. The ID of the location list to which these assignments are assigned.
+     */
+    locationListId?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are:  * `assignedLocationId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Advertisers$Negativekeywordlists {
+    context: APIRequestContext;
+    negativeKeywords: Resource$Advertisers$Negativekeywordlists$Negativekeywords;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.negativeKeywords = new Resource$Advertisers$Negativekeywordlists$Negativekeywords(
+        this.context
+      );
+    }
+
+    /**
+     * displayvideo.advertisers.negativeKeywordLists.create
+     * @desc Creates a new negative keyword list. Returns the newly created negative keyword list if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.create({
+     *     // Required. The ID of the DV360 advertiser to which the negative keyword list will
+     *     // belong.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.negativeKeywordLists.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the negative keyword list will belong.
+     * @param {().NegativeKeywordList} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NegativeKeywordList>;
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$NegativeKeywordList>,
+      callback: BodyResponseCallback<Schema$NegativeKeywordList>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Create,
+      callback: BodyResponseCallback<Schema$NegativeKeywordList>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$NegativeKeywordList>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Create
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NegativeKeywordList>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/advertisers/{+advertiserId}/negativeKeywordLists'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NegativeKeywordList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$NegativeKeywordList>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.negativeKeywordLists.delete
+     * @desc Deletes a negative keyword list given an advertiser ID and a negative keyword list ID.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.delete({
+     *     // Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the negative keyword list to delete.
+     *     negativeKeywordListId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.negativeKeywordLists.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     * @param {string} params.negativeKeywordListId Required. The ID of the negative keyword list to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'negativeKeywordListId'],
+        pathParams: ['advertiserId', 'negativeKeywordListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
     /**
@@ -10980,8 +13424,186 @@ export namespace displayvideo_v1 {
         );
       }
     }
+
+    /**
+     * displayvideo.advertisers.negativeKeywordLists.patch
+     * @desc Updates a negative keyword list. Returns the updated negative keyword list if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.patch({
+     *     // Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the negative keyword list. Assigned by the system.
+     *     negativeKeywordListId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.negativeKeywordLists.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     * @param {string} params.negativeKeywordListId Output only. The unique ID of the negative keyword list. Assigned by the system.
+     * @param {string=} params.updateMask Required. The mask to control which fields to update.
+     * @param {().NegativeKeywordList} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NegativeKeywordList>;
+    patch(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$NegativeKeywordList>,
+      callback: BodyResponseCallback<Schema$NegativeKeywordList>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Patch,
+      callback: BodyResponseCallback<Schema$NegativeKeywordList>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$NegativeKeywordList>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Patch
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NegativeKeywordList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NegativeKeywordList>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/negativeKeywordLists/{negativeKeywordListId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'negativeKeywordListId'],
+        pathParams: ['advertiserId', 'negativeKeywordListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NegativeKeywordList>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$NegativeKeywordList>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the negative keyword list will belong.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NegativeKeywordList;
+  }
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the negative keyword list to delete.
+     */
+    negativeKeywordListId?: string;
+  }
   export interface Params$Resource$Advertisers$Negativekeywordlists$Get
     extends StandardParameters {
     /**
@@ -11005,6 +13627,746 @@ export namespace displayvideo_v1 {
     pageSize?: number;
     /**
      * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Patch
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the negative keyword list. Assigned by the system.
+     */
+    negativeKeywordListId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NegativeKeywordList;
+  }
+
+  export class Resource$Advertisers$Negativekeywordlists$Negativekeywords {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit
+     * @desc Bulk edits negative keywords in a single negative keyword list.  The operation will delete the negative keywords provided in BulkEditNegativeKeywordsRequest.deleted_negative_keywords and then create the negative keywords provided in BulkEditNegativeKeywordsRequest.created_negative_keywords.  This operation is guaranteed to be atomic and will never result in a partial success or partial failure.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
+     *       // belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the parent negative keyword list to which the negative keywords
+     *       // belong.
+     *       negativeKeywordListId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createdNegativeKeywords": [],
+     *         //   "deletedNegativeKeywords": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "negativeKeywords": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     * @param {().BulkEditNegativeKeywordsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEdit(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEdit(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditNegativeKeywordsResponse>;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkEditNegativeKeywordsResponse>,
+      callback: BodyResponseCallback<Schema$BulkEditNegativeKeywordsResponse>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit,
+      callback: BodyResponseCallback<Schema$BulkEditNegativeKeywordsResponse>
+    ): void;
+    bulkEdit(
+      callback: BodyResponseCallback<Schema$BulkEditNegativeKeywordsResponse>
+    ): void;
+    bulkEdit(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit
+        | BodyResponseCallback<Schema$BulkEditNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkEditNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkEditNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditNegativeKeywordsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:bulkEdit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'negativeKeywordListId'],
+        pathParams: ['advertiserId', 'negativeKeywordListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkEditNegativeKeywordsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkEditNegativeKeywordsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create
+     * @desc Creates a negative keyword in a negative keyword list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
+     *       // belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the parent negative keyword list in which the negative keyword
+     *       // will be created.
+     *       negativeKeywordListId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "keywordValue": "my_keywordValue",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "keywordValue": "my_keywordValue",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list in which the negative keyword will be created.
+     * @param {().NegativeKeyword} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NegativeKeyword>;
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$NegativeKeyword>,
+      callback: BodyResponseCallback<Schema$NegativeKeyword>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create,
+      callback: BodyResponseCallback<Schema$NegativeKeyword>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$NegativeKeyword>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create
+        | BodyResponseCallback<Schema$NegativeKeyword>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NegativeKeyword>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NegativeKeyword>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$NegativeKeyword> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'negativeKeywordListId'],
+        pathParams: ['advertiserId', 'negativeKeywordListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NegativeKeyword>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$NegativeKeyword>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete
+     * @desc Deletes a negative keyword from a negative keyword list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
+     *       // belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The keyword value of the negative keyword to delete.
+     *       keywordValue: '[^/]+',
+     *       // Required. The ID of the parent negative keyword list to which the negative keyword
+     *       // belongs.
+     *       negativeKeywordListId: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     * @param {string} params.keywordValue Required. The keyword value of the negative keyword to delete.
+     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list to which the negative keyword belongs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords/{+keywordValue}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'negativeKeywordListId',
+          'keywordValue',
+        ],
+        pathParams: ['advertiserId', 'keywordValue', 'negativeKeywordListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list
+     * @desc Lists negative keywords in a negative keyword list.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list
+     *       // belongs.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by negative keyword fields.
+     *       //
+     *       // Supported syntax:
+     *       //
+     *       // * Filter expressions for negative keyword currently can only contain at
+     *       // most one
+     *       // * restriction.
+     *       // * A restriction has the form of `{field} {operator} {value}`.
+     *       // * The operator must be `CONTAINS (:)`.
+     *       // * Supported fields:
+     *       //     - `keywordValue`
+     *       //
+     *       // Examples:
+     *       //
+     *       // * All negative keywords for which the keyword value contains "google":
+     *       // `keywordValue : "google"`
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the parent negative keyword list to which the requested negative
+     *       // keywords belong.
+     *       negativeKeywordListId: '[^/]+',
+     *       // Field by which to sort the list.
+     *       // Acceptable values are:
+     *       //
+     *       // * `keywordValue` (default)
+     *       //
+     *       // The default sorting order is ascending. To specify descending order for a
+     *       // field, a suffix " desc" should be added to the field name. Example:
+     *       // `keywordValue desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will
+     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
+     *       // is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       //
+     *       // Typically, this is the value of
+     *       // next_page_token returned
+     *       // from the previous call to `ListNegativeKeywords` method. If not specified,
+     *       // the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "negativeKeywords": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.advertiserId Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     * @param {string=} params.filter Allows filtering by negative keyword fields.  Supported syntax:  * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `keywordValue`  Examples:  * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
+     * @param {string} params.negativeKeywordListId Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `keywordValue` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNegativeKeywordsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNegativeKeywordsResponse>,
+      callback: BodyResponseCallback<Schema$ListNegativeKeywordsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List,
+      callback: BodyResponseCallback<Schema$ListNegativeKeywordsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNegativeKeywordsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List
+        | BodyResponseCallback<Schema$ListNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNegativeKeywordsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'negativeKeywordListId'],
+        pathParams: ['advertiserId', 'negativeKeywordListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNegativeKeywordsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNegativeKeywordsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     */
+    negativeKeywordListId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditNegativeKeywordsRequest;
+  }
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent negative keyword list in which the negative keyword will be created.
+     */
+    negativeKeywordListId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NegativeKeyword;
+  }
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The keyword value of the negative keyword to delete.
+     */
+    keywordValue?: string;
+    /**
+     * Required. The ID of the parent negative keyword list to which the negative keyword belongs.
+     */
+    negativeKeywordListId?: string;
+  }
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by negative keyword fields.  Supported syntax:  * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `keywordValue`  Examples:  * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
+     */
+    filter?: string;
+    /**
+     * Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
+     */
+    negativeKeywordListId?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are:  * `keywordValue` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
   }
@@ -13705,8 +17067,308 @@ export namespace displayvideo_v1 {
 
   export class Resource$Inventorysourcegroups {
     context: APIRequestContext;
+    assignedInventorySources: Resource$Inventorysourcegroups$Assignedinventorysources;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.assignedInventorySources = new Resource$Inventorysourcegroups$Assignedinventorysources(
+        this.context
+      );
+    }
+
+    /**
+     * displayvideo.inventorySourceGroups.create
+     * @desc Creates a new inventory source group. Returns the newly created inventory source group if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.create({
+     *     // The ID of the advertiser that owns the inventory source group.
+     *     //
+     *     // The parent partner will not have access to this group.
+     *     advertiserId: 'placeholder-value',
+     *     // The ID of the partner that owns the inventory source group.
+     *     //
+     *     // Only this partner will have write access to this group. Only advertisers
+     *     // to which this group is explicitly shared will have read access to this
+     *     // group.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.inventorySourceGroups.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group.  The parent partner will not have access to this group.
+     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group.  Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
+     * @param {().InventorySourceGroup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Inventorysourcegroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Inventorysourcegroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InventorySourceGroup>;
+    create(
+      params: Params$Resource$Inventorysourcegroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Inventorysourcegroups$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InventorySourceGroup>,
+      callback: BodyResponseCallback<Schema$InventorySourceGroup>
+    ): void;
+    create(
+      params: Params$Resource$Inventorysourcegroups$Create,
+      callback: BodyResponseCallback<Schema$InventorySourceGroup>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$InventorySourceGroup>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysourcegroups$Create
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InventorySourceGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysourcegroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysourcegroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/inventorySourceGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InventorySourceGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$InventorySourceGroup>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.inventorySourceGroups.delete
+     * @desc Deletes an inventory source group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.delete({
+     *     // The ID of the advertiser that owns the inventory source group.
+     *     //
+     *     // The parent partner does not have access to this group.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the inventory source group to delete.
+     *     inventorySourceGroupId: '[^/]+',
+     *     // The ID of the partner that owns the inventory source group.
+     *     //
+     *     // Only this partner has write access to this group.
+     *     partnerId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.inventorySourceGroups.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to delete.
+     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Inventorysourcegroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysourcegroups$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysourcegroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysourcegroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/inventorySourceGroups/{+inventorySourceGroupId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceGroupId'],
+        pathParams: ['inventorySourceGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
     /**
@@ -14041,8 +17703,200 @@ export namespace displayvideo_v1 {
         );
       }
     }
+
+    /**
+     * displayvideo.inventorySourceGroups.patch
+     * @desc Updates an inventory source group. Returns the updated inventory source group if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.patch({
+     *     // The ID of the advertiser that owns the inventory source group.
+     *     //
+     *     // The parent partner does not have access to this group.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique ID of the inventory source group. Assigned by the system.
+     *     inventorySourceGroupId: 'placeholder-value',
+     *     // The ID of the partner that owns the inventory source group.
+     *     //
+     *     // Only this partner has write access to this group.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.inventorySourceGroups.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     * @param {string} params.inventorySourceGroupId Output only. The unique ID of the inventory source group. Assigned by the system.
+     * @param {string=} params.partnerId The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     * @param {string=} params.updateMask Required. The mask to control which fields to update.
+     * @param {().InventorySourceGroup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Inventorysourcegroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Inventorysourcegroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InventorySourceGroup>;
+    patch(
+      params: Params$Resource$Inventorysourcegroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Inventorysourcegroups$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InventorySourceGroup>,
+      callback: BodyResponseCallback<Schema$InventorySourceGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Inventorysourcegroups$Patch,
+      callback: BodyResponseCallback<Schema$InventorySourceGroup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$InventorySourceGroup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysourcegroups$Patch
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InventorySourceGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InventorySourceGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysourcegroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysourcegroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/inventorySourceGroups/{inventorySourceGroupId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceGroupId'],
+        pathParams: ['inventorySourceGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InventorySourceGroup>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$InventorySourceGroup>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Inventorysourcegroups$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the inventory source group.  The parent partner will not have access to this group.
+     */
+    advertiserId?: string;
+    /**
+     * The ID of the partner that owns the inventory source group.  Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InventorySourceGroup;
+  }
+  export interface Params$Resource$Inventorysourcegroups$Delete
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the inventory source group to delete.
+     */
+    inventorySourceGroupId?: string;
+    /**
+     * The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     */
+    partnerId?: string;
+  }
   export interface Params$Resource$Inventorysourcegroups$Get
     extends StandardParameters {
     /**
@@ -14082,6 +17936,792 @@ export namespace displayvideo_v1 {
     pageToken?: string;
     /**
      * The ID of the partner that has access to the inventory source group.  A partner cannot access advertiser-owned inventory source groups.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Inventorysourcegroups$Patch
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the inventory source group.  The parent partner does not have access to this group.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the inventory source group. Assigned by the system.
+     */
+    inventorySourceGroupId?: string;
+    /**
+     * The ID of the partner that owns the inventory source group.  Only this partner has write access to this group.
+     */
+    partnerId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InventorySourceGroup;
+  }
+
+  export class Resource$Inventorysourcegroups$Assignedinventorysources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit
+     * @desc Bulk edits multiple assignments between inventory sources and a single inventory source group.  The operation will delete the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources and then create the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit(
+     *     {
+     *       // Required. The ID of the inventory source group to which the assignments are
+     *       // assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "advertiserId": "my_advertiserId",
+     *         //   "createdAssignedInventorySources": [],
+     *         //   "deletedAssignedInventorySources": [],
+     *         //   "partnerId": "my_partnerId"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedInventorySources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which the assignments are assigned.
+     * @param {().BulkEditAssignedInventorySourcesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEdit(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEdit(
+      params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditAssignedInventorySourcesResponse>;
+    bulkEdit(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>,
+      callback: BodyResponseCallback<
+        Schema$BulkEditAssignedInventorySourcesResponse
+      >
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
+      callback: BodyResponseCallback<
+        Schema$BulkEditAssignedInventorySourcesResponse
+      >
+    ): void;
+    bulkEdit(
+      callback: BodyResponseCallback<
+        Schema$BulkEditAssignedInventorySourcesResponse
+      >
+    ): void;
+    bulkEdit(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit
+        | BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditAssignedInventorySourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources:bulkEdit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceGroupId'],
+        pathParams: ['inventorySourceGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkEditAssignedInventorySourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$BulkEditAssignedInventorySourcesResponse
+        >(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.inventorySourceGroups.assignedInventorySources.create
+     * @desc Creates an assignment between an inventory source and an inventory source group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.create(
+     *     {
+     *       // The ID of the advertiser that owns the parent inventory source group.
+     *       //
+     *       // The parent partner will not have access to this assigned inventory
+     *       // source.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the inventory source group to which the assignment will be
+     *       // assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *       // The ID of the partner that owns the parent inventory source group.
+     *       //
+     *       // Only this partner will have write access to this assigned inventory
+     *       // source.
+     *       partnerId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignedInventorySourceId": "my_assignedInventorySourceId",
+     *         //   "inventorySourceId": "my_inventorySourceId",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedInventorySourceId": "my_assignedInventorySourceId",
+     *   //   "inventorySourceId": "my_inventorySourceId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group.  The parent partner will not have access to this assigned inventory source.
+     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which the assignment will be assigned.
+     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group.  Only this partner will have write access to this assigned inventory source.
+     * @param {().AssignedInventorySource} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedInventorySource>;
+    create(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedInventorySource>,
+      callback: BodyResponseCallback<Schema$AssignedInventorySource>
+    ): void;
+    create(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
+      callback: BodyResponseCallback<Schema$AssignedInventorySource>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$AssignedInventorySource>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create
+        | BodyResponseCallback<Schema$AssignedInventorySource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedInventorySource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedInventorySource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedInventorySource>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceGroupId'],
+        pathParams: ['inventorySourceGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedInventorySource>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedInventorySource>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.inventorySourceGroups.assignedInventorySources.delete
+     * @desc Deletes the assignment between an inventory source and an inventory source group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.delete(
+     *     {
+     *       // The ID of the advertiser that owns the parent inventory source group.
+     *       //
+     *       // The parent partner does not have access to this assigned inventory
+     *       // source.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the assigned inventory source to delete.
+     *       assignedInventorySourceId: '[^/]+',
+     *       // Required. The ID of the inventory source group to which this assignment is assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *       // The ID of the partner that owns the parent inventory source group.
+     *       //
+     *       // Only this partner has write access to this assigned inventory source.
+     *       partnerId: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent inventory source group.  The parent partner does not have access to this assigned inventory source.
+     * @param {string} params.assignedInventorySourceId Required. The ID of the assigned inventory source to delete.
+     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which this assignment is assigned.
+     * @param {string=} params.partnerId The ID of the partner that owns the parent inventory source group.  Only this partner has write access to this assigned inventory source.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources/{+assignedInventorySourceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceGroupId', 'assignedInventorySourceId'],
+        pathParams: ['assignedInventorySourceId', 'inventorySourceGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.inventorySourceGroups.assignedInventorySources.list
+     * @desc Lists inventory sources assigned to an inventory source group.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.list(
+     *     {
+     *       // The ID of the advertiser that has access to the assignment.
+     *       //
+     *       // If the parent inventory source group is partner-owned, only advertisers
+     *       // to which the parent group is explicitly shared can access the assigned
+     *       // inventory source.
+     *       advertiserId: 'placeholder-value',
+     *       // Allows filtering by assigned inventory source fields.
+     *       //
+     *       // Supported syntax:
+     *       //
+     *       // * Filter expressions are made up of one or more restrictions.
+     *       // * Restrictions can be combined by the logical operator `OR`.
+     *       // * A restriction has the form of `{field} {operator} {value}`.
+     *       // * The operator must be `EQUALS (=)`.
+     *       // * Supported fields:
+     *       //     - `assignedInventorySourceId`
+     *       //
+     *       // The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the inventory source group to which these assignments are
+     *       // assigned.
+     *       inventorySourceGroupId: '[^/]+',
+     *       // Field by which to sort the list.
+     *       // Acceptable values are:
+     *       //
+     *       // * `assignedInventorySourceId` (default)
+     *       //
+     *       // The default sorting order is ascending. To specify descending order for a
+     *       // field, a suffix " desc" should be added to the field name. Example:
+     *       // `assignedInventorySourceId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will
+     *       // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
+     *       // is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       //
+     *       // Typically, this is the value of
+     *       // next_page_token
+     *       // returned from the previous call to `ListAssignedInventorySources`
+     *       // method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *       // The ID of the partner that has access to the assignment.
+     *       //
+     *       // If the parent inventory source group is advertiser-owned, the assignment
+     *       // cannot be accessed via a partner.
+     *       partnerId: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedInventorySources": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.inventorySourceGroups.assignedInventorySources.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that has access to the assignment.  If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
+     * @param {string=} params.filter Allows filtering by assigned inventory source fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedInventorySourceId`  The length of this field should be no more than 500 characters.
+     * @param {string} params.inventorySourceGroupId Required. The ID of the inventory source group to which these assignments are assigned.
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `assignedInventorySourceId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
+     * @param {string=} params.partnerId The ID of the partner that has access to the assignment.  If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAssignedInventorySourcesResponse>;
+    list(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>,
+      callback: BodyResponseCallback<
+        Schema$ListAssignedInventorySourcesResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
+      callback: BodyResponseCallback<
+        Schema$ListAssignedInventorySourcesResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$ListAssignedInventorySourcesResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Inventorysourcegroups$Assignedinventorysources$List
+        | BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAssignedInventorySourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inventorysourcegroups$Assignedinventorysources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/inventorySourceGroups/{+inventorySourceGroupId}/assignedInventorySources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['inventorySourceGroupId'],
+        pathParams: ['inventorySourceGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAssignedInventorySourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAssignedInventorySourcesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit
+    extends StandardParameters {
+    /**
+     * Required. The ID of the inventory source group to which the assignments are assigned.
+     */
+    inventorySourceGroupId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditAssignedInventorySourcesRequest;
+  }
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent inventory source group.  The parent partner will not have access to this assigned inventory source.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the inventory source group to which the assignment will be assigned.
+     */
+    inventorySourceGroupId?: string;
+    /**
+     * The ID of the partner that owns the parent inventory source group.  Only this partner will have write access to this assigned inventory source.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssignedInventorySource;
+  }
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent inventory source group.  The parent partner does not have access to this assigned inventory source.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the assigned inventory source to delete.
+     */
+    assignedInventorySourceId?: string;
+    /**
+     * Required. The ID of the inventory source group to which this assignment is assigned.
+     */
+    inventorySourceGroupId?: string;
+    /**
+     * The ID of the partner that owns the parent inventory source group.  Only this partner has write access to this assigned inventory source.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Inventorysourcegroups$Assignedinventorysources$List
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that has access to the assignment.  If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned inventory source fields.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `assignedInventorySourceId`  The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Required. The ID of the inventory source group to which these assignments are assigned.
+     */
+    inventorySourceGroupId?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are:  * `assignedInventorySourceId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the partner that has access to the assignment.  If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
      */
     partnerId?: string;
   }
@@ -14636,8 +19276,10 @@ export namespace displayvideo_v1 {
 
   export class Resource$Partners$Channels {
     context: APIRequestContext;
+    sites: Resource$Partners$Channels$Sites;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.sites = new Resource$Partners$Channels$Sites(this.context);
     }
 
     /**
@@ -14961,6 +19603,162 @@ export namespace displayvideo_v1 {
         return createAPIRequest<Schema$ListChannelsResponse>(parameters);
       }
     }
+
+    /**
+     * displayvideo.partners.channels.patch
+     * @desc Updates a channel. Returns the updated channel if successful.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.patch({
+     *     // The ID of the advertiser that owns the created channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique ID of the channel. Assigned by the system.
+     *     channelId: 'placeholder-value',
+     *     // The ID of the partner that owns the created channel.
+     *     partnerId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "channelId": "my_channelId",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "channelId": "my_channelId",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.channels.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the created channel.
+     * @param {string} params.channelId Output only. The unique ID of the channel. Assigned by the system.
+     * @param {string} params.partnerId The ID of the partner that owns the created channel.
+     * @param {string=} params.updateMask Required. The mask to control which fields to update.
+     * @param {().Channel} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params: Params$Resource$Partners$Channels$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Partners$Channels$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Channel>;
+    patch(
+      params: Params$Resource$Partners$Channels$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Partners$Channels$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(
+      params: Params$Resource$Partners$Channels$Patch,
+      callback: BodyResponseCallback<Schema$Channel>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Channel>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Channels$Patch
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Channel>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Channel> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Channels$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Channels$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/partners/{+partnerId}/channels/{channelId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'channelId'],
+        pathParams: ['channelId', 'partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Channel>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Channel>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Partners$Channels$Get
@@ -15002,6 +19800,742 @@ export namespace displayvideo_v1 {
     pageToken?: string;
     /**
      * The ID of the partner that owns the channels.
+     */
+    partnerId?: string;
+  }
+  export interface Params$Resource$Partners$Channels$Patch
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the created channel.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the channel. Assigned by the system.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the created channel.
+     */
+    partnerId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Channel;
+  }
+
+  export class Resource$Partners$Channels$Sites {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * displayvideo.partners.channels.sites.bulkEdit
+     * @desc Bulk edits sites under a single channel.  The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.bulkEdit({
+     *     // Required. The ID of the parent channel to which the sites belong.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "createdSites": [],
+     *       //   "deletedSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.channels.sites.bulkEdit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.channelId Required. The ID of the parent channel to which the sites belong.
+     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
+     * @param {().BulkEditSitesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulkEdit(
+      params: Params$Resource$Partners$Channels$Sites$Bulkedit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkEdit(
+      params?: Params$Resource$Partners$Channels$Sites$Bulkedit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkEditSitesResponse>;
+    bulkEdit(
+      params: Params$Resource$Partners$Channels$Sites$Bulkedit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Partners$Channels$Sites$Bulkedit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>,
+      callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
+    ): void;
+    bulkEdit(
+      params: Params$Resource$Partners$Channels$Sites$Bulkedit,
+      callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
+    ): void;
+    bulkEdit(
+      callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
+    ): void;
+    bulkEdit(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Channels$Sites$Bulkedit
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkEditSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkEditSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Channels$Sites$Bulkedit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Channels$Sites$Bulkedit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{partnerId}/channels/{+channelId}/sites:bulkEdit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'channelId'],
+        pathParams: ['channelId', 'partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkEditSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkEditSitesResponse>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.channels.sites.create
+     * @desc Creates a site in a channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.create({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel in which the site will be created.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "urlOrAppId": "my_urlOrAppId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "urlOrAppId": "my_urlOrAppId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.channels.sites.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent channel.
+     * @param {string} params.channelId Required. The ID of the parent channel in which the site will be created.
+     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
+     * @param {().Site} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params: Params$Resource$Partners$Channels$Sites$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Partners$Channels$Sites$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
+    create(
+      params: Params$Resource$Partners$Channels$Sites$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Partners$Channels$Sites$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    create(
+      params: Params$Resource$Partners$Channels$Sites$Create,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Site>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Channels$Sites$Create
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Channels$Sites$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Channels$Sites$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/partners/{partnerId}/channels/{+channelId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'channelId'],
+        pathParams: ['channelId', 'partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Site>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Site>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.channels.sites.delete
+     * @desc Deletes a site from a channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.delete({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the site belongs.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *     // Required. The URL or app ID of the site to delete.
+     *     urlOrAppId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.channels.sites.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent channel.
+     * @param {string} params.channelId Required. The ID of the parent channel to which the site belongs.
+     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
+     * @param {string} params.urlOrAppId Required. The URL or app ID of the site to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params: Params$Resource$Partners$Channels$Sites$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Partners$Channels$Sites$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Partners$Channels$Sites$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Partners$Channels$Sites$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Partners$Channels$Sites$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Channels$Sites$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Channels$Sites$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Channels$Sites$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{partnerId}/channels/{+channelId}/sites/{+urlOrAppId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'channelId', 'urlOrAppId'],
+        pathParams: ['channelId', 'partnerId', 'urlOrAppId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * displayvideo.partners.channels.sites.list
+     * @desc Lists sites in a channel.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.list({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel to which the requested sites belong.
+     *     channelId: '[^/]+',
+     *     // Allows filtering by site fields.
+     *     //
+     *     // Supported syntax:
+     *     //
+     *     // * Filter expressions for site currently can only contain at most one
+     *     // * restriction.
+     *     // * A restriction has the form of `{field} {operator} {value}`.
+     *     // * The operator must be `CONTAINS (:)`.
+     *     // * Supported fields:
+     *     //     - `urlOrAppId`
+     *     //
+     *     // Examples:
+     *     //
+     *     // * All sites for which the URL or app ID contains "google":
+     *     // `urlOrAppId : "google"`
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list.
+     *     // Acceptable values are:
+     *     //
+     *     // * `urlOrAppId` (default)
+     *     //
+     *     // The default sorting order is ascending. To specify descending order for a
+     *     // field, a suffix " desc" should be added to the field name. Example:
+     *     // `urlOrAppId desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will
+     *     // default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value
+     *     // is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     //
+     *     // Typically, this is the value of
+     *     // next_page_token returned from the
+     *     // previous call to `ListSites` method. If not specified, the first page
+     *     // of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias displayvideo.partners.channels.sites.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId The ID of the advertiser that owns the parent channel.
+     * @param {string} params.channelId Required. The ID of the parent channel to which the requested sites belong.
+     * @param {string=} params.filter Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * @param {string=} params.pageToken A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     * @param {string} params.partnerId The ID of the partner that owns the parent channel.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Partners$Channels$Sites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Partners$Channels$Sites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSitesResponse>;
+    list(
+      params: Params$Resource$Partners$Channels$Sites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Partners$Channels$Sites$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSitesResponse>,
+      callback: BodyResponseCallback<Schema$ListSitesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Partners$Channels$Sites$List,
+      callback: BodyResponseCallback<Schema$ListSitesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSitesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Channels$Sites$List
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Channels$Sites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Channels$Sites$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/partners/{+partnerId}/channels/{+channelId}/sites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'channelId'],
+        pathParams: ['channelId', 'partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSitesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Partners$Channels$Sites$Bulkedit
+    extends StandardParameters {
+    /**
+     * Required. The ID of the parent channel to which the sites belong.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkEditSitesRequest;
+  }
+  export interface Params$Resource$Partners$Channels$Sites$Create
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel in which the site will be created.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Site;
+  }
+  export interface Params$Resource$Partners$Channels$Sites$Delete
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel to which the site belongs.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string;
+    /**
+     * Required. The URL or app ID of the site to delete.
+     */
+    urlOrAppId?: string;
+  }
+  export interface Params$Resource$Partners$Channels$Sites$List
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel to which the requested sites belong.
+     */
+    channelId?: string;
+    /**
+     * Allows filtering by site fields.  Supported syntax:  * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `CONTAINS (:)`. * Supported fields:     - `urlOrAppId`  Examples:  * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are:  * `urlOrAppId` (default)  The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.  Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
      */
     partnerId?: string;
   }
