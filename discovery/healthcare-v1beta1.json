@@ -367,7 +367,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Resource name of the dataset, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+                      "description": "Resource name of the dataset, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
                       "required": true,
@@ -791,7 +791,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Resource name of the DICOM store, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.",
+                          "description": "Resource name of the DICOM store, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+$",
                           "required": true,
@@ -2658,7 +2658,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Resource name of the HL7v2 store, of the form\n`projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+                          "description": "Resource name of the HL7v2 store, of the form\n`projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
                           "required": true,
@@ -3061,7 +3061,7 @@
       }
     }
   },
-  "revision": "20200515",
+  "revision": "20200525",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3179,7 +3179,7 @@
       "id": "Dataset",
       "properties": {
         "name": {
-          "description": "Output only. Resource name of the dataset, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
+          "description": "Resource name of the dataset, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.",
           "type": "string"
         },
         "timeZone": {
@@ -3386,7 +3386,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Resource name of the DICOM store, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.",
+          "description": "Resource name of the DICOM store, of the form\n`projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.",
           "type": "string"
         },
         "notificationConfig": {
@@ -3898,7 +3898,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Resource name of the HL7v2 store, of the form\n`projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
+          "description": "Resource name of the HL7v2 store, of the form\n`projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.",
           "type": "string"
         },
         "notificationConfig": {
