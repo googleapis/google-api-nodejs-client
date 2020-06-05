@@ -615,7 +615,7 @@
       }
     }
   },
-  "revision": "20200512",
+  "revision": "20200603",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -825,6 +825,10 @@
           "description": "The MaintenanceSchedule contains the scheduling information of published\nmaintenance schedule.",
           "type": "object"
         },
+        "maintenanceSettings": {
+          "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings",
+          "description": "Optional. The MaintenanceSettings associated with instance."
+        },
         "name": {
           "description": "Unique name of the resource. It uses the form:\n `projects/{project_id}/locations/{location_id}/instances/{instance_id}`",
           "type": "string"
@@ -913,6 +917,17 @@
           "description": "The scheduled start time for the maintenance.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings": {
+      "description": "Maintenance settings associated with instance. Allows service producers and\nend users to assign settings that controls maintenance on this instance.",
+      "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings",
+      "properties": {
+        "exclude": {
+          "description": "Optional. Exclude instance from maintenance. When true, rollout service will not\nattempt maintenance on the instance. Rollout service will include the\ninstance in reported rollout progress as not attempted.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1027,7 +1042,7 @@
       "id": "Instance",
       "properties": {
         "authorizedNetwork": {
-          "description": "Optional. The full name of the Google Compute Engine\n[network](/compute/docs/networks-and-firewalls#networks) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
+          "description": "The full name of the Google Compute Engine\n[network](/compute/docs/networks-and-firewalls#networks) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
           "type": "string"
         },
         "createTime": {
@@ -1040,7 +1055,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User provided name for the instance only used for display\npurposes. Cannot be more than 80 characters.",
+          "description": "User provided name for the instance only used for display\npurposes. Cannot be more than 80 characters.",
           "type": "string"
         },
         "instanceMessages": {
@@ -1054,7 +1069,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Resource labels to represent user-provided metadata.\nRefer to cloud documentation on labels for more details.\nhttps://cloud.google.com/compute/docs/labeling-resources",
+          "description": "Resource labels to represent user-provided metadata.\nRefer to cloud documentation on labels for more details.\nhttps://cloud.google.com/compute/docs/labeling-resources",
           "type": "object"
         },
         "memcacheFullVersion": {
@@ -1069,7 +1084,7 @@
           "type": "array"
         },
         "memcacheVersion": {
-          "description": "Optional. The major version of Memcached software.\nIf not provided, latest supported version will be used. Currently the\nlatest supported major version is MEMCACHE_1_5.\nThe minor version will be automatically determined by our system based on\nthe latest supported minor version.",
+          "description": "The major version of Memcached software.\nIf not provided, latest supported version will be used. Currently the\nlatest supported major version is MEMCACHE_1_5.\nThe minor version will be automatically determined by our system based on\nthe latest supported minor version.",
           "enum": [
             "MEMCACHE_VERSION_UNSPECIFIED",
             "MEMCACHE_1_5"
@@ -1121,7 +1136,7 @@
           "type": "string"
         },
         "zones": {
-          "description": "Optional. Zones where Memcached nodes should be provisioned in.\nMemcached nodes will be equally distributed across these zones. If not\nprovided, the service will by default create nodes in all zones in the\nregion for the instance.",
+          "description": "Zones where Memcached nodes should be provisioned in.\nMemcached nodes will be equally distributed across these zones. If not\nprovided, the service will by default create nodes in all zones in the\nregion for the instance.",
           "items": {
             "type": "string"
           },
