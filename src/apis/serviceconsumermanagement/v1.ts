@@ -1549,6 +1549,44 @@ export namespace serviceconsumermanagement_v1 {
     overrides?: Schema$V1Beta1QuotaOverride[];
   }
   /**
+   * Response message for ImportProducerQuotaPolicies
+   */
+  export interface Schema$V1Beta1ImportProducerQuotaPoliciesResponse {
+    /**
+     * The policies that were created from the imported data.
+     */
+    policies?: Schema$V1Beta1ProducerQuotaPolicy[];
+  }
+  /**
+   * Quota policy created by service producer.
+   */
+  export interface Schema$V1Beta1ProducerQuotaPolicy {
+    /**
+     * The cloud resource container at which the quota policy is created. The format is {container_type}/{container_number}
+     */
+    container?: string | null;
+    /**
+     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit.  For example, an policy on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the policy is only applied to quota consumed in that region.  This map has the following restrictions:  *   Keys that are not defined in the limit&#39;s unit are not valid keys.     Any string appearing in {brackets} in the unit (besides {project} or     {user}) is a defined key. *   &quot;project&quot; is not a valid key; the project is already specified in     the parent resource name. *   &quot;user&quot; is not a valid key; the API does not support quota polcies     that apply only to a specific user. *   If &quot;region&quot; appears as a key, its value must be a valid Cloud region. *   If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. *   If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then     all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the     map.
+     */
+    dimensions?: {[key: string]: string} | null;
+    /**
+     * The name of the metric to which this policy applies.  An example name would be: `compute.googleapis.com/cpus`
+     */
+    metric?: string | null;
+    /**
+     * The resource name of the producer policy. An example name would be: `services/compute.googleapis.com/organizations/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerQuotaPolicies/4a3f2c1d`
+     */
+    name?: string | null;
+    /**
+     * The quota policy value. Can be any nonnegative integer, or -1 (unlimited quota).
+     */
+    policyValue?: string | null;
+    /**
+     * The limit unit of the limit to which this policy applies.  An example unit would be: `1/{project}/{region}` Note that `{project}` and `{region}` are not placeholders in this example; the literal characters `{` and `}` occur in the string.
+     */
+    unit?: string | null;
+  }
+  /**
    * A quota override
    */
   export interface Schema$V1Beta1QuotaOverride {
