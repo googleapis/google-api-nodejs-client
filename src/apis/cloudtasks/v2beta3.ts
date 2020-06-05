@@ -452,6 +452,10 @@ export namespace cloudtasks_v2beta3 {
      * Output only. The state of the queue.  `state` can only be changed by called PauseQueue, ResumeQueue, or uploading [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref). UpdateQueue cannot be used to change `state`.
      */
     state?: string | null;
+    /**
+     * Immutable. The type of a queue (push or pull).  `Queue.type` is an immutable property of the queue that is set at the queue creation time. When left unspecified, the default value of `PUSH` is selected.
+     */
+    type?: string | null;
   }
   /**
    * Rate limits.  This message determines the maximum rate that tasks can be dispatched by a queue, regardless of whether the dispatch is a first task attempt or a retry.  Note: The debugging command, RunTask, will run a task even if the queue has reached its RateLimits.
@@ -987,7 +991,8 @@ export namespace cloudtasks_v2beta3 {
      *       //   "rateLimits": {},
      *       //   "retryConfig": {},
      *       //   "stackdriverLoggingConfig": {},
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });
@@ -1001,7 +1006,8 @@ export namespace cloudtasks_v2beta3 {
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
@@ -1267,7 +1273,8 @@ export namespace cloudtasks_v2beta3 {
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
@@ -1734,7 +1741,8 @@ export namespace cloudtasks_v2beta3 {
      *       //   "rateLimits": {},
      *       //   "retryConfig": {},
      *       //   "stackdriverLoggingConfig": {},
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });
@@ -1748,7 +1756,8 @@ export namespace cloudtasks_v2beta3 {
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
@@ -1891,7 +1900,8 @@ export namespace cloudtasks_v2beta3 {
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
@@ -2036,7 +2046,8 @@ export namespace cloudtasks_v2beta3 {
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
@@ -2181,7 +2192,8 @@ export namespace cloudtasks_v2beta3 {
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
