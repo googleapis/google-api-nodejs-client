@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20200423",
+  "revision": "20200602",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -3677,7 +3677,7 @@
           "description": "Streaming annotation results."
         },
         "annotationResultsUri": {
-          "description": "Google Cloud Storage(GCS) URI that stores annotation results of one\nstreaming session in JSON format.\nIt is the annotation_result_storage_directory\nfrom the request followed by '/cloud_project_number-session_id'.",
+          "description": "Google Cloud Storage URI that stores annotation results of one\nstreaming session in JSON format.\nIt is the annotation_result_storage_directory\nfrom the request followed by '/cloud_project_number-session_id'.",
           "type": "string"
         },
         "error": {
