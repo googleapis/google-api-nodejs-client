@@ -3309,6 +3309,10 @@ export namespace content_v2 {
      */
     lineItems?: Schema$OrderShipmentLineItemShipment[];
     /**
+     * Delivery details of the shipment if scheduling is needed.
+     */
+    scheduledDeliveryDetails?: Schema$OrderShipmentScheduledDeliveryDetails;
+    /**
      * The status of the shipment.  Acceptable values are:   - &quot;`delivered`&quot;  - &quot;`readyForPickup`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;
      */
     status?: string | null;
@@ -3330,6 +3334,16 @@ export namespace content_v2 {
      * The quantity that is shipped.
      */
     quantity?: number | null;
+  }
+  export interface Schema$OrderShipmentScheduledDeliveryDetails {
+    /**
+     * The phone number of the carrier fulfilling the delivery.
+     */
+    carrierPhoneNumber?: string | null;
+    /**
+     * The date a shipment is scheduled for delivery, in ISO 8601 format.
+     */
+    scheduledDate?: string | null;
   }
   export interface Schema$OrdersInStoreRefundLineItemRequest {
     /**
@@ -4893,7 +4907,7 @@ export namespace content_v2 {
      */
     shippingDate?: string | null;
     /**
-     * State of the shipment.  Acceptable values are:   - &quot;`completed`&quot;  - &quot;`new`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;
+     * State of the shipment.  Acceptable values are:   - &quot;`completed`&quot;  - &quot;`new`&quot;  - &quot;`shipped`&quot;  - &quot;`undeliverable`&quot;  - &quot;`pending`&quot;
      */
     state?: string | null;
   }
@@ -15197,7 +15211,7 @@ export namespace content_v2 {
 
     /**
      * content.orders.returnrefundlineitem
-     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders.
+     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
      * @example
      * // Before running the sample:
      * // - Enable the API at:

@@ -15,7 +15,7 @@
   "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/shopping-content",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/d-2pRwrRO0TgJDuvP8432gBRz7Y\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/FiH_aMQt7tU2fE5Yx34MqPm9md8\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2212,7 +2212,7 @@
           ]
         },
         "returnrefundlineitem": {
-          "description": "Returns and refunds a line item. Note that this method can only be called on fully shipped orders.",
+          "description": "Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.",
           "httpMethod": "POST",
           "id": "content.orders.returnrefundlineitem",
           "parameterOrder": [
@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20200508",
+  "revision": "20200526",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6616,6 +6616,10 @@
           },
           "type": "array"
         },
+        "scheduledDeliveryDetails": {
+          "$ref": "OrderShipmentScheduledDeliveryDetails",
+          "description": "Delivery details of the shipment if scheduling is needed."
+        },
         "status": {
           "description": "The status of the shipment.\n\nAcceptable values are:  \n- \"`delivered`\" \n- \"`readyForPickup`\" \n- \"`shipped`\" \n- \"`undeliverable`\"",
           "type": "string"
@@ -6642,6 +6646,20 @@
           "description": "The quantity that is shipped.",
           "format": "uint32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "OrderShipmentScheduledDeliveryDetails": {
+      "id": "OrderShipmentScheduledDeliveryDetails",
+      "properties": {
+        "carrierPhoneNumber": {
+          "description": "The phone number of the carrier fulfilling the delivery.",
+          "type": "string"
+        },
+        "scheduledDate": {
+          "description": "The date a shipment is scheduled for delivery, in ISO 8601 format.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9801,7 +9819,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of the shipment.\n\nAcceptable values are:  \n- \"`completed`\" \n- \"`new`\" \n- \"`shipped`\" \n- \"`undeliverable`\"",
+          "description": "State of the shipment.\n\nAcceptable values are:  \n- \"`completed`\" \n- \"`new`\" \n- \"`shipped`\" \n- \"`undeliverable`\" \n- \"`pending`\"",
           "type": "string"
         }
       },
