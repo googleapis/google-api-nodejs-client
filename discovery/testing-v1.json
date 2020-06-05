@@ -273,7 +273,7 @@
       }
     }
   },
-  "revision": "20200508",
+  "revision": "20200603",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -936,7 +936,7 @@
       "id": "FileReference",
       "properties": {
         "gcsPath": {
-          "description": "A path to a file in Google Cloud Storage.\nExample: gs://build-app-1414623860166/app-debug-unaligned.apk",
+          "description": "A path to a file in Google Cloud Storage.\nExample: gs://build-app-1414623860166/app%40debug-unaligned.apk\nThese paths are expected to be url encoded (percent encoding)",
           "type": "string"
         }
       },

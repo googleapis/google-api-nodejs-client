@@ -610,7 +610,7 @@ export namespace testing_v1 {
    */
   export interface Schema$FileReference {
     /**
-     * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app-debug-unaligned.apk
+     * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding)
      */
     gcsPath?: string | null;
   }
