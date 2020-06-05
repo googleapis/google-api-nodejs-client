@@ -15,7 +15,7 @@
   "description": "Manages the deployment of apps to Android for Work users.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/android/work/play/emm-api",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/i4NjzneJMSibgNsZXFFIJfd2Chs\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/Ph7VzhTH5N57CHDACLQZ-ysuiso\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/android-16.png",
     "x32": "https://www.google.com/images/icons/product/android-32.png"
@@ -2144,36 +2144,6 @@
             "https://www.googleapis.com/auth/androidenterprise"
           ]
         },
-        "generateToken": {
-          "description": "Generates a token (activation code) to allow this user to configure their managed account in the Android Setup Wizard. Revokes any previously generated token.\n\nThis call only works with Google managed accounts.",
-          "httpMethod": "POST",
-          "id": "androidenterprise.users.generateToken",
-          "parameterOrder": [
-            "enterpriseId",
-            "userId"
-          ],
-          "parameters": {
-            "enterpriseId": {
-              "description": "The ID of the enterprise.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "userId": {
-              "description": "The ID of the user.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "enterprises/{enterpriseId}/users/{userId}/token",
-          "response": {
-            "$ref": "UserToken"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/androidenterprise"
-          ]
-        },
         "get": {
           "description": "Retrieves a user's details.",
           "httpMethod": "GET",
@@ -2313,33 +2283,6 @@
             }
           },
           "path": "enterprises/{enterpriseId}/users/{userId}/deviceAccess",
-          "scopes": [
-            "https://www.googleapis.com/auth/androidenterprise"
-          ]
-        },
-        "revokeToken": {
-          "description": "Revokes a previously generated token (activation code) for the user.",
-          "httpMethod": "DELETE",
-          "id": "androidenterprise.users.revokeToken",
-          "parameterOrder": [
-            "enterpriseId",
-            "userId"
-          ],
-          "parameters": {
-            "enterpriseId": {
-              "description": "The ID of the enterprise.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "userId": {
-              "description": "The ID of the user.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "enterprises/{enterpriseId}/users/{userId}/token",
           "scopes": [
             "https://www.googleapis.com/auth/androidenterprise"
           ]
@@ -2556,7 +2499,7 @@
       }
     }
   },
-  "revision": "20200429",
+  "revision": "20200527",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -4341,25 +4284,6 @@
         },
         "primaryEmail": {
           "description": "The user's primary email address, for example, \"jsmith@example.com\". Will always be set for Google managed users and not set for EMM managed users.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UserToken": {
-      "description": "A UserToken is used by a user when setting up a managed device or profile with their managed Google Play account on a device. When the user enters their email address and token (activation code) the appropriate EMM app can be automatically downloaded.",
-      "id": "UserToken",
-      "properties": {
-        "kind": {
-          "default": "androidenterprise#userToken",
-          "type": "string"
-        },
-        "token": {
-          "description": "The token (activation code) to be entered by the user. This consists of a sequence of decimal digits. Note that the leading digit may be 0.",
-          "type": "string"
-        },
-        "userId": {
-          "description": "The unique ID for the user.",
           "type": "string"
         }
       },
