@@ -4295,6 +4295,143 @@ export namespace prod_tt_sasportal_v1alpha1 {
       this.devices = new Resource$Nodes$Devices(this.context);
       this.nodes = new Resource$Nodes$Nodes(this.context);
     }
+
+    /**
+     * prod_tt_sasportal.nodes.get
+     * @desc Returns a requested node.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options('auth', authClient);
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.nodes.get({
+     *     // Required. The name of the node.
+     *     name: 'nodes/my-node',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sasUserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias prod_tt_sasportal.nodes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the node.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params: Params$Resource$Nodes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Nodes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalNode>;
+    get(
+      params: Params$Resource$Nodes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Nodes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    get(
+      params: Params$Resource$Nodes$Get,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SasPortalNode>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Get
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalNode>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SasPortalNode> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Nodes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalNode>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalNode>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodes$Get extends StandardParameters {
+    /**
+     * Required. The name of the node.
+     */
+    name?: string;
   }
 
   export class Resource$Nodes$Devices {
