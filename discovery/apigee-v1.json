@@ -1636,7 +1636,7 @@
                 "keys": {
                   "methods": {
                     "create": {
-                      "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed.\n\n**Note**: To avoid service disruptions, a consumer key and secret\nshould not exceed 2 KBs each.\n\nAfter creating the consumer key and secret, associate the key with\nan API product using the\nUpdateDeveloperAppKey API.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
+                      "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed. To avoid service\ndisruptions, a consumer key and secret should not exceed 2 KBs each.\n\n**Note**: When creating the consumer key and secret, an association to\nAPI products will not be made. Therefore, you should not specify the\nassociated API products in your request. Instead, use the\nUpdateDeveloperAppKey API to\nmake the association after the consumer key and secret are created.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
                       "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}/keys",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.developers.apps.keys.create",
@@ -1838,7 +1838,7 @@
                     "create": {
                       "methods": {
                         "create": {
-                          "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed.\n\n**Note**: To avoid service disruptions, a consumer key and secret\nshould not exceed 2 KBs each.\n\nAfter creating the consumer key and secret, associate the key with\nan API product using the\nUpdateDeveloperAppKey API.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
+                          "description": "Creates a custom consumer key and secret for a developer app. This is\nparticularly useful if you want to migrate existing consumer keys and\nsecrets to Apigee hybrid from another system.\n\nConsumer keys and secrets can contain letters, numbers, underscores, and\nhyphens. No other special characters are allowed. To avoid service\ndisruptions, a consumer key and secret should not exceed 2 KBs each.\n\n**Note**: When creating the consumer key and secret, an association to\nAPI products will not be made. Therefore, you should not specify the\nassociated API products in your request. Instead, use the\nUpdateDeveloperAppKey API to\nmake the association after the consumer key and secret are created.\n\nIf a consumer key and secret already exist, you can keep them or\ndelete them using the\nDeleteDeveloperAppKey API.",
                           "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}/keys/create",
                           "httpMethod": "POST",
                           "id": "apigee.organizations.developers.apps.keys.create.create",
@@ -1992,7 +1992,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Optional. Name of the environment. Alternatively, the name may\nbe specified in the request body in the\nenvironment_id field.",
+                  "description": "Optional. Name of the environment. Alternatively, the name may\nbe specified in the request body in the\nname field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -4554,7 +4554,7 @@
       }
     }
   },
-  "revision": "20200514",
+  "revision": "20200601",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5577,6 +5577,14 @@
         "name": {
           "description": "The name of the API or shared flow revision to be deployed. Must be of the\nform 'organizations/{org}/apis/{api}/revisions/{rev}' or\n'organizations/{org}/sharedflows/{sf}/revisions/{rev}'.",
           "type": "string"
+        },
+        "proxyUid": {
+          "description": "The uid of the proxy revision.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "A unique id that will only change if the deployment is deleted and\nrecreated.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5731,7 +5739,7 @@
       "id": "GoogleCloudApigeeV1DeveloperAppKey",
       "properties": {
         "apiProducts": {
-          "description": "List of API products for which the credential can be used.",
+          "description": "List of API products for which the credential can be used.\n\n**Note**: Do not specify the list of API products when creating a consumer\nkey and secret for a developer app. Instead, use the\nUpdateDeveloperAppKey API to\nmake the association after the consumer key and secret are created.",
           "items": {
             "type": "any"
           },
@@ -5913,8 +5921,13 @@
           },
           "type": "array"
         },
+        "revisionId": {
+          "description": "Revision id that defines the ordering on the environment config.\nThe higher the revision, the more recently the configuration\nwas deployed.",
+          "format": "int64",
+          "type": "string"
+        },
         "sequenceNumber": {
-          "description": "A sequence number that defines an ordering on environment configs. No two\nconfigs under an environment will ever have the same sequence number.\nA higher sequence number means that the config was deployed more\nrecently than one with a lower sequence number.",
+          "description": "DEPRECATED: use revision_id",
           "format": "int64",
           "type": "string"
         },
@@ -5924,6 +5937,10 @@
             "$ref": "GoogleCloudApigeeV1TargetServerConfig"
           },
           "type": "array"
+        },
+        "uid": {
+          "description": "A unique id for the environment config that will only change if the\nenvironment is deleted and recreated.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6945,6 +6962,10 @@
         "createdAt": {
           "description": "Time at which this shared flow revision was created, in milliseconds since\nepoch.",
           "format": "int64",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the shared flow revision.",
           "type": "string"
         },
         "displayName": {

@@ -18,7 +18,7 @@
   "description": "The API for Google Play Game Services.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/games/services/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/iv04XhP_bk4sRTNmL3Bs6um31tY\"",
+  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/WmMOjb_eR3VE2D5sJ9de7_GSAfg\"",
   "icons": {
     "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
     "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -996,9 +996,9 @@
                 "SOCIAL"
               ],
               "enumDescriptions": [
-                "Retrieve public and social ranks.",
+                "Retrieve all supported ranks.",
                 "Retrieve public ranks, if the player is sharing their gameplay activity publicly.",
-                "Retrieve the social rank."
+                "(Obsolete) Legacy G+ social leaderboards rank, always 1."
               ],
               "location": "query",
               "type": "string"
@@ -1073,12 +1073,14 @@
             "collection": {
               "description": "The collection of scores you're requesting.",
               "enum": [
+                "FRIENDS",
                 "PUBLIC",
                 "SOCIAL"
               ],
               "enumDescriptions": [
+                "List only scores of friends.",
                 "List all scores in the public leaderboard.",
-                "List only social scores."
+                "(Obsolete) Legacy G+ social scores. Use the FRIENDS collection instead."
               ],
               "location": "path",
               "required": true,
@@ -1146,12 +1148,14 @@
             "collection": {
               "description": "The collection of scores you're requesting.",
               "enum": [
+                "FRIENDS",
                 "PUBLIC",
                 "SOCIAL"
               ],
               "enumDescriptions": [
+                "List only scores of friends.",
                 "List all scores in the public leaderboard.",
-                "List only social scores."
+                "(Obsolete) Legacy G+ social scores. Use the FRIENDS collection instead."
               ],
               "location": "path",
               "required": true,
@@ -1769,7 +1773,7 @@
       }
     }
   },
-  "revision": "20200416",
+  "revision": "20200602",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
