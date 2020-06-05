@@ -675,7 +675,7 @@
       }
     }
   },
-  "revision": "20200513",
+  "revision": "20200529",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
@@ -1139,6 +1139,20 @@
             "The queue is running. Tasks can be dispatched.\n\nIf the queue was created using Cloud Tasks and the queue has\nhad no activity (method calls or task dispatches) for 30 days,\nthe queue may take a few minutes to re-activate. Some method\ncalls may return NOT_FOUND and\ntasks may not be dispatched for a few minutes until the queue\nhas been re-activated.",
             "Tasks are paused by the user. If the queue is paused then Cloud\nTasks will stop delivering tasks from it, but more tasks can\nstill be added to it by the user.",
             "The queue is disabled.\n\nA queue becomes `DISABLED` when\n[queue.yaml](https://cloud.google.com/appengine/docs/python/config/queueref)\nor\n[queue.xml](https://cloud.google.com/appengine/docs/standard/java/config/queueref)\nis uploaded which does not contain the queue. You cannot directly disable\na queue.\n\nWhen a queue is disabled, tasks can still be added to a queue\nbut the tasks are not dispatched.\n\nTo permanently delete this queue and all of its tasks, call\nDeleteQueue."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Immutable. The type of a queue (push or pull).\n\n`Queue.type` is an immutable property of the queue that is set at the queue\ncreation time. When left unspecified, the default value of `PUSH` is\nselected.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PULL",
+            "PUSH"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "A pull queue.",
+            "A push queue."
           ],
           "type": "string"
         }
