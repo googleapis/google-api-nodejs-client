@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "52.1.0",
+  "version": "53.0.0",
   "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
