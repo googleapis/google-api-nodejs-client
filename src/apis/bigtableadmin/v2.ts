@@ -874,7 +874,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.cancel({
@@ -1008,7 +1008,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.delete({
@@ -1143,7 +1143,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.get({
@@ -1322,7 +1322,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.operations.projects.operations.list({
@@ -1522,7 +1522,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.create({
@@ -1678,7 +1678,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.delete({
@@ -1814,7 +1814,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.get({
@@ -1955,7 +1955,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.getIamPolicy({
@@ -2108,7 +2108,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.list({
@@ -2258,7 +2258,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.partialUpdateInstance({
@@ -2419,7 +2419,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.setIamPolicy({
@@ -2572,7 +2572,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.testIamPermissions({
@@ -2728,7 +2728,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.update({
@@ -2992,7 +2992,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.create({
@@ -3158,7 +3158,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.delete({
@@ -3297,7 +3297,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.get({
@@ -3438,7 +3438,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.list({
@@ -3602,7 +3602,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.appProfiles.patch({
@@ -3849,7 +3849,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.create({
@@ -4012,7 +4012,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.delete({
@@ -4148,7 +4148,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.get({
@@ -4290,7 +4290,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.list({
@@ -4442,7 +4442,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.update({
@@ -4657,7 +4657,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.getIamPolicy(
@@ -4811,7 +4811,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.setIamPolicy(
@@ -4966,7 +4966,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.testIamPermissions(
@@ -5168,7 +5168,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.checkConsistency({
@@ -5324,7 +5324,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.create({
@@ -5477,7 +5477,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.delete({
@@ -5612,7 +5612,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.dropRowRange({
@@ -5760,7 +5760,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.generateConsistencyToken(
@@ -5919,7 +5919,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.get({
@@ -6063,7 +6063,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.getIamPolicy({
@@ -6215,7 +6215,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.list({
@@ -6376,7 +6376,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.modifyColumnFamilies(
@@ -6530,7 +6530,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.setIamPolicy({
@@ -6682,7 +6682,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.tables.testIamPermissions({
@@ -6980,7 +6980,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.locations.get({
@@ -7121,7 +7121,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.locations.list({

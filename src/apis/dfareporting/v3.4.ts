@@ -6806,7 +6806,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountActiveAdSummaries.get({
@@ -6968,7 +6968,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissionGroups.get({
@@ -7109,7 +7109,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissionGroups.list({
@@ -7276,7 +7276,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissions.get({
@@ -7418,7 +7418,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountPermissions.list({
@@ -7585,7 +7585,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.get({
@@ -7736,7 +7736,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.list({
@@ -7893,7 +7893,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.patch({
@@ -8070,7 +8070,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.update({
@@ -8322,7 +8322,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.get({
@@ -8474,7 +8474,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.insert({
@@ -8647,7 +8647,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.list({
@@ -8816,7 +8816,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.patch({
@@ -8992,7 +8992,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.update({
@@ -9267,7 +9267,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.get({
@@ -9437,7 +9437,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.insert({
@@ -9651,7 +9651,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.list({
@@ -9851,7 +9851,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.patch({
@@ -10068,7 +10068,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.update({
@@ -10435,7 +10435,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.delete({
@@ -10562,7 +10562,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.get({
@@ -10699,7 +10699,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.insert({
@@ -10845,7 +10845,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.list({
@@ -11005,7 +11005,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.patch({
@@ -11154,7 +11154,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.update({
@@ -11401,7 +11401,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.get({
@@ -11541,7 +11541,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.insert({
@@ -11693,7 +11693,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.list({
@@ -11865,7 +11865,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.patch({
@@ -12020,7 +12020,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.update({
@@ -12278,7 +12278,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.get({
@@ -12425,7 +12425,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.insert({
@@ -12593,7 +12593,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.list({
@@ -12766,7 +12766,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.patch({
@@ -12937,7 +12937,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.update({
@@ -13217,7 +13217,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.browsers.list({
@@ -13366,7 +13366,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaignCreativeAssociations.insert({
@@ -13518,7 +13518,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaignCreativeAssociations.list({
@@ -13725,7 +13725,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.get({
@@ -13885,7 +13885,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.insert({
@@ -14077,7 +14077,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.list({
@@ -14252,7 +14252,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.patch({
@@ -14447,7 +14447,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.update({
@@ -14752,7 +14752,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.changeLogs.get({
@@ -14898,7 +14898,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.changeLogs.list({
@@ -15128,7 +15128,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.cities.list({
@@ -15303,7 +15303,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.connectionTypes.get({
@@ -15439,7 +15439,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.connectionTypes.list({
@@ -15604,7 +15604,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.delete({
@@ -15731,7 +15731,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.get({
@@ -15868,7 +15868,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.insert({
@@ -16014,7 +16014,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.list({
@@ -16174,7 +16174,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.patch({
@@ -16323,7 +16323,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.update({
@@ -16570,7 +16570,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.conversions.batchinsert({
@@ -16723,7 +16723,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.conversions.batchupdate({
@@ -16908,7 +16908,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.countries.get({
@@ -17045,7 +17045,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.countries.list({
@@ -17204,7 +17204,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeAssets.insert({
@@ -17422,7 +17422,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.delete({
@@ -17549,7 +17549,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.get({
@@ -17689,7 +17689,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.insert({
@@ -17841,7 +17841,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.list({
@@ -18002,7 +18002,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.patch({
@@ -18157,7 +18157,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.update({
@@ -18414,7 +18414,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.delete({
@@ -18544,7 +18544,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.get({
@@ -18686,7 +18686,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.insert({
@@ -18836,7 +18836,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.list({
@@ -18999,7 +18999,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.patch({
@@ -19152,7 +19152,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.update({
@@ -19427,7 +19427,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.get({
@@ -19568,7 +19568,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.insert({
@@ -19722,7 +19722,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.list({
@@ -19886,7 +19886,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.patch({
@@ -20043,7 +20043,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.update({
@@ -20295,7 +20295,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.get({
@@ -20492,7 +20492,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.insert({
@@ -20758,7 +20758,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.list({
@@ -20942,7 +20942,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.patch({
@@ -21211,7 +21211,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.update({
@@ -21602,7 +21602,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.customEvents.batchinsert({
@@ -21774,7 +21774,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dimensionValues.query({
@@ -21958,7 +21958,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.directorySites.get({
@@ -22099,7 +22099,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.directorySites.insert({
@@ -22253,7 +22253,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.directorySites.list({
@@ -22508,7 +22508,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.delete({
@@ -22641,7 +22641,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.insert({
@@ -22790,7 +22790,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.list({
@@ -23005,7 +23005,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.delete({
@@ -23131,7 +23131,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.get({
@@ -23281,7 +23281,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.insert({
@@ -23453,7 +23453,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.list({
@@ -23618,7 +23618,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.patch({
@@ -23793,7 +23793,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.update({
@@ -24076,7 +24076,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.files.get({
@@ -24217,7 +24217,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.files.list({
@@ -24408,7 +24408,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.delete({
@@ -24535,7 +24535,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.generatetag({
@@ -24686,7 +24686,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.get({
@@ -24850,7 +24850,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.insert({
@@ -25047,7 +25047,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.list({
@@ -25228,7 +25228,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.patch({
@@ -25428,7 +25428,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.update({
@@ -25765,7 +25765,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.get({
@@ -25915,7 +25915,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.insert({
@@ -26084,7 +26084,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.list({
@@ -26259,7 +26259,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.patch({
@@ -26429,7 +26429,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.update({
@@ -26700,7 +26700,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.get({
@@ -26856,7 +26856,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.list({
@@ -27006,7 +27006,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.patch({
@@ -27188,7 +27188,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.update({
@@ -27427,7 +27427,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.inventoryItems.get({
@@ -27583,7 +27583,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.inventoryItems.list({
@@ -27823,7 +27823,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.languages.list({
@@ -27972,7 +27972,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.metros.list({
@@ -28119,7 +28119,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileApps.get({
@@ -28256,7 +28256,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileApps.list({
@@ -28451,7 +28451,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileCarriers.get({
@@ -28589,7 +28589,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.mobileCarriers.list({
@@ -28754,7 +28754,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystems.get({
@@ -28892,7 +28892,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystems.list({
@@ -29059,7 +29059,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystemVersions.get({
@@ -29203,7 +29203,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.operatingSystemVersions.list({
@@ -29370,7 +29370,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orderDocuments.get({
@@ -29523,7 +29523,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orderDocuments.list({
@@ -29763,7 +29763,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orders.get({
@@ -29918,7 +29918,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.orders.list({
@@ -30137,7 +30137,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.get({
@@ -30296,7 +30296,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.insert({
@@ -30486,7 +30486,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.list({
@@ -30683,7 +30683,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.patch({
@@ -30876,7 +30876,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.update({
@@ -31208,7 +31208,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.generatetags({
@@ -31360,7 +31360,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.get({
@@ -31533,7 +31533,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.insert({
@@ -31752,7 +31752,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.list({
@@ -31954,7 +31954,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.patch({
@@ -32175,7 +32175,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.update({
@@ -32564,7 +32564,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.delete({
@@ -32691,7 +32691,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.get({
@@ -32831,7 +32831,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.insert({
@@ -32980,7 +32980,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.list({
@@ -33140,7 +33140,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.patch({
@@ -33292,7 +33292,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.update({
@@ -33542,7 +33542,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.platformTypes.get({
@@ -33678,7 +33678,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.platformTypes.list({
@@ -33843,7 +33843,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.postalCodes.get({
@@ -33980,7 +33980,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.postalCodes.list({
@@ -34140,7 +34140,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.projects.get({
@@ -34294,7 +34294,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.projects.list({
@@ -34503,7 +34503,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.regions.list({
@@ -34650,7 +34650,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.get({
@@ -34796,7 +34796,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.insert({
@@ -34960,7 +34960,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.list({
@@ -35126,7 +35126,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.patch({
@@ -35293,7 +35293,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.update({
@@ -35555,7 +35555,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.get({
@@ -35697,7 +35697,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.patch({
@@ -35851,7 +35851,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.update({
@@ -36055,7 +36055,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.delete({
@@ -36181,7 +36181,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.get({
@@ -36331,7 +36331,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.insert({
@@ -36503,7 +36503,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.list({
@@ -36650,7 +36650,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.run({
@@ -36795,7 +36795,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.update({
@@ -37065,7 +37065,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.compatibleFields.query({
@@ -37247,7 +37247,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.files.get({
@@ -37393,7 +37393,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.files.list({
@@ -37592,7 +37592,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.get({
@@ -37736,7 +37736,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.insert({
@@ -37898,7 +37898,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.list({
@@ -38077,7 +38077,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.patch({
@@ -38242,7 +38242,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.update({
@@ -38525,7 +38525,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sizes.get({
@@ -38661,7 +38661,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sizes.insert({
@@ -38807,7 +38807,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.sizes.list({
@@ -39003,7 +39003,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.get({
@@ -39140,7 +39140,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.insert({
@@ -39288,7 +39288,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.list({
@@ -39443,7 +39443,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.patch({
@@ -39594,7 +39594,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.update({
@@ -39830,7 +39830,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetableRemarketingLists.get({
@@ -39980,7 +39980,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetableRemarketingLists.list({
@@ -40203,7 +40203,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.get({
@@ -40352,7 +40352,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.insert({
@@ -40519,7 +40519,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.list({
@@ -40682,7 +40682,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.patch({
@@ -40852,7 +40852,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.update({
@@ -41116,7 +41116,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userProfiles.get({
@@ -41255,7 +41255,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userProfiles.list({});
@@ -41400,7 +41400,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissionGroups.get({
@@ -41541,7 +41541,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissionGroups.list({
@@ -41714,7 +41714,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissions.get({
@@ -41855,7 +41855,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissions.list({
@@ -42029,7 +42029,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.delete({
@@ -42155,7 +42155,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.get({
@@ -42295,7 +42295,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.insert({
@@ -42447,7 +42447,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.list({
@@ -42607,7 +42607,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.patch({
@@ -42762,7 +42762,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.update({
@@ -43017,7 +43017,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.videoFormats.get({
@@ -43154,7 +43154,7 @@ export namespace dfareporting_v3_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dfareporting.videoFormats.list({

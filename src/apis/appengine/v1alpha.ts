@@ -587,7 +587,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.create({
@@ -747,7 +747,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.delete({
@@ -883,7 +883,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.get({
@@ -1037,7 +1037,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.list({
@@ -1186,7 +1186,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.patch({
@@ -1442,7 +1442,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedDomains.list({
@@ -1612,7 +1612,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.create({
@@ -1765,7 +1765,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.delete({
@@ -1907,7 +1907,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.get({
@@ -2048,7 +2048,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.list({
@@ -2193,7 +2193,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.patch({
@@ -2442,7 +2442,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.locations.get({
@@ -2583,7 +2583,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.locations.list({
@@ -2771,7 +2771,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.operations.get({
@@ -2912,7 +2912,7 @@ export namespace appengine_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await appengine.apps.operations.list({

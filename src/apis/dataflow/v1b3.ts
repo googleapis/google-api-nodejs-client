@@ -3491,7 +3491,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.deleteSnapshots({
@@ -3638,7 +3638,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.workerMessages({
@@ -3827,7 +3827,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.commit({
@@ -3981,7 +3981,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.delete({
@@ -4113,7 +4113,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.get({
@@ -4259,7 +4259,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.label({
@@ -4416,7 +4416,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.tag({
@@ -4627,7 +4627,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.catalogTemplates.templateVersions.create({
@@ -4810,7 +4810,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.aggregated({
@@ -4967,7 +4967,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.create({
@@ -5169,7 +5169,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.get({
@@ -5339,7 +5339,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.getMetrics({
@@ -5487,7 +5487,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.list({
@@ -5645,7 +5645,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.snapshot({
@@ -5803,7 +5803,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.update({
@@ -6162,7 +6162,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.debug.getConfig({
@@ -6319,7 +6319,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.debug.sendCapture({
@@ -6515,7 +6515,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.messages.list({
@@ -6729,7 +6729,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.workItems.lease({
@@ -6889,7 +6889,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.jobs.workItems.reportStatus({
@@ -7103,7 +7103,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.workerMessages({
@@ -7285,7 +7285,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.flexTemplates.launch({
@@ -7481,7 +7481,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.create({
@@ -7682,7 +7682,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.get({
@@ -7852,7 +7852,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.getMetrics({
@@ -8001,7 +8001,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.list({
@@ -8158,7 +8158,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.snapshot({
@@ -8320,7 +8320,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.update({
@@ -8656,7 +8656,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.debug.getConfig({
@@ -8818,7 +8818,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.debug.sendCapture({
@@ -9027,7 +9027,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.messages.list({
@@ -9242,7 +9242,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.snapshots.list({
@@ -9412,7 +9412,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.workItems.lease({
@@ -9577,7 +9577,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.jobs.workItems.reportStatus({
@@ -9792,7 +9792,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.snapshots.delete({
@@ -9937,7 +9937,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.snapshots.get({
@@ -10087,7 +10087,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.snapshots.list({
@@ -10285,7 +10285,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.sql.validate({
@@ -10453,7 +10453,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.templates.create({
@@ -10630,7 +10630,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.templates.get({
@@ -10785,7 +10785,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.templates.launch({
@@ -11036,7 +11036,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.snapshots.get({
@@ -11185,7 +11185,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.snapshots.list({
@@ -11370,7 +11370,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.templates.create({
@@ -11542,7 +11542,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.templates.get({
@@ -11697,7 +11697,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.templates.launch({
@@ -11941,7 +11941,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataflow.projects.templateVersions.list({

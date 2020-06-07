@@ -445,7 +445,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photo.create({
@@ -600,7 +600,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photo.delete({
@@ -729,7 +729,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photo.get({
@@ -882,7 +882,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photo.startUpload({
@@ -1017,7 +1017,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photo.update({
@@ -1260,7 +1260,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photos.batchDelete({
@@ -1404,7 +1404,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photos.batchGet({
@@ -1555,7 +1555,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photos.batchUpdate({
@@ -1699,7 +1699,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photos.list({

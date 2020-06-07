@@ -480,7 +480,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.locations.get({
@@ -613,7 +613,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.locations.list({
@@ -796,7 +796,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.addVersion({
@@ -941,7 +941,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.create({
@@ -1096,7 +1096,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.delete({
@@ -1224,7 +1224,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.get({
@@ -1356,7 +1356,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.getIamPolicy({
@@ -1506,7 +1506,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.list({
@@ -1653,7 +1653,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.patch({
@@ -1800,7 +1800,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.setIamPolicy({
@@ -1946,7 +1946,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.testIamPermissions({
@@ -2211,7 +2211,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.access({
@@ -2349,7 +2349,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.destroy({
@@ -2492,7 +2492,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.disable({
@@ -2635,7 +2635,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.enable({
@@ -2775,7 +2775,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.get({
@@ -2910,7 +2910,7 @@ export namespace secretmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.list({

@@ -651,7 +651,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.create({
@@ -800,7 +800,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.delete({
@@ -930,7 +930,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.get({
@@ -1065,7 +1065,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.getIamPolicy({
@@ -1216,7 +1216,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.list({
@@ -1365,7 +1365,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.patch({
@@ -1509,7 +1509,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.setIamPolicy({
@@ -1655,7 +1655,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.testIamPermissions({
@@ -1902,7 +1902,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.acknowledge({
@@ -2044,7 +2044,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.create({
@@ -2207,7 +2207,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.delete({
@@ -2340,7 +2340,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.detach({
@@ -2480,7 +2480,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.get({
@@ -2624,7 +2624,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.getIamPolicy({
@@ -2775,7 +2775,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.list({
@@ -2926,7 +2926,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyAckDeadline({
@@ -3069,7 +3069,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyPushConfig({
@@ -3211,7 +3211,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.patch({
@@ -3366,7 +3366,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.pull({
@@ -3511,7 +3511,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.seek({
@@ -3653,7 +3653,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.setIamPolicy({
@@ -3799,7 +3799,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.testIamPermissions({
@@ -4119,7 +4119,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.create({
@@ -4270,7 +4270,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.delete({
@@ -4400,7 +4400,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.get({
@@ -4535,7 +4535,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.getIamPolicy({
@@ -4686,7 +4686,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.list({
@@ -4833,7 +4833,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.patch({
@@ -4982,7 +4982,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.publish({
@@ -5126,7 +5126,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.setIamPolicy({
@@ -5272,7 +5272,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.testIamPermissions({
@@ -5531,7 +5531,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.snapshots.list({
@@ -5705,7 +5705,7 @@ export namespace pubsub_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.subscriptions.list({

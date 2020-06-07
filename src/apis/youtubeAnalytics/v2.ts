@@ -401,7 +401,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.groupItems.delete({
@@ -550,7 +550,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.groupItems.insert({
@@ -714,7 +714,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.groupItems.list({
@@ -911,7 +911,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.groups.delete({
@@ -1059,7 +1059,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.groups.insert({
@@ -1222,7 +1222,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.groups.list({
@@ -1392,7 +1392,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.groups.update({
@@ -1613,7 +1613,7 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.reports.query({

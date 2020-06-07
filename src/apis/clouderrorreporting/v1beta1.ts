@@ -428,7 +428,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.deleteEvents({
@@ -585,7 +585,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.events.list({
@@ -751,7 +751,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.events.report({
@@ -960,7 +960,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.get({
@@ -1101,7 +1101,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groups.update({
@@ -1271,7 +1271,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouderrorreporting.projects.groupStats.list({

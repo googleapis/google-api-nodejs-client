@@ -981,7 +981,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.allocateIds({
@@ -1128,7 +1128,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.beginTransaction({
@@ -1277,7 +1277,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.commit({
@@ -1422,7 +1422,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.lookup({
@@ -1567,7 +1567,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.reserveIds({
@@ -1712,7 +1712,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.rollback({
@@ -1853,7 +1853,7 @@ export namespace datastore_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datastore.projects.runQuery({

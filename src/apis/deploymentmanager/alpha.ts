@@ -1292,7 +1292,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.delete({
@@ -1455,7 +1455,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.get({
@@ -1601,7 +1601,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.insert({
@@ -1778,7 +1778,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.list({
@@ -1946,7 +1946,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.patch({
@@ -2124,7 +2124,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.update({
@@ -2403,7 +2403,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.cancelPreview({
@@ -2573,7 +2573,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.delete({
@@ -2739,7 +2739,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.get({
@@ -2889,7 +2889,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.getIamPolicy({
@@ -3035,7 +3035,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.insert({
@@ -3223,7 +3223,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.list({
@@ -3388,7 +3388,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.patch({
@@ -3580,7 +3580,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.setIamPolicy({
@@ -3734,7 +3734,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.stop({
@@ -3903,7 +3903,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.testIamPermissions({
@@ -4057,7 +4057,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.update({
@@ -4464,7 +4464,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.manifests.get({
@@ -4613,7 +4613,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.manifests.list({
@@ -4835,7 +4835,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.operations.get({
@@ -4997,7 +4997,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.operations.list({
@@ -5208,7 +5208,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.resources.get({
@@ -5363,7 +5363,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.resources.list({
@@ -5583,7 +5583,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.delete({
@@ -5746,7 +5746,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.get({
@@ -5897,7 +5897,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.getType({
@@ -6044,7 +6044,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.insert({
@@ -6224,7 +6224,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.list({
@@ -6394,7 +6394,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.listTypes({
@@ -6567,7 +6567,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.patch({
@@ -6748,7 +6748,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.update({
@@ -7078,7 +7078,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.types.get({
@@ -7224,7 +7224,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await deploymentmanager.types.list({

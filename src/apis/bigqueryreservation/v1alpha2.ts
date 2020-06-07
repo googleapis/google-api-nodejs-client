@@ -359,7 +359,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.searchReservationGrants(
@@ -546,7 +546,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.operations.cancel({
@@ -679,7 +679,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.operations.get({
@@ -837,7 +837,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservationGrants.create(
@@ -992,7 +992,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservationGrants.delete(
@@ -1126,7 +1126,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservationGrants.list(
@@ -1325,7 +1325,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.create({
@@ -1478,7 +1478,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.createReservation(
@@ -1633,7 +1633,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.delete({
@@ -1770,7 +1770,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.get({
@@ -1905,7 +1905,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.list({
@@ -2060,7 +2060,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.patch({
@@ -2305,7 +2305,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.delete(
@@ -2439,7 +2439,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.get(
@@ -2580,7 +2580,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.slotPools.list(

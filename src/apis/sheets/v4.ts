@@ -4167,7 +4167,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.batchUpdate({
@@ -4324,7 +4324,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.create({
@@ -4473,7 +4473,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.get({
@@ -4619,7 +4619,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.getByDataFilter({
@@ -4821,7 +4821,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.developerMetadata.get({
@@ -4966,7 +4966,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.developerMetadata.search({
@@ -5150,7 +5150,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.sheets.copyTo({
@@ -5329,7 +5329,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.append({
@@ -5506,7 +5506,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchClear({
@@ -5657,7 +5657,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchClearByDataFilter({
@@ -5819,7 +5819,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchGet({
@@ -5982,7 +5982,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchGetByDataFilter({
@@ -6139,7 +6139,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchUpdate({
@@ -6298,7 +6298,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchUpdateByDataFilter({
@@ -6466,7 +6466,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.clear({
@@ -6616,7 +6616,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.get({
@@ -6773,7 +6773,7 @@ export namespace sheets_v4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.update({

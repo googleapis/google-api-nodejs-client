@@ -407,7 +407,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.create({
@@ -567,7 +567,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.delete({
@@ -698,7 +698,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.get({
@@ -837,7 +837,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.getIamPolicy(
@@ -988,7 +988,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.list({
@@ -1136,7 +1136,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.patch({
@@ -1293,7 +1293,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.setIamPolicy(
@@ -1445,7 +1445,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.testIamPermissions(
@@ -1600,7 +1600,7 @@ export namespace bigqueryconnection_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigqueryconnection.projects.locations.connections.updateCredential(

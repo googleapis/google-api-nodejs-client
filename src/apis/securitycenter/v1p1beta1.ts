@@ -975,7 +975,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.getOrganizationSettings({
@@ -1114,7 +1114,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.updateOrganizationSettings({
@@ -1302,7 +1302,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.group({
@@ -1455,7 +1455,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.list({
@@ -1728,7 +1728,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.runDiscovery({
@@ -1872,7 +1872,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.updateSecurityMarks({
@@ -2137,7 +2137,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.create({
@@ -2298,7 +2298,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.delete({
@@ -2427,7 +2427,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.get({
@@ -2566,7 +2566,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.list({
@@ -2718,7 +2718,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.patch({
@@ -2947,7 +2947,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.cancel({
@@ -3077,7 +3077,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.delete({
@@ -3204,7 +3204,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.get({
@@ -3337,7 +3337,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.operations.list({
@@ -3531,7 +3531,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.create({
@@ -3677,7 +3677,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.get({
@@ -3809,7 +3809,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.getIamPolicy({
@@ -3954,7 +3954,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.list({
@@ -4100,7 +4100,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.patch({
@@ -4250,7 +4250,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.setIamPolicy({
@@ -4396,7 +4396,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.testIamPermissions({
@@ -4638,7 +4638,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.create({
@@ -4820,7 +4820,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.group({
@@ -4977,7 +4977,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.list({
@@ -5243,7 +5243,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.patch({
@@ -5428,7 +5428,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.setState({
@@ -5599,7 +5599,7 @@ export namespace securitycenter_v1p1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.updateSecurityMarks(

@@ -889,7 +889,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.catalog.search({
@@ -1066,7 +1066,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.entries.lookup({
@@ -1293,7 +1293,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.create({
@@ -1464,7 +1464,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.delete({
@@ -1594,7 +1594,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.get({
@@ -1744,7 +1744,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.getIamPolicy({
@@ -1888,7 +1888,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.list({
@@ -2057,7 +2057,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.patch({
@@ -2224,7 +2224,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.setIamPolicy({
@@ -2368,7 +2368,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.testIamPermissions(
@@ -2636,7 +2636,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.create({
@@ -2818,7 +2818,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.delete({
@@ -2947,7 +2947,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.get({
@@ -3099,7 +3099,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.getIamPolicy(
@@ -3245,7 +3245,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.list({
@@ -3417,7 +3417,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.patch({
@@ -3615,7 +3615,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.testIamPermissions(
@@ -3863,7 +3863,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.create(
@@ -4029,7 +4029,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.delete(
@@ -4160,7 +4160,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.list(
@@ -4332,7 +4332,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.patch(
@@ -4556,7 +4556,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.create({
@@ -4720,7 +4720,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.delete({
@@ -4849,7 +4849,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.list({
@@ -5019,7 +5019,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.patch({
@@ -5245,7 +5245,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.create({
@@ -5412,7 +5412,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.delete({
@@ -5546,7 +5546,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.get({
@@ -5694,7 +5694,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.getIamPolicy({
@@ -5838,7 +5838,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.patch({
@@ -6009,7 +6009,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.setIamPolicy({
@@ -6153,7 +6153,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.testIamPermissions(
@@ -6398,7 +6398,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.create({
@@ -6582,7 +6582,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.delete({
@@ -6716,7 +6716,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.patch({
@@ -6903,7 +6903,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.rename({
@@ -7140,7 +7140,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.create({
@@ -7301,7 +7301,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.delete({
@@ -7428,7 +7428,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.export({
@@ -7592,7 +7592,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.get({
@@ -7738,7 +7738,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.getIamPolicy({
@@ -7882,7 +7882,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.import({
@@ -8048,7 +8048,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.list({
@@ -8214,7 +8214,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.patch({
@@ -8379,7 +8379,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.setIamPolicy({
@@ -8523,7 +8523,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.testIamPermissions(
@@ -8802,7 +8802,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.create(
@@ -8968,7 +8968,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.delete(
@@ -9098,7 +9098,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.get({
@@ -9246,7 +9246,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.getIamPolicy(
@@ -9392,7 +9392,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.list({
@@ -9558,7 +9558,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.patch({
@@ -9729,7 +9729,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.setIamPolicy(
@@ -9875,7 +9875,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.testIamPermissions(

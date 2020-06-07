@@ -994,7 +994,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.get({
@@ -1127,7 +1127,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
@@ -1323,7 +1323,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.create(
@@ -1491,7 +1491,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.delete(
@@ -1628,7 +1628,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.get(
@@ -1771,7 +1771,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.getIamPolicy(
@@ -1924,7 +1924,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.list(
@@ -2099,7 +2099,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.patch(
@@ -2259,7 +2259,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.rerun(
@@ -2406,7 +2406,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.setIamPolicy(
@@ -2555,7 +2555,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.connectivityTests.testIamPermissions(
@@ -2831,7 +2831,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.cancel(
@@ -2970,7 +2970,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.delete(
@@ -3099,7 +3099,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.get({
@@ -3232,7 +3232,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.global.operations.list(

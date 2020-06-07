@@ -1476,7 +1476,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instanceConfigs.get({
@@ -1610,7 +1610,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instanceConfigs.list({
@@ -1809,7 +1809,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.create({
@@ -1958,7 +1958,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.delete({
@@ -2088,7 +2088,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.get({
@@ -2231,7 +2231,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.getIamPolicy({
@@ -2376,7 +2376,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.list({
@@ -2547,7 +2547,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.patch({
@@ -2695,7 +2695,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.setIamPolicy({
@@ -2840,7 +2840,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.testIamPermissions({
@@ -3095,7 +3095,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backupOperations.list({
@@ -3321,7 +3321,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.create({
@@ -3484,7 +3484,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.delete({
@@ -3615,7 +3615,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.get({
@@ -3754,7 +3754,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.getIamPolicy({
@@ -3899,7 +3899,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.list({
@@ -4084,7 +4084,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.patch({
@@ -4255,7 +4255,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.setIamPolicy({
@@ -4400,7 +4400,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.testIamPermissions({
@@ -4659,7 +4659,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.operations.cancel({
@@ -4789,7 +4789,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.operations.delete({
@@ -4919,7 +4919,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.operations.get({
@@ -5055,7 +5055,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backups.operations.list({
@@ -5250,7 +5250,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databaseOperations.list({
@@ -5482,7 +5482,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.create({
@@ -5631,7 +5631,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.dropDatabase({
@@ -5760,7 +5760,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.get({
@@ -5895,7 +5895,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.getDdl({
@@ -6034,7 +6034,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.getIamPolicy({
@@ -6179,7 +6179,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.list({
@@ -6329,7 +6329,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.restore({
@@ -6481,7 +6481,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.setIamPolicy({
@@ -6626,7 +6626,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.testIamPermissions({
@@ -6776,7 +6776,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.updateDdl({
@@ -7040,7 +7040,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.operations.cancel({
@@ -7170,7 +7170,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.operations.delete({
@@ -7300,7 +7300,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.operations.get({
@@ -7436,7 +7436,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.operations.list({
@@ -7631,7 +7631,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.batchCreate({
@@ -7782,7 +7782,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.beginTransaction(
@@ -7929,7 +7929,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.commit({
@@ -8075,7 +8075,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.create({
@@ -8221,7 +8221,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.delete({
@@ -8351,7 +8351,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.executeBatchDml(
@@ -8507,7 +8507,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.executeSql({
@@ -8661,7 +8661,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.executeStreamingSql(
@@ -8821,7 +8821,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.get({
@@ -8956,7 +8956,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.list({
@@ -9117,7 +9117,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.partitionQuery(
@@ -9273,7 +9273,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.partitionRead(
@@ -9430,7 +9430,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.read({
@@ -9583,7 +9583,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.rollback({
@@ -9725,7 +9725,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.databases.sessions.streamingRead(
@@ -10069,7 +10069,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.operations.cancel({
@@ -10198,7 +10198,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.operations.delete({
@@ -10327,7 +10327,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.operations.get({
@@ -10462,7 +10462,7 @@ export namespace spanner_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.operations.list({

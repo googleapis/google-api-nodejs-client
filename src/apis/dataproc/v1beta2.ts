@@ -1812,7 +1812,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.create({
@@ -1965,7 +1965,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.delete({
@@ -2094,7 +2094,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.get({
@@ -2232,7 +2232,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.getIamPolicy(
@@ -2371,7 +2371,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.list({
@@ -2520,7 +2520,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.setIamPolicy(
@@ -2665,7 +2665,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.testIamPermissions(
@@ -2815,7 +2815,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.update({
@@ -3062,7 +3062,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.create({
@@ -3220,7 +3220,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.delete({
@@ -3352,7 +3352,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.get({
@@ -3494,7 +3494,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.getIamPolicy({
@@ -3631,7 +3631,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.instantiate({
@@ -3781,7 +3781,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.instantiateInline(
@@ -3942,7 +3942,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.list({
@@ -4091,7 +4091,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.setIamPolicy({
@@ -4234,7 +4234,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.testIamPermissions(
@@ -4384,7 +4384,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.update({
@@ -4697,7 +4697,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.create({
@@ -4850,7 +4850,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.delete({
@@ -4979,7 +4979,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.get({
@@ -5117,7 +5117,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.getIamPolicy({
@@ -5254,7 +5254,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.list({
@@ -5403,7 +5403,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.setIamPolicy({
@@ -5546,7 +5546,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.testIamPermissions(
@@ -5696,7 +5696,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.update({
@@ -5943,7 +5943,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.create({
@@ -6100,7 +6100,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.delete({
@@ -6247,7 +6247,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.diagnose({
@@ -6395,7 +6395,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.get({
@@ -6539,7 +6539,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.getIamPolicy({
@@ -6675,7 +6675,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.list({
@@ -6824,7 +6824,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.patch({
@@ -7038,7 +7038,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.setIamPolicy({
@@ -7180,7 +7180,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.start({
@@ -7331,7 +7331,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.stop({
@@ -7482,7 +7482,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.testIamPermissions({
@@ -7845,7 +7845,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.cancel({
@@ -8008,7 +8008,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.delete({
@@ -8143,7 +8143,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.get({
@@ -8299,7 +8299,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.getIamPolicy({
@@ -8435,7 +8435,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.list({
@@ -8584,7 +8584,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.patch({
@@ -8771,7 +8771,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.setIamPolicy({
@@ -8913,7 +8913,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.submit({
@@ -9076,7 +9076,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.submitAsOperation({
@@ -9224,7 +9224,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.jobs.testIamPermissions({
@@ -9551,7 +9551,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.cancel({
@@ -9680,7 +9680,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.delete({
@@ -9806,7 +9806,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.get({
@@ -9938,7 +9938,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.getIamPolicy({
@@ -10074,7 +10074,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.list({
@@ -10217,7 +10217,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.setIamPolicy({
@@ -10359,7 +10359,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.operations.testIamPermissions({
@@ -10589,7 +10589,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.create({
@@ -10747,7 +10747,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.delete({
@@ -10879,7 +10879,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.get({
@@ -11021,7 +11021,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.getIamPolicy({
@@ -11158,7 +11158,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.instantiate({
@@ -11308,7 +11308,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.instantiateInline(
@@ -11469,7 +11469,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.list({
@@ -11618,7 +11618,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.setIamPolicy({
@@ -11761,7 +11761,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.testIamPermissions(
@@ -11911,7 +11911,7 @@ export namespace dataproc_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.update({

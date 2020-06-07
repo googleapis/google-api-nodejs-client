@@ -681,7 +681,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.checkValidCreds({
@@ -834,7 +834,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.get({
@@ -987,7 +987,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.list({
@@ -1192,7 +1192,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.get({
@@ -1330,7 +1330,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.list({
@@ -1516,7 +1516,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds(
@@ -1672,7 +1672,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.get({
@@ -1825,7 +1825,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.list({
@@ -2021,7 +2021,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.create(
@@ -2232,7 +2232,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.delete(
@@ -2369,7 +2369,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.get(
@@ -2523,7 +2523,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.list(
@@ -2680,7 +2680,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.patch(
@@ -2896,7 +2896,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns(
@@ -3055,7 +3055,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
@@ -3335,7 +3335,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete(
@@ -3472,7 +3472,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.get(
@@ -3625,7 +3625,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.list(
@@ -3832,7 +3832,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list(
@@ -4018,7 +4018,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.create({
@@ -4227,7 +4227,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.delete({
@@ -4361,7 +4361,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.get({
@@ -4512,7 +4512,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.list({
@@ -4667,7 +4667,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.patch({
@@ -4880,7 +4880,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.scheduleRuns({
@@ -5036,7 +5036,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.startManualRuns(
@@ -5315,7 +5315,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.delete({
@@ -5449,7 +5449,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.get({
@@ -5599,7 +5599,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.list({
@@ -5803,7 +5803,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list(

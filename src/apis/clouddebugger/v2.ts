@@ -656,7 +656,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.controller.debuggees.register({
@@ -819,7 +819,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.controller.debuggees.breakpoints.list({
@@ -982,7 +982,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.controller.debuggees.breakpoints.update({
@@ -1191,7 +1191,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.list({
@@ -1362,7 +1362,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.delete({
@@ -1502,7 +1502,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.get({
@@ -1649,7 +1649,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.list({
@@ -1815,7 +1815,7 @@ export namespace clouddebugger_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await clouddebugger.debugger.debuggees.breakpoints.set({

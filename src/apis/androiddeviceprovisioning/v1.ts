@@ -842,7 +842,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.list({
@@ -1002,7 +1002,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.create({
@@ -1162,7 +1162,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.delete({
@@ -1291,7 +1291,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.get({
@@ -1430,7 +1430,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.list({
@@ -1572,7 +1572,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.patch({
@@ -1793,7 +1793,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.applyConfiguration(
@@ -1936,7 +1936,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.get({
@@ -2071,7 +2071,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.list({
@@ -2219,7 +2219,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.removeConfiguration(
@@ -2360,7 +2360,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.devices.unclaim({
@@ -2566,7 +2566,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.dpcs.list({
@@ -2716,7 +2716,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.operations.get({
@@ -2875,7 +2875,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.customers.create({
@@ -3022,7 +3022,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.customers.list({
@@ -3203,7 +3203,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.claim({
@@ -3351,7 +3351,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.claimAsync({
@@ -3495,7 +3495,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.findByIdentifier(
@@ -3656,7 +3656,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.findByOwner({
@@ -3808,7 +3808,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.get({
@@ -3943,7 +3943,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.metadata({
@@ -4087,7 +4087,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.unclaim({
@@ -4229,7 +4229,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.unclaimAsync({
@@ -4373,7 +4373,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.devices.updateMetadataAsync(
@@ -4636,7 +4636,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.vendors.list({
@@ -4802,7 +4802,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.partners.vendors.customers.list({

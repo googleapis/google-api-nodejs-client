@@ -3727,7 +3727,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions(
@@ -3892,7 +3892,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions(
@@ -4090,7 +4090,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.create({
@@ -4245,7 +4245,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.delete({
@@ -4374,7 +4374,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.get({
@@ -4515,7 +4515,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.list({
@@ -4691,7 +4691,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.patch({
@@ -4957,7 +4957,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.assets.upload({
@@ -5145,7 +5145,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.campaigns.create({
@@ -5300,7 +5300,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.campaigns.delete({
@@ -5432,7 +5432,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.campaigns.get({
@@ -5574,7 +5574,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.campaigns.list({
@@ -5754,7 +5754,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.campaigns.patch({
@@ -6003,7 +6003,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.channels.get({
@@ -6143,7 +6143,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.channels.list({
@@ -6325,7 +6325,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.channels.patch({
@@ -6555,7 +6555,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.channels.sites.bulkEdit({
@@ -6708,7 +6708,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.channels.sites.create({
@@ -6856,7 +6856,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.channels.sites.delete({
@@ -6994,7 +6994,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.channels.sites.list({
@@ -7269,7 +7269,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.creatives.create({
@@ -7496,7 +7496,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.creatives.delete({
@@ -7628,7 +7628,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.creatives.get({
@@ -7806,7 +7806,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.creatives.list({
@@ -8015,7 +8015,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.creatives.patch({
@@ -8334,7 +8334,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.insertionOrders.create({
@@ -8499,7 +8499,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.insertionOrders.delete({
@@ -8631,7 +8631,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.insertionOrders.get({
@@ -8778,7 +8778,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.insertionOrders.list({
@@ -8963,7 +8963,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.insertionOrders.patch({
@@ -9224,7 +9224,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions(
@@ -9392,7 +9392,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.bulkListLineItemAssignedTargetingOptions(
@@ -9600,7 +9600,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.create({
@@ -9777,7 +9777,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.delete({
@@ -9909,7 +9909,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.get({
@@ -10062,7 +10062,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.list({
@@ -10248,7 +10248,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.patch({
@@ -10571,7 +10571,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create(
@@ -10806,7 +10806,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete(
@@ -10956,7 +10956,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.get(
@@ -11154,7 +11154,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.list(
@@ -11463,7 +11463,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.create({
@@ -11610,7 +11610,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.get({
@@ -11748,7 +11748,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.list({
@@ -11930,7 +11930,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.patch({
@@ -12158,7 +12158,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.assignedLocations.bulkEdit(
@@ -12313,7 +12313,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.assignedLocations.create(
@@ -12462,7 +12462,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.assignedLocations.delete(
@@ -12603,7 +12603,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.locationLists.assignedLocations.list(
@@ -12872,7 +12872,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.create({
@@ -13021,7 +13021,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.delete({
@@ -13153,7 +13153,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.get({
@@ -13294,7 +13294,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.list({
@@ -13448,7 +13448,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.patch({
@@ -13680,7 +13680,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit(
@@ -13837,7 +13837,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create(
@@ -13986,7 +13986,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete(
@@ -14129,7 +14129,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list(
@@ -14411,7 +14411,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create(
@@ -14643,7 +14643,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete(
@@ -14788,7 +14788,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get(
@@ -14981,7 +14981,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list(
@@ -15263,7 +15263,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.combinedAudiences.get({
@@ -15402,7 +15402,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.combinedAudiences.list({
@@ -15639,7 +15639,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.customLists.get({
@@ -15775,7 +15775,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.customLists.list({
@@ -15991,7 +15991,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.firstAndThirdPartyAudiences.get({
@@ -16140,7 +16140,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.firstAndThirdPartyAudiences.list({
@@ -16384,7 +16384,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.floodlightGroups.get({
@@ -16523,7 +16523,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.floodlightGroups.patch({
@@ -16720,7 +16720,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.googleAudiences.get({
@@ -16860,7 +16860,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.googleAudiences.list({
@@ -17098,7 +17098,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.create({
@@ -17256,7 +17256,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.delete({
@@ -17394,7 +17394,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.get({
@@ -17542,7 +17542,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.list({
@@ -17727,7 +17727,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.patch({
@@ -17993,7 +17993,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit(
@@ -18154,7 +18154,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.create(
@@ -18320,7 +18320,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.delete(
@@ -18465,7 +18465,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.list(
@@ -18755,7 +18755,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySources.get({
@@ -18902,7 +18902,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.inventorySources.list({
@@ -19142,7 +19142,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.media.download({
@@ -19305,7 +19305,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.channels.get({
@@ -19445,7 +19445,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.channels.list({
@@ -19627,7 +19627,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.channels.patch({
@@ -19857,7 +19857,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.channels.sites.bulkEdit({
@@ -20010,7 +20010,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.channels.sites.create({
@@ -20157,7 +20157,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.channels.sites.delete({
@@ -20295,7 +20295,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.partners.channels.sites.list({
@@ -20571,7 +20571,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.sdfdownloadtasks.create({
@@ -20734,7 +20734,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.sdfdownloadtasks.operations.get({
@@ -20892,7 +20892,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.targetingTypes.targetingOptions.get({
@@ -21056,7 +21056,7 @@ export namespace displayvideo_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await displayvideo.targetingTypes.targetingOptions.list({

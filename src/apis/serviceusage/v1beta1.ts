@@ -1790,7 +1790,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.operations.get({
@@ -1924,7 +1924,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.operations.list({
@@ -2108,7 +2108,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.batchEnable({
@@ -2261,7 +2261,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.disable({
@@ -2411,7 +2411,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.enable({
@@ -2565,7 +2565,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.get({
@@ -2702,7 +2702,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.list({
@@ -2928,7 +2928,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.get({
@@ -3072,7 +3072,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.list({
@@ -3277,7 +3277,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.get({
@@ -3442,7 +3442,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.create(
@@ -3607,7 +3607,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.delete(
@@ -3755,7 +3755,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.list(
@@ -3911,7 +3911,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.patch(
@@ -4146,7 +4146,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.create(
@@ -4311,7 +4311,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.delete(
@@ -4459,7 +4459,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.list(
@@ -4617,7 +4617,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.patch(

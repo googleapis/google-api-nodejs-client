@@ -562,7 +562,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.create({
@@ -703,7 +703,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.delete({
@@ -838,7 +838,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.get({
@@ -972,7 +972,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.list({
@@ -1120,7 +1120,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.patch({
@@ -1329,7 +1329,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.create({
@@ -1481,7 +1481,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.delete({
@@ -1617,7 +1617,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.get({
@@ -1762,7 +1762,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.list({
@@ -1916,7 +1916,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.patch({
@@ -2068,7 +2068,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.replaceAll(
@@ -2304,7 +2304,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.commit(
@@ -2455,7 +2455,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.create(
@@ -2611,7 +2611,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.delete(
@@ -2750,7 +2750,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.get({
@@ -2889,7 +2889,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.list({
@@ -3042,7 +3042,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
@@ -3198,7 +3198,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.replaceAll(
@@ -3437,7 +3437,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.operations.cancel({
@@ -3571,7 +3571,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.operations.delete({
@@ -3698,7 +3698,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.operations.get({
@@ -3830,7 +3830,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.operations.list({

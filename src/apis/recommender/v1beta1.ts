@@ -525,7 +525,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.insightTypes.insights.get({
@@ -679,7 +679,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.insightTypes.insights.list({
@@ -857,7 +857,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.insightTypes.insights.markAccepted(
@@ -1083,7 +1083,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.recommenders.recommendations.get(
@@ -1246,7 +1246,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.recommenders.recommendations.list(
@@ -1430,7 +1430,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.recommenders.recommendations.markClaimed(
@@ -1606,7 +1606,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.recommenders.recommendations.markFailed(
@@ -1782,7 +1782,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.recommenders.recommendations.markSucceeded(

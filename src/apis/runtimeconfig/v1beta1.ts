@@ -444,7 +444,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.create({
@@ -604,7 +604,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.delete({
@@ -736,7 +736,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.get({
@@ -871,7 +871,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.getIamPolicy({
@@ -1023,7 +1023,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.list({
@@ -1172,7 +1172,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.setIamPolicy({
@@ -1319,7 +1319,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.testIamPermissions({
@@ -1471,7 +1471,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.update({
@@ -1716,7 +1716,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.operations.get({
@@ -1852,7 +1852,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.operations.testIamPermissions(
@@ -2033,7 +2033,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.create({
@@ -2200,7 +2200,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.delete({
@@ -2336,7 +2336,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.get({
@@ -2474,7 +2474,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.list({
@@ -2637,7 +2637,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.testIamPermissions(
@@ -2791,7 +2791,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.update({
@@ -2942,7 +2942,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.variables.watch({
@@ -3193,7 +3193,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.create({
@@ -3362,7 +3362,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.delete({
@@ -3494,7 +3494,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.get({
@@ -3635,7 +3635,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.list({
@@ -3785,7 +3785,7 @@ export namespace runtimeconfig_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await runtimeconfig.projects.configs.waiters.testIamPermissions({

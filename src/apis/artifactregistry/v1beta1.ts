@@ -548,7 +548,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.get({
@@ -681,7 +681,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.list({
@@ -865,7 +865,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.operations.get({
@@ -1001,7 +1001,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.operations.list({
@@ -1190,7 +1190,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.create({
@@ -1343,7 +1343,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.delete({
@@ -1480,7 +1480,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.get({
@@ -1618,7 +1618,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.getIamPolicy(
@@ -1773,7 +1773,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.list({
@@ -1917,7 +1917,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.patch({
@@ -2072,7 +2072,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.setIamPolicy(
@@ -2222,7 +2222,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.testIamPermissions(
@@ -2481,7 +2481,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.files.get({
@@ -2619,7 +2619,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.files.list(
@@ -2820,7 +2820,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.delete(
@@ -2959,7 +2959,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.get(
@@ -3097,7 +3097,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.list(
@@ -3281,7 +3281,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.tags.create(
@@ -3430,7 +3430,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.tags.delete(
@@ -3563,7 +3563,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.tags.get(
@@ -3699,7 +3699,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.tags.list(
@@ -3852,7 +3852,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.tags.patch(
@@ -4074,7 +4074,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.versions.delete(
@@ -4217,7 +4217,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.versions.get(
@@ -4359,7 +4359,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.versions.list(

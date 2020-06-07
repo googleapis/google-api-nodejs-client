@@ -393,7 +393,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.reset({
@@ -533,7 +533,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetAll({});
@@ -668,7 +668,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetAllForAllPlayers({});
@@ -787,7 +787,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetForAllPlayers({
@@ -911,7 +911,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.achievements.resetMultipleForAllPlayers({
@@ -1074,7 +1074,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.applications.listHidden({
@@ -1238,7 +1238,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.reset({
@@ -1360,7 +1360,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetAll({});
@@ -1479,7 +1479,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetAllForAllPlayers({});
@@ -1598,7 +1598,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetForAllPlayers({
@@ -1722,7 +1722,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.events.resetMultipleForAllPlayers({
@@ -1882,7 +1882,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.players.hide({
@@ -2009,7 +2009,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.players.unhide({
@@ -2164,7 +2164,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.reset({
@@ -2303,7 +2303,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetAll({});
@@ -2437,7 +2437,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetAllForAllPlayers({});
@@ -2556,7 +2556,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetForAllPlayers({
@@ -2680,7 +2680,7 @@ export namespace gamesManagement_v1management {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesManagement.scores.resetMultipleForAllPlayers({
