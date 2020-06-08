@@ -574,7 +574,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.delete({
@@ -701,7 +701,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.get({
@@ -847,7 +847,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.insert({
@@ -1008,7 +1008,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.list({
@@ -1145,7 +1145,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.patch({
@@ -1309,7 +1309,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.bucketAccessControls.update({
@@ -1557,7 +1557,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.delete({
@@ -1690,7 +1690,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.get({
@@ -1848,7 +1848,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.insert({
@@ -2023,7 +2023,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.list({
@@ -2164,7 +2164,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.patch({
@@ -2347,7 +2347,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.buckets.update({
@@ -2650,7 +2650,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.channels.stop({
@@ -2801,7 +2801,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.delete({
@@ -2927,7 +2927,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.get({
@@ -3074,7 +3074,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.insert({
@@ -3238,7 +3238,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.list({
@@ -3380,7 +3380,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.patch({
@@ -3547,7 +3547,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.defaultObjectAccessControls.update({
@@ -3803,7 +3803,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.delete({
@@ -3935,7 +3935,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.get({
@@ -4088,7 +4088,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.insert({
@@ -4258,7 +4258,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.list({
@@ -4400,7 +4400,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.patch({
@@ -4573,7 +4573,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objectAccessControls.update({
@@ -4878,7 +4878,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.compose({
@@ -5054,7 +5054,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.copy({
@@ -5291,7 +5291,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.delete({
@@ -5436,7 +5436,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.get({
@@ -5613,7 +5613,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.insert({
@@ -5831,7 +5831,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.list({
@@ -5985,7 +5985,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.patch({
@@ -6194,7 +6194,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.update({
@@ -6404,7 +6404,7 @@ export namespace storage_v1beta2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storage.objects.watchAll({

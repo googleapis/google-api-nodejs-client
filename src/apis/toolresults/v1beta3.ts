@@ -1812,7 +1812,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.clusters.get({
@@ -1965,7 +1965,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.clusters.list({
@@ -2156,7 +2156,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.environments.get({
@@ -2310,7 +2310,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.environments.list({
@@ -2514,7 +2514,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.create({
@@ -2681,7 +2681,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.get({
@@ -2830,7 +2830,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.list({
@@ -2986,7 +2986,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.executions.patch({
@@ -3235,7 +3235,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.histories.create({
@@ -3387,7 +3387,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.histories.get({
@@ -3527,7 +3527,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.histories.list({
@@ -3733,7 +3733,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfMetricsSummary.create({
@@ -3931,7 +3931,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfSampleSeries.create({
@@ -4090,7 +4090,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfSampleSeries.get({
@@ -4250,7 +4250,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.perfSampleSeries.list({
@@ -4480,7 +4480,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.projects.getSettings({
@@ -4613,7 +4613,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.projects.initializeSettings({
@@ -4771,7 +4771,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.samples.batchCreate({
@@ -4944,7 +4944,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.samples.list({
@@ -5177,7 +5177,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.accessibilityClusters({
@@ -5337,7 +5337,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.create({
@@ -5516,7 +5516,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.get({
@@ -5677,7 +5677,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.getPerfMetricsSummary({
@@ -5829,7 +5829,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.list({
@@ -5988,7 +5988,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.patch({
@@ -6178,7 +6178,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.steps.publishXunitXmlFiles({
@@ -6502,7 +6502,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.testCases.get({
@@ -6675,7 +6675,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.testCases.list({
@@ -6898,7 +6898,7 @@ export namespace toolresults_v1beta3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await toolresults.thumbnails.list({

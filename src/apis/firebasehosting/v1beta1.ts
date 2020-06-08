@@ -639,7 +639,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.operations.get({
@@ -800,7 +800,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.getConfig({
@@ -934,7 +934,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.updateConfig({
@@ -1127,7 +1127,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.releases.create({
@@ -1293,7 +1293,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.releases.list({
@@ -1480,7 +1480,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.create({
@@ -1635,7 +1635,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.delete({
@@ -1767,7 +1767,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.get({
@@ -1906,7 +1906,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.list({
@@ -2052,7 +2052,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.domains.update({
@@ -2265,7 +2265,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.releases.create({
@@ -2431,7 +2431,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.releases.list({
@@ -2620,7 +2620,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.create({
@@ -2797,7 +2797,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.delete({
@@ -2930,7 +2930,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.list({
@@ -3087,7 +3087,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.patch({
@@ -3262,7 +3262,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.populateFiles({
@@ -3501,7 +3501,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.files.list({
@@ -3690,7 +3690,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.getConfig({
@@ -3823,7 +3823,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.updateConfig({
@@ -4013,7 +4013,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.releases.create({
@@ -4179,7 +4179,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.releases.list({
@@ -4366,7 +4366,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.create({
@@ -4521,7 +4521,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.delete({
@@ -4653,7 +4653,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.get({
@@ -4792,7 +4792,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.list({
@@ -4938,7 +4938,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.domains.update({
@@ -5151,7 +5151,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.releases.create({
@@ -5317,7 +5317,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.releases.list({
@@ -5506,7 +5506,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.create({
@@ -5683,7 +5683,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.delete({
@@ -5816,7 +5816,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.list({
@@ -5973,7 +5973,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.patch({
@@ -6148,7 +6148,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.populateFiles({
@@ -6387,7 +6387,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.files.list({

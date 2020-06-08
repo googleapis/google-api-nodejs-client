@@ -1426,7 +1426,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.create({
@@ -1606,7 +1606,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.delete({
@@ -1734,7 +1734,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.get({
@@ -1879,7 +1879,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.getIamPolicy({
@@ -2023,7 +2023,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.list({
@@ -2173,7 +2173,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.patch({
@@ -2345,7 +2345,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.setIamPolicy({
@@ -2489,7 +2489,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.testIamPermissions({
@@ -2755,7 +2755,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.notes.occurrences.list({
@@ -2932,7 +2932,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.create({
@@ -3107,7 +3107,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.delete({
@@ -3235,7 +3235,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.get({
@@ -3380,7 +3380,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getIamPolicy({
@@ -3524,7 +3524,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getNotes({
@@ -3672,7 +3672,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.getVulnerabilitySummary(
@@ -3817,7 +3817,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.list({
@@ -3972,7 +3972,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.patch({
@@ -4144,7 +4144,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.setIamPolicy({
@@ -4288,7 +4288,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.occurrences.testIamPermissions({
@@ -4572,7 +4572,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.operations.create({
@@ -4718,7 +4718,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.operations.patch({
@@ -4894,7 +4894,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.get({
@@ -5028,7 +5028,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.list({
@@ -5175,7 +5175,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.projects.scanConfigs.patch({
@@ -5386,7 +5386,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.create({
@@ -5566,7 +5566,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.delete({
@@ -5694,7 +5694,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.get({
@@ -5839,7 +5839,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.getIamPolicy({
@@ -5983,7 +5983,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.list({
@@ -6133,7 +6133,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.patch({
@@ -6305,7 +6305,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.setIamPolicy({
@@ -6449,7 +6449,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.testIamPermissions({
@@ -6715,7 +6715,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await containeranalysis.providers.notes.occurrences.list({

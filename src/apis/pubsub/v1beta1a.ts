@@ -424,7 +424,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.acknowledge({
@@ -562,7 +562,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.create({
@@ -707,7 +707,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.delete({
@@ -839,7 +839,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.get({
@@ -976,7 +976,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.list({
@@ -1125,7 +1125,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.modifyAckDeadline({
@@ -1264,7 +1264,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.modifyPushConfig({
@@ -1402,7 +1402,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.pull({
@@ -1543,7 +1543,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.subscriptions.pullBatch({
@@ -1766,7 +1766,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.create({
@@ -1901,7 +1901,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.delete({
@@ -2032,7 +2032,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.get({
@@ -2165,7 +2165,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.list({
@@ -2306,7 +2306,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.publish({
@@ -2443,7 +2443,7 @@ export namespace pubsub_v1beta1a {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await pubsub.topics.publishBatch({

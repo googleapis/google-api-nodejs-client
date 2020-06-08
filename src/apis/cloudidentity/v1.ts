@@ -333,7 +333,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.create({
@@ -480,7 +480,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.delete({
@@ -618,7 +618,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.get({
@@ -759,7 +759,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.list({
@@ -905,7 +905,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.lookup({
@@ -1052,7 +1052,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.patch({
@@ -1211,7 +1211,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.search({
@@ -1448,7 +1448,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.create({
@@ -1602,7 +1602,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.delete({
@@ -1744,7 +1744,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.get({
@@ -1886,7 +1886,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.list({
@@ -2042,7 +2042,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.lookup({

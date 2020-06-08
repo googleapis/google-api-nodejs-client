@@ -1553,7 +1553,7 @@ export namespace servicenetworking_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicenetworking.operations.get({
@@ -1704,7 +1704,7 @@ export namespace servicenetworking_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.addSubnetwork({
@@ -1866,7 +1866,7 @@ export namespace servicenetworking_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.searchRange({
@@ -2017,7 +2017,7 @@ export namespace servicenetworking_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.updateConnections({
@@ -2231,7 +2231,7 @@ export namespace servicenetworking_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.connections.create({
@@ -2384,7 +2384,7 @@ export namespace servicenetworking_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicenetworking.services.connections.list({

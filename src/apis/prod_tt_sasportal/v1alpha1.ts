@@ -695,7 +695,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.get({
@@ -828,7 +828,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.list({
@@ -974,7 +974,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.patch({
@@ -1160,7 +1160,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.bulk({
@@ -1310,7 +1310,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.create({
@@ -1465,7 +1465,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.createSigned({
@@ -1614,7 +1614,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.delete({
@@ -1741,7 +1741,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.get({
@@ -1877,7 +1877,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.list({
@@ -2033,7 +2033,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.move({
@@ -2181,7 +2181,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.patch({
@@ -2336,7 +2336,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.signDevice({
@@ -2475,7 +2475,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.devices.updateSigned({
@@ -2755,7 +2755,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.create({
@@ -2900,7 +2900,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.delete({
@@ -3027,7 +3027,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.get({
@@ -3158,7 +3158,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.list({
@@ -3305,7 +3305,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.move({
@@ -3454,7 +3454,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.patch({
@@ -3676,7 +3676,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.nodes.create({
@@ -3821,7 +3821,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.customers.nodes.nodes.list({
@@ -4003,7 +4003,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.installer.generateSecret({
@@ -4147,7 +4147,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.installer.validate({
@@ -4319,7 +4319,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.get({
@@ -4463,7 +4463,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.bulk({
@@ -4613,7 +4613,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.create({
@@ -4768,7 +4768,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.createSigned({
@@ -4917,7 +4917,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.delete({
@@ -5044,7 +5044,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.get({
@@ -5180,7 +5180,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.list({
@@ -5336,7 +5336,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.move({
@@ -5484,7 +5484,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.patch({
@@ -5639,7 +5639,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.signDevice({
@@ -5778,7 +5778,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.devices.updateSigned({
@@ -6060,7 +6060,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.create({
@@ -6205,7 +6205,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.delete({
@@ -6332,7 +6332,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.get({
@@ -6462,7 +6462,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.list({
@@ -6608,7 +6608,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.move({
@@ -6756,7 +6756,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.patch({
@@ -6975,7 +6975,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.bulk({
@@ -7125,7 +7125,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.create({
@@ -7280,7 +7280,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.createSigned({
@@ -7429,7 +7429,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.devices.list({
@@ -7648,7 +7648,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.nodes.create({
@@ -7793,7 +7793,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.nodes.nodes.nodes.list({
@@ -7975,7 +7975,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.policies.get({
@@ -8112,7 +8112,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.policies.set({
@@ -8250,7 +8250,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await prod_tt_sasportal.policies.test({

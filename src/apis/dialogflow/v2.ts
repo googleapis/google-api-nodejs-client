@@ -3363,7 +3363,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.deleteAgent({
@@ -3501,7 +3501,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.getAgent({
@@ -3656,7 +3656,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.setAgent({
@@ -3882,7 +3882,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.export({
@@ -4037,7 +4037,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.getFulfillment({
@@ -4182,7 +4182,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.getValidationResult({
@@ -4339,7 +4339,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.import({
@@ -4495,7 +4495,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.restore({
@@ -4651,7 +4651,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.search({
@@ -4817,7 +4817,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.train({
@@ -4970,7 +4970,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.updateFulfillment({
@@ -5241,7 +5241,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.batchDelete({
@@ -5396,7 +5396,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.batchUpdate({
@@ -5554,7 +5554,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.create({
@@ -5724,7 +5724,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.delete({
@@ -5857,7 +5857,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.get({
@@ -6010,7 +6010,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.list({
@@ -6183,7 +6183,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.patch({
@@ -6460,7 +6460,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.entities.batchCreate({
@@ -6616,7 +6616,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.entities.batchDelete({
@@ -6772,7 +6772,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.entityTypes.entities.batchUpdate({
@@ -6975,7 +6975,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.list({
@@ -7182,7 +7182,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.deleteContexts(
@@ -7327,7 +7327,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.detectIntent(
@@ -7539,7 +7539,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.create(
@@ -7703,7 +7703,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.delete(
@@ -7843,7 +7843,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.get(
@@ -7993,7 +7993,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.list(
@@ -8166,7 +8166,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.contexts.patch(
@@ -8406,7 +8406,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.create(
@@ -8576,7 +8576,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.delete(
@@ -8717,7 +8717,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.get(
@@ -8874,7 +8874,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.list(
@@ -9050,7 +9050,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.environments.users.sessions.entityTypes.patch(
@@ -9289,7 +9289,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.batchDelete({
@@ -9444,7 +9444,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.batchUpdate({
@@ -9603,7 +9603,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.create({
@@ -9800,7 +9800,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.delete({
@@ -9934,7 +9934,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.get({
@@ -10102,7 +10102,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.list({
@@ -10278,7 +10278,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.intents.patch({
@@ -10606,7 +10606,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.deleteContexts({
@@ -10748,7 +10748,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.detectIntent({
@@ -10957,7 +10957,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.create({
@@ -11118,7 +11118,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.delete({
@@ -11255,7 +11255,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.get({
@@ -11402,7 +11402,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.list({
@@ -11572,7 +11572,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.contexts.patch({
@@ -11809,7 +11809,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.create({
@@ -11976,7 +11976,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.delete({
@@ -12115,7 +12115,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.get({
@@ -12270,7 +12270,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.list({
@@ -12443,7 +12443,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.sessions.entityTypes.patch({
@@ -12691,7 +12691,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.operations.cancel({
@@ -12823,7 +12823,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.operations.get({
@@ -12965,7 +12965,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.operations.list({
@@ -13165,7 +13165,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.operations.cancel({
@@ -13297,7 +13297,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.operations.get({
@@ -13439,7 +13439,7 @@ export namespace dialogflow_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.operations.list({

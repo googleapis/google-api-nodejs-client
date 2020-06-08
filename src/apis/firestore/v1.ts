@@ -1370,7 +1370,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.exportDocuments({
@@ -1526,7 +1526,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.importDocuments({
@@ -1729,7 +1729,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.get({
@@ -1870,7 +1870,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.list({
@@ -2037,7 +2037,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.patch({
@@ -2269,7 +2269,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.create(
@@ -2430,7 +2430,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.delete(
@@ -2563,7 +2563,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.get({
@@ -2706,7 +2706,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.list({
@@ -2924,7 +2924,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.batchGet({
@@ -3082,7 +3082,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.beginTransaction({
@@ -3232,7 +3232,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.commit({
@@ -3378,7 +3378,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.createDocument({
@@ -3541,7 +3541,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.delete({
@@ -3679,7 +3679,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.get({
@@ -3825,7 +3825,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.list({
@@ -4004,7 +4004,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listCollectionIds({
@@ -4160,7 +4160,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listen({
@@ -4310,7 +4310,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.patch({
@@ -4473,7 +4473,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.rollback({
@@ -4615,7 +4615,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.runQuery({
@@ -4770,7 +4770,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.write({
@@ -5150,7 +5150,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.operations.cancel({
@@ -5286,7 +5286,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.operations.delete({
@@ -5415,7 +5415,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.operations.get({
@@ -5557,7 +5557,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.operations.list({
@@ -5769,7 +5769,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.locations.get({
@@ -5904,7 +5904,7 @@ export namespace firestore_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firestore.projects.locations.list({

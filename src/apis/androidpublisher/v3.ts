@@ -1104,7 +1104,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.commit({
@@ -1238,7 +1238,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.delete({
@@ -1364,7 +1364,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.get({
@@ -1498,7 +1498,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.insert({
@@ -1638,7 +1638,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.validate({
@@ -1831,7 +1831,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.apks.addexternallyhosted({
@@ -1982,7 +1982,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.apks.list({
@@ -2115,7 +2115,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.apks.upload({
@@ -2330,7 +2330,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.bundles.list({
@@ -2468,7 +2468,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.bundles.upload({
@@ -2676,7 +2676,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.deobfuscationfiles.upload({
@@ -2897,7 +2897,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.details.get({
@@ -3034,7 +3034,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.details.patch({
@@ -3183,7 +3183,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.details.update({
@@ -3383,7 +3383,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.get({
@@ -3534,7 +3534,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.patch({
@@ -3695,7 +3695,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.update({
@@ -3856,7 +3856,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.expansionfiles.upload({
@@ -4144,7 +4144,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.delete({
@@ -4292,7 +4292,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.deleteall({
@@ -4439,7 +4439,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.list({
@@ -4582,7 +4582,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.images.upload({
@@ -4850,7 +4850,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.delete({
@@ -4980,7 +4980,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.deleteall({
@@ -5107,7 +5107,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.get({
@@ -5248,7 +5248,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.list({
@@ -5388,7 +5388,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.patch({
@@ -5542,7 +5542,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.listings.update({
@@ -5795,7 +5795,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.testers.get({
@@ -5934,7 +5934,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.testers.patch({
@@ -6085,7 +6085,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.testers.update({
@@ -6300,7 +6300,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.get({
@@ -6437,7 +6437,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.list({
@@ -6575,7 +6575,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.patch({
@@ -6723,7 +6723,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.tracks.update({
@@ -6944,7 +6944,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.delete({
@@ -7071,7 +7071,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.get({
@@ -7215,7 +7215,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.insert({
@@ -7380,7 +7380,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.list({
@@ -7529,7 +7529,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.patch({
@@ -7697,7 +7697,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.update({
@@ -7970,7 +7970,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.internalappsharingartifacts.uploadapk({
@@ -8125,7 +8125,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.internalappsharingartifacts.uploadbundle({
@@ -8342,7 +8342,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.orders.refund({
@@ -8508,7 +8508,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.products.acknowledge({
@@ -8647,7 +8647,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.products.get({
@@ -8837,7 +8837,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.acknowledge({
@@ -8976,7 +8976,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.cancel({
@@ -9106,7 +9106,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.defer({
@@ -9261,7 +9261,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.get({
@@ -9429,7 +9429,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.refund({
@@ -9559,7 +9559,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.subscriptions.revoke({
@@ -9797,7 +9797,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.purchases.voidedpurchases.list({
@@ -9996,7 +9996,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.reviews.get({
@@ -10134,7 +10134,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.reviews.list({
@@ -10280,7 +10280,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.reviews.reply({
@@ -10495,7 +10495,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.create({
@@ -10639,7 +10639,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.download({
@@ -10769,7 +10769,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.get({
@@ -10907,7 +10907,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.list({

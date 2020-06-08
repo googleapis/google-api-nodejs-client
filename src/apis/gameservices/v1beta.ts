@@ -1170,7 +1170,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.get({
@@ -1302,7 +1302,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.list({
@@ -1494,7 +1494,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.create(
@@ -1649,7 +1649,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.delete(
@@ -1786,7 +1786,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
@@ -1939,7 +1939,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.get({
@@ -2080,7 +2080,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getIamPolicy(
@@ -2234,7 +2234,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getRollout(
@@ -2382,7 +2382,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.list({
@@ -2543,7 +2543,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.patch(
@@ -2705,7 +2705,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.previewRollout(
@@ -2895,7 +2895,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.setIamPolicy(
@@ -3045,7 +3045,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.testIamPermissions(
@@ -3196,7 +3196,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.updateRollout(
@@ -3528,7 +3528,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.create(
@@ -3686,7 +3686,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.delete(
@@ -3823,7 +3823,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.get(
@@ -3962,7 +3962,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.list(
@@ -4187,7 +4187,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.cancel({
@@ -4323,7 +4323,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.delete({
@@ -4449,7 +4449,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.get({
@@ -4581,7 +4581,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.operations.list({
@@ -4784,7 +4784,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.create({
@@ -4938,7 +4938,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.delete({
@@ -5071,7 +5071,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.get({
@@ -5206,7 +5206,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.list({
@@ -5361,7 +5361,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.patch({
@@ -5518,7 +5518,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.previewUpdate({
@@ -5782,7 +5782,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.create(
@@ -5938,7 +5938,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.delete(
@@ -6074,7 +6074,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.get(
@@ -6216,7 +6216,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.list(
@@ -6378,7 +6378,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.patch(
@@ -6541,7 +6541,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewCreate(
@@ -6711,7 +6711,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
@@ -6865,7 +6865,7 @@ export namespace gameservices_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(

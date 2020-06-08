@@ -1933,7 +1933,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.create({
@@ -2098,7 +2098,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.delete({
@@ -2230,7 +2230,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.get({
@@ -2374,7 +2374,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.list({
@@ -2531,7 +2531,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.patch({
@@ -2772,7 +2772,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.collectdTimeSeries.create({
@@ -2951,7 +2951,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.create({
@@ -3104,7 +3104,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.delete({
@@ -3239,7 +3239,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.get({
@@ -3377,7 +3377,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.list({
@@ -3535,7 +3535,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.update({
@@ -3774,7 +3774,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.members.list({
@@ -3970,7 +3970,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.create({
@@ -4135,7 +4135,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.delete({
@@ -4268,7 +4268,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.get({
@@ -4413,7 +4413,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.list({
@@ -4625,7 +4625,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.monitoredResourceDescriptors.get({
@@ -4772,7 +4772,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.monitoredResourceDescriptors.list({
@@ -4970,7 +4970,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannelDescriptors.get({
@@ -5119,7 +5119,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannelDescriptors.list({
@@ -5314,7 +5314,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.create({
@@ -5476,7 +5476,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.delete({
@@ -5611,7 +5611,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.get({
@@ -5754,7 +5754,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.getVerificationCode(
@@ -5924,7 +5924,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.list({
@@ -6082,7 +6082,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.patch({
@@ -6244,7 +6244,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.sendVerificationCode(
@@ -6385,7 +6385,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.verify({
@@ -6649,7 +6649,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.create({
@@ -6793,7 +6793,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.list({
@@ -6973,7 +6973,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.query({
@@ -7211,7 +7211,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.create({
@@ -7381,7 +7381,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.delete({
@@ -7513,7 +7513,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.get({
@@ -7661,7 +7661,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.list({
@@ -7814,7 +7814,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.patch({
@@ -8053,7 +8053,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.create({
@@ -8214,7 +8214,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.delete({
@@ -8345,7 +8345,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.get({
@@ -8485,7 +8485,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.list({
@@ -8644,7 +8644,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.patch({
@@ -8870,7 +8870,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.create({
@@ -9033,7 +9033,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.delete({
@@ -9166,7 +9166,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.get({
@@ -9314,7 +9314,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.list({
@@ -9473,7 +9473,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.patch({
@@ -9716,7 +9716,7 @@ export namespace monitoring_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await monitoring.uptimeCheckIps.list({

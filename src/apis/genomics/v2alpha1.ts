@@ -839,7 +839,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await genomics.pipelines.run({
@@ -1007,7 +1007,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await genomics.projects.operations.cancel({
@@ -1146,7 +1146,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await genomics.projects.operations.get({
@@ -1281,7 +1281,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await genomics.projects.operations.list({
@@ -1502,7 +1502,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await genomics.projects.workers.checkIn({
@@ -1670,7 +1670,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await genomics.workers.checkIn({

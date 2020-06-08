@@ -425,7 +425,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.achievementConfigurations.delete({
@@ -548,7 +548,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.achievementConfigurations.get({
@@ -690,7 +690,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.achievementConfigurations.insert({
@@ -851,7 +851,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.achievementConfigurations.list({
@@ -1007,7 +1007,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.achievementConfigurations.update({
@@ -1228,7 +1228,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.imageConfigurations.upload({
@@ -1422,7 +1422,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.leaderboardConfigurations.delete({
@@ -1545,7 +1545,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.leaderboardConfigurations.get({
@@ -1687,7 +1687,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.leaderboardConfigurations.insert({
@@ -1848,7 +1848,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.leaderboardConfigurations.list({
@@ -2004,7 +2004,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await gamesConfiguration.leaderboardConfigurations.update({

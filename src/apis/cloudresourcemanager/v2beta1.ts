@@ -463,7 +463,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.create({
@@ -609,7 +609,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.delete({
@@ -745,7 +745,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.get({
@@ -881,7 +881,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.getIamPolicy({
@@ -1029,7 +1029,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.list({
@@ -1177,7 +1177,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.move({
@@ -1319,7 +1319,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.patch({
@@ -1472,7 +1472,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.search({
@@ -1613,7 +1613,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.setIamPolicy({
@@ -1759,7 +1759,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.testIamPermissions({
@@ -1908,7 +1908,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.undelete({
@@ -2182,7 +2182,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.operations.get({

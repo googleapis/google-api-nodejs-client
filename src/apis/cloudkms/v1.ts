@@ -818,7 +818,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.get({
@@ -953,7 +953,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.list({
@@ -1144,7 +1144,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.create({
@@ -1294,7 +1294,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.get({
@@ -1426,7 +1426,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.getIamPolicy({
@@ -1578,7 +1578,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.list({
@@ -1742,7 +1742,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.setIamPolicy({
@@ -1890,7 +1890,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.testIamPermissions({
@@ -2134,7 +2134,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.create({
@@ -2303,7 +2303,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.decrypt({
@@ -2452,7 +2452,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.encrypt({
@@ -2607,7 +2607,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.get({
@@ -2746,7 +2746,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy(
@@ -2901,7 +2901,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.list({
@@ -3068,7 +3068,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.patch({
@@ -3227,7 +3227,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy(
@@ -3378,7 +3378,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions(
@@ -3532,7 +3532,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion(
@@ -3836,7 +3836,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt(
@@ -3993,7 +3993,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign(
@@ -4150,7 +4150,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create(
@@ -4321,7 +4321,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy(
@@ -4477,7 +4477,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get(
@@ -4623,7 +4623,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey(
@@ -4764,7 +4764,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import(
@@ -4925,7 +4925,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list(
@@ -5100,7 +5100,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch(
@@ -5271,7 +5271,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore(
@@ -5564,7 +5564,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.create({
@@ -5730,7 +5730,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.get({
@@ -5871,7 +5871,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.getIamPolicy(
@@ -6026,7 +6026,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.list({
@@ -6190,7 +6190,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.setIamPolicy(
@@ -6341,7 +6341,7 @@ export namespace cloudkms_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.testIamPermissions(

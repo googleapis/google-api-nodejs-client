@@ -1295,7 +1295,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.create({
@@ -1462,7 +1462,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.delete({
@@ -1589,7 +1589,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.get({
@@ -1726,7 +1726,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.list({
@@ -1873,7 +1873,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.patch({
@@ -2101,7 +2101,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.create({
@@ -2268,7 +2268,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.delete({
@@ -2395,7 +2395,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.get({
@@ -2533,7 +2533,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchDeployments.list({
@@ -2738,7 +2738,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.cancel({
@@ -2889,7 +2889,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.execute({
@@ -3047,7 +3047,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.get({
@@ -3188,7 +3188,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.list({
@@ -3395,7 +3395,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.patchJobs.instanceDetails.list({
@@ -3584,7 +3584,7 @@ export namespace osconfig_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await osconfig.projects.zones.instances.lookupEffectiveGuestPolicy(

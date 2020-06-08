@@ -1462,7 +1462,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.get({
@@ -1594,7 +1594,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.list({
@@ -1794,7 +1794,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.create({
@@ -1944,7 +1944,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.deidentify({
@@ -2091,7 +2091,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.delete({
@@ -2218,7 +2218,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.get({
@@ -2348,7 +2348,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.getIamPolicy({
@@ -2497,7 +2497,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.list({
@@ -2642,7 +2642,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.patch({
@@ -2787,7 +2787,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.setIamPolicy({
@@ -2932,7 +2932,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.testIamPermissions({
@@ -3196,7 +3196,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.getIamPolicy(
@@ -3348,7 +3348,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.setIamPolicy(
@@ -3496,7 +3496,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.testIamPermissions(
@@ -3694,7 +3694,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.create({
@@ -3842,7 +3842,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.deidentify(
@@ -3992,7 +3992,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.delete({
@@ -4119,7 +4119,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.export({
@@ -4267,7 +4267,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.get({
@@ -4398,7 +4398,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.getIamPolicy(
@@ -4550,7 +4550,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.import({
@@ -4697,7 +4697,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.list({
@@ -4846,7 +4846,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.patch({
@@ -4994,7 +4994,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForInstances(
@@ -5135,7 +5135,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForSeries(
@@ -5275,7 +5275,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForStudies(
@@ -5414,7 +5414,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.setIamPolicy(
@@ -5562,7 +5562,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.storeInstances(
@@ -5713,7 +5713,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.testIamPermissions(
@@ -6061,7 +6061,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.delete(
@@ -6195,7 +6195,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata(
@@ -6335,7 +6335,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy(
@@ -6475,7 +6475,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances(
@@ -6616,7 +6616,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries(
@@ -6756,7 +6756,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.storeInstances(
@@ -6990,7 +6990,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.delete(
@@ -7126,7 +7126,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata(
@@ -7266,7 +7266,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries(
@@ -7406,7 +7406,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances(
@@ -7603,7 +7603,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete(
@@ -7739,7 +7739,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance(
@@ -7879,7 +7879,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata(
@@ -8020,7 +8020,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered(
@@ -8213,7 +8213,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames(
@@ -8354,7 +8354,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered(
@@ -8529,7 +8529,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.create({
@@ -8689,7 +8689,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.deidentify(
@@ -8839,7 +8839,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.delete({
@@ -8966,7 +8966,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.export({
@@ -9113,7 +9113,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.get({
@@ -9250,7 +9250,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.getIamPolicy(
@@ -9402,7 +9402,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.import({
@@ -9549,7 +9549,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.list({
@@ -9698,7 +9698,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.patch({
@@ -9858,7 +9858,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.setIamPolicy(
@@ -10006,7 +10006,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.testIamPermissions(
@@ -10301,7 +10301,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.capabilities(
@@ -10437,7 +10437,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res =
@@ -10598,7 +10598,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res =
@@ -10744,7 +10744,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.conditionalDelete(
@@ -10883,7 +10883,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.conditionalPatch(
@@ -11037,7 +11037,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.conditionalUpdate(
@@ -11192,7 +11192,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.create(
@@ -11347,7 +11347,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.delete(
@@ -11480,7 +11480,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.executeBundle(
@@ -11627,7 +11627,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.history(
@@ -11794,7 +11794,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res =
@@ -11929,7 +11929,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.patch(
@@ -12073,7 +12073,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res =
@@ -12229,7 +12229,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.read(
@@ -12362,7 +12362,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res =
@@ -12494,7 +12494,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.search(
@@ -12639,7 +12639,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.update(
@@ -12783,7 +12783,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.vread(
@@ -13173,7 +13173,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.create({
@@ -13327,7 +13327,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.delete({
@@ -13454,7 +13454,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.get({
@@ -13588,7 +13588,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy(
@@ -13740,7 +13740,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.list({
@@ -13889,7 +13889,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.patch({
@@ -14043,7 +14043,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy(
@@ -14191,7 +14191,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions(
@@ -14450,7 +14450,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.create(
@@ -14602,7 +14602,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.delete(
@@ -14731,7 +14731,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.get(
@@ -14875,7 +14875,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest(
@@ -15024,7 +15024,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.list(
@@ -15209,7 +15209,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.patch(
@@ -15467,7 +15467,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.operations.cancel({
@@ -15604,7 +15604,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.operations.get({
@@ -15737,7 +15737,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.operations.list({

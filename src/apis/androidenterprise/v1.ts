@@ -1583,7 +1583,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.devices.forceReportUpload({
@@ -1713,7 +1713,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.devices.get({
@@ -1853,7 +1853,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.devices.getState({
@@ -1990,7 +1990,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.devices.list({
@@ -2127,7 +2127,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.devices.setState({
@@ -2274,7 +2274,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.devices.update({
@@ -2535,7 +2535,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.acknowledgeNotificationSet({
@@ -2659,7 +2659,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.completeSignup({
@@ -2796,7 +2796,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.createWebToken({
@@ -2951,7 +2951,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.enroll({
@@ -3099,7 +3099,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.generateSignupUrl({
@@ -3232,7 +3232,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.get({
@@ -3365,7 +3365,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.getServiceAccount({
@@ -3503,7 +3503,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.getStoreLayout({
@@ -3636,7 +3636,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.list({
@@ -3772,7 +3772,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.pullNotificationSet({
@@ -3909,7 +3909,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.sendTestPushNotification({
@@ -4064,7 +4064,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.setAccount({
@@ -4209,7 +4209,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.setStoreLayout({
@@ -4353,7 +4353,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.unenroll({
@@ -4609,7 +4609,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.entitlements.delete({
@@ -4739,7 +4739,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.entitlements.get({
@@ -4877,7 +4877,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.entitlements.list({
@@ -5017,7 +5017,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.entitlements.update({
@@ -5242,7 +5242,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.grouplicenses.get({
@@ -5382,7 +5382,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.grouplicenses.list({
@@ -5547,7 +5547,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.grouplicenseusers.list({
@@ -5710,7 +5710,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.installs.delete({
@@ -5842,7 +5842,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.installs.get({
@@ -5984,7 +5984,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.installs.list({
@@ -6126,7 +6126,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.installs.update({
@@ -6361,7 +6361,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsfordevice.delete({
@@ -6504,7 +6504,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsfordevice.get({
@@ -6662,7 +6662,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsfordevice.list({
@@ -6823,7 +6823,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsfordevice.update({
@@ -7078,7 +7078,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsforuser.delete({
@@ -7212,7 +7212,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsforuser.get({
@@ -7361,7 +7361,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsforuser.list({
@@ -7511,7 +7511,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationsforuser.update({
@@ -7741,7 +7741,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.managedconfigurationssettings.list({
@@ -7912,7 +7912,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.permissions.get({
@@ -8065,7 +8065,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.products.approve({
@@ -8201,7 +8201,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.products.generateApprovalUrl({
@@ -8347,7 +8347,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.products.get({
@@ -8507,7 +8507,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.products.getAppRestrictionsSchema({
@@ -8652,7 +8652,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.products.getPermissions({
@@ -8793,7 +8793,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.products.list({
@@ -8946,7 +8946,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.products.unapprove({
@@ -9188,7 +9188,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.serviceaccountkeys.delete({
@@ -9315,7 +9315,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.serviceaccountkeys.insert({
@@ -9466,7 +9466,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.serviceaccountkeys.list({
@@ -9644,7 +9644,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutclusters.delete({
@@ -9774,7 +9774,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutclusters.get({
@@ -9915,7 +9915,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutclusters.insert({
@@ -10066,7 +10066,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutclusters.list({
@@ -10210,7 +10210,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutclusters.update({
@@ -10449,7 +10449,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutpages.delete({
@@ -10576,7 +10576,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutpages.get({
@@ -10713,7 +10713,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutpages.insert({
@@ -10859,7 +10859,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutpages.list({
@@ -11000,7 +11000,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.storelayoutpages.update({
@@ -11214,7 +11214,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.delete({
@@ -11340,7 +11340,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.generateAuthenticationToken({
@@ -11480,7 +11480,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.get({
@@ -11619,7 +11619,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.getAvailableProductSet({
@@ -11758,7 +11758,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.insert({
@@ -11908,7 +11908,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.list({
@@ -12044,7 +12044,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.revokeDeviceAccess({
@@ -12171,7 +12171,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.setAvailableProductSet({
@@ -12322,7 +12322,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.users.update({
@@ -12589,7 +12589,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.webapps.delete({
@@ -12715,7 +12715,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.webapps.get({
@@ -12854,7 +12854,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.webapps.insert({
@@ -13005,7 +13005,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.webapps.list({
@@ -13139,7 +13139,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await androidenterprise.webapps.update({

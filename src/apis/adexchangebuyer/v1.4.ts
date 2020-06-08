@@ -1666,7 +1666,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.get({
@@ -1804,7 +1804,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.list({});
@@ -1931,7 +1931,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.patch({
@@ -2089,7 +2089,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.accounts.update({
@@ -2292,7 +2292,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.billingInfo.get({
@@ -2424,7 +2424,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.billingInfo.list({});
@@ -2567,7 +2567,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.budget.get({
@@ -2705,7 +2705,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.budget.patch({
@@ -2857,7 +2857,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.budget.update({
@@ -3057,7 +3057,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.addDeal({
@@ -3187,7 +3187,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.get({
@@ -3350,7 +3350,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.insert({
@@ -3545,7 +3545,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.list({
@@ -3692,7 +3692,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.listDeals({
@@ -3827,7 +3827,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.creatives.removeDeal({
@@ -4048,7 +4048,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.delete({
@@ -4198,7 +4198,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.insert({
@@ -4346,7 +4346,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.list({
@@ -4484,7 +4484,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacedeals.update({
@@ -4690,7 +4690,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacenotes.insert({
@@ -4835,7 +4835,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplacenotes.list({
@@ -5004,7 +5004,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.marketplaceprivateauction.updateproposal({
@@ -5160,7 +5160,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.performanceReport.list({
@@ -5340,7 +5340,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.delete({
@@ -5467,7 +5467,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.get({
@@ -5630,7 +5630,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.insert({
@@ -5824,7 +5824,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.list({
@@ -5960,7 +5960,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.patch({
@@ -6158,7 +6158,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pretargetingConfig.update({
@@ -6437,7 +6437,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.products.get({
@@ -6592,7 +6592,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.products.search({
@@ -6745,7 +6745,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.get({
@@ -6896,7 +6896,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.insert({
@@ -7037,7 +7037,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.patch({
@@ -7226,7 +7226,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.search({
@@ -7359,7 +7359,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.setupcomplete({
@@ -7483,7 +7483,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.proposals.update({
@@ -7743,7 +7743,7 @@ export namespace adexchangebuyer_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adexchangebuyer.pubprofiles.list({

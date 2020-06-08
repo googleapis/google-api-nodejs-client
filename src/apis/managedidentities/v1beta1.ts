@@ -811,7 +811,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.get({
@@ -944,7 +944,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.list({
@@ -1148,7 +1148,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.attachTrust(
@@ -1296,7 +1296,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.create({
@@ -1465,7 +1465,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.delete({
@@ -1599,7 +1599,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.detachTrust(
@@ -1747,7 +1747,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.get({
@@ -1888,7 +1888,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.getIamPolicy(
@@ -2035,7 +2035,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.list({
@@ -2195,7 +2195,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.patch({
@@ -2357,7 +2357,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.reconfigureTrust(
@@ -2506,7 +2506,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.resetAdminPassword(
@@ -2655,7 +2655,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.setIamPolicy(
@@ -2801,7 +2801,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.testIamPermissions(
@@ -2952,7 +2952,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.validateTrust(
@@ -3272,7 +3272,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.cancel(
@@ -3411,7 +3411,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.delete(
@@ -3540,7 +3540,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.get({
@@ -3673,7 +3673,7 @@ export namespace managedidentities_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.operations.list(

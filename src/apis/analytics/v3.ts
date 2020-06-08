@@ -2551,7 +2551,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.data.ga.get({
@@ -2798,7 +2798,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.data.mcf.get({
@@ -3022,7 +3022,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.data.realtime.get({
@@ -3282,7 +3282,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.accounts.list({
@@ -3445,7 +3445,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.accountSummaries.list({
@@ -3604,7 +3604,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.accountUserLinks.delete({
@@ -3731,7 +3731,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.accountUserLinks.insert({
@@ -3884,7 +3884,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.accountUserLinks.list({
@@ -4027,7 +4027,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.accountUserLinks.update({
@@ -4245,7 +4245,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.clientId.hashClientId({
@@ -4411,7 +4411,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customDataSources.list({
@@ -4591,7 +4591,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customDimensions.get({
@@ -4739,7 +4739,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customDimensions.insert({
@@ -4907,7 +4907,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customDimensions.list({
@@ -5054,7 +5054,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customDimensions.patch({
@@ -5225,7 +5225,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customDimensions.update({
@@ -5505,7 +5505,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customMetrics.get({
@@ -5656,7 +5656,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customMetrics.insert({
@@ -5830,7 +5830,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customMetrics.list({
@@ -5977,7 +5977,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customMetrics.patch({
@@ -6154,7 +6154,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.customMetrics.update({
@@ -6440,7 +6440,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.experiments.delete({
@@ -6582,7 +6582,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.experiments.get({
@@ -6757,7 +6757,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.experiments.insert({
@@ -6961,7 +6961,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.experiments.list({
@@ -7114,7 +7114,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.experiments.patch({
@@ -7325,7 +7325,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.experiments.update({
@@ -7670,7 +7670,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.filters.delete({
@@ -7821,7 +7821,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.filters.get({
@@ -7969,7 +7969,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.filters.insert({
@@ -8139,7 +8139,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.filters.list({
@@ -8282,7 +8282,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.filters.patch({
@@ -8453,7 +8453,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.filters.update({
@@ -8716,7 +8716,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.goals.get({
@@ -8873,7 +8873,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.goals.insert({
@@ -9057,7 +9057,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.goals.list({
@@ -9207,7 +9207,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.goals.patch({
@@ -9390,7 +9390,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.goals.update({
@@ -9691,7 +9691,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.delete({
@@ -9827,7 +9827,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.get({
@@ -9975,7 +9975,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.insert({
@@ -10137,7 +10137,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.list({
@@ -10290,7 +10290,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.patch({
@@ -10452,7 +10452,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileFilterLinks.update({
@@ -10751,7 +10751,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profiles.delete({
@@ -10884,7 +10884,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profiles.get({
@@ -11046,7 +11046,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profiles.insert({
@@ -11243,7 +11243,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profiles.list({
@@ -11390,7 +11390,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profiles.patch({
@@ -11586,7 +11586,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profiles.update({
@@ -11895,7 +11895,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileUserLinks.delete({
@@ -12028,7 +12028,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileUserLinks.insert({
@@ -12187,7 +12187,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileUserLinks.list({
@@ -12336,7 +12336,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.profileUserLinks.update({
@@ -12589,7 +12589,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.remarketingAudience.delete({
@@ -12722,7 +12722,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.remarketingAudience.get({
@@ -12875,7 +12875,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.remarketingAudience.insert({
@@ -13050,7 +13050,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.remarketingAudience.list({
@@ -13205,7 +13205,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.remarketingAudience.patch({
@@ -13380,7 +13380,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.remarketingAudience.update({
@@ -13676,7 +13676,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.segments.list({
@@ -13836,7 +13836,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.unsampledReports.delete({
@@ -13983,7 +13983,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.unsampledReports.get({
@@ -14154,7 +14154,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.unsampledReports.insert({
@@ -14340,7 +14340,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.unsampledReports.list({
@@ -14582,7 +14582,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.uploads.deleteUploadData({
@@ -14725,7 +14725,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.uploads.get({
@@ -14885,7 +14885,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.uploads.list({
@@ -15037,7 +15037,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.uploads.uploadData({
@@ -15303,7 +15303,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webproperties.get({
@@ -15455,7 +15455,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webproperties.insert({
@@ -15635,7 +15635,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webproperties.list({
@@ -15779,7 +15779,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webproperties.patch({
@@ -15958,7 +15958,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webproperties.update({
@@ -16215,7 +16215,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webPropertyAdWordsLinks.delete({
@@ -16352,7 +16352,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webPropertyAdWordsLinks.get({
@@ -16502,7 +16502,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webPropertyAdWordsLinks.insert({
@@ -16663,7 +16663,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webPropertyAdWordsLinks.list({
@@ -16812,7 +16812,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webPropertyAdWordsLinks.patch({
@@ -16977,7 +16977,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webPropertyAdWordsLinks.update({
@@ -17255,7 +17255,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webpropertyUserLinks.delete({
@@ -17385,7 +17385,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webpropertyUserLinks.insert({
@@ -17541,7 +17541,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webpropertyUserLinks.list({
@@ -17687,7 +17687,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.management.webpropertyUserLinks.update({
@@ -17934,7 +17934,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.metadata.columns.list({
@@ -18083,7 +18083,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.provisioning.createAccountTicket({
@@ -18230,7 +18230,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.provisioning.createAccountTree({
@@ -18411,7 +18411,7 @@ export namespace analytics_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await analytics.userDeletion.userDeletionRequest.upsert({

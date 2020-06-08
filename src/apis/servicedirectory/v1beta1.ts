@@ -421,7 +421,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.get({
@@ -554,7 +554,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.list({
@@ -739,7 +739,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.create({
@@ -892,7 +892,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.delete({
@@ -1019,7 +1019,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.get({
@@ -1149,7 +1149,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.getIamPolicy(
@@ -1296,7 +1296,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.list({
@@ -1477,7 +1477,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.patch({
@@ -1621,7 +1621,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.setIamPolicy(
@@ -1768,7 +1768,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.testIamPermissions(
@@ -2037,7 +2037,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.create(
@@ -2194,7 +2194,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.delete(
@@ -2324,7 +2324,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.get(
@@ -2458,7 +2458,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.getIamPolicy(
@@ -2605,7 +2605,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.list(
@@ -2782,7 +2782,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.patch(
@@ -2931,7 +2931,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.resolve(
@@ -3083,7 +3083,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.setIamPolicy(
@@ -3230,7 +3230,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.testIamPermissions(
@@ -3507,7 +3507,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.create(
@@ -3666,7 +3666,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.delete(
@@ -3796,7 +3796,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.get(
@@ -3931,7 +3931,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.list(
@@ -4110,7 +4110,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.patch(

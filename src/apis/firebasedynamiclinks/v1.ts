@@ -716,7 +716,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.managedShortLinks.create({
@@ -883,7 +883,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.shortLinks.create({
@@ -1046,7 +1046,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.getLinkStats({
@@ -1183,7 +1183,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.installAttribution({
@@ -1357,7 +1357,7 @@ export namespace firebasedynamiclinks_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await firebasedynamiclinks.reopenAttribution({

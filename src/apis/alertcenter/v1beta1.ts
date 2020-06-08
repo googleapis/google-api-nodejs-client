@@ -948,7 +948,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.batchDelete({
@@ -1093,7 +1093,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.batchUndelete({
@@ -1238,7 +1238,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.delete({
@@ -1371,7 +1371,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.get({
@@ -1518,7 +1518,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.getMetadata({
@@ -1660,7 +1660,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.list({
@@ -1818,7 +1818,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.undelete({
@@ -2055,7 +2055,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.feedback.create({
@@ -2210,7 +2210,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.feedback.list({
@@ -2400,7 +2400,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.getSettings({
@@ -2530,7 +2530,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await alertcenter.updateSettings({

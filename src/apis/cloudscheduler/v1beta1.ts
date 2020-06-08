@@ -477,7 +477,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.get({
@@ -610,7 +610,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.list({
@@ -791,7 +791,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.create({
@@ -959,7 +959,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.delete({
@@ -1087,7 +1087,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.get({
@@ -1230,7 +1230,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.list({
@@ -1381,7 +1381,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.patch({
@@ -1564,7 +1564,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.pause({
@@ -1717,7 +1717,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.resume({
@@ -1870,7 +1870,7 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.run({

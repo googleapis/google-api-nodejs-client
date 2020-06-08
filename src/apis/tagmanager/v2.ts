@@ -1601,7 +1601,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.get({
@@ -1741,7 +1741,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.list({
@@ -1877,7 +1877,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.update({
@@ -2080,7 +2080,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.create({
@@ -2239,7 +2239,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.delete({
@@ -2367,7 +2367,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.get({
@@ -2511,7 +2511,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.list({
@@ -2652,7 +2652,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.update({
@@ -2876,7 +2876,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.create({
@@ -3045,7 +3045,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.delete({
@@ -3175,7 +3175,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.get({
@@ -3326,7 +3326,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.list({
@@ -3467,7 +3467,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.reauthorize({
@@ -3638,7 +3638,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.update({
@@ -3888,7 +3888,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.delete({
@@ -4018,7 +4018,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.get({
@@ -4175,7 +4175,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.live({
@@ -4324,7 +4324,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.publish({
@@ -4471,7 +4471,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.set_latest({
@@ -4623,7 +4623,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.undelete({
@@ -4775,7 +4775,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.versions.update({
@@ -5032,7 +5032,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.version_headers.latest({
@@ -5184,7 +5184,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.version_headers.list({
@@ -5390,7 +5390,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.create({
@@ -5547,7 +5547,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.create_version({
@@ -5702,7 +5702,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.delete({
@@ -5831,7 +5831,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.get({
@@ -5974,7 +5974,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.getStatus({
@@ -6118,7 +6118,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.list({
@@ -6261,7 +6261,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.quick_preview({
@@ -6403,7 +6403,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.resolve_conflict({
@@ -6546,7 +6546,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.sync({
@@ -6685,7 +6685,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.update({
@@ -6955,7 +6955,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.create(
@@ -7102,7 +7102,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.delete(
@@ -7237,7 +7237,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.list(
@@ -7385,7 +7385,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.revert(
@@ -7584,7 +7584,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.create({
@@ -7743,7 +7743,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.delete({
@@ -7873,7 +7873,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.entities({
@@ -8016,7 +8016,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.get({
@@ -8161,7 +8161,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.list({
@@ -8302,7 +8302,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder(
@@ -8456,7 +8456,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.revert({
@@ -8599,7 +8599,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.update({
@@ -8869,7 +8869,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.create({
@@ -9062,7 +9062,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.delete({
@@ -9192,7 +9192,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.get({
@@ -9354,7 +9354,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.list({
@@ -9492,7 +9492,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.revert({
@@ -9633,7 +9633,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.update({
@@ -9902,7 +9902,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.create({
@@ -10063,7 +10063,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.delete({
@@ -10193,7 +10193,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.get({
@@ -10339,7 +10339,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.list({
@@ -10482,7 +10482,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.revert({
@@ -10625,7 +10625,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.update({
@@ -10862,7 +10862,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.create({
@@ -11067,7 +11067,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.delete({
@@ -11197,7 +11197,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.get({
@@ -11365,7 +11365,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.list({
@@ -11508,7 +11508,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.revert({
@@ -11651,7 +11651,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.update({
@@ -11932,7 +11932,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.create({
@@ -12107,7 +12107,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.delete({
@@ -12237,7 +12237,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.get({
@@ -12390,7 +12390,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.list({
@@ -12533,7 +12533,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.revert({
@@ -12676,7 +12676,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.update({
@@ -12927,7 +12927,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.create({
@@ -13092,7 +13092,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.delete({
@@ -13222,7 +13222,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.get({
@@ -13370,7 +13370,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.list({
@@ -13511,7 +13511,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.revert({
@@ -13652,7 +13652,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.update({
@@ -13893,7 +13893,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.create({
@@ -14041,7 +14041,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.delete({
@@ -14166,7 +14166,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.get({
@@ -14302,7 +14302,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.list({
@@ -14444,7 +14444,7 @@ export namespace tagmanager_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await tagmanager.accounts.user_permissions.update({

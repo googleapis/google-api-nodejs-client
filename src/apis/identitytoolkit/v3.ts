@@ -1566,7 +1566,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.createAuthUri({
@@ -1731,7 +1731,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.deleteAccount({
@@ -1878,7 +1878,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.downloadAccount({
@@ -2025,7 +2025,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.emailLinkSignin({
@@ -2175,7 +2175,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.getAccountInfo({
@@ -2322,7 +2322,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.getOobConfirmationCode({
@@ -2483,7 +2483,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.getProjectConfig({
@@ -2653,7 +2653,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.getPublicKeys({});
@@ -2799,7 +2799,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.getRecaptchaParam({});
@@ -2934,7 +2934,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.resetPassword({
@@ -3082,7 +3082,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.sendVerificationCode({
@@ -3246,7 +3246,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.setAccountInfo({
@@ -3421,7 +3421,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.setProjectConfig({
@@ -3592,7 +3592,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.signOutUser({
@@ -3751,7 +3751,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.signupNewUser({
@@ -3915,7 +3915,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.uploadAccount({
@@ -4071,7 +4071,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.verifyAssertion({
@@ -4263,7 +4263,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.verifyCustomToken({
@@ -4412,7 +4412,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.verifyPassword({
@@ -4575,7 +4575,7 @@ export namespace identitytoolkit_v3 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await identitytoolkit.relyingparty.verifyPhoneNumber({

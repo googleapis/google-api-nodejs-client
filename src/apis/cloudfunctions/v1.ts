@@ -641,7 +641,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.operations.get({
@@ -773,7 +773,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.operations.list({
@@ -959,7 +959,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.list({
@@ -1133,7 +1133,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.call({
@@ -1278,7 +1278,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.create({
@@ -1445,7 +1445,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.delete({
@@ -1578,7 +1578,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.generateDownloadUrl(
@@ -1729,7 +1729,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.generateUploadUrl(
@@ -1877,7 +1877,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.get({
@@ -2027,7 +2027,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.getIamPolicy({
@@ -2177,7 +2177,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.list({
@@ -2330,7 +2330,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.patch({
@@ -2497,7 +2497,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.setIamPolicy({
@@ -2643,7 +2643,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.testIamPermissions(

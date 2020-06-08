@@ -3041,7 +3041,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.operations.projects.locations.operations.cancel(
@@ -3178,7 +3178,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.operations.projects.locations.operations.delete(
@@ -3315,7 +3315,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.operations.projects.locations.operations.get(
@@ -3522,7 +3522,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.projects.locations.corpura.operations.get(
@@ -3680,7 +3680,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.projects.locations.operations.cancel({
@@ -3819,7 +3819,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.projects.locations.operations.delete({
@@ -3951,7 +3951,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.projects.locations.operations.get({
@@ -4091,7 +4091,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.projects.locations.operations.list({
@@ -4301,7 +4301,7 @@ export namespace videointelligence_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await videointelligence.videos.annotate({

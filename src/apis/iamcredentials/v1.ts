@@ -252,7 +252,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.generateAccessToken(
@@ -408,7 +408,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.generateIdToken({
@@ -561,7 +561,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.signBlob({
@@ -707,7 +707,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.signJwt({

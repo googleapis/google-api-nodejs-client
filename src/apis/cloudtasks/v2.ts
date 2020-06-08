@@ -642,7 +642,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.get({
@@ -774,7 +774,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.list({
@@ -956,7 +956,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.create({
@@ -1113,7 +1113,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.delete({
@@ -1240,7 +1240,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.get({
@@ -1375,7 +1375,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.getIamPolicy({
@@ -1518,7 +1518,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.list({
@@ -1686,7 +1686,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.patch({
@@ -1858,7 +1858,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.pause({
@@ -2000,7 +2000,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.purge({
@@ -2142,7 +2142,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.resume({
@@ -2284,7 +2284,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.setIamPolicy({
@@ -2427,7 +2427,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.testIamPermissions({
@@ -2716,7 +2716,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.create({
@@ -2870,7 +2870,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.delete({
@@ -2998,7 +2998,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.get({
@@ -3152,7 +3152,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.list({
@@ -3323,7 +3323,7 @@ export namespace cloudtasks_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.run({

@@ -662,7 +662,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.create({
@@ -830,7 +830,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.delete({
@@ -958,7 +958,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.get({
@@ -1101,7 +1101,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.list({
@@ -1250,7 +1250,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.patch({
@@ -1421,7 +1421,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.start({
@@ -1660,7 +1660,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.get({
@@ -1801,7 +1801,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.list({
@@ -1950,7 +1950,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.stop({
@@ -2143,7 +2143,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list(
@@ -2319,7 +2319,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findings.get(
@@ -2469,7 +2469,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findings.list(
@@ -2662,7 +2662,7 @@ export namespace websecurityscanner_v1beta {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list(

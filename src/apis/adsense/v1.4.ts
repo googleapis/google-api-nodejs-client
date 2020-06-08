@@ -667,7 +667,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.get({
@@ -809,7 +809,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.list({
@@ -976,7 +976,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adclients.getAdCode({
@@ -1116,7 +1116,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adclients.list({
@@ -1296,7 +1296,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.get({
@@ -1445,7 +1445,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.getAdCode({
@@ -1588,7 +1588,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.list({
@@ -1798,7 +1798,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adunits.customchannels.list({
@@ -1975,7 +1975,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.alerts.delete({
@@ -2104,7 +2104,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.alerts.list({
@@ -2273,7 +2273,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.customchannels.get({
@@ -2417,7 +2417,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.customchannels.list({
@@ -2605,7 +2605,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.customchannels.adunits.list({
@@ -2792,7 +2792,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.payments.list({
@@ -2943,7 +2943,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.reports.generate({
@@ -3187,7 +3187,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.reports.saved.generate({
@@ -3350,7 +3350,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.reports.saved.list({
@@ -3538,7 +3538,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.savedadstyles.get({
@@ -3678,7 +3678,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.savedadstyles.list({
@@ -3854,7 +3854,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.accounts.urlchannels.list({
@@ -4027,7 +4027,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adclients.list({
@@ -4186,7 +4186,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.get({
@@ -4331,7 +4331,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.getAdCode({
@@ -4471,7 +4471,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.list({
@@ -4662,7 +4662,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.adunits.customchannels.list({
@@ -4832,7 +4832,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.alerts.delete({
@@ -4958,7 +4958,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.alerts.list({
@@ -5114,7 +5114,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.customchannels.get({
@@ -5255,7 +5255,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.customchannels.list({
@@ -5431,7 +5431,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.customchannels.adunits.list({
@@ -5622,7 +5622,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.metadata.dimensions.list({});
@@ -5763,7 +5763,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.metadata.metrics.list({});
@@ -5904,7 +5904,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.payments.list({});
@@ -6045,7 +6045,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.reports.generate({
@@ -6288,7 +6288,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.reports.saved.generate({
@@ -6448,7 +6448,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.reports.saved.list({
@@ -6626,7 +6626,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.savedadstyles.get({
@@ -6762,7 +6762,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.savedadstyles.list({
@@ -6928,7 +6928,7 @@ export namespace adsense_v1_4 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await adsense.urlchannels.list({

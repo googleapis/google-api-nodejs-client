@@ -1755,7 +1755,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.cancel({
@@ -1889,7 +1889,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.delete({
@@ -2016,7 +2016,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.get({
@@ -2148,7 +2148,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.operations.list({
@@ -2344,7 +2344,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.search({
@@ -2543,7 +2543,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.addProject({
@@ -2690,7 +2690,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.applyProjectConfig(
@@ -2839,7 +2839,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.attachProject(
@@ -2989,7 +2989,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.create({
@@ -3139,7 +3139,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.delete({
@@ -3272,7 +3272,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.deleteProject(
@@ -3420,7 +3420,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.list({
@@ -3574,7 +3574,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.removeProject(
@@ -3722,7 +3722,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.tenancyUnits.undeleteProject(

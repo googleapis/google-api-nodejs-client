@@ -324,7 +324,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.deleteAccessApprovalSettings({
@@ -453,7 +453,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.getAccessApprovalSettings({
@@ -592,7 +592,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.updateAccessApprovalSettings({
@@ -792,7 +792,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.approve({
@@ -941,7 +941,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.dismiss({
@@ -1088,7 +1088,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.get({
@@ -1225,7 +1225,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.list({
@@ -1447,7 +1447,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.deleteAccessApprovalSettings({
@@ -1576,7 +1576,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.getAccessApprovalSettings({
@@ -1715,7 +1715,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.updateAccessApprovalSettings({
@@ -1915,7 +1915,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.approve({
@@ -2064,7 +2064,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.dismiss({
@@ -2211,7 +2211,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.get({
@@ -2348,7 +2348,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.list({
@@ -2570,7 +2570,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.deleteAccessApprovalSettings({
@@ -2699,7 +2699,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.getAccessApprovalSettings({
@@ -2838,7 +2838,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.updateAccessApprovalSettings({
@@ -3038,7 +3038,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.approve({
@@ -3187,7 +3187,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.dismiss({
@@ -3334,7 +3334,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.get({
@@ -3471,7 +3471,7 @@ export namespace accessapproval_v1beta1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.list({

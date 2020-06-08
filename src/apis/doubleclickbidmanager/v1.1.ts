@@ -590,7 +590,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.lineitems.downloadlineitems({
@@ -736,7 +736,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.lineitems.uploadlineitems({
@@ -902,7 +902,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.createquery({
@@ -1056,7 +1056,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.deletequery({
@@ -1179,7 +1179,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.getquery({
@@ -1315,7 +1315,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.listqueries({
@@ -1456,7 +1456,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.queries.runquery({
@@ -1652,7 +1652,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.reports.listreports({
@@ -1818,7 +1818,7 @@ export namespace doubleclickbidmanager_v1_1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclickbidmanager.sdf.download({

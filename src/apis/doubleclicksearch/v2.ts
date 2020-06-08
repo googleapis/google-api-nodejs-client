@@ -569,7 +569,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.conversion.get({
@@ -738,7 +738,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.conversion.insert({
@@ -876,7 +876,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.conversion.update({
@@ -1014,7 +1014,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.conversion.updateAvailability({
@@ -1231,7 +1231,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.reports.generate({
@@ -1387,7 +1387,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.reports.get({
@@ -1525,7 +1525,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.reports.getFile({
@@ -1651,7 +1651,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.reports.request({
@@ -1843,7 +1843,7 @@ export namespace doubleclicksearch_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await doubleclicksearch.savedColumns.list({

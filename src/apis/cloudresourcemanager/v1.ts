@@ -796,7 +796,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.clearOrgPolicy({
@@ -939,7 +939,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.getEffectiveOrgPolicy({
@@ -1091,7 +1091,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.getOrgPolicy({
@@ -1241,7 +1241,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.listAvailableOrgPolicyConstraints(
@@ -1405,7 +1405,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.listOrgPolicies({
@@ -1555,7 +1555,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.setOrgPolicy({
@@ -1785,7 +1785,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.create({
@@ -1931,7 +1931,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.delete({
@@ -2060,7 +2060,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.get({
@@ -2196,7 +2196,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.list({
@@ -2382,7 +2382,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.operations.get({
@@ -2528,7 +2528,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.clearOrgPolicy({
@@ -2671,7 +2671,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.get({
@@ -2809,7 +2809,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getEffectiveOrgPolicy({
@@ -2961,7 +2961,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getIamPolicy({
@@ -3109,7 +3109,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.getOrgPolicy({
@@ -3259,7 +3259,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints(
@@ -3423,7 +3423,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.listOrgPolicies({
@@ -3576,7 +3576,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.search({
@@ -3723,7 +3723,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.setIamPolicy({
@@ -3869,7 +3869,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.setOrgPolicy({
@@ -4019,7 +4019,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.testIamPermissions({
@@ -4298,7 +4298,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.clearOrgPolicy({
@@ -4438,7 +4438,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.create({
@@ -4581,7 +4581,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.delete({
@@ -4715,7 +4715,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.get({
@@ -4857,7 +4857,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getAncestry({
@@ -5006,7 +5006,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getEffectiveOrgPolicy({
@@ -5158,7 +5158,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getIamPolicy({
@@ -5306,7 +5306,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.getOrgPolicy({
@@ -5456,7 +5456,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.list({
@@ -5638,7 +5638,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.listAvailableOrgPolicyConstraints(
@@ -5802,7 +5802,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.listOrgPolicies({
@@ -5952,7 +5952,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.setIamPolicy({
@@ -6098,7 +6098,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.setOrgPolicy({
@@ -6248,7 +6248,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.testIamPermissions({
@@ -6396,7 +6396,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.undelete({
@@ -6535,7 +6535,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.update({

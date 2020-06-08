@@ -703,7 +703,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.bindDeviceToGateway({
@@ -853,7 +853,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.create({
@@ -1011,7 +1011,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.delete({
@@ -1141,7 +1141,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.get({
@@ -1280,7 +1280,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.getIamPolicy({
@@ -1427,7 +1427,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.list({
@@ -1583,7 +1583,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.patch({
@@ -1745,7 +1745,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.setIamPolicy({
@@ -1892,7 +1892,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.testIamPermissions({
@@ -2044,7 +2044,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.unbindDeviceFromGateway(
@@ -2332,7 +2332,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.create({
@@ -2509,7 +2509,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.delete({
@@ -2641,7 +2641,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.get({
@@ -2795,7 +2795,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.list({
@@ -2975,7 +2975,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig(
@@ -3129,7 +3129,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.patch({
@@ -3312,7 +3312,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.sendCommandToDevice(
@@ -3583,7 +3583,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.configVersions.list(
@@ -3755,7 +3755,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.states.list({
@@ -3922,7 +3922,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.groups.getIamPolicy({
@@ -4069,7 +4069,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.groups.setIamPolicy({
@@ -4216,7 +4216,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.groups.testIamPermissions(
@@ -4414,7 +4414,7 @@ export namespace cloudiot_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.groups.devices.list({

@@ -679,7 +679,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.googleServiceAccounts.get({
@@ -832,7 +832,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.create({
@@ -984,7 +984,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.get({
@@ -1125,7 +1125,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.list({
@@ -1276,7 +1276,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.patch({
@@ -1477,7 +1477,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.cancel({
@@ -1604,7 +1604,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.get({
@@ -1737,7 +1737,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.list({
@@ -1885,7 +1885,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.pause({
@@ -2019,7 +2019,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.resume({

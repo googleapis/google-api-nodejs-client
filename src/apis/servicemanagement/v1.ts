@@ -1778,7 +1778,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.operations.get({
@@ -1913,7 +1913,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.operations.list({
@@ -2117,7 +2117,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.create({
@@ -2258,7 +2258,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.delete({
@@ -2397,7 +2397,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.disable({
@@ -2545,7 +2545,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.enable({
@@ -2693,7 +2693,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.generateConfigReport({
@@ -2848,7 +2848,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.get({
@@ -2986,7 +2986,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.getConfig({
@@ -3160,7 +3160,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.getIamPolicy({
@@ -3310,7 +3310,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.list({
@@ -3462,7 +3462,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.setIamPolicy({
@@ -3613,7 +3613,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.testIamPermissions({
@@ -3765,7 +3765,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.undelete({
@@ -4036,7 +4036,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.create({
@@ -4235,7 +4235,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.get({
@@ -4408,7 +4408,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.list({
@@ -4559,7 +4559,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.configs.submit({
@@ -4772,7 +4772,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.consumers.getIamPolicy({
@@ -4920,7 +4920,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.consumers.setIamPolicy({
@@ -5071,7 +5071,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.consumers.testIamPermissions({
@@ -5267,7 +5267,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.create({
@@ -5424,7 +5424,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.get({
@@ -5570,7 +5570,7 @@ export namespace servicemanagement_v1 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await servicemanagement.services.rollouts.list({

@@ -1244,7 +1244,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.create({
@@ -1399,7 +1399,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.delete({
@@ -1540,7 +1540,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.get({
@@ -1699,7 +1699,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.list({
@@ -1899,7 +1899,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.workerpools.create({
@@ -2054,7 +2054,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.workerpools.delete({
@@ -2196,7 +2196,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.workerpools.get({
@@ -2358,7 +2358,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.workerpools.list({
@@ -2544,7 +2544,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.workerpools.patch({
@@ -2754,7 +2754,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.operations.get({

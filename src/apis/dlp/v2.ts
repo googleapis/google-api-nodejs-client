@@ -3166,7 +3166,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.infoTypes.list({
@@ -3355,7 +3355,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.locations.infoTypes.list({
@@ -3561,7 +3561,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.create({
@@ -3724,7 +3724,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.delete({
@@ -3856,7 +3856,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.get({
@@ -4007,7 +4007,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.list({
@@ -4188,7 +4188,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.patch({
@@ -4418,7 +4418,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.create({
@@ -4575,7 +4575,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.delete({
@@ -4706,7 +4706,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.get({
@@ -4850,7 +4850,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.list({
@@ -5032,7 +5032,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.patch({
@@ -5274,7 +5274,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.create({
@@ -5437,7 +5437,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.delete({
@@ -5569,7 +5569,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.get({
@@ -5720,7 +5720,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.list({
@@ -5901,7 +5901,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.patch({
@@ -6131,7 +6131,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.create({
@@ -6288,7 +6288,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.delete({
@@ -6420,7 +6420,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.get({
@@ -6565,7 +6565,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.list({
@@ -6747,7 +6747,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.patch({
@@ -6971,7 +6971,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.create({
@@ -7125,7 +7125,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.delete({
@@ -7257,7 +7257,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.get({
@@ -7399,7 +7399,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.list({
@@ -7582,7 +7582,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.patch({
@@ -7803,7 +7803,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.create({
@@ -7957,7 +7957,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.delete({
@@ -8088,7 +8088,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.get({
@@ -8229,7 +8229,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.list({
@@ -8412,7 +8412,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.patch({
@@ -8661,7 +8661,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.deidentify({
@@ -8830,7 +8830,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.inspect({
@@ -8988,7 +8988,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.reidentify({
@@ -9201,7 +9201,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.create({
@@ -9364,7 +9364,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.delete({
@@ -9495,7 +9495,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.get({
@@ -9645,7 +9645,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.list({
@@ -9826,7 +9826,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.patch({
@@ -10055,7 +10055,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.cancel({
@@ -10191,7 +10191,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.create({
@@ -10350,7 +10350,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.delete({
@@ -10479,7 +10479,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.get({
@@ -10621,7 +10621,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.list({
@@ -10902,7 +10902,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.image.redact({
@@ -11083,7 +11083,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.create({
@@ -11240,7 +11240,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.delete({
@@ -11371,7 +11371,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.get({
@@ -11515,7 +11515,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.list({
@@ -11697,7 +11697,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.patch({
@@ -11920,7 +11920,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.activate({
@@ -12075,7 +12075,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.create({
@@ -12235,7 +12235,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.delete({
@@ -12365,7 +12365,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.get({
@@ -12512,7 +12512,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.list({
@@ -12715,7 +12715,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.patch({
@@ -12986,7 +12986,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.deidentify({
@@ -13155,7 +13155,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.inspect({
@@ -13313,7 +13313,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.reidentify({
@@ -13526,7 +13526,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.create({
@@ -13689,7 +13689,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.delete({
@@ -13821,7 +13821,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.get({
@@ -13972,7 +13972,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.list({
@@ -14153,7 +14153,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.patch({
@@ -14383,7 +14383,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.cancel({
@@ -14519,7 +14519,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.create({
@@ -14678,7 +14678,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.delete({
@@ -14807,7 +14807,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.finish({
@@ -14943,7 +14943,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.get({
@@ -15085,7 +15085,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.hybridInspect({
@@ -15239,7 +15239,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.list({
@@ -15544,7 +15544,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.image.redact({
@@ -15725,7 +15725,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.create({
@@ -15882,7 +15882,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.delete({
@@ -16014,7 +16014,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.get({
@@ -16159,7 +16159,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.list({
@@ -16341,7 +16341,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.patch({
@@ -16565,7 +16565,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.activate({
@@ -16720,7 +16720,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.create({
@@ -16880,7 +16880,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.delete({
@@ -17010,7 +17010,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.get({
@@ -17157,7 +17157,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.hybridInspect({
@@ -17311,7 +17311,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.list({
@@ -17514,7 +17514,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.patch({
@@ -17768,7 +17768,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.create({
@@ -17922,7 +17922,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.delete({
@@ -18054,7 +18054,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.get({
@@ -18196,7 +18196,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.list({
@@ -18379,7 +18379,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.patch({
@@ -18600,7 +18600,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.create({
@@ -18754,7 +18754,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.delete({
@@ -18885,7 +18885,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.get({
@@ -19026,7 +19026,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.list({
@@ -19209,7 +19209,7 @@ export namespace dlp_v2 {
      *
      *   // Acquire an auth client, and bind it to all future calls
      *   const authClient = await auth.getClient();
-     *   google.options('auth', authClient);
+     *   google.options({auth: authClient});
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.patch({
