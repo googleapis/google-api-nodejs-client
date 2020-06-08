@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [52.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v52.1.0...v52.2.0) (2020-06-08)
+
+
+### Features
+
+* regenerate index files ([a67796a](https://www.github.com/googleapis/google-api-nodejs-client/commit/a67796a62b1cf0fdbb574025597ffed9f2e65825))
+
+
+### Bug Fixes
+
+* **docs:** fix inline jsdoc samples ([#2224](https://www.github.com/googleapis/google-api-nodejs-client/issues/2224)) ([9ae4149](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ae4149a97ea40d2967294e1939c6a18de13aeb3))
+
 ## [52.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v52.0.0...v52.1.0) (2020-06-03)
 
 
