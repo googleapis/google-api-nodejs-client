@@ -271,7 +271,7 @@ export namespace servicecontrol_v1 {
      */
     accessLevels?: string[] | null;
     /**
-     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential such as    [&quot;pubsub.googleapis.com&quot;, &quot;storage.googleapis.com&quot;] *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;] *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
+     * The intended audience(s) for this authentication information. Reflects the audience (`aud`) claim within a JWT. The audience value(s) depends on the `issuer`, but typically include one or more of the following pieces of information:  *  The services intended to receive the credential. For example,    [&quot;https://pubsub.googleapis.com/&quot;, &quot;https://storage.googleapis.com/&quot;]. *  A set of service-based scopes. For example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. *  The client id of an app, such as the Firebase project id for JWTs    from Firebase Auth.  Consult the documentation for the credential issuer to determine the information provided.
      */
     audiences?: string[] | null;
     /**
