@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20200603",
+  "revision": "20200606",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -1073,13 +1073,6 @@
         "allowCors": {
           "description": "Allowing\n[CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka\ncross-domain traffic, would allow the backends served from this endpoint to\nreceive and respond to HTTP OPTIONS requests. The response will be used by\nthe browser to determine whether the subsequent cross-origin request is\nallowed to proceed.",
           "type": "boolean"
-        },
-        "features": {
-          "description": "The list of features enabled on this endpoint.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "name": {
           "description": "The canonical name of this endpoint.",

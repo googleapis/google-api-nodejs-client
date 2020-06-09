@@ -452,10 +452,6 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     allowCors?: boolean | null;
     /**
-     * The list of features enabled on this endpoint.
-     */
-    features?: string[] | null;
-    /**
      * The canonical name of this endpoint.
      */
     name?: string | null;
@@ -1330,6 +1326,10 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The resource name of the quota settings on this metric for this consumer.  An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/quota/metrics/compute.googleapis.com%2Fcpus  The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
      */
     name?: string | null;
+    /**
+     * The units in which the metric value is reported.
+     */
+    unit?: string | null;
   }
   /**
    * A default identity in the Identity and Access Management API.
@@ -1825,7 +1825,8 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   //   "consumerQuotaLimits": [],
      *   //   "displayName": "my_displayName",
      *   //   "metric": "my_metric",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "unit": "my_unit"
      *   // }
      * }
      *
