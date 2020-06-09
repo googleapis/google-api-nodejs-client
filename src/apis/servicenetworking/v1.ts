@@ -660,10 +660,6 @@ export namespace servicenetworking_v1 {
      */
     allowCors?: boolean | null;
     /**
-     * The list of features enabled on this endpoint.
-     */
-    features?: string[] | null;
-    /**
      * The canonical name of this endpoint.
      */
     name?: string | null;
