@@ -764,7 +764,7 @@
       }
     }
   },
-  "revision": "20200603",
+  "revision": "20200606",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -1170,6 +1170,10 @@
         "name": {
           "description": "The resource name of the quota settings on this metric for this consumer.\n\nAn example name would be:\n`projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus\n\nThe resource name is intended to be opaque and should not be parsed for\nits component strings, since its representation could change in the future.",
           "type": "string"
+        },
+        "unit": {
+          "description": "The units in which the metric value is reported.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1414,13 +1418,6 @@
         "allowCors": {
           "description": "Allowing\n[CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka\ncross-domain traffic, would allow the backends served from this endpoint to\nreceive and respond to HTTP OPTIONS requests. The response will be used by\nthe browser to determine whether the subsequent cross-origin request is\nallowed to proceed.",
           "type": "boolean"
-        },
-        "features": {
-          "description": "The list of features enabled on this endpoint.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "name": {
           "description": "The canonical name of this endpoint.",

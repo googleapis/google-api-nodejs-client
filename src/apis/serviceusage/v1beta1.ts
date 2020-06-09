@@ -425,6 +425,10 @@ export namespace serviceusage_v1beta1 {
      * The resource name of the quota settings on this metric for this consumer.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus  The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
      */
     name?: string | null;
+    /**
+     * The units in which the metric value is reported.
+     */
+    unit?: string | null;
   }
   /**
    * `Context` defines which contexts an API requests.  Example:      context:       rules:       - selector: &quot;*&quot;         requested:         - google.rpc.context.ProjectContext         - google.rpc.context.OriginContext  The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`.  Available context types are defined in package `google.rpc.context`.  This also provides mechanism to whitelist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext-&lt;extension_id&gt;-bin” and “x-goog-ext-&lt;extension_id&gt;-jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file:  Example:      context:       rules:        - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot;          allowed_request_extensions:          - google.foo.v1.NewExtension          allowed_response_extensions:          - google.foo.v1.NewExtension  You can also specify extension ID instead of fully qualified extension name here.
@@ -609,10 +613,6 @@ export namespace serviceusage_v1beta1 {
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
     allowCors?: boolean | null;
-    /**
-     * The list of features enabled on this endpoint.
-     */
-    features?: string[] | null;
     /**
      * The canonical name of this endpoint.
      */
@@ -2948,7 +2948,8 @@ export namespace serviceusage_v1beta1 {
      *   //   "consumerQuotaLimits": [],
      *   //   "displayName": "my_displayName",
      *   //   "metric": "my_metric",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "unit": "my_unit"
      *   // }
      * }
      *
