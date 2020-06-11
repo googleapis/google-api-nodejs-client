@@ -4241,14 +4241,15 @@
       "id": "youtube:v3",
       "name": "youtube",
       "version": "v3",
-      "title": "YouTube Data API v3",
-      "description": "The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.",
-      "discoveryRestUrl": "https://www.googleapis.com/$discovery/rest?version=v3",
+      "title": "YouTube Data API",
+      "description": "Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.",
+      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
+      "discoveryLink": "./apis/youtube/v3/rest",
       "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+        "x16": "https://www.google.com/images/icons/product/youtube-16.png",
+        "x32": "https://www.google.com/images/icons/product/youtube-32.png"
       },
-      "documentationLink": "https://developers.google.com/youtube/",
+      "documentationLink": "https://developers.google.com/youtube/v3",
       "preferred": true
     },
     {
