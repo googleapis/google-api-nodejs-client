@@ -494,7 +494,7 @@
       }
     }
   },
-  "revision": "20200515",
+  "revision": "20200605",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
@@ -750,7 +750,7 @@
           "additionalProperties": {
             "$ref": "AdmissionRule"
           },
-          "description": "Optional. LINT.IfChange(cluster_regex)\nPer-cluster admission rules. Cluster spec format:\n`location.clusterId`. There can be at most one admission rule per cluster\nspec.\nA `location` is either a compute zone (e.g. us-central1-a) or a region\n(e.g. us-central1).\nFor `clusterId` syntax restrictions see\nhttps://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.\nLINT.ThenChange(//depot/google3/cloud/console/web/binary_authorization/api/models/admission_rule_type.ts:cluster_regex)",
+          "description": "Optional. Per-cluster admission rules. Cluster spec format:\n`location.clusterId`. There can be at most one admission rule per cluster\nspec.\nA `location` is either a compute zone (e.g. us-central1-a) or a region\n(e.g. us-central1).\nFor `clusterId` syntax restrictions see\nhttps://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.",
           "type": "object"
         },
         "defaultAdmissionRule": {
