@@ -193,7 +193,7 @@ export namespace dataproc_v1 {
      */
     gracefulDecommissionTimeout?: string | null;
     /**
-     * Required. Fraction of average pending memory in the last cooldown period for which to remove workers. A scale-down factor of 1 will result in scaling down so that there is no available memory remaining after the update (more aggressive scaling). A scale-down factor of 0 disables removing workers, which can be beneficial for autoscaling a single job.Bounds: 0.0, 1.0.
+     * Required. Fraction of average YARN pending memory in the last cooldown period for which to remove workers. A scale-down factor of 1 will result in scaling down so that there is no available memory remaining after the update (more aggressive scaling). A scale-down factor of 0 disables removing workers, which can be beneficial for autoscaling a single job. See How autoscaling works for more information.Bounds: 0.0, 1.0.
      */
     scaleDownFactor?: number | null;
     /**
@@ -201,7 +201,7 @@ export namespace dataproc_v1 {
      */
     scaleDownMinWorkerFraction?: number | null;
     /**
-     * Required. Fraction of average pending memory in the last cooldown period for which to add workers. A scale-up factor of 1.0 will result in scaling up so that there is no pending memory remaining after the update (more aggressive scaling). A scale-up factor closer to 0 will result in a smaller magnitude of scaling up (less aggressive scaling).Bounds: 0.0, 1.0.
+     * Required. Fraction of average YARN pending memory in the last cooldown period for which to add workers. A scale-up factor of 1.0 will result in scaling up so that there is no pending memory remaining after the update (more aggressive scaling). A scale-up factor closer to 0 will result in a smaller magnitude of scaling up (less aggressive scaling). See How autoscaling works for more information.Bounds: 0.0, 1.0.
      */
     scaleUpFactor?: number | null;
     /**
@@ -1246,7 +1246,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$PySparkJob {
     /**
-     * Optional. HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
+     * Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
      */
     archiveUris?: string[] | null;
     /**
@@ -1254,7 +1254,7 @@ export namespace dataproc_v1 {
      */
     args?: string[] | null;
     /**
-     * Optional. HCFS URIs of files to be copied to the working directory of Python drivers and distributed tasks. Useful for naively parallel tasks.
+     * Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.
      */
     fileUris?: string[] | null;
     /**
@@ -1353,7 +1353,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$SparkJob {
     /**
-     * Optional. HCFS URIs of archives to be extracted in the working directory of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+     * Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
      */
     archiveUris?: string[] | null;
     /**
@@ -1361,7 +1361,7 @@ export namespace dataproc_v1 {
      */
     args?: string[] | null;
     /**
-     * Optional. HCFS URIs of files to be copied to the working directory of Spark drivers and distributed tasks. Useful for naively parallel tasks.
+     * Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.
      */
     fileUris?: string[] | null;
     /**
@@ -1390,7 +1390,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$SparkRJob {
     /**
-     * Optional. HCFS URIs of archives to be extracted in the working directory of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+     * Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
      */
     archiveUris?: string[] | null;
     /**
@@ -1398,7 +1398,7 @@ export namespace dataproc_v1 {
      */
     args?: string[] | null;
     /**
-     * Optional. HCFS URIs of files to be copied to the working directory of R drivers and distributed tasks. Useful for naively parallel tasks.
+     * Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.
      */
     fileUris?: string[] | null;
     /**

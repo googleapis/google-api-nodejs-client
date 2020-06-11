@@ -2242,7 +2242,7 @@
       }
     }
   },
-  "revision": "20200511",
+  "revision": "20200528",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2324,7 +2324,7 @@
           "type": "string"
         },
         "scaleDownFactor": {
-          "description": "Required. Fraction of average pending memory in the last cooldown period for which to remove workers. A scale-down factor of 1 will result in scaling down so that there is no available memory remaining after the update (more aggressive scaling). A scale-down factor of 0 disables removing workers, which can be beneficial for autoscaling a single job.Bounds: 0.0, 1.0.",
+          "description": "Required. Fraction of average YARN pending memory in the last cooldown period for which to remove workers. A scale-down factor of 1 will result in scaling down so that there is no available memory remaining after the update (more aggressive scaling). A scale-down factor of 0 disables removing workers, which can be beneficial for autoscaling a single job. See How autoscaling works for more information.Bounds: 0.0, 1.0.",
           "format": "double",
           "type": "number"
         },
@@ -2334,7 +2334,7 @@
           "type": "number"
         },
         "scaleUpFactor": {
-          "description": "Required. Fraction of average pending memory in the last cooldown period for which to add workers. A scale-up factor of 1.0 will result in scaling up so that there is no pending memory remaining after the update (more aggressive scaling). A scale-up factor closer to 0 will result in a smaller magnitude of scaling up (less aggressive scaling).Bounds: 0.0, 1.0.",
+          "description": "Required. Fraction of average YARN pending memory in the last cooldown period for which to add workers. A scale-up factor of 1.0 will result in scaling up so that there is no pending memory remaining after the update (more aggressive scaling). A scale-up factor closer to 0 will result in a smaller magnitude of scaling up (less aggressive scaling). See How autoscaling works for more information.Bounds: 0.0, 1.0.",
           "format": "double",
           "type": "number"
         },
@@ -3795,7 +3795,7 @@
       "id": "PySparkJob",
       "properties": {
         "archiveUris": {
-          "description": "Optional. HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.",
+          "description": "Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.",
           "items": {
             "type": "string"
           },
@@ -3809,7 +3809,7 @@
           "type": "array"
         },
         "fileUris": {
-          "description": "Optional. HCFS URIs of files to be copied to the working directory of Python drivers and distributed tasks. Useful for naively parallel tasks.",
+          "description": "Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.",
           "items": {
             "type": "string"
           },
@@ -3944,9 +3944,7 @@
           "enumDescriptions": [
             "Unspecified component.",
             "The Anaconda python distribution.",
-            "Docker",
             "The Druid query engine.",
-            "Flink",
             "HBase.",
             "The Hive Web HCatalog (the REST service for accessing HCatalog).",
             "The Jupyter Notebook.",
@@ -3961,9 +3959,7 @@
             "enum": [
               "COMPONENT_UNSPECIFIED",
               "ANACONDA",
-              "DOCKER",
               "DRUID",
-              "FLINK",
               "HBASE",
               "HIVE_WEBHCAT",
               "JUPYTER",
@@ -3993,7 +3989,7 @@
       "id": "SparkJob",
       "properties": {
         "archiveUris": {
-          "description": "Optional. HCFS URIs of archives to be extracted in the working directory of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.",
+          "description": "Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.",
           "items": {
             "type": "string"
           },
@@ -4007,7 +4003,7 @@
           "type": "array"
         },
         "fileUris": {
-          "description": "Optional. HCFS URIs of files to be copied to the working directory of Spark drivers and distributed tasks. Useful for naively parallel tasks.",
+          "description": "Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.",
           "items": {
             "type": "string"
           },
@@ -4047,7 +4043,7 @@
       "id": "SparkRJob",
       "properties": {
         "archiveUris": {
-          "description": "Optional. HCFS URIs of archives to be extracted in the working directory of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.",
+          "description": "Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.",
           "items": {
             "type": "string"
           },
@@ -4061,7 +4057,7 @@
           "type": "array"
         },
         "fileUris": {
-          "description": "Optional. HCFS URIs of files to be copied to the working directory of R drivers and distributed tasks. Useful for naively parallel tasks.",
+          "description": "Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.",
           "items": {
             "type": "string"
           },
@@ -4395,7 +4391,7 @@
       "type": "object"
     },
     "WorkflowTemplate": {
-      "description": "A Dataproc workflow template resource.",
+      "description": "A Dataproc workflow template resource. Next ID: 11",
       "id": "WorkflowTemplate",
       "properties": {
         "createTime": {
