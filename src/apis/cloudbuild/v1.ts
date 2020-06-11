@@ -297,7 +297,7 @@ export namespace cloudbuild_v1 {
      */
     env?: string[] | null;
     /**
-     * Option to specify the logging mode, which determines where the logs are stored.
+     * Option to specify the logging mode, which determines if and where build logs are stored.
      */
     logging?: string | null;
     /**

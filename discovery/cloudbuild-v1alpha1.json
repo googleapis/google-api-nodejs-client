@@ -347,7 +347,7 @@
       }
     }
   },
-  "revision": "20200601",
+  "revision": "20200606",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -598,7 +598,7 @@
           "type": "string"
         },
         "logging": {
-          "description": "Option to specify the logging mode, which determines where the logs are\nstored.",
+          "description": "Option to specify the logging mode, which determines if and where build\nlogs are stored.",
           "enum": [
             "LOGGING_UNSPECIFIED",
             "LEGACY",
