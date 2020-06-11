@@ -975,7 +975,7 @@ export namespace servicenetworking_v1 {
     syntax?: string | null;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.  The following are specific rules for service defined Monitoring metric descriptors:  * `type`, `metric_kind`, `value_type`, `description`, `display_name`,   `launch_stage` fields are all required. The `unit` field must be specified   if the `value_type` is any of DOUBLE, INT64, DISTRIBUTION. * Maximum of default 500 metric descriptors per service is allowed. * Maximum of default 10 labels per metric descriptor is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -987,7 +987,7 @@ export namespace servicenetworking_v1 {
      */
     displayName?: string | null;
     /**
-     * The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
+     * The set of labels that can be used to describe a specific instance of this metric type.  The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -1011,7 +1011,7 @@ export namespace servicenetworking_v1 {
      */
     name?: string | null;
     /**
-     * The metric type, including its DNS name prefix. The type is not URL-encoded.  All user-defined metric types have the DNS name `custom.googleapis.com` or `external.googleapis.com`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+     * The metric type, including its DNS name prefix. The type is not URL-encoded.  All service defined metrics must be prefixed with the service name, in the format of `{service name}/{relative metric name}`, such as `cloudsql.googleapis.com/database/cpu/utilization`. The relative metric name must follow:  * Only upper and lower-case letters, digits, &#39;/&#39; and underscores &#39;_&#39; are   allowed. * The maximum number of characters allowed for the relative_metric_name is   100.  All user-defined metric types have the DNS name `custom.googleapis.com`, `external.googleapis.com`, or `logging.googleapis.com/user/`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string | null;
     /**
@@ -1067,7 +1067,7 @@ export namespace servicenetworking_v1 {
     root?: string | null;
   }
   /**
-   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different APIs can support different monitored resource types. APIs generally provide a `list` method that returns the monitored resource descriptors used by the API.
+   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different services can support different monitored resource types.  The following are specific rules to service defined monitored resources for Monitoring and Logging:  * The `type`, `display_name`, `description`, `labels` and `launch_stage`   fields are all required. * The first label of the monitored resource descriptor must be   `resource_container`. There are legacy monitored resource descritptors   start with `project_id`. * It must include a `location` label. * Maximum of default 5 service defined monitored resource descriptors   is allowed per service. * Maximum of default 10 labels per monitored resource is allowed.  The default maximum limit can be overridden. Please follow https://cloud.google.com/monitoring/quotas
    */
   export interface Schema$MonitoredResourceDescriptor {
     /**
@@ -1079,7 +1079,7 @@ export namespace servicenetworking_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
+     * Required. A set of labels used to describe instances of this monitored resource type. The label key name must follow:  * Only upper and lower-case letters, digits and underscores (_) are   allowed. * Label name must start with a letter or digit. * The maximum length of a label name is 100 characters.  For example, an individual Google Cloud SQL database is identified by values for the labels `database_id` and `location`.
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -1091,7 +1091,7 @@ export namespace servicenetworking_v1 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
+     * Note there are legacy service monitored resources not following this rule.
      */
     type?: string | null;
   }
