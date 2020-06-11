@@ -774,7 +774,7 @@ export namespace dlp_v2 {
      */
     radix?: number | null;
     /**
-     * The custom infoType to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom infoType followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate  For example, if the name of custom infoType is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom infoType [`SurrogateType`](/dlp/docs/reference/rest/v2/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text.  In order for inspection to work properly, the name of this infoType must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom infoType name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
+     * The custom infoType to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom infoType followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate  For example, if the name of custom infoType is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom infoType [`SurrogateType`](https://cloud.google.com/dlp/docs/reference/rest/v2/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text.  In order for inspection to work properly, the name of this infoType must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom infoType name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
      */
     surrogateInfoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
@@ -2294,7 +2294,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishSummaryToCscc {}
   /**
-   * Publish a message into given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job&#39;s [`DlpJob.name`](/dlp/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk
+   * Publish a message into given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job&#39;s [`DlpJob.name`](https://cloud.google.com/dlp/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk
    */
   export interface Schema$GooglePrivacyDlpV2PublishToPubSub {
     /**
@@ -2778,7 +2778,7 @@ export namespace dlp_v2 {
     details?: string | null;
   }
   /**
-   * Message for detecting output from deidentification transformations such as [`CryptoReplaceFfxFpeConfig`](/dlp/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig). These types of transformations are those that perform pseudonymization, thereby producing a &quot;surrogate&quot; as output. This should be used in conjunction with a field on the transformation such as `surrogate_info_type`. This CustomInfoType does not support the use of `detection_rules`.
+   * Message for detecting output from deidentification transformations such as [`CryptoReplaceFfxFpeConfig`](https://cloud.google.com/dlp/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig). These types of transformations are those that perform pseudonymization, thereby producing a &quot;surrogate&quot; as output. This should be used in conjunction with a field on the transformation such as `surrogate_info_type`. This CustomInfoType does not support the use of `detection_rules`.
    */
   export interface Schema$GooglePrivacyDlpV2SurrogateType {}
   /**
@@ -3179,7 +3179,8 @@ export namespace dlp_v2 {
      *     languageCode: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // The parent resource name, for example locations/{location_id}.
+     *     // The parent resource name.
+     *     // - Format:locations/[LOCATION-ID]
      *     parent: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3202,7 +3203,7 @@ export namespace dlp_v2 {
      * @param {string=} params.filter filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      * @param {string=} params.languageCode BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string=} params.parent The parent resource name, for example locations/{location_id}.
+     * @param {string=} params.parent The parent resource name. - Format:locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3312,7 +3313,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * The parent resource name, for example locations/{location_id}.
+     * The parent resource name. - Format:locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -3368,7 +3369,8 @@ export namespace dlp_v2 {
      *     languageCode: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
-     *     // The parent resource name, for example locations/{location_id}.
+     *     // The parent resource name.
+     *     // - Format:locations/[LOCATION-ID]
      *     parent: 'locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3391,7 +3393,7 @@ export namespace dlp_v2 {
      * @param {string=} params.filter filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      * @param {string=} params.languageCode BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      * @param {string=} params.locationId Deprecated. This field has no effect.
-     * @param {string} params.parent The parent resource name, for example locations/{location_id}.
+     * @param {string} params.parent The parent resource name. - Format:locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3506,7 +3508,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * The parent resource name, for example locations/{location_id}.
+     * The parent resource name. - Format:locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -3565,8 +3567,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -3601,7 +3606,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4033,8 +4038,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -4059,7 +4067,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4330,7 +4338,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -4372,7 +4380,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -4422,8 +4430,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.inspectTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -4458,7 +4469,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4876,8 +4887,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -4902,7 +4916,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5167,7 +5181,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -5209,7 +5223,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -5278,8 +5292,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -5314,7 +5331,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5746,8 +5763,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5772,7 +5792,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6043,7 +6063,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -6085,7 +6105,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -6135,8 +6155,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -6171,7 +6194,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6591,8 +6614,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -6617,7 +6643,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6883,7 +6909,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -6925,7 +6951,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -6975,8 +7001,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -7008,7 +7037,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7426,8 +7455,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -7452,7 +7484,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7715,7 +7747,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -7757,7 +7789,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -7807,8 +7839,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.organizations.storedInfoTypes.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -7840,7 +7875,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8256,8 +8291,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -8282,7 +8320,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8544,7 +8582,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -8586,7 +8624,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -8665,7 +8703,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.deidentify({
-     *     // The parent resource name, for example projects/my-project-id.
+     *     // Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -8699,7 +8739,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8834,7 +8874,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.content.inspect({
-     *     // The parent resource name, for example projects/my-project-id.
+     *     // Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -8865,7 +8907,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2InspectContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8993,6 +9035,8 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.content.reidentify({
      *     // Required. The parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -9026,7 +9070,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name.
+     * @param {string} params.parent Required. The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9138,7 +9182,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Content$Deidentify
     extends StandardParameters {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -9150,7 +9194,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Content$Inspect
     extends StandardParameters {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -9162,7 +9206,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Content$Reidentify
     extends StandardParameters {
     /**
-     * Required. The parent resource name.
+     * Required. The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -9205,8 +9249,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.deidentifyTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -9241,7 +9288,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9671,8 +9718,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -9697,7 +9747,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9967,7 +10017,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -10009,7 +10059,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -10195,7 +10245,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.dlpJobs.create({
-     *     // Required. The parent resource name, for example projects/my-project-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -10235,7 +10287,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10674,7 +10726,9 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
@@ -10702,7 +10756,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {string=} params.type The type of job. Defaults to `DlpJobType.INSPECT`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10818,7 +10872,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Dlpjobs$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -10864,7 +10918,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
     /**
@@ -10906,7 +10960,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.image.redact({
-     *     // The parent resource name, for example projects/my-project-id.
+     *     // The parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -10940,7 +10996,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2RedactImageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11044,7 +11100,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Image$Redact
     extends StandardParameters {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -11087,8 +11143,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.inspectTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -11123,7 +11182,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11541,8 +11600,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -11567,7 +11629,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11832,7 +11894,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -11874,7 +11936,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -12079,7 +12141,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.create({
-     *     // Required. The parent resource name, for example projects/my-project-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -12118,7 +12182,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -12565,7 +12629,9 @@ export namespace dlp_v2 {
      *     // to ListJobTriggers. `order_by` field must not
      *     // change for subsequent calls.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example `projects/my-project-id`.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -12591,7 +12657,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      * @param {integer=} params.pageSize Size of the page, can be limited by a server.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
-     * @param {string} params.parent Required. The parent resource name, for example `projects/my-project-id`.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12865,7 +12931,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Jobtriggers$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -12911,7 +12977,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -12990,7 +13056,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.deidentify({
-     *     // The parent resource name, for example projects/my-project-id.
+     *     // Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13024,7 +13092,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13159,7 +13227,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.inspect({
-     *     // The parent resource name, for example projects/my-project-id.
+     *     // Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13190,7 +13260,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2InspectContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13318,6 +13388,8 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.content.reidentify({
      *     // Required. The parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13351,7 +13423,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name.
+     * @param {string} params.parent Required. The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13463,7 +13535,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Content$Deidentify
     extends StandardParameters {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -13475,7 +13547,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Content$Inspect
     extends StandardParameters {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -13487,7 +13559,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Content$Reidentify
     extends StandardParameters {
     /**
-     * Required. The parent resource name.
+     * Required. The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -13530,8 +13602,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -13566,7 +13641,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13998,8 +14073,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListDeidentifyTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -14024,7 +14102,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14295,7 +14373,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Deidentifytemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -14337,7 +14415,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -14523,7 +14601,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.dlpJobs.create({
-     *     // Required. The parent resource name, for example projects/my-project-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -14563,7 +14643,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15292,7 +15372,9 @@ export namespace dlp_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *     // The type of job. Defaults to `DlpJobType.INSPECT`
      *     type: 'placeholder-value',
@@ -15320,7 +15402,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {string=} params.type The type of job. Defaults to `DlpJobType.INSPECT`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15436,7 +15518,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Dlpjobs$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -15506,7 +15588,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
     /**
@@ -15548,7 +15630,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.image.redact({
-     *     // The parent resource name, for example projects/my-project-id.
+     *     // The parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -15582,7 +15666,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2RedactImageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15686,7 +15770,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Image$Redact
     extends StandardParameters {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * The parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -15729,8 +15813,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -15765,7 +15852,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16185,8 +16272,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListInspectTemplates`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -16211,7 +16301,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16477,7 +16567,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Inspecttemplates$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -16519,7 +16609,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -16724,7 +16814,9 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.create({
-     *     // Required. The parent resource name, for example projects/my-project-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -16763,7 +16855,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17364,7 +17456,9 @@ export namespace dlp_v2 {
      *     // to ListJobTriggers. `order_by` field must not
      *     // change for subsequent calls.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example `projects/my-project-id`.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -17390,7 +17484,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      * @param {integer=} params.pageSize Size of the page, can be limited by a server.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
-     * @param {string} params.parent Required. The parent resource name, for example `projects/my-project-id`.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17664,7 +17758,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Jobtriggers$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -17722,7 +17816,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example `projects/my-project-id`.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -17772,8 +17866,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -17805,7 +17902,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -18223,8 +18320,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -18249,7 +18349,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18512,7 +18612,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -18554,7 +18654,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
@@ -18604,8 +18704,11 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.storedInfoTypes.create({
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -18637,7 +18740,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -19053,8 +19156,11 @@ export namespace dlp_v2 {
      *     // Page token to continue retrieval. Comes from previous call
      *     // to `ListStoredInfoTypes`.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, for example projects/my-project-id or
-     *     // organizations/my-org-id.
+     *     // Required. Parent resource name.
+     *     // - Format:projects/[PROJECT-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]
+     *     // - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID]
+     *     // - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -19079,7 +19185,7 @@ export namespace dlp_v2 {
      * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
-     * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {string} params.parent Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -19341,7 +19447,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Storedinfotypes$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
 
@@ -19383,7 +19489,7 @@ export namespace dlp_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * Required. Parent resource name. - Format:projects/[PROJECT-ID] - Format:organizations/[ORGANIZATION-ID] - Format:projects/[PROJECT-ID]/locations/[LOCATION-ID] - Format:organizations/[ORGANIZATION-ID]/locations/[LOCATION-ID]
      */
     parent?: string;
   }
