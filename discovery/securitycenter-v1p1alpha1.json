@@ -230,7 +230,7 @@
       }
     }
   },
-  "revision": "20200410",
+  "revision": "20200605",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -311,6 +311,37 @@
         },
         "notificationConfigName": {
           "description": "Name of the notification config that generated current notification.",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "GoogleCloudSecuritycenterV1Resource",
+          "description": "The Cloud resource tied to this notification's Finding."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1Resource": {
+      "description": "\nInformation related to the Google Cloud resource.",
+      "id": "GoogleCloudSecuritycenterV1Resource",
+      "properties": {
+        "name": {
+          "description": "The full resource name of the resource. See:\nhttps://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The full resource name of resource's parent.",
+          "type": "string"
+        },
+        "parentDisplayName": {
+          "description": "\nThe human readable name of resource's parent.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The full resource name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "projectDisplayName": {
+          "description": "\nThe human readable name of project that the resource belongs to.",
           "type": "string"
         }
       },
@@ -497,9 +528,40 @@
           "description": "Name of the notification config that generated current notification.",
           "type": "string"
         },
+        "resource": {
+          "$ref": "GoogleCloudSecuritycenterV1p1beta1Resource",
+          "description": "The Cloud resource tied to the notification."
+        },
         "temporalAsset": {
           "$ref": "GoogleCloudSecuritycenterV1p1beta1TemporalAsset",
           "description": "If it's an asset based notification config, this field will be\npopulated."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1p1beta1Resource": {
+      "description": "\nInformation related to the Google Cloud resource.",
+      "id": "GoogleCloudSecuritycenterV1p1beta1Resource",
+      "properties": {
+        "name": {
+          "description": "The full resource name of the resource. See:\nhttps://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The full resource name of resource's parent.",
+          "type": "string"
+        },
+        "parentDisplayName": {
+          "description": "\nThe human readable name of resource's parent.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The full resource name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "projectDisplayName": {
+          "description": "\nThe human readable name of project that the resource belongs to.",
+          "type": "string"
         }
       },
       "type": "object"
