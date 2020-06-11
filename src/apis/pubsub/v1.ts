@@ -282,6 +282,9 @@ export namespace pubsub_v1 {
      */
     subscriptions?: string[] | null;
   }
+  /**
+   * A policy constraining the storage of messages published to the topic.
+   */
   export interface Schema$MessageStoragePolicy {
     /**
      * A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration.
@@ -436,6 +439,19 @@ export namespace pubsub_v1 {
     message?: Schema$PubsubMessage;
   }
   /**
+   * A policy that specifies how Cloud Pub/Sub retries message delivery.  Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff.  RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.  Retry Policy is implemented on a best effort basis. At times, the delay between consecutive deliveries may not match the configuration. That is, delay can be more or less than configured backoff.
+   */
+  export interface Schema$RetryPolicy {
+    /**
+     * The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.
+     */
+    maximumBackoff?: string | null;
+    /**
+     * The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
+     */
+    minimumBackoff?: string | null;
+  }
+  /**
    * Request for the `Seek` method.
    */
   export interface Schema$SeekRequest {
@@ -499,7 +515,7 @@ export namespace pubsub_v1 {
      */
     expirationPolicy?: Schema$ExpirationPolicy;
     /**
-     * An expression written in the Cloud Pub/Sub filter language. If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out. &lt;b&gt;EXPERIMENTAL:&lt;/b&gt; This feature is part of a closed alpha release. This API might be changed in backward-incompatible ways and is not recommended for production use. It is not subject to any SLA or deprecation policy.
+     * An expression written in the Cloud Pub/Sub filter language. If non-empty, then only `PubsubMessage`s whose `attributes` field matches the filter are delivered on this subscription. If empty, then no messages are filtered out.
      */
     filter?: string | null;
     /**
@@ -522,6 +538,10 @@ export namespace pubsub_v1 {
      * Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription&#39;s backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to &lt;a href=&quot;https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt; Seek to a timestamp&lt;/a&gt;.
      */
     retainAckedMessages?: boolean | null;
+    /**
+     * A policy that specifies how Pub/Sub retries message delivery for this subscription.  If not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers. RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message.
+     */
+    retryPolicy?: Schema$RetryPolicy;
     /**
      * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
@@ -2069,6 +2089,7 @@ export namespace pubsub_v1 {
      *       //   "name": "my_name",
      *       //   "pushConfig": {},
      *       //   "retainAckedMessages": false,
+     *       //   "retryPolicy": {},
      *       //   "topic": "my_topic"
      *       // }
      *     },
@@ -2086,6 +2107,7 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "pushConfig": {},
      *   //   "retainAckedMessages": false,
+     *   //   "retryPolicy": {},
      *   //   "topic": "my_topic"
      *   // }
      * }
@@ -2501,6 +2523,7 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "pushConfig": {},
      *   //   "retainAckedMessages": false,
+     *   //   "retryPolicy": {},
      *   //   "topic": "my_topic"
      *   // }
      * }
@@ -3245,6 +3268,7 @@ export namespace pubsub_v1 {
      *   //   "name": "my_name",
      *   //   "pushConfig": {},
      *   //   "retainAckedMessages": false,
+     *   //   "retryPolicy": {},
      *   //   "topic": "my_topic"
      *   // }
      * }
