@@ -118,7 +118,6 @@ export namespace people_v1 {
     contactGroups: Resource$Contactgroups;
     otherContacts: Resource$Othercontacts;
     people: Resource$People;
-    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -129,7 +128,6 @@ export namespace people_v1 {
       this.contactGroups = new Resource$Contactgroups(this.context);
       this.otherContacts = new Resource$Othercontacts(this.context);
       this.people = new Resource$People(this.context);
-      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -344,9 +342,13 @@ export namespace people_v1 {
      */
     copyMask?: string | null;
     /**
-     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to the copy mask with metadata and membership fields if not set. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      */
     readMask?: string | null;
+    /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
+     */
+    sources?: string[] | null;
   }
   /**
    * A person&#39;s cover photo. A large image shown on the person&#39;s profile page that represents who they are or what they care about.
@@ -477,6 +479,19 @@ export namespace people_v1 {
     verified?: boolean | null;
   }
   /**
+   * The name that should be used to sort the person in a list.
+   */
+  export interface Schema$FileAs {
+    /**
+     * Metadata about the file-as.
+     */
+    metadata?: Schema$FieldMetadata;
+    /**
+     * The file-as value
+     */
+    value?: string | null;
+  }
+  /**
    * A person&#39;s gender.
    */
   export interface Schema$Gender {
@@ -593,6 +608,23 @@ export namespace people_v1 {
      * The total number of items in the list without pagination.
      */
     totalItems?: number | null;
+  }
+  /**
+   * The response to a request for the authenticated user&#39;s domain directory.
+   */
+  export interface Schema$ListDirectoryPeopleResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A token, which can be sent as `sync_token` to retrieve changes since the last request. Request must set `request_sync_token` to return the sync token.
+     */
+    nextSyncToken?: string | null;
+    /**
+     * The list of people in the domain directory.
+     */
+    people?: Schema$Person[];
   }
   /**
    * The response to a request for the authenticated user&#39;s other contacts.
@@ -868,6 +900,10 @@ export namespace people_v1 {
      */
     events?: Schema$Event[];
     /**
+     * The person&#39;s file-ases.
+     */
+    fileAses?: Schema$FileAs[];
+    /**
      * The person&#39;s genders.
      */
     genders?: Schema$Gender[];
@@ -1130,6 +1166,23 @@ export namespace people_v1 {
     value?: string | null;
   }
   /**
+   * The response to a request for people in the authenticated user&#39;s domain directory that match the specified query.
+   */
+  export interface Schema$SearchDirectoryPeopleResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of people in the domain directory that match the query.
+     */
+    people?: Schema$Person[];
+    /**
+     * The total number of items in the list without pagination.
+     */
+    totalSize?: number | null;
+  }
+  /**
    * A person&#39;s SIP address. Session Initial Protocol addresses are used for VoIP communications to make voice or video calls over the internet.
    */
   export interface Schema$SipAddress {
@@ -1239,6 +1292,10 @@ export namespace people_v1 {
      * Required. Raw photo bytes
      */
     photoBytes?: string | null;
+    /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
+     */
+    sources?: string[] | null;
   }
   /**
    * The response for updating a contact&#39;s photo.
@@ -2440,7 +2497,8 @@ export namespace people_v1 {
      *       // request body parameters
      *       // {
      *       //   "copyMask": "my_copyMask",
-     *       //   "readMask": "my_readMask"
+     *       //   "readMask": "my_readMask",
+     *       //   "sources": []
      *       // }
      *     },
      *   });
@@ -2458,6 +2516,7 @@ export namespace people_v1 {
      *   //   "emailAddresses": [],
      *   //   "etag": "my_etag",
      *   //   "events": [],
+     *   //   "fileAses": [],
      *   //   "genders": [],
      *   //   "imClients": [],
      *   //   "interests": [],
@@ -2577,6 +2636,173 @@ export namespace people_v1 {
         return createAPIRequest<Schema$Person>(parameters);
       }
     }
+
+    /**
+     * people.otherContacts.list
+     * @desc List all other contacts, that is contacts that are not in a contact group. Other contacts are typically auto created contacts from interactions.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.otherContacts.list({
+     *     // Optional. The number of other contacts to include in the response. Valid values are
+     *     // between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListOtherContacts` call.
+     *     // Provide this to retrieve the subsequent page.
+     *     //
+     *     // When paginating, all other parameters provided to `ListOtherContacts`
+     *     // must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Valid values are:
+     *     //
+     *     // * emailAddresses
+     *     // * names
+     *     // * phoneNumbers
+     *     readMask: 'placeholder-value',
+     *     // Optional. Whether the response should include `next_sync_token`, which can be used to
+     *     // get all changes since the last request. For subsequent sync requests use
+     *     // the `sync_token` param instead. Initial sync requests that specify
+     *     // `request_sync_token` have an additional rate limit.
+     *     requestSyncToken: 'placeholder-value',
+     *     // Optional. A sync token, received from a previous `ListOtherContacts` call.
+     *     // Provide this to retrieve only the resources changed since the last request.
+     *     // Sync requests that specify `sync_token` have an additional rate limit.
+     *     //
+     *     // When syncing, all other parameters provided to `ListOtherContacts`
+     *     // must match the call that provided the sync token.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "otherContacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias people.otherContacts.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
+     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * emailAddresses * names * phoneNumbers
+     * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * @param {string=} params.syncToken Optional. A sync token, received from a previous `ListOtherContacts` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListOtherContacts` must match the call that provided the sync token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params: Params$Resource$Othercontacts$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Othercontacts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOtherContactsResponse>;
+    list(
+      params: Params$Resource$Othercontacts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Othercontacts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>,
+      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Othercontacts$List,
+      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Othercontacts$List
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOtherContactsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOtherContactsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Othercontacts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Othercontacts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/otherContacts').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOtherContactsResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOtherContactsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup
@@ -2590,6 +2816,29 @@ export namespace people_v1 {
      * Request body metadata
      */
     requestBody?: Schema$CopyOtherContactToMyContactsGroupRequest;
+  }
+  export interface Params$Resource$Othercontacts$List
+    extends StandardParameters {
+    /**
+     * Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * emailAddresses * names * phoneNumbers
+     */
+    readMask?: string;
+    /**
+     * Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     */
+    requestSyncToken?: boolean;
+    /**
+     * Optional. A sync token, received from a previous `ListOtherContacts` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListOtherContacts` must match the call that provided the sync token.
+     */
+    syncToken?: string;
   }
 
   export class Resource$People {
@@ -2627,6 +2876,42 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.createContact({
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Defaults to all
+     *     // fields if not set. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     personFields: 'placeholder-value',
+     *     // Optional. A mask of what source types to return. Defaults to
+     *     // ReadSourceType.CONTACT and
+     *     // ReadSourceType.PROFILE if not
+     *     // set.
+     *     sources: 'placeholder-value',
+     *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
@@ -2641,6 +2926,7 @@ export namespace people_v1 {
      *       //   "emailAddresses": [],
      *       //   "etag": "my_etag",
      *       //   "events": [],
+     *       //   "fileAses": [],
      *       //   "genders": [],
      *       //   "imClients": [],
      *       //   "interests": [],
@@ -2680,6 +2966,7 @@ export namespace people_v1 {
      *   //   "emailAddresses": [],
      *   //   "etag": "my_etag",
      *   //   "events": [],
+     *   //   "fileAses": [],
      *   //   "genders": [],
      *   //   "imClients": [],
      *   //   "interests": [],
@@ -2714,6 +3001,8 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      * @param {().Person} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2986,6 +3275,11 @@ export namespace people_v1 {
      *     personFields: 'placeholder-value',
      *     // Required. The resource name of the contact whose photo will be deleted.
      *     resourceName: 'people/[^/]+',
+     *     // Optional. A mask of what source types to return. Defaults to
+     *     // ReadSourceType.CONTACT and
+     *     // ReadSourceType.PROFILE if not
+     *     // set.
+     *     sources: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3006,6 +3300,7 @@ export namespace people_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.personFields Optional. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Defaults to empty if not set, which will skip the post mutate get. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string} params.resourceName Required. The resource name of the contact whose photo will be deleted.
+     * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3177,6 +3472,12 @@ export namespace people_v1 {
      *     //   identifies the contact as returned by
      *     // [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      *     resourceName: 'people/[^/]+',
+     *     // Optional. A mask of what source types to return. Defaults to
+     *     // ReadSourceType.PROFILE
+     *     // and
+     *     // ReadSourceType.CONTACT
+     *     // if not set.
+     *     sources: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3192,6 +3493,7 @@ export namespace people_v1 {
      *   //   "emailAddresses": [],
      *   //   "etag": "my_etag",
      *   //   "events": [],
+     *   //   "fileAses": [],
      *   //   "genders": [],
      *   //   "imClients": [],
      *   //   "interests": [],
@@ -3229,6 +3531,7 @@ export namespace people_v1 {
      * @param {string=} params.personFields Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {string} params.resourceName Required. The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.PROFILE and ReadSourceType.CONTACT if not set.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3394,6 +3697,12 @@ export namespace people_v1 {
      *     //
      *     // You can include up to 50 resource names in one request.
      *     resourceNames: 'placeholder-value',
+     *     // Optional. A mask of what source types to return. Defaults to
+     *     // ReadSourceType.CONTACT
+     *     // and
+     *     // ReadSourceType.PROFILE
+     *     // if not set.
+     *     sources: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3415,6 +3724,7 @@ export namespace people_v1 {
      * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      * @param {string=} params.resourceNames Required. The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
+     * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3502,6 +3812,394 @@ export namespace people_v1 {
     }
 
     /**
+     * people.people.listDirectoryPeople
+     * @desc Provides a list of domain profiles and domain contacts in the authenticated user's domain directory.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/directory.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.people.listDirectoryPeople({
+     *     // Optional. Additional data to merge into the directory sources if they are connected
+     *     // through verified join keys such as email addresses or phone numbers.
+     *     mergeSources: 'placeholder-value',
+     *     // Optional. The number of people to include in the response. Valid values are
+     *     // between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListDirectoryPeople` call.
+     *     // Provide this to retrieve the subsequent page.
+     *     //
+     *     // When paginating, all other parameters provided to `ListDirectoryPeople`
+     *     // must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     readMask: 'placeholder-value',
+     *     // Optional. Whether the response should include `next_sync_token`, which can be used to
+     *     // get all changes since the last request. For subsequent sync requests use
+     *     // the `sync_token` param instead.
+     *     requestSyncToken: 'placeholder-value',
+     *     // Required. Directory sources to return.
+     *     sources: 'placeholder-value',
+     *     // Optional. A sync token, received from a previous `ListDirectoryPeople` call.
+     *     // Provide this to retrieve only the resources changed since the last request.
+     *     //
+     *     // When syncing, all other parameters provided to `ListDirectoryPeople`
+     *     // must match the call that provided the sync token.
+     *     syncToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "nextSyncToken": "my_nextSyncToken",
+     *   //   "people": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias people.people.listDirectoryPeople
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.mergeSources Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
+     * @param {integer=} params.pageSize Optional. The number of people to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListDirectoryPeople` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListDirectoryPeople` must match the call that provided the page token.
+     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead.
+     * @param {string=} params.sources Required. Directory sources to return.
+     * @param {string=} params.syncToken Optional. A sync token, received from a previous `ListDirectoryPeople` call. Provide this to retrieve only the resources changed since the last request.  When syncing, all other parameters provided to `ListDirectoryPeople` must match the call that provided the sync token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listDirectoryPeople(
+      params: Params$Resource$People$Listdirectorypeople,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDirectoryPeople(
+      params?: Params$Resource$People$Listdirectorypeople,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDirectoryPeopleResponse>;
+    listDirectoryPeople(
+      params: Params$Resource$People$Listdirectorypeople,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listDirectoryPeople(
+      params: Params$Resource$People$Listdirectorypeople,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDirectoryPeopleResponse>,
+      callback: BodyResponseCallback<Schema$ListDirectoryPeopleResponse>
+    ): void;
+    listDirectoryPeople(
+      params: Params$Resource$People$Listdirectorypeople,
+      callback: BodyResponseCallback<Schema$ListDirectoryPeopleResponse>
+    ): void;
+    listDirectoryPeople(
+      callback: BodyResponseCallback<Schema$ListDirectoryPeopleResponse>
+    ): void;
+    listDirectoryPeople(
+      paramsOrCallback?:
+        | Params$Resource$People$Listdirectorypeople
+        | BodyResponseCallback<Schema$ListDirectoryPeopleResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDirectoryPeopleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDirectoryPeopleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDirectoryPeopleResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Listdirectorypeople;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Listdirectorypeople;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/people:listDirectoryPeople').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDirectoryPeopleResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDirectoryPeopleResponse>(parameters);
+      }
+    }
+
+    /**
+     * people.people.searchDirectoryPeople
+     * @desc Provides a list of domain profiles and domain contacts in the authenticated user's domain directory that match the search query.
+     * @example
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/directory.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.people.searchDirectoryPeople({
+     *     // Optional. Additional data to merge into the directory sources if they are connected
+     *     // through verified join keys such as email addresses or phone numbers.
+     *     mergeSources: 'placeholder-value',
+     *     // Optional. The number of people to include in the response. Valid values are
+     *     // between 1 and 500, inclusive. Defaults to 100 if not set or set to 0.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `SearchDirectoryPeople` call.
+     *     // Provide this to retrieve the subsequent page.
+     *     //
+     *     // When paginating, all other parameters provided to `SearchDirectoryPeople`
+     *     // must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Prefix query that matches fields in the person. Does NOT use the
+     *     // read_mask for determining what fields to match.
+     *     query: 'placeholder-value',
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     readMask: 'placeholder-value',
+     *     // Required. Directory sources to return.
+     *     sources: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "people": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * @alias people.people.searchDirectoryPeople
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.mergeSources Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
+     * @param {integer=} params.pageSize Optional. The number of people to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100 if not set or set to 0.
+     * @param {string=} params.pageToken Optional. A page token, received from a previous `SearchDirectoryPeople` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `SearchDirectoryPeople` must match the call that provided the page token.
+     * @param {string=} params.query Required. Prefix query that matches fields in the person. Does NOT use the read_mask for determining what fields to match.
+     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     * @param {string=} params.sources Required. Directory sources to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchDirectoryPeople(
+      params: Params$Resource$People$Searchdirectorypeople,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchDirectoryPeople(
+      params?: Params$Resource$People$Searchdirectorypeople,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchDirectoryPeopleResponse>;
+    searchDirectoryPeople(
+      params: Params$Resource$People$Searchdirectorypeople,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchDirectoryPeople(
+      params: Params$Resource$People$Searchdirectorypeople,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchDirectoryPeopleResponse>,
+      callback: BodyResponseCallback<Schema$SearchDirectoryPeopleResponse>
+    ): void;
+    searchDirectoryPeople(
+      params: Params$Resource$People$Searchdirectorypeople,
+      callback: BodyResponseCallback<Schema$SearchDirectoryPeopleResponse>
+    ): void;
+    searchDirectoryPeople(
+      callback: BodyResponseCallback<Schema$SearchDirectoryPeopleResponse>
+    ): void;
+    searchDirectoryPeople(
+      paramsOrCallback?:
+        | Params$Resource$People$Searchdirectorypeople
+        | BodyResponseCallback<Schema$SearchDirectoryPeopleResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchDirectoryPeopleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchDirectoryPeopleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchDirectoryPeopleResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Searchdirectorypeople;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Searchdirectorypeople;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/people:searchDirectoryPeople').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchDirectoryPeopleResponse>(
+          parameters,
+          callback as BodyResponseCallback<{} | void>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchDirectoryPeopleResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * people.people.updateContact
      * @desc Update contact data for an existing contact person. Any non-contact data will not be modified.  The request throws a 400 error if `updatePersonFields` is not specified.  The request throws a 400 error if `person.metadata.sources` is not specified for the contact to be updated.  The request throws a 400 error with an error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and re-apply their updates to the latest person.
      * @example
@@ -3528,10 +4226,45 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.updateContact({
+     *     // Optional. A field mask to restrict which fields on each person are returned. Multiple
+     *     // fields can be specified by separating them with commas. Defaults to all
+     *     // fields if not set. Valid values are:
+     *     //
+     *     // * addresses
+     *     // * ageRanges
+     *     // * biographies
+     *     // * birthdays
+     *     // * coverPhotos
+     *     // * emailAddresses
+     *     // * events
+     *     // * genders
+     *     // * imClients
+     *     // * interests
+     *     // * locales
+     *     // * memberships
+     *     // * metadata
+     *     // * names
+     *     // * nicknames
+     *     // * occupations
+     *     // * organizations
+     *     // * phoneNumbers
+     *     // * photos
+     *     // * relations
+     *     // * residences
+     *     // * sipAddresses
+     *     // * skills
+     *     // * urls
+     *     // * userDefined
+     *     personFields: 'placeholder-value',
      *     // The resource name for the person, assigned by the server. An ASCII string
      *     // with a max length of 27 characters, in the form of
      *     // `people/{person_id}`.
      *     resourceName: 'people/[^/]+',
+     *     // Optional. A mask of what source types to return. Defaults to
+     *     // ReadSourceType.CONTACT and
+     *     // ReadSourceType.PROFILE if not
+     *     // set.
+     *     sources: 'placeholder-value',
      *     // Required. A field mask to restrict which fields on the person are updated. Multiple
      *     // fields can be specified by separating them with commas.
      *     // All updated fields will be replaced. Valid values are:
@@ -3572,6 +4305,7 @@ export namespace people_v1 {
      *       //   "emailAddresses": [],
      *       //   "etag": "my_etag",
      *       //   "events": [],
+     *       //   "fileAses": [],
      *       //   "genders": [],
      *       //   "imClients": [],
      *       //   "interests": [],
@@ -3611,6 +4345,7 @@ export namespace people_v1 {
      *   //   "emailAddresses": [],
      *   //   "etag": "my_etag",
      *   //   "events": [],
+     *   //   "fileAses": [],
      *   //   "genders": [],
      *   //   "imClients": [],
      *   //   "interests": [],
@@ -3645,7 +4380,9 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.personFields Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
      * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.
+     * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      * @param {string=} params.updatePersonFields Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      * @param {().Person} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3766,7 +4503,8 @@ export namespace people_v1 {
      *       // request body parameters
      *       // {
      *       //   "personFields": "my_personFields",
-     *       //   "photoBytes": "my_photoBytes"
+     *       //   "photoBytes": "my_photoBytes",
+     *       //   "sources": []
      *       // }
      *     },
      *   });
@@ -3883,6 +4621,15 @@ export namespace people_v1 {
   export interface Params$Resource$People$Createcontact
     extends StandardParameters {
     /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     */
+    personFields?: string;
+    /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
+     */
+    sources?: string[];
+
+    /**
      * Request body metadata
      */
     requestBody?: Schema$Person;
@@ -3904,6 +4651,10 @@ export namespace people_v1 {
      * Required. The resource name of the contact whose photo will be deleted.
      */
     resourceName?: string;
+    /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
+     */
+    sources?: string[];
   }
   export interface Params$Resource$People$Get extends StandardParameters {
     /**
@@ -3918,6 +4669,10 @@ export namespace people_v1 {
      * Required. The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      */
     resourceName?: string;
+    /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.PROFILE and ReadSourceType.CONTACT if not set.
+     */
+    sources?: string[];
   }
   export interface Params$Resource$People$Getbatchget
     extends StandardParameters {
@@ -3933,13 +4688,83 @@ export namespace people_v1 {
      * Required. The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
      */
     resourceNames?: string[];
+    /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
+     */
+    sources?: string[];
+  }
+  export interface Params$Resource$People$Listdirectorypeople
+    extends StandardParameters {
+    /**
+     * Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
+     */
+    mergeSources?: string[];
+    /**
+     * Optional. The number of people to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDirectoryPeople` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListDirectoryPeople` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     */
+    readMask?: string;
+    /**
+     * Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead.
+     */
+    requestSyncToken?: boolean;
+    /**
+     * Required. Directory sources to return.
+     */
+    sources?: string[];
+    /**
+     * Optional. A sync token, received from a previous `ListDirectoryPeople` call. Provide this to retrieve only the resources changed since the last request.  When syncing, all other parameters provided to `ListDirectoryPeople` must match the call that provided the sync token.
+     */
+    syncToken?: string;
+  }
+  export interface Params$Resource$People$Searchdirectorypeople
+    extends StandardParameters {
+    /**
+     * Optional. Additional data to merge into the directory sources if they are connected through verified join keys such as email addresses or phone numbers.
+     */
+    mergeSources?: string[];
+    /**
+     * Optional. The number of people to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100 if not set or set to 0.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `SearchDirectoryPeople` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `SearchDirectoryPeople` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Prefix query that matches fields in the person. Does NOT use the read_mask for determining what fields to match.
+     */
+    query?: string;
+    /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     */
+    readMask?: string;
+    /**
+     * Required. Directory sources to return.
+     */
+    sources?: string[];
   }
   export interface Params$Resource$People$Updatecontact
     extends StandardParameters {
     /**
+     * Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are:  * addresses * ageRanges * biographies * birthdays * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * residences * sipAddresses * skills * urls * userDefined
+     */
+    personFields?: string;
+    /**
      * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.
      */
     resourceName?: string;
+    /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
+     */
+    sources?: string[];
     /**
      * Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      */
@@ -4051,6 +4876,12 @@ export namespace people_v1 {
      *     // Optional. The order in which the connections should be sorted. Defaults to
      *     // `LAST_MODIFIED_ASCENDING`.
      *     sortOrder: 'placeholder-value',
+     *     // Optional. A mask of what source types to return. Defaults to
+     *     // ReadSourceType.CONTACT
+     *     // and
+     *     // ReadSourceType.PROFILE if not
+     *     // set.
+     *     sources: 'placeholder-value',
      *     // Optional. A sync token, received from a previous `ListConnections` call.
      *     // Provide this to retrieve only the resources changed since the last request.
      *     // Sync requests that specify `sync_token` have an additional rate limit.
@@ -4087,6 +4918,7 @@ export namespace people_v1 {
      * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      * @param {string} params.resourceName Required. The resource name to return connections for. Only `people/me` is valid.
      * @param {string=} params.sortOrder Optional. The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
+     * @param {string=} params.sources Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
      * @param {string=} params.syncToken Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4208,203 +5040,11 @@ export namespace people_v1 {
      */
     sortOrder?: string;
     /**
+     * Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.
+     */
+    sources?: string[];
+    /**
      * Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.
-     */
-    syncToken?: string;
-  }
-
-  export class Resource$V1 {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * people.otherContacts
-     * @desc List all other contacts, that is contacts that are not in a contact group. Other contacts are typically auto created contacts from interactions.
-     * @example
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/people.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const people = google.people('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await people.otherContacts({
-     *     // Optional. The number of other contacts to include in the response. Valid values are
-     *     // between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListOtherContacts` call.
-     *     // Provide this to retrieve the subsequent page.
-     *     //
-     *     // When paginating, all other parameters provided to `ListOtherContacts`
-     *     // must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple
-     *     // fields can be specified by separating them with commas. Valid values are:
-     *     //
-     *     // * emailAddresses
-     *     // * names
-     *     // * phoneNumbers
-     *     readMask: 'placeholder-value',
-     *     // Optional. Whether the response should include `next_sync_token`, which can be used to
-     *     // get all changes since the last request. For subsequent sync requests use
-     *     // the `sync_token` param instead. Initial sync requests that specify
-     *     // `request_sync_token` have an additional rate limit.
-     *     requestSyncToken: 'placeholder-value',
-     *     // Optional. A sync token, received from a previous `ListOtherContacts` call.
-     *     // Provide this to retrieve only the resources changed since the last request.
-     *     // Sync requests that specify `sync_token` have an additional rate limit.
-     *     //
-     *     // When syncing, all other parameters provided to `ListOtherContacts`
-     *     // must match the call that provided the sync token.
-     *     syncToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "nextSyncToken": "my_nextSyncToken",
-     *   //   "otherContacts": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * @alias people.otherContacts
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
-     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
-     * @param {string=} params.readMask Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * emailAddresses * names * phoneNumbers
-     * @param {boolean=} params.requestSyncToken Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
-     * @param {string=} params.syncToken Optional. A sync token, received from a previous `ListOtherContacts` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListOtherContacts` must match the call that provided the sync token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    otherContacts(
-      params: Params$Resource$V1$Othercontacts,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    otherContacts(
-      params?: Params$Resource$V1$Othercontacts,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOtherContactsResponse>;
-    otherContacts(
-      params: Params$Resource$V1$Othercontacts,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    otherContacts(
-      params: Params$Resource$V1$Othercontacts,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOtherContactsResponse>,
-      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
-    ): void;
-    otherContacts(
-      params: Params$Resource$V1$Othercontacts,
-      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
-    ): void;
-    otherContacts(
-      callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
-    ): void;
-    otherContacts(
-      paramsOrCallback?:
-        | Params$Resource$V1$Othercontacts
-        | BodyResponseCallback<Schema$ListOtherContactsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOtherContactsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListOtherContactsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListOtherContactsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$V1$Othercontacts;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$V1$Othercontacts;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/otherContacts').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListOtherContactsResponse>(
-          parameters,
-          callback as BodyResponseCallback<{} | void>
-        );
-      } else {
-        return createAPIRequest<Schema$ListOtherContactsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$V1$Othercontacts extends StandardParameters {
-    /**
-     * Optional. The number of other contacts to include in the response. Valid values are between 1 and 1000, inclusive. Defaults to 100 if not set or set to 0.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * emailAddresses * names * phoneNumbers
-     */
-    readMask?: string;
-    /**
-     * Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
-     */
-    requestSyncToken?: boolean;
-    /**
-     * Optional. A sync token, received from a previous `ListOtherContacts` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit.  When syncing, all other parameters provided to `ListOtherContacts` must match the call that provided the sync token.
      */
     syncToken?: string;
   }
