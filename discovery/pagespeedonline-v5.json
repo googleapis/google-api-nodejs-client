@@ -174,7 +174,7 @@
       }
     }
   },
-  "revision": "20200318",
+  "revision": "20200608",
   "rootUrl": "https://pagespeedonline.googleapis.com/",
   "schemas": {
     "AuditRefs": {
@@ -502,6 +502,10 @@
           },
           "description": "The map of <metrics, data>.",
           "type": "object"
+        },
+        "origin_fallback": {
+          "description": "True if the result is an origin fallback from a page, false otherwise.",
+          "type": "boolean"
         },
         "overall_category": {
           "description": "The human readable speed \"category\" of the id.",

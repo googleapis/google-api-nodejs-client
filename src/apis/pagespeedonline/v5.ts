@@ -406,6 +406,10 @@ export namespace pagespeedonline_v5 {
      */
     metrics?: {[key: string]: Schema$UserPageLoadMetricV5} | null;
     /**
+     * True if the result is an origin fallback from a page, false otherwise.
+     */
+    origin_fallback?: boolean | null;
+    /**
      * The human readable speed &quot;category&quot; of the id.
      */
     overall_category?: string | null;
