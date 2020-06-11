@@ -1056,7 +1056,7 @@
       }
     }
   },
-  "revision": "20200522",
+  "revision": "20200605",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1128,7 +1128,7 @@
       "type": "object"
     },
     "AuditConfig": {
-      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n            },\n            {\n              \"log_type\": \"ADMIN_READ\",\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\"\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
+      "description": "Specifies the audit configuration for a service.\nThe configuration determines which permission types are logged, and what\nidentities, if any, are exempted from logging.\nAn AuditConfig must have one or more AuditLogConfigs.\n\nIf there are AuditConfigs for both `allServices` and a specific service,\nthe union of the two AuditConfigs is used for that service: the log_types\nspecified in each AuditConfig are enabled, and the exempted_members in each\nAuditLogConfig are exempted.\n\nExample Policy with multiple AuditConfigs:\n\n    {\n      \"audit_configs\": [\n        {\n          \"service\": \"allServices\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\",\n              \"exempted_members\": [\n                \"user:jose@example.com\"\n              ]\n            },\n            {\n              \"log_type\": \"DATA_WRITE\"\n            },\n            {\n              \"log_type\": \"ADMIN_READ\"\n            }\n          ]\n        },\n        {\n          \"service\": \"sampleservice.googleapis.com\",\n          \"audit_log_configs\": [\n            {\n              \"log_type\": \"DATA_READ\"\n            },\n            {\n              \"log_type\": \"DATA_WRITE\",\n              \"exempted_members\": [\n                \"user:aliya@example.com\"\n              ]\n            }\n          ]\n        }\n      ]\n    }\n\nFor sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ\nlogging. It also exempts jose@example.com from DATA_READ logging, and\naliya@example.com from DATA_WRITE logging.",
       "id": "AuditConfig",
       "properties": {
         "auditLogConfigs": {
@@ -1146,7 +1146,7 @@
       "type": "object"
     },
     "AuditLogConfig": {
-      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\",\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
+      "description": "Provides the configuration for logging a type of permissions.\nExample:\n\n    {\n      \"audit_log_configs\": [\n        {\n          \"log_type\": \"DATA_READ\",\n          \"exempted_members\": [\n            \"user:jose@example.com\"\n          ]\n        },\n        {\n          \"log_type\": \"DATA_WRITE\"\n        }\n      ]\n    }\n\nThis enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting\njose@example.com from DATA_READ logging.",
       "id": "AuditLogConfig",
       "properties": {
         "exemptedMembers": {
@@ -1321,6 +1321,37 @@
         },
         "notificationConfigName": {
           "description": "Name of the notification config that generated current notification.",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "GoogleCloudSecuritycenterV1Resource",
+          "description": "The Cloud resource tied to this notification's Finding."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1Resource": {
+      "description": "\nInformation related to the Google Cloud resource.",
+      "id": "GoogleCloudSecuritycenterV1Resource",
+      "properties": {
+        "name": {
+          "description": "The full resource name of the resource. See:\nhttps://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The full resource name of resource's parent.",
+          "type": "string"
+        },
+        "parentDisplayName": {
+          "description": "\nThe human readable name of resource's parent.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The full resource name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "projectDisplayName": {
+          "description": "\nThe human readable name of project that the resource belongs to.",
           "type": "string"
         }
       },
@@ -1507,9 +1538,40 @@
           "description": "Name of the notification config that generated current notification.",
           "type": "string"
         },
+        "resource": {
+          "$ref": "GoogleCloudSecuritycenterV1p1beta1Resource",
+          "description": "The Cloud resource tied to the notification."
+        },
         "temporalAsset": {
           "$ref": "GoogleCloudSecuritycenterV1p1beta1TemporalAsset",
           "description": "If it's an asset based notification config, this field will be\npopulated."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1p1beta1Resource": {
+      "description": "\nInformation related to the Google Cloud resource.",
+      "id": "GoogleCloudSecuritycenterV1p1beta1Resource",
+      "properties": {
+        "name": {
+          "description": "The full resource name of the resource. See:\nhttps://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The full resource name of resource's parent.",
+          "type": "string"
+        },
+        "parentDisplayName": {
+          "description": "\nThe human readable name of resource's parent.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The full resource name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "projectDisplayName": {
+          "description": "\nThe human readable name of project that the resource belongs to.",
+          "type": "string"
         }
       },
       "type": "object"
